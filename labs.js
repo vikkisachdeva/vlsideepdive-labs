@@ -41,3 +41,49 @@ const LABS = [
     }
   }
 })();
+
+// Tip box inside a lab: <div class="lab-tip" data-topics="STA,Constraints"></div>
+(function () {
+  const boxes = document.querySelectorAll(".lab-tip");
+  if (!boxes.length) return;
+  const esc = (s) => s.replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+  const inline = (s) => esc(s)
+    .replace(/`([^`]+)`/g, "<code>$1</code>")
+    .replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>")
+    .replace(/\*([^*]+)\*/g, "<em>$1</em>")
+    .replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, (m, t, u) => /^(https?:|\/)/.test(u) ? `<a href="${u}">${t}</a>` : t);
+  const toHtml = (md) => md.split(/\n{2,}/).map((block) => {
+    const code = /^```\w*\n([\s\S]*?)\n?```$/.exec(block.trim());
+    return code ? `<pre>${esc(code[1])}</pre>` : `<p>${inline(block.trim())}</p>`;
+  }).join("");
+  fetch("/tips/tips.md", { cache: "no-cache" }).then((r) => (r.ok ? r.text() : "")).then((md) => {
+    md = md.replace(/<!--[\s\S]*?-->/g, "");
+    const tips = [];
+    for (const part of md.split(/^## /m).slice(1)) {
+      const lines = part.split("\n");
+      const title = lines.shift().trim();
+      while (lines.length && !lines[0].trim()) lines.shift();
+      const m = /^topic:\s*(.+)$/i.exec((lines[0] || "").trim());
+      const topic = m ? m[1].trim() : "";
+      if (m) lines.shift();
+      const id = title.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+      if (title) tips.push({ title, topic, id, body: lines.join("\n").trim() });
+    }
+    boxes.forEach((box) => {
+      const want = (box.dataset.topics || "").split(",").map((t) => t.trim().toLowerCase()).filter(Boolean);
+      const list = want.length ? tips.filter((t) => want.includes(t.topic.toLowerCase())) : tips;
+      if (!list.length) return;
+      let i = Math.floor(Math.random() * list.length);
+      const show = () => {
+        const t = list[i];
+        box.innerHTML = `<div class="lab-tip-head"><span class="lab-tip-label">// Vikas's tip${t.topic ? " · " + esc(t.topic) : ""}</span></div>
+          <h3>${esc(t.title)}</h3><div class="lab-tip-body">${toHtml(t.body)}</div>
+          <div class="lab-tip-foot">${list.length > 1 ? '<button type="button" class="btn small lab-tip-next">Next tip</button>' : ""}<a href="/tips/#${t.id}">All tips →</a></div>`;
+        const next = box.querySelector(".lab-tip-next");
+        if (next) next.addEventListener("click", () => { i = (i + 1) % list.length; show(); });
+      };
+      show();
+      box.hidden = false;
+    });
+  }).catch(() => {});
+})();
