@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Source and Licences</title>
+<style>
+:root { --bg:#f3f5f4; --text:#0b1f2a; --muted:#56656c; --line:#d5dbd9; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --bg:#0a161d; --text:#e6ecea; --muted:#93a5ac; --line:#22343e; } }
+:root[data-theme="dark"] { --bg:#0a161d; --text:#e6ecea; --muted:#93a5ac; --line:#22343e; }
+body { margin:0; background:var(--bg); color:var(--text); font:16px/1.6 system-ui, sans-serif; }
+main { max-width:760px; margin:0 auto; padding:40px 16px 60px; }
+h1 { font-size:28px; margin:0 0 8px; } h2 { font-size:19px; margin:32px 0 6px; }
+p, li { color:var(--muted); } a { color:var(--text); }
+code { font-family: ui-monospace, monospace; font-size:14px; }
+</style>
+</head>
+<body>
+<main>
+  <p><a href="./">← Back to the Verilog Playground</a></p>
+  <h1>Source and licences</h1>
+  <p>The playground runs entirely in your browser. Your code is not uploaded anywhere.</p>
+
+  <h2>Icarus Verilog 12.0</h2>
+  <p>The simulator files <code>ivlpp.wasm</code>, <code>ivl.wasm</code> and <code>vvp.wasm</code> are Icarus Verilog version 12.0 by Stephen Williams and contributors, compiled to WebAssembly with the WASI SDK 25. Icarus Verilog is free software under the GNU General Public License, version 2 or later.</p>
+  <ul>
+    <li>Original source: <a href="https://github.com/steveicarus/iverilog/tree/v12_0">github.com/steveicarus/iverilog, tag v12_0</a></li>
+    <li>Changes made for the browser build: <a href="icarus-wasm.patch">icarus-wasm.patch</a> (removes subprocess calls and resource-usage statistics) and <a href="static_dl.c">static_dl.c</a> (links the VPI modules and code generator into the same binary instead of loading them at run time)</li>
+    <li>Full licence text: <a href="icarus-COPYING.txt">GNU GPL v2</a></li>
+  </ul>
+  <p>To rebuild: configure Icarus with the WASI SDK as the C and C++ compiler (<code>--host=wasm32-unknown-none</code>, with the WASI emulated signal, process-clock, mman, getpid and pthread libraries), apply the patch, compile <code>static_dl.c</code>, and link <code>ivl</code> with the <code>tgt-vvp</code> objects and the <code>system</code>, <code>v2005_math</code>, <code>va_math</code> and <code>v2009</code> VPI objects, renaming each module's <code>vlog_startup_routines</code> (and the code generator's <code>target_design</code> and <code>target_query</code>) to the names in <code>static_dl.c</code>. Link <code>vvp</code> the same way with the VPI objects.</p>
+
+  <h2>browser_wasi_shim</h2>
+  <p>WASI runtime for the browser by bjorn3, under the MIT or Apache-2.0 licence. <a href="browser_wasi_shim-LICENSE-MIT.txt">MIT licence text</a>.</p>
+
+  <h2>CodeMirror 5</h2>
+  <p>Code editor by Marijn Haverbeke and contributors, MIT licence, loaded from cdnjs.</p>
+</main>
+</body>
+</html>

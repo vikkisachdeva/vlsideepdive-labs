@@ -1,0 +1,53 @@
+--- a/pform.cc	2026-11-15 04:25:36.209651629 +0000
++++ b/pform.cc	2026-11-15 04:32:28.541979480 +0000
+@@ -3379,7 +3379,7 @@
+ 	    if (verbose_flag)
+ 		  cerr << "Executing: " << cmdline << endl<< flush;
+ 
+-	    vl_input = popen(cmdline, "r");
++	    vl_input = 0; /* wasm: no subprocesses */
+ 	    if (vl_input == 0) {
+ 		  cerr << "Unable to preprocess " << path << "." << endl;
+ 		  return 1;
+@@ -3429,7 +3429,7 @@
+ 
+       if (vl_input != stdin) {
+ 	    if (ivlpp_string)
+-		  pclose(vl_input);
++		  fclose(vl_input);
+ 	    else
+ 		  fclose(vl_input);
+       }
+--- a/ivlpp/lexor.lex	2026-11-15 04:25:36.056693910 +0000
++++ b/ivlpp/lexor.lex	2026-11-15 04:32:38.829504544 +0000
+@@ -2018,8 +2018,8 @@
+ 
+       if (verbose_flag) fprintf(stderr, "Invoke vhdlpp: %s\n", cmd);
+ 
+-      isp->file = popen(cmd, "r");
+-      isp->file_close = pclose;
++      isp->file = 0; /* wasm: VHDL not supported */
++      isp->file_close = fclose;
+ 
+       free(libs);
+       free(cmd);
+--- a/vvp/main.cc	2026-11-15 04:25:36.238145450 +0000
++++ b/vvp/main.cc	2026-11-15 04:34:16.262786684 +0000
+@@ -36,7 +36,7 @@
+ # include  <pthread.h>
+ #endif
+ 
+-#if defined(HAVE_SYS_RESOURCE_H)
++#if defined(HAVE_SYS_RESOURCE_H) && !defined(__wasi__)
+ # include  <sys/time.h>
+ # include  <sys/resource.h>
+ #endif // defined(HAVE_SYS_RESOURCE_H)
+@@ -70,7 +70,7 @@
+ 
+ static char log_buffer[4096];
+ 
+-#if defined(HAVE_SYS_RESOURCE_H)
++#if defined(HAVE_SYS_RESOURCE_H) && !defined(__wasi__)
+ static void my_getrusage(struct rusage *a)
+ {
+       getrusage(RUSAGE_SELF, a);
