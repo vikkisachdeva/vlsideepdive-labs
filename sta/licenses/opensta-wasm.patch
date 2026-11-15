@@ -1,0 +1,13 @@
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 7db96dc..9872991 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -62,7 +62,7 @@ message(STATUS "Install prefix: ${CMAKE_INSTALL_PREFIX}")
+ include(CheckIPOSupported)
+ check_ipo_supported(RESULT ipo_supported OUTPUT ipo_error)
+ if(ipo_supported)
+-  set(CMAKE_INTERPROCEDURAL_OPTIMIZATION_RELEASE TRUE)
++  set(CMAKE_INTERPROCEDURAL_OPTIMIZATION_RELEASE FALSE)
+   message(STATUS "IPO/LTO: enabled for Release builds")
+ else()
+   message(STATUS "IPO/LTO: not supported - ${ipo_error}")

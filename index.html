@@ -51,6 +51,11 @@ header.top { background: var(--navy); color: var(--navy-ink); }
 .top nav { display: flex; flex-wrap: wrap; gap: 6px 20px; font-size: 14px; }
 .top nav a { text-decoration: none; color: #b9c6cb; padding: 8px 0; }
 .top nav a:hover { color: #fff; }
+.labs-nav { background: var(--panel); border-bottom: 1px solid var(--line); }
+.labs-in { max-width: 1440px; margin: 0 auto; padding: 0 20px; display: flex; gap: 4px; overflow-x: auto; }
+.labs-nav a { text-decoration: none; color: var(--muted); font-weight: 600; font-size: 14px; padding: 13px 14px 11px; border-bottom: 3px solid transparent; white-space: nowrap; }
+.labs-nav a:hover { color: var(--text); }
+.labs-nav a[aria-current="page"] { color: var(--text); border-bottom-color: var(--accent); }
 
 .intro { max-width: 1440px; margin: 0 auto; padding: 22px 20px 6px; display: flex; flex-wrap: wrap; gap: 8px 24px; align-items: baseline; justify-content: space-between; }
 .intro h1 { margin: 0; font: 700 clamp(24px, 3vw, 32px)/1.15 "Space Grotesk", sans-serif; letter-spacing: -0.02em; }
@@ -142,7 +147,7 @@ footer a { color: var(--muted); }
   <div class="top-in">
     <a class="brand" href="https://vlsideepdive.com/">
       <svg width="30" height="30" viewBox="0 0 34 34" fill="none" aria-hidden="true"><rect x="7" y="7" width="20" height="20" rx="2" stroke="#e6ecea" stroke-width="2"/><rect x="12" y="12" width="10" height="10" fill="#e8642c"/><path d="M11 2v5M17 2v5M23 2v5M11 27v5M17 27v5M23 27v5M2 11h5M2 17h5M2 23h5M27 11h5M27 17h5M27 23h5" stroke="#e6ecea" stroke-width="2"/></svg>
-      <b>vlsideepdive</b><span>/ playground</span>
+      <b>vlsideepdive</b><span>/ labs</span>
     </a>
     <nav aria-label="Site">
       <a href="https://vlsideepdive.com/">Home</a>
@@ -152,6 +157,7 @@ footer a { color: var(--muted); }
     </nav>
   </div>
 </header>
+<nav class="labs-nav" aria-label="Labs"><div class="labs-in"><a href="./" aria-current="page">Verilog simulator</a><a href="sta/">STA lab · OpenSTA</a></div></nav>
 
 <div class="intro">
   <h1>Verilog Playground</h1>

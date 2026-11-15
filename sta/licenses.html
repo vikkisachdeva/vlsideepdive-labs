@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>STA Lab Licences</title>
+<style>
+:root { --bg:#f3f5f4; --text:#0b1f2a; --muted:#56656c; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --bg:#0a161d; --text:#e6ecea; --muted:#93a5ac; } }
+:root[data-theme="dark"] { --bg:#0a161d; --text:#e6ecea; --muted:#93a5ac; }
+body { margin:0; background:var(--bg); color:var(--text); font:16px/1.6 system-ui, sans-serif; }
+main { max-width:780px; margin:0 auto; padding:40px 16px 60px; }
+h1 { font-size:28px; margin:0 0 8px; } h2 { font-size:19px; margin:30px 0 6px; }
+p, li { color:var(--muted); } a { color:var(--text); }
+code { font-family: ui-monospace, monospace; font-size:14px; }
+</style>
+</head>
+<body>
+<main>
+  <p><a href="./">← Back to the STA Lab</a></p>
+  <h1>Source and licences</h1>
+  <p>The STA Lab runs entirely in your browser. Your files are not uploaded anywhere.</p>
+
+  <h2>OpenSTA</h2>
+  <p><code>sta.wasm</code> is OpenSTA by Parallax Software and contributors, compiled to WebAssembly with the WASI SDK 30. OpenSTA is free software under the GNU General Public License, version 3.</p>
+  <ul>
+    <li>Source: <a href="https://github.com/parallaxsw/OpenSTA/tree/05b60019955bfd96d342a7225ef7be53ac80ef8b">github.com/parallaxsw/OpenSTA, commit 05b6001</a></li>
+    <li>Change for the browser build: <a href="licenses/opensta-wasm.patch">opensta-wasm.patch</a> (turns off link-time optimisation so C++ exceptions keep working in WebAssembly)</li>
+    <li>Licence: <a href="licenses/OpenSTA-LICENSE.txt">GNU GPL v3</a></li>
+  </ul>
+
+  <h2>Linked into sta.wasm</h2>
+  <ul>
+    <li><a href="https://github.com/tcltk/tcl/tree/core-8-6-16">Tcl 8.6.16</a>: <a href="licenses/tcl-license.txt">Tcl licence</a>. Built without threads, sockets or subprocesses; the missing system calls are replaced by stubs that fail cleanly: <a href="licenses/wasi_stubs.c">wasi_stubs.c</a>, <a href="licenses/pwd.h">pwd.h</a>, <a href="licenses/grp.h">grp.h</a>, <a href="licenses/netdb.h">netdb.h</a>, <a href="licenses/sys_wait.h">sys/wait.h</a>, <a href="licenses/termios.h">termios.h</a>.</li>
+    <li><a href="https://github.com/ivmai/cudd">CUDD</a> BDD package: <a href="licenses/cudd-LICENSE.txt">BSD-3-Clause</a></li>
+    <li><a href="https://github.com/madler/zlib/tree/v1.3.1">zlib 1.3.1</a>: <a href="licenses/zlib-LICENSE.txt">zlib licence</a></li>
+    <li>LLVM libc++, libc++abi and libunwind 21.1.4, rebuilt with WebAssembly exception handling: <a href="licenses/llvm-LICENSE.txt">Apache-2.0 with LLVM exception</a></li>
+    <li>Eigen 3 (header-only): MPL-2.0</li>
+  </ul>
+
+  <h2>Cell libraries and example data</h2>
+  <ul>
+    <li><code>sky130hd_tt.lib.gz</code>, the GCD netlist and SPEF: from the <a href="https://github.com/google/skywater-pdk">SkyWater SKY130 PDK</a> and OpenROAD flow, <a href="https://www.apache.org/licenses/LICENSE-2.0">Apache-2.0</a>. Copies taken from the OpenSTA examples.</li>
+    <li><code>asap7_small_ss.lib.gz</code>, <code>asap7_small_ff.lib.gz</code>, <code>reg1_asap7.spef</code>: subset of the <a href="https://github.com/The-OpenROAD-Project/asap7">ASAP7 predictive PDK</a> by Arizona State University, BSD-3-Clause (the licence text is inside each library file).</li>
+  </ul>
+
+  <h2>Browser runtime</h2>
+  <ul>
+    <li><a href="https://github.com/bjorn3/browser_wasi_shim">browser_wasi_shim</a>: <a href="licenses/browser_wasi_shim-LICENSE-MIT.txt">MIT</a> or Apache-2.0</li>
+    <li>CodeMirror 5: MIT, loaded from cdnjs</li>
+  </ul>
+</main>
+</body>
+</html>

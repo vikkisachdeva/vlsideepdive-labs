@@ -1,0 +1,8 @@
+#ifndef WASI_COMPAT_GRP_H
+#define WASI_COMPAT_GRP_H
+#include <sys/types.h>
+struct group { char *gr_name; char *gr_passwd; gid_t gr_gid; char **gr_mem; };
+struct group *getgrnam(const char *);
+struct group *getgrgid(gid_t);
+void endgrent(void);
+#endif
