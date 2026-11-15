@@ -87,3 +87,48 @@ const LABS = [
     });
   }).catch(() => {});
 })();
+
+// YouTube videos inside a lab: <section class="lab-videos" data-src="videos.txt"></section>
+// The list lives in a plain text file next to the lab: one YouTube link per line, optional title after "|".
+(function () {
+  const sections = document.querySelectorAll(".lab-videos");
+  if (!sections.length) return;
+  const idOf = (url) => {
+    const m = /(?:youtu\.be\/|[?&]v=|\/embed\/|\/shorts\/|\/live\/)([A-Za-z0-9_-]{11})/.exec(url) || /^([A-Za-z0-9_-]{11})$/.exec(url);
+    return m ? m[1] : null;
+  };
+  sections.forEach((sec) => {
+    const grid = sec.querySelector(".video-grid");
+    fetch(sec.dataset.src, { cache: "no-cache" }).then((r) => (r.ok ? r.text() : "")).then((txt) => {
+      const vids = [];
+      for (const raw of txt.split("\n")) {
+        const line = raw.trim();
+        if (!line || line.startsWith("#")) continue;
+        const [url, ...rest] = line.split("|");
+        const id = idOf(url.trim());
+        if (id) vids.push({ id, title: rest.join("|").trim() });
+      }
+      if (!vids.length) { sec.querySelector(".video-empty").hidden = false; return; }
+      for (const v of vids) {
+        const card = document.createElement("div"); card.className = "video";
+        const btn = document.createElement("button"); btn.type = "button"; btn.className = "video-thumb";
+        btn.setAttribute("aria-label", "Play video" + (v.title ? ": " + v.title : ""));
+        btn.style.backgroundImage = `url(https://i.ytimg.com/vi/${v.id}/hqdefault.jpg)`;
+        btn.innerHTML = '<span class="video-play" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24"><path d="M8 5l12 7-12 7z" fill="#fff"/></svg></span>';
+        btn.addEventListener("click", () => {
+          const f = document.createElement("iframe");
+          f.src = `https://www.youtube-nocookie.com/embed/${v.id}?autoplay=1&rel=0`;
+          f.title = v.title || "YouTube video";
+          f.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
+          f.allowFullscreen = true; f.className = "video-frame";
+          btn.replaceWith(f);
+        });
+        card.appendChild(btn);
+        const cap = document.createElement("a"); cap.className = "video-title";
+        cap.href = `https://www.youtube.com/watch?v=${v.id}`; cap.textContent = v.title || "Watch on YouTube";
+        card.appendChild(cap);
+        grid.appendChild(card);
+      }
+    }).catch(() => { sec.querySelector(".video-empty").hidden = false; });
+  });
+})();

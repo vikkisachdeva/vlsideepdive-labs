@@ -1,0 +1,7 @@
+# Videos shown in this lab.
+# One YouTube link per line. Optionally add the title after a | character, for example:
+#   https://www.youtube.com/watch?v=VIDEO_ID | Setup and hold explained
+# Lines starting with # are ignored. Videos appear in the order listed here.
+# Edit this file on GitHub and click "Commit changes"; the lab updates about a minute later.
+
+https://www.youtube.com/watch?v=za2o93ldrVQ | Static Timing Analysis Fundamentals Full Course: Setup, Hold, Skew & SDC
