@@ -51,7 +51,7 @@ header.top { background: var(--navy); color: var(--navy-ink); }
 .top nav { display: flex; flex-wrap: wrap; gap: 6px 20px; font-size: 14px; }
 .top nav a { text-decoration: none; color: #b9c6cb; padding: 8px 0; }
 .top nav a:hover { color: #fff; }
-.labs-nav { background: var(--panel); border-bottom: 1px solid var(--line); }
+.labs-nav { min-height: 47px; background: var(--panel); border-bottom: 1px solid var(--line); }
 .labs-in { max-width: 1440px; margin: 0 auto; padding: 0 20px; display: flex; gap: 4px; overflow-x: auto; }
 .labs-nav a { text-decoration: none; color: var(--muted); font-weight: 600; font-size: 14px; padding: 13px 14px 11px; border-bottom: 3px solid transparent; white-space: nowrap; }
 .labs-nav a:hover { color: var(--text); }
@@ -169,7 +169,7 @@ footer a { color: var(--muted); }
 .cheat { font: 12px/1.7 "JetBrains Mono", monospace; color: var(--muted); margin: 0; white-space: pre-wrap; }
 </style>
 </head>
-<body>
+<body data-lab="sta">
 <header class="top">
   <div class="top-in">
     <a class="brand" href="https://vlsideepdive.com/">
@@ -184,7 +184,7 @@ footer a { color: var(--muted); }
     </nav>
   </div>
 </header>
-<nav class="labs-nav" aria-label="Labs"><div class="labs-in"><a href="../">Verilog simulator</a><a href="./" aria-current="page">STA lab · OpenSTA</a></div></nav>
+<nav class="labs-nav" id="labs-nav" aria-label="Labs"></nav>
 
 <div class="intro">
   <h1>STA Lab</h1>
@@ -257,6 +257,7 @@ report_power</pre>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/verilog/verilog.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/tcl/tcl.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/addon/edit/matchbrackets.min.js"></script>
+<script src="/labs.js"></script>
 <script src="app.js"></script>
 </body>
 </html>

@@ -1,0 +1,252 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vikas Sachdeva's Tips</title>
+<meta name="description" content="Practical tips on verification, static timing analysis and chip design by Vikas Sachdeva. vlsideepdive Labs.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #f3f5f4; --panel: #ffffff; --text: #0b1f2a; --muted: #56656c; --line: #d5dbd9; --soft: #e8ecea;
+  --accent: #c2410c; --accent-ink: #ffffff; --accent-soft: #fbe9df; --label: #b53d0a;
+  --navy: #0b1f2a; --navy-ink: #e6ecea;
+  --ok: #0e7c4a; --err: #b42318; --warn: #9a5b00;
+  --code-bg: #ffffff; --gutter: #f3f5f4;
+  --wave-bg: #ffffff; --wave-row: #f7f9f8; --wave-grid: #e6eae8; --wave: #0e7c66; --wave-bus: #e3f3ef; --wave-x: #b42318; --wave-xfill: #fbe4e1; --wave-z: #8a6d00;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0a161d; --panel: #0f2029; --text: #e6ecea; --muted: #93a5ac; --line: #22343e; --soft: #15272f;
+    --accent: #e8642c; --accent-ink: #ffffff; --accent-soft: #3a1e12; --label: #ff9b6b;
+    --code-bg: #0f2029; --gutter: #0c1b22;
+    --wave-bg: #0f2029; --wave-row: #122530; --wave-grid: #1b2f39; --wave: #4fd1a5; --wave-bus: #143a33; --wave-x: #ff7a6b; --wave-xfill: #3d1c18; --wave-z: #e0c25a;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0a161d; --panel: #0f2029; --text: #e6ecea; --muted: #93a5ac; --line: #22343e; --soft: #15272f;
+  --accent: #e8642c; --accent-ink: #ffffff; --accent-soft: #3a1e12; --label: #ff9b6b;
+  --code-bg: #0f2029; --gutter: #0c1b22;
+  --wave-bg: #0f2029; --wave-row: #122530; --wave-grid: #1b2f39; --wave: #4fd1a5; --wave-bus: #143a33; --wave-x: #ff7a6b; --wave-xfill: #3d1c18; --wave-z: #e0c25a;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; }
+body { background: var(--bg); color: var(--text); font: 15px/1.5 Inter, system-ui, sans-serif; }
+a { color: inherit; }
+button, select, input { font: inherit; color: inherit; }
+.mono, code, .ln, .CodeMirror { font-family: "JetBrains Mono", ui-monospace, monospace; }
+
+/* header */
+header.top { background: var(--navy); color: var(--navy-ink); }
+.top-in { max-width: 1440px; margin: 0 auto; padding: 14px 20px; display: flex; flex-wrap: wrap; gap: 12px 24px; align-items: center; justify-content: space-between; }
+.brand { display: flex; align-items: center; gap: 12px; text-decoration: none; color: #fff; }
+.brand b { font: 700 19px "Space Grotesk", sans-serif; letter-spacing: -0.01em; }
+.brand span { font: 500 13px "JetBrains Mono", monospace; color: #ffb38a; }
+.top nav { display: flex; flex-wrap: wrap; gap: 6px 20px; font-size: 14px; }
+.top nav a { text-decoration: none; color: #b9c6cb; padding: 8px 0; }
+.top nav a:hover { color: #fff; }
+.labs-nav { min-height: 47px; background: var(--panel); border-bottom: 1px solid var(--line); }
+.labs-in { max-width: 1440px; margin: 0 auto; padding: 0 20px; display: flex; gap: 4px; overflow-x: auto; }
+.labs-nav a { text-decoration: none; color: var(--muted); font-weight: 600; font-size: 14px; padding: 13px 14px 11px; border-bottom: 3px solid transparent; white-space: nowrap; }
+.labs-nav a:hover { color: var(--text); }
+.labs-nav a[aria-current="page"] { color: var(--text); border-bottom-color: var(--accent); }
+
+.intro { max-width: 1440px; margin: 0 auto; padding: 22px 20px 6px; display: flex; flex-wrap: wrap; gap: 8px 24px; align-items: baseline; justify-content: space-between; }
+.intro h1 { margin: 0; font: 700 clamp(24px, 3vw, 32px)/1.15 "Space Grotesk", sans-serif; letter-spacing: -0.02em; }
+.intro p { margin: 0; color: var(--muted); font-size: 14px; }
+
+/* layout */
+.app { max-width: 1440px; margin: 0 auto; padding: 14px 20px 40px; display: grid; grid-template-columns: 236px minmax(0, 1fr); gap: 18px; }
+@media (max-width: 900px) { .app { grid-template-columns: minmax(0, 1fr); } .side { display: none; } .ex-mobile { display: flex !important; } }
+
+.side h2, .sec-label { font: 500 12px "JetBrains Mono", monospace; letter-spacing: 0.08em; text-transform: uppercase; color: var(--label); margin: 4px 0 10px; }
+.side .examples { display: flex; flex-direction: column; gap: 6px; }
+.ex { text-align: left; background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 10px 12px; cursor: pointer; display: flex; flex-direction: column; gap: 2px; min-height: 44px; }
+.ex:hover { border-color: var(--muted); }
+.ex.active { border-color: var(--accent); box-shadow: inset 3px 0 0 var(--accent); }
+.ex-tag { font: 500 11px "JetBrains Mono", monospace; color: var(--muted); }
+.ex-title { font-weight: 600; font-size: 14px; }
+.side .note { margin-top: 18px; font-size: 13px; color: var(--muted); }
+.side .note a { color: var(--text); }
+
+.main { display: flex; flex-direction: column; gap: 14px; min-width: 0; }
+
+/* toolbar */
+.toolbar { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 10px; }
+.ex-mobile { display: none; align-items: center; gap: 8px; width: 100%; }
+.ex-mobile select { flex: 1; min-width: 0; }
+.field { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--muted); }
+select, input[type=text] { background: var(--bg); border: 1px solid var(--line); border-radius: 6px; padding: 9px 10px; min-height: 40px; }
+input[type=text] { width: 120px; font-family: "JetBrains Mono", monospace; font-size: 13px; }
+.btn { border: 1px solid var(--line); background: var(--panel); border-radius: 6px; padding: 9px 14px; min-height: 40px; cursor: pointer; font-weight: 500; font-size: 14px; display: inline-flex; align-items: center; gap: 8px; }
+.btn:hover { border-color: var(--muted); }
+.btn:disabled { opacity: 0.45; cursor: default; }
+.btn.primary { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); font-weight: 600; padding: 9px 20px; }
+.btn.primary:hover { filter: brightness(1.06); }
+.btn.small { min-height: 32px; padding: 5px 10px; font-size: 13px; }
+.btn.ok { border-color: var(--ok); color: var(--ok); }
+.spacer { flex: 1; }
+.status { font: 500 13px "JetBrains Mono", monospace; padding: 6px 10px; border-radius: 999px; background: var(--soft); color: var(--muted); white-space: nowrap; }
+.status[data-kind="busy"] { color: var(--label); background: var(--accent-soft); }
+.status[data-kind="ok"] { color: var(--ok); }
+.status[data-kind="err"] { color: var(--err); }
+@media (max-width: 640px) { .btn kbd { display: none; } }
+kbd { font: 500 11px "JetBrains Mono", monospace; border: 1px solid currentColor; border-radius: 4px; padding: 0 4px; opacity: .8; }
+
+/* editors */
+.editors { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+@media (max-width: 1100px) { .editors { grid-template-columns: minmax(0, 1fr); } }
+.pane { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; overflow: hidden; display: flex; flex-direction: column; min-width: 0; }
+.pane-head { display: flex; align-items: center; gap: 8px; padding: 8px 10px 8px 14px; border-bottom: 1px solid var(--line); flex-wrap: wrap; }
+.pane-head .fname { font: 500 13px "JetBrains Mono", monospace; }
+.pane-head .role { font-size: 12px; color: var(--muted); }
+.pane-body { height: 440px; }
+.pane-body .CodeMirror { height: 100%; font-size: 13px; line-height: 1.55; background: var(--code-bg); color: var(--text); }
+.CodeMirror-gutters { background: var(--gutter); border-right: 1px solid var(--line); }
+.CodeMirror-linenumber { color: var(--muted); }
+.CodeMirror-cursor { border-left-color: var(--text); }
+.CodeMirror-selected, .CodeMirror-focused .CodeMirror-selected { background: var(--accent-soft) !important; }
+.cm-keyword { color: #1d4ed8; font-weight: 500; } .cm-number { color: #0e7c66; } .cm-string { color: #a14000; } .cm-comment { color: #6b7a80; font-style: italic; } .cm-meta, .cm-def { color: #7c3aed; } .cm-builtin { color: #b42318; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .cm-keyword { color: #7aa2ff; } :root:not([data-theme="light"]) .cm-number { color: #4fd1a5; } :root:not([data-theme="light"]) .cm-string { color: #ffb38a; } :root:not([data-theme="light"]) .cm-comment { color: #7f939b; } :root:not([data-theme="light"]) .cm-meta, :root:not([data-theme="light"]) .cm-def { color: #c4a7ff; } :root:not([data-theme="light"]) .cm-builtin { color: #ff8a7a; } }
+.cm-errline { background: var(--accent-soft); }
+.plain-editor { width: 100%; height: 100%; border: 0; resize: none; padding: 12px; font: 13px/1.55 "JetBrains Mono", monospace; background: var(--code-bg); color: var(--text); tab-size: 2; }
+
+/* output */
+.out-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 14px; }
+#console { height: 230px; overflow: auto; padding: 10px 14px; font-size: 13px; line-height: 1.6; background: var(--code-bg); white-space: pre-wrap; word-break: break-word; }
+.ln.meta { color: var(--muted); }
+.ln.stderr { color: var(--text); }
+.ln.err { color: var(--err); }
+.ln.warn { color: var(--warn); }
+.ln.pass { color: var(--ok); font-weight: 500; }
+.loc { background: none; border: 0; padding: 0; color: inherit; text-decoration: underline; text-underline-offset: 3px; cursor: pointer; font: inherit; }
+
+.wave-wrap { overflow-x: hidden; overflow-y: auto; max-height: 520px; background: var(--wave-bg); }
+#wave { display: block; cursor: crosshair; }
+.wave-tools { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+.wave-meta { font: 12px "JetBrains Mono", monospace; color: var(--muted); }
+#wave-values { font: 12px "JetBrains Mono", monospace; padding: 0 14px; }
+#wave-values:not(:empty) { padding: 10px 14px; border-top: 1px solid var(--line); display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 2px 18px; }
+.cur-time { grid-column: 1 / -1; color: var(--label); font-weight: 500; margin-bottom: 4px; }
+.cur-row { display: flex; justify-content: space-between; gap: 10px; border-bottom: 1px dashed var(--line); padding: 2px 0; }
+.cur-row span:first-child { color: var(--muted); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+footer { max-width: 1440px; margin: 0 auto; padding: 0 20px 36px; font-size: 13px; color: var(--muted); display: flex; flex-wrap: wrap; gap: 8px 24px; justify-content: space-between; }
+footer a { color: var(--muted); }
+.vh { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+</style>
+<style>
+.tips-wrap { max-width: 860px; margin: 0 auto; padding: 8px 20px 56px; }
+.filters { display: flex; flex-wrap: wrap; gap: 8px; margin: 6px 0 22px; }
+.filter { border: 1px solid var(--line); background: var(--panel); border-radius: 999px; padding: 8px 14px; min-height: 40px; cursor: pointer; font: 500 13px "JetBrains Mono", monospace; color: var(--muted); }
+.filter[aria-pressed="true"] { border-color: var(--accent); color: var(--text); background: var(--accent-soft); }
+.search { width: 100%; margin-bottom: 14px; background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 12px 14px; font: 15px Inter, sans-serif; color: var(--text); }
+.tip { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 24px 26px; margin-bottom: 16px; }
+.tip h2 { margin: 0 0 4px; font: 700 22px/1.25 "Space Grotesk", sans-serif; letter-spacing: -0.01em; }
+.tip .topic { display: inline-block; font: 500 12px "JetBrains Mono", monospace; color: var(--label); margin-bottom: 10px; }
+.tip .body { line-height: 1.65; }
+.tip .body p { margin: 0 0 12px; }
+.tip .body pre { background: var(--code-bg); border: 1px solid var(--line); border-radius: 8px; padding: 12px 14px; overflow-x: auto; font: 13px/1.55 "JetBrains Mono", monospace; }
+.tip .body code { font-family: "JetBrains Mono", monospace; font-size: 0.92em; }
+.tip .body :not(pre) > code { background: var(--soft); padding: 1px 5px; border-radius: 4px; }
+.tip .body a { color: var(--text); }
+.tip .anchor { float: right; font-size: 13px; color: var(--muted); text-decoration: none; padding: 4px 0 4px 10px; }
+.tip .anchor:hover { color: var(--accent); }
+.empty { text-align: center; padding: 56px 20px; border: 1px dashed var(--line); border-radius: 12px; color: var(--muted); }
+.empty b { display: block; font: 700 22px "Space Grotesk", sans-serif; color: var(--text); margin-bottom: 6px; }
+</style>
+</head>
+<body data-lab="tips">
+<header class="top">
+  <div class="top-in">
+    <a class="brand" href="https://vlsideepdive.com/">
+      <svg width="30" height="30" viewBox="0 0 34 34" fill="none" aria-hidden="true"><rect x="7" y="7" width="20" height="20" rx="2" stroke="#e6ecea" stroke-width="2"/><rect x="12" y="12" width="10" height="10" fill="#e8642c"/><path d="M11 2v5M17 2v5M23 2v5M11 27v5M17 27v5M23 27v5M2 11h5M2 17h5M2 23h5M27 11h5M27 17h5M27 23h5" stroke="#e6ecea" stroke-width="2"/></svg>
+      <b>vlsideepdive</b><span>/ labs</span>
+    </a>
+    <nav aria-label="Site">
+      <a href="https://vlsideepdive.com/">Home</a>
+      <a href="https://www.youtube.com/@vlsideepdive">Free courses on YouTube</a>
+      <a href="https://vlsideepdive.com/#b2b">Corporate training</a>
+      <a href="mailto:vlsideepdive@gmail.com">Contact</a>
+    </nav>
+  </div>
+</header>
+<nav class="labs-nav" id="labs-nav" aria-label="Labs"></nav>
+
+<div class="intro" style="max-width:860px">
+  <h1>Vikas Sachdeva's tips</h1>
+  <p>Practical advice on verification, timing and chip design.</p>
+</div>
+
+<div class="tips-wrap">
+  <label class="vh" for="search">Search tips</label>
+  <input class="search" id="search" type="search" placeholder="Search tips…" autocomplete="off" hidden>
+  <div class="filters" id="filters" role="group" aria-label="Filter by topic"></div>
+  <div id="tips"></div>
+</div>
+
+<footer>
+  <span>© 2026 vlsideepdive · All courses free on <a href="https://www.youtube.com/@vlsideepdive">YouTube</a> · Training enquiries: <a href="mailto:vlsideepdive@gmail.com">vlsideepdive@gmail.com</a></span>
+</footer>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/marked/4.3.0/marked.min.js"></script>
+<script src="/labs.js"></script>
+<script>
+(async function () {
+  const box = document.getElementById("tips");
+  let md = "";
+  try { const r = await fetch("tips.md", { cache: "no-cache" }); if (r.ok) md = await r.text(); } catch (_) {}
+  md = md.replace(/<!--[\s\S]*?-->/g, "");
+  // Each tip starts with a "## Title" line. An optional "Topic: ..." line follows.
+  const tips = [];
+  for (const part of md.split(/^## /m).slice(1)) {
+    const lines = part.split("\n");
+    const title = lines.shift().trim();
+    let topic = "";
+    while (lines.length && !lines[0].trim()) lines.shift();
+    const m = /^topic:\s*(.+)$/i.exec((lines[0] || "").trim());
+    if (m) { topic = m[1].trim(); lines.shift(); }
+    const body = lines.join("\n").trim();
+    if (title) tips.push({ title, topic, body, id: title.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "") });
+  }
+  if (!tips.length) {
+    box.innerHTML = '<div class="empty"><b>The first tips are on the way</b>Check back soon, or follow the <a href="https://www.youtube.com/@vlsideepdive">YouTube channel</a>.</div>';
+    return;
+  }
+  const render = (text) => (window.marked ? window.marked.parse(text) : text.split(/\n{2,}/).map((p) => "<p>" + p.replace(/[&<>]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;" }[c])) + "</p>").join(""));
+  for (const t of tips) {
+    const el = document.createElement("article");
+    el.className = "tip"; el.id = t.id; el.dataset.topic = t.topic; el.dataset.text = (t.title + " " + t.topic + " " + t.body).toLowerCase();
+    const a = document.createElement("a"); a.className = "anchor"; a.href = "#" + t.id; a.textContent = "Link"; a.setAttribute("aria-label", "Link to this tip");
+    const h = document.createElement("h2"); h.textContent = t.title;
+    el.append(a, h);
+    if (t.topic) { const s = document.createElement("span"); s.className = "topic"; s.textContent = "// " + t.topic; el.appendChild(s); }
+    const b = document.createElement("div"); b.className = "body"; b.innerHTML = render(t.body); el.appendChild(b);
+    box.appendChild(el);
+  }
+  const topics = [...new Set(tips.map((t) => t.topic).filter(Boolean))];
+  const search = document.getElementById("search");
+  let active = "";
+  const apply = () => {
+    const q = search.value.trim().toLowerCase();
+    for (const el of box.children) el.hidden = (active && el.dataset.topic !== active) || (q && !el.dataset.text.includes(q));
+  };
+  if (tips.length > 3) { search.hidden = false; search.addEventListener("input", apply); }
+  if (topics.length > 1) {
+    const f = document.getElementById("filters");
+    for (const name of ["All", ...topics]) {
+      const b = document.createElement("button"); b.type = "button"; b.className = "filter"; b.textContent = name;
+      b.setAttribute("aria-pressed", name === "All" ? "true" : "false");
+      b.addEventListener("click", () => { active = name === "All" ? "" : name; f.querySelectorAll(".filter").forEach((x) => x.setAttribute("aria-pressed", x === b ? "true" : "false")); apply(); });
+      f.appendChild(b);
+    }
+  }
+  if (location.hash) { const t = document.getElementById(location.hash.slice(1)); if (t) t.scrollIntoView(); }
+})();
+</script>
+</body>
+</html>

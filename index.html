@@ -3,12 +3,15 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Verilog Playground</title>
-<meta name="description" content="Free Verilog and SystemVerilog simulator that runs in your browser. Write code, run Icarus Verilog and view waveforms. By vlsideepdive.">
+<title>vlsideepdive Labs</title>
+<meta name="description" content="Free, in-browser labs for chip design: a Verilog simulator, an OpenSTA timing lab and practical tips. By vlsideepdive.">
+<script>
+  // Old share links pointed at the site root: send them to the Verilog simulator
+  if (/[#&]code=/.test(location.hash)) location.replace("/verilog/" + location.hash);
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="codemirror.css">
 <style>
 :root {
   --bg: #f3f5f4; --panel: #ffffff; --text: #0b1f2a; --muted: #56656c; --line: #d5dbd9; --soft: #e8ecea;
@@ -51,7 +54,7 @@ header.top { background: var(--navy); color: var(--navy-ink); }
 .top nav { display: flex; flex-wrap: wrap; gap: 6px 20px; font-size: 14px; }
 .top nav a { text-decoration: none; color: #b9c6cb; padding: 8px 0; }
 .top nav a:hover { color: #fff; }
-.labs-nav { background: var(--panel); border-bottom: 1px solid var(--line); }
+.labs-nav { min-height: 47px; background: var(--panel); border-bottom: 1px solid var(--line); }
 .labs-in { max-width: 1440px; margin: 0 auto; padding: 0 20px; display: flex; gap: 4px; overflow-x: auto; }
 .labs-nav a { text-decoration: none; color: var(--muted); font-weight: 600; font-size: 14px; padding: 13px 14px 11px; border-bottom: 3px solid transparent; white-space: nowrap; }
 .labs-nav a:hover { color: var(--text); }
@@ -141,8 +144,23 @@ footer { max-width: 1440px; margin: 0 auto; padding: 0 20px 36px; font-size: 13p
 footer a { color: var(--muted); }
 .vh { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 </style>
+<style>
+.hero { max-width: 1440px; margin: 0 auto; padding: 48px 20px 12px; }
+.hero .kicker { font: 500 13px "JetBrains Mono", monospace; letter-spacing: .08em; text-transform: uppercase; color: var(--label); }
+.hero h1 { margin: 10px 0 12px; font: 700 clamp(32px, 5vw, 56px)/1.05 "Space Grotesk", sans-serif; letter-spacing: -0.03em; }
+.hero p { margin: 0; max-width: 680px; font-size: 18px; line-height: 1.6; color: var(--muted); }
+.cards { max-width: 1440px; margin: 0 auto; padding: 28px 20px 56px; display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 18px; }
+.lab-card { display: flex; flex-direction: column; gap: 10px; padding: 26px; min-height: 220px; background: var(--panel); border: 1px solid var(--line); border-radius: 12px; text-decoration: none; color: var(--text); transition: border-color .15s, transform .15s; }
+.lab-card:hover { border-color: var(--accent); transform: translateY(-2px); }
+.lab-card:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+.lab-tag { font: 500 12px "JetBrains Mono", monospace; color: var(--label); }
+.lab-title { font: 700 24px/1.2 "Space Grotesk", sans-serif; letter-spacing: -0.01em; }
+.lab-desc { color: var(--muted); font-size: 15px; line-height: 1.55; }
+.lab-go { margin-top: auto; font-weight: 600; color: var(--accent); }
+.more { max-width: 1440px; margin: 0 auto; padding: 0 20px 48px; color: var(--muted); font-size: 14px; }
+</style>
 </head>
-<body>
+<body data-lab="home">
 <header class="top">
   <div class="top-in">
     <a class="brand" href="https://vlsideepdive.com/">
@@ -157,113 +175,21 @@ footer a { color: var(--muted); }
     </nav>
   </div>
 </header>
-<nav class="labs-nav" aria-label="Labs"><div class="labs-in"><a href="./" aria-current="page">Verilog simulator</a><a href="sta/">STA lab · OpenSTA</a></div></nav>
+<nav class="labs-nav" id="labs-nav" aria-label="Labs"></nav>
 
-<div class="intro">
-  <h1>Verilog Playground</h1>
-  <p>Write Verilog or SystemVerilog, run it, see the waveform. Free, no sign-up. Your code never leaves your browser.</p>
-</div>
+<section class="hero">
+  <span class="kicker">// vlsideepdive labs</span>
+  <h1>Hands-on chip design labs.<br>Free, in your browser.</h1>
+  <p>Real open-source EDA tools running on your own machine: nothing to install, no sign-up, and your code never leaves your browser.</p>
+</section>
 
-<div class="app">
-  <aside class="side" aria-label="Examples">
-    <h2>// Examples</h2>
-    <div class="examples" id="examples"></div>
-    <p class="note">Every example is ready to copy into your own project. Edit anything and press Run.</p>
-    <p class="note">Simulator: <a href="https://github.com/steveicarus/iverilog">Icarus Verilog 12</a> (open source), compiled to WebAssembly.</p>
-  </aside>
-
-  <main class="main">
-    <div class="toolbar">
-      <div class="ex-mobile">
-        <label class="vh" for="ex-select">Example</label>
-        <select id="ex-select"></select>
-      </div>
-      <button class="btn primary" id="run" type="button" title="Run (Ctrl+Enter)">
-        <svg width="14" height="14" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4l13 8-13 8z" fill="currentColor"/></svg>
-        Run <kbd>Ctrl ⏎</kbd>
-      </button>
-      <button class="btn" id="stop" type="button" disabled>Stop</button>
-      <div class="field">
-        <label for="std">Language</label>
-        <select id="std">
-          <option value="2005">Verilog-2005</option>
-          <option value="2012">SystemVerilog-2012</option>
-        </select>
-      </div>
-      <div class="field">
-        <label for="top">Top</label>
-        <input type="text" id="top" placeholder="auto" spellcheck="false" autocomplete="off">
-      </div>
-      <span class="spacer"></span>
-      <button class="btn" id="share" type="button">Copy share link</button>
-      <button class="btn" id="reset" type="button">Reset example</button>
-      <span class="status" id="status" role="status" aria-live="polite">Loading…</span>
-    </div>
-
-    <div class="editors">
-      <section class="pane" id="ed-design" aria-label="Design">
-        <div class="pane-head">
-          <span class="fname" id="name-design">design.v</span><span class="role">Design</span>
-          <span class="spacer"></span>
-          <button class="btn small" type="button" data-copy="design">Copy</button>
-          <button class="btn small" type="button" data-download="design">Download</button>
-        </div>
-        <div class="pane-body"><textarea spellcheck="false" aria-label="Design code"></textarea></div>
-      </section>
-      <section class="pane" id="ed-tb" aria-label="Testbench">
-        <div class="pane-head">
-          <span class="fname" id="name-tb">testbench.v</span><span class="role">Testbench</span>
-          <span class="spacer"></span>
-          <button class="btn small" type="button" data-copy="tb">Copy</button>
-          <button class="btn small" type="button" data-download="tb">Download</button>
-        </div>
-        <div class="pane-body"><textarea spellcheck="false" aria-label="Testbench code"></textarea></div>
-      </section>
-    </div>
-
-    <div class="out-grid">
-      <section class="pane" aria-label="Output">
-        <div class="pane-head">
-          <span class="sec-label" style="margin:0">// Output</span>
-          <span class="spacer"></span>
-          <button class="btn small" type="button" id="copy-output">Copy output</button>
-        </div>
-        <div id="console" role="log" aria-live="polite"></div>
-      </section>
-
-      <section class="pane" aria-label="Waveform">
-        <div class="pane-head">
-          <span class="sec-label" style="margin:0">// Waveform</span>
-          <span class="wave-meta" id="wave-meta"></span>
-          <span class="spacer"></span>
-          <div class="wave-tools">
-            <label class="vh" for="radix">Number format</label>
-            <select id="radix" style="min-height:32px;padding:4px 8px;font-size:13px">
-              <option value="hex">Hex</option><option value="dec">Unsigned</option><option value="sdec">Signed</option><option value="bin">Binary</option>
-            </select>
-            <button class="btn small" type="button" id="pan-left" aria-label="Scroll left">◀</button>
-            <button class="btn small" type="button" id="zoom-out" aria-label="Zoom out">−</button>
-            <button class="btn small" type="button" id="zoom-in" aria-label="Zoom in">+</button>
-            <button class="btn small" type="button" id="pan-right" aria-label="Scroll right">▶</button>
-            <button class="btn small" type="button" id="zoom-fit">Fit</button>
-            <button class="btn small" type="button" id="dl-vcd">Download VCD</button>
-          </div>
-        </div>
-        <div class="wave-wrap"><canvas id="wave" aria-label="Waveform viewer. Click to place a cursor and read values below."></canvas></div>
-        <div id="wave-values"></div>
-      </section>
-    </div>
-  </main>
-</div>
+<main class="cards" id="lab-cards" aria-label="Labs"></main>
+<p class="more">More labs are on the way. Follow the <a href="https://www.youtube.com/@vlsideepdive">YouTube channel</a> to hear first.</p>
 
 <footer>
   <span>© 2026 vlsideepdive · All courses free on <a href="https://www.youtube.com/@vlsideepdive">YouTube</a> · Training enquiries: <a href="mailto:vlsideepdive@gmail.com">vlsideepdive@gmail.com</a></span>
-  <span>Powered by <a href="https://github.com/steveicarus/iverilog">Icarus Verilog</a> (GPL-2.0) · <a href="licenses.html">Source &amp; licences</a></span>
+  <span><a href="/verilog/licenses.html">Verilog lab licences</a> · <a href="/sta/licenses.html">STA lab licences</a></span>
 </footer>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/verilog/verilog.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/addon/edit/matchbrackets.min.js"></script>
-<script src="app.js"></script>
+<script src="/labs.js"></script>
 </body>
 </html>
