@@ -1,7 +1,7 @@
 // The list of labs. To add a lab, add one entry here: it appears in the tab bar
 // on every page and as a card on the labs home page.
 const LABS = [
-  { id: "verilog", title: "Verilog simulator", href: "/verilog/", tag: "Simulation",
+  { id: "verilog", title: "Verilog labs", href: "/verilog/", tag: "Simulation",
     desc: "Write Verilog or SystemVerilog, run Icarus Verilog and see waveforms. Ready-to-copy examples: counters, FSMs, FIFOs, CDC synchronizers." },
   { id: "synth", title: "Synthesis lab · Yosys", href: "/synth/", tag: "Synthesis · 7 labs · quizzes",
     desc: "Logic synthesis with Yosys: from a 2-to-1 mux to a RISC-V core. See RTL and gate-level diagrams, map to standard cells, read cell and area reports." },
