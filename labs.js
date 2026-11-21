@@ -3,22 +3,26 @@
 const LABS = [
   { id: "verilog", title: "Verilog simulator", href: "/verilog/", tag: "Simulation",
     desc: "Write Verilog or SystemVerilog, run Icarus Verilog and see waveforms. Ready-to-copy examples: counters, FSMs, FIFOs, CDC synchronizers." },
+  { id: "synth", title: "Synthesis lab · Yosys", href: "/synth/", tag: "Synthesis · 7 labs · quizzes",
+    desc: "Logic synthesis with Yosys: from a 2-to-1 mux to a RISC-V core. See RTL and gate-level diagrams, map to standard cells, read cell and area reports." },
   { id: "sta", title: "STA lab · OpenSTA", href: "/sta/", tag: "Timing",
     desc: "Static timing analysis with OpenSTA: netlists, SDC, Liberty and SPEF. Setup and hold, exceptions, OCV, multi-corner and power reports." },
   { id: "tips", title: "Vikas Sachdeva's tips", href: "/tips/", tag: "Tips",
     desc: "Practical tips on verification, timing and chip design from 20 years in EDA." },
 ];
+const labById = (id) => LABS.find((l) => l.id === id);
 
 // Cards on the labs home page. The STA lab has three tracks, each with its own card.
 const HOME_CARDS = [
-  LABS[0],
+  labById("verilog"),
+  labById("synth"),
   { title: "STA basic labs", href: "/sta/?track=basic", tag: "Timing · OpenSTA",
     desc: "Short examples to start with: setup and hold, I/O constraints, exceptions, OCV, corners, SPEF and power on a real block." },
   { title: "STA workshop", href: "/sta/?track=workshop", tag: "Timing · 15 labs · quizzes",
     desc: "The 8-day STA workshop, from your first timing report to STA on a RISC-V core. Slides and an auto-checked quiz for every lab." },
   { title: "Signoff STA", href: "/sta/?track=signoff", tag: "Timing · 9 labs · quizzes",
     desc: "Signoff skills: validating constraints, clocks, timing exceptions, OCV and CRPR, latches, ECO fixes and multi-corner signoff." },
-  LABS[2],
+  labById("tips"),
 ];
 
 (function () {

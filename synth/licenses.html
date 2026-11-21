@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Synthesis Lab Licences</title>
+<style>
+:root { --bg:#f3f5f4; --text:#0b1f2a; --muted:#56656c; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --bg:#0a161d; --text:#e6ecea; --muted:#93a5ac; } }
+:root[data-theme="dark"] { --bg:#0a161d; --text:#e6ecea; --muted:#93a5ac; }
+body { margin:0; background:var(--bg); color:var(--text); font:16px/1.6 system-ui, sans-serif; }
+main { max-width:780px; margin:0 auto; padding:40px 16px 60px; }
+h1 { font-size:28px; margin:0 0 8px; } h2 { font-size:19px; margin:30px 0 6px; }
+p, li { color:var(--muted); } a { color:var(--text); }
+code { font-family: ui-monospace, monospace; font-size:14px; }
+</style>
+</head>
+<body>
+<main>
+  <p><a href="./">← Back to the Synthesis Lab</a></p>
+  <h1>Source and licences</h1>
+  <p>The Synthesis Lab runs entirely in your browser. Your files are not uploaded anywhere.</p>
+
+  <h2>Yosys</h2>
+  <ul>
+    <li><a href="https://github.com/YosysHQ/yosys">Yosys</a> 0.70, the open synthesis suite, including the <a href="https://github.com/berkeley-abc/abc">ABC</a> logic optimiser: ISC licence (ABC: permissive Berkeley licence).</li>
+    <li>WebAssembly build from <a href="https://yowasp.org/">YoWASP</a> (<a href="https://www.npmjs.com/package/@yowasp/yosys">@yowasp/yosys 0.70.1258</a>), ISC licence. The files are served gzip-compressed and unpacked in your browser, unchanged.</li>
+  </ul>
+
+  <h2>Diagrams</h2>
+  <ul>
+    <li><a href="https://github.com/mdaines/viz-js">Viz.js</a> 3.31 (MIT), which contains <a href="https://graphviz.org/">Graphviz</a> compiled to WebAssembly (<a href="https://graphviz.org/license/">Eclipse Public License 2.0</a>), unmodified.</li>
+  </ul>
+
+  <h2>Lab designs and libraries</h2>
+  <ul>
+    <li>Lab RTL, Yosys scripts and quizzes: © vlsideepdive (Vikas Sachdeva). Free to use for learning.</li>
+    <li><code>mycells.lib</code> and <code>cmos_cells.lib</code>: small demonstration libraries from the Yosys examples (ISC).</li>
+    <li><code>ibex_rtl.v</code>: the <a href="https://github.com/lowRISC/ibex">lowRISC ibex</a> RISC-V core (<a href="licenses/ibex-LICENSE.txt">Apache-2.0</a>), converted from SystemVerilog to Verilog-2005 with <a href="https://github.com/zachjs/sv2v">sv2v</a>.</li>
+    <li><code>sky130_fd_sc_hd__tt_025C_1v80_synth.lib</code>: SkyWater SKY130 HD standard cells (<a href="licenses/sky130-LICENSE.txt">Apache-2.0</a>), with cells not meant for synthesis left out.</li>
+  </ul>
+
+  <h2>Editor</h2>
+  <ul>
+    <li>CodeMirror 5: MIT, loaded from cdnjs</li>
+  </ul>
+</main>
+</body>
+</html>
