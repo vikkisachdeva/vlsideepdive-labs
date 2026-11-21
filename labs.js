@@ -88,6 +88,25 @@ const LABS = [
   }).catch(() => {});
 })();
 
+// "Subscribe to the YouTube channel" popup, shown every time a lab is run.
+window.vddSubscribe = function () {
+  const old = document.querySelector(".sub-pop");
+  if (old) old.remove();
+  const box = document.createElement("aside");
+  box.className = "sub-pop";
+  box.setAttribute("role", "complementary");
+  box.setAttribute("aria-label", "Subscribe to vlsideepdive on YouTube");
+  box.innerHTML = '<span class="sub-ic" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24"><path d="M8 5l12 7-12 7z" fill="#fff"/></svg></span>' +
+    '<div><b>Enjoying the lab?</b><p>Subscribe to vlsideepdive on YouTube for free courses and new labs.</p>' +
+    '<a class="sub-go" href="https://www.youtube.com/@vlsideepdive?sub_confirmation=1" target="_blank" rel="noopener">Subscribe</a></div>' +
+    '<button type="button" class="sub-x" aria-label="Close">×</button>';
+  document.body.appendChild(box);
+  requestAnimationFrame(() => box.classList.add("show"));
+  const close = () => { box.classList.remove("show"); setTimeout(() => box.remove(), 250); };
+  box.querySelector(".sub-x").addEventListener("click", close);
+  box.querySelector(".sub-go").addEventListener("click", () => setTimeout(close, 300));
+};
+
 // YouTube videos inside a lab: <section class="lab-videos" data-src="videos.txt"></section>
 // The list lives in a plain text file next to the lab: one YouTube link per line, optional title after "|".
 (function () {

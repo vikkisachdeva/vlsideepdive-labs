@@ -164,6 +164,15 @@ kbd { font: 500 11px "JetBrains Mono", monospace; border: 1px solid currentColor
 footer { max-width: 1440px; margin: 0 auto; padding: 0 20px 36px; font-size: 13px; color: var(--muted); display: flex; flex-wrap: wrap; gap: 8px 24px; justify-content: space-between; }
 footer a { color: var(--muted); }
 .vh { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.sub-pop { position: fixed; right: 20px; bottom: 20px; z-index: 50; width: min(360px, calc(100vw - 32px)); background: var(--panel); color: var(--text); border: 1px solid var(--line); border-top: 3px solid #ff0033; border-radius: 12px; box-shadow: 0 12px 32px rgba(0,0,0,.22); padding: 16px 18px; display: flex; gap: 14px; align-items: flex-start; transform: translateY(12px); opacity: 0; transition: transform .25s, opacity .25s; }
+.sub-pop.show { transform: none; opacity: 1; }
+.sub-pop .sub-ic { flex: none; width: 40px; height: 40px; border-radius: 10px; background: #ff0033; display: grid; place-items: center; }
+.sub-pop b { display: block; font: 700 16px/1.3 "Space Grotesk", sans-serif; margin-bottom: 3px; }
+.sub-pop p { margin: 0 0 10px; font-size: 13px; line-height: 1.5; color: var(--muted); }
+.sub-pop .sub-go { display: inline-flex; align-items: center; min-height: 36px; padding: 6px 14px; border-radius: 8px; background: #ff0033; color: #fff; font-weight: 600; font-size: 14px; text-decoration: none; }
+.sub-pop .sub-x { position: absolute; top: 6px; right: 6px; border: 0; background: none; color: var(--muted); font-size: 20px; line-height: 1; width: 36px; height: 36px; border-radius: 6px; cursor: pointer; }
+.sub-pop .sub-x:hover { background: var(--soft); color: var(--text); }
+@media (max-width: 640px) { .sub-pop { right: 16px; bottom: 16px; } }
 </style>
 <style>
 .tips-wrap { max-width: 860px; margin: 0 auto; padding: 8px 20px 56px; }
