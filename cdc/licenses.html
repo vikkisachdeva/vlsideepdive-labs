@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CDC Lab Licences</title>
+<style>
+:root { --bg:#f3f5f4; --text:#0b1f2a; --muted:#56656c; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --bg:#0a161d; --text:#e6ecea; --muted:#93a5ac; } }
+:root[data-theme="dark"] { --bg:#0a161d; --text:#e6ecea; --muted:#93a5ac; }
+body { margin:0; background:var(--bg); color:var(--text); font:16px/1.6 system-ui, sans-serif; }
+main { max-width:780px; margin:0 auto; padding:40px 16px 60px; }
+h1 { font-size:28px; margin:0 0 8px; } h2 { font-size:19px; margin:30px 0 6px; }
+p, li { color:var(--muted); } a { color:var(--text); }
+code { font-family: ui-monospace, monospace; font-size:14px; }
+</style>
+</head>
+<body>
+<main>
+  <p><a href="./">← Back to the CDC Lab</a></p>
+  <h1>Source and licences</h1>
+  <p>The CDC Lab runs entirely in your browser. Your files are not uploaded anywhere.</p>
+
+  <h2>CDC checker</h2>
+  <ul>
+    <li>The CDC checker is written by vlsideepdive for teaching. It reads the netlist that Yosys writes and a subset of SDC, and finds the common structural CDC problems. It is not a signoff CDC tool.</li>
+  </ul>
+
+  <h2>Yosys</h2>
+  <ul>
+    <li><a href="https://github.com/YosysHQ/yosys">Yosys</a> 0.70: ISC licence. WebAssembly build from <a href="https://yowasp.org/">YoWASP</a> (<a href="https://www.npmjs.com/package/@yowasp/yosys">@yowasp/yosys</a>), ISC licence, shared with the <a href="/synth/">Synthesis lab</a>.</li>
+  </ul>
+
+  <h2>Simulator</h2>
+  <ul>
+    <li><a href="https://github.com/steveicarus/iverilog">Icarus Verilog</a>: GPL-2.0, compiled to WebAssembly and shared with the <a href="/verilog/">Verilog labs</a>. Source and licence details: <a href="/verilog/licenses.html">Verilog labs licences</a>.</li>
+  </ul>
+
+  <h2>Lab designs</h2>
+  <ul>
+    <li>Lab RTL, testbenches, SDC files and quizzes: © vlsideepdive (Vikas Sachdeva), based on the vlsideepdive CDC workshop. Free to use for learning.</li>
+  </ul>
+
+  <h2>Editor</h2>
+  <ul>
+    <li>CodeMirror 5: MIT, loaded from cdnjs</li>
+  </ul>
+</main>
+</body>
+</html>
