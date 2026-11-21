@@ -211,6 +211,31 @@ footer a { color: var(--muted); }
 .tab-x:hover { color: var(--err); background: var(--soft); }
 .workshop-banner { flex-basis: 100%; display: flex; flex-wrap: wrap; align-items: center; gap: 10px 14px; margin-top: 14px; padding: 12px 16px; border: 1px solid var(--line); border-radius: 10px; background: var(--panel); font-size: 14px; }
 .workshop-banner b { font-family: "Space Grotesk", sans-serif; }
+.quiz[hidden] { display: none; }
+.quiz-body { padding: 16px 18px 18px; }
+.quiz-intro { margin: 0 0 14px; font-size: 14px; color: var(--muted); line-height: 1.55; }
+.quiz-try { display: inline-block; font: 600 11px "JetBrains Mono", monospace; text-transform: uppercase; letter-spacing: .05em; color: var(--label); background: var(--accent-soft); border-radius: 4px; padding: 1px 6px; vertical-align: 1px; }
+.quiz-list { margin: 0; padding: 0 0 0 22px; display: flex; flex-direction: column; gap: 16px; }
+.quiz-list li { padding-left: 4px; }
+.quiz-q { font-weight: 600; line-height: 1.5; margin-bottom: 8px; }
+.quiz-q .quiz-try { margin-right: 6px; }
+.quiz-num { display: flex; align-items: center; gap: 8px; }
+.quiz-num input { width: 140px; min-height: 40px; padding: 6px 10px; border: 1px solid var(--line); border-radius: 8px; background: var(--bg); color: var(--text); font: 15px "JetBrains Mono", monospace; }
+.quiz-num .unit { color: var(--muted); font: 13px "JetBrains Mono", monospace; }
+.quiz-opts { display: flex; flex-direction: column; gap: 6px; }
+.quiz-opts label { display: flex; gap: 10px; align-items: flex-start; padding: 8px 10px; border: 1px solid var(--line); border-radius: 8px; cursor: pointer; line-height: 1.45; font-size: 14px; }
+.quiz-opts label:hover { border-color: var(--muted); }
+.quiz-opts input { margin-top: 3px; accent-color: var(--accent); }
+.quiz-fb { margin-top: 8px; font-size: 14px; line-height: 1.5; padding: 8px 12px; border-radius: 8px; }
+.quiz-fb[hidden] { display: none; }
+.quiz-fb.ok { background: color-mix(in srgb, var(--ok) 12%, transparent); border-left: 3px solid var(--ok); }
+.quiz-fb.bad { background: color-mix(in srgb, var(--err) 10%, transparent); border-left: 3px solid var(--err); }
+.quiz-fb.shown { background: var(--soft); border-left: 3px solid var(--muted); }
+.quiz-fb b { margin-right: 4px; }
+.quiz-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
+.quiz-score { font: 600 13px "JetBrains Mono", monospace; color: var(--muted); }
+.quiz-score.done { color: var(--ok); }
+.ex .ex-tag .ex-done { color: var(--ok); margin-left: 6px; }
 .cheat { font: 12px/1.7 "JetBrains Mono", monospace; color: var(--muted); margin: 0; white-space: pre-wrap; }
 </style>
 </head>
@@ -308,6 +333,23 @@ report_power</pre>
       <div class="summary" id="summary" hidden></div>
       <div id="console" role="log" aria-live="polite"></div>
     </section>
+
+    <section class="pane quiz" id="quiz" aria-label="Quiz" hidden>
+      <div class="pane-head">
+        <span class="sec-label" style="margin:0">// Quiz: check your understanding</span>
+        <span class="spacer"></span>
+        <span class="quiz-score" id="quiz-score"></span>
+      </div>
+      <div class="quiz-body">
+        <p class="quiz-intro">Run the lab as given, read the report, then answer. Questions marked <span class="quiz-try">Try it</span> ask you to edit a file and run again; press <b>Reset example</b> afterwards to get the original files back.</p>
+        <ol class="quiz-list" id="quiz-list"></ol>
+        <div class="quiz-actions">
+          <button class="btn primary" type="button" id="quiz-check">Check answers</button>
+          <button class="btn" type="button" id="quiz-reveal">Show answers</button>
+          <button class="btn" type="button" id="quiz-reset">Clear</button>
+        </div>
+      </div>
+    </section>
     <div class="lab-tip main-tip" data-topics="STA,Constraints" hidden></div>
   </main>
 </div>
@@ -322,6 +364,6 @@ report_power</pre>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/tcl/tcl.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/addon/edit/matchbrackets.min.js"></script>
 <script src="/labs.js?v=2efa54d55c"></script>
-<script src="app.js?v=98816da0b1"></script>
+<script src="app.js?v=b9374fde1e"></script>
 </body>
 </html>
