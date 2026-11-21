@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>vlsideepdive Labs</title>
-<meta name="description" content="Free, in-browser labs for chip design: a Verilog simulator, a Yosys synthesis lab, OpenSTA timing labs and practical tips. By vlsideepdive.">
+<title>vlsideepdive · Free VLSI courses and labs</title>
+<meta name="description" content="Every vlsideepdive course is free on YouTube: logic design, static timing analysis and verification, from number systems to sign-off. Plus free hands-on chip design labs in your browser and custom corporate training.">
 <script>
   // Old share links pointed at the site root: send them to the Verilog simulator
   if (/[#&]code=/.test(location.hash)) location.replace("/verilog/" + location.hash);
@@ -179,11 +179,52 @@ footer a { color: var(--muted); }
 @media (max-width: 640px) { .sub-pop { right: 16px; bottom: 16px; } }
 </style>
 <style>
-.hero { max-width: 1440px; margin: 0 auto; padding: 48px 20px 12px; }
+.hero { max-width: 1440px; margin: 0 auto; padding: 48px 20px 8px; }
+.hero + .hero { padding-top: 40px; }
 .hero .kicker { font: 500 13px "JetBrains Mono", monospace; letter-spacing: .08em; text-transform: uppercase; color: var(--label); }
-.hero h1 { margin: 10px 0 12px; font: 700 clamp(32px, 5vw, 56px)/1.05 "Space Grotesk", sans-serif; letter-spacing: -0.03em; }
-.hero p { margin: 0; max-width: 680px; font-size: 18px; line-height: 1.6; color: var(--muted); }
-.cards { max-width: 1440px; margin: 0 auto; padding: 28px 20px 56px; display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 18px; }
+.hero h1, .hero h2 { margin: 10px 0 12px; font: 700 clamp(32px, 5vw, 56px)/1.05 "Space Grotesk", sans-serif; letter-spacing: -0.03em; }
+.hero h2 { font-size: clamp(28px, 4vw, 44px); }
+.hero p { margin: 0; max-width: 720px; font-size: 18px; line-height: 1.6; color: var(--muted); }
+.wrap { max-width: 1440px; margin: 0 auto; padding: 24px 20px 0; }
+
+/* Latest videos */
+.videos-card { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 22px 24px 24px; }
+.videos-head { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 16px; margin-bottom: 16px; }
+.videos-head h3 { margin: 0; font: 700 22px/1.2 "Space Grotesk", sans-serif; }
+.videos-head .spacer { flex: 1; }
+.yt-sub { display: inline-flex; align-items: center; gap: 8px; min-height: 40px; padding: 8px 16px; border-radius: 8px; background: #ff0033; color: #fff; font-weight: 600; text-decoration: none; }
+.yt-sub:hover { background: #d9002b; }
+.yt-all { font-weight: 600; color: var(--accent); text-decoration: none; }
+.vgrid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
+.vtile { display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+.vthumb { position: relative; aspect-ratio: 16 / 9; border-radius: 8px; overflow: hidden; border: 0; padding: 0; cursor: pointer; background: #0b1f2a center / cover no-repeat; }
+.vthumb:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+.vthumb .play { position: absolute; left: 50%; top: 50%; width: 64px; height: 44px; margin: -22px 0 0 -32px; border-radius: 12px; background: rgba(255, 0, 51, .92); display: grid; place-items: center; }
+.vframe { aspect-ratio: 16 / 9; width: 100%; border: 0; border-radius: 8px; }
+.vtitle { font-weight: 600; line-height: 1.4; color: var(--text); text-decoration: none; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.vtitle:hover { color: var(--accent); }
+.vdate { font: 500 12px "JetBrains Mono", monospace; color: var(--muted); }
+.vsingle { aspect-ratio: 16 / 9; width: 100%; max-width: 960px; border: 0; border-radius: 8px; }
+@media (max-width: 900px) { .vgrid { grid-template-columns: 1fr; } }
+
+/* Corporate training */
+.b2b { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); gap: 24px 40px; align-items: center; background: #0b1f2a; color: #e6ecea; border-radius: 12px; padding: 32px 32px 34px; }
+.b2b .kicker { font: 500 12px "JetBrains Mono", monospace; letter-spacing: .08em; text-transform: uppercase; color: #ff9b6b; }
+.b2b h3 { margin: 8px 0 10px; font: 700 clamp(24px, 3vw, 34px)/1.15 "Space Grotesk", sans-serif; letter-spacing: -0.02em; }
+.b2b p { margin: 0 0 16px; color: #b8c6cb; line-height: 1.6; }
+.b2b .topics { display: flex; flex-wrap: wrap; gap: 8px; margin: 0; padding: 0; list-style: none; }
+.b2b .topics li { font: 500 13px "JetBrains Mono", monospace; border: 1px solid #2c4350; border-radius: 999px; padding: 5px 12px; color: #e6ecea; }
+.b2b .clients-label { font: 500 12px "JetBrains Mono", monospace; letter-spacing: .08em; text-transform: uppercase; color: #93a5ac; margin-bottom: 10px; }
+.b2b .clients { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 22px; }
+.b2b .client { font: 700 20px "Space Grotesk", sans-serif; padding: 10px 18px; border: 1px solid #2c4350; border-radius: 10px; }
+.b2b .cta { display: inline-flex; align-items: center; min-height: 46px; padding: 10px 20px; border-radius: 10px; background: #e8642c; color: #fff; font-weight: 600; text-decoration: none; }
+.b2b .cta:hover { background: #d0541f; }
+.b2b .mail { display: block; margin-top: 10px; color: #b8c6cb; font-size: 14px; }
+.b2b .mail a { color: #e6ecea; }
+@media (max-width: 900px) { .b2b { grid-template-columns: 1fr; padding: 26px 22px; } }
+
+/* Lab cards */
+.cards { max-width: 1440px; margin: 0 auto; padding: 24px 20px 48px; display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 18px; }
 .lab-card { display: flex; flex-direction: column; gap: 10px; padding: 26px; min-height: 220px; background: var(--panel); border: 1px solid var(--line); border-radius: 12px; text-decoration: none; color: var(--text); transition: border-color .15s, transform .15s; }
 .lab-card:hover { border-color: var(--accent); transform: translateY(-2px); }
 .lab-card:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
@@ -191,37 +232,67 @@ footer a { color: var(--muted); }
 .lab-title { font: 700 24px/1.2 "Space Grotesk", sans-serif; letter-spacing: -0.01em; }
 .lab-desc { color: var(--muted); font-size: 15px; line-height: 1.55; }
 .lab-go { margin-top: auto; font-weight: 600; color: var(--accent); }
-.yt-card { grid-column: span 2; }
-.yt-frame { position: relative; aspect-ratio: 16 / 9; border-radius: 8px; overflow: hidden; background: #0b1f2a; }
-.yt-frame iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
-.yt-actions { margin-top: auto; display: flex; align-items: center; gap: 16px; }
-.yt-sub { display: inline-flex; align-items: center; min-height: 40px; padding: 8px 16px; border-radius: 8px; background: #ff0033; color: #fff; font-weight: 600; text-decoration: none; }
-.yt-sub:hover { background: #d9002b; }
-.yt-card .lab-go { margin-top: 0; text-decoration: none; }
-@media (max-width: 700px) { .yt-card { grid-column: auto; } }
 .more { max-width: 1440px; margin: 0 auto; padding: 0 20px 48px; color: var(--muted); font-size: 14px; }
 </style>
 </head>
 <body data-lab="home">
 <header class="top">
   <div class="top-in">
-    <a class="brand" href="https://vlsideepdive.com/">
+    <a class="brand" href="/">
       <svg width="30" height="30" viewBox="0 0 34 34" fill="none" aria-hidden="true"><rect x="7" y="7" width="20" height="20" rx="2" stroke="#e6ecea" stroke-width="2"/><rect x="12" y="12" width="10" height="10" fill="#e8642c"/><path d="M11 2v5M17 2v5M23 2v5M11 27v5M17 27v5M23 27v5M2 11h5M2 17h5M2 23h5M27 11h5M27 17h5M27 23h5" stroke="#e6ecea" stroke-width="2"/></svg>
-      <b>vlsideepdive</b><span>/ labs</span>
+      <b>vlsideepdive</b>
     </a>
     <nav aria-label="Site">
-      <a href="https://vlsideepdive.com/">Home</a>
-      <a href="https://www.youtube.com/@vlsideepdive">Free courses on YouTube</a>
-      <a href="https://vlsideepdive.com/#b2b">Corporate training</a>
+      <a href="#videos">Free courses</a>
+      <a href="#training">Corporate training</a>
+      <a href="#labs">Labs</a>
       <a href="mailto:vlsideepdive@gmail.com">Contact</a>
     </nav>
   </div>
 </header>
 <nav class="labs-nav" id="labs-nav" aria-label="Labs"></nav>
 
-<section class="hero">
+<section class="hero" id="videos">
+  <span class="kicker">// vlsideepdive</span>
+  <h1>Every course.<br>Free on YouTube.</h1>
+  <p>Deep, practitioner-led lessons on logic design, static timing analysis and verification, from number systems to sign-off. No paywall, no sign-up. Just subscribe and learn.</p>
+</section>
+
+<div class="wrap">
+  <section class="videos-card" aria-labelledby="videos-title">
+    <div class="videos-head">
+      <h3 id="videos-title">Latest videos</h3>
+      <span class="spacer"></span>
+      <a class="yt-all" href="https://www.youtube.com/@vlsideepdive/videos" target="_blank" rel="noopener">All videos →</a>
+      <a class="yt-sub" href="https://www.youtube.com/@vlsideepdive?sub_confirmation=1" target="_blank" rel="noopener">
+        <svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5l12 7-12 7z" fill="#fff"/></svg>Subscribe</a>
+    </div>
+    <div class="vgrid" id="vgrid"></div>
+  </section>
+</div>
+
+<div class="wrap" id="training">
+  <section class="b2b" aria-labelledby="b2b-title">
+    <div>
+      <span class="kicker">// corporate training</span>
+      <h3 id="b2b-title">Custom training for your engineering team</h3>
+      <p>Hands-on programmes built around your flows and your designs, taught by a practitioner with 20 years in EDA and chip design. On-site or online.</p>
+      <ul class="topics">
+        <li>Static timing analysis</li><li>CDC / RDC</li><li>Verification</li><li>Logic synthesis</li><li>Constraints &amp; signoff</li>
+      </ul>
+    </div>
+    <div>
+      <div class="clients-label">Trusted by</div>
+      <div class="clients"><span class="client">Qualcomm</span><span class="client">Samsung</span><span class="client">ST</span></div>
+      <a class="cta" href="mailto:vlsideepdive@gmail.com?subject=Corporate%20training%20enquiry">Ask about training</a>
+      <span class="mail">or write to <a href="mailto:vlsideepdive@gmail.com">vlsideepdive@gmail.com</a></span>
+    </div>
+  </section>
+</div>
+
+<section class="hero" id="labs">
   <span class="kicker">// vlsideepdive labs</span>
-  <h1>Hands-on chip design labs.<br>Free, in your browser.</h1>
+  <h2>Hands-on chip design labs.<br>Free, in your browser.</h2>
   <p>Real open-source EDA tools running on your own machine: nothing to install, no sign-up, and your code never leaves your browser.</p>
 </section>
 
@@ -232,6 +303,53 @@ footer a { color: var(--muted); }
   <span>© 2026 vlsideepdive · All courses free on <a href="https://www.youtube.com/@vlsideepdive">YouTube</a> · Training enquiries: <a href="mailto:vlsideepdive@gmail.com">vlsideepdive@gmail.com</a></span>
   <span><a href="/verilog/licenses.html">Verilog lab licences</a> · <a href="/synth/licenses.html">Synthesis lab licences</a> · <a href="/sta/licenses.html">STA lab licences</a></span>
 </footer>
-<script src="/labs.js?v=eacb2c77b7"></script>
+<script src="/labs.js?v=4491d21fbe"></script>
+<script>
+// Latest 3 videos. latest-videos.json is refreshed every few hours by a GitHub Action
+// (.github/workflows/latest-videos.yml) that reads the channel feed. It is read from
+// raw.githubusercontent.com so a new upload shows up without rebuilding the site.
+(function () {
+  const grid = document.getElementById("vgrid");
+  const UPLOADS = "UU6WZe5aEnmKg0zTW_nL4VjQ";
+  const SOURCES = ["https://raw.githubusercontent.com/vikkisachdeva/vlsideepdive-labs/main/latest-videos.json", "/latest-videos.json"];
+  const fmt = (iso) => { try { return new Date(iso).toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" }); } catch (_) { return ""; } };
+  function fallback() {
+    // No list yet: one player on the channel's uploads, which always starts on the newest video
+    grid.style.display = "block";
+    grid.innerHTML = '<iframe class="vsingle" loading="lazy" title="Latest vlsideepdive videos" src="https://www.youtube-nocookie.com/embed/videoseries?list=' + UPLOADS + '&rel=0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>';
+  }
+  function render(videos) {
+    grid.innerHTML = "";
+    for (const v of videos.slice(0, 3)) {
+      const tile = document.createElement("div"); tile.className = "vtile";
+      const btn = document.createElement("button"); btn.type = "button"; btn.className = "vthumb";
+      btn.style.backgroundImage = "url(https://i.ytimg.com/vi/" + v.id + "/hqdefault.jpg)";
+      btn.setAttribute("aria-label", "Play: " + v.title);
+      btn.innerHTML = '<span class="play" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24"><path d="M8 5l12 7-12 7z" fill="#fff"/></svg></span>';
+      btn.addEventListener("click", () => {
+        const f = document.createElement("iframe"); f.className = "vframe"; f.title = v.title;
+        f.src = "https://www.youtube-nocookie.com/embed/" + v.id + "?autoplay=1&rel=0";
+        f.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"; f.allowFullscreen = true;
+        btn.replaceWith(f);
+      });
+      const a = document.createElement("a"); a.className = "vtitle"; a.href = "https://www.youtube.com/watch?v=" + v.id; a.target = "_blank"; a.rel = "noopener"; a.textContent = v.title;
+      tile.append(btn, a);
+      if (v.published) { const d = document.createElement("span"); d.className = "vdate"; d.textContent = fmt(v.published); tile.appendChild(d); }
+      grid.appendChild(tile);
+    }
+  }
+  (async () => {
+    for (const url of SOURCES) {
+      try {
+        const r = await fetch(url, { cache: "no-cache" });
+        if (!r.ok) continue;
+        const data = await r.json();
+        if (data && Array.isArray(data.videos) && data.videos.length) { render(data.videos); return; }
+      } catch (_) {}
+    }
+    fallback();
+  })();
+})();
+</script>
 </body>
 </html>
