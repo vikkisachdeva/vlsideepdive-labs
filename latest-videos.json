@@ -1,0 +1,20 @@
+{
+ "updated": "2026-11-21T11:55:19+00:00",
+ "videos": [
+  {
+   "id": "KDxGWBPnEDw",
+   "title": "Static Timing Analysis Explained Part 2: Parasitics, RC Tree & Timing Arcs",
+   "published": "2026-11-19T13:00:20+00:00"
+  },
+  {
+   "id": "1dKjcrhjOQc",
+   "title": "STA Advanced Part 1 | STA Flow, Slack, Slew & PVT Corners Deep Dive",
+   "published": "2026-11-16T13:00:09+00:00"
+  },
+  {
+   "id": "L2jWNRNAS9w",
+   "title": "From Zero to Hero in SoC Design - Complete Architecture & AXI Course",
+   "published": "2026-11-12T13:00:06+00:00"
+  }
+ ]
+}
