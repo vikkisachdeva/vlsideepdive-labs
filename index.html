@@ -191,6 +191,14 @@ footer a { color: var(--muted); }
 .lab-title { font: 700 24px/1.2 "Space Grotesk", sans-serif; letter-spacing: -0.01em; }
 .lab-desc { color: var(--muted); font-size: 15px; line-height: 1.55; }
 .lab-go { margin-top: auto; font-weight: 600; color: var(--accent); }
+.yt-card { grid-column: span 2; }
+.yt-frame { position: relative; aspect-ratio: 16 / 9; border-radius: 8px; overflow: hidden; background: #0b1f2a; }
+.yt-frame iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+.yt-actions { margin-top: auto; display: flex; align-items: center; gap: 16px; }
+.yt-sub { display: inline-flex; align-items: center; min-height: 40px; padding: 8px 16px; border-radius: 8px; background: #ff0033; color: #fff; font-weight: 600; text-decoration: none; }
+.yt-sub:hover { background: #d9002b; }
+.yt-card .lab-go { margin-top: 0; text-decoration: none; }
+@media (max-width: 700px) { .yt-card { grid-column: auto; } }
 .more { max-width: 1440px; margin: 0 auto; padding: 0 20px 48px; color: var(--muted); font-size: 14px; }
 </style>
 </head>
@@ -224,6 +232,6 @@ footer a { color: var(--muted); }
   <span>© 2026 vlsideepdive · All courses free on <a href="https://www.youtube.com/@vlsideepdive">YouTube</a> · Training enquiries: <a href="mailto:vlsideepdive@gmail.com">vlsideepdive@gmail.com</a></span>
   <span><a href="/verilog/licenses.html">Verilog lab licences</a> · <a href="/synth/licenses.html">Synthesis lab licences</a> · <a href="/sta/licenses.html">STA lab licences</a></span>
 </footer>
-<script src="/labs.js?v=fcba84ad3f"></script>
+<script src="/labs.js?v=eacb2c77b7"></script>
 </body>
 </html>

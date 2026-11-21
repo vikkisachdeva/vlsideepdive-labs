@@ -45,6 +45,19 @@ const HOME_CARDS = [
   }
   const cards = document.getElementById("lab-cards");
   if (cards) {
+    // First card: the YouTube channel. The player shows the channel's uploads playlist,
+    // so it always starts on the newest video without any manual update.
+    const yt = document.createElement("div");
+    yt.className = "lab-card yt-card";
+    yt.innerHTML = '<span class="lab-tag">YouTube · free courses</span>' +
+      '<span class="lab-title">vlsideepdive on YouTube</span>' +
+      '<div class="yt-frame"><iframe loading="lazy" title="Latest vlsideepdive videos" ' +
+      'src="https://www.youtube-nocookie.com/embed/videoseries?list=UU6WZe5aEnmKg0zTW_nL4VjQ&rel=0" ' +
+      'allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>' +
+      '<span class="lab-desc">All courses are free. The player starts on the newest upload.</span>' +
+      '<div class="yt-actions"><a class="yt-sub" href="https://www.youtube.com/@vlsideepdive?sub_confirmation=1" target="_blank" rel="noopener">Subscribe</a>' +
+      '<a class="lab-go" href="https://www.youtube.com/@vlsideepdive/videos" target="_blank" rel="noopener">All videos →</a></div>';
+    cards.appendChild(yt);
     for (const lab of HOME_CARDS) {
       const a = document.createElement("a");
       a.className = "lab-card"; a.href = lab.href;
