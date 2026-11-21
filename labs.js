@@ -9,6 +9,18 @@ const LABS = [
     desc: "Practical tips on verification, timing and chip design from 20 years in EDA." },
 ];
 
+// Cards on the labs home page. The STA lab has three tracks, each with its own card.
+const HOME_CARDS = [
+  LABS[0],
+  { title: "STA basic labs", href: "/sta/?track=basic", tag: "Timing · OpenSTA",
+    desc: "Short examples to start with: setup and hold, I/O constraints, exceptions, OCV, corners, SPEF and power on a real block." },
+  { title: "STA workshop", href: "/sta/?track=workshop", tag: "Timing · 15 labs · quizzes",
+    desc: "The 8-day STA workshop, from your first timing report to STA on a RISC-V core. Slides and an auto-checked quiz for every lab." },
+  { title: "Signoff STA", href: "/sta/?track=signoff", tag: "Timing · 9 labs · quizzes",
+    desc: "Signoff skills: validating constraints, clocks, timing exceptions, OCV and CRPR, latches, ECO fixes and multi-corner signoff." },
+  LABS[2],
+];
+
 (function () {
   const current = document.body.dataset.lab || "";
   const nav = document.getElementById("labs-nav");
@@ -29,7 +41,7 @@ const LABS = [
   }
   const cards = document.getElementById("lab-cards");
   if (cards) {
-    for (const lab of LABS) {
+    for (const lab of HOME_CARDS) {
       const a = document.createElement("a");
       a.className = "lab-card"; a.href = lab.href;
       const tag = document.createElement("span"); tag.className = "lab-tag"; tag.textContent = lab.tag;
