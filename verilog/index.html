@@ -174,6 +174,13 @@ footer a { color: var(--muted); }
 .sub-pop .sub-x { position: absolute; top: 6px; right: 6px; border: 0; background: none; color: var(--muted); font-size: 20px; line-height: 1; width: 36px; height: 36px; border-radius: 6px; cursor: pointer; }
 .sub-pop .sub-x:hover { background: var(--soft); color: var(--text); }
 @media (max-width: 640px) { .sub-pop { right: 16px; bottom: 16px; } }
+.lab-brief[hidden] { display: none; }
+.brief-body { display: grid; grid-template-columns: 1.3fr 1.2fr 1fr; gap: 18px 26px; padding: 16px 18px 18px; }
+.brief-col h3 { margin: 0 0 6px; font: 600 12px "JetBrains Mono", monospace; text-transform: uppercase; letter-spacing: .06em; color: var(--label); }
+.brief-col p { margin: 0; font-size: 14px; line-height: 1.55; }
+.brief-tasks { margin: 0; padding-left: 20px; font-size: 14px; line-height: 1.55; display: flex; flex-direction: column; gap: 4px; }
+.brief-learn { font-weight: 500; }
+@media (max-width: 900px) { .brief-body { grid-template-columns: 1fr; gap: 14px; } }
 </style>
 </head>
 <body data-lab="verilog">

@@ -174,6 +174,13 @@ footer a { color: var(--muted); }
 .sub-pop .sub-x { position: absolute; top: 6px; right: 6px; border: 0; background: none; color: var(--muted); font-size: 20px; line-height: 1; width: 36px; height: 36px; border-radius: 6px; cursor: pointer; }
 .sub-pop .sub-x:hover { background: var(--soft); color: var(--text); }
 @media (max-width: 640px) { .sub-pop { right: 16px; bottom: 16px; } }
+.lab-brief[hidden] { display: none; }
+.brief-body { display: grid; grid-template-columns: 1.3fr 1.2fr 1fr; gap: 18px 26px; padding: 16px 18px 18px; }
+.brief-col h3 { margin: 0 0 6px; font: 600 12px "JetBrains Mono", monospace; text-transform: uppercase; letter-spacing: .06em; color: var(--label); }
+.brief-col p { margin: 0; font-size: 14px; line-height: 1.55; }
+.brief-tasks { margin: 0; padding-left: 20px; font-size: 14px; line-height: 1.55; display: flex; flex-direction: column; gap: 4px; }
+.brief-learn { font-weight: 500; }
+@media (max-width: 900px) { .brief-body { grid-template-columns: 1fr; gap: 14px; } }
 </style>
 <style>
 .tabs { display: flex; gap: 2px; overflow-x: auto; flex: 1; min-width: 0; }
@@ -332,6 +339,16 @@ set_input_delay 1 -clock c [get_ports x]</pre>
       <p class="video-empty" hidden>Videos for this lab are coming soon. Meanwhile, browse all free courses on the <a href="https://www.youtube.com/@vlsideepdive">vlsideepdive YouTube channel</a>.</p>
     </section>
 
+    <section class="pane lab-brief" id="lab-brief" aria-label="About this lab" hidden>
+      <div class="pane-head"><span class="sec-label" style="margin:0">// About this lab</span></div>
+      <div class="brief-body">
+        <div class="brief-col"><h3>The problem</h3><p class="brief-problem"></p></div>
+        <div class="brief-col"><h3>Your task</h3><ol class="brief-tasks"></ol></div>
+        <div class="brief-col"><h3>You will learn</h3><p class="brief-learn"></p></div>
+      </div>
+    </section>
+
+
     <div class="toolbar">
       <div class="ex-mobile">
         <label class="vh" for="ex-select">Example</label>
@@ -421,6 +438,6 @@ set_input_delay 1 -clock c [get_ports x]</pre>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/tcl/tcl.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/addon/edit/matchbrackets.min.js"></script>
 <script src="/labs.js?v=ae69cac89d"></script>
-<script src="app.js?v=13a9edcf2c"></script>
+<script src="app.js?v=8888c0a818"></script>
 </body>
 </html>
