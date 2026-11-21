@@ -1,4 +1,4 @@
-(()=>{var H=[{id:"ws-lab1",group:"STA workshop",tag:"Day 1",title:"Lab 1 \xB7 Your first timing report",script:"run.tcl",files:{"run.tcl":`# Lab 1 (Day 1): read a library, a netlist and constraints, then report the 5 worst paths.
+(()=>{var Z=[{id:"ws-lab1",group:"STA workshop",tag:"Day 1",title:"Lab 1 \xB7 Your first timing report",script:"run.tcl",files:{"run.tcl":`# Lab 1 (Day 1): read a library, a netlist and constraints, then report the 5 worst paths.
 # Exercises: find the startpoint, endpoint and slack of each path.
 # Then edit simple.sdc (clock period, input delay) and run again to see the slack move.
 
@@ -1356,7 +1356,447 @@ set_output_delay -clock clk_i 2.0 [get_ports core_sleep_o]
 set_input_delay -clock clk_i 0.0 [get_ports {test_en_i hart_id_i* boot_addr_i* fetch_enable_i}]
 set_input_delay -clock clk_i 3.0 [get_ports {instr_gnt_i instr_rvalid_i instr_rdata_i* instr_err_i data_gnt_i data_rvalid_i data_rdata_i* data_err_i}]
 set_input_delay -clock clk_i 1.0 [get_ports {irq_software_i irq_timer_i irq_external_i irq_fast_i* irq_nm_i debug_req_i}]
-`},quiz:[{type:"number",q:"At a 10 ns clock, what is the worst negative slack (WNS)?",answer:-5.04,tol:.01,unit:"ns",explain:"From report_wns.",try:!1},{type:"choice",q:"Which path group has the worst slack?",options:["reg2reg","reg2out","in2reg","in2out"],answer:1,explain:"reg2out: instr_addr_o[30] misses by 5.04 ns (the 3 ns output delay eats into the cycle).",try:!1},{type:"number",q:"What is the worst reg2reg slack?",answer:-3.62,tol:.01,unit:"ns",explain:"Endpoint _24645_/D.",try:!1},{type:"choice",q:"Which input port fails max capacitance?",options:["clk_i","rst_ni","test_en_i","fetch_enable_i"],answer:1,explain:"rst_ni fans out to almost every flop. Without buffering (this netlist is unplaced), it sees 2.55 pF.",try:!1},{type:"number",q:"Try it: what is the smallest whole-number clock period (ns) at which reg2reg meets timing?",answer:14,tol:0,unit:"ns",explain:"At 13 ns reg2reg is \u22120.62; at 14 ns it is +0.38.",try:!0}]}];var A=`// Two flops feeding a third through a buffer and an AND gate.
+`},quiz:[{type:"number",q:"At a 10 ns clock, what is the worst negative slack (WNS)?",answer:-5.04,tol:.01,unit:"ns",explain:"From report_wns.",try:!1},{type:"choice",q:"Which path group has the worst slack?",options:["reg2reg","reg2out","in2reg","in2out"],answer:1,explain:"reg2out: instr_addr_o[30] misses by 5.04 ns (the 3 ns output delay eats into the cycle).",try:!1},{type:"number",q:"What is the worst reg2reg slack?",answer:-3.62,tol:.01,unit:"ns",explain:"Endpoint _24645_/D.",try:!1},{type:"choice",q:"Which input port fails max capacitance?",options:["clk_i","rst_ni","test_en_i","fetch_enable_i"],answer:1,explain:"rst_ni fans out to almost every flop. Without buffering (this netlist is unplaced), it sees 2.55 pF.",try:!1},{type:"number",q:"Try it: what is the smallest whole-number clock period (ns) at which reg2reg meets timing?",answer:14,tol:0,unit:"ns",explain:"At 13 ns reg2reg is \u22120.62; at 14 ns it is +0.38.",try:!0}]},{id:"so-s1",group:"Signoff STA",tag:"Signoff 1",title:"Analysis flow and timing summary",script:"run.tcl",files:{"run.tcl":`# Signoff 1: the analysis flow on a real placed-and-routed block (GCD, Sky130 HD, with SPEF).
+# Load, link, constrain, annotate parasitics, validate, then summarise: WNS, TNS and violation counts.
+# Exercises: read the summary first, then the worst setup and hold paths in detail.
+
+# 1. Load the design: library, netlist, link, constraints, parasitics
+read_liberty sky130hd_tt.lib.gz
+read_verilog gcd_sky130hd.v
+link_design gcd
+read_sdc gcd.sdc
+set_propagated_clock [all_clocks]
+read_spef gcd_sky130hd.spef.gz
+
+# 2. Validate before you trust any number
+check_setup -verbose
+report_parasitic_annotation
+
+# 3. Timing summary: the first thing a signoff review looks at
+puts "\\n### Summary"
+report_wns
+report_tns
+report_worst_slack -max
+report_worst_slack -min
+puts "Setup violating endpoints: [llength [find_timing_paths -path_delay max -slack_max 0 -group_path_count 10000 -endpoint_path_count 1]]"
+puts "Hold violating endpoints:  [llength [find_timing_paths -path_delay min -slack_max 0 -group_path_count 10000 -endpoint_path_count 1]]"
+
+# 4. The worst setup and hold paths in detail
+puts "\\n### Worst setup path"
+report_checks -path_delay max -fields {slew cap fanout}
+puts "\\n### Worst hold path"
+report_checks -path_delay min
+`,"gcd.sdc":`# Constraints for the GCD block (units: ns, pF)
+set period 5.0
+create_clock -name clk -period $period [get_ports clk]
+set_clock_uncertainty 0.1 [get_clocks clk]
+
+set io_delay [expr $period * 0.2]
+set_input_delay  $io_delay -clock clk [delete_from_list [all_inputs] [get_ports clk]]
+set_output_delay $io_delay -clock clk [all_outputs]
+set_input_transition 0.1 [all_inputs]
+set_load 0.01 [all_outputs]
+`},quiz:[{type:"number",q:"What is the worst negative slack (WNS) for setup?",answer:-.36,tol:.01,unit:"ns",explain:"From report_wns: the path to output resp_msg[15].",try:!1},{type:"number",q:"What is the total negative slack (TNS)?",answer:-.99,tol:.01,unit:"ns",explain:"The sum of the negative slacks of all failing endpoints.",try:!1},{type:"number",q:"How many endpoints fail setup?",answer:11,tol:0,unit:"",explain:"The count line in the summary uses find_timing_paths with -slack_max 0.",try:!1},{type:"number",q:"What is the worst hold slack?",answer:.38,tol:.01,unit:"ns",explain:"report_worst_slack -min. No endpoint fails hold.",try:!1},{type:"number",q:"What is the clock network delay (propagated) at the launch flop of the worst setup path?",answer:.43,tol:.01,unit:"ns",explain:"With set_propagated_clock, OpenSTA computes the latency through the real clock tree and SPEF.",try:!1},{type:"number",q:"Try it: set the period to 5.5 in gcd.sdc. How many endpoints fail setup now?",answer:0,tol:0,unit:"",explain:"Every path gains 0.5 ns, but the output delay is 20% of the period, so outputs gain only 0.4 ns.",try:!0}]},{id:"so-s2",group:"Signoff STA",tag:"Signoff 2",title:"Validating constraints",script:"run.tcl",files:{"run.tcl":`# Signoff 2: a clean timing report means nothing if paths are not constrained.
+# Exercises: use check_setup -verbose to find every problem in ctrl.sdc and the design,
+# then fix the SDC and see which new paths appear.
+
+read_liberty sky130_fd_sc_hd__tt_025C_1v80.lib
+read_verilog ctrl.v
+link_design ctrl
+read_sdc ctrl.sdc
+
+# check_setup lists the problems in the design and the SDC
+check_setup -verbose
+
+# Timing looks clean... but which endpoints are actually timed?
+report_checks -path_delay max -group_path_count 20 -format end
+`,"ctrl.v":`// A small control block with two clock domains.
+// It has some constraint problems on purpose: find them with check_setup.
+module ctrl (clk_a, clk_b, rst_n, din, sel, set_n, clr_n, dout, flag, busy);
+  input  clk_a, clk_b, rst_n, din, sel, set_n, clr_n;
+  output dout, flag, busy;
+  wire   q1, q2, q3, m1, d3, s_q, s_qn;
+
+  sky130_fd_sc_hd__dfrtp_1 r1 (.D(din), .CLK(clk_a), .RESET_B(rst_n), .Q(q1));
+  sky130_fd_sc_hd__mux2_1  u1 (.A0(q1), .A1(din), .S(sel), .X(m1));
+  sky130_fd_sc_hd__dfrtp_1 r2 (.D(m1), .CLK(clk_a), .RESET_B(rst_n), .Q(q2));
+  sky130_fd_sc_hd__inv_1   u2 (.A(q2), .Y(d3));
+  sky130_fd_sc_hd__dfrtp_1 r3 (.D(d3), .CLK(clk_b), .RESET_B(rst_n), .Q(q3));
+  sky130_fd_sc_hd__buf_1   u3 (.A(q2), .X(dout));
+  sky130_fd_sc_hd__buf_1   u4 (.A(q3), .X(flag));
+  // Set/reset latch built from two cross-coupled NAND gates
+  sky130_fd_sc_hd__nand2_1 u5 (.A(set_n), .B(s_qn), .Y(s_q));
+  sky130_fd_sc_hd__nand2_1 u6 (.A(clr_n), .B(s_q),  .Y(s_qn));
+  sky130_fd_sc_hd__buf_1   u7 (.A(s_q), .X(busy));
+endmodule
+`,"ctrl.sdc":`# Constraints for ctrl (units: ns, pF). Something is missing...
+create_clock -name clk_a -period 2.0 [get_ports clk_a]
+set_input_delay 0.5 -clock clk_a [get_ports din]
+set_output_delay 0.5 -clock clk_a [get_ports dout]
+set_load 0.005 [all_outputs]
+`},quiz:[{type:"number",q:"How many input ports are missing set_input_delay?",answer:5,tol:0,unit:"",explain:"clk_b, clr_n, rst_n, sel and set_n.",try:!1},{type:"choice",q:"Which register clock pin has no clock?",options:["r1/CLK","r2/CLK","r3/CLK","u5/A"],answer:2,explain:"r3 is clocked by port clk_b, but ctrl.sdc never creates a clock on clk_b.",try:!1},{type:"number",q:"How many endpoints are unconstrained?",answer:3,tol:0,unit:"",explain:"busy, flag and r3/D: none of them is checked against a clock.",try:!1},{type:"choice",q:"Which cells form the combinational loop?",options:["u1 and u2","u3 and u4","u5 and u6","r1 and u1"],answer:2,explain:"u5 and u6 are cross-coupled NAND gates. OpenSTA breaks the loop at a cut point so it can time the rest.",try:!1},{type:"number",q:"Try it: add create_clock -name clk_b -period 3.0 [get_ports clk_b] to ctrl.sdc and report_checks -from r2 -to r3. What is the setup slack?",answer:.54,tol:.01,unit:"ns",explain:"clk_a (2 ns) launches at 2 and clk_b (3 ns) captures at 3: the tightest edge pair across the two clocks.",try:!0},{type:"choice",q:"Try it: now also add set_clock_groups -asynchronous -group clk_a -group clk_b. What happens to r2 \u2192 r3?",options:["Slack gets better","Slack gets worse","The path is no longer timed: No paths found","It becomes a hold violation"],answer:2,explain:"Asynchronous clock groups tell STA the clocks have no phase relationship, so crossings are left to synchronizers and CDC checks.",try:!0}]},{id:"so-s3",group:"Signoff STA",tag:"Signoff 3",title:"Clocks: generated clocks, latency, uncertainty",script:"run.tcl",files:{"run.tcl":`# Signoff 3: clock definitions.
+# Exercises: compare ideal and propagated clocks, find where each part of the clock latency
+# comes from, and check the divided clock.
+
+read_liberty sky130_fd_sc_hd__tt_025C_1v80.lib
+read_verilog clocks.v
+link_design clocks
+read_sdc clocks.sdc
+
+report_clock_properties
+
+puts "\\n### Ideal clocks: latency and uncertainty come from the SDC"
+report_checks -from r1 -to r2 -path_delay min_max
+report_checks -to r4/D
+
+puts "\\n### Propagated clocks: latency comes from the real buffer tree"
+set_propagated_clock [all_clocks]
+report_checks -from r1 -to r2 -path_delay min_max
+report_clock_skew
+`,"clocks.v":`// Clock tree with a divide-by-2 clock.
+// clk drives a small buffer tree; flop div toggles every cycle to make clk_div2.
+module clocks (clk, rst_n, a, b, y, z);
+  input  clk, rst_n, a, b;
+  output y, z;
+  wire   ck1, ck2, ck3, div_q, div_d, div_ck;
+  wire   q1, q2, q3, q4, n1, n2, n3;
+
+  // Clock tree: clk -> cb1 -> (cb2 -> launch flops, cb3 -> capture flops)
+  sky130_fd_sc_hd__clkbuf_2 cb1 (.A(clk), .X(ck1));
+  sky130_fd_sc_hd__clkbuf_1 cb2 (.A(ck1), .X(ck2));
+  sky130_fd_sc_hd__clkbuf_1 cb3 (.A(ck1), .X(ck3));
+  sky130_fd_sc_hd__clkbuf_1 cb4 (.A(ck3), .X(div_ck));
+
+  // Divide-by-2: div toggles on every rising edge of clk
+  sky130_fd_sc_hd__dfrtp_1 div (.D(div_d), .CLK(ck1), .RESET_B(rst_n), .Q(div_q));
+  sky130_fd_sc_hd__inv_1   dinv (.A(div_q), .Y(div_d));
+
+  // Fast domain: r1 -> logic -> r2
+  sky130_fd_sc_hd__dfrtp_1 r1 (.D(a), .CLK(ck2), .RESET_B(rst_n), .Q(q1));
+  sky130_fd_sc_hd__xor2_1  g1 (.A(q1), .B(b), .X(n1));
+  sky130_fd_sc_hd__nand2_1 g2 (.A(n1), .B(q1), .Y(n2));
+  sky130_fd_sc_hd__dfrtp_1 r2 (.D(n2), .CLK(ck3), .RESET_B(rst_n), .Q(q2));
+  sky130_fd_sc_hd__buf_1   g3 (.A(q2), .X(y));
+
+  // Slow domain on the divided clock: r2 -> r3 -> r4
+  sky130_fd_sc_hd__dfrtp_1 r3 (.D(q2), .CLK(div_q), .RESET_B(rst_n), .Q(q3));
+  sky130_fd_sc_hd__inv_1   g4 (.A(q3), .Y(n3));
+  sky130_fd_sc_hd__dfrtp_1 r4 (.D(n3), .CLK(div_q), .RESET_B(rst_n), .Q(q4));
+  sky130_fd_sc_hd__buf_1   g5 (.A(q4), .X(z));
+endmodule
+`,"clocks.sdc":`# Clock constraints (units: ns)
+create_clock -name clk -period 2.0 -waveform {0 1.0} [get_ports clk]
+
+# Latency from the clock source (PLL, off-chip) to the clk port
+set_clock_latency -source 0.5 [get_clocks clk]
+# Estimated clock tree delay, used while the clock is ideal
+set_clock_latency 0.3 [get_clocks clk]
+# Jitter + margin
+set_clock_uncertainty -setup 0.15 [get_clocks clk]
+set_clock_uncertainty -hold 0.05 [get_clocks clk]
+set_clock_transition 0.1 [get_clocks clk]
+
+# The divided clock, defined on the divider flop output
+create_generated_clock -name clk_div2 -source [get_ports clk] -divide_by 2 [get_pins div/Q]
+
+set_input_delay 0.4 -clock clk [get_ports {a b rst_n}]
+set_output_delay 0.4 -clock clk [get_ports y]
+set_output_delay 0.4 -clock clk_div2 [get_ports z]
+set_load 0.005 [all_outputs]
+`},quiz:[{type:"number",q:"What is the period of the generated clock clk_div2?",answer:4,tol:.001,unit:"ns",explain:"create_generated_clock -divide_by 2 on a 2 ns clock.",try:!1},{type:"number",q:"With ideal clocks, what clock network delay does the report show at r1/CLK?",answer:.8,tol:.01,unit:"ns",explain:"Source latency 0.5 + network latency 0.3 from the SDC.",try:!1},{type:"number",q:"With ideal clocks, what is the setup slack r1 \u2192 r2?",answer:1.16,tol:.01,unit:"ns",explain:"The 0.15 ns setup uncertainty is subtracted from the required time.",try:!1},{type:"choice",q:"After set_propagated_clock, which SDC latency is still used?",options:["Both source and network latency","Only the source latency (0.5)","Only the network latency (0.3)","Neither"],answer:1,explain:"Propagated clocks replace the estimated network latency with the real buffer tree, but the source latency (outside the chip) stays.",try:!1},{type:"number",q:"With propagated clocks, what is the setup slack r1 \u2192 r2?",answer:1.2,tol:.01,unit:"ns",explain:"Launch latency 0.66, capture 0.68: the small skew helps setup.",try:!1},{type:"number",q:"Try it: change -divide_by 2 to -divide_by 4. What is the setup slack r3 \u2192 r4?",answer:7.56,tol:.01,unit:"ns",explain:"clk_div2 now has an 8 ns period.",try:!0}]},{id:"so-s4",group:"Signoff STA",tag:"Signoff 4",title:"Timing exceptions",script:"run.tcl",files:{"run.tcl":`# Signoff 4: case analysis, false paths, multicycle paths and max delay.
+# Exercises: exc.sdc has five steps commented out. Remove the # from one step at a time,
+# run, and watch which path each exception changes.
+
+read_liberty sky130_fd_sc_hd__tt_025C_1v80.lib
+read_verilog exc.v
+link_design exc
+read_sdc exc.sdc
+
+puts "### Setup summary by endpoint"
+report_checks -path_delay max -group_path_count 20 -format end
+puts "\\n### Worst setup path"
+report_checks -path_delay max
+puts "\\n### Paths into r_b (setup and hold)"
+report_checks -to r_b/D -path_delay min_max
+puts "\\n### Feed-through in_x -> out_x"
+report_checks -from in_x -to out_x
+`,"exc.v":`// Paths that need timing exceptions:
+//  - r_cfg0/r_cfg1 -> slow decode -> r_o    : configuration, written once at start-up
+//  - r_a0/r_a1 -> 6-stage chain -> r_b       : designed to take two clock cycles
+//  - in_x -> out_x                       : combinational feed-through
+//  - test_mode selects a slow test path through the mux
+module exc (clk, rst_n, cfg, d, in_x, test_mode, q, out_x);
+  input  clk, rst_n, cfg, d, in_x, test_mode;
+  output q, out_x;
+  wire   c0, cx, c1, c2, c3, c4, a0, a1, b0, b1, b2, b3, b4, b5, b6, t0, t1, m0, o0, x1, x2;
+
+  // Configuration register and its slow decode logic
+  sky130_fd_sc_hd__dfrtp_1 r_cfg0 (.D(cfg), .CLK(clk), .RESET_B(rst_n), .Q(c0));
+  sky130_fd_sc_hd__dfrtp_1 r_cfg1 (.D(c0),  .CLK(clk), .RESET_B(rst_n), .Q(cx));
+  sky130_fd_sc_hd__xor2_1  cd1 (.A(c0), .B(cx), .X(c1));
+  sky130_fd_sc_hd__xor2_1  cd2 (.A(c1), .B(c0), .X(c2));
+  sky130_fd_sc_hd__xor2_1  cd3 (.A(c2), .B(c1), .X(c3));
+  sky130_fd_sc_hd__xor2_1  cd4 (.A(c3), .B(c2), .X(c4));
+
+  // Two-cycle arithmetic chain r_a -> r_b
+  sky130_fd_sc_hd__dfrtp_1 r_a0 (.D(d),  .CLK(clk), .RESET_B(rst_n), .Q(a0));
+  sky130_fd_sc_hd__dfrtp_1 r_a1 (.D(a0), .CLK(clk), .RESET_B(rst_n), .Q(a1));
+  sky130_fd_sc_hd__xor2_1  ch1 (.A(a0), .B(a1), .X(b1));
+  sky130_fd_sc_hd__xor2_1  ch2 (.A(b1), .B(a0), .X(b2));
+  sky130_fd_sc_hd__xor2_1  ch3 (.A(b2), .B(b1), .X(b3));
+  sky130_fd_sc_hd__xor2_1  ch4 (.A(b3), .B(b2), .X(b4));
+  sky130_fd_sc_hd__xor2_1  ch5 (.A(b4), .B(b3), .X(b5));
+  sky130_fd_sc_hd__xor2_1  ch6 (.A(b5), .B(b4), .X(b6));
+  sky130_fd_sc_hd__dfrtp_1 r_b (.D(b6), .CLK(clk), .RESET_B(rst_n), .Q(b0));
+
+  // Test path: in test mode r_b is sampled through a slow delay chain
+  sky130_fd_sc_hd__clkdlybuf4s50_1 td1 (.A(b0), .X(t0));
+  sky130_fd_sc_hd__clkdlybuf4s50_1 td2 (.A(t0), .X(t1));
+  sky130_fd_sc_hd__mux2_1  mx (.A0(b0), .A1(t1), .S(test_mode), .X(m0));
+  sky130_fd_sc_hd__and2_1  ao (.A(m0), .B(c4), .X(o0));
+  sky130_fd_sc_hd__dfrtp_1 r_o (.D(o0), .CLK(clk), .RESET_B(rst_n), .Q(q));
+
+  // Combinational feed-through
+  sky130_fd_sc_hd__buf_2   f1 (.A(in_x), .X(x1));
+  sky130_fd_sc_hd__buf_2   f2 (.A(x1), .X(x2));
+  sky130_fd_sc_hd__buf_2   f3 (.A(x2), .X(out_x));
+endmodule
+`,"exc.sdc":`# Clock and I/O constraints (units: ns)
+create_clock -name clk -period 1.0 [get_ports clk]
+set_input_delay  0.1 -clock clk [get_ports {rst_n cfg d test_mode}]
+set_output_delay 0.1 -clock clk [get_ports q]
+set_load 0.005 [all_outputs]
+
+# ---- Timing exceptions: remove the leading # from one step at a time, run, and compare ----
+# Step 1: functional mode only (test_mode is tied low in the application)
+# set_case_analysis 0 [get_ports test_mode]
+
+# Step 2: the configuration registers are written once at start-up, so their paths never need to meet a clock cycle
+# set_false_path -from [get_cells r_cfg*]
+
+# Step 3: the r_a0/r_a1 -> r_b chain has two clock cycles by design
+# set_multicycle_path 2 -setup -from [get_cells r_a*] -to [get_cells r_b]
+
+# Step 4: ...and the hold check must move back to the original edge
+# set_multicycle_path 1 -hold  -from [get_cells r_a*] -to [get_cells r_b]
+
+# Step 5: the feed-through in_x -> out_x must be faster than 0.5 ns
+# set_max_delay 0.5 -from [get_ports in_x] -to [get_ports out_x]
+`},quiz:[{type:"number",q:"Before any exceptions, how many register or output endpoints fail setup (ignore RESET_B)?",answer:2,tol:0,unit:"",explain:"r_b/D and r_o/D.",try:!1},{type:"number",q:"Step 1 (case analysis on test_mode): what is the slack at r_o/D?",answer:-.41,tol:.01,unit:"ns",explain:"The slow test path through td1/td2 is no longer timed, but r_o is still failing.",try:!0},{type:"number",q:"Step 2 (false path from r_cfg*): what is the slack at r_o/D?",answer:.15,tol:.01,unit:"ns",explain:"The configuration decode no longer counts. r_o now meets through r_b.",try:!0},{type:"choice",q:"Step 2 also removed an endpoint from the summary. Which one, and why?",options:["r_a1/D: it is in a different clock","r_cfg1/D: it is also reached from r_cfg0, so -from r_cfg* covers it","q: outputs are always excluded","r_o/D: the false path removes it"],answer:1,explain:"A false path removes every path from the listed startpoints, including r_cfg0 \u2192 r_cfg1. Always check what an exception catches.",try:!0},{type:"number",q:"Step 3 (multicycle -setup 2 only): what is the setup slack r_a0 \u2192 r_b?",answer:.23,tol:.01,unit:"ns",explain:"Capture moves to the edge at 2 ns.",try:!0},{type:"number",q:"With only the setup multicycle path, what is the hold slack r_a0 \u2192 r_b?",answer:-.21,tol:.01,unit:"ns",explain:"The hold check moves with setup, to the edge at 1 ns, so a fast path now fails hold.",try:!0},{type:"number",q:"Step 4 (add multicycle -hold 1): what is the hold slack r_a0 \u2192 r_b?",answer:.79,tol:.01,unit:"ns",explain:"-hold 1 moves the hold check back to the edge at 0 ns.",try:!0},{type:"number",q:"Step 5 (set_max_delay 0.5 on in_x \u2192 out_x): what is the slack of the feed-through?",answer:.2,tol:.01,unit:"ns",explain:"Before step 5 the path had no constraint at all.",try:!0}]},{id:"so-s5",group:"Signoff STA",tag:"Signoff 5",title:"Reading reports and querying the design",script:"run.tcl",files:{"run.tcl":`# Signoff 5: get answers out of a design quickly.
+# Exercises: endpoint summaries, a full path with input pins, paths through a cell,
+# net and instance reports, and Tcl queries with get_cells and all_registers.
+
+read_liberty sky130hd_tt.lib.gz
+read_verilog gcd_sky130hd.v
+link_design gcd
+read_sdc gcd.sdc
+set_propagated_clock [all_clocks]
+read_spef gcd_sky130hd.spef.gz
+
+# --- Query the design with Tcl ---
+puts "Registers:      [llength [all_registers]]"
+puts "Input ports:    [llength [all_inputs]]"
+puts "Output ports:   [llength [all_outputs]]"
+puts "maj3 cells:     [llength [get_cells -filter "ref_name =~ *maj3*"]]"
+
+# --- Endpoint summary: one line per endpoint, sorted by slack ---
+puts "\\n### Ten worst setup endpoints"
+report_checks -path_delay max -group_path_count 10 -format end
+
+# --- A path in full detail, with input pins and nets ---
+puts "\\n### Worst path into a register"
+report_checks -path_delay max -to [all_registers -data_pins] -fields {input_pins slew cap fanout}
+
+# --- Paths through one cell ---
+puts "\\n### Through _219_"
+report_checks -through _219_/X -format summary
+
+# --- Nets and instances ---
+puts "\\n### Net and instance details"
+report_net reset
+report_instance _219_
+`,"gcd.sdc":`# Constraints for the GCD block (units: ns, pF)
+set period 5.0
+create_clock -name clk -period $period [get_ports clk]
+set_clock_uncertainty 0.1 [get_clocks clk]
+
+set io_delay [expr $period * 0.2]
+set_input_delay  $io_delay -clock clk [delete_from_list [all_inputs] [get_ports clk]]
+set_output_delay $io_delay -clock clk [all_outputs]
+set_input_transition 0.1 [all_inputs]
+set_load 0.01 [all_outputs]
+`},quiz:[{type:"number",q:"How many registers does the GCD block have?",answer:35,tol:0,unit:"",explain:"llength [all_registers].",try:!1},{type:"number",q:"How many maj3 (majority) cells are there?",answer:5,tol:0,unit:"",explain:'get_cells -filter "ref_name =~ *maj3*".',try:!1},{type:"number",q:"What is the slack of the worst endpoint that is a register (not an output)?",answer:-.05,tol:.01,unit:"ns",explain:"_418_/D in the endpoint summary.",try:!1},{type:"choice",q:"On the worst path into a register, which cell drives the largest fanout?",options:["_219_ (maj3_2)","_295_ (o31ai_4)","split1 (buf_4)","_414_ (dfxtp_4)"],answer:1,explain:"_295_/Y drives 11 loads, and its slew is 0.88 ns. split1 is a buffer the flow added to split that load.",try:!1},{type:"number",q:"How many loads does the net reset have?",answer:3,tol:0,unit:"",explain:"report_net reset: three input pins.",try:!1},{type:"number",q:"Try it: add report_checks -from _414_ -to _418_ -path_delay min. What is the hold slack?",answer:3.7,tol:.01,unit:"ns",explain:"The shortest path between the same two flops is still long, so hold is easy here.",try:!0}]},{id:"so-s6",group:"Signoff STA",tag:"Signoff 6",title:"On-chip variation and CRPR",script:"run.tcl",files:{"run.tcl":`# Signoff 6: OCV derates make late paths slower and early paths faster.
+# Exercises: see how a derate turns a passing path into a failing one, and how much
+# clock reconvergence pessimism removal (CRPR) gives back.
+
+read_liberty sky130_fd_sc_hd__tt_025C_1v80.lib
+read_verilog ocv.v
+link_design ocv
+read_sdc ocv.sdc
+
+puts "### 1. No derates"
+report_checks -from r1 -to r2 -path_delay min_max -format full_clock_expanded
+
+puts "\\n### 2. OCV: late paths 8% slower, early paths 8% faster"
+set_timing_derate -early 0.92
+set_timing_derate -late  1.08
+report_checks -from r1 -to r2 -path_delay min_max -format full_clock_expanded
+
+puts "\\n### 3. Same derates, CRPR switched off"
+set sta_crpr_enabled 0
+report_checks -from r1 -to r2 -path_delay min_max
+set sta_crpr_enabled 1
+`,"ocv.v":`// Launch and capture clocks share a common trunk (ct1, ct2), then split.
+module ocv (clk, rst_n, d, q);
+  input  clk, rst_n, d;
+  output q;
+  wire   t1, t2, la1, la2, ca1, ca2, q1, n1, n2, n3, n4;
+
+  // Common clock trunk
+  sky130_fd_sc_hd__clkbuf_4 ct1 (.A(clk), .X(t1));
+  sky130_fd_sc_hd__clkbuf_4 ct2 (.A(t1),  .X(t2));
+  // Launch branch
+  sky130_fd_sc_hd__clkbuf_2 lb1 (.A(t2),  .X(la1));
+  sky130_fd_sc_hd__clkbuf_2 lb2 (.A(la1), .X(la2));
+  // Capture branch
+  sky130_fd_sc_hd__clkbuf_2 cb1 (.A(t2),  .X(ca1));
+  sky130_fd_sc_hd__clkbuf_2 cb2 (.A(ca1), .X(ca2));
+
+  sky130_fd_sc_hd__dfrtp_1 r1 (.D(d),  .CLK(la2), .RESET_B(rst_n), .Q(q1));
+  sky130_fd_sc_hd__nand2_1 g1 (.A(q1), .B(d),  .Y(n1));
+  sky130_fd_sc_hd__xor2_1  g2 (.A(n1), .B(q1), .X(n2));
+  sky130_fd_sc_hd__nor2_1  g3 (.A(n2), .B(n1), .Y(n3));
+  sky130_fd_sc_hd__xor2_1  g4 (.A(n3), .B(n2), .X(n4));
+  sky130_fd_sc_hd__dfrtp_1 r2 (.D(n4), .CLK(ca2), .RESET_B(rst_n), .Q(q));
+endmodule
+`,"ocv.sdc":`create_clock -name clk -period 1.05 [get_ports clk]
+set_propagated_clock [get_clocks clk]
+set_input_delay 0.1 -clock clk [get_ports {d rst_n}]
+set_input_transition 0.05 [all_inputs]
+`},quiz:[{type:"number",q:"Without derates, what is the setup slack r1 \u2192 r2?",answer:.04,tol:.01,unit:"ns",explain:"",try:!1},{type:"number",q:"With the 8% derates, what is the setup slack?",answer:-.05,tol:.01,unit:"ns",explain:"The launch path and data are 8% slower, the capture clock 8% faster.",try:!1},{type:"choice",q:"Which clock buffers are common to launch and capture?",options:["lb1 and lb2","cb1 and cb2","ct1 and ct2","All six"],answer:2,explain:"Both branches start after ct2. The common trunk ct1/ct2 cannot be slow and fast at the same time.",try:!1},{type:"number",q:"With derates, how much does CRPR give back on the setup path?",answer:.04,tol:.01,unit:"ns",explain:"The 'clock reconvergence pessimism' line: the late/early difference on ct1 and ct2.",try:!1},{type:"number",q:"With derates and CRPR switched off, what is the setup slack?",answer:-.09,tol:.01,unit:"ns",explain:"Section 3 of the report.",try:!1},{type:"number",q:"Try it: use -early 0.95 and -late 1.05 instead. What is the setup slack (CRPR on)?",answer:-.02,tol:.01,unit:"ns",explain:"A smaller derate, smaller penalty: still failing by 20 ps.",try:!0}]},{id:"so-s7",group:"Signoff STA",tag:"Signoff 7",title:"Latches and time borrowing",script:"run.tcl",files:{"run.tcl":`# Signoff 7: a latch lets a slow path borrow time from the next stage.
+# Exercises: find how much time L1 borrows, the most it could borrow,
+# and what happens when you limit borrowing.
+
+read_liberty sky130_fd_sc_hd__tt_025C_1v80.lib
+read_verilog latch.v
+link_design latch
+read_sdc latch.sdc
+
+puts "### Into the latch: r1 -> L1"
+report_checks -to L1/D -format full_clock
+puts "\\n### Out of the latch: L1 -> r2"
+report_checks -from L1 -to r2/D -format full_clock
+`,"latch.v":`// Flop -> logic -> latch -> logic -> flop.
+// L1 is transparent while clk is low (sky130_fd_sc_hd__dlxtn: GATE_N).
+module latch (clk, rst_n, d, e, q);
+  input  clk, rst_n, d, e;
+  output q;
+  wire   q1, a1, a2, a3, a4, l1, b1, b2, b3;
+
+  sky130_fd_sc_hd__dfrtp_1 r1 (.D(d), .CLK(clk), .RESET_B(rst_n), .Q(q1));
+  sky130_fd_sc_hd__xor2_1  s1 (.A(q1), .B(e),  .X(a1));
+  sky130_fd_sc_hd__xor2_1  s2 (.A(a1), .B(q1), .X(a2));
+  sky130_fd_sc_hd__xor2_1  s3 (.A(a2), .B(a1), .X(a3));
+  sky130_fd_sc_hd__xor2_1  s4 (.A(a3), .B(a2), .X(a4));
+  sky130_fd_sc_hd__dlxtn_1 L1 (.D(a4), .GATE_N(clk), .Q(l1));
+  sky130_fd_sc_hd__xor2_1  t1 (.A(l1), .B(e),  .X(b1));
+  sky130_fd_sc_hd__xor2_1  t2 (.A(b1), .B(l1), .X(b2));
+  sky130_fd_sc_hd__dfrtp_1 r2 (.D(b2), .CLK(clk), .RESET_B(rst_n), .Q(q));
+endmodule
+`,"latch.sdc":`create_clock -name clk -period 2.0 [get_ports clk]
+set_input_delay 0.2 -clock clk [get_ports {d e rst_n}]
+set_output_delay 0.2 -clock clk [get_ports q]
+`},quiz:[{type:"choice",q:"When does latch L1 open (become transparent)?",options:["Rising edge at 0","Falling edge at 1.0 ns","Rising edge at 2.0 ns","Never: it is a flop"],answer:1,explain:"dlxtn is transparent while its GATE_N input (the clock) is low: from the falling edge at 1.0 ns.",try:!1},{type:"number",q:"How much time does L1 borrow?",answer:.18,tol:.01,unit:"ns",explain:"Data arrives at 1.18, after the latch opened at 1.0.",try:!1},{type:"number",q:"What is the most time L1 could borrow?",answer:.82,tol:.01,unit:"ns",explain:"Pulse width 1.00 minus the latch setup time 0.18.",try:!1},{type:"number",q:"What is the slack of the path L1 \u2192 r2?",answer:.06,tol:.01,unit:"ns",explain:"The borrowed 0.18 ns is given to this path as a later start.",try:!1},{type:"number",q:"Try it: add set_max_time_borrow 0.1 [get_cells L1] after read_sdc. What is the slack r1 \u2192 L1?",answer:-.08,tol:.01,unit:"ns",explain:"Borrowing is capped at 0.1, so the extra 0.08 ns becomes a violation.",try:!0},{type:"number",q:"With the 0.1 ns limit, what is the slack L1 \u2192 r2?",answer:.14,tol:.01,unit:"ns",explain:"Less borrowed time means this stage starts earlier.",try:!0}]},{id:"so-s8",group:"Signoff STA",tag:"Signoff 8",title:"Fixing violations with ECOs",script:"run.tcl",files:{"run.tcl":`# Signoff 8: fix one setup and one hold violation by editing the netlist in OpenSTA.
+# Exercises: run as given, then remove the # from ECO 1 (cell upsizing) and ECO 2
+# (a hold delay buffer). After the run, open eco_after.v to see the changed netlist.
+
+read_liberty sky130_fd_sc_hd__tt_025C_1v80.lib
+read_verilog eco.v
+link_design eco
+read_sdc eco.sdc
+
+puts "### Before the ECO"
+report_checks -to r2/D -fields {cap slew}
+report_checks -to r4/D -path_delay min
+
+# ---- ECO 1 (setup): upsize the cells driving the heavy nets. Remove the # and run. ----
+# replace_cell u1 sky130_fd_sc_hd__nand2_4
+# replace_cell u3 sky130_fd_sc_hd__inv_4
+
+# ---- ECO 2 (hold): add a delay buffer in front of r4/D. Remove the # and run. ----
+# make_instance hold_buf sky130_fd_sc_hd__dlygate4sd3_1
+# make_net q3_dly
+# disconnect_pin q3 r4/D
+# connect_pin q3 hold_buf/A
+# connect_pin q3_dly hold_buf/X
+# connect_pin q3_dly r4/D
+
+puts "\\n### After the ECO"
+report_checks -to r2/D -fields {cap slew}
+report_checks -to r4/D -path_delay min_max
+write_verilog eco_after.v
+`,"eco.v":`// One setup violation and one hold violation to fix with ECOs.
+module eco (clk, rst_n, d, q, h);
+  input  clk, rst_n, d;
+  output q, h;
+  wire   q1, n1, n2, n3, n4, n5, ck_late1, ck_late2, q3;
+
+  // Setup problem: weak cells drive long, heavily loaded nets
+  sky130_fd_sc_hd__dfrtp_1 r1 (.D(d),  .CLK(clk), .RESET_B(rst_n), .Q(q1));
+  sky130_fd_sc_hd__nand2_1 u1 (.A(q1), .B(d),  .Y(n1));
+  sky130_fd_sc_hd__nor2_1  u2 (.A(n1), .B(q1), .Y(n2));
+  sky130_fd_sc_hd__inv_1   u3 (.A(n2), .Y(n3));
+  sky130_fd_sc_hd__nand2_1 u4 (.A(n3), .B(n1), .Y(n4));
+  sky130_fd_sc_hd__inv_1   u5 (.A(n4), .Y(n5));
+  sky130_fd_sc_hd__dfrtp_1 r2 (.D(n5), .CLK(clk), .RESET_B(rst_n), .Q(q));
+
+  // Hold problem: r4's clock arrives late through two clock buffers
+  sky130_fd_sc_hd__clkdlybuf4s50_1 cd1 (.A(clk), .X(ck_late1));
+  sky130_fd_sc_hd__clkbuf_1 cd2 (.A(ck_late1), .X(ck_late2));
+  sky130_fd_sc_hd__dfrtp_1 r3 (.D(d),  .CLK(clk), .RESET_B(rst_n), .Q(q3));
+  sky130_fd_sc_hd__dfrtp_1 r4 (.D(q3), .CLK(ck_late2), .RESET_B(rst_n), .Q(h));
+endmodule
+`,"eco.sdc":`create_clock -name clk -period 1.0 [get_ports clk]
+set_propagated_clock [get_clocks clk]
+set_input_delay 0.1 -clock clk [get_ports {d rst_n}]
+set_output_delay 0.1 -clock clk [get_ports {q h}]
+set_input_transition 0.05 [all_inputs]
+# Long wires on the setup path (as if placed far apart)
+set_load 0.04 [get_nets {n1 n3}]
+`},quiz:[{type:"number",q:"Before the ECO, what is the setup slack into r2?",answer:-.25,tol:.01,unit:"ns",explain:"",try:!1},{type:"number",q:"Before the ECO, what is the hold slack into r4?",answer:-.19,tol:.01,unit:"ns",explain:"r4's clock is 0.54 ns late, so new data from r3 arrives too soon.",try:!1},{type:"number",q:"What is the clock network delay at r4/CLK?",answer:.54,tol:.01,unit:"ns",explain:"Through cd1 (a clock delay buffer) and cd2.",try:!1},{type:"number",q:"Try it: apply ECO 1 (upsize u1 and u3). What is the setup slack into r2?",answer:.01,tol:.01,unit:"ns",explain:"Stronger drivers charge the heavy nets n1 and n3 faster.",try:!0},{type:"number",q:"Try it: apply ECO 2 (delay buffer before r4/D). What is the hold slack into r4?",answer:.33,tol:.01,unit:"ns",explain:"dlygate4sd3 adds about half a nanosecond on the data path.",try:!0},{type:"number",q:"After ECO 2, what is the setup slack r3 \u2192 r4? (It was 1.07 before.)",answer:.54,tol:.01,unit:"ns",explain:"A hold buffer always costs setup margin on the same path: check it still meets.",try:!0}]},{id:"so-s9",group:"Signoff STA",tag:"Signoff 9",title:"Multi-corner signoff",script:"run.tcl",files:{"run.tcl":`# Signoff 9: the GCD block at three corners: slow (ss), typical (tt) and fast (ff).
+# Exercises: find which corner limits setup and which limits hold.
+
+define_corners ss tt ff
+read_liberty -corner ss sky130_fd_sc_hd__ss_100C_1v60.lib
+read_liberty -corner tt sky130hd_tt.lib.gz
+read_liberty -corner ff sky130_fd_sc_hd__ff_n40C_1v95.lib
+read_verilog gcd_sky130hd.v
+link_design gcd
+read_sdc gcd.sdc
+set_propagated_clock [all_clocks]
+read_spef gcd_sky130hd.spef.gz
+
+foreach corner {ss tt ff} {
+  puts "\\n########## Corner $corner ##########"
+  report_checks -corner $corner -path_delay max -format end -group_path_count 1
+  report_checks -corner $corner -path_delay min -format end -group_path_count 1
+}
+
+puts "\\n### Worst setup path over all corners"
+report_checks -path_delay max -format end -group_path_count 3
+puts "\\n### Worst hold path over all corners"
+report_checks -path_delay min
+`,"gcd.sdc":`# Constraints for the GCD block (units: ns, pF)
+set period 5.0
+create_clock -name clk -period $period [get_ports clk]
+set_clock_uncertainty 0.1 [get_clocks clk]
+
+set io_delay [expr $period * 0.2]
+set_input_delay  $io_delay -clock clk [delete_from_list [all_inputs] [get_ports clk]]
+set_output_delay $io_delay -clock clk [all_outputs]
+set_input_transition 0.1 [all_inputs]
+set_load 0.01 [all_outputs]
+`},quiz:[{type:"choice",q:"Which corner gives the worst setup slack?",options:["ss","tt","ff"],answer:0,explain:"Slow silicon, 100 \xB0C, 1.60 V: \u22124.86 ns.",try:!1},{type:"number",q:"What is the worst setup slack at the ss corner?",answer:-4.86,tol:.01,unit:"ns",explain:"",try:!1},{type:"choice",q:"At ss the worst endpoint is a register, but at tt it is an output. Why?",options:["The netlist changes per corner","Output paths have a fixed external delay, while register paths scale with cell delays","The ss library has no outputs","It is random"],answer:1,explain:"Register-to-register paths are all cell delay, so they grow most at the slow corner. The output delay (1 ns) does not scale.",try:!1},{type:"choice",q:"Which corner gives the worst hold slack?",options:["ss","tt","ff"],answer:2,explain:"Fast silicon: data arrives soonest.",try:!1},{type:"number",q:"What is the worst hold slack?",answer:.19,tol:.01,unit:"ns",explain:"_412_ \u2192 _412_ at the ff corner.",try:!1},{type:"number",q:"Try it: set the period to 11.0 in gcd.sdc. What is the worst setup slack at ss?",answer:.45,tol:.01,unit:"ns",explain:"At the slow corner this block needs roughly twice the typical-corner period.",try:!0}]}];var C=`// Two flops feeding a third through a buffer and an AND gate.
 // Cells come from the open-source SkyWater 130 nm high-density library.
 module top (in1, in2, clk1, clk2, clk3, out);
   input  in1, in2, clk1, clk2, clk3;
@@ -1369,10 +1809,10 @@ module top (in1, in2, clk1, clk2, clk3, out);
   sky130_fd_sc_hd__and2_1  u2 (.A(r1q), .B(u1x), .X(u2x));
   sky130_fd_sc_hd__dfxtp_1 r3 (.D(u2x), .CLK(clk3), .Q(out));
 endmodule
-`,dt=`# One 10 ns clock drives all three flops
+`,ut=`# One 10 ns clock drives all three flops
 create_clock -name clk -period 10 {clk1 clk2 clk3}
 set_input_delay 0 -clock clk {in1 in2}
-`,C=`read_liberty sky130hd_tt.lib.gz
+`,G=`read_liberty sky130hd_tt.lib.gz
 read_verilog netlist.v
 link_design top
 read_sdc constraints.sdc
@@ -1388,8 +1828,8 @@ module top (in1, in2, clk1, clk2, clk3, out);
   AND2x2_ASAP7_75t_R  u2 (.A(r1q), .B(u1z), .Y(u2z));
   DFFHQx4_ASAP7_75t_R r3 (.D(u2z), .CLK(clk3), .Q(out));
 endmodule
-`,kt=[{id:"basic",title:"Setup & hold checks",tag:"Basics",files:{"netlist.v":A,"constraints.sdc":dt,"run.tcl":`# Load the library, the netlist and the constraints
-${C}
+`,kt=[{id:"basic",title:"Setup & hold checks",tag:"Basics",files:{"netlist.v":C,"constraints.sdc":ut,"run.tcl":`# Load the library, the netlist and the constraints
+${G}
 # Worst setup (max) path
 report_checks -path_delay max
 
@@ -1400,10 +1840,10 @@ report_checks -path_delay min
 
 report_wns
 report_tns
-`}},{id:"violation",title:"Setup violation: fast clock",tag:"Basics",files:{"netlist.v":A,"constraints.sdc":`# Squeeze the clock to 0.5 ns (2 GHz): the r2 -> r3 path no longer fits
+`}},{id:"violation",title:"Setup violation: fast clock",tag:"Basics",files:{"netlist.v":C,"constraints.sdc":`# Squeeze the clock to 0.5 ns (2 GHz): the r2 -> r3 path no longer fits
 create_clock -name clk -period 0.5 {clk1 clk2 clk3}
 set_input_delay 0 -clock clk {in1 in2}
-`,"run.tcl":`${C}
+`,"run.tcl":`${G}
 # Show slew, load and fanout at every stage of the failing path
 report_checks -path_delay max -fields {slew cap fanout} -digits 3
 
@@ -1412,7 +1852,7 @@ report_checks -path_delay max -group_path_count 10 -endpoint_path_count 1 -forma
 
 report_worst_slack -max
 report_tns
-`}},{id:"io",title:"Input & output delays",tag:"Constraints",files:{"netlist.v":A,"constraints.sdc":`create_clock -name clk -period 2 {clk1 clk2 clk3}
+`}},{id:"io",title:"Input & output delays",tag:"Constraints",files:{"netlist.v":C,"constraints.sdc":`create_clock -name clk -period 2 {clk1 clk2 clk3}
 
 # The block's neighbours use part of the cycle
 set_input_delay  0.6 -clock clk {in1 in2}
@@ -1421,13 +1861,13 @@ set_output_delay 0.8 -clock clk [get_ports out]
 # Realistic edges and loads at the boundary
 set_input_transition 0.1 {in1 in2}
 set_load 0.02 [get_ports out]
-`,"run.tcl":`${C}
+`,"run.tcl":`${G}
 puts "### Input to register"
 report_checks -from [get_ports in1] -fields {slew cap}
 
 puts "\\n### Register to output"
 report_checks -to [get_ports out] -fields {slew cap}
-`}},{id:"exceptions",title:"False & multicycle paths",tag:"Constraints",files:{"netlist.v":A,"constraints.sdc":`create_clock -name clk -period 0.45 {clk1 clk2 clk3}
+`}},{id:"exceptions",title:"False & multicycle paths",tag:"Constraints",files:{"netlist.v":C,"constraints.sdc":`create_clock -name clk -period 0.45 {clk1 clk2 clk3}
 set_input_delay 0 -clock clk {in1 in2}
 
 # r2 only launches new data every 2 cycles
@@ -1436,7 +1876,7 @@ set_multicycle_path -hold  1 -from [get_cells r2] -to [get_cells r3]
 
 # in1 is a static configuration pin: ignore it
 set_false_path -from [get_ports in1]
-`,"run.tcl":`${C}
+`,"run.tcl":`${G}
 # A 0.45 ns clock: without exceptions both paths into r3 would fail.
 # r2 -> r3 now passes thanks to the multicycle path...
 report_checks -from [get_cells r2] -to [get_cells r3]
@@ -1444,7 +1884,7 @@ report_checks -from [get_cells r2] -to [get_cells r3]
 # ...but r1 -> r3 still fails. Add a multicycle path for it too and run again.
 report_checks -from [get_cells r1] -to [get_cells r3]
 report_wns
-`}},{id:"ocv",title:"Clock latency, uncertainty & OCV",tag:"Clocks",files:{"netlist.v":A,"constraints.sdc":`create_clock -name clk -period 2 {clk1 clk2 clk3}
+`}},{id:"ocv",title:"Clock latency, uncertainty & OCV",tag:"Clocks",files:{"netlist.v":C,"constraints.sdc":`create_clock -name clk -period 2 {clk1 clk2 clk3}
 set_input_delay 0.3 -clock clk {in1 in2}
 
 # Clock tree not built yet: model it
@@ -1452,7 +1892,7 @@ set_clock_latency -source 0.30 [get_clocks clk]
 set_clock_latency        0.20 [get_clocks clk]
 set_clock_uncertainty -setup 0.10 [get_clocks clk]
 set_clock_uncertainty -hold  0.05 [get_clocks clk]
-`,"run.tcl":`${C}
+`,"run.tcl":`${G}
 # On-chip variation: for setup, data is slowed by 8% and the capture clock sped up by 8%
 set_timing_derate -early 0.92
 set_timing_derate -late  1.08
@@ -1516,6 +1956,6 @@ report_tns
 set_power_activity -input -activity 0.1
 set_power_activity -input_port reset -activity 0
 report_power
-`},load:{"netlist.v":"gcd_sky130hd.v"}}],y=[...kt.map(t=>({group:"Quick examples",...t})),...H],J=["sky130hd_tt.lib.gz","asap7_small_ss.lib.gz","asap7_small_ff.lib.gz","gcd_sky130hd.spef.gz","sky130_fd_sc_hd__tt_025C_1v80.lib","sky130_fd_sc_hd__ss_100C_1v60.lib","sky130_fd_sc_hd__ff_n40C_1v95.lib","s27_Early.lib","s27_Late.lib","s27_min.lib","s27_max.lib","ibex_top.v"],tt=[["sky130hd_tt.lib.gz","SkyWater 130 nm HD, typical (ns, pF)"],["asap7_small_ss.lib.gz","ASAP7 7 nm, slow; 3 cells (ps, fF)"],["asap7_small_ff.lib.gz","ASAP7 7 nm, fast; 3 cells (ps, fF)"],["gcd_sky130hd.spef.gz","Parasitics for the GCD block"],["sky130_fd_sc_hd__tt_025C_1v80.lib","Sky130 HD typical, 25 \xB0C, 1.80 V (workshop)"],["sky130_fd_sc_hd__ss_100C_1v60.lib","Sky130 HD slow, 100 \xB0C, 1.60 V"],["sky130_fd_sc_hd__ff_n40C_1v95.lib","Sky130 HD fast, \u221240 \xB0C, 1.95 V"],["s27_Late.lib","TAU 2015 contest library, late/max (ps); s27_max.lib is a copy"],["s27_Early.lib","TAU 2015 contest library, early/min (ps); s27_min.lib is a copy"],["ibex_top.v","ibex RISC-V core netlist, Sky130 HD (2.3 MB)"]];var a=t=>document.querySelector(t),et=6e4,rt="vdd-sta-lab-v1",x="run.tcl",n={example:y[0].id,script:x,files:{},order:[],current:x,running:!1,ready:!1,worker:null,timer:null},at=()=>n.order.filter(t=>/\.tcl$/i.test(t));function T(){return n.files[n.script]!==void 0?n.script:n.files[x]!==void 0?x:at()[0]||x}function mt(){let t=a("#script-wrap"),e=a("#script"),s=at(),l=T();t.hidden=!(s.length>1||s.length===1&&l!==x),e.innerHTML="";for(let i of s){let r=document.createElement("option");r.value=i,r.textContent=i,e.appendChild(r)}e.value=l}var f=new Map,_=null,g=a("#editor textarea");function X(t){return/\.s?v$/i.test(t)?"verilog":/\.(tcl|sdc)$/i.test(t)?"tcl":"text/plain"}window.CodeMirror?(_=window.CodeMirror.fromTextArea(g,{lineNumbers:!0,indentUnit:2,tabSize:2,matchBrackets:!0,extraKeys:{Tab:t=>t.replaceSelection("  ")}}),_.on("change",()=>{n.files[n.current]=_.getValue(),I()})):(g.classList.add("plain-editor"),g.addEventListener("input",()=>{n.files[n.current]=g.value,I()}));function q(t){_?n.files[n.current]=_.getValue():n.files[n.current]=g.value,n.current=t,_?(f.has(t)||f.set(t,window.CodeMirror.Doc(n.files[t]??"",X(t))),_.swapDoc(f.get(t)),setTimeout(()=>_.refresh(),0)):g.value=n.files[t]??"",F()}function ht(t,e){q(t),_&&(_.focus(),_.setCursor({line:e-1,ch:0}),_.addLineClass(e-1,"background","cm-errline"),setTimeout(()=>_.removeLineClass(e-1,"background","cm-errline"),2500),_.scrollIntoView({line:e-1,ch:0},80))}function B(t,e,s){f.clear(),n.files={...t},n.order=e||Object.keys(t),n.current=s&&n.order.includes(s)?s:n.order.includes(T())?T():n.order[0],_?(f.set(n.current,window.CodeMirror.Doc(n.files[n.current]??"",X(n.current))),_.swapDoc(f.get(n.current))):g.value=n.files[n.current]??"",F()}function F(){let t=a("#tabs");t.innerHTML="";for(let e of n.order){let s=document.createElement("button");if(s.type="button",s.className="tab"+(e===n.current?" active":""),s.setAttribute("role","tab"),s.setAttribute("aria-selected",e===n.current?"true":"false"),s.textContent=e,s.addEventListener("click",()=>q(e)),t.appendChild(s),e===n.current&&n.order.length>1){let l=document.createElement("button");l.type="button",l.className="tab-x",l.textContent="\xD7",l.title="Remove "+e,l.setAttribute("aria-label","Remove file "+e),l.addEventListener("click",()=>ft(e)),t.appendChild(l)}}mt()}function _t(t,e,s){n.files[t]===void 0&&n.order.push(t),n.files[t]=e,f.delete(t),s?F():q(t),I()}function ft(t){_&&(n.files[n.current]=_.getValue()),delete n.files[t],f.delete(t),n.order=n.order.filter(e=>e!==t),n.current=n.order[0],_?(f.has(n.current)||f.set(n.current,window.CodeMirror.Doc(n.files[n.current]??"",X(n.current))),_.swapDoc(f.get(n.current))):g.value=n.files[n.current]??"",F(),I()}function gt(){let t=(window.prompt("New file name (for example mode2.sdc, extra.tcl, top.v):","")||"").trim();if(t){if(!/^[\w.+-]+$/.test(t)){b("File names can use letters, digits, dot, dash and underscore only.","err");return}if(n.files[t]!==void 0){q(t);return}_t(t,"")}}function R(){let t=a("#examples");t.innerHTML="";let e=null;for(let i of y){if(i.group!==e){e=i.group;let p=document.createElement("h3");if(p.className="ex-group",p.textContent=e,t.appendChild(p),i.group==="STA workshop"){let d=document.createElement("p");d.className="ex-note",d.innerHTML='The 8-day workshop labs. <a href="STA_Workshop_Labs.pdf" target="_blank" rel="noopener">Slides (PDF)</a>',t.appendChild(d)}}let r=document.createElement("button");r.type="button",r.className="ex"+(i.id===n.example?" active":""),r.innerHTML='<span class="ex-tag"></span><span class="ex-title"></span>',r.querySelector(".ex-tag").textContent=i.tag;let o=i.quiz&&i.quiz.length?N()[i.id]:null;if(o&&o.checked){let p=document.createElement("span");p.className="ex-done",p.textContent=(o.score===o.total?"\u2713 ":"")+`quiz ${o.score}/${o.total}`,r.querySelector(".ex-tag").appendChild(p)}r.querySelector(".ex-title").textContent=i.title,r.addEventListener("click",()=>L(i.id)),t.appendChild(r)}let s=a("#ex-select"),l=[...new Set(y.map(i=>i.group))];s.innerHTML=l.map(i=>`<optgroup label="${i}">`+y.filter(r=>r.group===i).map(r=>`<option value="${r.id}">${r.group==="STA workshop"?r.tag+" \xB7 ":""}${r.title}</option>`).join("")+"</optgroup>").join(""),n.example&&(s.value=n.example)}async function L(t){let e=y.find(i=>i.id===t)||y[0];n.example=e.id,n.script=e.script||x;let s={};for(let[i,r]of Object.entries(e.files))if(r!==null)s[i]=r;else try{let o=await fetch(new URL("data/"+(e.load||{})[i],location.href));s[i]=o.ok?await o.text():`// Could not load ${e.load[i]}`}catch{s[i]=`// Could not load ${e.load[i]}`}let l=Object.keys(e.files).sort((i,r)=>st(i)-st(r));B(s,l,n.script),R(),Y(),O(),pt(),$(null),v(n.ready?"Ready":"Loading OpenSTA\u2026",n.ready?"idle":"busy")}var ot="vdd-sta-quiz-v1";function N(){try{return JSON.parse(localStorage.getItem(ot)||"{}")||{}}catch{return{}}}function Q(t){try{localStorage.setItem(ot,JSON.stringify(t))}catch{}}var U=()=>y.find(t=>t.id===n.example&&t.quiz&&t.quiz.length);function yt(t){let e=String(t||"").replace(/[−–—]/g,"-").replace(/,/g,"").match(/[-+]?\d*\.?\d+(?:[eE][-+]?\d+)?/);return e?parseFloat(e[0]):NaN}function xt(t,e){if(t.type==="choice")return e!=null&&+e===t.answer;let s=yt(e);return isFinite(s)&&Math.abs(s-t.answer)<=(t.tol??.01)+1e-9}var bt=t=>t.type==="choice"?t.options[t.answer]:`${t.answer}${t.unit?" "+t.unit:""}`;function Y(){let t=a("#quiz"),e=a("#quiz-list"),s=U();if(!s){t.hidden=!0;return}t.hidden=!1;let l=N()[s.id]||{},i=l.a||[];e.innerHTML="",s.quiz.forEach((r,o)=>{let p=document.createElement("li"),d=document.createElement("div");if(d.className="quiz-q",r.try){let c=document.createElement("span");c.className="quiz-try",c.textContent="Try it",d.appendChild(c)}let k=r.q.replace(/^Try it: /,"");if(d.appendChild(document.createTextNode(k.charAt(0).toUpperCase()+k.slice(1))),p.appendChild(d),r.type==="choice"){let c=document.createElement("div");c.className="quiz-opts",c.setAttribute("role","radiogroup"),r.options.forEach((u,h)=>{let w=document.createElement("label"),G=document.createElement("input");G.type="radio",G.name=`q${o}`,G.value=h,i[o]!==void 0&&+i[o]===h&&(G.checked=!0),G.addEventListener("change",()=>nt(s,o,h));let Z=document.createElement("span");Z.textContent=u,w.append(G,Z),c.appendChild(w)}),p.appendChild(c)}else{let c=document.createElement("div");c.className="quiz-num";let u=document.createElement("input");if(u.type="text",u.inputMode="decimal",u.autocomplete="off",u.setAttribute("aria-label","Answer to question "+(o+1)),u.placeholder="e.g. -1.23",i[o]!==void 0&&(u.value=i[o]),u.addEventListener("input",()=>nt(s,o,u.value)),u.addEventListener("keydown",h=>{h.key==="Enter"&&W()}),c.appendChild(u),r.unit){let h=document.createElement("span");h.className="unit",h.textContent=r.unit,c.appendChild(h)}p.appendChild(c)}let m=document.createElement("div");m.className="quiz-fb",m.hidden=!0,m.setAttribute("aria-live","polite"),p.appendChild(m),e.appendChild(p)}),l.checked?W(!0):ct(null)}function nt(t,e,s){let l=N(),i=l[t.id]||{a:[]};i.a=i.a||[],i.a[e]=s,i.checked=!1,l[t.id]=i,Q(l);let r=a("#quiz-list").children[e]?.querySelector(".quiz-fb");r&&(r.hidden=!0)}function ct(t,e){let s=a("#quiz-score");if(t===null){s.textContent="",s.classList.remove("done");return}s.textContent=`${t} / ${e} correct`,s.classList.toggle("done",t===e)}function W(t){let e=U();if(!e)return;let s=N(),l=s[e.id]||{a:[]},i=0;e.quiz.forEach((r,o)=>{let p=a("#quiz-list").children[o],d=r.type==="choice"?(p.querySelector("input:checked")||{}).value:p.querySelector("input").value;l.a[o]=d;let k=p.querySelector(".quiz-fb"),m=d===void 0||d==="",c=!m&&xt(r,d);c&&i++,k.hidden=!1,k.className="quiz-fb "+(c?"ok":"bad"),k.innerHTML="";let u=document.createElement("b");u.textContent=c?"Correct.":m?"Not answered yet.":"Not quite.",k.appendChild(u),c&&r.explain?k.appendChild(document.createTextNode(r.explain)):!c&&!m&&k.appendChild(document.createTextNode(r.type==="number"?"Check the report again: read the exact value, including its sign.":"Look at the report again and try another option."))}),l.checked=!0,l.score=i,l.total=e.quiz.length,s[e.id]=l,Q(s),ct(i,e.quiz.length),t||R()}function wt(){let t=U();t&&t.quiz.forEach((e,s)=>{let l=a("#quiz-list").children[s].querySelector(".quiz-fb");l.hidden=!1,l.className="quiz-fb shown",l.innerHTML="";let i=document.createElement("b");i.textContent="Answer: "+bt(e)+".",l.appendChild(i),e.explain&&l.appendChild(document.createTextNode(e.explain))})}function Gt(){let t=U();if(!t)return;let e=N();delete e[t.id],Q(e),Y(),R()}function st(t){return t===n.script?-1:/\.tcl$/.test(t)?0:/\.s?v$/.test(t)?1:/\.sdc$/.test(t)?2:3}var it=null;function I(){clearTimeout(it),it=setTimeout(O,400)}function O(){try{localStorage.setItem(rt,JSON.stringify({example:n.example,script:n.script,files:n.files,order:n.order,current:n.current}))}catch{}}function Et(){try{let t=JSON.parse(localStorage.getItem(rt)||"null");if(t&&t.files&&t.order)return t}catch{}return null}async function vt(){let t=JSON.stringify({f:n.files,o:n.order,s:T()}),e=new Blob([t]).stream().pipeThrough(new CompressionStream("deflate-raw")),s=new Uint8Array(await new Response(e).arrayBuffer()),l="";for(let i of s)l+=String.fromCharCode(i);return btoa(l).replace(/\+/g,"-").replace(/\//g,"_").replace(/=+$/,"")}async function At(t){let e=atob(t.replace(/-/g,"+").replace(/_/g,"/")),s=new Blob([Uint8Array.from(e,l=>l.charCodeAt(0))]).stream().pipeThrough(new DecompressionStream("deflate-raw"));return JSON.parse(await new Response(s).text())}async function S(t,e){let s=!1;try{await navigator.clipboard.writeText(t),s=!0}catch{let i=document.createElement("textarea");i.value=t,i.style.position="fixed",i.style.opacity="0",document.body.appendChild(i),i.select();try{s=document.execCommand("copy")}catch{}i.remove()}if(e){let l=e.dataset.label||e.textContent;e.dataset.label=l,e.textContent=s?"Copied":"Press Ctrl+C",e.classList.toggle("ok",s),setTimeout(()=>{e.textContent=l,e.classList.remove("ok")},1600)}}function Ct(t,e){let s=document.createElement("a");s.href=URL.createObjectURL(new Blob([e],{type:"text/plain"})),s.download=t,document.body.appendChild(s),s.click(),setTimeout(()=>{URL.revokeObjectURL(s.href),s.remove()},500)}var E=a("#console"),P=[];function pt(){E.textContent="",P=[]}function b(t,e){P.push(t);let s=document.createElement("div");s.className="ln "+(e||"");let l=/\b([\w.-]+\.(?:v|sdc|tcl|spef)),? (?:line )?(\d+)\b/.exec(t);if(l&&n.files[l[1]]!==void 0){let i=t.indexOf(l[0]);s.appendChild(document.createTextNode(t.slice(0,i)));let r=document.createElement("button");r.type="button",r.className="loc",r.textContent=l[0],r.addEventListener("click",()=>ht(l[1],+l[2])),s.appendChild(r),s.appendChild(document.createTextNode(t.slice(i+l[0].length)))}else s.textContent=t;/slack \(VIOLATED\)/.test(t)?s.classList.add("viol"):/slack \(MET\)/.test(t)?s.classList.add("met"):/^(Error|ERROR)|\bError:|Internal error/.test(t)?s.classList.add("err"):/^Warning/.test(t)?s.classList.add("warn"):/^(Startpoint|Endpoint):/.test(t)?s.classList.add("head"):/^###/.test(t)&&s.classList.add("sec"),E.appendChild(s),E.childElementCount>2e4&&E.firstChild.remove()}function $(t){let e=a("#summary");if(!t){e.innerHTML="",e.hidden=!0;return}let s=[],l=k=>{let m=k.exec(t);return m?parseFloat(m[1]):null},i=l(/^wns(?: max)? (-?[\d.eE+-]+)/m)??l(/^worst slack max (-?[\d.eE+-]+)/m),r=l(/^tns(?: max)? (-?[\d.eE+-]+)/m),o=(t.match(/slack \(VIOLATED\)/g)||[]).length,p=(t.match(/slack \(MET\)/g)||[]).length;i!==null&&s.push(["WNS",i.toFixed(3),i<0?"bad":"good"]),r!==null&&s.push(["TNS",r.toFixed(3),r<0?"bad":"good"]),o+p&&s.push(["Paths reported",`${p} met \xB7 ${o} violated`,o?"bad":"good"]);let d=/^Total\s+\S+\s+\S+\s+\S+\s+(\S+)/m.exec(t);d&&s.push(["Total power",St(parseFloat(d[1])),""]),e.innerHTML="";for(let[k,m,c]of s){let u=document.createElement("div");u.className="chip "+c;let h=document.createElement("span");h.className="k",h.textContent=k;let w=document.createElement("span");w.className="v",w.textContent=m,u.append(h,w),e.appendChild(u)}e.hidden=s.length===0}function St(t){return isFinite(t)?t>=1?t.toFixed(3)+" W":t>=.001?(t*1e3).toFixed(3)+" mW":(t*1e6).toFixed(2)+" \xB5W":"\u2013"}function v(t,e){let s=a("#status");s.textContent=t,s.dataset.kind=e}function M(){n.worker&&n.worker.terminate(),n.ready=!1;let t=new Worker(new URL("worker.js",location.href).href);t.onmessage=e=>Tt(e.data),t.onerror=e=>{b("OpenSTA failed to start: "+(e.message||"worker error"),"err"),V(!1)},t.postMessage({type:"load",base:new URL(".",location.href).href}),n.worker=t}var K=[],z=null;function D(){z=null;for(let[t,e]of K)b(t,e);K=[],E.scrollTop=E.scrollHeight}function Tt(t){if(t.type==="ready")n.ready=!0,n.running||v("Ready","idle");else if(t.type==="stage")v(t.stage+"\u2026","busy");else if(t.type==="file"){D();let e=n.files[t.name]===void 0;_t(t.name,t.content,!0),b(`\u2500\u2500 OpenSTA ${e?"wrote":"updated"} ${t.name}: open its tab to read it \u2500\u2500`,"meta")}else t.type==="line"?(K.push([t.line,t.stream==="err"?"stderr":""]),z||(z=requestAnimationFrame(D))):t.type==="done"&&(D(),t.ok?b(`\u2500\u2500 finished in ${t.ms} ms \u2500\u2500`,"meta"):b(t.rc===-1?"\u2500\u2500 OpenSTA stopped with an internal error \u2500\u2500":`\u2500\u2500 OpenSTA exited with code ${t.rc}: check the errors above \u2500\u2500`,"meta err"),$(P.join(`
-`)),V(t.ok))}function lt(){if(n.running)return;window.vddSubscribe&&window.vddSubscribe(),_?n.files[n.current]=_.getValue():n.files[n.current]=g.value;let t=T();if(n.files[t]===void 0){b(`Add a Tcl script (for example ${x}): it is what OpenSTA runs.`,"err");return}n.worker||M(),O(),pt(),$(null),n.running=!0,a("#run").disabled=!0,a("#stop").disabled=!1,v(n.ready?"Running OpenSTA\u2026":"Loading OpenSTA\u2026","busy"),b(`$ sta ${t}`,"meta"),n.worker.postMessage({type:"run",files:{...n.files},script:t,dataFiles:J,base:new URL(".",location.href).href}),clearTimeout(n.timer),n.timer=setTimeout(()=>ut(`Stopped after ${et/1e3} s.`),et)}function ut(t){n.running&&(D(),b(t||"Stopped.","meta err"),V(!1,!0),M())}function V(t,e){clearTimeout(n.timer),n.running=!1,a("#run").disabled=!1,a("#stop").disabled=!0,v(e?"Stopped":t?"Done":"Errors",e||!t?"err":"ok")}function Nt(){a("#run").addEventListener("click",lt),a("#stop").addEventListener("click",()=>ut()),a("#script").addEventListener("change",e=>{n.script=e.target.value,O()}),a("#new-file").addEventListener("click",gt),a("#quiz-check").addEventListener("click",()=>W()),a("#quiz-reveal").addEventListener("click",wt),a("#quiz-reset").addEventListener("click",Gt),a("#ex-select").addEventListener("change",e=>L(e.target.value)),a("#reset").addEventListener("click",()=>L(n.example||y[0].id)),a("#copy-file").addEventListener("click",e=>S(_?_.getValue():g.value,e.currentTarget)),a("#download-file").addEventListener("click",()=>Ct(n.current,_?_.getValue():g.value)),a("#copy-output").addEventListener("click",e=>S(P.join(`
-`),e.currentTarget)),a("#share").addEventListener("click",async e=>{let s=e.currentTarget;_&&(n.files[n.current]=_.getValue());try{let l=await vt();history.replaceState(null,"","#code="+l),S(location.href.split("#")[0]+"#code="+l,s)}catch{S(location.href,s)}}),document.addEventListener("keydown",e=>{(e.ctrlKey||e.metaKey)&&e.key==="Enter"&&(e.preventDefault(),lt())});let t=a("#libs");t.innerHTML="";for(let[e,s]of tt){let l=document.createElement("li"),i=document.createElement("button");i.type="button",i.className="libname",i.textContent=e,i.title="Copy file name",i.addEventListener("click",()=>S(e,null));let r=document.createElement("span");r.textContent=s,l.append(i,r),t.appendChild(l)}}async function Dt(){Nt();let t=!1,e=new URLSearchParams(location.hash.slice(1)).get("code");if(e)try{let s=await At(e);n.example=null,n.script=s.s||x,n.order=s.o,n.files=s.f,B(s.f,s.o,n.script),t=!0}catch{}if(!t){let s=Et();s&&(n.example=s.example,n.script=s.script||x,n.files=s.files,n.order=s.order,B(s.files,s.order,s.current),t=!0)}R(),t?Y():await L(y[0].id),v("Loading OpenSTA\u2026","busy"),M()}Dt();})();
+`},load:{"netlist.v":"gcd_sky130hd.v"}}],y=[...kt.map(t=>({group:"Quick examples",...t})),...Z],J=["sky130hd_tt.lib.gz","asap7_small_ss.lib.gz","asap7_small_ff.lib.gz","gcd_sky130hd.spef.gz","sky130_fd_sc_hd__tt_025C_1v80.lib","sky130_fd_sc_hd__ss_100C_1v60.lib","sky130_fd_sc_hd__ff_n40C_1v95.lib","s27_Early.lib","s27_Late.lib","s27_min.lib","s27_max.lib","ibex_top.v","gcd_sky130hd.v"],tt=[["sky130hd_tt.lib.gz","SkyWater 130 nm HD, typical (ns, pF)"],["asap7_small_ss.lib.gz","ASAP7 7 nm, slow; 3 cells (ps, fF)"],["asap7_small_ff.lib.gz","ASAP7 7 nm, fast; 3 cells (ps, fF)"],["gcd_sky130hd.spef.gz","Parasitics for the GCD block"],["sky130_fd_sc_hd__tt_025C_1v80.lib","Sky130 HD typical, 25 \xB0C, 1.80 V (workshop)"],["sky130_fd_sc_hd__ss_100C_1v60.lib","Sky130 HD slow, 100 \xB0C, 1.60 V"],["sky130_fd_sc_hd__ff_n40C_1v95.lib","Sky130 HD fast, \u221240 \xB0C, 1.95 V"],["s27_Late.lib","TAU 2015 contest library, late/max (ps); s27_max.lib is a copy"],["s27_Early.lib","TAU 2015 contest library, early/min (ps); s27_min.lib is a copy"],["ibex_top.v","ibex RISC-V core netlist, Sky130 HD (2.3 MB)"]];var i=t=>document.querySelector(t),et=6e4,at="vdd-sta-lab-v1",b="run.tcl",n={example:y[0].id,script:b,files:{},order:[],current:b,running:!1,ready:!1,worker:null,timer:null},it=()=>n.order.filter(t=>/\.tcl$/i.test(t));function T(){return n.files[n.script]!==void 0?n.script:n.files[b]!==void 0?b:it()[0]||b}function ht(){let t=i("#script-wrap"),e=i("#script"),s=it(),l=T();t.hidden=!(s.length>1||s.length===1&&l!==b),e.innerHTML="";for(let r of s){let a=document.createElement("option");a.value=r,a.textContent=r,e.appendChild(a)}e.value=l}var m=new Map,_=null,g=i("#editor textarea");function z(t){return/\.s?v$/i.test(t)?"verilog":/\.(tcl|sdc)$/i.test(t)?"tcl":"text/plain"}window.CodeMirror?(_=window.CodeMirror.fromTextArea(g,{lineNumbers:!0,indentUnit:2,tabSize:2,matchBrackets:!0,extraKeys:{Tab:t=>t.replaceSelection("  ")}}),_.on("change",()=>{n.files[n.current]=_.getValue(),L()})):(g.classList.add("plain-editor"),g.addEventListener("input",()=>{n.files[n.current]=g.value,L()}));function R(t){_?n.files[n.current]=_.getValue():n.files[n.current]=g.value,n.current=t,_?(m.has(t)||m.set(t,window.CodeMirror.Doc(n.files[t]??"",z(t))),_.swapDoc(m.get(t)),setTimeout(()=>_.refresh(),0)):g.value=n.files[t]??"",I()}function ft(t,e){R(t),_&&(_.focus(),_.setCursor({line:e-1,ch:0}),_.addLineClass(e-1,"background","cm-errline"),setTimeout(()=>_.removeLineClass(e-1,"background","cm-errline"),2500),_.scrollIntoView({line:e-1,ch:0},80))}function P(t,e,s){m.clear(),n.files={...t},n.order=e||Object.keys(t),n.current=s&&n.order.includes(s)?s:n.order.includes(T())?T():n.order[0],_?(m.set(n.current,window.CodeMirror.Doc(n.files[n.current]??"",z(n.current))),_.swapDoc(m.get(n.current))):g.value=n.files[n.current]??"",I()}function I(){let t=i("#tabs");t.innerHTML="";for(let e of n.order){let s=document.createElement("button");if(s.type="button",s.className="tab"+(e===n.current?" active":""),s.setAttribute("role","tab"),s.setAttribute("aria-selected",e===n.current?"true":"false"),s.textContent=e,s.addEventListener("click",()=>R(e)),t.appendChild(s),e===n.current&&n.order.length>1){let l=document.createElement("button");l.type="button",l.className="tab-x",l.textContent="\xD7",l.title="Remove "+e,l.setAttribute("aria-label","Remove file "+e),l.addEventListener("click",()=>mt(e)),t.appendChild(l)}}ht()}function _t(t,e,s){n.files[t]===void 0&&n.order.push(t),n.files[t]=e,m.delete(t),s?I():R(t),L()}function mt(t){_&&(n.files[n.current]=_.getValue()),delete n.files[t],m.delete(t),n.order=n.order.filter(e=>e!==t),n.current=n.order[0],_?(m.has(n.current)||m.set(n.current,window.CodeMirror.Doc(n.files[n.current]??"",z(n.current))),_.swapDoc(m.get(n.current))):g.value=n.files[n.current]??"",I(),L()}function gt(){let t=(window.prompt("New file name (for example mode2.sdc, extra.tcl, top.v):","")||"").trim();if(t){if(!/^[\w.+-]+$/.test(t)){x("File names can use letters, digits, dot, dash and underscore only.","err");return}if(n.files[t]!==void 0){R(t);return}_t(t,"")}}function F(){let t=i("#examples");t.innerHTML="";let e=null;for(let r of y){if(r.group!==e){e=r.group;let p=document.createElement("h3");if(p.className="ex-group",p.textContent=e,t.appendChild(p),r.group==="STA workshop"){let d=document.createElement("p");d.className="ex-note",d.innerHTML='The 8-day workshop labs. <a href="STA_Workshop_Labs.pdf" target="_blank" rel="noopener">Slides (PDF)</a>',t.appendChild(d)}if(r.group==="Signoff STA"){let d=document.createElement("p");d.className="ex-note",d.textContent="Signoff skills: constraints, clocks, exceptions, OCV, latches, ECOs and corners. Each lab has a quiz.",t.appendChild(d)}}let a=document.createElement("button");a.type="button",a.className="ex"+(r.id===n.example?" active":""),a.innerHTML='<span class="ex-tag"></span><span class="ex-title"></span>',a.querySelector(".ex-tag").textContent=r.tag;let o=r.quiz&&r.quiz.length?q()[r.id]:null;if(o&&o.checked){let p=document.createElement("span");p.className="ex-done",p.textContent=(o.score===o.total?"\u2713 ":"")+`quiz ${o.score}/${o.total}`,a.querySelector(".ex-tag").appendChild(p)}a.querySelector(".ex-title").textContent=r.title,a.addEventListener("click",()=>N(r.id)),t.appendChild(a)}let s=i("#ex-select"),l=[...new Set(y.map(r=>r.group))];s.innerHTML=l.map(r=>`<optgroup label="${r}">`+y.filter(a=>a.group===r).map(a=>`<option value="${a.id}">${a.group!=="Quick examples"?a.tag+" \xB7 ":""}${a.title}</option>`).join("")+"</optgroup>").join(""),n.example&&(s.value=n.example)}async function N(t){let e=y.find(r=>r.id===t)||y[0];n.example=e.id,n.script=e.script||b;let s={};for(let[r,a]of Object.entries(e.files))if(a!==null)s[r]=a;else try{let o=await fetch(new URL("data/"+(e.load||{})[r],location.href));s[r]=o.ok?await o.text():`// Could not load ${e.load[r]}`}catch{s[r]=`// Could not load ${e.load[r]}`}let l=Object.keys(e.files).sort((r,a)=>st(r)-st(a));P(s,l,n.script),F(),Y(),B(),pt(),$(null),A(n.ready?"Ready":"Loading OpenSTA\u2026",n.ready?"idle":"busy")}var ot="vdd-sta-quiz-v1";function q(){try{return JSON.parse(localStorage.getItem(ot)||"{}")||{}}catch{return{}}}function Q(t){try{localStorage.setItem(ot,JSON.stringify(t))}catch{}}var O=()=>y.find(t=>t.id===n.example&&t.quiz&&t.quiz.length);function yt(t){let e=String(t||"").replace(/[−–—]/g,"-").replace(/,/g,"").match(/[-+]?\d*\.?\d+(?:[eE][-+]?\d+)?/);return e?parseFloat(e[0]):NaN}function bt(t,e){if(t.type==="choice")return e!=null&&+e===t.answer;let s=yt(e);return isFinite(s)&&Math.abs(s-t.answer)<=(t.tol??.01)+1e-9}var xt=t=>t.type==="choice"?t.options[t.answer]:`${Number.isInteger(t.answer)?t.answer:t.answer.toFixed(2)}${t.unit?" "+t.unit:""}`;function Y(){let t=i("#quiz"),e=i("#quiz-list"),s=O();if(!s){t.hidden=!0;return}t.hidden=!1;let l=q()[s.id]||{},r=l.a||[];e.innerHTML="",s.quiz.forEach((a,o)=>{let p=document.createElement("li"),d=document.createElement("div");if(d.className="quiz-q",a.try){let c=document.createElement("span");c.className="quiz-try",c.textContent="Try it",d.appendChild(c)}let k=a.q.replace(/^Try it: /,"");if(d.appendChild(document.createTextNode(k.charAt(0).toUpperCase()+k.slice(1))),p.appendChild(d),a.type==="choice"){let c=document.createElement("div");c.className="quiz-opts",c.setAttribute("role","radiogroup"),a.options.forEach((u,f)=>{let w=document.createElement("label"),v=document.createElement("input");v.type="radio",v.name=`q${o}`,v.value=f,r[o]!==void 0&&+r[o]===f&&(v.checked=!0),v.addEventListener("change",()=>nt(s,o,f));let M=document.createElement("span");M.textContent=u,w.append(v,M),c.appendChild(w)}),p.appendChild(c)}else{let c=document.createElement("div");c.className="quiz-num";let u=document.createElement("input");if(u.type="text",u.inputMode="decimal",u.autocomplete="off",u.setAttribute("aria-label","Answer to question "+(o+1)),u.placeholder="e.g. -1.23",r[o]!==void 0&&(u.value=r[o]),u.addEventListener("input",()=>nt(s,o,u.value)),u.addEventListener("keydown",f=>{f.key==="Enter"&&W()}),c.appendChild(u),a.unit){let f=document.createElement("span");f.className="unit",f.textContent=a.unit,c.appendChild(f)}p.appendChild(c)}let h=document.createElement("div");h.className="quiz-fb",h.hidden=!0,h.setAttribute("aria-live","polite"),p.appendChild(h),e.appendChild(p)}),l.checked?W(!0):ct(null)}function nt(t,e,s){let l=q(),r=l[t.id]||{a:[]};r.a=r.a||[],r.a[e]=s,r.checked=!1,l[t.id]=r,Q(l);let a=i("#quiz-list").children[e]?.querySelector(".quiz-fb");a&&(a.hidden=!0)}function ct(t,e){let s=i("#quiz-score");if(t===null){s.textContent="",s.classList.remove("done");return}s.textContent=`${t} / ${e} correct`,s.classList.toggle("done",t===e)}function W(t){let e=O();if(!e)return;let s=q(),l=s[e.id]||{a:[]},r=0;e.quiz.forEach((a,o)=>{let p=i("#quiz-list").children[o],d=a.type==="choice"?(p.querySelector("input:checked")||{}).value:p.querySelector("input").value;l.a[o]=d;let k=p.querySelector(".quiz-fb"),h=d===void 0||d==="",c=!h&&bt(a,d);c&&r++,k.hidden=!1,k.className="quiz-fb "+(c?"ok":"bad"),k.innerHTML="";let u=document.createElement("b");u.textContent=c?"Correct.":h?"Not answered yet.":"Not quite.",k.appendChild(u),c&&a.explain?k.appendChild(document.createTextNode(a.explain)):!c&&!h&&k.appendChild(document.createTextNode(a.type==="number"?"Check the report again: read the exact value, including its sign.":"Look at the report again and try another option."))}),l.checked=!0,l.score=r,l.total=e.quiz.length,s[e.id]=l,Q(s),ct(r,e.quiz.length),t||F()}function wt(){let t=O();t&&t.quiz.forEach((e,s)=>{let l=i("#quiz-list").children[s].querySelector(".quiz-fb");l.hidden=!1,l.className="quiz-fb shown",l.innerHTML="";let r=document.createElement("b");r.textContent="Answer: "+xt(e)+".",l.appendChild(r),e.explain&&l.appendChild(document.createTextNode(e.explain))})}function vt(){let t=O();if(!t)return;let e=q();delete e[t.id],Q(e),Y(),F()}function st(t){return t===n.script?-1:/\.tcl$/.test(t)?0:/\.s?v$/.test(t)?1:/\.sdc$/.test(t)?2:3}var rt=null;function L(){clearTimeout(rt),rt=setTimeout(B,400)}function B(){try{localStorage.setItem(at,JSON.stringify({example:n.example,script:n.script,files:n.files,order:n.order,current:n.current}))}catch{}}function Et(){try{let t=JSON.parse(localStorage.getItem(at)||"null");if(t&&t.files&&t.order)return t}catch{}return null}async function At(){let t=JSON.stringify({f:n.files,o:n.order,s:T()}),e=new Blob([t]).stream().pipeThrough(new CompressionStream("deflate-raw")),s=new Uint8Array(await new Response(e).arrayBuffer()),l="";for(let r of s)l+=String.fromCharCode(r);return btoa(l).replace(/\+/g,"-").replace(/\//g,"_").replace(/=+$/,"")}async function Ct(t){let e=atob(t.replace(/-/g,"+").replace(/_/g,"/")),s=new Blob([Uint8Array.from(e,l=>l.charCodeAt(0))]).stream().pipeThrough(new DecompressionStream("deflate-raw"));return JSON.parse(await new Response(s).text())}async function S(t,e){let s=!1;try{await navigator.clipboard.writeText(t),s=!0}catch{let r=document.createElement("textarea");r.value=t,r.style.position="fixed",r.style.opacity="0",document.body.appendChild(r),r.select();try{s=document.execCommand("copy")}catch{}r.remove()}if(e){let l=e.dataset.label||e.textContent;e.dataset.label=l,e.textContent=s?"Copied":"Press Ctrl+C",e.classList.toggle("ok",s),setTimeout(()=>{e.textContent=l,e.classList.remove("ok")},1600)}}function Gt(t,e){let s=document.createElement("a");s.href=URL.createObjectURL(new Blob([e],{type:"text/plain"})),s.download=t,document.body.appendChild(s),s.click(),setTimeout(()=>{URL.revokeObjectURL(s.href),s.remove()},500)}var E=i("#console"),U=[];function pt(){E.textContent="",U=[]}function x(t,e){U.push(t);let s=document.createElement("div");s.className="ln "+(e||"");let l=/\b([\w.-]+\.(?:v|sdc|tcl|spef)),? (?:line )?(\d+)\b/.exec(t);if(l&&n.files[l[1]]!==void 0){let r=t.indexOf(l[0]);s.appendChild(document.createTextNode(t.slice(0,r)));let a=document.createElement("button");a.type="button",a.className="loc",a.textContent=l[0],a.addEventListener("click",()=>ft(l[1],+l[2])),s.appendChild(a),s.appendChild(document.createTextNode(t.slice(r+l[0].length)))}else s.textContent=t;/slack \(VIOLATED\)/.test(t)?s.classList.add("viol"):/slack \(MET\)/.test(t)?s.classList.add("met"):/^(Error|ERROR)|\bError:|Internal error/.test(t)?s.classList.add("err"):/^Warning/.test(t)?s.classList.add("warn"):/^(Startpoint|Endpoint):/.test(t)?s.classList.add("head"):/^###/.test(t)&&s.classList.add("sec"),E.appendChild(s),E.childElementCount>2e4&&E.firstChild.remove()}function $(t){let e=i("#summary");if(!t){e.innerHTML="",e.hidden=!0;return}let s=[],l=k=>{let h=k.exec(t);return h?parseFloat(h[1]):null},r=l(/^wns(?: max)? (-?[\d.eE+-]+)/m)??l(/^worst slack max (-?[\d.eE+-]+)/m),a=l(/^tns(?: max)? (-?[\d.eE+-]+)/m),o=(t.match(/slack \(VIOLATED\)/g)||[]).length,p=(t.match(/slack \(MET\)/g)||[]).length;r!==null&&s.push(["WNS",r.toFixed(3),r<0?"bad":"good"]),a!==null&&s.push(["TNS",a.toFixed(3),a<0?"bad":"good"]),o+p&&s.push(["Paths reported",`${p} met \xB7 ${o} violated`,o?"bad":"good"]);let d=/^Total\s+\S+\s+\S+\s+\S+\s+(\S+)/m.exec(t);d&&s.push(["Total power",St(parseFloat(d[1])),""]),e.innerHTML="";for(let[k,h,c]of s){let u=document.createElement("div");u.className="chip "+c;let f=document.createElement("span");f.className="k",f.textContent=k;let w=document.createElement("span");w.className="v",w.textContent=h,u.append(f,w),e.appendChild(u)}e.hidden=s.length===0}function St(t){return isFinite(t)?t>=1?t.toFixed(3)+" W":t>=.001?(t*1e3).toFixed(3)+" mW":(t*1e6).toFixed(2)+" \xB5W":"\u2013"}function A(t,e){let s=i("#status");s.textContent=t,s.dataset.kind=e}function H(){n.worker&&n.worker.terminate(),n.ready=!1;let t=new Worker(new URL("worker.js",location.href).href);t.onmessage=e=>Tt(e.data),t.onerror=e=>{x("OpenSTA failed to start: "+(e.message||"worker error"),"err"),V(!1)},t.postMessage({type:"load",base:new URL(".",location.href).href}),n.worker=t}var X=[],K=null;function D(){K=null;for(let[t,e]of X)x(t,e);X=[],E.scrollTop=E.scrollHeight}function Tt(t){if(t.type==="ready")n.ready=!0,n.running||A("Ready","idle");else if(t.type==="stage")A(t.stage+"\u2026","busy");else if(t.type==="file"){D();let e=n.files[t.name]===void 0;_t(t.name,t.content,!0),x(`\u2500\u2500 OpenSTA ${e?"wrote":"updated"} ${t.name}: open its tab to read it \u2500\u2500`,"meta")}else t.type==="line"?(X.push([t.line,t.stream==="err"?"stderr":""]),K||(K=requestAnimationFrame(D))):t.type==="done"&&(D(),t.ok?x(`\u2500\u2500 finished in ${t.ms} ms \u2500\u2500`,"meta"):x(t.rc===-1?"\u2500\u2500 OpenSTA stopped with an internal error \u2500\u2500":`\u2500\u2500 OpenSTA exited with code ${t.rc}: check the errors above \u2500\u2500`,"meta err"),$(U.join(`
+`)),V(t.ok))}function lt(){if(n.running)return;window.vddSubscribe&&window.vddSubscribe(),_?n.files[n.current]=_.getValue():n.files[n.current]=g.value;let t=T();if(n.files[t]===void 0){x(`Add a Tcl script (for example ${b}): it is what OpenSTA runs.`,"err");return}n.worker||H(),B(),pt(),$(null),n.running=!0,i("#run").disabled=!0,i("#stop").disabled=!1,A(n.ready?"Running OpenSTA\u2026":"Loading OpenSTA\u2026","busy"),x(`$ sta ${t}`,"meta"),n.worker.postMessage({type:"run",files:{...n.files},script:t,dataFiles:J,base:new URL(".",location.href).href}),clearTimeout(n.timer),n.timer=setTimeout(()=>dt(`Stopped after ${et/1e3} s.`),et)}function dt(t){n.running&&(D(),x(t||"Stopped.","meta err"),V(!1,!0),H())}function V(t,e){clearTimeout(n.timer),n.running=!1,i("#run").disabled=!1,i("#stop").disabled=!0,A(e?"Stopped":t?"Done":"Errors",e||!t?"err":"ok")}function qt(){i("#run").addEventListener("click",lt),i("#stop").addEventListener("click",()=>dt()),i("#script").addEventListener("change",e=>{n.script=e.target.value,B()}),i("#new-file").addEventListener("click",gt),i("#quiz-check").addEventListener("click",()=>W()),i("#quiz-reveal").addEventListener("click",wt),i("#quiz-reset").addEventListener("click",vt),i("#ex-select").addEventListener("change",e=>N(e.target.value)),i("#reset").addEventListener("click",()=>N(n.example||y[0].id)),i("#copy-file").addEventListener("click",e=>S(_?_.getValue():g.value,e.currentTarget)),i("#download-file").addEventListener("click",()=>Gt(n.current,_?_.getValue():g.value)),i("#copy-output").addEventListener("click",e=>S(U.join(`
+`),e.currentTarget)),i("#share").addEventListener("click",async e=>{let s=e.currentTarget;_&&(n.files[n.current]=_.getValue());try{let l=await At();history.replaceState(null,"","#code="+l),S(location.href.split("#")[0]+"#code="+l,s)}catch{S(location.href,s)}}),document.addEventListener("keydown",e=>{(e.ctrlKey||e.metaKey)&&e.key==="Enter"&&(e.preventDefault(),lt())});let t=i("#libs");t.innerHTML="";for(let[e,s]of tt){let l=document.createElement("li"),r=document.createElement("button");r.type="button",r.className="libname",r.textContent=e,r.title="Copy file name",r.addEventListener("click",()=>S(e,null));let a=document.createElement("span");a.textContent=s,l.append(r,a),t.appendChild(l)}}async function Dt(){qt();let t=!1,e=new URLSearchParams(location.hash.slice(1)).get("code");if(e)try{let s=await Ct(e);n.example=null,n.script=s.s||b,n.order=s.o,n.files=s.f,P(s.f,s.o,n.script),t=!0}catch{}if(!t){let s=Et();s&&(n.example=s.example,n.script=s.script||b,n.files=s.files,n.order=s.order,P(s.files,s.order,s.current),t=!0)}F(),t?Y():await N(y[0].id),A("Loading OpenSTA\u2026","busy"),H()}Dt();})();
