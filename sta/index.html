@@ -191,6 +191,17 @@ footer a { color: var(--muted); }
 .libs span { color: var(--muted); }
 .libname { background: none; border: 0; padding: 0; text-align: left; font: 500 12px "JetBrains Mono", monospace; color: var(--text); cursor: copy; word-break: break-all; }
 .libname:hover { color: var(--accent); }
+.ex-group { font: 600 13px "Space Grotesk", sans-serif; margin: 14px 0 2px; color: var(--text); }
+.ex-group:first-child { margin-top: 0; }
+.ex-note { margin: 0 0 4px; font-size: 13px; color: var(--muted); }
+.ex-note a, .intro a { color: var(--text); }
+.script-wrap { display: flex; align-items: center; gap: 6px; font: 500 12px "JetBrains Mono", monospace; color: var(--muted); }
+.script-wrap[hidden] { display: none; }
+.script-wrap select { min-height: 36px; }
+.tab-x { border: 0; background: none; color: var(--muted); cursor: pointer; font-size: 16px; line-height: 1; padding: 4px 6px; margin-left: -6px; border-radius: 4px; min-height: 36px; }
+.tab-x:hover { color: var(--err); background: var(--soft); }
+.workshop-banner { flex-basis: 100%; display: flex; flex-wrap: wrap; align-items: center; gap: 10px 14px; margin-top: 14px; padding: 12px 16px; border: 1px solid var(--line); border-radius: 10px; background: var(--panel); font-size: 14px; }
+.workshop-banner b { font-family: "Space Grotesk", sans-serif; }
 .cheat { font: 12px/1.7 "JetBrains Mono", monospace; color: var(--muted); margin: 0; white-space: pre-wrap; }
 </style>
 </head>
@@ -214,6 +225,10 @@ footer a { color: var(--muted); }
 <div class="intro">
   <h1>STA Lab</h1>
   <p>Static timing analysis with OpenSTA, in your browser. Edit the netlist, SDC and Tcl script, run, read the reports. Free, no sign-up.</p>
+  <div class="workshop-banner">
+    <span><b>STA workshop:</b> 15 hands-on labs over 8 days, from your first timing report to a RISC-V core. Pick a lab under “STA workshop”.</span>
+    <a class="btn small" href="STA_Workshop_Labs.pptx" download>Download the slides (.pptx)</a>
+  </div>
 </div>
 
 <div class="app">
@@ -257,6 +272,7 @@ report_power</pre>
         <svg width="14" height="14" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4l13 8-13 8z" fill="currentColor"/></svg>
         Run STA <kbd>Ctrl ⏎</kbd>
       </button>
+      <label class="script-wrap" id="script-wrap" hidden>script <select id="script" aria-label="Script to run"></select></label>
       <button class="btn" id="stop" type="button" disabled>Stop</button>
       <span class="spacer"></span>
       <button class="btn" id="share" type="button">Copy share link</button>
@@ -267,6 +283,7 @@ report_power</pre>
     <section class="pane" id="editor" aria-label="Files">
       <div class="pane-head">
         <div class="tabs" id="tabs" role="tablist" aria-label="Files"></div>
+        <button class="btn small" type="button" id="new-file" title="Add a file">+ File</button>
         <button class="btn small" type="button" id="copy-file">Copy</button>
         <button class="btn small" type="button" id="download-file">Download</button>
       </div>
