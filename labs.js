@@ -13,6 +13,8 @@ const LABS = [
     desc: "Clock domain crossing: run a CDC check on RTL and SDC, fix synchronizers, then simulate pulse synchronizers, handshakes and an async FIFO with assertions." },
   { id: "sta", title: "STA and Constraints labs", href: "/sta/", tag: "Timing · quizzes",
     desc: "Static timing analysis with OpenSTA: netlists, SDC, Liberty and SPEF. Setup and hold, exceptions, OCV, multi-corner and power reports." },
+  { id: "pd", title: "Physical design labs", href: "/pd/", tag: "Physical design · OpenROAD · 22 labs · quizzes",
+    desc: "Floorplan, placement, CTS, routing and signoff with OpenROAD on Sky130: real layouts and reports for every setting, live signoff STA, and a RISC-V project." },
   { id: "tips", title: "Vikas Sachdeva's tips", href: "/tips/", tag: "Tips",
     desc: "Practical tips on verification, timing and chip design from 20 years in EDA." },
 ];
@@ -38,6 +40,7 @@ const HOME_CARDS = [
     desc: "Check constraints twice: STA and assertions in simulation. Multicycle paths (same clock, slow to fast, fast to slow, clock gating) and exclusive clock groups, each with a passing and a failing design." },
   { title: "Signoff STA", href: "/sta/?track=signoff", tag: "Timing · 9 labs · quizzes",
     desc: "Signoff skills: validating constraints, clocks, timing exceptions, OCV and CRPR, latches, ECO fixes and multi-corner signoff." },
+  labById("pd"),
   labById("tips"),
 ];
 

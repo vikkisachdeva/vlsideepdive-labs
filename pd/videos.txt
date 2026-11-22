@@ -1,0 +1,2 @@
+# Videos shown in the Physical design labs. One YouTube link per line, optional title after |.
+https://www.youtube.com/watch?v=somgoTERlmw | physical design full course basic to advanced
