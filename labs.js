@@ -155,7 +155,7 @@ window.vddSubscribe = function () {
 };
 
 // Video badges: a video played on this site through YouTube's player API counts the seconds actually
-// played (skipping ahead does not count). Watching half of a video, or 30 minutes of it if that comes first,
+// played (short skips of up to 15 s count; longer jumps ahead do not). Watching half of a video, or 30 minutes of it if that comes first,
 // earns its badge.
 // Progress: localStorage vdd-videos-v1 { id: { d: duration, s: "0101…" one char per second } };
 // badges: vdd-badges-v1 { id: { title, at } } (lb.js syncs them to the leaderboard and offers to share).
@@ -204,7 +204,7 @@ window.vddVideo = (function () {
       const tick = (p) => {
         const d = p.getDuration(), t = p.getCurrentTime();
         if (d > 0 && r.d !== Math.round(d)) { r.d = Math.round(d); if (r.s.length < r.d) r.s = r.s.padEnd(r.d, "0"); dirty = true; }
-        if (last !== null && t > last && t - last <= 2.5) {   // normal playback (up to 2x speed); a jump is a seek
+        if (last !== null && t > last && t - last <= 15) {   // playback, faster speeds and short skips (5-10 s buttons, double-tap); a longer jump is a seek
           const a = Math.floor(last), b = Math.min(Math.floor(t), r.d - 1);
           if (b >= a) { const arr = r.s.split(""); for (let i = a; i <= b; i++) arr[i] = "1"; r.s = arr.join(""); dirty = true; }
         }
