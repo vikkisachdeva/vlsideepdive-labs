@@ -184,7 +184,7 @@ window.vddVideo = (function () {
   }
   function plainFrame(btn, v, cls) {
     const f = document.createElement("iframe"); f.className = cls; f.title = v.title || "YouTube video";
-    f.src = "https://www.youtube-nocookie.com/embed/" + v.id + "?autoplay=1&rel=0";
+    f.src = "https://www.youtube.com/embed/" + v.id + "?autoplay=1&rel=0";
     f.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"; f.allowFullscreen = true;
     btn.replaceWith(f);
   }
@@ -211,7 +211,7 @@ window.vddVideo = (function () {
         last = t;
       };
       const p = new YT.Player(host, {
-        host: "https://www.youtube-nocookie.com", videoId: v.id, width: "100%", height: "100%",
+        host: "https://www.youtube.com", videoId: v.id, width: "100%", height: "100%",
         playerVars: { autoplay: 1, rel: 0, playsinline: 1 },
         events: {
           onReady: (e) => { try { e.target.getIframe().title = v.title || "YouTube video"; e.target.playVideo(); } catch (_) {} },
