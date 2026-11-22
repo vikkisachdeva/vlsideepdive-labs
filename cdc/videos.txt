@@ -1,2 +1,2 @@
 # Videos shown in the CDC lab. One YouTube link per line, optional title after |.
-https://www.youtube.com/watch?v=akitv2i4Nxw
+https://www.youtube.com/watch?v=akitv2i4Nxw | Clock Domain Crossing (CDC) Fundamentals Full Course
