@@ -1,6 +1,8 @@
 // The list of labs. To add a lab, add one entry here: it appears in the tab bar
 // on every page and as a card on the labs home page.
 const LABS = [
+  { id: "logic", title: "Logic design labs", href: "/logic/", tag: "Digital logic · 33 labs · quizzes",
+    desc: "Logic design fundamentals: gates, NAND/NOR-only design, K-maps, decoders, multiplexers, adders, comparators, flip-flops, counters, shift registers and FSMs." },
   { id: "verilog", title: "Verilog labs", href: "/verilog/", tag: "Simulation · 47 labs",
     desc: "Write Verilog, run Icarus Verilog and see waveforms. 47 self-checking labs in 4 parts, from half adders to FIFOs and FSMs, plus ready-to-copy examples." },
   { id: "systemverilog", title: "SystemVerilog labs", href: "/systemverilog/", tag: "SystemVerilog · 12 labs",
@@ -18,6 +20,7 @@ const labById = (id) => LABS.find((l) => l.id === id);
 
 // Cards on the labs home page. The STA lab has three tracks, each with its own card.
 const HOME_CARDS = [
+  labById("logic"),
   labById("verilog"),
   labById("systemverilog"),
   labById("synth"),

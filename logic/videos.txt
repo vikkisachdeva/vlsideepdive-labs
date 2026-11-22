@@ -1,0 +1,2 @@
+# Videos shown in the Logic design labs. One YouTube link per line, optional title after |.
+https://www.youtube.com/watch?v=8bmt4UJmJ_k | logic design fundamentals
