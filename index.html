@@ -442,6 +442,14 @@ header.top nav a.lb-acct.in { background: rgba(232,100,44,.18); border-color: #e
   .t3.open .t3-pts { grid-column: 3; grid-row: 2; text-align: left; }
 }
 
+/* Stats band */
+.stats { background: #0b1f2a; border-top: 1px solid #16303c; }
+.stats-in { max-width: 1440px; margin: 0 auto; padding: 40px 20px; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 24px 32px; }
+.stat b { display: block; font: 700 clamp(32px, 4vw, 44px)/1.05 "Space Grotesk", sans-serif; letter-spacing: -0.02em; }
+.stat b.c1 { color: #4f8cff; } .stat b.c2 { color: #1fc27e; }
+.stat span { display: block; margin-top: 6px; color: #b8c6cb; font-size: 15px; font-weight: 500; }
+@media (max-width: 760px) { .stats-in { grid-template-columns: repeat(2, minmax(0, 1fr)); padding: 30px 16px; } }
+
 /* Lab cards */
 .cards { max-width: 1440px; margin: 0 auto; padding: 24px 20px 48px; display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 18px; }
 .lab-card { display: flex; flex-direction: column; gap: 10px; padding: 26px; min-height: 220px; background: var(--panel); border: 1px solid var(--line); border-radius: 12px; text-decoration: none; color: var(--text); transition: border-color .15s, transform .15s; }
@@ -533,6 +541,15 @@ header.top nav a.lb-acct.in { background: rgba(232,100,44,.18); border-color: #e
 
 <main class="cards" id="lab-cards" aria-label="Labs"></main>
 <p class="more">More labs are on the way. Follow the <a href="https://www.youtube.com/@vlsideepdive">YouTube channel</a> to hear first.</p>
+
+<section class="stats" aria-label="vlsideepdive labs in numbers">
+  <div class="stats-in">
+    <div class="stat"><b class="c1">267</b><span>Hands-on labs</span></div>
+    <div class="stat"><b class="c2">997</b><span>Quiz questions</span></div>
+    <div class="stat"><b class="c1">9</b><span>Topics, logic design to sign-off</span></div>
+    <div class="stat"><b class="c2">0</b><span>Installs: it all runs in your browser</span></div>
+  </div>
+</section>
 
 <footer>
   <span>© 2026 vlsideepdive · All courses free on <a href="https://www.youtube.com/@vlsideepdive">YouTube</a> · Training enquiries: <a href="mailto:vlsideepdive@gmail.com">vlsideepdive@gmail.com</a></span>
