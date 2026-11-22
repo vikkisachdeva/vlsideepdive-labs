@@ -6,6 +6,3 @@
 
 https://www.youtube.com/watch?v=i-46z3tTYGM
 
-# Videos for the SystemVerilog design labs only
-[sv]
-https://www.youtube.com/watch?v=TIZwEGRvhBU | Complete SystemVerilog Course for Digital Design Zero to Interview Ready

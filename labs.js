@@ -1,8 +1,10 @@
 // The list of labs. To add a lab, add one entry here: it appears in the tab bar
 // on every page and as a card on the labs home page.
 const LABS = [
-  { id: "verilog", title: "Verilog labs", href: "/verilog/", tag: "Simulation · 59 labs",
-    desc: "Write Verilog and SystemVerilog, run Icarus Verilog and see waveforms. 59 self-checking labs, from half adders to FSMs, FIFOs and a small CPU, plus ready-to-copy examples." },
+  { id: "verilog", title: "Verilog labs", href: "/verilog/", tag: "Simulation · 47 labs",
+    desc: "Write Verilog, run Icarus Verilog and see waveforms. 47 self-checking labs in 4 parts, from half adders to FIFOs and FSMs, plus ready-to-copy examples." },
+  { id: "systemverilog", title: "SystemVerilog labs", href: "/systemverilog/", tag: "SystemVerilog · 12 labs",
+    desc: "SystemVerilog for design: packages, enums, structs, always_ff, generate, a UART and a small VeriRISC CPU that runs programs." },
   { id: "synth", title: "Synthesis lab · Yosys", href: "/synth/", tag: "Synthesis · 7 labs · quizzes",
     desc: "Logic synthesis with Yosys: from a 2-to-1 mux to a RISC-V core. See RTL and gate-level diagrams, map to standard cells, read cell and area reports." },
   { id: "cdc", title: "CDC labs", href: "/cdc/", tag: "CDC · 13 labs · quizzes",
@@ -17,6 +19,7 @@ const labById = (id) => LABS.find((l) => l.id === id);
 // Cards on the labs home page. The STA lab has three tracks, each with its own card.
 const HOME_CARDS = [
   labById("verilog"),
+  labById("systemverilog"),
   labById("synth"),
   { title: "CDC workshop", href: "/cdc/?track=cdc", tag: "CDC · 9 labs · quizzes",
     desc: "Clock domain crossing: run a CDC check on RTL and SDC, fix synchronizers, then simulate pulse synchronizers, handshakes and an async FIFO with assertions." },
