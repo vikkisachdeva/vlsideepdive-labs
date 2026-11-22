@@ -358,6 +358,20 @@ header.top nav a.lb-streak { font-weight: 700; color: #ffb38a; }
 .dc-rule { margin: 0; font-size: 12.5px; color: var(--muted); line-height: 1.5; }
 @media (max-width: 760px) { .daily-card { grid-template-columns: 1fr; padding: 18px; } }
 /* Study plans */
+.home-plans { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 22px 24px; margin-bottom: 20px; }
+.hp-head { display: flex; flex-wrap: wrap; align-items: flex-end; gap: 8px 16px; } .hp-head .spacer { flex: 1; }
+.hp-head .kicker { font: 500 12px "JetBrains Mono", monospace; letter-spacing: .08em; text-transform: uppercase; color: var(--label); }
+.hp-head h3 { margin: 6px 0 0; font: 700 24px/1.2 "Space Grotesk", sans-serif; }
+.hp-all { font-weight: 600; color: var(--accent); text-decoration: none; }
+.hp-sub { margin: 6px 0 16px; color: var(--muted); font-size: 14.5px; }
+.hp-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
+.hp-card { display: flex; flex-direction: column; gap: 6px; padding: 14px 16px; border: 1px solid var(--line); border-radius: 10px; background: var(--bg); color: var(--text); text-decoration: none; }
+.hp-card:hover { border-color: var(--accent); } .hp-card .plan-bar { margin-top: auto; }
+.hp-card b { font: 700 16.5px/1.25 "Space Grotesk", sans-serif; }
+.hp-card .hp-meta { font: 500 11.5px "JetBrains Mono", monospace; color: var(--label); letter-spacing: .03em; }
+.hp-card .hp-pct { font-size: 12.5px; color: var(--muted); }
+@media (max-width: 1000px) { .hp-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 520px) { .hp-grid { grid-template-columns: 1fr; } .home-plans { padding: 18px; } }
 .plan-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 16px; }
 .plan-card { display: flex; flex-direction: column; gap: 8px; padding: 22px; background: var(--panel); border: 1px solid var(--line); border-radius: 12px; color: var(--text); text-decoration: none; }
 .plan-card:hover { border-color: var(--accent); }
@@ -615,7 +629,7 @@ header.top nav a.lb-streak { font-weight: 700; color: #ffb38a; }
 <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/verilog/verilog.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/addon/edit/matchbrackets.min.js"></script>
-<script src="/labs.js?v=5a6584eeba"></script>
+<script src="/labs.js?v=6639be212c"></script>
 <script src="app.js?v=05fe87082a"></script>
 </body>
 </html>
