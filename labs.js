@@ -237,6 +237,36 @@ window.vddVideo = (function () {
     const m = /(?:youtu\.be\/|[?&]v=|\/embed\/|\/shorts\/|\/live\/)([A-Za-z0-9_-]{11})/.exec(url) || /^([A-Za-z0-9_-]{11})$/.exec(url);
     return m ? m[1] : null;
   };
+  // On a lab page: a card like the Subscribe one, a few seconds after the page opens, once per page per visit,
+  // when the lab has a video whose badge is not earned yet. "Watch now" scrolls to it and starts it.
+  let offered = false;
+  function offerBadge(sec, vids) {
+    if (offered) return;
+    const todo = vids.find((v) => !window.vddVideo.badges()[v.id]); if (!todo) return;
+    const key = "vdd-badge-pop:" + location.pathname;
+    try { if (sessionStorage.getItem(key)) return; } catch (_) {}
+    offered = true;
+    setTimeout(() => {
+      if (document.querySelector(".sub-pop, .lb-modal-bg")) return;   // another card or a dialog is open
+      try { sessionStorage.setItem(key, "1"); } catch (_) {}
+      const box = document.createElement("aside");
+      box.className = "sub-pop badge-pop"; box.setAttribute("role", "complementary"); box.setAttribute("aria-label", "Earn a badge");
+      box.innerHTML = '<span class="sub-ic" aria-hidden="true">🏅</span>' +
+        '<div><b>Watch the full video to earn a badge</b><p>Watch this lab\'s video to the end here on the site: the badge goes on your leaderboard profile and you can share it on LinkedIn.</p>' +
+        '<button type="button" class="sub-go">Watch now</button></div>' +
+        '<button type="button" class="sub-x" aria-label="Close">×</button>';
+      document.body.appendChild(box);
+      requestAnimationFrame(() => box.classList.add("show"));
+      const close = () => { box.classList.remove("show"); setTimeout(() => box.remove(), 250); };
+      box.querySelector(".sub-x").addEventListener("click", close);
+      box.querySelector(".sub-go").addEventListener("click", () => {
+        close();
+        sec.scrollIntoView({ behavior: "smooth", block: "center" });
+        const thumb = sec.querySelector(`.video[data-vid="${todo.id}"] .video-thumb`);
+        if (thumb) setTimeout(() => thumb.click(), 400);
+      });
+    }, 6000);
+  }
   sections.forEach((sec) => {
     const grid = sec.querySelector(".video-grid");
     let all = null;
@@ -255,13 +285,14 @@ window.vddVideo = (function () {
         btn.innerHTML = '<span class="video-play" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24"><path d="M8 5l12 7-12 7z" fill="#fff"/></svg></span>';
         const badge = document.createElement("span");
         btn.addEventListener("click", () => window.vddVideo.play(btn, v, "video-frame", badge));
-        card.appendChild(btn);
+        card.appendChild(btn); card.dataset.vid = v.id;
         const cap = document.createElement("a"); cap.className = "video-title";
         cap.href = `https://www.youtube.com/watch?v=${v.id}`; cap.textContent = v.title || "Watch on YouTube";
         card.appendChild(cap);
         window.vddVideo.label(badge, v.id); card.appendChild(badge);
         grid.appendChild(card);
       }
+      offerBadge(sec, vids);
     };
     document.addEventListener("vdd-track", render);
     fetch(sec.dataset.src, { cache: "no-cache" }).then((r) => (r.ok ? r.text() : "")).then((txt) => {
