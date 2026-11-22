@@ -193,6 +193,17 @@ footer a { color: var(--muted); }
 @media (max-width: 700px) { .brief-imgs { grid-template-columns: 1fr; } }
 .brief-fig figcaption { margin-top: 8px; font-size: 13px; color: var(--muted); }
 @media (max-width: 900px) { .brief-body { grid-template-columns: 1fr; gap: 14px; } }
+.vtracks { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 10px; margin-top: 16px; }
+@media (max-width: 900px) { .vtracks { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+@media (max-width: 520px) { .vtracks { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px; } }
+.vtrack { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; text-align: left; padding: 10px 14px; min-height: 52px; border: 1px solid var(--line); border-radius: 10px; background: var(--panel); color: var(--text); cursor: pointer; font: inherit; }
+.vtrack:hover { border-color: var(--muted); }
+.vtrack.active { border-color: var(--accent); box-shadow: inset 0 -3px 0 var(--accent); background: var(--accent-soft); }
+.vtrack:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+.vtrack-t { font: 700 15px/1.2 "Space Grotesk", sans-serif; }
+.vtrack-n { font: 500 12px "JetBrains Mono", monospace; color: var(--muted); }
+.vtrack-note { margin: 10px 0 0; font-size: 14px; color: var(--muted); }
+.ex .ex-pass { color: var(--ok); margin-left: 6px; }
 </style>
 <style>
 .tabs { display: flex; gap: 2px; overflow-x: auto; flex: 1; min-width: 0; }
@@ -424,7 +435,7 @@ help proc</pre>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/verilog/verilog.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/tcl/tcl.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/addon/edit/matchbrackets.min.js"></script>
-<script src="/labs.js?v=a534dd2adb"></script>
+<script src="/labs.js?v=4d34fd2724"></script>
 <script src="app.js?v=94cce6c1a5"></script>
 </body>
 </html>
