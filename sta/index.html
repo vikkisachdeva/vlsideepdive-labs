@@ -163,6 +163,9 @@ kbd { font: 500 11px "JetBrains Mono", monospace; border: 1px solid currentColor
 .video-thumb:hover .video-play { filter: brightness(1.1); }
 .video-title { font-weight: 600; font-size: 14px; line-height: 1.4; color: var(--text); text-decoration: none; }
 .video-title:hover { text-decoration: underline; }
+.video-frame iframe, .vframe iframe { width: 100%; height: 100%; border: 0; border-radius: 8px; display: block; }
+.vbadge { font-size: 13px; color: var(--muted); }
+.vbadge.done { color: var(--label); font-weight: 600; }
 .video-empty { margin: 0; padding: 16px; color: var(--muted); font-size: 14px; }
 .video-empty a { color: var(--text); }
 footer { max-width: 1440px; margin: 0 auto; padding: 0 20px 36px; font-size: 13px; color: var(--muted); display: flex; flex-wrap: wrap; gap: 8px 24px; justify-content: space-between; }
@@ -593,7 +596,7 @@ report_power</pre>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/verilog/verilog.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/tcl/tcl.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/addon/edit/matchbrackets.min.js"></script>
-<script src="/labs.js?v=914b320635"></script>
+<script src="/labs.js?v=8fba76088a"></script>
 <script src="app.js?v=1c53c33f81"></script>
 </body>
 </html>

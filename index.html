@@ -166,6 +166,9 @@ kbd { font: 500 11px "JetBrains Mono", monospace; border: 1px solid currentColor
 .video-thumb:hover .video-play { filter: brightness(1.1); }
 .video-title { font-weight: 600; font-size: 14px; line-height: 1.4; color: var(--text); text-decoration: none; }
 .video-title:hover { text-decoration: underline; }
+.video-frame iframe, .vframe iframe { width: 100%; height: 100%; border: 0; border-radius: 8px; display: block; }
+.vbadge { font-size: 13px; color: var(--muted); }
+.vbadge.done { color: var(--label); font-weight: 600; }
 .video-empty { margin: 0; padding: 16px; color: var(--muted); font-size: 14px; }
 .video-empty a { color: var(--text); }
 footer { max-width: 1440px; margin: 0 auto; padding: 0 20px 36px; font-size: 13px; color: var(--muted); display: flex; flex-wrap: wrap; gap: 8px 24px; justify-content: space-between; }
@@ -386,6 +389,7 @@ header.top nav a.lb-share-btn:hover { background: #d0541f; color: #fff; }
 .vtitle { font-weight: 600; line-height: 1.4; color: var(--text); text-decoration: none; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
 .vtitle:hover { color: var(--accent); }
 .vdate { font: 500 12px "JetBrains Mono", monospace; color: var(--muted); }
+.vframe iframe, .video-frame iframe { width: 100%; height: 100%; border: 0; border-radius: 8px; display: block; }
 .vsingle { aspect-ratio: 16 / 9; width: 100%; max-width: 960px; border: 0; border-radius: 8px; }
 @media (max-width: 900px) { .vgrid { grid-template-columns: 1fr; } }
 
@@ -558,6 +562,7 @@ header.top nav a.lb-share-btn:hover { background: #d0541f; color: #fff; }
     <div class="stat"><b class="c1" data-c="synth">–</b><span>Synthesis runs</span></div>
     <div class="stat"><b class="c2" data-c="cdc">–</b><span>CDC checks</span></div>
     <div class="stat"><b class="c1" data-c="quizzes">–</b><span>Quizzes checked</span></div>
+    <div class="stat"><b class="c2" data-c="videos">–</b><span>Videos watched in full</span></div>
   </div>
   <div class="stats-in">
     <div class="stat"><b class="c1">267</b><span>Hands-on labs</span></div>
@@ -570,7 +575,7 @@ header.top nav a.lb-share-btn:hover { background: #d0541f; color: #fff; }
   <span>© 2026 vlsideepdive · All courses free on <a href="https://www.youtube.com/@vlsideepdive">YouTube</a> · Training enquiries: <a href="mailto:vlsideepdive@gmail.com">vlsideepdive@gmail.com</a></span>
   <span><a href="/verilog/licenses.html">Verilog lab licences</a> · <a href="/synth/licenses.html">Synthesis lab licences</a> · <a href="/sta/licenses.html">STA and Constraints labs licences</a></span>
 </footer>
-<script src="/labs.js?v=914b320635"></script>
+<script src="/labs.js?v=8fba76088a"></script>
 <script>
 // Latest 3 videos. latest-videos.json is refreshed every few hours by a GitHub Action
 // (.github/workflows/latest-videos.yml) that reads the channel feed. It is read from
@@ -593,14 +598,11 @@ header.top nav a.lb-share-btn:hover { background: #d0541f; color: #fff; }
       btn.style.backgroundImage = "url(https://i.ytimg.com/vi/" + v.id + "/hqdefault.jpg)";
       btn.setAttribute("aria-label", "Play: " + v.title);
       btn.innerHTML = '<span class="play" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24"><path d="M8 5l12 7-12 7z" fill="#fff"/></svg></span>';
-      btn.addEventListener("click", () => {
-        const f = document.createElement("iframe"); f.className = "vframe"; f.title = v.title;
-        f.src = "https://www.youtube-nocookie.com/embed/" + v.id + "?autoplay=1&rel=0";
-        f.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"; f.allowFullscreen = true;
-        btn.replaceWith(f);
-      });
+      const badge = document.createElement("span");
+      btn.addEventListener("click", () => window.vddVideo.play(btn, v, "vframe", badge));
       const a = document.createElement("a"); a.className = "vtitle"; a.href = "https://www.youtube.com/watch?v=" + v.id; a.target = "_blank"; a.rel = "noopener"; a.textContent = v.title;
       tile.append(btn, a);
+      window.vddVideo.label(badge, v.id); tile.appendChild(badge);
       if (v.published) { const d = document.createElement("span"); d.className = "vdate"; d.textContent = fmt(v.published); tile.appendChild(d); }
       grid.appendChild(tile);
     }

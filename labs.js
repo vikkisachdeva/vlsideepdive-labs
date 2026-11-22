@@ -87,7 +87,7 @@ const HOME_CARDS = [
 })();
 
 // Accounts and leaderboards (/lb.js), on every page
-(function () { const s = document.createElement("script"); s.src = "/lb.js?v=9b4fcd9fdd"; s.defer = true; document.head.appendChild(s); })();
+(function () { const s = document.createElement("script"); s.src = "/lb.js?v=12bd87908e"; s.defer = true; document.head.appendChild(s); })();
 
 // Tip box inside a lab: <div class="lab-tip" data-topics="STA,Constraints"></div>
 (function () {
@@ -154,6 +154,78 @@ window.vddSubscribe = function () {
   box.querySelector(".sub-go").addEventListener("click", () => setTimeout(close, 300));
 };
 
+// Video badges: a video played on this site through YouTube's player API counts the seconds actually
+// played (skipping ahead does not count). Watching 90% or more of a video earns its badge.
+// Progress: localStorage vdd-videos-v1 { id: { d: duration, s: "0101…" one char per second } };
+// badges: vdd-badges-v1 { id: { title, at } } (lb.js syncs them to the leaderboard and offers to share).
+window.vddVideo = (function () {
+  const VKEY = "vdd-videos-v1", BKEY = "vdd-badges-v1", NEED = 0.9;
+  const jget = (k) => { try { return JSON.parse(localStorage.getItem(k) || "{}") || {}; } catch (_) { return {}; } };
+  const jset = (k, v) => { try { localStorage.setItem(k, JSON.stringify(v)); } catch (_) {} };
+  const badges = () => jget(BKEY);
+  let apiP = null;
+  function api() {
+    if (window.YT && window.YT.Player) return Promise.resolve(window.YT);
+    return apiP || (apiP = new Promise((res, rej) => {
+      const prev = window.onYouTubeIframeAPIReady;
+      window.onYouTubeIframeAPIReady = () => { if (prev) try { prev(); } catch (_) {} res(window.YT); };
+      const s = document.createElement("script"); s.src = "https://www.youtube.com/iframe_api"; s.async = true; s.onerror = () => rej(new Error("YouTube API")); document.head.appendChild(s);
+      setTimeout(() => rej(new Error("YouTube API timeout")), 12000);
+    }));
+  }
+  function share(id) { const v = jget(VKEY)[id]; if (!v || !v.d || !v.s) return 0; let n = 0; for (const c of v.s) if (c === "1") n++; return Math.min(1, n / Math.max(1, Math.floor(v.d) - 1)); }
+  function label(el, id) {
+    if (!el) return;
+    if (badges()[id]) { el.className = "vbadge done"; el.textContent = "🏅 Badge earned"; return; }
+    const f = share(id);
+    el.className = "vbadge"; el.textContent = f > 0.01 ? `🏅 ${Math.round(f * 100)}% watched: watch it all to earn a badge` : "🏅 Watch the whole video to earn a badge";
+  }
+  function plainFrame(btn, v, cls) {
+    const f = document.createElement("iframe"); f.className = cls; f.title = v.title || "YouTube video";
+    f.src = "https://www.youtube-nocookie.com/embed/" + v.id + "?autoplay=1&rel=0";
+    f.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"; f.allowFullscreen = true;
+    btn.replaceWith(f);
+  }
+  // Replace a thumbnail button by a tracked player. statusEl shows the badge progress.
+  function play(btn, v, cls, statusEl) {
+    const holder = document.createElement("div"); holder.className = cls; btn.replaceWith(holder);
+    const host = document.createElement("div"); holder.appendChild(host);
+    api().then((YT) => {
+      let timer = null, last = null, dirty = false;
+      const rec = () => { const all = jget(VKEY); return all[v.id] || { d: 0, s: "" }; };
+      let r = rec();
+      const save = () => { if (!dirty) return; const all = jget(VKEY); all[v.id] = r; jset(VKEY, all); dirty = false; label(statusEl, v.id); };
+      const check = () => {
+        if (badges()[v.id] || !r.d) return;
+        if (share(v.id) >= NEED) { const b = badges(); b[v.id] = { title: v.title || "vlsideepdive video", at: Date.now() }; jset(BKEY, b); label(statusEl, v.id); }
+      };
+      const tick = (p) => {
+        const d = p.getDuration(), t = p.getCurrentTime();
+        if (d > 0 && r.d !== Math.round(d)) { r.d = Math.round(d); if (r.s.length < r.d) r.s = r.s.padEnd(r.d, "0"); dirty = true; }
+        if (last !== null && t > last && t - last <= 2.5) {   // normal playback (up to 2x speed); a jump is a seek
+          const a = Math.floor(last), b = Math.min(Math.floor(t), r.d - 1);
+          if (b >= a) { const arr = r.s.split(""); for (let i = a; i <= b; i++) arr[i] = "1"; r.s = arr.join(""); dirty = true; }
+        }
+        last = t;
+      };
+      const p = new YT.Player(host, {
+        host: "https://www.youtube-nocookie.com", videoId: v.id, width: "100%", height: "100%",
+        playerVars: { autoplay: 1, rel: 0, playsinline: 1 },
+        events: {
+          onReady: (e) => { try { e.target.getIframe().title = v.title || "YouTube video"; e.target.playVideo(); } catch (_) {} },
+          onStateChange: (e) => {
+            clearInterval(timer);
+            if (e.data === YT.PlayerState.PLAYING) { last = p.getCurrentTime(); timer = setInterval(() => { tick(p); if (dirty && Math.random() < 0.25) { save(); check(); } }, 1000); }
+            else { tick(p); last = null; save(); check(); }
+          },
+        },
+      });
+      addEventListener("pagehide", () => { save(); check(); });
+    }).catch(() => { holder.replaceWith(btn); plainFrame(btn, v, cls); });
+  }
+  return { play, label, badges };
+})();
+
 // YouTube videos inside a lab: <section class="lab-videos" data-src="videos.txt"></section>
 // The list lives in a plain text file next to the lab: one YouTube link per line, optional title after "|".
 // A line "[track-id]" starts videos for one track only (the page sets <body data-track>); "[all]" goes back
@@ -181,18 +253,13 @@ window.vddSubscribe = function () {
         btn.setAttribute("aria-label", "Play video" + (v.title ? ": " + v.title : ""));
         btn.style.backgroundImage = `url(https://i.ytimg.com/vi/${v.id}/hqdefault.jpg)`;
         btn.innerHTML = '<span class="video-play" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24"><path d="M8 5l12 7-12 7z" fill="#fff"/></svg></span>';
-        btn.addEventListener("click", () => {
-          const f = document.createElement("iframe");
-          f.src = `https://www.youtube-nocookie.com/embed/${v.id}?autoplay=1&rel=0`;
-          f.title = v.title || "YouTube video";
-          f.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
-          f.allowFullscreen = true; f.className = "video-frame";
-          btn.replaceWith(f);
-        });
+        const badge = document.createElement("span");
+        btn.addEventListener("click", () => window.vddVideo.play(btn, v, "video-frame", badge));
         card.appendChild(btn);
         const cap = document.createElement("a"); cap.className = "video-title";
         cap.href = `https://www.youtube.com/watch?v=${v.id}`; cap.textContent = v.title || "Watch on YouTube";
         card.appendChild(cap);
+        window.vddVideo.label(badge, v.id); card.appendChild(badge);
         grid.appendChild(card);
       }
     };
