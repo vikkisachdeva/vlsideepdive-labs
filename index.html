@@ -451,14 +451,20 @@ header.top nav a.lb-share-btn:hover { background: #d0541f; color: #fff; }
   .t3.open .t3-pts { grid-column: 3; grid-row: 2; text-align: left; }
 }
 
+/* Content stats under the hero */
+.hero-stats { display: flex; flex-wrap: wrap; gap: 14px 48px; margin-top: 26px; }
+.hero-stats div { display: flex; flex-direction: column; gap: 2px; }
+.hero-stats b { font: 700 clamp(30px, 3.6vw, 40px)/1.05 "Space Grotesk", sans-serif; letter-spacing: -0.02em; color: var(--accent); }
+.hero-stats span { color: var(--muted); font-size: 15px; font-weight: 500; }
+@media (max-width: 520px) { .hero-stats { gap: 14px 28px; } }
+
 /* Stats band */
 .stats { background: #0b1f2a; border-top: 1px solid #16303c; }
 .stats-in { max-width: 1440px; margin: 0 auto; padding: 40px 20px; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 24px 32px; }
 .stat b { display: block; font: 700 clamp(32px, 4vw, 44px)/1.05 "Space Grotesk", sans-serif; letter-spacing: -0.02em; }
 .stat b.c1 { color: #4f8cff; } .stat b.c2 { color: #1fc27e; }
 .stat span { display: block; margin-top: 6px; color: #b8c6cb; font-size: 15px; font-weight: 500; }
-.stats-in.live { padding-bottom: 8px; }
-.stats-in.live + .stats-in { border-top: 1px solid #16303c; }
+
 .live-since { grid-column: 1 / -1; margin: 0 0 -8px; font: 500 12px "JetBrains Mono", monospace; letter-spacing: .08em; text-transform: uppercase; color: #ff9b6b; display: flex; align-items: center; gap: 8px; }
 .live-since::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: #1fc27e; box-shadow: 0 0 0 4px rgba(31,194,126,.2); }
 @media (max-width: 760px) { .stats-in { grid-template-columns: repeat(2, minmax(0, 1fr)); padding: 30px 16px; } }
@@ -496,6 +502,11 @@ header.top nav a.lb-share-btn:hover { background: #d0541f; color: #fff; }
   <span class="kicker">// vlsideepdive</span>
   <h1>Every course.<br>Free on YouTube.</h1>
   <p>Deep, practitioner-led lessons on logic design, static timing analysis and verification, from number systems to sign-off. No paywall, no sign-up. Just subscribe and learn.</p>
+  <div class="hero-stats" aria-label="vlsideepdive labs in numbers">
+    <div><b>267</b><span>Hands-on labs</span></div>
+    <div><b>997</b><span>Quiz questions</span></div>
+    <div><b>9</b><span>Topics, logic design to sign-off</span></div>
+  </div>
 </section>
 
 <div class="wrap">
@@ -566,11 +577,6 @@ header.top nav a.lb-share-btn:hover { background: #d0541f; color: #fff; }
     <div class="stat"><b class="c2" data-c="cdc">–</b><span>CDC checks</span></div>
     <div class="stat"><b class="c1" data-c="quizzes">–</b><span>Quizzes checked</span></div>
     <div class="stat"><b class="c2" data-c="videos">–</b><span>🏅 Badges earned</span></div>
-  </div>
-  <div class="stats-in">
-    <div class="stat"><b class="c1">267</b><span>Hands-on labs</span></div>
-    <div class="stat"><b class="c2">997</b><span>Quiz questions</span></div>
-    <div class="stat"><b class="c1">9</b><span>Topics, logic design to sign-off</span></div>
   </div>
 </section>
 
