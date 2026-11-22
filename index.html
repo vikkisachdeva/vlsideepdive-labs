@@ -179,6 +179,8 @@ kbd { font: 500 11px "JetBrains Mono", monospace; border: 1px solid currentColor
 .video-frame iframe, .vframe iframe { width: 100%; height: 100%; border: 0; border-radius: 8px; display: block; }
 .vbadge { font-size: 13px; color: var(--muted); }
 .vbadge.done { color: var(--label); font-weight: 600; }
+.vbadge.prog { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; color: var(--text); }
+.vb-bar { flex: 0 0 90px; height: 6px; border-radius: 999px; background: var(--soft); overflow: hidden; } .vb-bar i { display: block; height: 100%; background: #e8642c; border-radius: 999px; transition: width .4s; }
 .video-empty { margin: 0; padding: 16px; color: var(--muted); font-size: 14px; }
 .video-empty a { color: var(--text); }
 footer { max-width: 1440px; margin: 0 auto; padding: 0 20px 36px; font-size: 13px; color: var(--muted); display: flex; flex-wrap: wrap; gap: 8px 24px; justify-content: space-between; }
@@ -695,7 +697,7 @@ header.top nav a.lb-streak { font-weight: 700; color: #ffb38a; }
   <span>© 2026 vlsideepdive · All courses free on <a href="https://www.youtube.com/@vlsideepdive">YouTube</a> · Training enquiries: <a href="mailto:vlsideepdive@gmail.com">vlsideepdive@gmail.com</a></span>
   <span><a href="/verilog/licenses.html">Verilog lab licences</a> · <a href="/synth/licenses.html">Synthesis lab licences</a> · <a href="/sta/licenses.html">STA and Constraints labs licences</a></span>
 </footer>
-<script src="/labs.js?v=0a57d70237"></script>
+<script src="/labs.js?v=d8ac2ee5aa"></script>
 <script>
 // Latest 3 videos. latest-videos.json is refreshed every few hours by a GitHub Action
 // (.github/workflows/latest-videos.yml) that reads the channel feed. It is read from

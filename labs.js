@@ -175,16 +175,23 @@ window.vddVideo = (function () {
     }));
   }
   // How far towards the badge: seconds watched over seconds needed (half the video, at most 30 minutes).
-  function share(id) { const v = jget(VKEY)[id]; if (!v || !v.d || !v.s) return 0; let n = 0; for (const c of v.s) if (c === "1") n++; return Math.min(1, n / Math.max(1, Math.min(Math.floor(v.d * HALF), MAX_S))); }
-  function label(el, id) {
+  function need(d) { return Math.max(1, Math.min(Math.floor(d * HALF), MAX_S)); }
+  function watched(v) { let n = 0; for (const c of v.s || "") if (c === "1") n++; return n; }
+  function share(id, rec) { const v = rec || jget(VKEY)[id]; if (!v || !v.d || !v.s) return 0; return Math.min(1, watched(v) / need(v.d)); }
+  const mmss = (s) => { s = Math.max(0, Math.ceil(s)); return Math.floor(s / 60) + ":" + String(s % 60).padStart(2, "0"); };
+  function label(el, id, rec) {
     if (!el) return;
     if (badges()[id]) {
       el.className = "vbadge done"; el.textContent = "🏅 Badge earned · ";
       const b = document.createElement("button"); b.type = "button"; b.className = "vbadge-share"; b.textContent = "Share it";
       b.addEventListener("click", () => window.vddShareBadge && window.vddShareBadge(id)); el.appendChild(b); return;
     }
-    const f = share(id);
-    el.className = "vbadge"; el.textContent = f > 0.01 ? `🏅 ${Math.round(f * 100)}% of the way to your badge: keep watching` : "🏅 Watch the video to earn a badge";
+    const v = rec || jget(VKEY)[id], f = share(id, v);
+    if (!v || !v.d) { el.className = "vbadge"; el.textContent = "🏅 Watch the video to earn a badge"; return; }
+    const left = need(v.d) - watched(v);
+    el.className = "vbadge prog";
+    el.innerHTML = `<span class="vb-bar" aria-hidden="true"><i style="width:${Math.round(f * 100)}%"></i></span><span class="vb-txt"></span>`;
+    el.querySelector(".vb-txt").textContent = `🏅 ${mmss(left)} more to watch for your badge (${Math.round(f * 100)}%)`;
   }
   function plainFrame(btn, v, cls) {
     const f = document.createElement("iframe"); f.className = cls; f.title = v.title || "YouTube video";
@@ -203,7 +210,7 @@ window.vddVideo = (function () {
       const save = () => { if (!dirty) return; const all = jget(VKEY); all[v.id] = r; jset(VKEY, all); dirty = false; label(statusEl, v.id); };
       const check = () => {
         if (badges()[v.id] || !r.d) return;
-        if (share(v.id) >= 1) { const b = badges(); b[v.id] = { title: v.title || "vlsideepdive video", at: Date.now() }; jset(BKEY, b); label(statusEl, v.id); }
+        if (share(v.id, r) >= 1) { save(); const b = badges(); b[v.id] = { title: v.title || "vlsideepdive video", at: Date.now() }; jset(BKEY, b); label(statusEl, v.id); }
       };
       const tick = (p) => {
         const d = p.getDuration(), t = p.getCurrentTime();
@@ -221,7 +228,7 @@ window.vddVideo = (function () {
           onReady: (e) => { try { e.target.getIframe().title = v.title || "YouTube video"; e.target.playVideo(); } catch (_) {} },
           onStateChange: (e) => {
             clearInterval(timer);
-            if (e.data === YT.PlayerState.PLAYING) { last = p.getCurrentTime(); timer = setInterval(() => { tick(p); if (dirty && Math.random() < 0.25) { save(); check(); } }, 1000); }
+            if (e.data === YT.PlayerState.PLAYING) { last = p.getCurrentTime(); timer = setInterval(() => { tick(p); if (!badges()[v.id]) label(statusEl, v.id, r); check(); if (dirty && Math.random() < 0.25) save(); }, 1000); }
             else { tick(p); last = null; save(); check(); }
           },
         },
