@@ -195,7 +195,7 @@ window.vddVideo = (function () {
   }
   function plainFrame(btn, v, cls) {
     const f = document.createElement("iframe"); f.className = cls; f.title = v.title || "YouTube video";
-    f.src = "https://www.youtube.com/embed/" + v.id + "?autoplay=1&rel=0" + (v.start ? "&start=" + v.start : "");
+    f.src = "https://www.youtube.com/embed/" + v.id + "?autoplay=1&rel=0" + (v.start ? "&start=" + v.start : "") + (v.end ? "&end=" + v.end : "");
     f.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"; f.allowFullscreen = true;
     btn.replaceWith(f);
   }
@@ -223,7 +223,7 @@ window.vddVideo = (function () {
       };
       const p = new YT.Player(host, {
         host: "https://www.youtube.com", videoId: v.id, width: "100%", height: "100%",
-        playerVars: { autoplay: 1, rel: 0, playsinline: 1, ...(v.start ? { start: v.start } : {}) },
+        playerVars: { autoplay: 1, rel: 0, playsinline: 1, ...(v.start ? { start: v.start } : {}), ...(v.end ? { end: v.end } : {}) },
         events: {
           onReady: (e) => { try { e.target.getIframe().title = v.title || "YouTube video"; e.target.playVideo(); } catch (_) {} },
           onStateChange: (e) => {

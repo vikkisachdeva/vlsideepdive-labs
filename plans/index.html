@@ -196,6 +196,11 @@ footer a { color: var(--muted); }
 .badge-pop .sub-go { background: #e8642c; border: 0; cursor: pointer; font: inherit; font-weight: 600; font-size: 14px; }
 .lab-brief[hidden] { display: none; }
 .brief-body { display: grid; grid-template-columns: 1.3fr 1.2fr 1fr; gap: 18px 26px; padding: 16px 18px 18px; }
+.brief-watch { margin: 14px 18px 0; padding: 10px 14px; border-radius: 10px; background: var(--accent-soft); display: grid; gap: 6px; }
+.bw-row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; font-size: 14.5px; }
+.bw-txt { flex: 1 1 260px; } .bw-txt a { color: var(--label); font-weight: 600; } .bw-min { color: var(--muted); }
+.bw-play { border: 0; border-radius: 8px; background: #e8642c; color: #fff; font: inherit; font-weight: 600; padding: 6px 12px; min-height: 34px; cursor: pointer; }
+.bw-play:hover { background: #d0541f; } .bw-player { max-width: 720px; }
 .brief-col h3 { margin: 0 0 6px; font: 600 12px "JetBrains Mono", monospace; text-transform: uppercase; letter-spacing: .06em; color: var(--label); }
 .brief-col p { margin: 0; font-size: 14px; line-height: 1.55; }
 .brief-tasks { margin: 0; padding-left: 20px; font-size: 14px; line-height: 1.55; display: flex; flex-direction: column; gap: 4px; }
@@ -498,6 +503,6 @@ header.top nav a.lb-streak { font-weight: 700; color: #ffb38a; }
   <p>Day-by-day plans through the labs, from your first gate to signoff. Do each day's labs and your progress is kept in this browser.</p>
 </section>
 <main class="lbw" id="plans-root"><p class="lb-empty">Loading…</p></main>
-<script src="/labs.js?v=62bf0d8edb"></script>
+<script src="/labs.js?v=941bb34e73"></script>
 </body>
 </html>
