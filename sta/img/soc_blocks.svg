@@ -44,5 +44,5 @@
   </g>
   <text x="565" y="195" text-anchor="middle" fill="#0d2747" font-size="13">256KB L2 Cache</text>
   <g fill="#ffffff" font-size="18" font-weight="700" text-anchor="middle"><text x="490" y="70">ARM V9</text><text x="640" y="70">ARM V9</text></g>
-  <text x="620" y="543" fill="#0d2747" font-size="13">DDR, 4 GB</text>
+  <text x="620" y="543" fill="#0d2747" font-size="13">DDR3-1600, 4 GB</text>
 </svg>
