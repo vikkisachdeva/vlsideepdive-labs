@@ -86,6 +86,9 @@ const HOME_CARDS = [
   }
 })();
 
+// Accounts and leaderboards (/lb.js), on every page
+(function () { const s = document.createElement("script"); s.src = "/lb.js?v=ad01f342aa"; s.defer = true; document.head.appendChild(s); })();
+
 // Tip box inside a lab: <div class="lab-tip" data-topics="STA,Constraints"></div>
 (function () {
   const boxes = document.querySelectorAll(".lab-tip");

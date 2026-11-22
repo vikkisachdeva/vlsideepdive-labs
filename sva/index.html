@@ -300,6 +300,36 @@ body[data-lab="logic"] .vtracks { grid-template-columns: repeat(3, minmax(0, 1fr
 .dv-bin.def { opacity: .7; }
 .dv-bc { text-align: right; }
 @media (max-width: 640px) { .dv-bin { grid-template-columns: 1fr 60px 40px; } }
+
+/* Accounts and leaderboards */
+header.top nav a.lb-acct { border: 1px solid rgba(255,255,255,.35); border-radius: 999px; padding: 4px 12px; }
+header.top nav a.lb-acct.in { background: rgba(232,100,44,.18); border-color: #e8642c; }
+.lb-modal-bg { position: fixed; inset: 0; background: rgba(10,20,18,.55); display: flex; align-items: center; justify-content: center; z-index: 1000; padding: 16px; }
+.lb-modal { position: relative; background: var(--panel); color: var(--text); border: 1px solid var(--line); border-radius: 14px; max-width: 440px; width: 100%; padding: 24px 24px 20px; box-shadow: 0 20px 60px rgba(0,0,0,.3); }
+.lb-modal h2 { margin: 0 0 8px; font: 700 22px/1.2 "Space Grotesk", sans-serif; }
+.lb-modal p { margin: 0 0 12px; line-height: 1.55; color: var(--muted); font-size: 14px; }
+.lb-modal .lb-sub { margin-top: -4px; font-family: "JetBrains Mono", monospace; font-size: 12px; }
+.lb-x { position: absolute; top: 10px; right: 12px; background: none; border: 0; font-size: 24px; line-height: 1; color: var(--muted); cursor: pointer; }
+.lb-form { display: grid; gap: 8px; }
+.lb-form label { font-size: 13px; font-weight: 600; }
+.lb-form input { min-height: 40px; padding: 8px 10px; border: 1px solid var(--line); border-radius: 8px; font: inherit; background: var(--bg, #fff); color: var(--text); }
+.lb-msg { margin-top: 10px !important; min-height: 1.2em; }
+.lb-actions { display: flex; flex-wrap: wrap; gap: 8px; }
+.lb-toast { position: fixed; bottom: 20px; left: 50%; transform: translate(-50%, 20px); opacity: 0; background: #0f2420; color: #fff; padding: 10px 16px; border-radius: 10px; font-size: 14px; z-index: 1001; transition: all .3s; }
+.lb-toast.show { opacity: 1; transform: translate(-50%, 0); }
+.lb-me { margin: 0 0 14px; color: var(--muted); }
+.lb-tabs { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 14px; }
+.lb-tab { border: 1px solid var(--line); background: var(--panel); color: var(--text); border-radius: 999px; padding: 6px 14px; font: inherit; font-size: 14px; cursor: pointer; }
+.lb-tab.active { background: #e8642c; border-color: #e8642c; color: #fff; }
+.lb-wrap { overflow-x: auto; background: var(--panel); border: 1px solid var(--line); border-radius: 12px; }
+.lb-table { width: 100%; border-collapse: collapse; font-size: 15px; }
+.lb-table th, .lb-table td { padding: 10px 14px; border-bottom: 1px solid var(--line); text-align: left; white-space: nowrap; }
+.lb-table th { font: 500 12px "JetBrains Mono", monospace; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); }
+.lb-table td.n, .lb-table th:nth-child(n+3) { text-align: right; }
+.lb-table td.rk { width: 48px; font-weight: 600; }
+.lb-table tr.me td { background: color-mix(in srgb, #e8642c 12%, transparent); font-weight: 600; }
+.lb-table tr.gap td { text-align: center; color: var(--muted); }
+.lb-empty { color: var(--muted); padding: 20px 0; }
 </style>
 </head>
 <body data-lab="sva">
@@ -466,7 +496,7 @@ body[data-lab="logic"] .vtracks { grid-template-columns: repeat(3, minmax(0, 1fr
 <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/verilog/verilog.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/addon/edit/matchbrackets.min.js"></script>
-<script src="/labs.js?v=ecacaedbd1"></script>
-<script src="/verilog/app.js?v=c609131e88"></script>
+<script src="/labs.js?v=4bf88e368e"></script>
+<script src="/verilog/app.js?v=c9e32143b4"></script>
 </body>
 </html>
