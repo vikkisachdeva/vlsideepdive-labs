@@ -204,6 +204,30 @@ footer a { color: var(--muted); }
 .vtrack-n { font: 500 12px "JetBrains Mono", monospace; color: var(--muted); }
 .vtrack-note { margin: 10px 0 0; font-size: 14px; color: var(--muted); }
 .ex .ex-pass { color: var(--ok); margin-left: 6px; }
+.quiz[hidden] { display: none; }
+.quiz-body { padding: 16px 18px 18px; }
+.quiz-intro { margin: 0 0 14px; font-size: 14px; color: var(--muted); line-height: 1.55; }
+.quiz-try { display: inline-block; font: 600 11px "JetBrains Mono", monospace; text-transform: uppercase; letter-spacing: .05em; color: var(--label); background: var(--accent-soft); border-radius: 4px; padding: 1px 6px; vertical-align: 1px; }
+.quiz-list { margin: 0; padding: 0 0 0 22px; display: flex; flex-direction: column; gap: 16px; }
+.quiz-list li { padding-left: 4px; }
+.quiz-q { font-weight: 600; line-height: 1.5; margin-bottom: 8px; }
+.quiz-q .quiz-try { margin-right: 6px; }
+.quiz-num { display: flex; align-items: center; gap: 8px; }
+.quiz-num input { width: 140px; min-height: 40px; padding: 6px 10px; border: 1px solid var(--line); border-radius: 8px; background: var(--bg); color: var(--text); font: 15px "JetBrains Mono", monospace; }
+.quiz-num .unit { color: var(--muted); font: 13px "JetBrains Mono", monospace; }
+.quiz-opts { display: flex; flex-direction: column; gap: 6px; }
+.quiz-opts label { display: flex; gap: 10px; align-items: flex-start; padding: 8px 10px; border: 1px solid var(--line); border-radius: 8px; cursor: pointer; line-height: 1.45; font-size: 14px; }
+.quiz-opts label:hover { border-color: var(--muted); }
+.quiz-opts input { margin-top: 3px; accent-color: var(--accent); }
+.quiz-fb { margin-top: 8px; font-size: 14px; line-height: 1.5; padding: 8px 12px; border-radius: 8px; }
+.quiz-fb[hidden] { display: none; }
+.quiz-fb.ok { background: color-mix(in srgb, var(--ok) 12%, transparent); border-left: 3px solid var(--ok); }
+.quiz-fb.bad { background: color-mix(in srgb, var(--err) 10%, transparent); border-left: 3px solid var(--err); }
+.quiz-fb.shown { background: var(--soft); border-left: 3px solid var(--muted); }
+.quiz-fb b { margin-right: 4px; }
+.quiz-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
+.quiz-score { font: 600 13px "JetBrains Mono", monospace; color: var(--muted); }
+.quiz-score.done { color: var(--ok); }
 </style>
 <style>
 .tabs { display: flex; gap: 2px; overflow-x: auto; flex: 1; min-width: 0; }
