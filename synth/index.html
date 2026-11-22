@@ -272,6 +272,34 @@ body[data-lab="logic"] .vtracks { grid-template-columns: repeat(3, minmax(0, 1fr
 .quiz-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
 .quiz-score { font: 600 13px "JetBrains Mono", monospace; color: var(--muted); }
 .quiz-score.done { color: var(--ok); }
+
+/* DV results (assertions, coverage) */
+.dvres .dv-body { padding: 10px 14px 14px; }
+.dvres h3 { font-size: 14px; margin: 12px 0 6px; }
+.dv-tablewrap { overflow-x: auto; }
+.dv-table { border-collapse: collapse; width: 100%; font-size: 13px; }
+.dv-table th, .dv-table td { text-align: left; padding: 4px 8px; border-bottom: 1px solid var(--line); white-space: nowrap; }
+.dv-table td:not(:first-child), .dv-table th:not(:first-child) { text-align: right; }
+.dv-table tr.bad td { color: var(--err); }
+.dv-table tr.warnr td { color: var(--warn); }
+.dv-a { background: none; border: 0; padding: 0; font: inherit; color: inherit; cursor: pointer; text-decoration: underline dotted; text-align: left; }
+.dv-k { font-size: 11px; color: var(--muted); border: 1px solid var(--line); border-radius: 4px; padding: 0 4px; }
+.dv-note { font-size: 12px; color: var(--muted); margin: 6px 0; }
+.dv-inst { font-weight: 400; color: var(--muted); }
+.dv-pct { float: right; color: var(--err); }
+.dv-pct.ok { color: var(--ok); }
+.dv-cp { margin: 4px 0; font-size: 13px; }
+.dv-cp summary { cursor: pointer; padding: 3px 0; }
+.dv-bins { padding: 4px 0 6px 14px; display: grid; gap: 2px; }
+.dv-bin { display: grid; grid-template-columns: minmax(120px, 260px) 1fr 52px; gap: 8px; align-items: center; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 12px; }
+.dv-bn { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.dv-bn i { color: var(--muted); font-style: normal; }
+.dv-bar { height: 8px; background: color-mix(in srgb, var(--muted) 15%, transparent); border-radius: 4px; overflow: hidden; }
+.dv-bar span { display: block; height: 100%; background: var(--ok); }
+.dv-bin.miss .dv-bn { color: var(--err); }
+.dv-bin.def { opacity: .7; }
+.dv-bc { text-align: right; }
+@media (max-width: 640px) { .dv-bin { grid-template-columns: 1fr 60px 40px; } }
 </style>
 <style>
 .tabs { display: flex; gap: 2px; overflow-x: auto; flex: 1; min-width: 0; }
@@ -503,7 +531,7 @@ help proc</pre>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/verilog/verilog.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/tcl/tcl.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/addon/edit/matchbrackets.min.js"></script>
-<script src="/labs.js?v=a0918a1e3d"></script>
+<script src="/labs.js?v=ecacaedbd1"></script>
 <script src="app.js?v=faec61f9da"></script>
 </body>
 </html>

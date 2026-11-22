@@ -1,0 +1,161 @@
+diff --git a/ivlpp/lexor.lex b/ivlpp/lexor.lex
+index 1701ca1c8..8bfb9dac2 100644
+--- a/ivlpp/lexor.lex
++++ b/ivlpp/lexor.lex
+@@ -2135,8 +2135,8 @@ static void open_input_file(struct include_stack_t*isp)
+ 
+       if (verbose_flag) fprintf(stderr, "Invoke vhdlpp: %s\n", cmd);
+ 
+-      isp->file = popen(cmd, "r");
+-      isp->file_close = pclose;
++      isp->file = 0; /* wasm: VHDL not supported */
++      isp->file_close = fclose;
+ 
+       free(libs);
+       free(cmd);
+diff --git a/pform.cc b/pform.cc
+index 9a261effe..7bbdf1376 100644
+--- a/pform.cc
++++ b/pform.cc
+@@ -3640,7 +3640,7 @@ int pform_parse(const char*path)
+ 	    if (verbose_flag)
+ 		  cerr << "Executing: " << cmdline << endl<< flush;
+ 
+-	    vl_input = popen(cmdline, "r");
++	    vl_input = 0; /* wasm: no subprocesses */
+ 	    if (vl_input == 0) {
+ 		  cerr << "Unable to preprocess " << path << "." << endl;
+ 		  return 1;
+@@ -3690,7 +3690,7 @@ int pform_parse(const char*path)
+ 
+       if (vl_input != stdin) {
+ 	    if (ivlpp_string)
+-		  pclose(vl_input);
++		  fclose(vl_input);
+ 	    else
+ 		  fclose(vl_input);
+       }
+diff --git a/vpi/vcd_priv2.cc b/vpi/vcd_priv2.cc
+index 7c4d33008..1c8fb4e10 100644
+--- a/vpi/vcd_priv2.cc
++++ b/vpi/vcd_priv2.cc
+@@ -66,6 +66,20 @@ extern "C" void nexus_ident_delete()
+ }
+ 
+ 
++#ifdef __wasi__
++namespace vst {
++  struct mutex { void lock(){} void unlock(){} };
++  template<class M> struct unique_lock { explicit unique_lock(M&){} };
++  template<class M> struct lock_guard { explicit lock_guard(M&){} };
++  struct condition_variable { template<class L, class P> void wait(L&, P){} void notify_one(){} };
++  struct thread { void join(){} thread(){} template<class F, class A> thread(F f, A a){ f(a); } };
++}
++#else
++# include <thread>
++# include <mutex>
++# include <condition_variable>
++namespace vst = std;
++#endif
+ static std::set<std::string> vcd_scope_names_set;
+ 
+ extern "C" void vcd_scope_names_add(const char*name)
+@@ -86,7 +100,7 @@ extern "C" void vcd_scope_names_delete(void)
+       vcd_scope_names_set.clear();
+ }
+ 
+-static std::thread work_thread;
++static vst::thread work_thread;
+ 
+ static const unsigned WORK_QUEUE_SIZE = 128*1024;
+ static const unsigned WORK_QUEUE_BATCH_MIN = 4*1024;
+@@ -96,10 +110,10 @@ static struct vcd_work_item_s work_queue[WORK_QUEUE_SIZE];
+ static volatile unsigned work_queue_next = 0;
+ static volatile unsigned work_queue_fill = 0;
+ 
+-static std::mutex work_queue_mutex;
+-static std::condition_variable work_queue_is_empty_sig;
+-static std::condition_variable work_queue_notempty_sig;
+-static std::condition_variable work_queue_minfree_sig;
++static vst::mutex work_queue_mutex;
++static vst::condition_variable work_queue_is_empty_sig;
++static vst::condition_variable work_queue_notempty_sig;
++static vst::condition_variable work_queue_minfree_sig;
+ 
+ 
+ extern "C" struct vcd_work_item_s* vcd_work_thread_peek(void)
+@@ -110,7 +124,7 @@ extern "C" struct vcd_work_item_s* vcd_work_thread_peek(void)
+ 	// one item that I can peek at. I only need to lock if I must
+ 	// wait for the work_queue_fill to become non-zero.
+       if (work_queue_fill == 0) {
+-            std::unique_lock<std::mutex> lock(work_queue_mutex);
++            vst::unique_lock<vst::mutex> lock(work_queue_mutex);
+             work_queue_notempty_sig.wait(lock, []{ return work_queue_fill != 0; });
+       }
+ 
+@@ -119,7 +133,7 @@ extern "C" struct vcd_work_item_s* vcd_work_thread_peek(void)
+ 
+ extern "C" void vcd_work_thread_pop(void)
+ {
+-      std::lock_guard<std::mutex> lock(work_queue_mutex);
++      vst::lock_guard<vst::mutex> lock(work_queue_mutex);
+ 
+       unsigned use_fill = work_queue_fill - 1;
+       work_queue_fill = use_fill;
+@@ -157,14 +171,14 @@ static unsigned current_batch_base = 0;
+ 
+ extern "C" void vcd_work_start( void* (*fun) (void*), void*arg )
+ {
+-      work_thread = std::thread(fun, arg);
++      work_thread = vst::thread(fun, arg);
+ }
+ 
+ static struct vcd_work_item_s* grab_item(void)
+ {
+       if (current_batch_alloc == 0) {
+             {
+-                  std::unique_lock<std::mutex> lock(work_queue_mutex);
++                  vst::unique_lock<vst::mutex> lock(work_queue_mutex);
+                   work_queue_minfree_sig.wait(lock, [] {
+                         return (WORK_QUEUE_SIZE - work_queue_fill) >= WORK_QUEUE_BATCH_MIN;
+                   });
+@@ -194,7 +208,7 @@ static struct vcd_work_item_s* grab_item(void)
+ 
+ static void end_batch(void)
+ {
+-      std::lock_guard<std::mutex> lock(work_queue_mutex);
++      vst::lock_guard<vst::mutex> lock(work_queue_mutex);
+ 
+       unsigned use_fill = work_queue_fill;
+       bool was_empty_flag = (use_fill==0) && (current_batch_cnt > 0);
+@@ -223,7 +237,7 @@ extern "C" void vcd_work_sync(void)
+ 	    end_batch();
+ 
+       if (work_queue_fill > 0) {
+-            std::unique_lock<std::mutex> lock(work_queue_mutex);
++            vst::unique_lock<vst::mutex> lock(work_queue_mutex);
+             work_queue_is_empty_sig.wait(lock, []{ return work_queue_fill == 0; });
+       }
+ }
+diff --git a/vvp/lib_main.cc b/vvp/lib_main.cc
+index c7905204a..0c46beb76 100644
+--- a/vvp/lib_main.cc
++++ b/vvp/lib_main.cc
+@@ -31,7 +31,7 @@ const char COPYRIGHT[] =
+ # include  <unistd.h>
+ # include  <cassert>
+ 
+-#if defined(HAVE_SYS_RESOURCE_H)
++#if defined(HAVE_SYS_RESOURCE_H) && !defined(__wasi__)
+ # include  <sys/time.h>
+ # include  <sys/resource.h>
+ #endif // defined(HAVE_SYS_RESOURCE_H)
+@@ -82,7 +82,7 @@ void vpip_set_return_value(int value)
+ 
+ static char log_buffer[4096];
+ 
+-#if defined(HAVE_SYS_RESOURCE_H)
++#if defined(HAVE_SYS_RESOURCE_H) && !defined(__wasi__)
+ static void my_getrusage(struct rusage *a)
+ {
+       getrusage(RUSAGE_SELF, a);

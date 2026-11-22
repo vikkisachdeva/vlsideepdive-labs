@@ -29,6 +29,8 @@ code { font-family: ui-monospace, monospace; font-size:14px; }
     <li>Full licence text: <a href="icarus-COPYING.txt">GNU GPL v2</a></li>
   </ul>
   <p>To rebuild: configure Icarus with the WASI SDK as the C and C++ compiler (<code>--host=wasm32-unknown-none</code>, with the WASI emulated signal, process-clock, mman, getpid and pthread libraries), apply the patch, compile <code>static_dl.c</code>, and link <code>ivl</code> with the <code>tgt-vvp</code> objects and the <code>system</code>, <code>v2005_math</code>, <code>va_math</code> and <code>v2009</code> VPI objects, renaming each module's <code>vlog_startup_routines</code> (and the code generator's <code>target_design</code> and <code>target_query</code>) to the names in <code>static_dl.c</code>. Link <code>vvp</code> the same way with the VPI objects.</p>
+  <h2>SVA, coverage and DV labs simulator</h2>
+  <p>The SVA, functional coverage and DV labs use Icarus Verilog built from the development branch (commit in <a href="/dv/icarus-commit.txt">icarus-commit.txt</a>), compiled to WebAssembly the same way. Changes: <a href="/dv/icarus-wasm.patch">icarus-wasm.patch</a> (no subprocesses, no resource statistics, no VCD writer thread), <a href="/dv/static_dl.c">static_dl.c</a>, and <a href="/dv/dvbridge.c">dvbridge.c</a>, a VPI module that passes values to the JavaScript engine that evaluates concurrent assertions, functional coverage and constraints. The JavaScript engine is part of this site.</p>
 
   <h2>browser_wasi_shim</h2>
   <p>WASI runtime for the browser by bjorn3, under the MIT or Apache-2.0 licence. <a href="browser_wasi_shim-LICENSE-MIT.txt">MIT licence text</a>.</p>

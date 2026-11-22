@@ -1,6 +1,6 @@
-(()=>{var ke={counter:{problem:"Almost every design needs a counter: for timers, addresses, timeouts. It must reset cleanly, count only when enabled, and wrap at the right value.",tasks:["Run and watch count in the waveform.","Find the cycle where it wraps from 15 to 0.","Change WIDTH and run again."],learn:"Write a parameterised counter with reset and enable, and read it in a waveform."},mux:{problem:"Selecting one of several buses is the most common piece of logic in a datapath. It must pick the right input for every select value.",tasks:["Run and check y for each value of sel.","Change the inputs and run again."],learn:"Write combinational logic with case statements and test it with a simple testbench."},adder:{problem:"Checking results by eye does not scale. A testbench should check every case on its own and say PASS or FAIL.",tasks:["Run: the testbench tries all 512 input combinations.","Break the carry logic in the full adder and see the testbench catch it."],learn:"Build an adder from full adders, and write a self-checking, exhaustive testbench."},fsm:{problem:"Detecting a bit pattern in a serial stream is a classic state machine problem. Overlapping patterns such as 10111011 are easy to get wrong.",tasks:["Run and find each 'pattern 1011 detected' line.","Follow the state in the waveform.","Change the input stream and predict the detections."],learn:"Design a Moore FSM, including overlapping matches, and debug it from the waveform."},cdc:{problem:"A signal from another clock cannot be used directly: the flop that samples it can go metastable. Two flops in a row give it time to settle.",tasks:["Run and see level_dst follow level_src two destination clocks later.","Measure the delay in the waveform."],learn:"The two-flop synchronizer for a single-bit level, and its latency. For full CDC practice, see the CDC labs."},fifo:{problem:"Producer and consumer rarely run at the same rate. A FIFO buffers the data, and it must refuse writes when full and reads when empty.",tasks:["Run: 10 writes into an 8-entry FIFO.","Find the two dropped writes and the full flag.","Read back and check the order."],learn:"Design a synchronous FIFO with full and empty flags."},sv:{problem:"Plain Verilog FSMs use magic numbers and are hard to read. SystemVerilog adds enums, always_ff/always_comb and assertions that check the design while it runs.",tasks:["Run and follow the light sequence.","Read the assertion that exactly one light is on.","Break the FSM and see the assertion fire."],learn:"SystemVerilog enum FSMs, always_ff/always_comb and immediate assertions."},"p1-ha-df":{problem:"Add two bits. The sum is 1 when exactly one input is 1; the carry is 1 when both are.",tasks:["Use only assign statements (dataflow style).","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Dataflow modelling with continuous assignments."},"p1-ha-bh":{problem:"The same half adder, described by its behavior instead of its equations.",tasks:["Use an always @(*) block with a case statement or if/else.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Behavioral modelling with always @(*), and why outputs are declared reg."},"p1-ha-st":{problem:"The same half adder, built from logic gates connected by wires.",tasks:["Use only Verilog gate primitives (xor, and).","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Structural modelling with gate primitives."},"p1-fa-df":{problem:"Add three bits (a, b and a carry in) to get a sum and a carry out.",tasks:["Use only assign statements.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Full adder equations in dataflow style."},"p1-fa-bh":{problem:"The same full adder, described by its behavior.",tasks:["Use an always @(*) block. Hint: {cout, sum} = a + b + cin.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Using Verilog arithmetic inside an always block."},"p1-fa-st":{problem:"Build a full adder from two half adders and an OR gate, the way it is drawn in textbooks.",tasks:["Instantiate half_adder twice and connect them with wires.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Hierarchy: instantiating modules and connecting ports by name."},"p1-ops":{problem:"Verilog has arithmetic, bitwise, logical, reduction, relational, equality, shift, concatenation, replication and conditional operators. Each output of the module uses one of them.",tasks:["Write one assign per output (see the comments for which operator), then read the $display and $monitor lines.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Every Verilog operator, and printing with $display and $monitor."},"p1-c2f":{problem:"Repeated calculations belong in a task: write it once, call it many times.",tasks:["Complete the task c_to_f. The testbench calls it with seven temperatures.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Writing and calling a Verilog task with input and output arguments."},"p2-add4":{problem:"Add two 4-bit numbers and a carry in. The result needs 5 bits: a 4-bit sum and a carry out.",tasks:["Use one assign statement with concatenation on the left.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Multi-bit dataflow arithmetic and concatenation."},"p2-mux2":{problem:"Pick one of two inputs with a select signal: the most common block in digital design.",tasks:["y = a when sel = 0, b when sel = 1.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"The conditional operator ?: as a multiplexer."},"p2-mux4":{problem:"Pick one of four inputs with a 2-bit select.",tasks:["Use a case statement on sel.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Case statements and full case coverage."},"p2-dec24":{problem:"Turn a 2-bit number into four select lines, exactly one of them high, as in an address decoder.",tasks:["y[a] = 1 when en = 1; all zeros when en = 0.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Decoders, enables and the shift operator."},"p2-enc42":{problem:"The reverse of a decoder: find which one of four lines is high and output its number.",tasks:["valid = 1 only when exactly one bit of d is 1.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Encoders and handling inputs that are not allowed."},"p2-penc42":{problem:"When several requests arrive at once, the highest one wins: an interrupt controller does this.",tasks:["y is the position of the highest 1; valid = 0 when d = 0.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Priority logic with casez and don't-care bits."},"p2-cmp4":{problem:"Compare two unsigned 4-bit numbers.",tasks:["Exactly one of gt, eq and lt is 1.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Relational operators and comparator outputs."},"p2-bshift8":{problem:"Shift or rotate a byte by any amount from 0 to 7 in one step, as in a processor's shift unit.",tasks:["dir picks left or right; rotate = 1 brings the bits that fall off back in on the other side.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Shifts, rotates and building a barrel shifter."},"p2-alu":{problem:"The arithmetic logic unit is the heart of a processor: one block, eight operations, chosen by an opcode.",tasks:["Implement the eight operations in the comment, the carry for add and subtract, and the zero flag.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Case-based ALU design, carry out and status flags."},"p3-dlatch":{problem:"A latch is transparent: while en = 1, q follows d. When en = 0 it holds its last value.",tasks:["Write it with always @(*) and an if without an else.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"How an if without else creates a latch, and when you want one."},"p3-dlatch-rst":{problem:"Add a reset that clears the latch at once, whatever en is.",tasks:["rst = 1 forces q = 0 immediately.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Reset priority in a latch."},"p3-dff":{problem:"A flip-flop samples d only at the rising edge of the clock: the basic memory element of synchronous design.",tasks:["Use always @(posedge clk) and a non-blocking assignment.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Edge-triggered storage and non-blocking assignments (<=)."},"p3-dff-arh":{problem:"Reset must work even when the clock is not running.",tasks:["rst = 1 clears q at once. Put posedge rst in the sensitivity list.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Asynchronous reset: the sensitivity list and reset priority."},"p3-dff-neg-arh":{problem:"Some flops capture on the falling edge of the clock, for example in DDR interfaces.",tasks:["Sample d on negedge clk; rst = 1 clears q at once.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Negative-edge flip-flops."},"p3-dff-arl":{problem:"Most chips use an active-low reset (rst_n): 0 means reset.",tasks:["rst_n = 0 clears q at once. Use negedge rst_n.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Active-low reset and the _n naming convention."},"p3-dff-ash":{problem:"Some registers must start at 1, not 0.",tasks:["set = 1 forces q = 1 at once.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Asynchronous set."},"p3-dff-srh":{problem:"A synchronous reset only acts on a clock edge, so it is timed like any other data input.",tasks:["rst = 1 clears q on the next rising edge only. Do not put rst in the sensitivity list.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Synchronous reset, and how it differs from asynchronous reset."},"p3-dff-srl":{problem:"The same synchronous reset, active low.",tasks:["rst_n = 0 clears q on the next rising edge.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Synchronous active-low reset."},"p3-dff-srs":{problem:"When reset and set arrive together, one must win. Here reset has priority.",tasks:["On a rising edge: rst = 1 gives 0, else set = 1 gives 1, else q takes d.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Priority between synchronous controls."},"p3-sync-async":{problem:"One reset, two registers: one resets at once, the other waits for the clock. The waveform shows the difference.",tasks:["Build q_sync with a synchronous reset and q_async with an asynchronous one.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"When each reset style acts, seen side by side."},"p3-twin":{problem:"Two 8-bit registers share a data bus, clock and reset, but load independently.",tasks:["load_a loads d into qa, load_b into qb; otherwise each holds.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Registers with load enables and a shared bus."},"p4-sr5":{problem:"Serial data enters at the left and moves one bit to the right each clock, as in a serial receiver.",tasks:["On each rising edge: q <= {sin, q[4:1]}.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Shift registers with concatenation."},"p4-usr5":{problem:"One register that can hold, shift right, shift left or load in parallel, chosen by a mode input.",tasks:["Implement the four modes in the comment.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Multi-function registers with a case on mode."},"p4-cnt":{problem:"Counters are everywhere: timers, addresses, state sequencing.",tasks:["A 4-bit up counter that wraps from 15 to 0.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"A basic synchronous counter."},"p4-cnt-tb":{problem:"A design is only as good as its testbench. Here the design is given and you write the testbench.",tasks:["Complete the testbench: reset, count, pause with en, check every cycle and print PASS or FAIL. Then set BUG = 1 in the design: your testbench must print FAIL.","Run: your testbench should print PASS, and FAIL once BUG = 1.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Self-checking testbenches with an expected-value model."},"p4-cnt-load":{problem:"Counters often need to start from a given value.",tasks:["load = 1 loads d; otherwise count up.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Synchronous load with priority over counting."},"p4-updown":{problem:"Count in either direction, for example a FIFO level or a position.",tasks:["up = 1 counts up, up = 0 counts down; both wrap.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Up/down counters."},"p4-mod":{problem:"A modulus-N counter counts 0 to N-1 and wraps, such as a decade (mod-10) counter for a clock display.",tasks:["Count 0 to 9 and wrap to 0.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Mod-N counters and parameters."},"p4-range":{problem:"Count only within a range, LOW to HIGH, and start again at LOW.",tasks:["After reset q = LOW (3); count to HIGH (12), then back to LOW.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Parameterized counter limits."},"p4-range-udl":{problem:"All the counter features together: a range, a direction and a load.",tasks:["Load has priority; up wraps HIGH \u2192 LOW; down wraps LOW \u2192 HIGH.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Combining counter features with clear priority."},"p4-div2":{problem:"Make a slower clock from a fast one.",tasks:["clk_out toggles on every rising edge of clk.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Divide-by-2 with a toggle flop."},"p4-div4":{problem:"Divide by 4 with a 50% duty cycle.",tasks:["Use a 2-bit counter; its top bit is clk / 4.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Dividing by a power of 2 with a counter."},"p4-div3":{problem:"Odd dividers are harder: a counter alone gives a 33% duty cycle. The testbench requires exactly 50%.",tasks:["Hint: combine a flop on the rising edge with one on the falling edge.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Odd clock division with a 50% duty cycle using both clock edges."},"p4-fifo":{problem:"A FIFO buffers data between a producer and a consumer running at different rates on the same clock.",tasks:["8 words of 8 bits. Ignore writes when full and reads when empty; dout shows the word on the clock after rd_en.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"FIFO pointers, a word count, and full and empty flags."},"p4-afifo":{problem:"When producer and consumer run on different clocks, the FIFO pointers cross clock domains. They must be Gray coded and synchronized.",tasks:["8 words of 8 bits, wclk and rclk. rdata shows the oldest word; rinc takes it.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Asynchronous FIFOs: Gray pointers, synchronizers, full and empty. See the CDC labs for more."},"p4-mealy-nov":{problem:"Detect the bit pattern 1-0-1 in a serial stream. Mealy: the output depends on the state and the current input.",tasks:["y = 1 while x is the final 1. After a detection, start again from scratch.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Mealy state machines and non-overlapping detection."},"p4-mealy-ov":{problem:"The same pattern, but the final 1 may also start the next 101: 10101 gives two detections.",tasks:["y = 1 while x is the final 1, and keep that 1 for the next pattern.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Overlapping detection in a Mealy machine."},"p4-moore-nov":{problem:"Moore: the output depends on the state only, so it comes one clock later than in a Mealy machine.",tasks:["y = 1 for one clock after the final 1 was clocked in. Start again from scratch after.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Moore state machines and their extra state."},"p4-moore-ov":{problem:"Moore and overlapping together.",tasks:["y = 1 for one clock after 101; the final 1 starts the next pattern.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Overlapping detection in a Moore machine."},"s01-reg":{problem:"Store a byte when enable is high, the most basic piece of a CPU datapath. Write it the SystemVerilog way.",tasks:["Use logic, ANSI ports, timeunit/timeprecision and always_ff. rst_ is asynchronous and active low.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"always_ff, the logic type, and time units in SystemVerilog."},"s02-mux":{problem:"One mux module, any width: the CPU uses it as a 5-bit address mux. The testbench uses an 8-bit and a 1-bit instance.",tasks:["out = sel_a ? in_a : in_b. Use always_comb and unique case with a default that drives X.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Parameters, always_comb and unique case."},"s03-cnt":{problem:"The CPU's program counter: it counts through the program, and loads a new address for a jump.",tasks:["5 bits: load has priority, then enable counts up; rst_ clears it.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Priority in always_ff and counter wrap-around."},"s04-ctrl":{problem:"The CPU's controller steps through 8 states for every instruction and decides which blocks act in each: fetch, decode, operand fetch, execute, store.",tasks:["Use the enum types from package typedefs, state.next() for the sequence, and always_comb with unique case for the outputs in the table in the comments.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Packages, enumerated types and their methods, and Mealy outputs."},"s05-alu":{problem:"The CPU's ALU combines the accumulator with memory data. Its result is registered on the falling clock edge so it is ready for the accumulator on the next rising edge.",tasks:["Compute out on negedge clk for the 8 opcodes; zero = 1 when accum is 0.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Using package enums in a datapath, and two clock edges."},"s06-memtb":{problem:"The memory is given. Write the testbench that proves it works, with reusable tasks.",tasks:["Write tasks write_mem and read_mem with a default debug argument, a void function printstatus, and two tests. Then set BUG = 1: your testbench must report FAIL.","Run: your testbench should print PASS, and FAIL once BUG = 1.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Tasks with default arguments, void functions, and driving on the inactive clock edge."},"s07-struct":{problem:"A bus is many signals that always travel together. Bundling them keeps every module in agreement. SystemVerilog interfaces do this with modports; Icarus Verilog 12 does not support interface ports yet, so this lab uses a packed struct from a package, which every tool supports.",tasks:["Declare mem_req_t (read, write, addr, data in that order) and write the memory using req.field names.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Packed structs, packages, and when to use a struct or an interface."},"s08-cpu":{problem:"Put it all together: the register, mux, counter, controller, ALU and memory make a small CPU that runs programs.",tasks:["Instantiate and connect the seven blocks in module cpu (all blocks are given above it). The testbench runs three programs: a basic test, a sum of 1 to 10, and Fibonacci up to 144.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Building a CPU from blocks, and debugging it from the waveform and program results."},"s09-johnson":{problem:"A Johnson counter is a shift register whose inverted output feeds back: 2N states with only one bit changing at a time.",tasks:["Shift left and feed ~q[N-1] into bit 0. The testbench checks N = 4 and N = 6.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Parameterized shift-register counters."},"s10-gen":{problem:"Hardware is often an array of identical blocks. A generate loop builds it for any size.",tasks:["Build rca from N full_adder instances with a for-generate loop. Do not use + in rca.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Generate loops, genvars and named generate blocks."},"s11-dpram":{problem:"Two ports let one block write while another reads, for example a frame buffer or a FIFO memory.",tasks:["Port A writes and reads, port B reads. Both reads are synchronous; port A reads the old data when it writes the same address.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Memory arrays, synchronous reads and read-before-write."},"s12-uart":{problem:"Send bytes over a single wire: a start bit, 8 data bits LSB first, a stop bit. The testbench decodes the line like a real receiver.",tasks:["Write the state machine with an enum type: IDLE, START_BIT, DATA_BITS, STOP_BIT. Each bit lasts CLKS_PER_BIT clocks.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Enum state machines with counters, and serial protocols."},"l01-gates":{problem:"Every digital circuit is built from a handful of gates: AND, OR, NOT, NAND, NOR, XOR and XNOR. You need to know each truth table by heart.",tasks:["Instantiate one gate primitive per output (and, or, not, nand, nor, xor, xnor).","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Verilog gate primitives and the truth table of every basic gate."},"l02-nand":{problem:"NAND is a universal gate: any logic function can be built from NAND gates alone. Chips like the 7400 have only NANDs.",tasks:["Build NOT, AND, OR and XOR using only nand primitives. No assign, no other gates.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Why NAND is universal, and De Morgan's law in practice (OR = NAND of inverted inputs)."},"l03-nor":{problem:"NOR is the other universal gate. Building every gate from NOR shows the duality of Boolean algebra.",tasks:["Build NOT, OR, AND and XNOR using only nor primitives.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"NOR-only design, and how it mirrors NAND-only design."},"l04-sop-pos":{problem:"A Boolean function can be written as a sum of products (SOP) or a product of sums (POS). Both describe the same truth table.",tasks:["Write y1 (SOP), y2 (POS) and y3 as continuous assignments, exactly as given.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Translating SOP and POS expressions into logic, and reading a truth table."},"l05-demorgan":{problem:"De Morgan's laws let you turn ANDs into ORs and back by inverting. They are behind every NAND and NOR trick.",tasks:["Write both sides of both laws. The testbench checks that each pair is equal for every input.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"(A\xB7B)' = A' + B' and (A + B)' = A'\xB7B'."},"l06-kmap":{problem:"A minterm list gives the truth table but not the cheapest circuit. A Karnaugh map finds the simplest SOP form.",tasks:["Draw a 3-variable K-map for F1 and a 4-variable K-map for F2, then write the simplified expressions.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Grouping 1s in a K-map into the largest power-of-two rectangles, including groups that wrap around the edges."},"l07-dontcare":{problem:"Some input combinations never happen. Their outputs are don't-cares (d), and using them as 1s can make the circuit smaller.",tasks:["Simplify F = \u03A3m(1, 3, 7, 11, 15) + d(0, 2, 5) with a 4-variable K-map and write the result.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"How don't-care terms enlarge K-map groups."},"l08-parity":{problem:"Parity is the simplest error detection: one extra bit makes the number of 1s even, so a single flipped bit is caught.",tasks:["Generate the even parity bit p for 4 data bits, and the error flag for a received 5-bit word.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"XOR trees and the reduction XOR operator (^d)."},"l09-majority":{problem:"Safety systems use three copies of a signal and take the majority, so that one faulty copy is outvoted.",tasks:["Fill in the truth table, simplify \u03A3m(3, 5, 6, 7) with a K-map and write y.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"From a word description to a truth table to a minimal circuit."},"l10-sub":{problem:"Subtraction needs a borrow instead of a carry. The full subtractor is the building block of a ripple-borrow subtractor.",tasks:["Write D and Bout for the half subtractor and the full subtractor.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Difference and borrow equations, and how they compare with the adder's."},"l29-rca":{problem:"To add multi-bit numbers, full adders are chained so each carry ripples into the next stage.",tasks:["Instantiate full_adder four times and connect the carries.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Structural hierarchy and the ripple-carry adder."},"l18-addsub":{problem:"One adder can also subtract: invert B and add 1, using two's complement. One control input picks the operation.",tasks:["Use XOR gates to invert B when M = 1, feed M in as the carry, and detect signed overflow.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Two's complement subtraction, carry out versus overflow."},"l19-bcdadd":{problem:"Calculators and clocks count in decimal digits (BCD). A binary adder gives the wrong code when a digit sum exceeds 9.",tasks:["Add the two digits in binary, then add 6 and set the carry when the sum is above 9.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Why the add-6 correction works."},"l17-cmp2":{problem:"Comparing two numbers is everywhere: in sorting, in limits, in address decoding.",tasks:["Write gt, eq and lt from the K-map equations with gates only (no >, < or ==).","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Building a comparator from equality (XNOR) terms, from the most significant bit down."},"l30-cmp4":{problem:"Wider numbers are compared by chaining 4-bit comparators. The cascade inputs carry the result of the lower bits.",tasks:["Compare A and B; when they are equal, pass the cascade inputs through.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"How cascading works, and how to tie the inputs of a single chip."},"l14-dec38":{problem:"Decoders select one of many: one memory chip, one display digit, one peripheral. Real parts have active-low outputs and several enables.",tasks:["Decode a to one active-low output when g1 = 1 and both active-low enables are 0. Otherwise all outputs are 1.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Active-low signals and enable logic."},"l11-dec-fa":{problem:"A decoder produces every minterm, so any function is just an OR of the right decoder outputs.",tasks:["Instantiate the 3-to-8 decoder and OR together the minterms of S and C.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Implementing functions with a decoder and OR gates."},"l15-enc83":{problem:"An encoder does the opposite of a decoder. A priority encoder handles several active inputs, as in interrupt controllers.",tasks:["Encode a one-hot input with a valid flag, and find the position of the highest 1 with an any flag.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Plain versus priority encoding, and what happens with invalid inputs."},"l13-mux-demux":{problem:"Multiplexers pick one of many inputs onto one line; demultiplexers send one line to one of many outputs.",tasks:["Write the 8-to-1 mux and the 1-to-8 demux.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Mux and demux as data selectors, and indexed part selects."},"l12-mux-fn":{problem:"A 2^n-to-1 multiplexer can implement any function of n + 1 variables: the extra variable goes to the data inputs.",tasks:["Work out the data inputs (0, 1, D or D') two truth-table rows at a time and instantiate mux8.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"The mux implementation method from the lab manuals."},"l16-gray":{problem:"In Gray code only one bit changes between neighbouring values. It is used in encoders and in clock domain crossing.",tasks:["Write the binary-to-Gray and Gray-to-binary converters.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Gray code, and why the reverse conversion chains XORs."},"l20-7seg":{problem:"Digital clocks and meters show digits on 7-segment displays. A decoder (like the 7447/7448) lights the right segments.",tasks:["Fill in the case statement for digits 0 to 9 and blank the display for 10 to 15. The output draws each digit.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Truth tables with many outputs, and the case statement."},"l21-srlatch":{problem:"Memory starts with feedback: two cross-coupled gates can hold a bit. This is the SR latch, the base of every flip-flop.",tasks:["Build the latch from two nand primitives with a 1 ns delay each.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Feedback, the set, reset and hold states, and why S = R = 0 is forbidden for a NAND latch."},"l22-ffs":{problem:"The four classic flip-flops differ only in their characteristic tables. Knowing them is the key to counter and FSM design.",tasks:["Write all four flip-flops in one always block, from their characteristic tables.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Characteristic tables, edge triggering and asynchronous reset."},"l23-ripple":{problem:"The simplest counter: each flip-flop toggles the next. It needs no logic, but the outputs do not change together.",tasks:["Instantiate three toggle flip-flops, each clocked by the output of the stage before.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Asynchronous counters and ripple delay."},"l24-sync":{problem:"In a synchronous counter every flip-flop shares one clock, so all outputs change together.",tasks:["Derive the T inputs from the count and toggle on the clock edge.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Synchronous counter design with T flip-flops."},"l32-updown":{problem:"Counters that go both ways are used in positioning and in volume controls.",tasks:["Use T flip-flops: derive T0, T1 and T2 from the excitation table with the up input.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Excitation tables and K-maps for counter design."},"l27-mod6":{problem:"Clocks divide by 6 and 10 to count seconds and minutes. A MOD-N counter clears itself at N \u2212 1.",tasks:["Count 0 to 5 and go back to 0, with a terminal count output.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Truncated counters and terminal count."},"l25-ring":{problem:"Shift registers with feedback become counters. A ring counter gives one-hot outputs; a Johnson counter doubles the count with the same flops.",tasks:["Write the ring counter (reset 1000) and the Johnson counter (reset 0000) in one always block.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Ring versus twisted-ring (Johnson) counters, and how many states each has."},"l26-siso":{problem:"Shift registers move serial data, as in UARTs and SPI. The data 1001 shifted in comes out four clocks later.",tasks:["Shift sin into q[3] on every clock, with sout = q[0].","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Serial-in serial-out operation and delay in clocks."},"l31-usr":{problem:"One register that can hold, shift left, shift right or load in parallel (like the 74194) covers every shift register use.",tasks:["Pick the next value with a case on mode.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Mode-controlled registers, the basis of the 74194."},"l28-fsm":{problem:"Every sequential circuit is a state machine. Given a state table, you can build it directly.",tasks:["Write the next-state logic from the table and the Moore output z.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"State tables, next-state logic and Moore outputs."},"l33-traffic":{problem:"A real-world state machine with an input (a waiting car) and a timer, the classic FSM design example.",tasks:["Write the four states, the timer for the side green, and the lights for each state.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Moore FSM design with a timer, from a word specification."}};var Ye="http://www.w3.org/2000/svg",$=(t,e,n)=>{let s=document.createElementNS(Ye,t);for(let[i,r]of Object.entries(e||{}))s.setAttribute(i,r);return n&&n.appendChild(s),s};function Ze(t){let e=t.trim(),n="port",s="",i=/^([\s\S]*?)([!+])?$/.exec(e),r=y=>{let h=/^([\s\S]*?)([!+])$/.exec(y);return h?(s=s||h[2],h[1]):y};e=r(i[0]);let c=[["[","]","reg"],["(",")","logic"],["{","}","block"],["<",">","mux"]];for(let[y,h,l]of c)if(e.startsWith(y)&&e.endsWith(h)){n=l,e=e.slice(1,-1);break}n==="port"&&e.startsWith("@")&&(n="clk",e=e.slice(1)),e=r(e);let a=null,S=e.lastIndexOf("|");S>0&&(a=e.slice(S+1).trim(),e=e.slice(0,S));let _=e.indexOf("#"),g=e.trim();_>=0&&(e=e.slice(0,_));let u=e.replace(/\\n/g,`
-`).trim();return{id:n+":"+g,label:u,kind:n,dom:a,mark:s}}function Qe(t){let e=new Map,n=[],s=i=>{if(!e.has(i.id))e.set(i.id,{...i,order:e.size});else{let r=e.get(i.id);r.dom=r.dom||i.dom,r.mark=r.mark||i.mark}return e.get(i.id)};for(let i of t.split(";").map(r=>r.trim()).filter(Boolean)){let r=/\s+([-~.+])(?:(\S(?:[^>]*?\S)?)\1)?>\s+|\s+>\s+/g,c=0,a=null,S=null,_,g=[];for(;_=r.exec(i);)g.push([i.slice(c,_.index),_]),c=r.lastIndex;g.push([i.slice(c),null]);for(let[u,y]of g){let h=s(Ze(u));if(a&&S&&n.push({a,b:h,...S}),a=h,y){let l=y[1]||"";S={label:(y[2]||"").trim(),kind:l==="~"?"bad":l==="+"?"good":l==="."?"dash":"plain"}}}}return{nodes:[...e.values()],edges:n}}function en(t){let e=t.label.split(`
-`),n=Math.max(...e.map(s=>s.length))*6.9;return t.kind==="port"||t.kind==="clk"?{w:Math.max(28,n+(t.kind==="clk"?26:12)),h:Math.max(24,e.length*15+6),lines:e}:t.kind==="mux"?{w:Math.max(40,n+24),h:Math.max(52,e.length*15+22),lines:e}:{w:Math.max(54,n+24),h:Math.max(34,e.length*15+16),lines:e}}function Ie(t){let e=typeof t=="string"?Qe(t):t,{nodes:n,edges:s}=e;if(!n.length)return null;let i=new Map(n.map(d=>[d,[]]));for(let d of s)d.a!==d.b&&i.get(d.a).push(d);let r=new Map,c=new Set,a=d=>{r.set(d,1);for(let o of i.get(d)){let b=r.get(o.b);b===1?c.add(o):b||a(o.b)}r.set(d,2)};for(let d of n)r.get(d)||a(d);let S=new Set(s.filter(d=>d.kind==="dash"&&s.some(o=>o.b===d.b&&o.kind!=="dash"))),_=new Map(n.map(d=>[d,0]));for(let d=0;d<n.length;d++){let o=!1;for(let b of s)b.a!==b.b&&!c.has(b)&&!S.has(b)&&_.get(b.b)<_.get(b.a)+1&&(_.set(b.b,_.get(b.a)+1),o=!0);if(!o)break}let g=Math.max(..._.values());for(let d of n)d.kind==="port"&&!i.get(d).length&&s.some(o=>o.b===d)&&_.get(d)<g&&_.set(d,g);let u=[];for(let d of n){let o=_.get(d);(u[o]=u[o]||[]).push(d)}let y=[...new Set(n.map(d=>d.dom).filter(Boolean))],h=d=>d.dom?y.indexOf(d.dom):-1;for(let d of u)d&&d.sort((o,b)=>h(o)-h(b)||o.order-b.order);for(let d of n)Object.assign(d,en(d));let l=22,m=18,f=u.map((d,o)=>Math.max(46,...s.filter(b=>_.get(b.a)===o&&_.get(b.b)>o&&b.label).map(b=>b.label.length*6.2+30))),q=new Map;for(let d of n){let o=d.dom;if(!o){let b=s.find(O=>O.a===d&&O.b.dom||O.b===d&&O.a.dom);o=b?b.a===d?b.b.dom:b.a.dom:null}q.set(d,o||"")}let A=[...new Set(n.map(d=>q.get(d)))];A.includes("")&&(A.splice(A.indexOf(""),1),A.unshift(""));let R=y.length>0,F=R?34:0,L=A.map(d=>Math.max(0,...u.map(o=>{let b=(o||[]).filter(O=>q.get(O)===d);return b.reduce((O,H)=>O+H.h,0)+Math.max(0,b.length-1)*l}))),M=[],U=m+(R?22:14);A.forEach((d,o)=>{M[o]=U,U+=L[o]+(o<A.length-1?F:0)});let T=U-m-(R?22:14),v=m,D=new Map,C=0;u.forEach((d,o)=>{if(!d)return;let b=Math.max(...d.map(O=>O.w));A.forEach((O,H)=>{let E=d.filter(K=>q.get(K)===O),z=E.reduce((K,j)=>K+j.h,0)+Math.max(0,E.length-1)*l,W=M[H]+(L[H]-z)/2;for(let K of E)D.set(K,{x:v+(b-K.w)/2,y:W,w:K.w,h:K.h}),W+=K.h+l}),v+=b+f[o]});let J=c.size>0,B=v-(f[u.length-1]||46)+m;C=m*2+(R?22:14)+T+(J?26:0);let ee=$("svg",{viewBox:`0 0 ${B} ${C}`,class:"dg dg-block",role:"img"});ee.style.maxWidth=B+"px",ee.style.minWidth=Math.round(Math.min(B,Math.max(B*.72,320)))+"px";let Je=$("defs",{},ee);for(let d of["plain","bad","good","dash"]){let o=$("marker",{id:"dg-ar-"+d,viewBox:"0 0 10 10",refX:9,refY:5,markerWidth:7,markerHeight:7,orient:"auto-start-reverse"},Je);$("path",{d:"M0,0 L10,5 L0,10 z",class:"dg-ah dg-"+d},o)}y.forEach((d,o)=>{let b=n.filter(j=>j.dom===d).map(j=>D.get(j)),O=A.indexOf(d),H=Math.min(...b.map(j=>j.x))-10,E=M[O]-22,z=Math.max(...b.map(j=>j.x+j.w))+10,W=M[O]+L[O]+8;$("rect",{x:H,y:E,width:z-H,height:W-E,rx:10,class:`dg-dom dg-d${o%4}`},ee);let K=$("text",{x:H+8,y:E+13,class:`dg-domlabel dg-d${o%4}`},ee);K.textContent=d});let we=m+(R?22:14)+T+10,_e=$("g",{},ee);for(let d of s){let o=D.get(d.a),b=D.get(d.b),O,H,E;if(d.a===d.b)O=`M${o.x+o.w-10},${o.y} C${o.x+o.w+20},${o.y-26} ${o.x+10},${o.y-26} ${o.x+14},${o.y}`,H=o.x+o.w/2,E=o.y-22;else if(c.has(d)||_.get(d.b)<=_.get(d.a)){let z=o.x+o.w/2,W=b.x+b.w/2;O=`M${z},${o.y+o.h} C${z},${we+14} ${W},${we+14} ${W},${b.y+b.h}`,H=(z+W)/2,E=we+8}else{let z=o.x+o.w,W=o.y+o.h/2,K=b.x,j=b.y+b.h/2,ue=(z+K)/2;O=`M${z},${W} C${ue},${W} ${ue},${j} ${K},${j}`;let Le=_.get(d.b)-_.get(d.a),G=Le>1?.5/Le:.5,X=1-G;H=X*X*X*z+3*X*X*G*ue+3*X*G*G*ue+G*G*G*K,E=X*X*X*W+3*X*X*G*W+3*X*G*G*j+G*G*G*j}if($("path",{d:O,class:"dg-edge dg-"+d.kind,"marker-end":`url(#dg-ar-${d.kind})`},_e),d.label){let z=d.label.length*6.2+8;$("rect",{x:H-z/2,y:E-9,width:z,height:14,rx:3,class:"dg-elbg"},_e);let W=$("text",{x:H,y:E+2,class:"dg-elabel dg-"+d.kind,"text-anchor":"middle"},_e);W.textContent=d.label}}for(let d of n){let o=D.get(d),b=$("g",{class:`dg-node dg-k-${d.kind}${d.mark==="!"?" dg-bad":d.mark==="+"?" dg-good":""}`},ee);if(d.kind==="reg")$("rect",{x:o.x,y:o.y,width:o.w,height:o.h,rx:3,class:"dg-shape"},b),$("path",{d:`M${o.x},${o.y+o.h-12} L${o.x+7},${o.y+o.h-7} L${o.x},${o.y+o.h-2}`,class:"dg-tri"},b);else if(d.kind==="logic")$("rect",{x:o.x,y:o.y,width:o.w,height:o.h,rx:Math.min(16,o.h/2),class:"dg-shape"},b);else if(d.kind==="block")$("rect",{x:o.x,y:o.y,width:o.w,height:o.h,rx:6,class:"dg-shape"},b);else if(d.kind==="mux")$("path",{d:`M${o.x},${o.y} L${o.x+o.w},${o.y+10} L${o.x+o.w},${o.y+o.h-10} L${o.x},${o.y+o.h} z`,class:"dg-shape"},b);else if(d.kind==="clk"){let E=o.y+o.h/2;$("path",{d:`M${o.x+2},${E+5} h4 v-10 h6 v10 h6 v-10`,class:"dg-clkw"},b)}let O=d.lines,H=d.kind==="clk"?o.x+24:o.x+o.w/2;O.forEach((E,z)=>{let W=$("text",{x:H,y:o.y+o.h/2+(z-(O.length-1)/2)*15+4,"text-anchor":d.kind==="clk"?"start":"middle",class:"dg-label"},b);W.textContent=E})}return ee}function nn(t,e){let n=t.split(/\s+/),s=[],i="";for(let r of n)i&&(i+" "+r).length>e?(s.push(i),i=r):i=i?i+" "+r:r;return i&&s.push(i),s}var tn={P:"Problem",S:"",Q:"Check",X:"What goes wrong",F:"Fix",OK:"Result"};function Fe(t){if(!t||!t.length)return null;let e=300,n=12,s=42,i=18,r=t.map(u=>{let y=/^(P|S|Q|X|F|OK):\s*(.*)$/.exec(u)||[null,"S",u],h=nn(y[2],s),l=tn[y[1]];return{k:y[1],lines:h,tag:l,h:h.length*15+(l?30:16)}}),c=r.reduce((u,y)=>u+y.h,0)+i*(r.length-1)+16,a=$("svg",{viewBox:`0 0 ${e+16} ${c}`,class:"dg dg-flow",role:"img"});a.style.maxWidth=e+16+"px";let S=$("defs",{},a),_=$("marker",{id:"dg-ar-flow",viewBox:"0 0 10 10",refX:9,refY:5,markerWidth:7,markerHeight:7,orient:"auto"},S);$("path",{d:"M0,0 L10,5 L0,10 z",class:"dg-ah dg-plain"},_);let g=8;return r.forEach((u,y)=>{let h=$("g",{class:"dg-fl dg-fl-"+u.k},a);u.k==="Q"?$("path",{d:`M22,${g} H${8+e-14} L${8+e},${g+u.h/2} L${8+e-14},${g+u.h} H22 L8,${g+u.h/2} z`,class:"dg-shape"},h):$("rect",{x:8,y:g,width:e,height:u.h,rx:u.k==="S"?6:10,class:"dg-shape"},h);let l=g+18;if(u.tag){let m=$("text",{x:8+n+(u.k==="Q"?10:0),y:l,class:"dg-ftag"},h);m.textContent=u.tag.toUpperCase(),l+=16}for(let m of u.lines){let f=$("text",{x:8+n+(u.k==="Q"?10:0),y:l,class:"dg-ftext"},h);f.textContent=m,l+=15}g+=u.h,y<r.length-1&&($("path",{d:`M${8+e/2},${g+1} V${g+i-2}`,class:"dg-edge dg-plain","marker-end":"url(#dg-ar-flow)"},a),g+=i)}),a}function xe(t,e,n){let s=document.getElementById("lab-brief");if(!s)return;let i=t[e];if(!i){s.hidden=!0;return}s.querySelector(".brief-problem").textContent=i.problem;let r=s.querySelector(".brief-tasks");r.innerHTML="";for(let g of i.tasks){let u=document.createElement("li");u.textContent=g,r.appendChild(u)}s.querySelector(".brief-learn").textContent=i.learn;let c=s.querySelector(".brief-fig"),a=i.images||(i.image?[{src:i.image,alt:i.imageAlt||""}]:[]);if(a.length||i.html){if(c||(c=document.createElement("figure"),c.className="brief-fig",s.appendChild(c)),c.innerHTML="",a.length){let g=document.createElement("div");g.className="brief-imgs";for(let u of a){let y=document.createElement("a");y.href=u.src,y.target="_blank",y.rel="noopener";let h=document.createElement("img");h.src=u.src,h.alt=u.alt||"",h.loading="lazy",y.appendChild(h),g.appendChild(y)}c.appendChild(g)}if(i.html){let g=document.createElement("div");g.className="brief-html",g.innerHTML=i.html,c.appendChild(g)}if(i.caption){let g=document.createElement("figcaption");g.textContent=i.caption,c.appendChild(g)}}else c&&c.remove();let S=s.querySelector(".brief-dg"),_=n&&n[e];if(_&&(_.b||_.f)){S||(S=document.createElement("div"),S.className="brief-dg",s.querySelector(".brief-body").after(S)),S.innerHTML="";let g=(u,y)=>{if(!y)return;let h=document.createElement("div");h.className="brief-dgp";let l=document.createElement("h3");l.textContent=u,h.appendChild(l);let m=document.createElement("div");m.className="brief-dgs",m.appendChild(y),h.appendChild(m),S.appendChild(h)};try{g(_.bt||"Design",_.b?Ie(_.b):null)}catch(u){console.warn("diagram",e,u)}try{g(_.ft||"Problem \u2192 solution",_.f?Fe(_.f):null)}catch(u){console.warn("flow",e,u)}S.classList.toggle("one",S.children.length===1)}else S&&S.remove();s.hidden=!1}var x=(t,e,n,s)=>["P: "+t,...(Array.isArray(e)?e:[e]).map(i=>"S: "+i),"Q: "+(s||"The testbench drives every input combination and compares with a reference."),"OK: "+n],k=(t,e,n,s)=>["P: "+t,...(Array.isArray(e)?e:[e]).map(i=>"S: "+i),"Q: "+(s||"Every clock, the testbench compares your design with a reference model."),"OK: "+n],Se={counter:{b:"en > (+1 if en) > [count] > count; [count] > (+1 if en); rst_n .async.> [count]",f:k("Timers and addresses need a counter that resets, counts when enabled and wraps.","count <= count + 1 when en, on the rising edge; rst_n clears it at once.","A parameterised counter you can read in the waveform.","Find the cycle where it wraps from 15 to 0.")},mux:{b:"a > <4:1 mux> > y; b > <4:1 mux>; c > <4:1 mux>; d > <4:1 mux>; sel .2 bits.> <4:1 mux>",f:x("Pick one of four 8-bit buses.","A case on sel inside always @(*), with every value covered.","No latch: every sel value drives y.")},adder:{b:"a[0], b[0], cin > {FA0} -c1-> {FA1} -c2-> {FA2} -c3-> {FA3} > cout; {FA0} > sum",f:x("Checking results by eye does not scale.",["A 4-bit ripple-carry adder from full adders.","The testbench loops over all 512 inputs and compares with a + b + cin."],"The testbench prints PASS or FAIL by itself.","Does the self-checking testbench find a bug you add?")},fsm:{b:"din > (next state) > [state\\nS0..S4] > (found = S4) > found; [state\\nS0..S4] > (next state)",f:["P: Detect 1011 in a serial stream, including overlaps (10111011).","S: One state per prefix matched: S0, 1, 10, 101, 1011.","S: After 1011 the last 1 can start the next match.","Q: Count the detections in the run.","OK: A Moore FSM: found depends on the state only."]},cdc:{b:"async_in > [s1|clk_dst] > [s2|clk_dst] > sync_out",f:["P: A signal from another clock can make the sampling flop metastable.","S: The first flop may go metastable.","S: The second flop gives it a whole clock to settle.","OK: sync_out is a clean level in clk_dst, two clocks later."]},fifo:{b:"din > {memory 8\xD78} > dout; wr_en > [wptr] .> {memory 8\xD78}; rd_en > [rptr] .> {memory 8\xD78}; [wptr] > (count, full, empty); [rptr] > (count, full, empty)",f:["P: Producer and consumer run at different rates.","S: Write at wptr, read at rptr, both wrap around.","Q: Writes when full and reads when empty must be ignored.","OK: A FIFO with correct full and empty flags."]},sv:{b:"{always_ff\\nstate} > {always_comb\\nlights} > lights; {always_comb\\nnext state} > {always_ff\\nstate}; {assertions} .check.> {always_ff\\nstate}",f:["P: Plain Verilog FSMs use magic numbers and are hard to read.","S: typedef enum names the states; always_ff and always_comb show the intent.","S: Assertions check the design while it runs.","OK: A readable traffic-light FSM that checks itself."]},"p1-ha-df":{b:"a > (XOR) > sum; b > (XOR); a > (AND) > carry; b > (AND)",f:x("Add two bits.","assign sum = a ^ b; assign carry = a & b;","Dataflow: continuous assignments only.")},"p1-ha-bh":{b:"a > {always @(*)\\ncase {a, b}} > sum; b > {always @(*)\\ncase {a, b}} > carry",f:x("The same half adder, by its behavior.","An always @(*) block with a case on {a, b}; outputs are reg.","Behavioral modelling gives the same truth table.")},"p1-ha-st":{b:"a > (xor g1) > sum; b > (xor g1); a > (and g2) > carry; b > (and g2)",f:x("The same half adder from gates.","Instantiate xor and and primitives and wire them.","Structural modelling with gate primitives.")},"p1-fa-df":{b:"a > (a ^ b ^ cin) > sum; b > (a ^ b ^ cin); cin > (a ^ b ^ cin); a > (majority) > cout; b > (majority); cin > (majority)",f:x("Add three bits.","sum = a ^ b ^ cin; cout = ab + cin(a ^ b).","The full adder in two equations.")},"p1-fa-bh":{b:"a > {always @(*)\\n{cout, sum} = a+b+cin} > sum; b > {always @(*)\\n{cout, sum} = a+b+cin} > cout; cin > {always @(*)\\n{cout, sum} = a+b+cin}",f:x("The same full adder, by its behavior.","{cout, sum} = a + b + cin inside always @(*).","Verilog arithmetic does the work.")},"p1-fa-st":{b:"a > {half_adder 1} -s1-> {half_adder 2} > sum; b > {half_adder 1} -c1-> (OR) > cout; cin > {half_adder 2} -c2-> (OR)",f:x("Build a full adder the textbook way.","Two half_adder instances and an OR gate, connected by name.","Hierarchy: modules inside modules.")},"p1-ops":{b:"a[3:0] > {arithmetic, bitwise, logical,\\nreduction, relational, shift,\\nconcat, replicate, ?:} > one output per operator; b[3:0] > {arithmetic, bitwise, logical,\\nreduction, relational, shift,\\nconcat, replicate, ?:}",f:x("Know every Verilog operator group.","Each output uses one operator on a and b.","Widths and results of every operator.")},"p1-c2f":{b:"C > {task c2f\\nF = C*9/5 + 32} > F",f:["P: The same calculation is needed many times.","S: Write it once as a task with input and output arguments.","S: Call it for every temperature.","Q: Integer arithmetic: multiply before you divide.","OK: One task, many calls, the same result as the formula."]},"p2-add4":{b:"a[3:0] > (a + b + cin) > sum[3:0]; b[3:0] > (a + b + cin) > cout; cin > (a + b + cin)",f:x("Add two 4-bit numbers and a carry in.","{cout, sum} = a + b + cin: the result needs 5 bits.","Concatenation catches the carry out.")},"p2-mux2":{b:"a > <2:1> > y; b > <2:1>; sel .> <2:1>",f:x("Pick one of two inputs.","y = sel ? b : a.","The conditional operator is a mux.")},"p2-mux4":{b:"d0 > <4:1> > y; d1 > <4:1>; d2 > <4:1>; d3 > <4:1>; sel .2 bits.> <4:1>",f:x("Pick one of four inputs.","A case on sel, or nested ?:.","Every sel value selects one input.")},"p2-dec24":{b:"a[1:0] > {2-to-4 decoder} > y[3:0]; en .> {2-to-4 decoder}",f:x("Turn a 2-bit number into one-hot select lines.","y = en ? 1 << a : 0.","Exactly one line high when enabled.")},"p2-enc42":{b:"d[3:0] > {4-to-2 encoder} > y[1:0]; {4-to-2 encoder} > valid",f:x("Find which one of four lines is high.","A case on d for the four one-hot values; valid = 0 otherwise.","Encoding, and flagging illegal inputs.")},"p2-penc42":{b:"d[3:0] > {priority encoder\\nhighest 1 wins} > y[1:0]; {priority encoder\\nhighest 1 wins} > valid",f:x("Several requests at once: the highest wins.","if/else from d[3] down to d[0].","Priority comes from the order of the tests.")},"p2-cmp4":{b:"a[3:0] > {comparator} > gt; b[3:0] > {comparator} > eq; {comparator} > lt",f:x("Compare two unsigned 4-bit numbers.","gt, eq and lt with relational operators.","Exactly one output is 1 for every pair.")},"p2-bshift8":{b:"d[7:0] > {barrel shifter} > y[7:0]; amt .0 to 7.> {barrel shifter}; dir .left/right.> {barrel shifter}; rotate .> {barrel shifter}",f:x("Shift or rotate by any amount in one step.",["Shift with << or >>.","For rotate, OR in the bits that fell off the other end."],"A processor-style shift unit.")},"p2-alu":{b:"a > (add, sub, and, or,\\nxor, not, shl, shr) > <op mux> > y; b > (add, sub, and, or,\\nxor, not, shl, shr); op .3 bits.> <op mux>; <op mux> > (y == 0) > zero; (add, sub, and, or,\\nxor, not, shl, shr) > carry",f:x("Eight operations in one block, chosen by an opcode.","A case on op; zero and carry flags.","The heart of a processor datapath.")},"p3-dlatch":{b:"d > [latch\\nen = 1: q = d] > q; en .> [latch\\nen = 1: q = d]",f:k("Store a bit while en = 0, follow d while en = 1.","always @(*) if (en) q = d: the missing else makes a latch.","A transparent latch.","Does q follow d while en is high?")},"p3-dlatch-rst":{b:"d > [latch] > q; en .> [latch]; rst .async, wins.> [latch]",f:k("Clear the latch at once, whatever en is.","Test rst first, then en.","A latch with an asynchronous reset.")},"p3-dff":{b:"d > [DFF] > q; @clk .> [DFF]",f:k("Sample d only on the rising edge.","always @(posedge clk) q <= d.","The basic memory element of synchronous design.")},"p3-dff-arh":{b:"d > [DFF] > q; @clk .> [DFF]; rst .async, high.> [DFF]",f:k("Reset must work with no clock running.","always @(posedge clk or posedge rst).","rst clears q immediately.")},"p3-dff-neg-arh":{b:"d > [DFF\\nfalling edge] > q; @clk .negedge.> [DFF\\nfalling edge]; rst .async.> [DFF\\nfalling edge]",f:k("Capture on the falling edge, as in DDR.","always @(negedge clk or posedge rst).","q changes at the falling edge.")},"p3-dff-arl":{b:"d > [DFF] > q; @clk .> [DFF]; rst_n .async, low.> [DFF]",f:k("Most chips use an active-low reset.","always @(posedge clk or negedge rst_n) if (!rst_n) ...","rst_n = 0 clears q at once.")},"p3-dff-ash":{b:"d > [DFF] > q; @clk .> [DFF]; set .async, high.> [DFF]",f:k("Some registers must start at 1.","set forces q to 1 without waiting for the clock.","An asynchronous set.")},"p3-dff-srh":{b:"d > <rst ? 0 : d> > [DFF] > q; rst .> <rst ? 0 : d>; @clk .> [DFF]",f:k("A reset that is timed like data.","Only posedge clk in the sensitivity list; test rst inside.","rst acts on the next clock edge.")},"p3-dff-srl":{b:"d > <rst_n ? d : 0> > [DFF] > q; rst_n .> <rst_n ? d : 0>; @clk .> [DFF]",f:k("The same synchronous reset, active low.","if (!rst_n) q <= 0 inside always @(posedge clk).","rst_n = 0 clears q on the next edge.")},"p3-dff-srs":{b:"d > <rst, set, d\\npriority> > [DFF] > q; rst .wins.> <rst, set, d\\npriority>; set .> <rst, set, d\\npriority>",f:k("Reset and set together: one must win.","Test rst first, then set, then load d.","Priority is the order of the if/else.")},"p3-sync-async":{b:"d > [q_async] > q_async; d > [q_sync] > q_sync; rst .at once.> [q_async]; rst .next edge.> [q_sync]",f:["P: One reset, two registers: when does each clear?","S: q_async has rst in its sensitivity list; q_sync does not.","Q: In the waveform, q_async clears at rst, q_sync at the next clock edge.","OK: You can read the difference in time."]},"p3-twin":{b:"d[7:0] > [qa] > qa; d[7:0] > [qb] > qb; load_a .> [qa]; load_b .> [qb]",f:k("Two registers share a bus but load independently.","Each register loads d only when its load is high, else holds.","Shared data, separate enables.")},"p4-sr5":{b:"sin > [q4] > [q3] > [q2] > [q1] > [q0]",f:k("Serial data enters at the left and moves right.","q <= {sin, q[4:1]} every clock.","A 5-bit serial-in shift register.")},"p4-usr5":{b:"d > <mode mux\\nhold, >>, <<, load> > [q 5 bits] > q; sr_in > <mode mux\\nhold, >>, <<, load>; sl_in > <mode mux\\nhold, >>, <<, load>; [q 5 bits] > <mode mux\\nhold, >>, <<, load>; mode .2 bits.> <mode mux\\nhold, >>, <<, load>",f:k("One register for every shift job.","A case on mode chooses the next value.","Hold, shift right, shift left or load.")},"p4-cnt":{b:"[q 4 bits] > (+1) > [q 4 bits] > q; rst_n .async.> [q 4 bits]",f:k("Count 0 to 15 and wrap.","q <= q + 1 on every rising edge.","A basic counter.")},"p4-cnt-tb":{b:"{your testbench\\nstimulus + checker}+ > {counter (given)} > {your testbench\\nstimulus + checker}+; BUG .> {counter (given)}",f:["P: The design is given; you write the testbench.","S: Drive reset, enable and clock; keep a reference count.","S: Compare every clock and count mismatches.","Q: Set BUG = 1: does your testbench print FAIL?","OK: A testbench that catches a broken design."]},"p4-cnt-load":{b:"d > <load ? d : q+1> > [q] > q; [q] > (+1) > <load ? d : q+1>; load .> <load ? d : q+1>",f:k("Start counting from a given value.","load = 1 loads d, otherwise count up.","A loadable counter.")},"p4-updown":{b:"[q] > (+1 or \u22121) > [q] > q; up .> (+1 or \u22121)",f:k("Count in either direction.","up = 1 adds 1, up = 0 subtracts 1; both wrap.","An up/down counter.")},"p4-mod":{b:"[q] > (q == N\u22121 ? 0 : q+1) > [q] > q",f:k("A decade counter: 0 to 9, then 0.","Compare with N\u22121 and clear instead of adding.","A modulus-N counter.")},"p4-range":{b:"[q] > (q == HIGH ? LOW : q+1) > [q] > q",f:k("Count only from LOW to HIGH.","Reset to LOW; after HIGH go back to LOW.","A range counter.")},"p4-range-udl":{b:"d > <load / up / down> > [q] > q; [q] > <load / up / down>; load .> <load / up / down>; up .> <load / up / down>",f:k("Range, direction and load together.","load first; then up wraps HIGH \u2192 LOW, down wraps LOW \u2192 HIGH.","All counter features in one block.")},"p4-div2":{b:"[clk_out] > (NOT) > [clk_out] > clk_out; @clk .> [clk_out]",f:k("Make a clock at half the frequency.","Toggle a flop on every rising edge.","clk_out = clk / 2 with 50% duty.")},"p4-div4":{b:"[cnt 2 bits] > (+1) > [cnt 2 bits]; [cnt 2 bits] -cnt[1]-> clk_out",f:k("Divide by 4 with 50% duty.","A 2-bit counter: its top bit is clk / 4.","Counter bits are divided clocks.")},"p4-div3":{b:"[mod-3 counter\\nposedge] > (1/3 pulse) > [copy\\nnegedge] > (OR) > clk_out; (1/3 pulse) > (OR)",f:["P: An odd divider: a counter gives 33% duty, the testbench wants 50%.","S: A mod-3 counter on the rising edge makes a pulse 1 clock long.","S: A copy delayed by half a clock (falling edge).","F: OR them: the pulse becomes exactly 1.5 clocks.","OK: clk / 3 with exactly 50% duty."]},"p4-fifo":{b:"din > {memory 8\xD78} > dout; wr_en > [wptr] .> {memory 8\xD78}; rd_en > [rptr] .> {memory 8\xD78}; [wptr] > (full, empty); [rptr] > (full, empty)",f:k("Buffer data between a producer and a consumer.",["Write at wptr unless full, read at rptr unless empty.","Full and empty from the pointers and a count."],"A single-clock FIFO.")},"p4-afifo":{b:"wdata > {memory} > rdata; [wptr Gray|wclk] > [2-flop sync|rclk] > (rempty|rclk); [rptr Gray|rclk] > [2-flop sync #w|wclk] > (wfull|wclk); [wptr Gray|wclk] .> {memory}",f:["P: Producer and consumer on different clocks.","S: Each pointer is a Gray code: one bit changes per step.","S: Pointers cross through 2-flop synchronizers.","OK: Full in wclk and empty in rclk are never wrong, only late."]},"p4-mealy-nov":{b:"x > (next state) > [state\\nS0 S1 S2] > (y = S2 and x) > y; x > (y = S2 and x); [state\\nS0 S1 S2] > (next state)",f:k("Detect 1-0-1; restart after each detection.","Mealy: y depends on the state AND x.","10101 gives one detection.")},"p4-mealy-ov":{b:"x > (next state) > [state] > (y = S2 and x) > y; x > (y = S2 and x); [state] > (next state)",f:k("Detect 1-0-1, with overlap.","After a detection go to the '1 seen' state, not to the start.","10101 gives two detections.")},"p4-moore-nov":{b:"x > (next state) > [state\\nS0..S3] > (y = S3) > y; [state\\nS0..S3] > (next state)",f:k("Detect 1-0-1 with a Moore machine.","An extra state for 'found'; y depends on the state only.","y comes one clock later than in the Mealy version.")},"p4-moore-ov":{b:"x > (next state) > [state\\nS0..S3] > (y = S3) > y; [state\\nS0..S3] > (next state)",f:k("Moore and overlapping.","From the found state, a 0 goes to '10 seen'.","Two detections in 10101, one clock after each 1.")},"s01-reg":{b:"data > [register 8 bits\\nalways_ff] > out; enable .> [register 8 bits\\nalways_ff]; rst_ .async.> [register 8 bits\\nalways_ff]",f:k("Store a byte when enable is high, the SystemVerilog way.","logic, ANSI ports, timeunit and always_ff.","The CPU's register block.")},"s02-mux":{b:"in_a > <mux #(WIDTH)> > out; in_b > <mux #(WIDTH)>; sel_a .> <mux #(WIDTH)>",f:x("One mux module for any width.","A WIDTH parameter; always_comb with unique case and an X default.","Used as 5-bit in the CPU and 8/1-bit in the testbench.")},"s03-cnt":{b:"data > <load, +1 or hold> > [count 5 bits] > count; [count 5 bits] > <load, +1 or hold>; load .> <load, +1 or hold>; enable .> <load, +1 or hold>",f:k("The CPU's program counter.","load wins over enable; count wraps from 31 to 0.","A loadable counter in SystemVerilog.")},"s04-ctrl":{b:"opcode > {controller FSM\\n8 states, enum} > sel, rd, ld_ir, halt,\\ninc_pc, ld_ac, ld_pc, wr, data_e; zero > {controller FSM\\n8 states, enum}",f:k("Decide which CPU block acts in each of 8 states.","An enum for states and a package for opcodes; outputs from state, opcode and zero.","The VeriRISC sequence controller.")},"s05-alu":{b:"accum > (op: ADD, AND, XOR,\\nLDA, pass) > [out\\nfalling edge] > out; data > (op: ADD, AND, XOR,\\nLDA, pass); opcode .> (op: ADD, AND, XOR,\\nLDA, pass); accum > (accum == 0) > zero",f:k("Combine the accumulator with memory data.","A case on the opcode enum; register out on the falling edge.","The result is ready for the accumulator at the next rising edge.")},"s06-memtb":{b:"{your testbench\\ntasks write/read}+ > {memory 32\xD78 (given)} > {your testbench\\ntasks write/read}+; BUG .> {memory 32\xD78 (given)}",f:["P: The memory is given; prove it works.","S: Write tasks for write and read.","S: Fill memory, read it back, compare.","Q: With BUG = 1, does your testbench report errors?","OK: Reusable tasks make a short, strong testbench."]},"s07-struct":{b:"{testbench} -bus_t packed struct-> {memory with\\none bus port} > data_out; {package\\ntypedef struct packed} .> {memory with\\none bus port}",f:["P: Many signals travel together; every module must agree on them.","S: Put a packed struct in a package.","S: One port carries read, write, address and data.","OK: One definition, no wiring mistakes. (Interfaces do the same in other simulators.)"]},"s08-cpu":{b:"{program counter} > <address mux> > {memory} > {instruction register} > {controller\\n8-state FSM}; {instruction register} -operand address-> <address mux>; {memory} -data-> {ALU} > {accumulator}; {accumulator} > {ALU}; {controller\\n8-state FSM} .control.> {ALU}",f:["P: Put the blocks together into a CPU that runs programs.","S: Fetch: PC \u2192 memory \u2192 instruction register.","S: Execute: ALU on accumulator and memory data, controlled by the FSM.","Q: Do the test programs reach HALT at the right address?","OK: A working 8-bit VeriRISC CPU."]},"s09-johnson":{b:"[q N bits] > (shift left,\\nfeed back ~MSB) > [q N bits] > q",f:k("2N states with one bit changing at a time.","Shift left and feed the inverted MSB back in.","A Johnson counter: 8 states from 4 flops.")},"s10-gen":{b:"a, b, cin > {stage[0].fa} -c-> {stage[1].fa} -c-> {\u2026 N stages} -c-> {stage[N-1].fa} > cout",f:k("Build an array of identical blocks for any size.","A generate for loop with a genvar; each carry feeds the next stage.","An N-bit ripple-carry adder from one loop.","The testbench checks N = 4 and N = 12.")},"s11-dpram":{b:"port A: addr, din, we > {dual-port RAM} > dout_a; port B: addr > {dual-port RAM} > dout_b",f:k("Write on one port while another reads.","One array, two synchronous read ports; port A reads before it writes.","A dual-port RAM.")},"s12-uart":{b:"data, start > {UART TX FSM\\nIDLE, START, DATA, STOP} > tx; {UART TX FSM\\nIDLE, START, DATA, STOP} > busy; [tick counter] .bit time.> {UART TX FSM\\nIDLE, START, DATA, STOP}",f:k("Send bytes over one wire.",["Start bit 0, 8 data bits LSB first, stop bit 1.","Each bit lasts CLKS_PER_BIT clocks."],"A UART transmitter.","The testbench decodes tx like a receiver.")},"l01-gates":{b:"a > (AND, OR, NOT,\\nNAND, NOR, XOR, XNOR) > 7 outputs; b > (AND, OR, NOT,\\nNAND, NOR, XOR, XNOR)",f:x("Know every gate's truth table.","One gate primitive per output.","All 7 gates for all 4 inputs.")},"l02-nand":{b:"a > (NAND) > (NAND #2) > and_y; b > (NAND); a > (NAND #a) > (NAND #o) > or_y; b > (NAND #b) > (NAND #o)",f:x("Build every gate from NAND alone.",["NOT = NAND(a, a); AND = NOT of NAND.","OR = NAND(a', b') by De Morgan; XOR with 4 NANDs."],"NAND is universal.")},"l03-nor":{b:"a > (NOR) > (NOR #2) > or_y; b > (NOR); a > (NOR #a) > (NOR #o) > and_y; b > (NOR #b) > (NOR #o)",f:x("Build every gate from NOR alone.",["NOT = NOR(a, a); OR = NOT of NOR.","AND = NOR(a', b'); XNOR with 4 NORs."],"NOR is universal too.")},"l04-sop-pos":{b:"A, B, C > (y1 = AB + A'B'\\nSOP) > y1; A, B, C > (y2 = (A+B)(B+C)(A+C')\\nPOS) > y2; A, B, C > (y3 = A + BC') > y3",f:x("The same truth table in two forms.","Write each expression with assign, exactly as given.","SOP sums minterms, POS multiplies maxterms.")},"l05-demorgan":{b:"A, B > ((A\xB7B)') > l1_left; A, B > (A' + B') > l1_right; A, B > ((A+B)') > l2_left; A, B > (A'\xB7B') > l2_right",f:x("Turn ANDs into ORs by inverting.","Write both sides of both laws.","Each pair is equal for every input.")},"l06-kmap":{b:"X, Y, Z > {3-var K-map\\n\u03A3m(3,4,6,7)} > F1; A, B, C, D > {4-var K-map\\n\u03A3m(2,6,8,9,10,11,14)} > F2",f:["P: A minterm list is not the cheapest circuit.","S: Draw the K-maps (columns in Gray order).","S: Group 1s in the largest power-of-two rectangles, wrapping around edges.","Q: All 128 input combinations are checked.","OK: F1 and F2 with 2 terms each."]},"l07-dontcare":{b:"A, B, C, D > {K-map\\n\u03A3m(1,3,7,11,15)\\n+ d(0,2,5)} > F",f:["P: Some inputs never happen: their outputs are don't-cares.","S: Use a don't-care as 1 only when it makes a group bigger.","Q: The testbench skips the don't-care rows.","OK: F = C\xB7D + A'\xB7B'."]},"l08-parity":{b:"d[3:0] > (XOR tree) > p; d[3:0] > (XOR tree #2) > error; p_in > (XOR tree #2)",f:x("Detect a single flipped bit.","p = ^d makes the number of 1s even; error = ^{d, p_in}.","Parity generator and checker.")},"l09-majority":{b:"A > (AB + BC + AC) > y; B > (AB + BC + AC); C > (AB + BC + AC)",f:x("Outvote one faulty copy of three.","Truth table \u03A3m(3,5,6,7), simplified with a K-map.","y = AB + BC + AC.")},"l10-sub":{b:"A, B, Bin > (D = A ^ B ^ Bin) > D; A, B, Bin > (Bout = A'B + A'Bin + B\xB7Bin) > Bout",f:x("Subtract with a borrow.","Half and full subtractor equations.","D is the same as the adder's sum; the borrow differs.")},"l29-rca":{b:"A[0], B[0], cin > {FA0} -c1-> {FA1} -c2-> {FA2} -c3-> {FA3} > cout; {FA0} > S",f:x("Add 4-bit numbers, like the 7483.","Chain four full adders through their carries.","A ripple-carry adder: 512 inputs checked.")},"l18-addsub":{b:"B > (XOR with M) > {4-bit adder} > S; A > {4-bit adder} > cout; M .carry in.> {4-bit adder}; {4-bit adder} > (overflow) > v",f:x("One adder that also subtracts.",["M = 1 inverts B and adds 1: A \u2212 B in two's complement.","v flags signed overflow."],"An adder/subtractor with one control.")},"l19-bcdadd":{b:"a, b, cin > {binary adder} > (sum above 9?) > {add 6} > s; (sum above 9?) > cout",f:["P: A binary adder gives a wrong code when a digit sum exceeds 9.","S: Add the BCD digits in binary.","Q: Is the sum above 9?","F: Add 6 (0110) and set the carry.","OK: A correct BCD digit and decimal carry."]},"l17-cmp2":{b:"a[1], b[1] > (XNOR: equal bits) > (gt, eq, lt\\nfrom the MSB down) > gt, eq, lt; a[0], b[0] > (XNOR: equal bits)",f:x("Compare two 2-bit numbers with gates.","Equal bits from XNOR; the MSB decides unless it is equal.","gt, eq, lt from the K-map equations.")},"l30-cmp4":{b:"A[3:0], B[3:0] > {7485 comparator} > gt, eq, lt; i_gt, i_eq, i_lt .cascade.> {7485 comparator}",f:x("Compare wider numbers by chaining 4-bit comparators.","When A = B, pass the cascade inputs through.","For one chip: i_eq = 1, i_gt = i_lt = 0.")},"l14-dec38":{b:"a[2:0] > {74138 decoder} > y_n[7:0] active low; g1, g2a_n, g2b_n .enables.> {74138 decoder}",f:x("Select one of eight, as real parts do.","Enabled when g1 = 1 and both active-low enables are 0.","One output low, the rest high.")},"l11-dec-fa":{b:"A, B, Cin > {3-to-8\\ndecoder} -m1 m2 m4 m7-> (OR#s) > S; {3-to-8\\ndecoder} -m3 m5 m6 m7-> (OR#c) > C",f:["P: Build a full adder without writing its equations.","S: The decoder makes all 8 minterms of A, B, Cin.","S: S = \u03A3m(1,2,4,7), C = \u03A3m(3,5,6,7) from the truth table.","F: OR the matching decoder outputs for each function.","OK: Any 3-input function is one OR gate on a decoder."]},"l15-enc83":{b:"d[7:0] > {8-to-3 encoder} > y, valid; d[7:0] > {priority encoder} > y_p, any",f:x("Encode a one-hot input; handle many active inputs.","Plain: one-hot only, valid flags the rest. Priority: highest 1 wins.","Both encoders, 256 inputs checked.")},"l13-mux-demux":{b:"d[7:0] > <8:1 mux> > y; sel .3 bits.> <8:1 mux>; x > {1:8 demux} > o[7:0]; sel .3 bits.> {1:8 demux}",f:x("Route many inputs to one line, and one line to many.","y = d[sel]; o = x << sel.","Mux and demux, 4096 inputs checked.")},"l12-mux-fn":{b:"A, B, C .select.> <8:1 mux\\n74151> > F; 0, 1, D, D' > <8:1 mux\\n74151>",f:["P: Implement a 4-variable function with one 8:1 mux.","S: A, B, C drive the select lines.","S: For each pair of rows (D = 0, 1) the data input is 0, 1, D or D'.","OK: F = \u03A3m(1,3,4,11,12,13,14,15) with one chip."]},"l16-gray":{b:"b[3:0] > (g = b ^ b>>1) > g_out; g[3:0] > (XOR chain\\nfrom the MSB) > b_out",f:x("Only one bit changes between neighbouring Gray values.","Binary \u2192 Gray: one XOR per bit. Gray \u2192 binary: XOR all bits above.","Both converters, 256 inputs checked.")},"l20-7seg":{b:"bcd[3:0] > {7-segment decoder\\ncase} > seg = abcdefg",f:x("Light the right segments for each digit.","A case with one 7-bit pattern per digit; 10 to 15 blank.","The console draws each digit.")},"l21-srlatch":{b:"s_n > (NAND g1) > q; r_n > (NAND g2) > q_n; (NAND g1) > (NAND g2); (NAND g2) > (NAND g1)",f:["P: Memory starts with feedback.","S: Two cross-coupled NAND gates with 1 ns delay.","S: s_n = 0 sets, r_n = 0 resets, both 1 hold.","Q: Both 0 is not allowed for a NAND latch.","OK: The latch keeps its bit."]},"l22-ffs":{b:"s, r > [SR FF] > q_sr; j, k > [JK FF] > q_jk; d > [D FF] > q_d; t > [T FF] > q_t",f:k("Four flip-flops, four characteristic tables.","One always block: SR (11 holds), JK (11 toggles), D, T.","All four match the reference for 200 random cycles.")},"l23-ripple":{b:"@clk .falling.> [T0] > [T1] > [T2]; [T0] > q[0]; [T1] > q[1]; [T2] > q[2]",f:["P: The simplest counter: each flop clocks the next.","S: Each stage toggles on the falling edge of the stage before.","X: The bits change one after another (ripple).","OK: Counts 0 to 7 with no logic at all."]},"l24-sync":{b:"[q 3 bits] > (T0 = 1, T1 = Q0,\\nT2 = Q0\xB7Q1) > [q 3 bits] > q; @clk .> [q 3 bits]",f:k("All bits change on the same clock edge.","A bit toggles when all bits below it are 1.","A synchronous counter with T flip-flops.")},"l32-updown":{b:"[q 3 bits] > (T inputs\\nfrom up and Q) > [q 3 bits] > q; up .> (T inputs\\nfrom up and Q)",f:k("Count both ways with T flip-flops.","Excitation table and K-maps give T1 and T2 for up and down.","A MOD-8 up/down counter.")},"l27-mod6":{b:"[q 3 bits] > (q == 5 ? 0 : q+1) > [q 3 bits] > q; [q 3 bits] > (q == 5) > tc",f:k("Divide by 6, as in a clock's seconds counter.","Clear when the count reaches 5; flag it with tc.","A truncated counter with terminal count.")},"l25-ring":{b:"[ring 1000] > (rotate) > [ring 1000] > ring; [johnson 0000] > (shift in ~LSB) > [johnson 0000] > john",f:k("Counters made from shift registers.","Ring: rotate a single 1. Johnson: feed back the inverted bit.","4 states vs 8 states from 4 flops.")},"l26-siso":{b:"sin > [q3] > [q2] > [q1] > [q0] > sout",f:["P: Move serial data one bit per clock, as in UART or SPI.","S: On every clock each flop takes the value of the flop before it.","Q: Does 1001 come out of sout 4 clocks later, in order?","OK: A 4-flop shift register delays the stream by 4 clocks."]},"l31-usr":{b:"d > <mode mux> > [q 4 bits] > q; sr_in > <mode mux>; sl_in > <mode mux>; [q 4 bits] > <mode mux>; mode .> <mode mux>",f:k("One register for hold, shift right, shift left and load (74194).","A case on mode picks the next value.","A universal shift register.")},"l28-fsm":{b:"dir > (next state\\nfrom the table) > [state 2 bits] > (z = state 10) > z; [state 2 bits] > (next state\\nfrom the table)",f:k("Build a state machine straight from a state table.","One case item per row; a Moore output from the state.","A Gray-code up/down counter FSM.")},"l33-traffic":{b:"car > {FSM\\nS0 S1 S2 S3} > main lights; {FSM\\nS0 S1 S2 S3} > side lights; [timer] .3 clocks.> {FSM\\nS0 S1 S2 S3}",f:["P: Give the side road green only when a car waits.","S: S0 main green \u2192 S1 main yellow when car = 1.","S: S2 side green for 3 clocks (timer) \u2192 S3 side yellow \u2192 S0.","Q: Is any state green for both roads? No.","OK: A Moore FSM with a timer, from a word spec."]}};var Y=t=>document.querySelector(t);function Re({key:t,onChange:e}){let n=null,s=()=>{try{return JSON.parse(localStorage.getItem(t)||"{}")||{}}catch{return{}}},i=l=>{try{localStorage.setItem(t,JSON.stringify(l))}catch{}},r=l=>{let m=String(l||"").replace(/[−–—]/g,"-").replace(/,/g,"").match(/[-+]?\d*\.?\d+(?:[eE][-+]?\d+)?/);return m?parseFloat(m[0]):NaN},c=(l,m)=>l.type==="choice"?m!=null&&m!==""&&+m===l.answer:isFinite(r(m))&&Math.abs(r(m)-l.answer)<=(l.tol??.01)+1e-9,a=l=>l.type==="choice"?l.options[l.answer]:`${l.answer}${l.unit?" "+l.unit:""}`;function S(l,m){let f=Y("#quiz-score");if(l===null){f.textContent="",f.classList.remove("done");return}f.textContent=`${l} / ${m} correct`,f.classList.toggle("done",l===m)}function _(l,m){let f=s(),q=f[n.id]||{a:[]};q.a=q.a||[],q.a[l]=m,q.checked=!1,f[n.id]=q,i(f);let A=Y("#quiz-list").children[l]?.querySelector(".quiz-fb");A&&(A.hidden=!0)}function g(l){n=l&&l.quiz&&l.quiz.length?l:null;let m=Y("#quiz"),f=Y("#quiz-list");if(!n){m.hidden=!0;return}m.hidden=!1,f.innerHTML="";let q=s()[n.id]||{},A=q.a||[];n.quiz.forEach((R,F)=>{let L=document.createElement("li"),M=document.createElement("div");if(M.className="quiz-q",R.try){let v=document.createElement("span");v.className="quiz-try",v.textContent="Try it",M.appendChild(v)}let U=R.q.replace(/^Try it: /,"");if(M.appendChild(document.createTextNode(U.charAt(0).toUpperCase()+U.slice(1))),L.appendChild(M),R.type==="choice"){let v=document.createElement("div");v.className="quiz-opts",v.setAttribute("role","radiogroup"),R.options.forEach((D,C)=>{let J=document.createElement("label"),B=document.createElement("input");B.type="radio",B.name=`q${F}`,B.value=C,A[F]!==void 0&&+A[F]===C&&(B.checked=!0),B.addEventListener("change",()=>_(F,C));let Q=document.createElement("span");Q.textContent=D,J.append(B,Q),v.appendChild(J)}),L.appendChild(v)}else{let v=document.createElement("div");v.className="quiz-num";let D=document.createElement("input");if(D.type="text",D.inputMode="decimal",D.autocomplete="off",D.setAttribute("aria-label","Answer to question "+(F+1)),D.placeholder="e.g. 3",A[F]!==void 0&&(D.value=A[F]),D.addEventListener("input",()=>_(F,D.value)),D.addEventListener("keydown",C=>{C.key==="Enter"&&u()}),v.appendChild(D),R.unit){let C=document.createElement("span");C.className="unit",C.textContent=R.unit,v.appendChild(C)}L.appendChild(v)}let T=document.createElement("div");T.className="quiz-fb",T.hidden=!0,T.setAttribute("aria-live","polite"),L.appendChild(T),f.appendChild(L)}),q.checked?u(!0):S(null)}function u(l){if(!n)return;let m=s(),f=m[n.id]||{a:[]};f.a=f.a||[];let q=0;n.quiz.forEach((A,R)=>{let F=Y("#quiz-list").children[R],L=A.type==="choice"?(F.querySelector("input:checked")||{}).value:F.querySelector("input").value;f.a[R]=L;let M=L===void 0||L==="",U=!M&&c(A,L);U&&q++;let T=F.querySelector(".quiz-fb");T.hidden=!1,T.className="quiz-fb "+(U?"ok":"bad"),T.innerHTML="";let v=document.createElement("b");v.textContent=U?"Correct.":M?"Not answered yet.":"Not quite.",T.appendChild(v),U&&A.explain?T.appendChild(document.createTextNode(A.explain)):!U&&!M&&T.appendChild(document.createTextNode(A.type==="number"?"Check the code and the simulation output again.":"Look at the code and the output again and try another option."))}),f.checked=!0,f.score=q,f.total=n.quiz.length,m[n.id]=f,i(m),S(q,n.quiz.length),!l&&e&&e()}function y(){n&&n.quiz.forEach((l,m)=>{let f=Y("#quiz-list").children[m].querySelector(".quiz-fb");f.hidden=!1,f.className="quiz-fb shown",f.innerHTML="";let q=document.createElement("b");q.textContent="Answer: "+a(l)+".",f.appendChild(q),l.explain&&f.appendChild(document.createTextNode(l.explain))})}function h(){if(!n)return;let l=s();delete l[n.id],i(l),g(n),e&&e()}return Y("#quiz-check").addEventListener("click",()=>u()),Y("#quiz-reveal").addEventListener("click",y),Y("#quiz-reset").addEventListener("click",h),{render:g,status:l=>s()[l]}}var Be={counter:[{type:"number",q:"Run it. What is the count printed at 175 ns?",answer:15,tol:0,unit:"",explain:"The counter has counted 0 to 15 by then.",try:!1},{type:"number",q:"What value comes after 15?",answer:0,tol:0,unit:"",explain:"A 4-bit counter wraps from 15 back to 0.",try:!1},{type:"choice",q:"Why does the reset use negedge rst_n in the sensitivity list?",options:["It is a synchronous reset","It is an asynchronous active-low reset: q clears as soon as rst_n falls","It saves area","It is required for counters"],answer:1,explain:"An asynchronous reset acts without waiting for the clock.",try:!1},{type:"choice",q:"Try it: change WIDTH to 3 in the testbench instance. After which value does the count wrap?",options:["7","15","3","8"],answer:0,explain:"3 bits count 0 to 7.",try:!0}],mux:[{type:"choice",q:"When sel = 2, which input reaches y?",options:["a","b","c","d"],answer:2,explain:"sel 0 \u2192 a, 1 \u2192 b, 2 \u2192 c, 3 \u2192 d.",try:!1},{type:"number",q:"How many bits wide is y?",answer:8,tol:0,unit:"",explain:"The mux is 8 bits wide.",try:!1},{type:"choice",q:"Why does a case statement inside always @(*) need every sel value (or a default)?",options:["For speed","Otherwise y keeps its old value for missing cases and synthesis infers a latch","It is a syntax rule","To save area"],answer:1,explain:"Full case coverage keeps the logic combinational.",try:!1}],adder:[{type:"number",q:"How many input combinations does the testbench check?",answer:512,tol:0,unit:"",explain:"a and b are 4 bits each, plus a carry in: 2^9 = 512.",try:!1},{type:"choice",q:"What makes this testbench self-checking?",options:["It prints every result","It compares each result with the expected a + b + cin and counts mismatches","It uses $monitor","It dumps a waveform"],answer:1,explain:"A self-checking testbench decides PASS or FAIL by itself.",try:!1},{type:"number",q:"In a 4-bit ripple-carry adder, how many full adders are chained?",answer:4,tol:0,unit:"",explain:"One per bit.",try:!1}],fsm:[{type:"number",q:"How many times is the pattern 1011 detected?",answer:4,tol:0,unit:"",explain:"The run prints four detections.",try:!1},{type:"choice",q:"Is this detector overlapping?",options:["No","Yes: the last 1 of a 1011 can be the first 1 of the next one","Only for 0s","It depends on the clock"],answer:1,explain:"Overlapping detection reuses the tail of one match.",try:!1},{type:"choice",q:"Moore or Mealy?",options:["Moore: found depends only on the state","Mealy: found depends on the state and din","Neither","Both"],answer:0,explain:"The comment says Moore: the output comes from the state.",try:!1}],cdc:[{type:"number",q:"How many destination clocks after the change does level_dst follow?",answer:2,tol:0,unit:"",explain:"Two flops in series.",try:!1},{type:"choice",q:"Why two flops and not one?",options:["To double the frequency","The first flop may go metastable; the second gives it a full clock to settle","To invert the signal","For hold timing"],answer:1,explain:"See the CDC labs for more.",try:!1},{type:"choice",q:"Can this synchronizer carry a one-cycle pulse from a much faster clock?",options:["Yes, always","No: the pulse can fall between two destination edges and be lost","Only with reset","Only in simulation"],answer:1,explain:"Pulses need a toggle synchronizer or a handshake.",try:!1}],fifo:[{type:"number",q:"How many entries does the FIFO hold?",answer:8,tol:0,unit:"",explain:"AW = 3: 2^3 = 8 entries.",try:!1},{type:"number",q:"The testbench writes 10 values. How many are stored?",answer:8,tol:0,unit:"",explain:"The last two are dropped because the FIFO is full.",try:!1},{type:"choice",q:"Why are the pointers AW + 1 bits wide?",options:["For parity","The extra bit tells a full FIFO from an empty one when the address bits are equal","To count reads","For Gray code"],answer:1,explain:"Equal pointers = empty; same address, different wrap bit = full.",try:!1}],sv:[{type:"number",q:"For how many clock cycles is the light green?",answer:6,tol:0,unit:"",explain:"The timer loads 5 and counts down to 0: 6 cycles.",try:!1},{type:"number",q:"For how many clock cycles is it yellow?",answer:3,tol:0,unit:"",explain:"The timer loads 2 for yellow.",try:!1},{type:"choice",q:"What does typedef enum give you over plain localparam states?",options:["Faster simulation","Named states that show up in the waveform and in .name(), with type checking","Less area","Nothing"],answer:1,explain:"The testbench prints state.name().",try:!1}],"p1-ha-df":[{type:"number",q:"How many input combinations does a half adder have?",answer:4,tol:0,unit:"",explain:"Two 1-bit inputs: 2^2 = 4.",try:!1},{type:"choice",q:"What are sum and carry for a = 1, b = 1?",options:["sum 1, carry 0","sum 0, carry 1","sum 1, carry 1","sum 0, carry 0"],answer:1,explain:"1 + 1 = 10 in binary.",try:!1},{type:"choice",q:"Which Verilog construct is dataflow style?",options:["always @(*)","assign","and/xor gate primitives","initial"],answer:1,explain:"Continuous assignments describe how data flows to the outputs.",try:!1}],"p1-ha-bh":[{type:"number",q:"How many input combinations does a half adder have?",answer:4,tol:0,unit:"",explain:"Two 1-bit inputs: 2^2 = 4.",try:!1},{type:"choice",q:"What are sum and carry for a = 1, b = 1?",options:["sum 1, carry 0","sum 0, carry 1","sum 1, carry 1","sum 0, carry 0"],answer:1,explain:"1 + 1 = 10 in binary.",try:!1},{type:"choice",q:"Why are sum and carry declared reg in the behavioral version?",options:["Because they are flip-flops","Because they are assigned inside an always block","Because they are outputs","It is optional"],answer:1,explain:"reg is a Verilog data type for procedural assignment; no flip-flop is created by always @(*).",try:!1}],"p1-ha-st":[{type:"number",q:"How many input combinations does a half adder have?",answer:4,tol:0,unit:"",explain:"Two 1-bit inputs: 2^2 = 4.",try:!1},{type:"choice",q:"What are sum and carry for a = 1, b = 1?",options:["sum 1, carry 0","sum 0, carry 1","sum 1, carry 1","sum 0, carry 0"],answer:1,explain:"1 + 1 = 10 in binary.",try:!1},{type:"choice",q:"In 'xor g1 (sum, a, b);', which port comes first?",options:["An input","The output","The clock","Any order"],answer:1,explain:"Gate primitives list the output first.",try:!1}],"p1-fa-df":[{type:"number",q:"How many input combinations does the testbench try?",answer:8,tol:0,unit:"",explain:"Three 1-bit inputs: 2^3 = 8.",try:!1},{type:"choice",q:"What are sum and cout for a = 1, b = 1, cin = 1?",options:["sum 1, cout 1","sum 0, cout 1","sum 1, cout 0","sum 0, cout 0"],answer:0,explain:"1 + 1 + 1 = 11 in binary.",try:!1},{type:"choice",q:"Which expression gives the carry out?",options:["a ^ b ^ cin","(a & b) | (cin & (a ^ b))","a | b | cin","~(a & b)"],answer:1,explain:"Carry when both inputs are 1, or when one is 1 and the carry in is 1.",try:!1}],"p1-fa-bh":[{type:"number",q:"How many input combinations does the testbench try?",answer:8,tol:0,unit:"",explain:"Three 1-bit inputs: 2^3 = 8.",try:!1},{type:"choice",q:"What are sum and cout for a = 1, b = 1, cin = 1?",options:["sum 1, cout 1","sum 0, cout 1","sum 1, cout 0","sum 0, cout 0"],answer:0,explain:"1 + 1 + 1 = 11 in binary.",try:!1},{type:"choice",q:"Why does {cout, sum} = a + b + cin work?",options:["Verilog adds 1-bit values as 1 bit","The left side is 2 bits wide, so the addition is done in 2 bits and the carry lands in cout","It does not work","Because of always @(*)"],answer:1,explain:"The width of the assignment target sets the size of the result.",try:!1}],"p1-fa-st":[{type:"number",q:"How many input combinations does the testbench try?",answer:8,tol:0,unit:"",explain:"Three 1-bit inputs: 2^3 = 8.",try:!1},{type:"choice",q:"What are sum and cout for a = 1, b = 1, cin = 1?",options:["sum 1, cout 1","sum 0, cout 1","sum 1, cout 0","sum 0, cout 0"],answer:0,explain:"1 + 1 + 1 = 11 in binary.",try:!1},{type:"number",q:"How many half_adder instances does the structural full adder use?",answer:2,tol:0,unit:"",explain:"Two half adders and an OR gate.",try:!1}],"p1-ops":[{type:"number",q:"For a = 12 and b = 5, what is a % b?",answer:2,tol:0,unit:"",explain:"12 = 2 \xD7 5 + 2.",try:!1},{type:"choice",q:"What is the difference between & and && ?",options:["None","& is bitwise and gives a vector; && is logical and gives 1 bit","&& is bitwise","& is only for 1-bit values"],answer:1,explain:"a & b ANDs each bit; a && b is true if both are non-zero.",try:!1},{type:"number",q:"For a = 4'b1011, what is the reduction ^a (as 0 or 1)?",answer:1,tol:0,unit:"",explain:"XOR of all bits: three 1s give 1.",try:!1},{type:"choice",q:"What is the difference between $display and $monitor?",options:["None","$display prints once; $monitor prints again every time one of its signals changes","$monitor prints once","$display only prints at the end"],answer:1,explain:"The testbench turns $monitor off with $monitoroff.",try:!1}],"p1-c2f":[{type:"number",q:"What does c_to_f return for 100 \xB0C?",answer:212,tol:0,unit:"",explain:"100 \xD7 9 / 5 + 32.",try:!1},{type:"number",q:"And for 37 \xB0C (integer arithmetic)?",answer:98,tol:0,unit:"",explain:"37 \xD7 9 = 333; 333 / 5 = 66 (rounded toward zero); 66 + 32 = 98.",try:!1},{type:"choice",q:"What is the main difference between a task and a function in Verilog?",options:["None","A task can take time (delays, @) and has output arguments; a function returns a value in zero time","A function can have delays","Tasks cannot have arguments"],answer:1,explain:"Functions are for expressions, tasks for procedures.",try:!1}],"p2-add4":[{type:"number",q:"What is {cout, sum} for 9 + 8 + 1?",answer:18,tol:0,unit:"",explain:"As printed by the testbench.",try:!1},{type:"number",q:"How many bits does {cout, sum} have?",answer:5,tol:0,unit:"",explain:"4 sum bits and a carry.",try:!1},{type:"number",q:"How many test cases does the testbench check?",answer:512,tol:0,unit:"",explain:"4 + 4 + 1 input bits: 2^9.",try:!1}],"p2-mux2":[{type:"choice",q:"Which input reaches y when sel = 1?",options:["a","b"],answer:1,explain:"y = sel ? b : a.",try:!1},{type:"choice",q:"How does synthesis usually build y = sel ? b : a?",options:["A flip-flop","A 2:1 multiplexer cell","A latch","An adder"],answer:1,explain:"The conditional operator maps to a mux.",try:!1},{type:"number",q:"How many input combinations does the testbench check?",answer:8,tol:0,unit:"",explain:"a, b and sel: 2^3.",try:!1}],"p2-mux4":[{type:"number",q:"How many select bits does a 4:1 mux need?",answer:2,tol:0,unit:"",explain:"log2(4) = 2.",try:!1},{type:"choice",q:"Why does the case statement need a default (or all 4 values)?",options:["For speed","So y is assigned in every case and no latch is inferred","It is a syntax rule","To reset y"],answer:1,explain:"Every path through always @(*) must assign y.",try:!1},{type:"number",q:"How many cases does the testbench check?",answer:64,tol:0,unit:"",explain:"4 data bits and 2 select bits: 2^6.",try:!1}],"p2-dec24":[{type:"choice",q:"With en = 1 and a = 2'b10, what is y?",options:["4'b0010","4'b0100","4'b1000","4'b0001"],answer:1,explain:"Bit 2 is set.",try:!1},{type:"choice",q:"What is y when en = 0?",options:["4'b0001","4'b0000","4'b1111","Unknown"],answer:1,explain:"A disabled decoder drives no select line.",try:!1},{type:"number",q:"How many outputs does an n-to-2^n decoder with n = 3 have?",answer:8,tol:0,unit:"",explain:"2^3.",try:!1}],"p2-enc42":[{type:"number",q:"For d = 4'b0100, what is y?",answer:2,tol:0,unit:"",explain:"The single 1 is at position 2.",try:!1},{type:"choice",q:"What should valid be for d = 4'b0110?",options:["1","0: two bits are set, which a simple encoder cannot handle","Unknown","It depends on y"],answer:1,explain:"Use a priority encoder when several inputs can be active.",try:!1},{type:"number",q:"How many of the 16 possible inputs are legal (one-hot)?",answer:4,tol:0,unit:"",explain:"0001, 0010, 0100, 1000.",try:!1}],"p2-penc42":[{type:"number",q:"For d = 4'b0110, what is y?",answer:2,tol:0,unit:"",explain:"The highest 1 is at position 2.",try:!1},{type:"choice",q:"What does casez allow that case does not?",options:["Faster simulation","? and z bits as don't-care in the case items","Real numbers","Default branches"],answer:1,explain:"4'b01?? matches 0100 to 0111.",try:!1},{type:"choice",q:"What is valid for d = 0?",options:["1","0"],answer:1,explain:"No request: nothing to encode.",try:!1}],"p2-cmp4":[{type:"choice",q:"For a = 9 and b = 4, which output is 1?",options:["gt","eq","lt"],answer:0,explain:"9 > 4.",try:!1},{type:"number",q:"How many of gt, eq and lt can be 1 at the same time?",answer:1,tol:0,unit:"",explain:"Exactly one, for any pair.",try:!1},{type:"number",q:"How many (a, b) pairs does the testbench check?",answer:256,tol:0,unit:"",explain:"16 \xD7 16.",try:!1}],"p2-bshift8":[{type:"choice",q:"What is 8'b1001_0110 rotated left by 3?",options:["8'b1011_0100","8'b1011_0101","8'b0010_1100","8'b0001_0010"],answer:0,explain:"The three bits 100 that leave on the left come back on the right: 10110 + 100.",try:!1},{type:"choice",q:"What is 8'b1001_0110 shifted right by 3 (no rotate)?",options:["8'b0001_0010","8'b1111_0010","8'b0101_1000","8'b1100_1000"],answer:0,explain:"Zeros come in from the left.",try:!1},{type:"choice",q:"Why is it called a barrel shifter?",options:["It is round","It shifts by any amount in one clock, without stepping one bit at a time","It uses a barrel register","It only rotates"],answer:1,explain:"A log2(N)-stage mux network shifts by any amount at once.",try:!1}],"p2-alu":[{type:"number",q:"What is y for 200 + 100 (8 bits)?",answer:44,tol:0,unit:"",explain:"300 \u2212 256 = 44.",try:!1},{type:"choice",q:"And carry for 200 + 100?",options:["0","1"],answer:1,explain:"The result does not fit in 8 bits.",try:!1},{type:"choice",q:"When is zero = 1?",options:["When a = 0","When the result y is 0","When carry = 0","When op = 0"],answer:1,explain:"A status flag on the result.",try:!1},{type:"number",q:"How many operations does the 3-bit op select?",answer:8,tol:0,unit:"",explain:"2^3.",try:!1}],"p3-dlatch":[{type:"choice",q:"What does a latch do while en = 0?",options:["Follows d","Holds its last value","Clears q","Toggles"],answer:1,explain:"It is transparent only while enabled.",try:!1},{type:"choice",q:"Which code creates a latch?",options:["always @(posedge clk) q <= d;","always @(*) if (en) q = d;  (no else)","assign q = en & d;","always @(*) q = en ? d : 1'b0;"],answer:1,explain:"With no else, q must remember its value: a latch.",try:!1},{type:"choice",q:"Why are latches usually avoided in synchronous design?",options:["They are larger","They are transparent for a whole phase, which makes timing harder and glitches pass through","They cannot be reset","They are not synthesizable"],answer:1,explain:"STA has to handle time borrowing; most flows prefer flip-flops.",try:!1}],"p3-dlatch-rst":[{type:"choice",q:"What does a latch do while en = 0?",options:["Follows d","Holds its last value","Clears q","Toggles"],answer:1,explain:"It is transparent only while enabled.",try:!1},{type:"choice",q:"If rst = 1 and en = 1 at the same time, what is q?",options:["d","0","1","Unknown"],answer:1,explain:"Reset has priority.",try:!1},{type:"choice",q:"Is this reset synchronous or asynchronous?",options:["Synchronous","Asynchronous: it acts immediately"],answer:1,explain:"A latch has no clock edge to wait for.",try:!1}],"p3-dff":[{type:"choice",q:"Why use <= (non-blocking) in clocked always blocks?",options:["It is faster","All flops update together at the edge, so the order of statements does not matter","It is required by Verilog","To make latches"],answer:1,explain:"Blocking = in sequential logic can cause simulation races.",try:!1},{type:"choice",q:"When does q change?",options:["Whenever d changes","Only at the rising edge of clk","At both edges","When d is 1"],answer:1,explain:"Edge-triggered.",try:!1},{type:"choice",q:"What is q before the first clock edge?",options:["0","1","x (unknown): there is no reset","z"],answer:2,explain:"Without a reset, a flop starts unknown in simulation.",try:!1}],"p3-dff-arh":[{type:"choice",q:"Why use <= (non-blocking) in clocked always blocks?",options:["It is faster","All flops update together at the edge, so the order of statements does not matter","It is required by Verilog","To make latches"],answer:1,explain:"Blocking = in sequential logic can cause simulation races.",try:!1},{type:"choice",q:"Which edge does an asynchronous reset add to the sensitivity list?",options:["Only the clock edge","The active edge of the reset as well","Nothing","The data input"],answer:1,explain:"That is what makes it act without the clock.",try:!1},{type:"choice",q:"If rst rises between clock edges, when does q go to 0?",options:["At the next rising clock edge","Immediately","Never","At the falling edge"],answer:1,explain:"Asynchronous.",try:!1}],"p3-dff-neg-arh":[{type:"choice",q:"Which edge does an asynchronous reset add to the sensitivity list?",options:["Only the clock edge","The active edge of the reset as well","Nothing","The data input"],answer:1,explain:"That is what makes it act without the clock.",try:!1},{type:"choice",q:"When does this flop sample d?",options:["Rising edge of clk","Falling edge of clk","Both edges","When rst falls"],answer:1,explain:"negedge clk.",try:!1},{type:"choice",q:"Where are falling-edge flops typically used?",options:["Everywhere","Half-cycle paths, such as DDR interfaces that use both edges","Only in FPGAs","For resets"],answer:1,explain:"They give half a clock period between rising and falling edge logic.",try:!1}],"p3-dff-arl":[{type:"choice",q:"Which edge does an asynchronous reset add to the sensitivity list?",options:["Only the clock edge","The active edge of the reset as well","Nothing","The data input"],answer:1,explain:"That is what makes it act without the clock.",try:!1},{type:"choice",q:"rst_n = 0 means\u2026",options:["Normal operation","Reset is active"],answer:1,explain:"_n marks an active-low signal.",try:!1},{type:"choice",q:"Why are resets often active low on chips?",options:["Tradition only","A reset that is 0 when the pin floats low or power ramps keeps the chip in reset safely","They are faster","No reason"],answer:1,explain:"A low-going reset is the safe default.",try:!1}],"p3-dff-ash":[{type:"choice",q:"Which edge does an asynchronous reset add to the sensitivity list?",options:["Only the clock edge","The active edge of the reset as well","Nothing","The data input"],answer:1,explain:"That is what makes it act without the clock.",try:!1},{type:"choice",q:"What is q right after set rises?",options:["0","1","d","x"],answer:1,explain:"Set forces 1.",try:!1},{type:"choice",q:"When is an asynchronous set used?",options:["Never","For registers that must start at 1, such as a one-hot state or an active-low enable","For counters only","To save area"],answer:1,explain:"",try:!1}],"p3-dff-srh":[{type:"choice",q:"Why use <= (non-blocking) in clocked always blocks?",options:["It is faster","All flops update together at the edge, so the order of statements does not matter","It is required by Verilog","To make latches"],answer:1,explain:"Blocking = in sequential logic can cause simulation races.",try:!1},{type:"choice",q:"Is rst in the sensitivity list of a synchronous reset?",options:["Yes","No: only the clock edge"],answer:1,explain:"The reset is just another data input that is sampled at the edge.",try:!1},{type:"choice",q:"If rst rises between clock edges, when does q go to 0?",options:["Immediately","At the next rising clock edge"],answer:1,explain:"Synchronous.",try:!1}],"p3-dff-srl":[{type:"choice",q:"Is rst in the sensitivity list of a synchronous reset?",options:["Yes","No: only the clock edge"],answer:1,explain:"The reset is just another data input that is sampled at the edge.",try:!1},{type:"choice",q:"rst_n = 0 on a rising edge gives q =",options:["d","0","1","unchanged"],answer:1,explain:"",try:!1},{type:"choice",q:"What does synthesis build for a synchronous reset?",options:["A flop with an asynchronous clear pin","A plain flop with logic (an AND or mux) in front of D","A latch","Nothing"],answer:1,explain:"The reset becomes part of the data path.",try:!1}],"p3-dff-srs":[{type:"choice",q:"Is rst in the sensitivity list of a synchronous reset?",options:["Yes","No: only the clock edge"],answer:1,explain:"The reset is just another data input that is sampled at the edge.",try:!1},{type:"choice",q:"rst = 1 and set = 1 on the same edge: q =",options:["1","0","d","x"],answer:1,explain:"Reset has priority here.",try:!1},{type:"choice",q:"How is the priority set in the code?",options:["By the order of the if / else if","By the port order","By the sensitivity list","It is random"],answer:0,explain:"The first true condition wins.",try:!1}],"p3-sync-async":[{type:"choice",q:"rst rises in the middle of a clock cycle. Which output clears first?",options:["q_sync","q_async","Both at the same time"],answer:1,explain:"q_async clears at once; q_sync waits for the next edge.",try:!1},{type:"choice",q:"What is a drawback of an asynchronous reset?",options:["None","Its release must be synchronized to the clock (recovery/removal), or flops leave reset in different cycles","It is slower","It needs a clock"],answer:1,explain:"See the reset synchronizer lab in the CDC labs.",try:!1},{type:"choice",q:"What is a drawback of a synchronous reset?",options:["It needs a running clock to take effect","It cannot be timed","It uses more flops","None"],answer:0,explain:"No clock, no reset.",try:!1}],"p3-twin":[{type:"choice",q:"load_a = 1 and load_b = 1 on the same edge: what happens?",options:["Only qa loads","Both qa and qb load d","Neither loads","qb loads qa"],answer:1,explain:"The loads are independent.",try:!1},{type:"number",q:"How many flip-flops does the design need?",answer:16,tol:0,unit:"",explain:"Two 8-bit registers.",try:!1},{type:"choice",q:"What does a register hold when its load is 0?",options:["0","Its previous value","d","x"],answer:1,explain:"Synthesis adds an enable (a mux or a clock-enable flop).",try:!1}],"p4-sr5":[{type:"number",q:"After 5 clocks with sin = 1, 0, 1, 1, 0 (in that order) starting from 00000, what is q in decimal?",answer:13,tol:0,unit:"",explain:"Bits enter at bit 4 and move right: q = 0 1 1 0 1 (bit 4 first) = 01101 = 13.",try:!1},{type:"number",q:"How many clocks does a bit need to travel from bit 4 to bit 0?",answer:4,tol:0,unit:"",explain:"One place per clock.",try:!1},{type:"choice",q:"Which expression shifts right with sin entering at the MSB?",options:["{q[3:0], sin}","{sin, q[4:1]}","q >> sin","{q[4:1], sin}"],answer:1,explain:"",try:!1}],"p4-usr5":[{type:"choice",q:"Which mode loads d in parallel?",options:["00","01","10","11"],answer:3,explain:"",try:!1},{type:"choice",q:"In mode 10 (shift left), where does sl_in enter?",options:["Bit 4","Bit 0"],answer:1,explain:"q <= {q[3:0], sl_in}.",try:!1},{type:"choice",q:"Where is a universal shift register used?",options:["Only in counters","Serial/parallel conversion in both directions, for example in a UART or SPI","In adders","In memories"],answer:1,explain:"",try:!1}],"p4-cnt":[{type:"number",q:"How many states does a 4-bit counter go through before repeating?",answer:16,tol:0,unit:"",explain:"0 to 15.",try:!1},{type:"number",q:"At 100 MHz, how many ns does one full cycle of the 4-bit counter take?",answer:160,tol:0,unit:"",explain:"16 states \xD7 10 ns.",try:!1},{type:"choice",q:"What happens to q after 15?",options:["It stays at 15","It wraps to 0","It goes to x"],answer:1,explain:"",try:!1}],"p4-cnt-tb":[{type:"choice",q:"Why does the testbench change en on the falling edge?",options:["It is required","So the inputs are stable around the rising edge and there is no race with the design","To save time","To test the reset"],answer:1,explain:"",try:!1},{type:"choice",q:"With BUG = 1, after which value does the broken counter jump to 0?",options:["9","15","7","0"],answer:0,explain:"The bug wraps at 9; a good testbench sees 10 missing.",try:!1},{type:"choice",q:"What makes a testbench self-checking?",options:["Printing values","An expected-value model compared with the design every cycle, and a PASS/FAIL summary","A waveform","Random inputs"],answer:1,explain:"",try:!1}],"p4-cnt-load":[{type:"choice",q:"load = 1 and the counter is at 7, d = 3: next q =",options:["8","3","4","7"],answer:1,explain:"Load has priority.",try:!1},{type:"number",q:"After loading 14, what is q two clocks later (no load)?",answer:0,tol:0,unit:"",explain:"14 \u2192 15 \u2192 0.",try:!1},{type:"choice",q:"Where is a loadable counter used?",options:["Program counters (jumps load a new address), timers with a start value","Only in tests","Adders","Never"],answer:0,explain:"",try:!1}],"p4-updown":[{type:"number",q:"From 0, counting down one step gives?",answer:15,tol:0,unit:"",explain:"4-bit wrap: 0 \u2212 1 = 15.",try:!1},{type:"number",q:"From 13, three steps up give?",answer:0,tol:0,unit:"",explain:"13 \u2192 14 \u2192 15 \u2192 0.",try:!1},{type:"choice",q:"What decides the direction?",options:["The clock edge","The up input","The reset"],answer:1,explain:"",try:!1}],"p4-mod":[{type:"number",q:"What is the largest value of the mod-10 counter?",answer:9,tol:0,unit:"",explain:"0 to N\u22121.",try:!1},{type:"number",q:"How many flip-flops does a mod-10 counter need at least?",answer:4,tol:0,unit:"",explain:"2^3 = 8 < 10 \u2264 16 = 2^4.",try:!1},{type:"choice",q:"Try it: set N = 12. What is the largest value?",options:["11","12","9","15"],answer:0,explain:"",try:!0}],"p4-range":[{type:"number",q:"What is q right after reset?",answer:3,tol:0,unit:"",explain:"LOW = 3.",try:!1},{type:"number",q:"How many different values does the counter take?",answer:10,tol:0,unit:"",explain:"3 to 12 inclusive.",try:!1},{type:"number",q:"What comes after 12?",answer:3,tol:0,unit:"",explain:"Back to LOW.",try:!1}],"p4-range-udl":[{type:"number",q:"Counting down from LOW = 3 gives?",answer:12,tol:0,unit:"",explain:"Wraps to HIGH.",try:!1},{type:"choice",q:"load = 1 and up = 0 on the same edge: what happens?",options:["It counts down","It loads d","Nothing"],answer:1,explain:"Load has priority.",try:!1},{type:"number",q:"Counting up from 12 gives?",answer:3,tol:0,unit:"",explain:"",try:!1}],"p4-div2":[{type:"number",q:"With a 10 ns clk, what is the period of clk_out?",answer:20,tol:0,unit:"ns",explain:"",try:!1},{type:"number",q:"What is its duty cycle in %?",answer:50,tol:0,unit:"%",explain:"It toggles on every rising edge.",try:!1},{type:"choice",q:"Why should a divided clock come straight from a flop output, not from logic?",options:["To save area","Logic can glitch, and a glitch on a clock is an extra edge","Flops are faster","No reason"],answer:1,explain:"Also define it as a generated clock in the SDC (see the SDC labs).",try:!1}],"p4-div4":[{type:"number",q:"With a 10 ns clk, what is the period of clk_out?",answer:40,tol:0,unit:"ns",explain:"",try:!1},{type:"number",q:"Which counter bit gives clk / 4 (0 = LSB)?",answer:1,tol:0,unit:"",explain:"cnt[0] is clk / 2, cnt[1] is clk / 4.",try:!1},{type:"choice",q:"Why should a divided clock come straight from a flop output, not from logic?",options:["To save area","Logic can glitch, and a glitch on a clock is an extra edge","Flops are faster","No reason"],answer:1,explain:"Also define it as a generated clock in the SDC (see the SDC labs).",try:!1}],"p4-div3":[{type:"number",q:"With a 10 ns clk, how long must clk_out stay high for a 50% duty cycle?",answer:15,tol:0,unit:"ns",explain:"Half of 30 ns: 1.5 clock periods.",try:!1},{type:"choice",q:"Why are both clock edges needed?",options:["They are not","A half-period step is only possible with the falling edge","To save power","For reset"],answer:1,explain:"",try:!1},{type:"choice",q:"Why should a divided clock come straight from a flop output, not from logic?",options:["To save area","Logic can glitch, and a glitch on a clock is an extra edge","Flops are faster","No reason"],answer:1,explain:"Also define it as a generated clock in the SDC (see the SDC labs).",try:!1}],"p4-fifo":[{type:"number",q:"How many words can the FIFO hold?",answer:8,tol:0,unit:"",explain:"",try:!1},{type:"choice",q:"What happens to a write when the FIFO is full?",options:["It overwrites the oldest word","It is ignored","It stalls the clock"],answer:1,explain:"",try:!1},{type:"choice",q:"dout shows a word\u2026",options:["at once when rd_en rises","on the clock edge after rd_en","two clocks later"],answer:1,explain:"The read is registered.",try:!1}],"p4-afifo":[{type:"choice",q:"Why are the pointers Gray coded before crossing?",options:["To save flops","Only one bit changes per step, so the other clock sees the old or the new value, never a mix","For speed","To reset them"],answer:1,explain:"See the Gray code lab in the CDC labs.",try:!1},{type:"number",q:"How many flops are in each pointer synchronizer chain (per bit)?",answer:2,tol:0,unit:"",explain:"wq1/wq2 and rq1/rq2.",try:!1},{type:"choice",q:"Can the empty flag be late?",options:["No","Yes: it is computed with a synchronized (older) write pointer, so it may stay set a few cycles longer. That is safe.","Only at reset"],answer:1,explain:"",try:!1}],"p4-mealy-nov":[{type:"choice",q:"Input bits 1, 0, 1, 0, 1: how many detections?",options:["1","2"],answer:0,explain:"After a detection the search starts again.",try:!1},{type:"choice",q:"When is y = 1?",options:["While x is the final 1 (same cycle)","In the cycle after the final 1 was clocked in"],answer:0,explain:"Mealy outputs depend on the input; Moore outputs only on the state.",try:!1},{type:"number",q:"How many states does this detector need?",answer:3,tol:0,unit:"",explain:"Mealy: S0, S1, S10. Moore needs an extra S101 state to hold the output.",try:!1}],"p4-mealy-ov":[{type:"choice",q:"Input bits 1, 0, 1, 0, 1: how many detections?",options:["1","2"],answer:1,explain:"Overlapping reuses the last 1.",try:!1},{type:"choice",q:"When is y = 1?",options:["While x is the final 1 (same cycle)","In the cycle after the final 1 was clocked in"],answer:0,explain:"Mealy outputs depend on the input; Moore outputs only on the state.",try:!1},{type:"number",q:"How many states does this detector need?",answer:3,tol:0,unit:"",explain:"Mealy: S0, S1, S10. Moore needs an extra S101 state to hold the output.",try:!1}],"p4-moore-nov":[{type:"choice",q:"Input bits 1, 0, 1, 0, 1: how many detections?",options:["1","2"],answer:0,explain:"After a detection the search starts again.",try:!1},{type:"choice",q:"When is y = 1?",options:["While x is the final 1 (same cycle)","In the cycle after the final 1 was clocked in"],answer:1,explain:"Mealy outputs depend on the input; Moore outputs only on the state.",try:!1},{type:"number",q:"How many states does this detector need?",answer:4,tol:0,unit:"",explain:"S0, S1, S10 and S101 (the output state).",try:!1}],"p4-moore-ov":[{type:"choice",q:"Input bits 1, 0, 1, 0, 1: how many detections?",options:["1","2"],answer:1,explain:"Overlapping reuses the last 1.",try:!1},{type:"choice",q:"When is y = 1?",options:["While x is the final 1 (same cycle)","In the cycle after the final 1 was clocked in"],answer:1,explain:"Mealy outputs depend on the input; Moore outputs only on the state.",try:!1},{type:"number",q:"How many states does this detector need?",answer:4,tol:0,unit:"",explain:"S0, S1, S10 and S101 (the output state).",try:!1}],"s01-reg":[{type:"choice",q:"What does the logic type replace?",options:["Only wire","Both reg and wire in most code: it can be driven by assign or by a procedural block (one driver)","integer","Nothing"],answer:1,explain:"",try:!1},{type:"choice",q:"What extra check does always_ff give over always @(posedge clk)?",options:["None","Tools warn if the block does not describe flip-flops, for example a missing edge","It is faster","It adds a reset"],answer:1,explain:"",try:!1},{type:"number",q:"How many bits does '0 set for an 8-bit out?",answer:8,tol:0,unit:"",explain:"'0 fills every bit of the target with 0.",try:!1}],"s02-mux":[{type:"choice",q:"What does unique case promise?",options:["Nothing","Exactly one case item matches; tools may warn if none or several match","The case is fast","A default is not needed"],answer:1,explain:"Icarus prints a note that it ignores the check.",try:!1},{type:"number",q:"What is the width of scale_mux with no parameter override?",answer:1,tol:0,unit:"",explain:"WIDTH defaults to 1.",try:!1},{type:"choice",q:"Why drive 'x in the default branch?",options:["To save area","So an unknown select shows up as unknown in simulation instead of hiding as a valid value","It is required","To reset"],answer:1,explain:"",try:!1}],"s03-cnt":[{type:"number",q:"What value comes after 31?",answer:0,tol:0,unit:"",explain:"5 bits wrap.",try:!1},{type:"choice",q:"load = 1 and enable = 1: what happens?",options:["count increments","count loads data","Nothing"],answer:1,explain:"load is checked first.",try:!1},{type:"choice",q:"In the CPU, what does this counter become?",options:["The accumulator","The program counter","The ALU","The memory"],answer:1,explain:"",try:!1}],"s04-ctrl":[{type:"number",q:"How many clock cycles does one instruction take?",answer:8,tol:0,unit:"",explain:"8 states, one per clock.",try:!1},{type:"choice",q:"What does state.next() return after STORE?",options:["STORE","INST_ADDR: next() wraps to the first value","x","IDLE"],answer:1,explain:"",try:!1},{type:"choice",q:"In which state is halt raised for an HLT instruction?",options:["INST_ADDR","OP_ADDR","STORE","ALU_OP"],answer:1,explain:"",try:!1},{type:"choice",q:"Why is this a Mealy machine?",options:["It has 8 states","Its outputs depend on opcode and zero as well as the state","It uses enums","It has a reset"],answer:1,explain:"",try:!1}],"s05-alu":[{type:"choice",q:"For LDA, what is out?",options:["accum","data","data + accum","0"],answer:1,explain:"Load the accumulator from memory.",try:!1},{type:"number",q:"For ADD with accum = 200 and data = 100, what is out (8 bits)?",answer:44,tol:0,unit:"",explain:"300 \u2212 256.",try:!1},{type:"choice",q:"Why is out registered on the falling edge?",options:["To save power","So it is ready half a cycle later, for the accumulator to load on the next rising edge","It is a bug","For reset"],answer:1,explain:"",try:!1}],"s06-memtb":[{type:"choice",q:"Why drive the memory inputs on the falling edge?",options:["It is required","So they are stable when the memory samples them on the rising edge: no race","To test hold"],answer:1,explain:"",try:!1},{type:"choice",q:"What does 'input bit debug = 0' in a task do?",options:["Nothing","Makes debug optional: callers can leave it out","Forces debug to 0"],answer:1,explain:"",try:!1},{type:"choice",q:"With BUG = 1, which addresses are written wrongly?",options:["0 to 15","16 to 31: address bit 4 is lost, so they land on 0 to 15","All","None"],answer:1,explain:"",try:!1}],"s07-struct":[{type:"number",q:"How many bits wide is mem_req_t?",answer:15,tol:0,unit:"",explain:"1 + 1 + 5 + 8.",try:!1},{type:"choice",q:"Why does the field order matter here?",options:["It does not","A packed struct is also a plain vector, and the testbench builds it as {read, write, addr, data}","For speed"],answer:1,explain:"",try:!1},{type:"choice",q:"What can an interface do that a struct cannot?",options:["Nothing","Carry signals in both directions with modports, and hold tasks and functions for the bus protocol","Be smaller","Be synthesized"],answer:1,explain:"",try:!1}],"s08-cpu":[{type:"number",q:"How many bits is the address field of an instruction?",answer:5,tol:0,unit:"",explain:"{opcode[7:5], address[4:0]}: 32 memory words.",try:!1},{type:"number",q:"At what address (hex 12 = decimal 18) does Program 1 halt? Answer in decimal.",answer:18,tol:0,unit:"",explain:"The success HLT is at 12 hex.",try:!1},{type:"number",q:"What does Program 2 leave in memory[1D]?",answer:55,tol:0,unit:"",explain:"1 + 2 + \u2026 + 10.",try:!1},{type:"number",q:"What does Program 3 leave in memory[1D]?",answer:144,tol:0,unit:"",explain:"The Fibonacci number it stops at.",try:!1},{type:"choice",q:"What does the mux select while fetch = 1?",options:["The instruction's address field","The program counter"],answer:1,explain:"",try:!1}],"s09-johnson":[{type:"number",q:"How many states does a 4-bit Johnson counter have?",answer:8,tol:0,unit:"",explain:"2N.",try:!1},{type:"choice",q:"What comes after 0111?",options:["1111","1110","0000","1000"],answer:0,explain:"Shift left and bring in ~q[3] = 1.",try:!1},{type:"number",q:"How many bits change between two neighbouring states?",answer:1,tol:0,unit:"",explain:"That is why Johnson counters decode without glitches.",try:!1}],"s10-gen":[{type:"number",q:"How many full_adder instances does rca #(N=12) contain?",answer:12,tol:0,unit:"",explain:"One per bit.",try:!1},{type:"choice",q:"What is genvar?",options:["A run-time variable","An elaboration-time loop index used by generate loops","A wire","A parameter"],answer:1,explain:"",try:!1},{type:"choice",q:"Why name the generate block (begin : stage)?",options:["It is optional decoration","It gives each instance a hierarchical name, such as stage[3].fa, for debug and constraints"],answer:1,explain:"",try:!1}],"s11-dpram":[{type:"number",q:"How many words does dpram hold with AW = 4?",answer:16,tol:0,unit:"",explain:"2^4.",try:!1},{type:"choice",q:"Port A writes address 5 with new data. What does dout_a show on that edge?",options:["The new data","The old data (read-before-write)","x"],answer:1,explain:"",try:!1},{type:"choice",q:"Can port B read while port A writes?",options:["No","Yes: that is the point of a dual-port RAM"],answer:1,explain:"",try:!1}],"s12-uart":[{type:"number",q:"How many bits does one byte take on the line (start + data + stop)?",answer:10,tol:0,unit:"",explain:"1 + 8 + 1.",try:!1},{type:"number",q:"With CLKS_PER_BIT = 4 and a 10 ns clock, how long does one byte take?",answer:400,tol:0,unit:"ns",explain:"10 bits \xD7 4 clocks \xD7 10 ns.",try:!1},{type:"choice",q:"Which data bit is sent first?",options:["data[7]","data[0]"],answer:1,explain:"UARTs send LSB first.",try:!1},{type:"choice",q:"What level does tx have when idle?",options:["0","1"],answer:1,explain:"The start bit is the 1 \u2192 0 edge.",try:!1}],"l01-gates":[{type:"choice",q:"Which gate gives 1 only when its inputs are different?",options:["AND","XOR","XNOR","NOR"],answer:1,explain:"XOR is the 'odd number of 1s' gate.",try:!1},{type:"choice",q:"Which gate gives 1 only when both inputs are 0?",options:["NAND","NOR","XOR","OR"],answer:1,explain:"NOR = NOT of OR.",try:!1},{type:"number",q:"How many rows does the truth table of a 3-input gate have?",answer:8,tol:0,unit:"",explain:"2^3 = 8.",try:!1}],"l02-nand":[{type:"number",q:"How many NAND gates make a NOT gate?",answer:1,tol:0,unit:"",explain:"Tie both inputs together: (a\xB7a)' = a'.",try:!1},{type:"number",q:"How many 2-input NAND gates does the XOR circuit in this lab use?",answer:4,tol:0,unit:"",explain:"n1 plus x1, x2 and the output gate.",try:!1},{type:"choice",q:"Why is OR built as NAND(a', b')?",options:["By De Morgan: (a'\xB7b')' = a + b","It is faster","NAND cannot invert","It uses fewer gates than AND"],answer:0,explain:"",try:!1}],"l03-nor":[{type:"number",q:"How many 2-input NOR gates make an AND gate?",answer:3,tol:0,unit:"",explain:"Two to invert a and b, one NOR of the inverted inputs.",try:!1},{type:"choice",q:"NOR(a, a) equals",options:["a","a'","0","1"],answer:1,explain:"",try:!1},{type:"choice",q:"Which pair are both universal gates?",options:["AND and OR","NAND and NOR","XOR and XNOR","NOT and AND"],answer:1,explain:"",try:!1}],"l04-sop-pos":[{type:"choice",q:"y1 = A\xB7B + A'\xB7B' is the same as which single gate of A and B?",options:["XOR","XNOR","NAND","OR"],answer:1,explain:"It is 1 when A and B are equal.",try:!1},{type:"number",q:"For how many of the 8 input combinations is y3 = A + B\xB7C' equal to 1?",answer:5,tol:0,unit:"",explain:"All four with A = 1, plus A = 0, B = 1, C = 0.",try:!1},{type:"choice",q:"In a POS expression, each sum term corresponds to",options:["A row where F = 1","A row where F = 0 (a maxterm)","A don't-care","A clock edge"],answer:1,explain:"",try:!1}],"l05-demorgan":[{type:"choice",q:"(A + B)' equals",options:["A' + B'","A'\xB7B'","A\xB7B","(A\xB7B)'"],answer:1,explain:"",try:!1},{type:"choice",q:"A NAND gate is the same as",options:["An OR gate with inverted inputs","An AND gate with inverted inputs","A NOR gate","An XOR gate"],answer:0,explain:"(A\xB7B)' = A' + B'.",try:!1},{type:"number",q:"How many input combinations make l1_left = 0?",answer:1,tol:0,unit:"",explain:"Only A = B = 1.",try:!1}],"l06-kmap":[{type:"number",q:"How many product terms does the simplified F2 have?",answer:2,tol:0,unit:"",explain:"A\xB7B' and C\xB7D'.",try:!1},{type:"number",q:"How many minterms does one group of 4 cells cover?",answer:4,tol:0,unit:"",explain:"",try:!1},{type:"choice",q:"Why do K-maps order columns 00, 01, 11, 10?",options:["Alphabetical order","Gray code: neighbouring cells differ in one variable, so they can be grouped","It saves space","It is binary order"],answer:1,explain:"",try:!1}],"l07-dontcare":[{type:"choice",q:"Which don't-cares does the answer F = C\xB7D + A'\xB7B' use as 1?",options:["0 and 2","5 only","0, 2 and 5","None"],answer:0,explain:"m0 and m2 complete the A'\xB7B' group; m5 is left as 0.",try:!1},{type:"number",q:"How many literals does F = C\xB7D + A'\xB7B' have?",answer:4,tol:0,unit:"",explain:"C, D, A', B'.",try:!1},{type:"choice",q:"May a don't-care be 1 in one group and 0 elsewhere?",options:["No","Yes: it is only covered if that helps","Only in POS","Only if it is minterm 0"],answer:1,explain:"",try:!1}],"l08-parity":[{type:"number",q:"For d = 1011, what is the even parity bit p?",answer:1,tol:0,unit:"",explain:"Three 1s, so p = 1 makes four.",try:!1},{type:"choice",q:"Can parity detect two flipped bits?",options:["Yes","No: two flips keep the parity the same"],answer:1,explain:"",try:!1},{type:"choice",q:"What does ^d mean in Verilog?",options:["Bitwise NOT","Reduction XOR of all bits of d","Power","Exclusive OR with 1"],answer:1,explain:"",try:!1}],"l09-majority":[{type:"number",q:"How many of the 8 input combinations give y = 1?",answer:4,tol:0,unit:"",explain:"m3, m5, m6, m7.",try:!1},{type:"number",q:"How many 2-input AND gates does the minimal SOP need?",answer:3,tol:0,unit:"",explain:"A\xB7B, B\xB7C, A\xB7C.",try:!1},{type:"choice",q:"Majority of three is also the carry out of",options:["A half adder","A full adder","A comparator","A decoder"],answer:1,explain:"cout = 1 when at least two of a, b, cin are 1.",try:!1}],"l10-sub":[{type:"choice",q:"Which output of the full subtractor equals the full adder's sum?",options:["Bout","D","Neither","Both"],answer:1,explain:"D = A ^ B ^ Bin, the same as the sum.",try:!1},{type:"choice",q:"For A = 0, B = 1, Bin = 1, what are D and Bout?",options:["D = 0, Bout = 1","D = 1, Bout = 0","D = 0, Bout = 0","D = 1, Bout = 1"],answer:0,explain:"0 \u2212 1 \u2212 1 = \u22122: difference 0, borrow 1.",try:!1},{type:"choice",q:"The half subtractor borrow is",options:["A\xB7B'","A'\xB7B","A\xB7B","A ^ B"],answer:1,explain:"",try:!1}],"l29-rca":[{type:"number",q:"How many full adders does a 16-bit ripple-carry adder need?",answer:16,tol:0,unit:"",explain:"",try:!1},{type:"number",q:"If each full adder carry takes 2 ns, what is the worst carry delay through 4 bits?",answer:8,tol:0,unit:"ns",explain:"The carry ripples through all four stages.",try:!1},{type:"number",q:"A = 1111, B = 0001, cin = 0: what is cout?",answer:1,tol:0,unit:"",explain:"15 + 1 = 16 overflows 4 bits.",try:!1}],"l18-addsub":[{type:"choice",q:"Why is M also the carry in?",options:["To add 1 for two's complement: A \u2212 B = A + B' + 1","To reset the adder","For overflow","To invert A"],answer:0,explain:"",try:!1},{type:"choice",q:"5 \u2212 7 with M = 1: what is S?",options:["1110 (\u22122)","0010","1100","1111"],answer:0,explain:"\u22122 in 4-bit two's complement is 1110.",try:!1},{type:"choice",q:"Signed overflow happens when",options:["cout = 1","Two operands of the same sign give a result of the other sign","The result is 0","B is negative"],answer:1,explain:"",try:!1}],"l19-bcdadd":[{type:"number",q:"In BCD, 7 + 5 gives digit s = ?",answer:2,tol:0,unit:"",explain:"12 \u2192 digit 2, carry 1.",try:!1},{type:"number",q:"What value is added to correct a sum above 9?",answer:6,tol:0,unit:"",explain:"It skips the six unused codes 1010 to 1111.",try:!1},{type:"choice",q:"Which sums need correction?",options:["Sums above 9","Only sums above 15","Odd sums","All sums"],answer:0,explain:"Including sums 16 to 19, where the binary adder already has a carry.",try:!1}],"l17-cmp2":[{type:"choice",q:"Which gate tests whether two bits are equal?",options:["XOR","XNOR","NAND","OR"],answer:1,explain:"",try:!1},{type:"number",q:"For how many of the 16 input combinations is gt = 1?",answer:6,tol:0,unit:"",explain:"Pairs with a > b: 16 \u2212 4 equal = 12, half of them.",try:!1},{type:"choice",q:"Why does the gt equation look at bit 1 first?",options:["The most significant bit decides unless it is equal","Bit 0 is slower","It is alphabetical","No reason"],answer:0,explain:"",try:!1}],"l30-cmp4":[{type:"choice",q:"For a single 7485, how are the cascade inputs tied?",options:["i_eq = 1, i_gt = i_lt = 0","All 0","All 1","i_gt = 1"],answer:0,explain:"Equal numbers must then give eq = 1.",try:!1},{type:"number",q:"How many 4-bit comparators compare two 12-bit numbers in a cascade?",answer:3,tol:0,unit:"",explain:"",try:!1},{type:"choice",q:"A = B and i_gt = 1: which output is 1?",options:["eq","gt","lt","None"],answer:1,explain:"The lower bits decide.",try:!1}],"l14-dec38":[{type:"choice",q:"a = 101 and the chip is enabled: which output is 0?",options:["y_n[2]","y_n[5]","y_n[3]","All"],answer:1,explain:"",try:!1},{type:"choice",q:"g1 = 0: what are the outputs?",options:["All 0","All 1","y_n[a] = 0","High impedance"],answer:1,explain:"Disabled: every active-low output is inactive.",try:!1},{type:"number",q:"How many 74138s plus enable wiring make a 4-to-16 decoder?",answer:2,tol:0,unit:"",explain:"The fourth address bit enables one chip or the other.",try:!1}],"l11-dec-fa":[{type:"number",q:"How many decoder outputs feed the OR gate for S?",answer:4,tol:0,unit:"",explain:"Minterms 1, 2, 4 and 7.",try:!1},{type:"choice",q:"Which minterm is shared by S and C?",options:["m3","m7","m1","m0"],answer:1,explain:"1 + 1 + 1 = 3: sum 1, carry 1.",try:!1},{type:"choice",q:"Can one 3-to-8 decoder implement any number of 3-input functions?",options:["Yes: one OR gate per function","No, only one","Only two","Only with a mux"],answer:0,explain:"",try:!1}],"l15-enc83":[{type:"number",q:"d = 0010_1000: what is y_p?",answer:5,tol:0,unit:"",explain:"The highest 1 is bit 5.",try:!1},{type:"choice",q:"d = 0010_1000: what is valid from the plain encoder?",options:["0: two bits are set","1"],answer:0,explain:"",try:!1},{type:"choice",q:"What does the any flag solve?",options:["d = 0 and d = 1 both give y_p = 0","Speed","Glitches","Nothing"],answer:0,explain:"",try:!1}],"l13-mux-demux":[{type:"number",q:"How many select bits does a 16-to-1 mux need?",answer:4,tol:0,unit:"",explain:"",try:!1},{type:"number",q:"How many input combinations does the testbench check?",answer:4096,tol:0,unit:"",explain:"8 + 3 + 1 = 12 input bits.",try:!1},{type:"choice",q:"Demux with sel = 3 and x = 1: what is o?",options:["0000_1000","0000_0011","1000_0000","0000_0001"],answer:0,explain:"",try:!1}],"l12-mux-fn":[{type:"choice",q:"For ABC = 110, what is the data input?",options:["0","1","D","D'"],answer:1,explain:"m12 and m13 are both in F.",try:!1},{type:"choice",q:"For ABC = 010, what is the data input?",options:["0","1","D","D'"],answer:3,explain:"m4 is in F (D = 0) but m5 is not.",try:!1},{type:"number",q:"How many variables can one 8-to-1 mux implement any function of?",answer:4,tol:0,unit:"",explain:"3 select lines plus the fourth variable on the data inputs.",try:!1}],"l16-gray":[{type:"choice",q:"Binary 0110: what is the Gray code?",options:["0101","0110","0111","0100"],answer:0,explain:"g = b ^ (b >> 1) = 0110 ^ 0011.",try:!1},{type:"number",q:"How many bits change when the Gray code counts from 7 to 8?",answer:1,tol:0,unit:"",explain:"In binary all 4 bits change.",try:!1},{type:"choice",q:"Why does Gray-to-binary need a chain of XORs?",options:["Each binary bit is the XOR of all Gray bits above and including it","To save gates","It does not"],answer:0,explain:"",try:!1}],"l20-7seg":[{type:"number",q:"How many segments are lit for the digit 8?",answer:7,tol:0,unit:"",explain:"",try:!1},{type:"choice",q:"Which segment is off for 0?",options:["a","d","g (the middle bar)","f"],answer:2,explain:"",try:!1},{type:"choice",q:"In a common-anode display the segments are",options:["Active high","Active low (like the 7447)"],answer:1,explain:"",try:!1}],"l21-srlatch":[{type:"choice",q:"For a NAND latch, which input values hold the stored bit?",options:["s_n = r_n = 0","s_n = r_n = 1","s_n = 1, r_n = 0","s_n = 0, r_n = 1"],answer:1,explain:"",try:!1},{type:"choice",q:"Why is s_n = r_n = 0 not allowed?",options:["Both q and q_n go to 1, and the latch state is unpredictable when both are released","It burns the chip","It is a syntax error"],answer:0,explain:"",try:!1},{type:"number",q:"After s_n goes low, how many gate delays until q_n changes?",answer:2,tol:0,unit:"",explain:"q changes after one delay, then q_n one delay later.",try:!1}],"l22-ffs":[{type:"choice",q:"JK flip-flop with j = k = 1:",options:["Hold","Set","Reset","Toggle"],answer:3,explain:"",try:!1},{type:"choice",q:"Which flip-flop is a JK with J and K tied together?",options:["D","T","SR","None"],answer:1,explain:"",try:!1},{type:"choice",q:"Which flip-flop is a JK with K = J'?",options:["D","T","SR","None"],answer:0,explain:"",try:!1}],"l23-ripple":[{type:"number",q:"How many flip-flops does a ripple counter up to 255 need?",answer:8,tol:0,unit:"",explain:"",try:!1},{type:"choice",q:"Why is a ripple counter not used to drive synchronous logic?",options:["Its bits change one after another, so the outputs glitch through wrong values","It is too big","It counts down"],answer:0,explain:"",try:!1},{type:"choice",q:"In this lab, on which clk edge does the count change?",options:["Rising","Falling"],answer:1,explain:"t0 toggles on the falling edge of clk.",try:!1}],"l24-sync":[{type:"choice",q:"When does q[2] toggle?",options:["Every clock","When q[1] = q[0] = 1","When q[0] = 1","Never"],answer:1,explain:"",try:!1},{type:"number",q:"How many clocks until a 3-bit counter wraps to 0?",answer:8,tol:0,unit:"",explain:"",try:!1},{type:"choice",q:"Main advantage over a ripple counter:",options:["All bits change on the same clock edge","Fewer gates","No clock needed"],answer:0,explain:"",try:!1}],"l32-updown":[{type:"choice",q:"Counting down, when does q[1] toggle?",options:["When q[0] = 0","When q[0] = 1","Every clock","Never"],answer:0,explain:"",try:!1},{type:"number",q:"Counting down from 0, what is the next value?",answer:7,tol:0,unit:"",explain:"It wraps around.",try:!1},{type:"number",q:"How many states does a MOD-8 counter have?",answer:8,tol:0,unit:"",explain:"",try:!1}],"l27-mod6":[{type:"number",q:"How many distinct values does the counter output show?",answer:6,tol:0,unit:"",explain:"0 to 5.",try:!1},{type:"number",q:"With a 60 MHz clock, what is the frequency of tc pulses?",answer:10,tol:0,unit:"MHz",explain:"60 / 6.",try:!1},{type:"number",q:"How many flip-flops are needed for MOD-6?",answer:3,tol:0,unit:"",explain:"2^3 = 8 \u2265 6.",try:!1}],"l25-ring":[{type:"number",q:"How many states does a 4-bit ring counter have?",answer:4,tol:0,unit:"",explain:"",try:!1},{type:"number",q:"How many states does a 4-bit Johnson counter have?",answer:8,tol:0,unit:"",explain:"2N.",try:!1},{type:"choice",q:"What value follows 1110 in the Johnson counter?",options:["1111","0111","1100","0000"],answer:0,explain:"",try:!1}],"l26-siso":[{type:"number",q:"How many clocks does a bit take to go from sin to sout?",answer:4,tol:0,unit:"",explain:"",try:!1},{type:"choice",q:"What is q after 1, 0, 0, 1 are shifted in (first bit first)?",options:["1001","0110","1111","0000"],answer:0,explain:"The first bit is now in q[0] and the last in q[3].",try:!1},{type:"choice",q:"Which register type converts serial data to parallel?",options:["SISO","SIPO","PISO","PIPO"],answer:1,explain:"",try:!1}],"l31-usr":[{type:"choice",q:"q = 0110, mode = 10, sl_in = 1: next q?",options:["1101","1011","0011","0110"],answer:0,explain:"Shift left: {q[2:0], sl_in}.",try:!1},{type:"choice",q:"Which mode loads d?",options:["00","01","10","11"],answer:3,explain:"",try:!1},{type:"choice",q:"Which 7400-series part is a 4-bit universal shift register?",options:["74194","7483","74138","7447"],answer:0,explain:"",try:!1}],"l28-fsm":[{type:"choice",q:"From state 01 with dir = 1, the next state is",options:["00","11","10","01"],answer:1,explain:"",try:!1},{type:"choice",q:"Is z a Moore or a Mealy output?",options:["Moore: it depends only on the state","Mealy"],answer:0,explain:"",try:!1},{type:"number",q:"How many flip-flops does a 4-state machine need with binary encoding?",answer:2,tol:0,unit:"",explain:"",try:!1}],"l33-traffic":[{type:"number",q:"How many clocks does the side road stay green?",answer:3,tol:0,unit:"",explain:"S2 lasts while timer counts 0, 1, 2.",try:!1},{type:"choice",q:"If car stays 0, what does the main road show?",options:["Green forever","It cycles anyway","Yellow"],answer:0,explain:"",try:!1},{type:"choice",q:"Can both roads be green at once?",options:["No: every state has at least one red","Yes, in S1"],answer:0,explain:"",try:!1}]};var Ce=[{id:"counter",title:"4-bit up counter",tag:"Sequential",std:"2005",design:`\`timescale 1ns/1ps
+(()=>{var Pe={counter:{problem:"Almost every design needs a counter: for timers, addresses, timeouts. It must reset cleanly, count only when enabled, and wrap at the right value.",tasks:["Run and watch count in the waveform.","Find the cycle where it wraps from 15 to 0.","Change WIDTH and run again."],learn:"Write a parameterised counter with reset and enable, and read it in a waveform."},mux:{problem:"Selecting one of several buses is the most common piece of logic in a datapath. It must pick the right input for every select value.",tasks:["Run and check y for each value of sel.","Change the inputs and run again."],learn:"Write combinational logic with case statements and test it with a simple testbench."},adder:{problem:"Checking results by eye does not scale. A testbench should check every case on its own and say PASS or FAIL.",tasks:["Run: the testbench tries all 512 input combinations.","Break the carry logic in the full adder and see the testbench catch it."],learn:"Build an adder from full adders, and write a self-checking, exhaustive testbench."},fsm:{problem:"Detecting a bit pattern in a serial stream is a classic state machine problem. Overlapping patterns such as 10111011 are easy to get wrong.",tasks:["Run and find each 'pattern 1011 detected' line.","Follow the state in the waveform.","Change the input stream and predict the detections."],learn:"Design a Moore FSM, including overlapping matches, and debug it from the waveform."},cdc:{problem:"A signal from another clock cannot be used directly: the flop that samples it can go metastable. Two flops in a row give it time to settle.",tasks:["Run and see level_dst follow level_src two destination clocks later.","Measure the delay in the waveform."],learn:"The two-flop synchronizer for a single-bit level, and its latency. For full CDC practice, see the CDC labs."},fifo:{problem:"Producer and consumer rarely run at the same rate. A FIFO buffers the data, and it must refuse writes when full and reads when empty.",tasks:["Run: 10 writes into an 8-entry FIFO.","Find the two dropped writes and the full flag.","Read back and check the order."],learn:"Design a synchronous FIFO with full and empty flags."},sv:{problem:"Plain Verilog FSMs use magic numbers and are hard to read. SystemVerilog adds enums, always_ff/always_comb and assertions that check the design while it runs.",tasks:["Run and follow the light sequence.","Read the assertion that exactly one light is on.","Break the FSM and see the assertion fire."],learn:"SystemVerilog enum FSMs, always_ff/always_comb and immediate assertions."},"p1-ha-df":{problem:"Add two bits. The sum is 1 when exactly one input is 1; the carry is 1 when both are.",tasks:["Use only assign statements (dataflow style).","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Dataflow modelling with continuous assignments."},"p1-ha-bh":{problem:"The same half adder, described by its behavior instead of its equations.",tasks:["Use an always @(*) block with a case statement or if/else.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Behavioral modelling with always @(*), and why outputs are declared reg."},"p1-ha-st":{problem:"The same half adder, built from logic gates connected by wires.",tasks:["Use only Verilog gate primitives (xor, and).","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Structural modelling with gate primitives."},"p1-fa-df":{problem:"Add three bits (a, b and a carry in) to get a sum and a carry out.",tasks:["Use only assign statements.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Full adder equations in dataflow style."},"p1-fa-bh":{problem:"The same full adder, described by its behavior.",tasks:["Use an always @(*) block. Hint: {cout, sum} = a + b + cin.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Using Verilog arithmetic inside an always block."},"p1-fa-st":{problem:"Build a full adder from two half adders and an OR gate, the way it is drawn in textbooks.",tasks:["Instantiate half_adder twice and connect them with wires.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Hierarchy: instantiating modules and connecting ports by name."},"p1-ops":{problem:"Verilog has arithmetic, bitwise, logical, reduction, relational, equality, shift, concatenation, replication and conditional operators. Each output of the module uses one of them.",tasks:["Write one assign per output (see the comments for which operator), then read the $display and $monitor lines.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Every Verilog operator, and printing with $display and $monitor."},"p1-c2f":{problem:"Repeated calculations belong in a task: write it once, call it many times.",tasks:["Complete the task c_to_f. The testbench calls it with seven temperatures.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Writing and calling a Verilog task with input and output arguments."},"p2-add4":{problem:"Add two 4-bit numbers and a carry in. The result needs 5 bits: a 4-bit sum and a carry out.",tasks:["Use one assign statement with concatenation on the left.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Multi-bit dataflow arithmetic and concatenation."},"p2-mux2":{problem:"Pick one of two inputs with a select signal: the most common block in digital design.",tasks:["y = a when sel = 0, b when sel = 1.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"The conditional operator ?: as a multiplexer."},"p2-mux4":{problem:"Pick one of four inputs with a 2-bit select.",tasks:["Use a case statement on sel.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Case statements and full case coverage."},"p2-dec24":{problem:"Turn a 2-bit number into four select lines, exactly one of them high, as in an address decoder.",tasks:["y[a] = 1 when en = 1; all zeros when en = 0.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Decoders, enables and the shift operator."},"p2-enc42":{problem:"The reverse of a decoder: find which one of four lines is high and output its number.",tasks:["valid = 1 only when exactly one bit of d is 1.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Encoders and handling inputs that are not allowed."},"p2-penc42":{problem:"When several requests arrive at once, the highest one wins: an interrupt controller does this.",tasks:["y is the position of the highest 1; valid = 0 when d = 0.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Priority logic with casez and don't-care bits."},"p2-cmp4":{problem:"Compare two unsigned 4-bit numbers.",tasks:["Exactly one of gt, eq and lt is 1.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Relational operators and comparator outputs."},"p2-bshift8":{problem:"Shift or rotate a byte by any amount from 0 to 7 in one step, as in a processor's shift unit.",tasks:["dir picks left or right; rotate = 1 brings the bits that fall off back in on the other side.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Shifts, rotates and building a barrel shifter."},"p2-alu":{problem:"The arithmetic logic unit is the heart of a processor: one block, eight operations, chosen by an opcode.",tasks:["Implement the eight operations in the comment, the carry for add and subtract, and the zero flag.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Case-based ALU design, carry out and status flags."},"p3-dlatch":{problem:"A latch is transparent: while en = 1, q follows d. When en = 0 it holds its last value.",tasks:["Write it with always @(*) and an if without an else.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"How an if without else creates a latch, and when you want one."},"p3-dlatch-rst":{problem:"Add a reset that clears the latch at once, whatever en is.",tasks:["rst = 1 forces q = 0 immediately.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Reset priority in a latch."},"p3-dff":{problem:"A flip-flop samples d only at the rising edge of the clock: the basic memory element of synchronous design.",tasks:["Use always @(posedge clk) and a non-blocking assignment.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Edge-triggered storage and non-blocking assignments (<=)."},"p3-dff-arh":{problem:"Reset must work even when the clock is not running.",tasks:["rst = 1 clears q at once. Put posedge rst in the sensitivity list.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Asynchronous reset: the sensitivity list and reset priority."},"p3-dff-neg-arh":{problem:"Some flops capture on the falling edge of the clock, for example in DDR interfaces.",tasks:["Sample d on negedge clk; rst = 1 clears q at once.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Negative-edge flip-flops."},"p3-dff-arl":{problem:"Most chips use an active-low reset (rst_n): 0 means reset.",tasks:["rst_n = 0 clears q at once. Use negedge rst_n.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Active-low reset and the _n naming convention."},"p3-dff-ash":{problem:"Some registers must start at 1, not 0.",tasks:["set = 1 forces q = 1 at once.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Asynchronous set."},"p3-dff-srh":{problem:"A synchronous reset only acts on a clock edge, so it is timed like any other data input.",tasks:["rst = 1 clears q on the next rising edge only. Do not put rst in the sensitivity list.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Synchronous reset, and how it differs from asynchronous reset."},"p3-dff-srl":{problem:"The same synchronous reset, active low.",tasks:["rst_n = 0 clears q on the next rising edge.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Synchronous active-low reset."},"p3-dff-srs":{problem:"When reset and set arrive together, one must win. Here reset has priority.",tasks:["On a rising edge: rst = 1 gives 0, else set = 1 gives 1, else q takes d.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Priority between synchronous controls."},"p3-sync-async":{problem:"One reset, two registers: one resets at once, the other waits for the clock. The waveform shows the difference.",tasks:["Build q_sync with a synchronous reset and q_async with an asynchronous one.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"When each reset style acts, seen side by side."},"p3-twin":{problem:"Two 8-bit registers share a data bus, clock and reset, but load independently.",tasks:["load_a loads d into qa, load_b into qb; otherwise each holds.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Registers with load enables and a shared bus."},"p4-sr5":{problem:"Serial data enters at the left and moves one bit to the right each clock, as in a serial receiver.",tasks:["On each rising edge: q <= {sin, q[4:1]}.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Shift registers with concatenation."},"p4-usr5":{problem:"One register that can hold, shift right, shift left or load in parallel, chosen by a mode input.",tasks:["Implement the four modes in the comment.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Multi-function registers with a case on mode."},"p4-cnt":{problem:"Counters are everywhere: timers, addresses, state sequencing.",tasks:["A 4-bit up counter that wraps from 15 to 0.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"A basic synchronous counter."},"p4-cnt-tb":{problem:"A design is only as good as its testbench. Here the design is given and you write the testbench.",tasks:["Complete the testbench: reset, count, pause with en, check every cycle and print PASS or FAIL. Then set BUG = 1 in the design: your testbench must print FAIL.","Run: your testbench should print PASS, and FAIL once BUG = 1.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Self-checking testbenches with an expected-value model."},"p4-cnt-load":{problem:"Counters often need to start from a given value.",tasks:["load = 1 loads d; otherwise count up.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Synchronous load with priority over counting."},"p4-updown":{problem:"Count in either direction, for example a FIFO level or a position.",tasks:["up = 1 counts up, up = 0 counts down; both wrap.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Up/down counters."},"p4-mod":{problem:"A modulus-N counter counts 0 to N-1 and wraps, such as a decade (mod-10) counter for a clock display.",tasks:["Count 0 to 9 and wrap to 0.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Mod-N counters and parameters."},"p4-range":{problem:"Count only within a range, LOW to HIGH, and start again at LOW.",tasks:["After reset q = LOW (3); count to HIGH (12), then back to LOW.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Parameterized counter limits."},"p4-range-udl":{problem:"All the counter features together: a range, a direction and a load.",tasks:["Load has priority; up wraps HIGH \u2192 LOW; down wraps LOW \u2192 HIGH.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Combining counter features with clear priority."},"p4-div2":{problem:"Make a slower clock from a fast one.",tasks:["clk_out toggles on every rising edge of clk.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Divide-by-2 with a toggle flop."},"p4-div4":{problem:"Divide by 4 with a 50% duty cycle.",tasks:["Use a 2-bit counter; its top bit is clk / 4.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Dividing by a power of 2 with a counter."},"p4-div3":{problem:"Odd dividers are harder: a counter alone gives a 33% duty cycle. The testbench requires exactly 50%.",tasks:["Hint: combine a flop on the rising edge with one on the falling edge.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Odd clock division with a 50% duty cycle using both clock edges."},"p4-fifo":{problem:"A FIFO buffers data between a producer and a consumer running at different rates on the same clock.",tasks:["8 words of 8 bits. Ignore writes when full and reads when empty; dout shows the word on the clock after rd_en.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"FIFO pointers, a word count, and full and empty flags."},"p4-afifo":{problem:"When producer and consumer run on different clocks, the FIFO pointers cross clock domains. They must be Gray coded and synchronized.",tasks:["8 words of 8 bits, wclk and rclk. rdata shows the oldest word; rinc takes it.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Asynchronous FIFOs: Gray pointers, synchronizers, full and empty. See the CDC labs for more."},"p4-mealy-nov":{problem:"Detect the bit pattern 1-0-1 in a serial stream. Mealy: the output depends on the state and the current input.",tasks:["y = 1 while x is the final 1. After a detection, start again from scratch.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Mealy state machines and non-overlapping detection."},"p4-mealy-ov":{problem:"The same pattern, but the final 1 may also start the next 101: 10101 gives two detections.",tasks:["y = 1 while x is the final 1, and keep that 1 for the next pattern.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Overlapping detection in a Mealy machine."},"p4-moore-nov":{problem:"Moore: the output depends on the state only, so it comes one clock later than in a Mealy machine.",tasks:["y = 1 for one clock after the final 1 was clocked in. Start again from scratch after.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Moore state machines and their extra state."},"p4-moore-ov":{problem:"Moore and overlapping together.",tasks:["y = 1 for one clock after 101; the final 1 starts the next pattern.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Overlapping detection in a Moore machine."},"s01-reg":{problem:"Store a byte when enable is high, the most basic piece of a CPU datapath. Write it the SystemVerilog way.",tasks:["Use logic, ANSI ports, timeunit/timeprecision and always_ff. rst_ is asynchronous and active low.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"always_ff, the logic type, and time units in SystemVerilog."},"s02-mux":{problem:"One mux module, any width: the CPU uses it as a 5-bit address mux. The testbench uses an 8-bit and a 1-bit instance.",tasks:["out = sel_a ? in_a : in_b. Use always_comb and unique case with a default that drives X.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Parameters, always_comb and unique case."},"s03-cnt":{problem:"The CPU's program counter: it counts through the program, and loads a new address for a jump.",tasks:["5 bits: load has priority, then enable counts up; rst_ clears it.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Priority in always_ff and counter wrap-around."},"s04-ctrl":{problem:"The CPU's controller steps through 8 states for every instruction and decides which blocks act in each: fetch, decode, operand fetch, execute, store.",tasks:["Use the enum types from package typedefs, state.next() for the sequence, and always_comb with unique case for the outputs in the table in the comments.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Packages, enumerated types and their methods, and Mealy outputs."},"s05-alu":{problem:"The CPU's ALU combines the accumulator with memory data. Its result is registered on the falling clock edge so it is ready for the accumulator on the next rising edge.",tasks:["Compute out on negedge clk for the 8 opcodes; zero = 1 when accum is 0.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Using package enums in a datapath, and two clock edges."},"s06-memtb":{problem:"The memory is given. Write the testbench that proves it works, with reusable tasks.",tasks:["Write tasks write_mem and read_mem with a default debug argument, a void function printstatus, and two tests. Then set BUG = 1: your testbench must report FAIL.","Run: your testbench should print PASS, and FAIL once BUG = 1.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Tasks with default arguments, void functions, and driving on the inactive clock edge."},"s07-struct":{problem:"A bus is many signals that always travel together. Bundling them keeps every module in agreement. SystemVerilog interfaces do this with modports; Icarus Verilog 12 does not support interface ports yet, so this lab uses a packed struct from a package, which every tool supports.",tasks:["Declare mem_req_t (read, write, addr, data in that order) and write the memory using req.field names.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Packed structs, packages, and when to use a struct or an interface."},"s08-cpu":{problem:"Put it all together: the register, mux, counter, controller, ALU and memory make a small CPU that runs programs.",tasks:["Instantiate and connect the seven blocks in module cpu (all blocks are given above it). The testbench runs three programs: a basic test, a sum of 1 to 10, and Fibonacci up to 144.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Building a CPU from blocks, and debugging it from the waveform and program results."},"s09-johnson":{problem:"A Johnson counter is a shift register whose inverted output feeds back: 2N states with only one bit changing at a time.",tasks:["Shift left and feed ~q[N-1] into bit 0. The testbench checks N = 4 and N = 6.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Parameterized shift-register counters."},"s10-gen":{problem:"Hardware is often an array of identical blocks. A generate loop builds it for any size.",tasks:["Build rca from N full_adder instances with a for-generate loop. Do not use + in rca.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Generate loops, genvars and named generate blocks."},"s11-dpram":{problem:"Two ports let one block write while another reads, for example a frame buffer or a FIFO memory.",tasks:["Port A writes and reads, port B reads. Both reads are synchronous; port A reads the old data when it writes the same address.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Memory arrays, synchronous reads and read-before-write."},"s12-uart":{problem:"Send bytes over a single wire: a start bit, 8 data bits LSB first, a stop bit. The testbench decodes the line like a real receiver.",tasks:["Write the state machine with an enum type: IDLE, START_BIT, DATA_BITS, STOP_BIT. Each bit lasts CLKS_PER_BIT clocks.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Enum state machines with counters, and serial protocols."},"l01-gates":{problem:"Every digital circuit is built from a handful of gates: AND, OR, NOT, NAND, NOR, XOR and XNOR. You need to know each truth table by heart.",tasks:["Instantiate one gate primitive per output (and, or, not, nand, nor, xor, xnor).","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Verilog gate primitives and the truth table of every basic gate."},"l02-nand":{problem:"NAND is a universal gate: any logic function can be built from NAND gates alone. Chips like the 7400 have only NANDs.",tasks:["Build NOT, AND, OR and XOR using only nand primitives. No assign, no other gates.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Why NAND is universal, and De Morgan's law in practice (OR = NAND of inverted inputs)."},"l03-nor":{problem:"NOR is the other universal gate. Building every gate from NOR shows the duality of Boolean algebra.",tasks:["Build NOT, OR, AND and XNOR using only nor primitives.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"NOR-only design, and how it mirrors NAND-only design."},"l04-sop-pos":{problem:"A Boolean function can be written as a sum of products (SOP) or a product of sums (POS). Both describe the same truth table.",tasks:["Write y1 (SOP), y2 (POS) and y3 as continuous assignments, exactly as given.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Translating SOP and POS expressions into logic, and reading a truth table."},"l05-demorgan":{problem:"De Morgan's laws let you turn ANDs into ORs and back by inverting. They are behind every NAND and NOR trick.",tasks:["Write both sides of both laws. The testbench checks that each pair is equal for every input.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"(A\xB7B)' = A' + B' and (A + B)' = A'\xB7B'."},"l06-kmap":{problem:"A minterm list gives the truth table but not the cheapest circuit. A Karnaugh map finds the simplest SOP form.",tasks:["Draw a 3-variable K-map for F1 and a 4-variable K-map for F2, then write the simplified expressions.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Grouping 1s in a K-map into the largest power-of-two rectangles, including groups that wrap around the edges."},"l07-dontcare":{problem:"Some input combinations never happen. Their outputs are don't-cares (d), and using them as 1s can make the circuit smaller.",tasks:["Simplify F = \u03A3m(1, 3, 7, 11, 15) + d(0, 2, 5) with a 4-variable K-map and write the result.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"How don't-care terms enlarge K-map groups."},"l08-parity":{problem:"Parity is the simplest error detection: one extra bit makes the number of 1s even, so a single flipped bit is caught.",tasks:["Generate the even parity bit p for 4 data bits, and the error flag for a received 5-bit word.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"XOR trees and the reduction XOR operator (^d)."},"l09-majority":{problem:"Safety systems use three copies of a signal and take the majority, so that one faulty copy is outvoted.",tasks:["Fill in the truth table, simplify \u03A3m(3, 5, 6, 7) with a K-map and write y.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"From a word description to a truth table to a minimal circuit."},"l10-sub":{problem:"Subtraction needs a borrow instead of a carry. The full subtractor is the building block of a ripple-borrow subtractor.",tasks:["Write D and Bout for the half subtractor and the full subtractor.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Difference and borrow equations, and how they compare with the adder's."},"l29-rca":{problem:"To add multi-bit numbers, full adders are chained so each carry ripples into the next stage.",tasks:["Instantiate full_adder four times and connect the carries.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Structural hierarchy and the ripple-carry adder."},"l18-addsub":{problem:"One adder can also subtract: invert B and add 1, using two's complement. One control input picks the operation.",tasks:["Use XOR gates to invert B when M = 1, feed M in as the carry, and detect signed overflow.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Two's complement subtraction, carry out versus overflow."},"l19-bcdadd":{problem:"Calculators and clocks count in decimal digits (BCD). A binary adder gives the wrong code when a digit sum exceeds 9.",tasks:["Add the two digits in binary, then add 6 and set the carry when the sum is above 9.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Why the add-6 correction works."},"l17-cmp2":{problem:"Comparing two numbers is everywhere: in sorting, in limits, in address decoding.",tasks:["Write gt, eq and lt from the K-map equations with gates only (no >, < or ==).","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Building a comparator from equality (XNOR) terms, from the most significant bit down."},"l30-cmp4":{problem:"Wider numbers are compared by chaining 4-bit comparators. The cascade inputs carry the result of the lower bits.",tasks:["Compare A and B; when they are equal, pass the cascade inputs through.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"How cascading works, and how to tie the inputs of a single chip."},"l14-dec38":{problem:"Decoders select one of many: one memory chip, one display digit, one peripheral. Real parts have active-low outputs and several enables.",tasks:["Decode a to one active-low output when g1 = 1 and both active-low enables are 0. Otherwise all outputs are 1.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Active-low signals and enable logic."},"l11-dec-fa":{problem:"A decoder produces every minterm, so any function is just an OR of the right decoder outputs.",tasks:["Instantiate the 3-to-8 decoder and OR together the minterms of S and C.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Implementing functions with a decoder and OR gates."},"l15-enc83":{problem:"An encoder does the opposite of a decoder. A priority encoder handles several active inputs, as in interrupt controllers.",tasks:["Encode a one-hot input with a valid flag, and find the position of the highest 1 with an any flag.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Plain versus priority encoding, and what happens with invalid inputs."},"l13-mux-demux":{problem:"Multiplexers pick one of many inputs onto one line; demultiplexers send one line to one of many outputs.",tasks:["Write the 8-to-1 mux and the 1-to-8 demux.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Mux and demux as data selectors, and indexed part selects."},"l12-mux-fn":{problem:"A 2^n-to-1 multiplexer can implement any function of n + 1 variables: the extra variable goes to the data inputs.",tasks:["Work out the data inputs (0, 1, D or D') two truth-table rows at a time and instantiate mux8.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"The mux implementation method from the lab manuals."},"l16-gray":{problem:"In Gray code only one bit changes between neighbouring values. It is used in encoders and in clock domain crossing.",tasks:["Write the binary-to-Gray and Gray-to-binary converters.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Gray code, and why the reverse conversion chains XORs."},"l20-7seg":{problem:"Digital clocks and meters show digits on 7-segment displays. A decoder (like the 7447/7448) lights the right segments.",tasks:["Fill in the case statement for digits 0 to 9 and blank the display for 10 to 15. The output draws each digit.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Truth tables with many outputs, and the case statement."},"l21-srlatch":{problem:"Memory starts with feedback: two cross-coupled gates can hold a bit. This is the SR latch, the base of every flip-flop.",tasks:["Build the latch from two nand primitives with a 1 ns delay each.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Feedback, the set, reset and hold states, and why S = R = 0 is forbidden for a NAND latch."},"l22-ffs":{problem:"The four classic flip-flops differ only in their characteristic tables. Knowing them is the key to counter and FSM design.",tasks:["Write all four flip-flops in one always block, from their characteristic tables.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Characteristic tables, edge triggering and asynchronous reset."},"l23-ripple":{problem:"The simplest counter: each flip-flop toggles the next. It needs no logic, but the outputs do not change together.",tasks:["Instantiate three toggle flip-flops, each clocked by the output of the stage before.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Asynchronous counters and ripple delay."},"l24-sync":{problem:"In a synchronous counter every flip-flop shares one clock, so all outputs change together.",tasks:["Derive the T inputs from the count and toggle on the clock edge.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Synchronous counter design with T flip-flops."},"l32-updown":{problem:"Counters that go both ways are used in positioning and in volume controls.",tasks:["Use T flip-flops: derive T0, T1 and T2 from the excitation table with the up input.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Excitation tables and K-maps for counter design."},"l27-mod6":{problem:"Clocks divide by 6 and 10 to count seconds and minutes. A MOD-N counter clears itself at N \u2212 1.",tasks:["Count 0 to 5 and go back to 0, with a terminal count output.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Truncated counters and terminal count."},"l25-ring":{problem:"Shift registers with feedback become counters. A ring counter gives one-hot outputs; a Johnson counter doubles the count with the same flops.",tasks:["Write the ring counter (reset 1000) and the Johnson counter (reset 0000) in one always block.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Ring versus twisted-ring (Johnson) counters, and how many states each has."},"l26-siso":{problem:"Shift registers move serial data, as in UARTs and SPI. The data 1001 shifted in comes out four clocks later.",tasks:["Shift sin into q[3] on every clock, with sout = q[0].","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Serial-in serial-out operation and delay in clocks."},"l31-usr":{problem:"One register that can hold, shift left, shift right or load in parallel (like the 74194) covers every shift register use.",tasks:["Pick the next value with a case on mode.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Mode-controlled registers, the basis of the 74194."},"l28-fsm":{problem:"Every sequential circuit is a state machine. Given a state table, you can build it directly.",tasks:["Write the next-state logic from the table and the Moore output z.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"State tables, next-state logic and Moore outputs."},"l33-traffic":{problem:"A real-world state machine with an input (a waiting car) and a timer, the classic FSM design example.",tasks:["Write the four states, the timer for the side green, and the lights for each state.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Moore FSM design with a timer, from a word specification."}};var on="http://www.w3.org/2000/svg",A=(t,e,n)=>{let s=document.createElementNS(on,t);for(let[a,i]of Object.entries(e||{}))s.setAttribute(a,i);return n&&n.appendChild(s),s};function dn(t){let e=t.trim(),n="port",s="",a=/^([\s\S]*?)([!+])?$/.exec(e),i=y=>{let h=/^([\s\S]*?)([!+])$/.exec(y);return h?(s=s||h[2],h[1]):y};e=i(a[0]);let d=[["[","]","reg"],["(",")","logic"],["{","}","block"],["<",">","mux"]];for(let[y,h,c]of d)if(e.startsWith(y)&&e.endsWith(h)){n=c,e=e.slice(1,-1);break}n==="port"&&e.startsWith("@")&&(n="clk",e=e.slice(1)),e=i(e);let r=null,b=e.lastIndexOf("|");b>0&&(r=e.slice(b+1).trim(),e=e.slice(0,b));let m=e.indexOf("#"),u=e.trim();m>=0&&(e=e.slice(0,m));let p=e.replace(/\\n/g,`
+`).trim();return{id:n+":"+u,label:p,kind:n,dom:r,mark:s}}function ln(t){let e=new Map,n=[],s=a=>{if(!e.has(a.id))e.set(a.id,{...a,order:e.size});else{let i=e.get(a.id);i.dom=i.dom||a.dom,i.mark=i.mark||a.mark}return e.get(a.id)};for(let a of t.split(";").map(i=>i.trim()).filter(Boolean)){let i=/\s+([-~.+])(?:(\S(?:[^>]*?\S)?)\1)?>\s+|\s+>\s+/g,d=0,r=null,b=null,m,u=[];for(;m=i.exec(a);)u.push([a.slice(d,m.index),m]),d=i.lastIndex;u.push([a.slice(d),null]);for(let[p,y]of u){let h=s(dn(p));if(r&&b&&n.push({a:r,b:h,...b}),r=h,y){let c=y[1]||"";b={label:(y[2]||"").trim(),kind:c==="~"?"bad":c==="+"?"good":c==="."?"dash":"plain"}}}}return{nodes:[...e.values()],edges:n}}function cn(t){let e=t.label.split(`
+`),n=Math.max(...e.map(s=>s.length))*6.9;return t.kind==="port"||t.kind==="clk"?{w:Math.max(28,n+(t.kind==="clk"?26:12)),h:Math.max(24,e.length*15+6),lines:e}:t.kind==="mux"?{w:Math.max(40,n+24),h:Math.max(52,e.length*15+22),lines:e}:{w:Math.max(54,n+24),h:Math.max(34,e.length*15+16),lines:e}}function Ie(t){let e=typeof t=="string"?ln(t):t,{nodes:n,edges:s}=e;if(!n.length)return null;let a=new Map(n.map(l=>[l,[]]));for(let l of s)l.a!==l.b&&a.get(l.a).push(l);let i=new Map,d=new Set,r=l=>{i.set(l,1);for(let o of a.get(l)){let k=i.get(o.b);k===1?d.add(o):k||r(o.b)}i.set(l,2)};for(let l of n)i.get(l)||r(l);let b=new Set(s.filter(l=>l.kind==="dash"&&s.some(o=>o.b===l.b&&o.kind!=="dash"))),m=new Map(n.map(l=>[l,0]));for(let l=0;l<n.length;l++){let o=!1;for(let k of s)k.a!==k.b&&!d.has(k)&&!b.has(k)&&m.get(k.b)<m.get(k.a)+1&&(m.set(k.b,m.get(k.a)+1),o=!0);if(!o)break}let u=Math.max(...m.values());for(let l of n)l.kind==="port"&&!a.get(l).length&&s.some(o=>o.b===l)&&m.get(l)<u&&m.set(l,u);let p=[];for(let l of n){let o=m.get(l);(p[o]=p[o]||[]).push(l)}let y=[...new Set(n.map(l=>l.dom).filter(Boolean))],h=l=>l.dom?y.indexOf(l.dom):-1;for(let l of p)l&&l.sort((o,k)=>h(o)-h(k)||o.order-k.order);for(let l of n)Object.assign(l,cn(l));let c=22,f=18,w=p.map((l,o)=>Math.max(46,...s.filter(k=>m.get(k.a)===o&&m.get(k.b)>o&&k.label).map(k=>k.label.length*6.2+30))),S=new Map;for(let l of n){let o=l.dom;if(!o){let k=s.find(P=>P.a===l&&P.b.dom||P.b===l&&P.a.dom);o=k?k.a===l?k.b.dom:k.a.dom:null}S.set(l,o||"")}let q=[...new Set(n.map(l=>S.get(l)))];q.includes("")&&(q.splice(q.indexOf(""),1),q.unshift(""));let R=y.length>0,L=R?34:0,I=q.map(l=>Math.max(0,...p.map(o=>{let k=(o||[]).filter(P=>S.get(P)===l);return k.reduce((P,M)=>P+M.h,0)+Math.max(0,k.length-1)*c}))),H=[],j=f+(R?22:14);q.forEach((l,o)=>{H[o]=j,j+=I[o]+(o<q.length-1?L:0)});let D=j-f-(R?22:14),$=f,O=new Map,W=0;p.forEach((l,o)=>{if(!l)return;let k=Math.max(...l.map(P=>P.w));q.forEach((P,M)=>{let B=l.filter(U=>S.get(U)===P),z=B.reduce((U,K)=>U+K.h,0)+Math.max(0,B.length-1)*c,N=H[M]+(I[M]-z)/2;for(let U of B)O.set(U,{x:$+(k-U.w)/2,y:N,w:U.w,h:U.h}),N+=U.h+c}),$+=k+w[o]});let J=d.size>0,E=$-(w[p.length-1]||46)+f;W=f*2+(R?22:14)+D+(J?26:0);let te=A("svg",{viewBox:`0 0 ${E} ${W}`,class:"dg dg-block",role:"img"});te.style.maxWidth=E+"px",te.style.minWidth=Math.round(Math.min(E,Math.max(E*.72,320)))+"px";let rn=A("defs",{},te);for(let l of["plain","bad","good","dash"]){let o=A("marker",{id:"dg-ar-"+l,viewBox:"0 0 10 10",refX:9,refY:5,markerWidth:7,markerHeight:7,orient:"auto-start-reverse"},rn);A("path",{d:"M0,0 L10,5 L0,10 z",class:"dg-ah dg-"+l},o)}y.forEach((l,o)=>{let k=n.filter(K=>K.dom===l).map(K=>O.get(K)),P=q.indexOf(l),M=Math.min(...k.map(K=>K.x))-10,B=H[P]-22,z=Math.max(...k.map(K=>K.x+K.w))+10,N=H[P]+I[P]+8;A("rect",{x:M,y:B,width:z-M,height:N-B,rx:10,class:`dg-dom dg-d${o%4}`},te);let U=A("text",{x:M+8,y:B+13,class:`dg-domlabel dg-d${o%4}`},te);U.textContent=l});let we=f+(R?22:14)+D+10,_e=A("g",{},te);for(let l of s){let o=O.get(l.a),k=O.get(l.b),P,M,B;if(l.a===l.b)P=`M${o.x+o.w-10},${o.y} C${o.x+o.w+20},${o.y-26} ${o.x+10},${o.y-26} ${o.x+14},${o.y}`,M=o.x+o.w/2,B=o.y-22;else if(d.has(l)||m.get(l.b)<=m.get(l.a)){let z=o.x+o.w/2,N=k.x+k.w/2;P=`M${z},${o.y+o.h} C${z},${we+14} ${N},${we+14} ${N},${k.y+k.h}`,M=(z+N)/2,B=we+8}else{let z=o.x+o.w,N=o.y+o.h/2,U=k.x,K=k.y+k.h/2,he=(z+U)/2;P=`M${z},${N} C${he},${N} ${he},${K} ${U},${K}`;let Oe=m.get(l.b)-m.get(l.a),V=Oe>1?.5/Oe:.5,G=1-V;M=G*G*G*z+3*G*G*V*he+3*G*V*V*he+V*V*V*U,B=G*G*G*N+3*G*G*V*N+3*G*V*V*K+V*V*V*K}if(A("path",{d:P,class:"dg-edge dg-"+l.kind,"marker-end":`url(#dg-ar-${l.kind})`},_e),l.label){let z=l.label.length*6.2+8;A("rect",{x:M-z/2,y:B-9,width:z,height:14,rx:3,class:"dg-elbg"},_e);let N=A("text",{x:M,y:B+2,class:"dg-elabel dg-"+l.kind,"text-anchor":"middle"},_e);N.textContent=l.label}}for(let l of n){let o=O.get(l),k=A("g",{class:`dg-node dg-k-${l.kind}${l.mark==="!"?" dg-bad":l.mark==="+"?" dg-good":""}`},te);if(l.kind==="reg")A("rect",{x:o.x,y:o.y,width:o.w,height:o.h,rx:3,class:"dg-shape"},k),A("path",{d:`M${o.x},${o.y+o.h-12} L${o.x+7},${o.y+o.h-7} L${o.x},${o.y+o.h-2}`,class:"dg-tri"},k);else if(l.kind==="logic")A("rect",{x:o.x,y:o.y,width:o.w,height:o.h,rx:Math.min(16,o.h/2),class:"dg-shape"},k);else if(l.kind==="block")A("rect",{x:o.x,y:o.y,width:o.w,height:o.h,rx:6,class:"dg-shape"},k);else if(l.kind==="mux")A("path",{d:`M${o.x},${o.y} L${o.x+o.w},${o.y+10} L${o.x+o.w},${o.y+o.h-10} L${o.x},${o.y+o.h} z`,class:"dg-shape"},k);else if(l.kind==="clk"){let B=o.y+o.h/2;A("path",{d:`M${o.x+2},${B+5} h4 v-10 h6 v10 h6 v-10`,class:"dg-clkw"},k)}let P=l.lines,M=l.kind==="clk"?o.x+24:o.x+o.w/2;P.forEach((B,z)=>{let N=A("text",{x:M,y:o.y+o.h/2+(z-(P.length-1)/2)*15+4,"text-anchor":l.kind==="clk"?"start":"middle",class:"dg-label"},k);N.textContent=B})}return te}function pn(t,e){let n=t.split(/\s+/),s=[],a="";for(let i of n)a&&(a+" "+i).length>e?(s.push(a),a=i):a=a?a+" "+i:i;return a&&s.push(a),s}var gn={P:"Problem",S:"",Q:"Check",X:"What goes wrong",F:"Fix",OK:"Result"};function Fe(t){if(!t||!t.length)return null;let e=300,n=12,s=42,a=18,i=t.map(p=>{let y=/^(P|S|Q|X|F|OK):\s*(.*)$/.exec(p)||[null,"S",p],h=pn(y[2],s),c=gn[y[1]];return{k:y[1],lines:h,tag:c,h:h.length*15+(c?30:16)}}),d=i.reduce((p,y)=>p+y.h,0)+a*(i.length-1)+16,r=A("svg",{viewBox:`0 0 ${e+16} ${d}`,class:"dg dg-flow",role:"img"});r.style.maxWidth=e+16+"px";let b=A("defs",{},r),m=A("marker",{id:"dg-ar-flow",viewBox:"0 0 10 10",refX:9,refY:5,markerWidth:7,markerHeight:7,orient:"auto"},b);A("path",{d:"M0,0 L10,5 L0,10 z",class:"dg-ah dg-plain"},m);let u=8;return i.forEach((p,y)=>{let h=A("g",{class:"dg-fl dg-fl-"+p.k},r);p.k==="Q"?A("path",{d:`M22,${u} H${8+e-14} L${8+e},${u+p.h/2} L${8+e-14},${u+p.h} H22 L8,${u+p.h/2} z`,class:"dg-shape"},h):A("rect",{x:8,y:u,width:e,height:p.h,rx:p.k==="S"?6:10,class:"dg-shape"},h);let c=u+18;if(p.tag){let f=A("text",{x:8+n+(p.k==="Q"?10:0),y:c,class:"dg-ftag"},h);f.textContent=p.tag.toUpperCase(),c+=16}for(let f of p.lines){let w=A("text",{x:8+n+(p.k==="Q"?10:0),y:c,class:"dg-ftext"},h);w.textContent=f,c+=15}u+=p.h,y<i.length-1&&(A("path",{d:`M${8+e/2},${u+1} V${u+a-2}`,class:"dg-edge dg-plain","marker-end":"url(#dg-ar-flow)"},r),u+=a)}),r}function ve(t,e,n){let s=document.getElementById("lab-brief");if(!s)return;let a=t[e];if(!a){s.hidden=!0;return}s.querySelector(".brief-problem").textContent=a.problem;let i=s.querySelector(".brief-tasks");i.innerHTML="";for(let u of a.tasks){let p=document.createElement("li");p.textContent=u,i.appendChild(p)}s.querySelector(".brief-learn").textContent=a.learn;let d=s.querySelector(".brief-fig"),r=a.images||(a.image?[{src:a.image,alt:a.imageAlt||""}]:[]);if(r.length||a.html){if(d||(d=document.createElement("figure"),d.className="brief-fig",s.appendChild(d)),d.innerHTML="",r.length){let u=document.createElement("div");u.className="brief-imgs";for(let p of r){let y=document.createElement("a");y.href=p.src,y.target="_blank",y.rel="noopener";let h=document.createElement("img");h.src=p.src,h.alt=p.alt||"",h.loading="lazy",y.appendChild(h),u.appendChild(y)}d.appendChild(u)}if(a.html){let u=document.createElement("div");u.className="brief-html",u.innerHTML=a.html,d.appendChild(u)}if(a.caption){let u=document.createElement("figcaption");u.textContent=a.caption,d.appendChild(u)}}else d&&d.remove();let b=s.querySelector(".brief-dg"),m=n&&n[e];if(m&&(m.b||m.f)){b||(b=document.createElement("div"),b.className="brief-dg",s.querySelector(".brief-body").after(b)),b.innerHTML="";let u=(p,y)=>{if(!y)return;let h=document.createElement("div");h.className="brief-dgp";let c=document.createElement("h3");c.textContent=p,h.appendChild(c);let f=document.createElement("div");f.className="brief-dgs",f.appendChild(y),h.appendChild(f),b.appendChild(h)};try{u(m.bt||"Design",m.b?Ie(m.b):null)}catch(p){console.warn("diagram",e,p)}try{u(m.ft||"Problem \u2192 solution",m.f?Fe(m.f):null)}catch(p){console.warn("flow",e,p)}b.classList.toggle("one",b.children.length===1)}else b&&b.remove();s.hidden=!1}var x=(t,e,n,s)=>["P: "+t,...(Array.isArray(e)?e:[e]).map(a=>"S: "+a),"Q: "+(s||"The testbench drives every input combination and compares with a reference."),"OK: "+n],v=(t,e,n,s)=>["P: "+t,...(Array.isArray(e)?e:[e]).map(a=>"S: "+a),"Q: "+(s||"Every clock, the testbench compares your design with a reference model."),"OK: "+n],Le={counter:{b:"en > (+1 if en) > [count] > count; [count] > (+1 if en); rst_n .async.> [count]",f:v("Timers and addresses need a counter that resets, counts when enabled and wraps.","count <= count + 1 when en, on the rising edge; rst_n clears it at once.","A parameterised counter you can read in the waveform.","Find the cycle where it wraps from 15 to 0.")},mux:{b:"a > <4:1 mux> > y; b > <4:1 mux>; c > <4:1 mux>; d > <4:1 mux>; sel .2 bits.> <4:1 mux>",f:x("Pick one of four 8-bit buses.","A case on sel inside always @(*), with every value covered.","No latch: every sel value drives y.")},adder:{b:"a[0], b[0], cin > {FA0} -c1-> {FA1} -c2-> {FA2} -c3-> {FA3} > cout; {FA0} > sum",f:x("Checking results by eye does not scale.",["A 4-bit ripple-carry adder from full adders.","The testbench loops over all 512 inputs and compares with a + b + cin."],"The testbench prints PASS or FAIL by itself.","Does the self-checking testbench find a bug you add?")},fsm:{b:"din > (next state) > [state\\nS0..S4] > (found = S4) > found; [state\\nS0..S4] > (next state)",f:["P: Detect 1011 in a serial stream, including overlaps (10111011).","S: One state per prefix matched: S0, 1, 10, 101, 1011.","S: After 1011 the last 1 can start the next match.","Q: Count the detections in the run.","OK: A Moore FSM: found depends on the state only."]},cdc:{b:"async_in > [s1|clk_dst] > [s2|clk_dst] > sync_out",f:["P: A signal from another clock can make the sampling flop metastable.","S: The first flop may go metastable.","S: The second flop gives it a whole clock to settle.","OK: sync_out is a clean level in clk_dst, two clocks later."]},fifo:{b:"din > {memory 8\xD78} > dout; wr_en > [wptr] .> {memory 8\xD78}; rd_en > [rptr] .> {memory 8\xD78}; [wptr] > (count, full, empty); [rptr] > (count, full, empty)",f:["P: Producer and consumer run at different rates.","S: Write at wptr, read at rptr, both wrap around.","Q: Writes when full and reads when empty must be ignored.","OK: A FIFO with correct full and empty flags."]},sv:{b:"{always_ff\\nstate} > {always_comb\\nlights} > lights; {always_comb\\nnext state} > {always_ff\\nstate}; {assertions} .check.> {always_ff\\nstate}",f:["P: Plain Verilog FSMs use magic numbers and are hard to read.","S: typedef enum names the states; always_ff and always_comb show the intent.","S: Assertions check the design while it runs.","OK: A readable traffic-light FSM that checks itself."]},"p1-ha-df":{b:"a > (XOR) > sum; b > (XOR); a > (AND) > carry; b > (AND)",f:x("Add two bits.","assign sum = a ^ b; assign carry = a & b;","Dataflow: continuous assignments only.")},"p1-ha-bh":{b:"a > {always @(*)\\ncase {a, b}} > sum; b > {always @(*)\\ncase {a, b}} > carry",f:x("The same half adder, by its behavior.","An always @(*) block with a case on {a, b}; outputs are reg.","Behavioral modelling gives the same truth table.")},"p1-ha-st":{b:"a > (xor g1) > sum; b > (xor g1); a > (and g2) > carry; b > (and g2)",f:x("The same half adder from gates.","Instantiate xor and and primitives and wire them.","Structural modelling with gate primitives.")},"p1-fa-df":{b:"a > (a ^ b ^ cin) > sum; b > (a ^ b ^ cin); cin > (a ^ b ^ cin); a > (majority) > cout; b > (majority); cin > (majority)",f:x("Add three bits.","sum = a ^ b ^ cin; cout = ab + cin(a ^ b).","The full adder in two equations.")},"p1-fa-bh":{b:"a > {always @(*)\\n{cout, sum} = a+b+cin} > sum; b > {always @(*)\\n{cout, sum} = a+b+cin} > cout; cin > {always @(*)\\n{cout, sum} = a+b+cin}",f:x("The same full adder, by its behavior.","{cout, sum} = a + b + cin inside always @(*).","Verilog arithmetic does the work.")},"p1-fa-st":{b:"a > {half_adder 1} -s1-> {half_adder 2} > sum; b > {half_adder 1} -c1-> (OR) > cout; cin > {half_adder 2} -c2-> (OR)",f:x("Build a full adder the textbook way.","Two half_adder instances and an OR gate, connected by name.","Hierarchy: modules inside modules.")},"p1-ops":{b:"a[3:0] > {arithmetic, bitwise, logical,\\nreduction, relational, shift,\\nconcat, replicate, ?:} > one output per operator; b[3:0] > {arithmetic, bitwise, logical,\\nreduction, relational, shift,\\nconcat, replicate, ?:}",f:x("Know every Verilog operator group.","Each output uses one operator on a and b.","Widths and results of every operator.")},"p1-c2f":{b:"C > {task c2f\\nF = C*9/5 + 32} > F",f:["P: The same calculation is needed many times.","S: Write it once as a task with input and output arguments.","S: Call it for every temperature.","Q: Integer arithmetic: multiply before you divide.","OK: One task, many calls, the same result as the formula."]},"p2-add4":{b:"a[3:0] > (a + b + cin) > sum[3:0]; b[3:0] > (a + b + cin) > cout; cin > (a + b + cin)",f:x("Add two 4-bit numbers and a carry in.","{cout, sum} = a + b + cin: the result needs 5 bits.","Concatenation catches the carry out.")},"p2-mux2":{b:"a > <2:1> > y; b > <2:1>; sel .> <2:1>",f:x("Pick one of two inputs.","y = sel ? b : a.","The conditional operator is a mux.")},"p2-mux4":{b:"d0 > <4:1> > y; d1 > <4:1>; d2 > <4:1>; d3 > <4:1>; sel .2 bits.> <4:1>",f:x("Pick one of four inputs.","A case on sel, or nested ?:.","Every sel value selects one input.")},"p2-dec24":{b:"a[1:0] > {2-to-4 decoder} > y[3:0]; en .> {2-to-4 decoder}",f:x("Turn a 2-bit number into one-hot select lines.","y = en ? 1 << a : 0.","Exactly one line high when enabled.")},"p2-enc42":{b:"d[3:0] > {4-to-2 encoder} > y[1:0]; {4-to-2 encoder} > valid",f:x("Find which one of four lines is high.","A case on d for the four one-hot values; valid = 0 otherwise.","Encoding, and flagging illegal inputs.")},"p2-penc42":{b:"d[3:0] > {priority encoder\\nhighest 1 wins} > y[1:0]; {priority encoder\\nhighest 1 wins} > valid",f:x("Several requests at once: the highest wins.","if/else from d[3] down to d[0].","Priority comes from the order of the tests.")},"p2-cmp4":{b:"a[3:0] > {comparator} > gt; b[3:0] > {comparator} > eq; {comparator} > lt",f:x("Compare two unsigned 4-bit numbers.","gt, eq and lt with relational operators.","Exactly one output is 1 for every pair.")},"p2-bshift8":{b:"d[7:0] > {barrel shifter} > y[7:0]; amt .0 to 7.> {barrel shifter}; dir .left/right.> {barrel shifter}; rotate .> {barrel shifter}",f:x("Shift or rotate by any amount in one step.",["Shift with << or >>.","For rotate, OR in the bits that fell off the other end."],"A processor-style shift unit.")},"p2-alu":{b:"a > (add, sub, and, or,\\nxor, not, shl, shr) > <op mux> > y; b > (add, sub, and, or,\\nxor, not, shl, shr); op .3 bits.> <op mux>; <op mux> > (y == 0) > zero; (add, sub, and, or,\\nxor, not, shl, shr) > carry",f:x("Eight operations in one block, chosen by an opcode.","A case on op; zero and carry flags.","The heart of a processor datapath.")},"p3-dlatch":{b:"d > [latch\\nen = 1: q = d] > q; en .> [latch\\nen = 1: q = d]",f:v("Store a bit while en = 0, follow d while en = 1.","always @(*) if (en) q = d: the missing else makes a latch.","A transparent latch.","Does q follow d while en is high?")},"p3-dlatch-rst":{b:"d > [latch] > q; en .> [latch]; rst .async, wins.> [latch]",f:v("Clear the latch at once, whatever en is.","Test rst first, then en.","A latch with an asynchronous reset.")},"p3-dff":{b:"d > [DFF] > q; @clk .> [DFF]",f:v("Sample d only on the rising edge.","always @(posedge clk) q <= d.","The basic memory element of synchronous design.")},"p3-dff-arh":{b:"d > [DFF] > q; @clk .> [DFF]; rst .async, high.> [DFF]",f:v("Reset must work with no clock running.","always @(posedge clk or posedge rst).","rst clears q immediately.")},"p3-dff-neg-arh":{b:"d > [DFF\\nfalling edge] > q; @clk .negedge.> [DFF\\nfalling edge]; rst .async.> [DFF\\nfalling edge]",f:v("Capture on the falling edge, as in DDR.","always @(negedge clk or posedge rst).","q changes at the falling edge.")},"p3-dff-arl":{b:"d > [DFF] > q; @clk .> [DFF]; rst_n .async, low.> [DFF]",f:v("Most chips use an active-low reset.","always @(posedge clk or negedge rst_n) if (!rst_n) ...","rst_n = 0 clears q at once.")},"p3-dff-ash":{b:"d > [DFF] > q; @clk .> [DFF]; set .async, high.> [DFF]",f:v("Some registers must start at 1.","set forces q to 1 without waiting for the clock.","An asynchronous set.")},"p3-dff-srh":{b:"d > <rst ? 0 : d> > [DFF] > q; rst .> <rst ? 0 : d>; @clk .> [DFF]",f:v("A reset that is timed like data.","Only posedge clk in the sensitivity list; test rst inside.","rst acts on the next clock edge.")},"p3-dff-srl":{b:"d > <rst_n ? d : 0> > [DFF] > q; rst_n .> <rst_n ? d : 0>; @clk .> [DFF]",f:v("The same synchronous reset, active low.","if (!rst_n) q <= 0 inside always @(posedge clk).","rst_n = 0 clears q on the next edge.")},"p3-dff-srs":{b:"d > <rst, set, d\\npriority> > [DFF] > q; rst .wins.> <rst, set, d\\npriority>; set .> <rst, set, d\\npriority>",f:v("Reset and set together: one must win.","Test rst first, then set, then load d.","Priority is the order of the if/else.")},"p3-sync-async":{b:"d > [q_async] > q_async; d > [q_sync] > q_sync; rst .at once.> [q_async]; rst .next edge.> [q_sync]",f:["P: One reset, two registers: when does each clear?","S: q_async has rst in its sensitivity list; q_sync does not.","Q: In the waveform, q_async clears at rst, q_sync at the next clock edge.","OK: You can read the difference in time."]},"p3-twin":{b:"d[7:0] > [qa] > qa; d[7:0] > [qb] > qb; load_a .> [qa]; load_b .> [qb]",f:v("Two registers share a bus but load independently.","Each register loads d only when its load is high, else holds.","Shared data, separate enables.")},"p4-sr5":{b:"sin > [q4] > [q3] > [q2] > [q1] > [q0]",f:v("Serial data enters at the left and moves right.","q <= {sin, q[4:1]} every clock.","A 5-bit serial-in shift register.")},"p4-usr5":{b:"d > <mode mux\\nhold, >>, <<, load> > [q 5 bits] > q; sr_in > <mode mux\\nhold, >>, <<, load>; sl_in > <mode mux\\nhold, >>, <<, load>; [q 5 bits] > <mode mux\\nhold, >>, <<, load>; mode .2 bits.> <mode mux\\nhold, >>, <<, load>",f:v("One register for every shift job.","A case on mode chooses the next value.","Hold, shift right, shift left or load.")},"p4-cnt":{b:"[q 4 bits] > (+1) > [q 4 bits] > q; rst_n .async.> [q 4 bits]",f:v("Count 0 to 15 and wrap.","q <= q + 1 on every rising edge.","A basic counter.")},"p4-cnt-tb":{b:"{your testbench\\nstimulus + checker}+ > {counter (given)} > {your testbench\\nstimulus + checker}+; BUG .> {counter (given)}",f:["P: The design is given; you write the testbench.","S: Drive reset, enable and clock; keep a reference count.","S: Compare every clock and count mismatches.","Q: Set BUG = 1: does your testbench print FAIL?","OK: A testbench that catches a broken design."]},"p4-cnt-load":{b:"d > <load ? d : q+1> > [q] > q; [q] > (+1) > <load ? d : q+1>; load .> <load ? d : q+1>",f:v("Start counting from a given value.","load = 1 loads d, otherwise count up.","A loadable counter.")},"p4-updown":{b:"[q] > (+1 or \u22121) > [q] > q; up .> (+1 or \u22121)",f:v("Count in either direction.","up = 1 adds 1, up = 0 subtracts 1; both wrap.","An up/down counter.")},"p4-mod":{b:"[q] > (q == N\u22121 ? 0 : q+1) > [q] > q",f:v("A decade counter: 0 to 9, then 0.","Compare with N\u22121 and clear instead of adding.","A modulus-N counter.")},"p4-range":{b:"[q] > (q == HIGH ? LOW : q+1) > [q] > q",f:v("Count only from LOW to HIGH.","Reset to LOW; after HIGH go back to LOW.","A range counter.")},"p4-range-udl":{b:"d > <load / up / down> > [q] > q; [q] > <load / up / down>; load .> <load / up / down>; up .> <load / up / down>",f:v("Range, direction and load together.","load first; then up wraps HIGH \u2192 LOW, down wraps LOW \u2192 HIGH.","All counter features in one block.")},"p4-div2":{b:"[clk_out] > (NOT) > [clk_out] > clk_out; @clk .> [clk_out]",f:v("Make a clock at half the frequency.","Toggle a flop on every rising edge.","clk_out = clk / 2 with 50% duty.")},"p4-div4":{b:"[cnt 2 bits] > (+1) > [cnt 2 bits]; [cnt 2 bits] -cnt[1]-> clk_out",f:v("Divide by 4 with 50% duty.","A 2-bit counter: its top bit is clk / 4.","Counter bits are divided clocks.")},"p4-div3":{b:"[mod-3 counter\\nposedge] > (1/3 pulse) > [copy\\nnegedge] > (OR) > clk_out; (1/3 pulse) > (OR)",f:["P: An odd divider: a counter gives 33% duty, the testbench wants 50%.","S: A mod-3 counter on the rising edge makes a pulse 1 clock long.","S: A copy delayed by half a clock (falling edge).","F: OR them: the pulse becomes exactly 1.5 clocks.","OK: clk / 3 with exactly 50% duty."]},"p4-fifo":{b:"din > {memory 8\xD78} > dout; wr_en > [wptr] .> {memory 8\xD78}; rd_en > [rptr] .> {memory 8\xD78}; [wptr] > (full, empty); [rptr] > (full, empty)",f:v("Buffer data between a producer and a consumer.",["Write at wptr unless full, read at rptr unless empty.","Full and empty from the pointers and a count."],"A single-clock FIFO.")},"p4-afifo":{b:"wdata > {memory} > rdata; [wptr Gray|wclk] > [2-flop sync|rclk] > (rempty|rclk); [rptr Gray|rclk] > [2-flop sync #w|wclk] > (wfull|wclk); [wptr Gray|wclk] .> {memory}",f:["P: Producer and consumer on different clocks.","S: Each pointer is a Gray code: one bit changes per step.","S: Pointers cross through 2-flop synchronizers.","OK: Full in wclk and empty in rclk are never wrong, only late."]},"p4-mealy-nov":{b:"x > (next state) > [state\\nS0 S1 S2] > (y = S2 and x) > y; x > (y = S2 and x); [state\\nS0 S1 S2] > (next state)",f:v("Detect 1-0-1; restart after each detection.","Mealy: y depends on the state AND x.","10101 gives one detection.")},"p4-mealy-ov":{b:"x > (next state) > [state] > (y = S2 and x) > y; x > (y = S2 and x); [state] > (next state)",f:v("Detect 1-0-1, with overlap.","After a detection go to the '1 seen' state, not to the start.","10101 gives two detections.")},"p4-moore-nov":{b:"x > (next state) > [state\\nS0..S3] > (y = S3) > y; [state\\nS0..S3] > (next state)",f:v("Detect 1-0-1 with a Moore machine.","An extra state for 'found'; y depends on the state only.","y comes one clock later than in the Mealy version.")},"p4-moore-ov":{b:"x > (next state) > [state\\nS0..S3] > (y = S3) > y; [state\\nS0..S3] > (next state)",f:v("Moore and overlapping.","From the found state, a 0 goes to '10 seen'.","Two detections in 10101, one clock after each 1.")},"s01-reg":{b:"data > [register 8 bits\\nalways_ff] > out; enable .> [register 8 bits\\nalways_ff]; rst_ .async.> [register 8 bits\\nalways_ff]",f:v("Store a byte when enable is high, the SystemVerilog way.","logic, ANSI ports, timeunit and always_ff.","The CPU's register block.")},"s02-mux":{b:"in_a > <mux #(WIDTH)> > out; in_b > <mux #(WIDTH)>; sel_a .> <mux #(WIDTH)>",f:x("One mux module for any width.","A WIDTH parameter; always_comb with unique case and an X default.","Used as 5-bit in the CPU and 8/1-bit in the testbench.")},"s03-cnt":{b:"data > <load, +1 or hold> > [count 5 bits] > count; [count 5 bits] > <load, +1 or hold>; load .> <load, +1 or hold>; enable .> <load, +1 or hold>",f:v("The CPU's program counter.","load wins over enable; count wraps from 31 to 0.","A loadable counter in SystemVerilog.")},"s04-ctrl":{b:"opcode > {controller FSM\\n8 states, enum} > sel, rd, ld_ir, halt,\\ninc_pc, ld_ac, ld_pc, wr, data_e; zero > {controller FSM\\n8 states, enum}",f:v("Decide which CPU block acts in each of 8 states.","An enum for states and a package for opcodes; outputs from state, opcode and zero.","The VeriRISC sequence controller.")},"s05-alu":{b:"accum > (op: ADD, AND, XOR,\\nLDA, pass) > [out\\nfalling edge] > out; data > (op: ADD, AND, XOR,\\nLDA, pass); opcode .> (op: ADD, AND, XOR,\\nLDA, pass); accum > (accum == 0) > zero",f:v("Combine the accumulator with memory data.","A case on the opcode enum; register out on the falling edge.","The result is ready for the accumulator at the next rising edge.")},"s06-memtb":{b:"{your testbench\\ntasks write/read}+ > {memory 32\xD78 (given)} > {your testbench\\ntasks write/read}+; BUG .> {memory 32\xD78 (given)}",f:["P: The memory is given; prove it works.","S: Write tasks for write and read.","S: Fill memory, read it back, compare.","Q: With BUG = 1, does your testbench report errors?","OK: Reusable tasks make a short, strong testbench."]},"s07-struct":{b:"{testbench} -bus_t packed struct-> {memory with\\none bus port} > data_out; {package\\ntypedef struct packed} .> {memory with\\none bus port}",f:["P: Many signals travel together; every module must agree on them.","S: Put a packed struct in a package.","S: One port carries read, write, address and data.","OK: One definition, no wiring mistakes. (Interfaces do the same in other simulators.)"]},"s08-cpu":{b:"{program counter} > <address mux> > {memory} > {instruction register} > {controller\\n8-state FSM}; {instruction register} -operand address-> <address mux>; {memory} -data-> {ALU} > {accumulator}; {accumulator} > {ALU}; {controller\\n8-state FSM} .control.> {ALU}",f:["P: Put the blocks together into a CPU that runs programs.","S: Fetch: PC \u2192 memory \u2192 instruction register.","S: Execute: ALU on accumulator and memory data, controlled by the FSM.","Q: Do the test programs reach HALT at the right address?","OK: A working 8-bit VeriRISC CPU."]},"s09-johnson":{b:"[q N bits] > (shift left,\\nfeed back ~MSB) > [q N bits] > q",f:v("2N states with one bit changing at a time.","Shift left and feed the inverted MSB back in.","A Johnson counter: 8 states from 4 flops.")},"s10-gen":{b:"a, b, cin > {stage[0].fa} -c-> {stage[1].fa} -c-> {\u2026 N stages} -c-> {stage[N-1].fa} > cout",f:v("Build an array of identical blocks for any size.","A generate for loop with a genvar; each carry feeds the next stage.","An N-bit ripple-carry adder from one loop.","The testbench checks N = 4 and N = 12.")},"s11-dpram":{b:"port A: addr, din, we > {dual-port RAM} > dout_a; port B: addr > {dual-port RAM} > dout_b",f:v("Write on one port while another reads.","One array, two synchronous read ports; port A reads before it writes.","A dual-port RAM.")},"s12-uart":{b:"data, start > {UART TX FSM\\nIDLE, START, DATA, STOP} > tx; {UART TX FSM\\nIDLE, START, DATA, STOP} > busy; [tick counter] .bit time.> {UART TX FSM\\nIDLE, START, DATA, STOP}",f:v("Send bytes over one wire.",["Start bit 0, 8 data bits LSB first, stop bit 1.","Each bit lasts CLKS_PER_BIT clocks."],"A UART transmitter.","The testbench decodes tx like a receiver.")},"l01-gates":{b:"a > (AND, OR, NOT,\\nNAND, NOR, XOR, XNOR) > 7 outputs; b > (AND, OR, NOT,\\nNAND, NOR, XOR, XNOR)",f:x("Know every gate's truth table.","One gate primitive per output.","All 7 gates for all 4 inputs.")},"l02-nand":{b:"a > (NAND) > (NAND #2) > and_y; b > (NAND); a > (NAND #a) > (NAND #o) > or_y; b > (NAND #b) > (NAND #o)",f:x("Build every gate from NAND alone.",["NOT = NAND(a, a); AND = NOT of NAND.","OR = NAND(a', b') by De Morgan; XOR with 4 NANDs."],"NAND is universal.")},"l03-nor":{b:"a > (NOR) > (NOR #2) > or_y; b > (NOR); a > (NOR #a) > (NOR #o) > and_y; b > (NOR #b) > (NOR #o)",f:x("Build every gate from NOR alone.",["NOT = NOR(a, a); OR = NOT of NOR.","AND = NOR(a', b'); XNOR with 4 NORs."],"NOR is universal too.")},"l04-sop-pos":{b:"A, B, C > (y1 = AB + A'B'\\nSOP) > y1; A, B, C > (y2 = (A+B)(B+C)(A+C')\\nPOS) > y2; A, B, C > (y3 = A + BC') > y3",f:x("The same truth table in two forms.","Write each expression with assign, exactly as given.","SOP sums minterms, POS multiplies maxterms.")},"l05-demorgan":{b:"A, B > ((A\xB7B)') > l1_left; A, B > (A' + B') > l1_right; A, B > ((A+B)') > l2_left; A, B > (A'\xB7B') > l2_right",f:x("Turn ANDs into ORs by inverting.","Write both sides of both laws.","Each pair is equal for every input.")},"l06-kmap":{b:"X, Y, Z > {3-var K-map\\n\u03A3m(3,4,6,7)} > F1; A, B, C, D > {4-var K-map\\n\u03A3m(2,6,8,9,10,11,14)} > F2",f:["P: A minterm list is not the cheapest circuit.","S: Draw the K-maps (columns in Gray order).","S: Group 1s in the largest power-of-two rectangles, wrapping around edges.","Q: All 128 input combinations are checked.","OK: F1 and F2 with 2 terms each."]},"l07-dontcare":{b:"A, B, C, D > {K-map\\n\u03A3m(1,3,7,11,15)\\n+ d(0,2,5)} > F",f:["P: Some inputs never happen: their outputs are don't-cares.","S: Use a don't-care as 1 only when it makes a group bigger.","Q: The testbench skips the don't-care rows.","OK: F = C\xB7D + A'\xB7B'."]},"l08-parity":{b:"d[3:0] > (XOR tree) > p; d[3:0] > (XOR tree #2) > error; p_in > (XOR tree #2)",f:x("Detect a single flipped bit.","p = ^d makes the number of 1s even; error = ^{d, p_in}.","Parity generator and checker.")},"l09-majority":{b:"A > (AB + BC + AC) > y; B > (AB + BC + AC); C > (AB + BC + AC)",f:x("Outvote one faulty copy of three.","Truth table \u03A3m(3,5,6,7), simplified with a K-map.","y = AB + BC + AC.")},"l10-sub":{b:"A, B, Bin > (D = A ^ B ^ Bin) > D; A, B, Bin > (Bout = A'B + A'Bin + B\xB7Bin) > Bout",f:x("Subtract with a borrow.","Half and full subtractor equations.","D is the same as the adder's sum; the borrow differs.")},"l29-rca":{b:"A[0], B[0], cin > {FA0} -c1-> {FA1} -c2-> {FA2} -c3-> {FA3} > cout; {FA0} > S",f:x("Add 4-bit numbers, like the 7483.","Chain four full adders through their carries.","A ripple-carry adder: 512 inputs checked.")},"l18-addsub":{b:"B > (XOR with M) > {4-bit adder} > S; A > {4-bit adder} > cout; M .carry in.> {4-bit adder}; {4-bit adder} > (overflow) > v",f:x("One adder that also subtracts.",["M = 1 inverts B and adds 1: A \u2212 B in two's complement.","v flags signed overflow."],"An adder/subtractor with one control.")},"l19-bcdadd":{b:"a, b, cin > {binary adder} > (sum above 9?) > {add 6} > s; (sum above 9?) > cout",f:["P: A binary adder gives a wrong code when a digit sum exceeds 9.","S: Add the BCD digits in binary.","Q: Is the sum above 9?","F: Add 6 (0110) and set the carry.","OK: A correct BCD digit and decimal carry."]},"l17-cmp2":{b:"a[1], b[1] > (XNOR: equal bits) > (gt, eq, lt\\nfrom the MSB down) > gt, eq, lt; a[0], b[0] > (XNOR: equal bits)",f:x("Compare two 2-bit numbers with gates.","Equal bits from XNOR; the MSB decides unless it is equal.","gt, eq, lt from the K-map equations.")},"l30-cmp4":{b:"A[3:0], B[3:0] > {7485 comparator} > gt, eq, lt; i_gt, i_eq, i_lt .cascade.> {7485 comparator}",f:x("Compare wider numbers by chaining 4-bit comparators.","When A = B, pass the cascade inputs through.","For one chip: i_eq = 1, i_gt = i_lt = 0.")},"l14-dec38":{b:"a[2:0] > {74138 decoder} > y_n[7:0] active low; g1, g2a_n, g2b_n .enables.> {74138 decoder}",f:x("Select one of eight, as real parts do.","Enabled when g1 = 1 and both active-low enables are 0.","One output low, the rest high.")},"l11-dec-fa":{b:"A, B, Cin > {3-to-8\\ndecoder} -m1 m2 m4 m7-> (OR#s) > S; {3-to-8\\ndecoder} -m3 m5 m6 m7-> (OR#c) > C",f:["P: Build a full adder without writing its equations.","S: The decoder makes all 8 minterms of A, B, Cin.","S: S = \u03A3m(1,2,4,7), C = \u03A3m(3,5,6,7) from the truth table.","F: OR the matching decoder outputs for each function.","OK: Any 3-input function is one OR gate on a decoder."]},"l15-enc83":{b:"d[7:0] > {8-to-3 encoder} > y, valid; d[7:0] > {priority encoder} > y_p, any",f:x("Encode a one-hot input; handle many active inputs.","Plain: one-hot only, valid flags the rest. Priority: highest 1 wins.","Both encoders, 256 inputs checked.")},"l13-mux-demux":{b:"d[7:0] > <8:1 mux> > y; sel .3 bits.> <8:1 mux>; x > {1:8 demux} > o[7:0]; sel .3 bits.> {1:8 demux}",f:x("Route many inputs to one line, and one line to many.","y = d[sel]; o = x << sel.","Mux and demux, 4096 inputs checked.")},"l12-mux-fn":{b:"A, B, C .select.> <8:1 mux\\n74151> > F; 0, 1, D, D' > <8:1 mux\\n74151>",f:["P: Implement a 4-variable function with one 8:1 mux.","S: A, B, C drive the select lines.","S: For each pair of rows (D = 0, 1) the data input is 0, 1, D or D'.","OK: F = \u03A3m(1,3,4,11,12,13,14,15) with one chip."]},"l16-gray":{b:"b[3:0] > (g = b ^ b>>1) > g_out; g[3:0] > (XOR chain\\nfrom the MSB) > b_out",f:x("Only one bit changes between neighbouring Gray values.","Binary \u2192 Gray: one XOR per bit. Gray \u2192 binary: XOR all bits above.","Both converters, 256 inputs checked.")},"l20-7seg":{b:"bcd[3:0] > {7-segment decoder\\ncase} > seg = abcdefg",f:x("Light the right segments for each digit.","A case with one 7-bit pattern per digit; 10 to 15 blank.","The console draws each digit.")},"l21-srlatch":{b:"s_n > (NAND g1) > q; r_n > (NAND g2) > q_n; (NAND g1) > (NAND g2); (NAND g2) > (NAND g1)",f:["P: Memory starts with feedback.","S: Two cross-coupled NAND gates with 1 ns delay.","S: s_n = 0 sets, r_n = 0 resets, both 1 hold.","Q: Both 0 is not allowed for a NAND latch.","OK: The latch keeps its bit."]},"l22-ffs":{b:"s, r > [SR FF] > q_sr; j, k > [JK FF] > q_jk; d > [D FF] > q_d; t > [T FF] > q_t",f:v("Four flip-flops, four characteristic tables.","One always block: SR (11 holds), JK (11 toggles), D, T.","All four match the reference for 200 random cycles.")},"l23-ripple":{b:"@clk .falling.> [T0] > [T1] > [T2]; [T0] > q[0]; [T1] > q[1]; [T2] > q[2]",f:["P: The simplest counter: each flop clocks the next.","S: Each stage toggles on the falling edge of the stage before.","X: The bits change one after another (ripple).","OK: Counts 0 to 7 with no logic at all."]},"l24-sync":{b:"[q 3 bits] > (T0 = 1, T1 = Q0,\\nT2 = Q0\xB7Q1) > [q 3 bits] > q; @clk .> [q 3 bits]",f:v("All bits change on the same clock edge.","A bit toggles when all bits below it are 1.","A synchronous counter with T flip-flops.")},"l32-updown":{b:"[q 3 bits] > (T inputs\\nfrom up and Q) > [q 3 bits] > q; up .> (T inputs\\nfrom up and Q)",f:v("Count both ways with T flip-flops.","Excitation table and K-maps give T1 and T2 for up and down.","A MOD-8 up/down counter.")},"l27-mod6":{b:"[q 3 bits] > (q == 5 ? 0 : q+1) > [q 3 bits] > q; [q 3 bits] > (q == 5) > tc",f:v("Divide by 6, as in a clock's seconds counter.","Clear when the count reaches 5; flag it with tc.","A truncated counter with terminal count.")},"l25-ring":{b:"[ring 1000] > (rotate) > [ring 1000] > ring; [johnson 0000] > (shift in ~LSB) > [johnson 0000] > john",f:v("Counters made from shift registers.","Ring: rotate a single 1. Johnson: feed back the inverted bit.","4 states vs 8 states from 4 flops.")},"l26-siso":{b:"sin > [q3] > [q2] > [q1] > [q0] > sout",f:["P: Move serial data one bit per clock, as in UART or SPI.","S: On every clock each flop takes the value of the flop before it.","Q: Does 1001 come out of sout 4 clocks later, in order?","OK: A 4-flop shift register delays the stream by 4 clocks."]},"l31-usr":{b:"d > <mode mux> > [q 4 bits] > q; sr_in > <mode mux>; sl_in > <mode mux>; [q 4 bits] > <mode mux>; mode .> <mode mux>",f:v("One register for hold, shift right, shift left and load (74194).","A case on mode picks the next value.","A universal shift register.")},"l28-fsm":{b:"dir > (next state\\nfrom the table) > [state 2 bits] > (z = state 10) > z; [state 2 bits] > (next state\\nfrom the table)",f:v("Build a state machine straight from a state table.","One case item per row; a Moore output from the state.","A Gray-code up/down counter FSM.")},"l33-traffic":{b:"car > {FSM\\nS0 S1 S2 S3} > main lights; {FSM\\nS0 S1 S2 S3} > side lights; [timer] .3 clocks.> {FSM\\nS0 S1 S2 S3}",f:["P: Give the side road green only when a car waits.","S: S0 main green \u2192 S1 main yellow when car = 1.","S: S2 side green for 3 clocks (timer) \u2192 S3 side yellow \u2192 S0.","Q: Is any state green for both roads? No.","OK: A Moore FSM with a timer, from a word spec."]}};var Y=t=>document.querySelector(t);function Re({key:t,onChange:e}){let n=null,s=()=>{try{return JSON.parse(localStorage.getItem(t)||"{}")||{}}catch{return{}}},a=c=>{try{localStorage.setItem(t,JSON.stringify(c))}catch{}},i=c=>{let f=String(c||"").replace(/[−–—]/g,"-").replace(/,/g,"").match(/[-+]?\d*\.?\d+(?:[eE][-+]?\d+)?/);return f?parseFloat(f[0]):NaN},d=(c,f)=>c.type==="choice"?f!=null&&f!==""&&+f===c.answer:isFinite(i(f))&&Math.abs(i(f)-c.answer)<=(c.tol??.01)+1e-9,r=c=>c.type==="choice"?c.options[c.answer]:`${c.answer}${c.unit?" "+c.unit:""}`;function b(c,f){let w=Y("#quiz-score");if(c===null){w.textContent="",w.classList.remove("done");return}w.textContent=`${c} / ${f} correct`,w.classList.toggle("done",c===f)}function m(c,f){let w=s(),S=w[n.id]||{a:[]};S.a=S.a||[],S.a[c]=f,S.checked=!1,w[n.id]=S,a(w);let q=Y("#quiz-list").children[c]?.querySelector(".quiz-fb");q&&(q.hidden=!0)}function u(c){n=c&&c.quiz&&c.quiz.length?c:null;let f=Y("#quiz"),w=Y("#quiz-list");if(!n){f.hidden=!0;return}f.hidden=!1,w.innerHTML="";let S=s()[n.id]||{},q=S.a||[];n.quiz.forEach((R,L)=>{let I=document.createElement("li"),H=document.createElement("div");if(H.className="quiz-q",R.try){let $=document.createElement("span");$.className="quiz-try",$.textContent="Try it",H.appendChild($)}let j=R.q.replace(/^Try it: /,"");if(H.appendChild(document.createTextNode(j.charAt(0).toUpperCase()+j.slice(1))),I.appendChild(H),R.type==="choice"){let $=document.createElement("div");$.className="quiz-opts",$.setAttribute("role","radiogroup"),R.options.forEach((O,W)=>{let J=document.createElement("label"),E=document.createElement("input");E.type="radio",E.name=`q${L}`,E.value=W,q[L]!==void 0&&+q[L]===W&&(E.checked=!0),E.addEventListener("change",()=>m(L,W));let ne=document.createElement("span");ne.textContent=O,J.append(E,ne),$.appendChild(J)}),I.appendChild($)}else{let $=document.createElement("div");$.className="quiz-num";let O=document.createElement("input");if(O.type="text",O.inputMode="decimal",O.autocomplete="off",O.setAttribute("aria-label","Answer to question "+(L+1)),O.placeholder="e.g. 3",q[L]!==void 0&&(O.value=q[L]),O.addEventListener("input",()=>m(L,O.value)),O.addEventListener("keydown",W=>{W.key==="Enter"&&p()}),$.appendChild(O),R.unit){let W=document.createElement("span");W.className="unit",W.textContent=R.unit,$.appendChild(W)}I.appendChild($)}let D=document.createElement("div");D.className="quiz-fb",D.hidden=!0,D.setAttribute("aria-live","polite"),I.appendChild(D),w.appendChild(I)}),S.checked?p(!0):b(null)}function p(c){if(!n)return;let f=s(),w=f[n.id]||{a:[]};w.a=w.a||[];let S=0;n.quiz.forEach((q,R)=>{let L=Y("#quiz-list").children[R],I=q.type==="choice"?(L.querySelector("input:checked")||{}).value:L.querySelector("input").value;w.a[R]=I;let H=I===void 0||I==="",j=!H&&d(q,I);j&&S++;let D=L.querySelector(".quiz-fb");D.hidden=!1,D.className="quiz-fb "+(j?"ok":"bad"),D.innerHTML="";let $=document.createElement("b");$.textContent=j?"Correct.":H?"Not answered yet.":"Not quite.",D.appendChild($),j&&q.explain?D.appendChild(document.createTextNode(q.explain)):!j&&!H&&D.appendChild(document.createTextNode(q.type==="number"?"Check the code and the simulation output again.":"Look at the code and the output again and try another option."))}),w.checked=!0,w.score=S,w.total=n.quiz.length,f[n.id]=w,a(f),b(S,n.quiz.length),!c&&e&&e()}function y(){n&&n.quiz.forEach((c,f)=>{let w=Y("#quiz-list").children[f].querySelector(".quiz-fb");w.hidden=!1,w.className="quiz-fb shown",w.innerHTML="";let S=document.createElement("b");S.textContent="Answer: "+r(c)+".",w.appendChild(S),c.explain&&w.appendChild(document.createTextNode(c.explain))})}function h(){if(!n)return;let c=s();delete c[n.id],a(c),u(n),e&&e()}return Y("#quiz-check").addEventListener("click",()=>p()),Y("#quiz-reveal").addEventListener("click",y),Y("#quiz-reset").addEventListener("click",h),{render:u,status:c=>s()[c]}}var Ee={counter:[{type:"number",q:"Run it. What is the count printed at 175 ns?",answer:15,tol:0,unit:"",explain:"The counter has counted 0 to 15 by then.",try:!1},{type:"number",q:"What value comes after 15?",answer:0,tol:0,unit:"",explain:"A 4-bit counter wraps from 15 back to 0.",try:!1},{type:"choice",q:"Why does the reset use negedge rst_n in the sensitivity list?",options:["It is a synchronous reset","It is an asynchronous active-low reset: q clears as soon as rst_n falls","It saves area","It is required for counters"],answer:1,explain:"An asynchronous reset acts without waiting for the clock.",try:!1},{type:"choice",q:"Try it: change WIDTH to 3 in the testbench instance. After which value does the count wrap?",options:["7","15","3","8"],answer:0,explain:"3 bits count 0 to 7.",try:!0}],mux:[{type:"choice",q:"When sel = 2, which input reaches y?",options:["a","b","c","d"],answer:2,explain:"sel 0 \u2192 a, 1 \u2192 b, 2 \u2192 c, 3 \u2192 d.",try:!1},{type:"number",q:"How many bits wide is y?",answer:8,tol:0,unit:"",explain:"The mux is 8 bits wide.",try:!1},{type:"choice",q:"Why does a case statement inside always @(*) need every sel value (or a default)?",options:["For speed","Otherwise y keeps its old value for missing cases and synthesis infers a latch","It is a syntax rule","To save area"],answer:1,explain:"Full case coverage keeps the logic combinational.",try:!1}],adder:[{type:"number",q:"How many input combinations does the testbench check?",answer:512,tol:0,unit:"",explain:"a and b are 4 bits each, plus a carry in: 2^9 = 512.",try:!1},{type:"choice",q:"What makes this testbench self-checking?",options:["It prints every result","It compares each result with the expected a + b + cin and counts mismatches","It uses $monitor","It dumps a waveform"],answer:1,explain:"A self-checking testbench decides PASS or FAIL by itself.",try:!1},{type:"number",q:"In a 4-bit ripple-carry adder, how many full adders are chained?",answer:4,tol:0,unit:"",explain:"One per bit.",try:!1}],fsm:[{type:"number",q:"How many times is the pattern 1011 detected?",answer:4,tol:0,unit:"",explain:"The run prints four detections.",try:!1},{type:"choice",q:"Is this detector overlapping?",options:["No","Yes: the last 1 of a 1011 can be the first 1 of the next one","Only for 0s","It depends on the clock"],answer:1,explain:"Overlapping detection reuses the tail of one match.",try:!1},{type:"choice",q:"Moore or Mealy?",options:["Moore: found depends only on the state","Mealy: found depends on the state and din","Neither","Both"],answer:0,explain:"The comment says Moore: the output comes from the state.",try:!1}],cdc:[{type:"number",q:"How many destination clocks after the change does level_dst follow?",answer:2,tol:0,unit:"",explain:"Two flops in series.",try:!1},{type:"choice",q:"Why two flops and not one?",options:["To double the frequency","The first flop may go metastable; the second gives it a full clock to settle","To invert the signal","For hold timing"],answer:1,explain:"See the CDC labs for more.",try:!1},{type:"choice",q:"Can this synchronizer carry a one-cycle pulse from a much faster clock?",options:["Yes, always","No: the pulse can fall between two destination edges and be lost","Only with reset","Only in simulation"],answer:1,explain:"Pulses need a toggle synchronizer or a handshake.",try:!1}],fifo:[{type:"number",q:"How many entries does the FIFO hold?",answer:8,tol:0,unit:"",explain:"AW = 3: 2^3 = 8 entries.",try:!1},{type:"number",q:"The testbench writes 10 values. How many are stored?",answer:8,tol:0,unit:"",explain:"The last two are dropped because the FIFO is full.",try:!1},{type:"choice",q:"Why are the pointers AW + 1 bits wide?",options:["For parity","The extra bit tells a full FIFO from an empty one when the address bits are equal","To count reads","For Gray code"],answer:1,explain:"Equal pointers = empty; same address, different wrap bit = full.",try:!1}],sv:[{type:"number",q:"For how many clock cycles is the light green?",answer:6,tol:0,unit:"",explain:"The timer loads 5 and counts down to 0: 6 cycles.",try:!1},{type:"number",q:"For how many clock cycles is it yellow?",answer:3,tol:0,unit:"",explain:"The timer loads 2 for yellow.",try:!1},{type:"choice",q:"What does typedef enum give you over plain localparam states?",options:["Faster simulation","Named states that show up in the waveform and in .name(), with type checking","Less area","Nothing"],answer:1,explain:"The testbench prints state.name().",try:!1}],"p1-ha-df":[{type:"number",q:"How many input combinations does a half adder have?",answer:4,tol:0,unit:"",explain:"Two 1-bit inputs: 2^2 = 4.",try:!1},{type:"choice",q:"What are sum and carry for a = 1, b = 1?",options:["sum 1, carry 0","sum 0, carry 1","sum 1, carry 1","sum 0, carry 0"],answer:1,explain:"1 + 1 = 10 in binary.",try:!1},{type:"choice",q:"Which Verilog construct is dataflow style?",options:["always @(*)","assign","and/xor gate primitives","initial"],answer:1,explain:"Continuous assignments describe how data flows to the outputs.",try:!1}],"p1-ha-bh":[{type:"number",q:"How many input combinations does a half adder have?",answer:4,tol:0,unit:"",explain:"Two 1-bit inputs: 2^2 = 4.",try:!1},{type:"choice",q:"What are sum and carry for a = 1, b = 1?",options:["sum 1, carry 0","sum 0, carry 1","sum 1, carry 1","sum 0, carry 0"],answer:1,explain:"1 + 1 = 10 in binary.",try:!1},{type:"choice",q:"Why are sum and carry declared reg in the behavioral version?",options:["Because they are flip-flops","Because they are assigned inside an always block","Because they are outputs","It is optional"],answer:1,explain:"reg is a Verilog data type for procedural assignment; no flip-flop is created by always @(*).",try:!1}],"p1-ha-st":[{type:"number",q:"How many input combinations does a half adder have?",answer:4,tol:0,unit:"",explain:"Two 1-bit inputs: 2^2 = 4.",try:!1},{type:"choice",q:"What are sum and carry for a = 1, b = 1?",options:["sum 1, carry 0","sum 0, carry 1","sum 1, carry 1","sum 0, carry 0"],answer:1,explain:"1 + 1 = 10 in binary.",try:!1},{type:"choice",q:"In 'xor g1 (sum, a, b);', which port comes first?",options:["An input","The output","The clock","Any order"],answer:1,explain:"Gate primitives list the output first.",try:!1}],"p1-fa-df":[{type:"number",q:"How many input combinations does the testbench try?",answer:8,tol:0,unit:"",explain:"Three 1-bit inputs: 2^3 = 8.",try:!1},{type:"choice",q:"What are sum and cout for a = 1, b = 1, cin = 1?",options:["sum 1, cout 1","sum 0, cout 1","sum 1, cout 0","sum 0, cout 0"],answer:0,explain:"1 + 1 + 1 = 11 in binary.",try:!1},{type:"choice",q:"Which expression gives the carry out?",options:["a ^ b ^ cin","(a & b) | (cin & (a ^ b))","a | b | cin","~(a & b)"],answer:1,explain:"Carry when both inputs are 1, or when one is 1 and the carry in is 1.",try:!1}],"p1-fa-bh":[{type:"number",q:"How many input combinations does the testbench try?",answer:8,tol:0,unit:"",explain:"Three 1-bit inputs: 2^3 = 8.",try:!1},{type:"choice",q:"What are sum and cout for a = 1, b = 1, cin = 1?",options:["sum 1, cout 1","sum 0, cout 1","sum 1, cout 0","sum 0, cout 0"],answer:0,explain:"1 + 1 + 1 = 11 in binary.",try:!1},{type:"choice",q:"Why does {cout, sum} = a + b + cin work?",options:["Verilog adds 1-bit values as 1 bit","The left side is 2 bits wide, so the addition is done in 2 bits and the carry lands in cout","It does not work","Because of always @(*)"],answer:1,explain:"The width of the assignment target sets the size of the result.",try:!1}],"p1-fa-st":[{type:"number",q:"How many input combinations does the testbench try?",answer:8,tol:0,unit:"",explain:"Three 1-bit inputs: 2^3 = 8.",try:!1},{type:"choice",q:"What are sum and cout for a = 1, b = 1, cin = 1?",options:["sum 1, cout 1","sum 0, cout 1","sum 1, cout 0","sum 0, cout 0"],answer:0,explain:"1 + 1 + 1 = 11 in binary.",try:!1},{type:"number",q:"How many half_adder instances does the structural full adder use?",answer:2,tol:0,unit:"",explain:"Two half adders and an OR gate.",try:!1}],"p1-ops":[{type:"number",q:"For a = 12 and b = 5, what is a % b?",answer:2,tol:0,unit:"",explain:"12 = 2 \xD7 5 + 2.",try:!1},{type:"choice",q:"What is the difference between & and && ?",options:["None","& is bitwise and gives a vector; && is logical and gives 1 bit","&& is bitwise","& is only for 1-bit values"],answer:1,explain:"a & b ANDs each bit; a && b is true if both are non-zero.",try:!1},{type:"number",q:"For a = 4'b1011, what is the reduction ^a (as 0 or 1)?",answer:1,tol:0,unit:"",explain:"XOR of all bits: three 1s give 1.",try:!1},{type:"choice",q:"What is the difference between $display and $monitor?",options:["None","$display prints once; $monitor prints again every time one of its signals changes","$monitor prints once","$display only prints at the end"],answer:1,explain:"The testbench turns $monitor off with $monitoroff.",try:!1}],"p1-c2f":[{type:"number",q:"What does c_to_f return for 100 \xB0C?",answer:212,tol:0,unit:"",explain:"100 \xD7 9 / 5 + 32.",try:!1},{type:"number",q:"And for 37 \xB0C (integer arithmetic)?",answer:98,tol:0,unit:"",explain:"37 \xD7 9 = 333; 333 / 5 = 66 (rounded toward zero); 66 + 32 = 98.",try:!1},{type:"choice",q:"What is the main difference between a task and a function in Verilog?",options:["None","A task can take time (delays, @) and has output arguments; a function returns a value in zero time","A function can have delays","Tasks cannot have arguments"],answer:1,explain:"Functions are for expressions, tasks for procedures.",try:!1}],"p2-add4":[{type:"number",q:"What is {cout, sum} for 9 + 8 + 1?",answer:18,tol:0,unit:"",explain:"As printed by the testbench.",try:!1},{type:"number",q:"How many bits does {cout, sum} have?",answer:5,tol:0,unit:"",explain:"4 sum bits and a carry.",try:!1},{type:"number",q:"How many test cases does the testbench check?",answer:512,tol:0,unit:"",explain:"4 + 4 + 1 input bits: 2^9.",try:!1}],"p2-mux2":[{type:"choice",q:"Which input reaches y when sel = 1?",options:["a","b"],answer:1,explain:"y = sel ? b : a.",try:!1},{type:"choice",q:"How does synthesis usually build y = sel ? b : a?",options:["A flip-flop","A 2:1 multiplexer cell","A latch","An adder"],answer:1,explain:"The conditional operator maps to a mux.",try:!1},{type:"number",q:"How many input combinations does the testbench check?",answer:8,tol:0,unit:"",explain:"a, b and sel: 2^3.",try:!1}],"p2-mux4":[{type:"number",q:"How many select bits does a 4:1 mux need?",answer:2,tol:0,unit:"",explain:"log2(4) = 2.",try:!1},{type:"choice",q:"Why does the case statement need a default (or all 4 values)?",options:["For speed","So y is assigned in every case and no latch is inferred","It is a syntax rule","To reset y"],answer:1,explain:"Every path through always @(*) must assign y.",try:!1},{type:"number",q:"How many cases does the testbench check?",answer:64,tol:0,unit:"",explain:"4 data bits and 2 select bits: 2^6.",try:!1}],"p2-dec24":[{type:"choice",q:"With en = 1 and a = 2'b10, what is y?",options:["4'b0010","4'b0100","4'b1000","4'b0001"],answer:1,explain:"Bit 2 is set.",try:!1},{type:"choice",q:"What is y when en = 0?",options:["4'b0001","4'b0000","4'b1111","Unknown"],answer:1,explain:"A disabled decoder drives no select line.",try:!1},{type:"number",q:"How many outputs does an n-to-2^n decoder with n = 3 have?",answer:8,tol:0,unit:"",explain:"2^3.",try:!1}],"p2-enc42":[{type:"number",q:"For d = 4'b0100, what is y?",answer:2,tol:0,unit:"",explain:"The single 1 is at position 2.",try:!1},{type:"choice",q:"What should valid be for d = 4'b0110?",options:["1","0: two bits are set, which a simple encoder cannot handle","Unknown","It depends on y"],answer:1,explain:"Use a priority encoder when several inputs can be active.",try:!1},{type:"number",q:"How many of the 16 possible inputs are legal (one-hot)?",answer:4,tol:0,unit:"",explain:"0001, 0010, 0100, 1000.",try:!1}],"p2-penc42":[{type:"number",q:"For d = 4'b0110, what is y?",answer:2,tol:0,unit:"",explain:"The highest 1 is at position 2.",try:!1},{type:"choice",q:"What does casez allow that case does not?",options:["Faster simulation","? and z bits as don't-care in the case items","Real numbers","Default branches"],answer:1,explain:"4'b01?? matches 0100 to 0111.",try:!1},{type:"choice",q:"What is valid for d = 0?",options:["1","0"],answer:1,explain:"No request: nothing to encode.",try:!1}],"p2-cmp4":[{type:"choice",q:"For a = 9 and b = 4, which output is 1?",options:["gt","eq","lt"],answer:0,explain:"9 > 4.",try:!1},{type:"number",q:"How many of gt, eq and lt can be 1 at the same time?",answer:1,tol:0,unit:"",explain:"Exactly one, for any pair.",try:!1},{type:"number",q:"How many (a, b) pairs does the testbench check?",answer:256,tol:0,unit:"",explain:"16 \xD7 16.",try:!1}],"p2-bshift8":[{type:"choice",q:"What is 8'b1001_0110 rotated left by 3?",options:["8'b1011_0100","8'b1011_0101","8'b0010_1100","8'b0001_0010"],answer:0,explain:"The three bits 100 that leave on the left come back on the right: 10110 + 100.",try:!1},{type:"choice",q:"What is 8'b1001_0110 shifted right by 3 (no rotate)?",options:["8'b0001_0010","8'b1111_0010","8'b0101_1000","8'b1100_1000"],answer:0,explain:"Zeros come in from the left.",try:!1},{type:"choice",q:"Why is it called a barrel shifter?",options:["It is round","It shifts by any amount in one clock, without stepping one bit at a time","It uses a barrel register","It only rotates"],answer:1,explain:"A log2(N)-stage mux network shifts by any amount at once.",try:!1}],"p2-alu":[{type:"number",q:"What is y for 200 + 100 (8 bits)?",answer:44,tol:0,unit:"",explain:"300 \u2212 256 = 44.",try:!1},{type:"choice",q:"And carry for 200 + 100?",options:["0","1"],answer:1,explain:"The result does not fit in 8 bits.",try:!1},{type:"choice",q:"When is zero = 1?",options:["When a = 0","When the result y is 0","When carry = 0","When op = 0"],answer:1,explain:"A status flag on the result.",try:!1},{type:"number",q:"How many operations does the 3-bit op select?",answer:8,tol:0,unit:"",explain:"2^3.",try:!1}],"p3-dlatch":[{type:"choice",q:"What does a latch do while en = 0?",options:["Follows d","Holds its last value","Clears q","Toggles"],answer:1,explain:"It is transparent only while enabled.",try:!1},{type:"choice",q:"Which code creates a latch?",options:["always @(posedge clk) q <= d;","always @(*) if (en) q = d;  (no else)","assign q = en & d;","always @(*) q = en ? d : 1'b0;"],answer:1,explain:"With no else, q must remember its value: a latch.",try:!1},{type:"choice",q:"Why are latches usually avoided in synchronous design?",options:["They are larger","They are transparent for a whole phase, which makes timing harder and glitches pass through","They cannot be reset","They are not synthesizable"],answer:1,explain:"STA has to handle time borrowing; most flows prefer flip-flops.",try:!1}],"p3-dlatch-rst":[{type:"choice",q:"What does a latch do while en = 0?",options:["Follows d","Holds its last value","Clears q","Toggles"],answer:1,explain:"It is transparent only while enabled.",try:!1},{type:"choice",q:"If rst = 1 and en = 1 at the same time, what is q?",options:["d","0","1","Unknown"],answer:1,explain:"Reset has priority.",try:!1},{type:"choice",q:"Is this reset synchronous or asynchronous?",options:["Synchronous","Asynchronous: it acts immediately"],answer:1,explain:"A latch has no clock edge to wait for.",try:!1}],"p3-dff":[{type:"choice",q:"Why use <= (non-blocking) in clocked always blocks?",options:["It is faster","All flops update together at the edge, so the order of statements does not matter","It is required by Verilog","To make latches"],answer:1,explain:"Blocking = in sequential logic can cause simulation races.",try:!1},{type:"choice",q:"When does q change?",options:["Whenever d changes","Only at the rising edge of clk","At both edges","When d is 1"],answer:1,explain:"Edge-triggered.",try:!1},{type:"choice",q:"What is q before the first clock edge?",options:["0","1","x (unknown): there is no reset","z"],answer:2,explain:"Without a reset, a flop starts unknown in simulation.",try:!1}],"p3-dff-arh":[{type:"choice",q:"Why use <= (non-blocking) in clocked always blocks?",options:["It is faster","All flops update together at the edge, so the order of statements does not matter","It is required by Verilog","To make latches"],answer:1,explain:"Blocking = in sequential logic can cause simulation races.",try:!1},{type:"choice",q:"Which edge does an asynchronous reset add to the sensitivity list?",options:["Only the clock edge","The active edge of the reset as well","Nothing","The data input"],answer:1,explain:"That is what makes it act without the clock.",try:!1},{type:"choice",q:"If rst rises between clock edges, when does q go to 0?",options:["At the next rising clock edge","Immediately","Never","At the falling edge"],answer:1,explain:"Asynchronous.",try:!1}],"p3-dff-neg-arh":[{type:"choice",q:"Which edge does an asynchronous reset add to the sensitivity list?",options:["Only the clock edge","The active edge of the reset as well","Nothing","The data input"],answer:1,explain:"That is what makes it act without the clock.",try:!1},{type:"choice",q:"When does this flop sample d?",options:["Rising edge of clk","Falling edge of clk","Both edges","When rst falls"],answer:1,explain:"negedge clk.",try:!1},{type:"choice",q:"Where are falling-edge flops typically used?",options:["Everywhere","Half-cycle paths, such as DDR interfaces that use both edges","Only in FPGAs","For resets"],answer:1,explain:"They give half a clock period between rising and falling edge logic.",try:!1}],"p3-dff-arl":[{type:"choice",q:"Which edge does an asynchronous reset add to the sensitivity list?",options:["Only the clock edge","The active edge of the reset as well","Nothing","The data input"],answer:1,explain:"That is what makes it act without the clock.",try:!1},{type:"choice",q:"rst_n = 0 means\u2026",options:["Normal operation","Reset is active"],answer:1,explain:"_n marks an active-low signal.",try:!1},{type:"choice",q:"Why are resets often active low on chips?",options:["Tradition only","A reset that is 0 when the pin floats low or power ramps keeps the chip in reset safely","They are faster","No reason"],answer:1,explain:"A low-going reset is the safe default.",try:!1}],"p3-dff-ash":[{type:"choice",q:"Which edge does an asynchronous reset add to the sensitivity list?",options:["Only the clock edge","The active edge of the reset as well","Nothing","The data input"],answer:1,explain:"That is what makes it act without the clock.",try:!1},{type:"choice",q:"What is q right after set rises?",options:["0","1","d","x"],answer:1,explain:"Set forces 1.",try:!1},{type:"choice",q:"When is an asynchronous set used?",options:["Never","For registers that must start at 1, such as a one-hot state or an active-low enable","For counters only","To save area"],answer:1,explain:"",try:!1}],"p3-dff-srh":[{type:"choice",q:"Why use <= (non-blocking) in clocked always blocks?",options:["It is faster","All flops update together at the edge, so the order of statements does not matter","It is required by Verilog","To make latches"],answer:1,explain:"Blocking = in sequential logic can cause simulation races.",try:!1},{type:"choice",q:"Is rst in the sensitivity list of a synchronous reset?",options:["Yes","No: only the clock edge"],answer:1,explain:"The reset is just another data input that is sampled at the edge.",try:!1},{type:"choice",q:"If rst rises between clock edges, when does q go to 0?",options:["Immediately","At the next rising clock edge"],answer:1,explain:"Synchronous.",try:!1}],"p3-dff-srl":[{type:"choice",q:"Is rst in the sensitivity list of a synchronous reset?",options:["Yes","No: only the clock edge"],answer:1,explain:"The reset is just another data input that is sampled at the edge.",try:!1},{type:"choice",q:"rst_n = 0 on a rising edge gives q =",options:["d","0","1","unchanged"],answer:1,explain:"",try:!1},{type:"choice",q:"What does synthesis build for a synchronous reset?",options:["A flop with an asynchronous clear pin","A plain flop with logic (an AND or mux) in front of D","A latch","Nothing"],answer:1,explain:"The reset becomes part of the data path.",try:!1}],"p3-dff-srs":[{type:"choice",q:"Is rst in the sensitivity list of a synchronous reset?",options:["Yes","No: only the clock edge"],answer:1,explain:"The reset is just another data input that is sampled at the edge.",try:!1},{type:"choice",q:"rst = 1 and set = 1 on the same edge: q =",options:["1","0","d","x"],answer:1,explain:"Reset has priority here.",try:!1},{type:"choice",q:"How is the priority set in the code?",options:["By the order of the if / else if","By the port order","By the sensitivity list","It is random"],answer:0,explain:"The first true condition wins.",try:!1}],"p3-sync-async":[{type:"choice",q:"rst rises in the middle of a clock cycle. Which output clears first?",options:["q_sync","q_async","Both at the same time"],answer:1,explain:"q_async clears at once; q_sync waits for the next edge.",try:!1},{type:"choice",q:"What is a drawback of an asynchronous reset?",options:["None","Its release must be synchronized to the clock (recovery/removal), or flops leave reset in different cycles","It is slower","It needs a clock"],answer:1,explain:"See the reset synchronizer lab in the CDC labs.",try:!1},{type:"choice",q:"What is a drawback of a synchronous reset?",options:["It needs a running clock to take effect","It cannot be timed","It uses more flops","None"],answer:0,explain:"No clock, no reset.",try:!1}],"p3-twin":[{type:"choice",q:"load_a = 1 and load_b = 1 on the same edge: what happens?",options:["Only qa loads","Both qa and qb load d","Neither loads","qb loads qa"],answer:1,explain:"The loads are independent.",try:!1},{type:"number",q:"How many flip-flops does the design need?",answer:16,tol:0,unit:"",explain:"Two 8-bit registers.",try:!1},{type:"choice",q:"What does a register hold when its load is 0?",options:["0","Its previous value","d","x"],answer:1,explain:"Synthesis adds an enable (a mux or a clock-enable flop).",try:!1}],"p4-sr5":[{type:"number",q:"After 5 clocks with sin = 1, 0, 1, 1, 0 (in that order) starting from 00000, what is q in decimal?",answer:13,tol:0,unit:"",explain:"Bits enter at bit 4 and move right: q = 0 1 1 0 1 (bit 4 first) = 01101 = 13.",try:!1},{type:"number",q:"How many clocks does a bit need to travel from bit 4 to bit 0?",answer:4,tol:0,unit:"",explain:"One place per clock.",try:!1},{type:"choice",q:"Which expression shifts right with sin entering at the MSB?",options:["{q[3:0], sin}","{sin, q[4:1]}","q >> sin","{q[4:1], sin}"],answer:1,explain:"",try:!1}],"p4-usr5":[{type:"choice",q:"Which mode loads d in parallel?",options:["00","01","10","11"],answer:3,explain:"",try:!1},{type:"choice",q:"In mode 10 (shift left), where does sl_in enter?",options:["Bit 4","Bit 0"],answer:1,explain:"q <= {q[3:0], sl_in}.",try:!1},{type:"choice",q:"Where is a universal shift register used?",options:["Only in counters","Serial/parallel conversion in both directions, for example in a UART or SPI","In adders","In memories"],answer:1,explain:"",try:!1}],"p4-cnt":[{type:"number",q:"How many states does a 4-bit counter go through before repeating?",answer:16,tol:0,unit:"",explain:"0 to 15.",try:!1},{type:"number",q:"At 100 MHz, how many ns does one full cycle of the 4-bit counter take?",answer:160,tol:0,unit:"",explain:"16 states \xD7 10 ns.",try:!1},{type:"choice",q:"What happens to q after 15?",options:["It stays at 15","It wraps to 0","It goes to x"],answer:1,explain:"",try:!1}],"p4-cnt-tb":[{type:"choice",q:"Why does the testbench change en on the falling edge?",options:["It is required","So the inputs are stable around the rising edge and there is no race with the design","To save time","To test the reset"],answer:1,explain:"",try:!1},{type:"choice",q:"With BUG = 1, after which value does the broken counter jump to 0?",options:["9","15","7","0"],answer:0,explain:"The bug wraps at 9; a good testbench sees 10 missing.",try:!1},{type:"choice",q:"What makes a testbench self-checking?",options:["Printing values","An expected-value model compared with the design every cycle, and a PASS/FAIL summary","A waveform","Random inputs"],answer:1,explain:"",try:!1}],"p4-cnt-load":[{type:"choice",q:"load = 1 and the counter is at 7, d = 3: next q =",options:["8","3","4","7"],answer:1,explain:"Load has priority.",try:!1},{type:"number",q:"After loading 14, what is q two clocks later (no load)?",answer:0,tol:0,unit:"",explain:"14 \u2192 15 \u2192 0.",try:!1},{type:"choice",q:"Where is a loadable counter used?",options:["Program counters (jumps load a new address), timers with a start value","Only in tests","Adders","Never"],answer:0,explain:"",try:!1}],"p4-updown":[{type:"number",q:"From 0, counting down one step gives?",answer:15,tol:0,unit:"",explain:"4-bit wrap: 0 \u2212 1 = 15.",try:!1},{type:"number",q:"From 13, three steps up give?",answer:0,tol:0,unit:"",explain:"13 \u2192 14 \u2192 15 \u2192 0.",try:!1},{type:"choice",q:"What decides the direction?",options:["The clock edge","The up input","The reset"],answer:1,explain:"",try:!1}],"p4-mod":[{type:"number",q:"What is the largest value of the mod-10 counter?",answer:9,tol:0,unit:"",explain:"0 to N\u22121.",try:!1},{type:"number",q:"How many flip-flops does a mod-10 counter need at least?",answer:4,tol:0,unit:"",explain:"2^3 = 8 < 10 \u2264 16 = 2^4.",try:!1},{type:"choice",q:"Try it: set N = 12. What is the largest value?",options:["11","12","9","15"],answer:0,explain:"",try:!0}],"p4-range":[{type:"number",q:"What is q right after reset?",answer:3,tol:0,unit:"",explain:"LOW = 3.",try:!1},{type:"number",q:"How many different values does the counter take?",answer:10,tol:0,unit:"",explain:"3 to 12 inclusive.",try:!1},{type:"number",q:"What comes after 12?",answer:3,tol:0,unit:"",explain:"Back to LOW.",try:!1}],"p4-range-udl":[{type:"number",q:"Counting down from LOW = 3 gives?",answer:12,tol:0,unit:"",explain:"Wraps to HIGH.",try:!1},{type:"choice",q:"load = 1 and up = 0 on the same edge: what happens?",options:["It counts down","It loads d","Nothing"],answer:1,explain:"Load has priority.",try:!1},{type:"number",q:"Counting up from 12 gives?",answer:3,tol:0,unit:"",explain:"",try:!1}],"p4-div2":[{type:"number",q:"With a 10 ns clk, what is the period of clk_out?",answer:20,tol:0,unit:"ns",explain:"",try:!1},{type:"number",q:"What is its duty cycle in %?",answer:50,tol:0,unit:"%",explain:"It toggles on every rising edge.",try:!1},{type:"choice",q:"Why should a divided clock come straight from a flop output, not from logic?",options:["To save area","Logic can glitch, and a glitch on a clock is an extra edge","Flops are faster","No reason"],answer:1,explain:"Also define it as a generated clock in the SDC (see the SDC labs).",try:!1}],"p4-div4":[{type:"number",q:"With a 10 ns clk, what is the period of clk_out?",answer:40,tol:0,unit:"ns",explain:"",try:!1},{type:"number",q:"Which counter bit gives clk / 4 (0 = LSB)?",answer:1,tol:0,unit:"",explain:"cnt[0] is clk / 2, cnt[1] is clk / 4.",try:!1},{type:"choice",q:"Why should a divided clock come straight from a flop output, not from logic?",options:["To save area","Logic can glitch, and a glitch on a clock is an extra edge","Flops are faster","No reason"],answer:1,explain:"Also define it as a generated clock in the SDC (see the SDC labs).",try:!1}],"p4-div3":[{type:"number",q:"With a 10 ns clk, how long must clk_out stay high for a 50% duty cycle?",answer:15,tol:0,unit:"ns",explain:"Half of 30 ns: 1.5 clock periods.",try:!1},{type:"choice",q:"Why are both clock edges needed?",options:["They are not","A half-period step is only possible with the falling edge","To save power","For reset"],answer:1,explain:"",try:!1},{type:"choice",q:"Why should a divided clock come straight from a flop output, not from logic?",options:["To save area","Logic can glitch, and a glitch on a clock is an extra edge","Flops are faster","No reason"],answer:1,explain:"Also define it as a generated clock in the SDC (see the SDC labs).",try:!1}],"p4-fifo":[{type:"number",q:"How many words can the FIFO hold?",answer:8,tol:0,unit:"",explain:"",try:!1},{type:"choice",q:"What happens to a write when the FIFO is full?",options:["It overwrites the oldest word","It is ignored","It stalls the clock"],answer:1,explain:"",try:!1},{type:"choice",q:"dout shows a word\u2026",options:["at once when rd_en rises","on the clock edge after rd_en","two clocks later"],answer:1,explain:"The read is registered.",try:!1}],"p4-afifo":[{type:"choice",q:"Why are the pointers Gray coded before crossing?",options:["To save flops","Only one bit changes per step, so the other clock sees the old or the new value, never a mix","For speed","To reset them"],answer:1,explain:"See the Gray code lab in the CDC labs.",try:!1},{type:"number",q:"How many flops are in each pointer synchronizer chain (per bit)?",answer:2,tol:0,unit:"",explain:"wq1/wq2 and rq1/rq2.",try:!1},{type:"choice",q:"Can the empty flag be late?",options:["No","Yes: it is computed with a synchronized (older) write pointer, so it may stay set a few cycles longer. That is safe.","Only at reset"],answer:1,explain:"",try:!1}],"p4-mealy-nov":[{type:"choice",q:"Input bits 1, 0, 1, 0, 1: how many detections?",options:["1","2"],answer:0,explain:"After a detection the search starts again.",try:!1},{type:"choice",q:"When is y = 1?",options:["While x is the final 1 (same cycle)","In the cycle after the final 1 was clocked in"],answer:0,explain:"Mealy outputs depend on the input; Moore outputs only on the state.",try:!1},{type:"number",q:"How many states does this detector need?",answer:3,tol:0,unit:"",explain:"Mealy: S0, S1, S10. Moore needs an extra S101 state to hold the output.",try:!1}],"p4-mealy-ov":[{type:"choice",q:"Input bits 1, 0, 1, 0, 1: how many detections?",options:["1","2"],answer:1,explain:"Overlapping reuses the last 1.",try:!1},{type:"choice",q:"When is y = 1?",options:["While x is the final 1 (same cycle)","In the cycle after the final 1 was clocked in"],answer:0,explain:"Mealy outputs depend on the input; Moore outputs only on the state.",try:!1},{type:"number",q:"How many states does this detector need?",answer:3,tol:0,unit:"",explain:"Mealy: S0, S1, S10. Moore needs an extra S101 state to hold the output.",try:!1}],"p4-moore-nov":[{type:"choice",q:"Input bits 1, 0, 1, 0, 1: how many detections?",options:["1","2"],answer:0,explain:"After a detection the search starts again.",try:!1},{type:"choice",q:"When is y = 1?",options:["While x is the final 1 (same cycle)","In the cycle after the final 1 was clocked in"],answer:1,explain:"Mealy outputs depend on the input; Moore outputs only on the state.",try:!1},{type:"number",q:"How many states does this detector need?",answer:4,tol:0,unit:"",explain:"S0, S1, S10 and S101 (the output state).",try:!1}],"p4-moore-ov":[{type:"choice",q:"Input bits 1, 0, 1, 0, 1: how many detections?",options:["1","2"],answer:1,explain:"Overlapping reuses the last 1.",try:!1},{type:"choice",q:"When is y = 1?",options:["While x is the final 1 (same cycle)","In the cycle after the final 1 was clocked in"],answer:1,explain:"Mealy outputs depend on the input; Moore outputs only on the state.",try:!1},{type:"number",q:"How many states does this detector need?",answer:4,tol:0,unit:"",explain:"S0, S1, S10 and S101 (the output state).",try:!1}],"s01-reg":[{type:"choice",q:"What does the logic type replace?",options:["Only wire","Both reg and wire in most code: it can be driven by assign or by a procedural block (one driver)","integer","Nothing"],answer:1,explain:"",try:!1},{type:"choice",q:"What extra check does always_ff give over always @(posedge clk)?",options:["None","Tools warn if the block does not describe flip-flops, for example a missing edge","It is faster","It adds a reset"],answer:1,explain:"",try:!1},{type:"number",q:"How many bits does '0 set for an 8-bit out?",answer:8,tol:0,unit:"",explain:"'0 fills every bit of the target with 0.",try:!1}],"s02-mux":[{type:"choice",q:"What does unique case promise?",options:["Nothing","Exactly one case item matches; tools may warn if none or several match","The case is fast","A default is not needed"],answer:1,explain:"Icarus prints a note that it ignores the check.",try:!1},{type:"number",q:"What is the width of scale_mux with no parameter override?",answer:1,tol:0,unit:"",explain:"WIDTH defaults to 1.",try:!1},{type:"choice",q:"Why drive 'x in the default branch?",options:["To save area","So an unknown select shows up as unknown in simulation instead of hiding as a valid value","It is required","To reset"],answer:1,explain:"",try:!1}],"s03-cnt":[{type:"number",q:"What value comes after 31?",answer:0,tol:0,unit:"",explain:"5 bits wrap.",try:!1},{type:"choice",q:"load = 1 and enable = 1: what happens?",options:["count increments","count loads data","Nothing"],answer:1,explain:"load is checked first.",try:!1},{type:"choice",q:"In the CPU, what does this counter become?",options:["The accumulator","The program counter","The ALU","The memory"],answer:1,explain:"",try:!1}],"s04-ctrl":[{type:"number",q:"How many clock cycles does one instruction take?",answer:8,tol:0,unit:"",explain:"8 states, one per clock.",try:!1},{type:"choice",q:"What does state.next() return after STORE?",options:["STORE","INST_ADDR: next() wraps to the first value","x","IDLE"],answer:1,explain:"",try:!1},{type:"choice",q:"In which state is halt raised for an HLT instruction?",options:["INST_ADDR","OP_ADDR","STORE","ALU_OP"],answer:1,explain:"",try:!1},{type:"choice",q:"Why is this a Mealy machine?",options:["It has 8 states","Its outputs depend on opcode and zero as well as the state","It uses enums","It has a reset"],answer:1,explain:"",try:!1}],"s05-alu":[{type:"choice",q:"For LDA, what is out?",options:["accum","data","data + accum","0"],answer:1,explain:"Load the accumulator from memory.",try:!1},{type:"number",q:"For ADD with accum = 200 and data = 100, what is out (8 bits)?",answer:44,tol:0,unit:"",explain:"300 \u2212 256.",try:!1},{type:"choice",q:"Why is out registered on the falling edge?",options:["To save power","So it is ready half a cycle later, for the accumulator to load on the next rising edge","It is a bug","For reset"],answer:1,explain:"",try:!1}],"s06-memtb":[{type:"choice",q:"Why drive the memory inputs on the falling edge?",options:["It is required","So they are stable when the memory samples them on the rising edge: no race","To test hold"],answer:1,explain:"",try:!1},{type:"choice",q:"What does 'input bit debug = 0' in a task do?",options:["Nothing","Makes debug optional: callers can leave it out","Forces debug to 0"],answer:1,explain:"",try:!1},{type:"choice",q:"With BUG = 1, which addresses are written wrongly?",options:["0 to 15","16 to 31: address bit 4 is lost, so they land on 0 to 15","All","None"],answer:1,explain:"",try:!1}],"s07-struct":[{type:"number",q:"How many bits wide is mem_req_t?",answer:15,tol:0,unit:"",explain:"1 + 1 + 5 + 8.",try:!1},{type:"choice",q:"Why does the field order matter here?",options:["It does not","A packed struct is also a plain vector, and the testbench builds it as {read, write, addr, data}","For speed"],answer:1,explain:"",try:!1},{type:"choice",q:"What can an interface do that a struct cannot?",options:["Nothing","Carry signals in both directions with modports, and hold tasks and functions for the bus protocol","Be smaller","Be synthesized"],answer:1,explain:"",try:!1}],"s08-cpu":[{type:"number",q:"How many bits is the address field of an instruction?",answer:5,tol:0,unit:"",explain:"{opcode[7:5], address[4:0]}: 32 memory words.",try:!1},{type:"number",q:"At what address (hex 12 = decimal 18) does Program 1 halt? Answer in decimal.",answer:18,tol:0,unit:"",explain:"The success HLT is at 12 hex.",try:!1},{type:"number",q:"What does Program 2 leave in memory[1D]?",answer:55,tol:0,unit:"",explain:"1 + 2 + \u2026 + 10.",try:!1},{type:"number",q:"What does Program 3 leave in memory[1D]?",answer:144,tol:0,unit:"",explain:"The Fibonacci number it stops at.",try:!1},{type:"choice",q:"What does the mux select while fetch = 1?",options:["The instruction's address field","The program counter"],answer:1,explain:"",try:!1}],"s09-johnson":[{type:"number",q:"How many states does a 4-bit Johnson counter have?",answer:8,tol:0,unit:"",explain:"2N.",try:!1},{type:"choice",q:"What comes after 0111?",options:["1111","1110","0000","1000"],answer:0,explain:"Shift left and bring in ~q[3] = 1.",try:!1},{type:"number",q:"How many bits change between two neighbouring states?",answer:1,tol:0,unit:"",explain:"That is why Johnson counters decode without glitches.",try:!1}],"s10-gen":[{type:"number",q:"How many full_adder instances does rca #(N=12) contain?",answer:12,tol:0,unit:"",explain:"One per bit.",try:!1},{type:"choice",q:"What is genvar?",options:["A run-time variable","An elaboration-time loop index used by generate loops","A wire","A parameter"],answer:1,explain:"",try:!1},{type:"choice",q:"Why name the generate block (begin : stage)?",options:["It is optional decoration","It gives each instance a hierarchical name, such as stage[3].fa, for debug and constraints"],answer:1,explain:"",try:!1}],"s11-dpram":[{type:"number",q:"How many words does dpram hold with AW = 4?",answer:16,tol:0,unit:"",explain:"2^4.",try:!1},{type:"choice",q:"Port A writes address 5 with new data. What does dout_a show on that edge?",options:["The new data","The old data (read-before-write)","x"],answer:1,explain:"",try:!1},{type:"choice",q:"Can port B read while port A writes?",options:["No","Yes: that is the point of a dual-port RAM"],answer:1,explain:"",try:!1}],"s12-uart":[{type:"number",q:"How many bits does one byte take on the line (start + data + stop)?",answer:10,tol:0,unit:"",explain:"1 + 8 + 1.",try:!1},{type:"number",q:"With CLKS_PER_BIT = 4 and a 10 ns clock, how long does one byte take?",answer:400,tol:0,unit:"ns",explain:"10 bits \xD7 4 clocks \xD7 10 ns.",try:!1},{type:"choice",q:"Which data bit is sent first?",options:["data[7]","data[0]"],answer:1,explain:"UARTs send LSB first.",try:!1},{type:"choice",q:"What level does tx have when idle?",options:["0","1"],answer:1,explain:"The start bit is the 1 \u2192 0 edge.",try:!1}],"l01-gates":[{type:"choice",q:"Which gate gives 1 only when its inputs are different?",options:["AND","XOR","XNOR","NOR"],answer:1,explain:"XOR is the 'odd number of 1s' gate.",try:!1},{type:"choice",q:"Which gate gives 1 only when both inputs are 0?",options:["NAND","NOR","XOR","OR"],answer:1,explain:"NOR = NOT of OR.",try:!1},{type:"number",q:"How many rows does the truth table of a 3-input gate have?",answer:8,tol:0,unit:"",explain:"2^3 = 8.",try:!1}],"l02-nand":[{type:"number",q:"How many NAND gates make a NOT gate?",answer:1,tol:0,unit:"",explain:"Tie both inputs together: (a\xB7a)' = a'.",try:!1},{type:"number",q:"How many 2-input NAND gates does the XOR circuit in this lab use?",answer:4,tol:0,unit:"",explain:"n1 plus x1, x2 and the output gate.",try:!1},{type:"choice",q:"Why is OR built as NAND(a', b')?",options:["By De Morgan: (a'\xB7b')' = a + b","It is faster","NAND cannot invert","It uses fewer gates than AND"],answer:0,explain:"",try:!1}],"l03-nor":[{type:"number",q:"How many 2-input NOR gates make an AND gate?",answer:3,tol:0,unit:"",explain:"Two to invert a and b, one NOR of the inverted inputs.",try:!1},{type:"choice",q:"NOR(a, a) equals",options:["a","a'","0","1"],answer:1,explain:"",try:!1},{type:"choice",q:"Which pair are both universal gates?",options:["AND and OR","NAND and NOR","XOR and XNOR","NOT and AND"],answer:1,explain:"",try:!1}],"l04-sop-pos":[{type:"choice",q:"y1 = A\xB7B + A'\xB7B' is the same as which single gate of A and B?",options:["XOR","XNOR","NAND","OR"],answer:1,explain:"It is 1 when A and B are equal.",try:!1},{type:"number",q:"For how many of the 8 input combinations is y3 = A + B\xB7C' equal to 1?",answer:5,tol:0,unit:"",explain:"All four with A = 1, plus A = 0, B = 1, C = 0.",try:!1},{type:"choice",q:"In a POS expression, each sum term corresponds to",options:["A row where F = 1","A row where F = 0 (a maxterm)","A don't-care","A clock edge"],answer:1,explain:"",try:!1}],"l05-demorgan":[{type:"choice",q:"(A + B)' equals",options:["A' + B'","A'\xB7B'","A\xB7B","(A\xB7B)'"],answer:1,explain:"",try:!1},{type:"choice",q:"A NAND gate is the same as",options:["An OR gate with inverted inputs","An AND gate with inverted inputs","A NOR gate","An XOR gate"],answer:0,explain:"(A\xB7B)' = A' + B'.",try:!1},{type:"number",q:"How many input combinations make l1_left = 0?",answer:1,tol:0,unit:"",explain:"Only A = B = 1.",try:!1}],"l06-kmap":[{type:"number",q:"How many product terms does the simplified F2 have?",answer:2,tol:0,unit:"",explain:"A\xB7B' and C\xB7D'.",try:!1},{type:"number",q:"How many minterms does one group of 4 cells cover?",answer:4,tol:0,unit:"",explain:"",try:!1},{type:"choice",q:"Why do K-maps order columns 00, 01, 11, 10?",options:["Alphabetical order","Gray code: neighbouring cells differ in one variable, so they can be grouped","It saves space","It is binary order"],answer:1,explain:"",try:!1}],"l07-dontcare":[{type:"choice",q:"Which don't-cares does the answer F = C\xB7D + A'\xB7B' use as 1?",options:["0 and 2","5 only","0, 2 and 5","None"],answer:0,explain:"m0 and m2 complete the A'\xB7B' group; m5 is left as 0.",try:!1},{type:"number",q:"How many literals does F = C\xB7D + A'\xB7B' have?",answer:4,tol:0,unit:"",explain:"C, D, A', B'.",try:!1},{type:"choice",q:"May a don't-care be 1 in one group and 0 elsewhere?",options:["No","Yes: it is only covered if that helps","Only in POS","Only if it is minterm 0"],answer:1,explain:"",try:!1}],"l08-parity":[{type:"number",q:"For d = 1011, what is the even parity bit p?",answer:1,tol:0,unit:"",explain:"Three 1s, so p = 1 makes four.",try:!1},{type:"choice",q:"Can parity detect two flipped bits?",options:["Yes","No: two flips keep the parity the same"],answer:1,explain:"",try:!1},{type:"choice",q:"What does ^d mean in Verilog?",options:["Bitwise NOT","Reduction XOR of all bits of d","Power","Exclusive OR with 1"],answer:1,explain:"",try:!1}],"l09-majority":[{type:"number",q:"How many of the 8 input combinations give y = 1?",answer:4,tol:0,unit:"",explain:"m3, m5, m6, m7.",try:!1},{type:"number",q:"How many 2-input AND gates does the minimal SOP need?",answer:3,tol:0,unit:"",explain:"A\xB7B, B\xB7C, A\xB7C.",try:!1},{type:"choice",q:"Majority of three is also the carry out of",options:["A half adder","A full adder","A comparator","A decoder"],answer:1,explain:"cout = 1 when at least two of a, b, cin are 1.",try:!1}],"l10-sub":[{type:"choice",q:"Which output of the full subtractor equals the full adder's sum?",options:["Bout","D","Neither","Both"],answer:1,explain:"D = A ^ B ^ Bin, the same as the sum.",try:!1},{type:"choice",q:"For A = 0, B = 1, Bin = 1, what are D and Bout?",options:["D = 0, Bout = 1","D = 1, Bout = 0","D = 0, Bout = 0","D = 1, Bout = 1"],answer:0,explain:"0 \u2212 1 \u2212 1 = \u22122: difference 0, borrow 1.",try:!1},{type:"choice",q:"The half subtractor borrow is",options:["A\xB7B'","A'\xB7B","A\xB7B","A ^ B"],answer:1,explain:"",try:!1}],"l29-rca":[{type:"number",q:"How many full adders does a 16-bit ripple-carry adder need?",answer:16,tol:0,unit:"",explain:"",try:!1},{type:"number",q:"If each full adder carry takes 2 ns, what is the worst carry delay through 4 bits?",answer:8,tol:0,unit:"ns",explain:"The carry ripples through all four stages.",try:!1},{type:"number",q:"A = 1111, B = 0001, cin = 0: what is cout?",answer:1,tol:0,unit:"",explain:"15 + 1 = 16 overflows 4 bits.",try:!1}],"l18-addsub":[{type:"choice",q:"Why is M also the carry in?",options:["To add 1 for two's complement: A \u2212 B = A + B' + 1","To reset the adder","For overflow","To invert A"],answer:0,explain:"",try:!1},{type:"choice",q:"5 \u2212 7 with M = 1: what is S?",options:["1110 (\u22122)","0010","1100","1111"],answer:0,explain:"\u22122 in 4-bit two's complement is 1110.",try:!1},{type:"choice",q:"Signed overflow happens when",options:["cout = 1","Two operands of the same sign give a result of the other sign","The result is 0","B is negative"],answer:1,explain:"",try:!1}],"l19-bcdadd":[{type:"number",q:"In BCD, 7 + 5 gives digit s = ?",answer:2,tol:0,unit:"",explain:"12 \u2192 digit 2, carry 1.",try:!1},{type:"number",q:"What value is added to correct a sum above 9?",answer:6,tol:0,unit:"",explain:"It skips the six unused codes 1010 to 1111.",try:!1},{type:"choice",q:"Which sums need correction?",options:["Sums above 9","Only sums above 15","Odd sums","All sums"],answer:0,explain:"Including sums 16 to 19, where the binary adder already has a carry.",try:!1}],"l17-cmp2":[{type:"choice",q:"Which gate tests whether two bits are equal?",options:["XOR","XNOR","NAND","OR"],answer:1,explain:"",try:!1},{type:"number",q:"For how many of the 16 input combinations is gt = 1?",answer:6,tol:0,unit:"",explain:"Pairs with a > b: 16 \u2212 4 equal = 12, half of them.",try:!1},{type:"choice",q:"Why does the gt equation look at bit 1 first?",options:["The most significant bit decides unless it is equal","Bit 0 is slower","It is alphabetical","No reason"],answer:0,explain:"",try:!1}],"l30-cmp4":[{type:"choice",q:"For a single 7485, how are the cascade inputs tied?",options:["i_eq = 1, i_gt = i_lt = 0","All 0","All 1","i_gt = 1"],answer:0,explain:"Equal numbers must then give eq = 1.",try:!1},{type:"number",q:"How many 4-bit comparators compare two 12-bit numbers in a cascade?",answer:3,tol:0,unit:"",explain:"",try:!1},{type:"choice",q:"A = B and i_gt = 1: which output is 1?",options:["eq","gt","lt","None"],answer:1,explain:"The lower bits decide.",try:!1}],"l14-dec38":[{type:"choice",q:"a = 101 and the chip is enabled: which output is 0?",options:["y_n[2]","y_n[5]","y_n[3]","All"],answer:1,explain:"",try:!1},{type:"choice",q:"g1 = 0: what are the outputs?",options:["All 0","All 1","y_n[a] = 0","High impedance"],answer:1,explain:"Disabled: every active-low output is inactive.",try:!1},{type:"number",q:"How many 74138s plus enable wiring make a 4-to-16 decoder?",answer:2,tol:0,unit:"",explain:"The fourth address bit enables one chip or the other.",try:!1}],"l11-dec-fa":[{type:"number",q:"How many decoder outputs feed the OR gate for S?",answer:4,tol:0,unit:"",explain:"Minterms 1, 2, 4 and 7.",try:!1},{type:"choice",q:"Which minterm is shared by S and C?",options:["m3","m7","m1","m0"],answer:1,explain:"1 + 1 + 1 = 3: sum 1, carry 1.",try:!1},{type:"choice",q:"Can one 3-to-8 decoder implement any number of 3-input functions?",options:["Yes: one OR gate per function","No, only one","Only two","Only with a mux"],answer:0,explain:"",try:!1}],"l15-enc83":[{type:"number",q:"d = 0010_1000: what is y_p?",answer:5,tol:0,unit:"",explain:"The highest 1 is bit 5.",try:!1},{type:"choice",q:"d = 0010_1000: what is valid from the plain encoder?",options:["0: two bits are set","1"],answer:0,explain:"",try:!1},{type:"choice",q:"What does the any flag solve?",options:["d = 0 and d = 1 both give y_p = 0","Speed","Glitches","Nothing"],answer:0,explain:"",try:!1}],"l13-mux-demux":[{type:"number",q:"How many select bits does a 16-to-1 mux need?",answer:4,tol:0,unit:"",explain:"",try:!1},{type:"number",q:"How many input combinations does the testbench check?",answer:4096,tol:0,unit:"",explain:"8 + 3 + 1 = 12 input bits.",try:!1},{type:"choice",q:"Demux with sel = 3 and x = 1: what is o?",options:["0000_1000","0000_0011","1000_0000","0000_0001"],answer:0,explain:"",try:!1}],"l12-mux-fn":[{type:"choice",q:"For ABC = 110, what is the data input?",options:["0","1","D","D'"],answer:1,explain:"m12 and m13 are both in F.",try:!1},{type:"choice",q:"For ABC = 010, what is the data input?",options:["0","1","D","D'"],answer:3,explain:"m4 is in F (D = 0) but m5 is not.",try:!1},{type:"number",q:"How many variables can one 8-to-1 mux implement any function of?",answer:4,tol:0,unit:"",explain:"3 select lines plus the fourth variable on the data inputs.",try:!1}],"l16-gray":[{type:"choice",q:"Binary 0110: what is the Gray code?",options:["0101","0110","0111","0100"],answer:0,explain:"g = b ^ (b >> 1) = 0110 ^ 0011.",try:!1},{type:"number",q:"How many bits change when the Gray code counts from 7 to 8?",answer:1,tol:0,unit:"",explain:"In binary all 4 bits change.",try:!1},{type:"choice",q:"Why does Gray-to-binary need a chain of XORs?",options:["Each binary bit is the XOR of all Gray bits above and including it","To save gates","It does not"],answer:0,explain:"",try:!1}],"l20-7seg":[{type:"number",q:"How many segments are lit for the digit 8?",answer:7,tol:0,unit:"",explain:"",try:!1},{type:"choice",q:"Which segment is off for 0?",options:["a","d","g (the middle bar)","f"],answer:2,explain:"",try:!1},{type:"choice",q:"In a common-anode display the segments are",options:["Active high","Active low (like the 7447)"],answer:1,explain:"",try:!1}],"l21-srlatch":[{type:"choice",q:"For a NAND latch, which input values hold the stored bit?",options:["s_n = r_n = 0","s_n = r_n = 1","s_n = 1, r_n = 0","s_n = 0, r_n = 1"],answer:1,explain:"",try:!1},{type:"choice",q:"Why is s_n = r_n = 0 not allowed?",options:["Both q and q_n go to 1, and the latch state is unpredictable when both are released","It burns the chip","It is a syntax error"],answer:0,explain:"",try:!1},{type:"number",q:"After s_n goes low, how many gate delays until q_n changes?",answer:2,tol:0,unit:"",explain:"q changes after one delay, then q_n one delay later.",try:!1}],"l22-ffs":[{type:"choice",q:"JK flip-flop with j = k = 1:",options:["Hold","Set","Reset","Toggle"],answer:3,explain:"",try:!1},{type:"choice",q:"Which flip-flop is a JK with J and K tied together?",options:["D","T","SR","None"],answer:1,explain:"",try:!1},{type:"choice",q:"Which flip-flop is a JK with K = J'?",options:["D","T","SR","None"],answer:0,explain:"",try:!1}],"l23-ripple":[{type:"number",q:"How many flip-flops does a ripple counter up to 255 need?",answer:8,tol:0,unit:"",explain:"",try:!1},{type:"choice",q:"Why is a ripple counter not used to drive synchronous logic?",options:["Its bits change one after another, so the outputs glitch through wrong values","It is too big","It counts down"],answer:0,explain:"",try:!1},{type:"choice",q:"In this lab, on which clk edge does the count change?",options:["Rising","Falling"],answer:1,explain:"t0 toggles on the falling edge of clk.",try:!1}],"l24-sync":[{type:"choice",q:"When does q[2] toggle?",options:["Every clock","When q[1] = q[0] = 1","When q[0] = 1","Never"],answer:1,explain:"",try:!1},{type:"number",q:"How many clocks until a 3-bit counter wraps to 0?",answer:8,tol:0,unit:"",explain:"",try:!1},{type:"choice",q:"Main advantage over a ripple counter:",options:["All bits change on the same clock edge","Fewer gates","No clock needed"],answer:0,explain:"",try:!1}],"l32-updown":[{type:"choice",q:"Counting down, when does q[1] toggle?",options:["When q[0] = 0","When q[0] = 1","Every clock","Never"],answer:0,explain:"",try:!1},{type:"number",q:"Counting down from 0, what is the next value?",answer:7,tol:0,unit:"",explain:"It wraps around.",try:!1},{type:"number",q:"How many states does a MOD-8 counter have?",answer:8,tol:0,unit:"",explain:"",try:!1}],"l27-mod6":[{type:"number",q:"How many distinct values does the counter output show?",answer:6,tol:0,unit:"",explain:"0 to 5.",try:!1},{type:"number",q:"With a 60 MHz clock, what is the frequency of tc pulses?",answer:10,tol:0,unit:"MHz",explain:"60 / 6.",try:!1},{type:"number",q:"How many flip-flops are needed for MOD-6?",answer:3,tol:0,unit:"",explain:"2^3 = 8 \u2265 6.",try:!1}],"l25-ring":[{type:"number",q:"How many states does a 4-bit ring counter have?",answer:4,tol:0,unit:"",explain:"",try:!1},{type:"number",q:"How many states does a 4-bit Johnson counter have?",answer:8,tol:0,unit:"",explain:"2N.",try:!1},{type:"choice",q:"What value follows 1110 in the Johnson counter?",options:["1111","0111","1100","0000"],answer:0,explain:"",try:!1}],"l26-siso":[{type:"number",q:"How many clocks does a bit take to go from sin to sout?",answer:4,tol:0,unit:"",explain:"",try:!1},{type:"choice",q:"What is q after 1, 0, 0, 1 are shifted in (first bit first)?",options:["1001","0110","1111","0000"],answer:0,explain:"The first bit is now in q[0] and the last in q[3].",try:!1},{type:"choice",q:"Which register type converts serial data to parallel?",options:["SISO","SIPO","PISO","PIPO"],answer:1,explain:"",try:!1}],"l31-usr":[{type:"choice",q:"q = 0110, mode = 10, sl_in = 1: next q?",options:["1101","1011","0011","0110"],answer:0,explain:"Shift left: {q[2:0], sl_in}.",try:!1},{type:"choice",q:"Which mode loads d?",options:["00","01","10","11"],answer:3,explain:"",try:!1},{type:"choice",q:"Which 7400-series part is a 4-bit universal shift register?",options:["74194","7483","74138","7447"],answer:0,explain:"",try:!1}],"l28-fsm":[{type:"choice",q:"From state 01 with dir = 1, the next state is",options:["00","11","10","01"],answer:1,explain:"",try:!1},{type:"choice",q:"Is z a Moore or a Mealy output?",options:["Moore: it depends only on the state","Mealy"],answer:0,explain:"",try:!1},{type:"number",q:"How many flip-flops does a 4-state machine need with binary encoding?",answer:2,tol:0,unit:"",explain:"",try:!1}],"l33-traffic":[{type:"number",q:"How many clocks does the side road stay green?",answer:3,tol:0,unit:"",explain:"S2 lasts while timer counts 0, 1, 2.",try:!1},{type:"choice",q:"If car stays 0, what does the main road show?",options:["Green forever","It cycles anyway","Yellow"],answer:0,explain:"",try:!1},{type:"choice",q:"Can both roads be green at once?",options:["No: every state has at least one red","Yes, in S1"],answer:0,explain:"",try:!1}]};var Ce=[{id:"counter",title:"4-bit up counter",tag:"Sequential",std:"2005",design:`\`timescale 1ns/1ps
 
 // Parameterised up counter with async active-low reset and enable
 module counter #(parameter WIDTH = 4) (
@@ -348,7 +348,7 @@ module tb;
     $finish;
   end
 endmodule
-`}];var Pe=[{id:"part1",title:"Part 1: adders"},{id:"part2",title:"Part 2: combinational"},{id:"part3",title:"Part 3: latches and flip-flops"},{id:"part4",title:"Part 4: sequential"},{id:"sv",title:"SystemVerilog design labs"},{id:"ld-gates",title:"Gates and Boolean algebra"},{id:"ld-comb",title:"Combinational circuits"},{id:"ld-seq",title:"Flip-flops, counters and FSMs"}],Ne=[{id:"p1-ha-df",group:"part1",tag:"Part 1 \xB7 Lab 1",title:"Half adder: dataflow",std:"2005",design:`// One-bit half adder, dataflow style: continuous assignments only.
+`}];var We=[{id:"part1",title:"Part 1: adders"},{id:"part2",title:"Part 2: combinational"},{id:"part3",title:"Part 3: latches and flip-flops"},{id:"part4",title:"Part 4: sequential"},{id:"sv",title:"SystemVerilog design labs"},{id:"ld-gates",title:"Gates and Boolean algebra"},{id:"ld-comb",title:"Combinational circuits"},{id:"ld-seq",title:"Flip-flops, counters and FSMs"}],Be=[{id:"p1-ha-df",group:"part1",tag:"Part 1 \xB7 Lab 1",title:"Half adder: dataflow",std:"2005",design:`// One-bit half adder, dataflow style: continuous assignments only.
 module half_adder (
   input  wire a, b,
   output wire sum, carry
@@ -5848,5 +5848,4486 @@ module traffic (
       default: begin main_l = 3'b100; side_l = 3'b010; end
     endcase
 endmodule
-`}}];function Me(t){let e=[],n=new Map,s=[],i="",r=0,c=t.split(/\s+/),a=!0,S=0,_=0;for(;r<c.length;){let g=c[r++];if(!g)continue;if(a){if(g==="$scope"){for(r++,s.push(c[r++]);c[r]!=="$end";)r++;r++}else if(g==="$upscope"){for(s.pop();c[r]!=="$end";)r++;r++}else if(g==="$timescale"){let y=[];for(;c[r]!=="$end";)y.push(c[r++]);r++,i=y.join("")}else if(g==="$var"){let y=c[r++],h=parseInt(c[r++],10),l=c[r++],m=[];for(;c[r]!=="$end";)m.push(c[r++]);r++;let f=m[0];m[1]&&m[1].startsWith("[")&&(f+=m[1]);let q=[...s,f].join(".");if(y==="parameter")continue;if(n.has(l)){n.get(l).aliases.push(q);continue}let A=[...s.slice(1),f].join("."),R={id:l,name:q,short:A||f,depth:s.length,width:h,type:y,changes:[],aliases:[]};n.set(l,R),e.push(R)}else if(g==="$enddefinitions"){for(;c[r]!=="$end";)r++;r++,a=!1}else if(g.startsWith("$")){for(;r<c.length&&c[r]!=="$end";)r++;r++}continue}let u=g[0];if(u==="#")S=Number(g.slice(1)),S>_&&(_=S);else if(u!=="$")if(u==="b"||u==="B"||u==="r"||u==="R"){let y=g.slice(1),h=c[r++],l=n.get(h);l&&Ee(l,S,u==="r"||u==="R"?Number(y):y)}else{let y=n.get(g.slice(1));y&&Ee(y,S,u.toLowerCase())}}return{signals:e,timescale:i,endTime:_}}function Ee(t,e,n){let s=t.changes;s.length&&s[s.length-1][0]===e?s[s.length-1][1]=n:(!s.length||s[s.length-1][1]!==n)&&s.push([e,n])}function He(t,e){let n=t.changes,s=0,i=n.length-1,r=-1;for(;s<=i;){let c=s+i>>1;n[c][0]<=e?(r=c,s=c+1):i=c-1}return r<0?null:n[r][1]}function Ae(t,e,n){if(e==null)return"";if(typeof e=="number")return String(+e.toPrecision(6));if(t.width===1)return e;let s=e.padStart(t.width,e[0]==="x"||e[0]==="z"?e[0]:"0");if(/[xz]/i.test(s))return/^x+$/i.test(s)?"x":/^z+$/i.test(s)?"z":n==="bin"?s:"x";if(n==="bin")return s;let i=BigInt("0b"+s);if(n==="dec")return i.toString(10);if(n==="sdec"){let r=BigInt(t.width);return(s[0]==="1"?i-(1n<<r):i).toString(10)}return i.toString(16).toUpperCase().padStart(Math.ceil(t.width/4),"0")}var pe=class{constructor(e,n){this.c=e,this.ctx=e.getContext("2d"),this.data=null,this.radix="hex",this.cursor=null,this.t0=0,this.t1=1,this.onCursor=n.onCursor||(()=>{}),this.nameW=190,this.rowH=28,this.axisH=26,this.theme=n.theme,e.addEventListener("mousedown",s=>this.click(s)),e.addEventListener("wheel",s=>this.wheel(s),{passive:!1}),new ResizeObserver(()=>this.draw()).observe(e.parentElement)}setData(e){this.data=e,this.cursor=null,this.t0=0,this.t1=Math.max(1,e.endTime),this.draw(),this.onCursor(null)}clear(){this.data=null,this.draw()}zoom(e,n){if(!this.data)return;let s=this.t1-this.t0,i=n??this.cursor??this.t0+s/2,r=Math.min(Math.max(s*e,2),Math.max(1,this.data.endTime)*1.05),c=i-(i-this.t0)*(r/s);c=Math.max(0,Math.min(c,Math.max(0,this.data.endTime-r))),this.t0=c,this.t1=c+r,this.draw()}fit(){this.data&&(this.t0=0,this.t1=Math.max(1,this.data.endTime),this.draw())}pan(e){if(!this.data)return;let n=this.t1-this.t0,s=this.t0+n*e;s=Math.max(0,Math.min(s,Math.max(0,this.data.endTime-n))),this.t0=s,this.t1=s+n,this.draw()}xOf(e,n){return this.nameW+(e-this.t0)/(this.t1-this.t0)*(n-this.nameW-8)}tOf(e,n){return this.t0+(e-this.nameW)/(n-this.nameW-8)*(this.t1-this.t0)}click(e){if(!this.data)return;let n=this.c.getBoundingClientRect(),s=e.clientX-n.left;s<this.nameW||(this.cursor=Math.max(0,Math.round(this.tOf(s,n.width))),this.draw(),this.onCursor(this.cursor))}wheel(e){if(!this.data)return;let n=this.c.getBoundingClientRect();e.ctrlKey||e.metaKey||Math.abs(e.deltaY)>Math.abs(e.deltaX)&&e.shiftKey===!1&&e.altKey?(e.preventDefault(),this.zoom(e.deltaY>0?1.25:.8,this.tOf(e.clientX-n.left,n.width))):(Math.abs(e.deltaX)>Math.abs(e.deltaY)||e.shiftKey)&&(e.preventDefault(),this.pan((e.deltaX||e.deltaY)/600))}draw(){let e=this.theme(),s=this.c.parentElement.clientWidth;this.nameW=s<640?112:190;let i=this.data?this.data.signals:[],r=this.axisH+Math.max(i.length,3)*this.rowH+8,c=window.devicePixelRatio||1;this.c.style.width=s+"px",this.c.style.height=r+"px",this.c.width=Math.round(s*c),this.c.height=Math.round(r*c);let a=this.ctx;if(a.setTransform(c,0,0,c,0,0),a.fillStyle=e.bg,a.fillRect(0,0,s,r),a.font="12px 'JetBrains Mono', ui-monospace, monospace",a.textBaseline="middle",!this.data){a.fillStyle=e.muted,a.fillText("Run a simulation that calls $dumpvars to see waveforms here.",16,r/2);return}let S=this.t1-this.t0,_=(s-this.nameW)/110,g=S/Math.max(1,_),u=Math.pow(10,Math.floor(Math.log10(g))),y=[1,2,5,10].map(h=>h*u).find(h=>h>=g)||u*10;a.strokeStyle=e.grid,a.fillStyle=e.muted,a.lineWidth=1;for(let h=Math.ceil(this.t0/y)*y;h<=this.t1;h+=y){let l=Math.round(this.xOf(h,s))+.5;a.beginPath(),a.moveTo(l,this.axisH-6),a.lineTo(l,r),a.stroke(),a.fillText(he(h,this.data.timescale),l+3,11)}if(a.strokeStyle=e.line,a.beginPath(),a.moveTo(0,this.axisH+.5),a.lineTo(s,this.axisH+.5),a.stroke(),i.forEach((h,l)=>{let m=this.axisH+l*this.rowH,f=m+6,q=m+this.rowH-6,A=(f+q)/2;a.fillStyle=l%2?e.rowAlt:e.bg,a.fillRect(0,m+1,s,this.rowH-1),a.fillStyle=e.text;let R=h.short+(h.width>1&&!h.short.includes("[")?` [${h.width-1}:0]`:"");a.fillText(We(a,R,this.nameW-16),10,A),a.save(),a.beginPath(),a.rect(this.nameW,m,s-this.nameW,this.rowH),a.clip();let F=h.changes;for(let L=0;L<F.length;L++){let M=F[L][0],U=L+1<F.length?F[L+1][0]:this.data.endTime;if(U<this.t0||M>this.t1)continue;let T=this.xOf(M,s),v=this.xOf(U,s),D=F[L][1];if(h.width===1&&typeof D=="string"){let C=D==="x"?e.x:D==="z"?e.z:e.wave;a.strokeStyle=C,a.lineWidth=1.5,D==="x"&&(a.fillStyle=e.xFill,a.fillRect(T,f,v-T,q-f));let J=D==="1"?f:D==="0"?q:A;if(a.beginPath(),L>0){let B=F[L-1][1],Q=B==="1"?f:B==="0"?q:A;a.moveTo(T,Q)}else a.moveTo(T,J);a.lineTo(T,J),a.lineTo(v,J),a.stroke()}else{let C=Ae(h,D,this.radix),J=C==="x"||C==="z";a.strokeStyle=J?e.x:e.wave,a.lineWidth=1.2,a.fillStyle=J?e.xFill:e.busFill;let B=Math.min(4,(v-T)/2);a.beginPath(),a.moveTo(T,A),a.lineTo(T+B,f),a.lineTo(v-B,f),a.lineTo(v,A),a.lineTo(v-B,q),a.lineTo(T+B,q),a.closePath(),a.fill(),a.stroke();let Q=v-T-10;Q>14&&(a.fillStyle=e.text,a.fillText(We(a,C,Q),Math.max(T,this.nameW)+6,A))}}a.restore()}),a.strokeStyle=e.line,a.beginPath(),a.moveTo(this.nameW+.5,0),a.lineTo(this.nameW+.5,r),a.stroke(),this.cursor!==null&&this.cursor>=this.t0&&this.cursor<=this.t1){let h=Math.round(this.xOf(this.cursor,s))+.5;a.strokeStyle=e.cursor,a.lineWidth=1.5,a.beginPath(),a.moveTo(h,0),a.lineTo(h,r),a.stroke()}}};function We(t,e,n){if(t.measureText(e).width<=n)return e;for(;e.length>1&&t.measureText(e+"\u2026").width>n;)e=e.slice(0,-1);return e+"\u2026"}function he(t,e){let n=/^(\d+)(s|ms|us|ns|ps|fs)$/.exec(e||"");if(!n)return String(t);let s=["fs","ps","ns","us","ms","s"],i=t*Number(n[1]),r=s.indexOf(n[2]);for(;r<s.length-1&&Math.abs(i)>=1e3&&i%1e3===0;)i/=1e3,r++;return r<2&&Math.abs(i)>=1e3&&(i/=1e3,r++,i=+i.toFixed(3)),`${i} ${s[r]}`}var be=document.body.dataset.lab;var je=t=>be==="systemverilog"?t==="sv":be==="logic"?t.startsWith("ld-"):t!=="sv"&&!t.startsWith("ld-"),Ge=[...Ce.map(t=>({group:"examples",...t})),...Ne];for(let t of Ge)t.quiz=Be[t.id]||[];var N=Ge.filter(t=>je(t.group)),sn=[{id:"examples",title:"Examples",note:"Ready-to-copy examples: counters, FSMs, FIFOs, CDC synchronizers, SystemVerilog. Edit anything and press Run."},...Pe.map(t=>({...t,note:"Write the design in the Design pane: the ports are given. The testbench checks it and prints PASS or FAIL. A \u2713 marks the labs you have passed."}))],ye=sn.filter(t=>je(t.id)),oe="vdd-vlabs-code-v1",fe="vdd-vlabs-pass-v1",ae=t=>{try{return JSON.parse(localStorage.getItem(t)||"{}")||{}}catch{return{}}},qe=(t,e)=>{try{localStorage.setItem(t,JSON.stringify(e))}catch{}},w=t=>document.querySelector(t),ze=15e3,Xe=be==="systemverilog"?"vdd-svlabs-v1":be==="logic"?"vdd-logiclabs-v1":"vdd-playground-v1",p={example:N[0].id,track:N[0].group,usedSolution:!1,std:N[0].std,running:!1,worker:null,ready:!1,timer:null,startedAt:0,lastVcd:null};function Ue(t){let e=t.querySelector("textarea");if(window.CodeMirror){let n=window.CodeMirror.fromTextArea(e,{mode:"verilog",lineNumbers:!0,indentUnit:2,tabSize:2,smartIndent:!0,matchBrackets:!0,viewportMargin:1/0,extraKeys:{Tab:s=>s.replaceSelection("  ")}});return{get:()=>n.getValue(),set:s=>{n.setValue(s),n.clearHistory()},onChange:s=>n.on("change",s),refresh:()=>n.refresh(),goto:s=>{n.focus(),n.setCursor({line:s-1,ch:0}),n.addLineClass(s-1,"background","cm-errline"),setTimeout(()=>n.removeLineClass(s-1,"background","cm-errline"),2500),n.scrollIntoView({line:s-1,ch:0},80)},addKeys:s=>n.addKeyMap(s)}}return e.classList.add("plain-editor"),{get:()=>e.value,set:n=>{e.value=n},onChange:n=>e.addEventListener("input",n),refresh(){},goto:n=>{let s=e.value.split(`
-`),i=0;for(let r=0;r<n-1&&r<s.length;r++)i+=s[r].length+1;e.focus(),e.setSelectionRange(i,i+(s[n-1]||"").length)},addKeys(){}}}var I={design:Ue(w("#ed-design")),tb:Ue(w("#ed-tb"))};function de(){return p.std==="2012"?{design:"design.sv",tb:"testbench.sv"}:{design:"design.v",tb:"testbench.v"}}function ve(){let t=de();w("#name-design").textContent=t.design,w("#name-tb").textContent=t.tb}var rn=()=>ye.find(t=>t.id===p.track)||ye[0],an=t=>(N.find(e=>e.id===t)||N[0]).group;function le(){let t=w("#vtracks");t.innerHTML="";for(let e of ye){let n=document.createElement("button");n.type="button",n.className="vtrack"+(e.id===p.track?" active":""),n.setAttribute("role","tab"),n.setAttribute("aria-selected",e.id===p.track?"true":"false");let s=N.filter(r=>r.group===e.id),i=e.id==="examples"?0:s.filter(r=>ae(fe)[r.id]).length;n.innerHTML='<span class="vtrack-t"></span><span class="vtrack-n"></span>',n.querySelector(".vtrack-t").textContent=e.title,n.querySelector(".vtrack-n").textContent=s.length+(e.id==="examples"?" examples":" labs")+(i?` \xB7 ${i} \u2713`:""),n.addEventListener("click",()=>on(e.id)),t.appendChild(n)}w("#vtrack-note").textContent=rn().note,document.body.dataset.track!==p.track&&(document.body.dataset.track=p.track,document.dispatchEvent(new CustomEvent("vdd-track"))),w("#side-title").textContent=p.track==="examples"?"// Examples":"// Labs",w("#side-note").hidden=p.track!=="examples",w("#reset").textContent=p.track==="examples"?"Reset example":"Reset lab"}function on(t){p.track=t;try{let e=new URL(location.href);e.searchParams.set("track",t),history.replaceState(null,"",e.pathname+e.search)}catch{}an(p.example)!==t?te(N.find(e=>e.group===t).id):(le(),re())}var ce=null;function re(){let t=w("#examples");t.innerHTML="";let e=ae(fe),n=N.filter(i=>i.group===p.track);for(let i of n){let r=document.createElement("button");if(r.type="button",r.className="ex"+(i.id===p.example?" active":""),r.innerHTML='<span class="ex-tag"></span><span class="ex-title"></span>',r.querySelector(".ex-tag").textContent=i.tag,e[i.id]){let a=document.createElement("span");a.className="ex-pass",a.textContent="\u2713 passed",r.querySelector(".ex-tag").appendChild(a)}let c=ce&&ce.status(i.id);if(c&&c.checked){let a=document.createElement("span");a.className="ex-pass",a.textContent=`quiz ${c.score}/${c.total}`,r.querySelector(".ex-tag").appendChild(a)}r.querySelector(".ex-title").textContent=i.title,r.addEventListener("click",()=>te(i.id)),t.appendChild(r)}let s=w("#ex-select");s.innerHTML=n.map(i=>`<option value="${i.id}">${i.group==="examples"?"":i.tag+" \xB7 "}${i.title}</option>`).join(""),n.some(i=>i.id===p.example)&&(s.value=p.example)}function dn(){let t=N.find(n=>n.id===p.example);if(!t||t.group==="examples")return;let e=ae(oe);e[t.id]={design:I.design.get(),tb:I.tb.get()},qe(oe,e)}function te(t,e){let n=N.find(i=>i.id===t)||N[0];p.example=n.id,p.std=n.std,p.track=n.group,p.usedSolution=!1,w("#std").value=n.std;let s=!e&&n.group!=="examples"?ae(oe)[n.id]:null;if(I.design.set(s?s.design:n.design),I.tb.set(s?s.tb:n.tb),e&&n.group!=="examples"){let i=ae(oe);delete i[n.id],qe(oe,i)}w("#show-solution").hidden=!n.solution,ve(),le(),re(),xe(ke,n.id,Se),ce.render(n),ie(),$e(),P.clear(),w("#wave-values").textContent="",se("Ready","idle")}function ln(){let t=N.find(e=>e.id===p.example);!t||!t.solution||(t.solution.design&&I.design.set(t.solution.design),t.solution.tb&&I.tb.set(t.solution.tb),p.usedSolution=!0,ie(),$e(),Z("Loaded the solution. Run it to see PASS. Reset lab brings your starting point back.","meta"))}function cn(t){let e=N.find(s=>s.id===p.example);if(!e||e.group==="examples"||p.usedSolution||!/(^|\n)PASS\b/.test(t))return;let n=ae(fe);n[e.id]||(n[e.id]=Date.now(),qe(fe,n),le(),re())}function ie(){dn();try{localStorage.setItem(Xe,JSON.stringify({example:p.example,std:p.std,design:I.design.get(),tb:I.tb.get()}))}catch{}}function un(){try{let t=JSON.parse(localStorage.getItem(Xe)||"null");if(t&&t.design!=null)return t}catch{}return null}async function pn(){let t=JSON.stringify({s:p.std,d:I.design.get(),t:I.tb.get()}),e=new Blob([t]).stream().pipeThrough(new CompressionStream("deflate-raw")),n=new Uint8Array(await new Response(e).arrayBuffer()),s="";for(let i of n)s+=String.fromCharCode(i);return btoa(s).replace(/\+/g,"-").replace(/\//g,"_").replace(/=+$/,"")}async function hn(t){let e=atob(t.replace(/-/g,"+").replace(/_/g,"/")),n=Uint8Array.from(e,i=>i.charCodeAt(0)),s=new Blob([n]).stream().pipeThrough(new DecompressionStream("deflate-raw"));return JSON.parse(await new Response(s).text())}async function ge(t,e){let n=!1;try{await navigator.clipboard.writeText(t),n=!0}catch{let i=document.createElement("textarea");i.value=t,i.style.position="fixed",i.style.opacity="0",document.body.appendChild(i),i.select();try{n=document.execCommand("copy")}catch{}i.remove()}if(e){let s=e.dataset.label||e.textContent;e.dataset.label=s,e.textContent=n?"Copied":"Press Ctrl+C",e.classList.toggle("ok",n),setTimeout(()=>{e.textContent=s,e.classList.remove("ok")},1600)}}function Ke(t,e){let n=document.createElement("a");n.href=URL.createObjectURL(new Blob([e],{type:"text/plain"})),n.download=t,document.body.appendChild(n),n.click(),setTimeout(()=>{URL.revokeObjectURL(n.href),n.remove()},500)}var ne=w("#console");function $e(){ne.textContent=""}function Z(t,e){let n=document.createElement("div");n.className="ln "+(e||"");let s=/^(?:\/work\/)?([\w.-]+\.s?v):(\d+):/.exec(t);if(s){let i=s[1]===de().design?"design":s[1]===de().tb?"tb":null,r=document.createElement("button");r.type="button",r.className="loc",r.textContent=`${s[1]}:${s[2]}`,i&&r.addEventListener("click",()=>I[i].goto(+s[2])),n.appendChild(r),n.appendChild(document.createTextNode(":"+t.slice(s[0].length)))}else n.textContent=t;/qualities are ignored/.test(t)?n.classList.add("warn"):/\berror\b|ERROR|sorry|FAIL|MISMATCH|Internal error|Unable to/.test(t)?n.classList.add("err"):/\bwarning\b/i.test(t)?n.classList.add("warn"):/\bPASS\b/.test(t)&&n.classList.add("pass"),ne.appendChild(n),ne.childElementCount>6e3&&ne.firstChild.remove(),ne.scrollTop=ne.scrollHeight}function se(t,e){let n=w("#status");n.textContent=t,n.dataset.kind=e}var Te=new URL("/verilog/",location.href).href;function gn(){return new URL("worker.js",Te).href}function De(){p.worker&&p.worker.terminate(),p.ready=!1;let t=new Worker(gn());t.onmessage=e=>mn(e.data),t.onerror=e=>{Z("Simulator failed to start: "+(e.message||"worker error"),"err"),Oe(!1)},t.postMessage({type:"load",base:Te}),p.worker=t}function mn(t){if(t.type==="ready")p.ready=!0,p.running||se("Ready","idle");else if(t.type==="stage")se(t.stage+"\u2026","busy"),t.stage==="Simulating"&&Z("\u2500\u2500 simulation output \u2500\u2500","meta");else if(t.type==="line")Z(t.line.replace(/\/work\//g,""),t.stream==="err"?"stderr":"");else if(t.type==="done"){if(t.ok){Z(`\u2500\u2500 finished in ${t.ms} ms \u2500\u2500`,"meta"),cn(ne.innerText);let e=(t.vcd||[])[0];if(e){p.lastVcd=e;try{let n=Me(e.text);P.setData(n),w("#wave-meta").textContent=`${n.signals.length} signals \xB7 ${he(n.endTime,n.timescale)}`}catch(n){Z("Could not read waveform: "+n.message,"err")}}else P.clear(),w("#wave-meta").textContent='No waveform: add $dumpfile("dump.vcd"); $dumpvars(0, tb);'}else t.phase==="compile"?Z("\u2500\u2500 compile failed: fix the errors above and run again \u2500\u2500","meta err"):t.phase==="sim"&&Z(`\u2500\u2500 simulation exited with code ${t.rc} \u2500\u2500`,"meta err");Oe(t.ok,t.phase)}}function me(){if(p.running)return;window.vddSubscribe&&window.vddSubscribe(),p.worker||De(),ie(),$e(),w("#wave-values").textContent="",p.running=!0,p.startedAt=performance.now(),w("#run").disabled=!0,w("#stop").disabled=!1,se(p.ready?"Compiling\u2026":"Loading simulator\u2026","busy");let t=de(),e={[t.design]:I.design.get(),[t.tb]:I.tb.get()},n=w("#top").value.trim();p.worker.postMessage({type:"run",files:e,std:p.std,top:n,base:Te}),clearTimeout(p.timer),p.timer=setTimeout(()=>Ve(`Stopped after ${ze/1e3} s. Does your testbench call $finish?`),ze)}function Ve(t){p.running&&(Z(t||"Stopped.","meta err"),Oe(!1,"stopped"),De())}function Oe(t,e){clearTimeout(p.timer),p.running=!1,w("#run").disabled=!1,w("#stop").disabled=!0,e==="stopped"?se("Stopped","err"):se(t?"Done":e==="compile"?"Compile errors":"Error",t?"ok":"err")}var V=t=>getComputedStyle(document.documentElement).getPropertyValue(t).trim(),P=new pe(w("#wave"),{theme:()=>({bg:V("--wave-bg"),rowAlt:V("--wave-row"),grid:V("--wave-grid"),line:V("--line"),text:V("--text"),muted:V("--muted"),wave:V("--wave"),busFill:V("--wave-bus"),x:V("--wave-x"),xFill:V("--wave-xfill"),z:V("--wave-z"),cursor:V("--accent")}),onCursor:t=>{let e=w("#wave-values");if(t===null||!P.data){e.textContent="";return}e.innerHTML="";let n=document.createElement("div");n.className="cur-time",n.textContent="Cursor @ "+he(t,P.data.timescale),e.appendChild(n);for(let s of P.data.signals){let i=document.createElement("div");i.className="cur-row";let r=document.createElement("span");r.textContent=s.name;let c=document.createElement("span");c.textContent=Ae(s,He(s,t),P.radix),i.append(r,c),e.appendChild(i)}}});bn().addEventListener?.("change",()=>P.draw());function bn(){return window.matchMedia("(prefers-color-scheme: dark)")}function yn(){w("#run").addEventListener("click",me),w("#stop").addEventListener("click",()=>Ve()),w("#std").addEventListener("change",e=>{p.std=e.target.value,ve(),ie()}),w("#ex-select").addEventListener("change",e=>te(e.target.value)),document.querySelectorAll("[data-copy]").forEach(e=>e.addEventListener("click",()=>ge(I[e.dataset.copy].get(),e))),document.querySelectorAll("[data-download]").forEach(e=>e.addEventListener("click",()=>Ke(de()[e.dataset.download],I[e.dataset.download].get()))),w("#copy-output").addEventListener("click",e=>ge(ne.innerText,e.currentTarget)),w("#reset").addEventListener("click",()=>te(p.example,!0)),w("#show-solution").addEventListener("click",ln),w("#share").addEventListener("click",async e=>{let n=e.currentTarget;try{let s=await pn(),i=location.href.split("#")[0]+"#code="+s;history.replaceState(null,"","#code="+s),ge(i,n)}catch{ge(location.href,n)}}),w("#zoom-in").addEventListener("click",()=>P.zoom(.5)),w("#zoom-out").addEventListener("click",()=>P.zoom(2)),w("#zoom-fit").addEventListener("click",()=>P.fit()),w("#pan-left").addEventListener("click",()=>P.pan(-.4)),w("#pan-right").addEventListener("click",()=>P.pan(.4)),w("#radix").addEventListener("change",e=>{P.radix=e.target.value,P.draw(),P.onCursor(P.cursor)}),w("#dl-vcd").addEventListener("click",()=>{p.lastVcd&&Ke("dump.vcd",p.lastVcd.text)});let t={"Ctrl-Enter":me,"Cmd-Enter":me};I.design.addKeys(t),I.tb.addKeys(t),document.addEventListener("keydown",e=>{(e.ctrlKey||e.metaKey)&&e.key==="Enter"&&(e.preventDefault(),me())}),I.design.onChange(()=>ie()),I.tb.onChange(()=>ie())}async function fn(){ce=Re({key:"vdd-vlabs-quiz-v1",onChange:()=>re()}),yn();let t=!1,e=new URLSearchParams(location.search),n=e.get("track"),s=e.get("lab"),i=new URLSearchParams(location.hash.slice(1)).get("code");if(i){try{let r=await hn(i);p.std=r.s==="2012"?"2012":"2005",p.example=null,w("#std").value=p.std,I.design.set(r.d||""),I.tb.set(r.t||""),t=!0}catch{}t&&(le(),re())}if(!t&&s&&N.some(r=>r.id===s)&&(te(s),t=!0),!t&&n&&ye.some(r=>r.id===n)&&(te(N.find(r=>r.group===n).id),t=!0),!t){let r=un();if(r&&N.some(c=>c.id===r.example)){let c=N.find(a=>a.id===r.example);p.example=c.id,p.track=c.group,p.std=r.std||"2005",w("#std").value=p.std,I.design.set(r.design),I.tb.set(r.tb),w("#show-solution").hidden=!c.solution,le(),re(),xe(ke,p.example,Se),ce.render(c),t=!0}}t||te(N[0].id),ve(),se("Loading simulator\u2026","busy"),De(),P.clear()}fn();})();
+`}}];var Ne=[{id:"sva-basic",title:"SVA basics",note:"Write the assertion where the TODO is: keep its label. Run: the lab passes when your assertion passes on good behaviour and fails exactly where the design misbehaves. Failures show as \u25BC on the waveform."},{id:"sva-seq",title:"Sequences",note:"Each lab injects one bug. Your assertion must fail exactly at the bug and pass everywhere else (the console lists expected vs actual failure times)."},{id:"sva-prop",title:"Properties and local variables",note:"Sampled-value functions, system functions, not/if/until, eventually, local variables. Keep the assertion labels: the lab checks them."},{id:"sva-apps",title:"Assertions for real designs",note:"FSMs, FIFOs, memories, arbiters and bus protocols: write the checker for the design, then find the bugs it catches."},{id:"cov-fc",title:"Functional coverage",note:"Write the covergroup where the TODO is: keep the covergroup and coverpoint names. The lab passes when your coverage model gives the same bins and the same coverage as the reference. The report is under the waveform."},{id:"dv-w7",title:"Week 7: Verilog for verification",note:"Testbench labs: complete the TODOs (usually in the testbench). A self-checking testbench prints PASS or FAIL. A \u2713 marks the labs you have passed."},{id:"dv-w8",title:"Week 8: SystemVerilog for verification",note:"Data types, interfaces, classes and threads. Complete the TODOs and run until the testbench prints PASS."},{id:"dv-cr",title:"Constrained random",note:"rand, randc, constraints, dist, solve-before, arrays and inline constraints. The solver runs in your browser; randomize() returns 0 and explains a conflict when the constraints cannot be met."},{id:"dv-w9",title:"Week 9: FIFO verification",note:"Packages and system tasks, then the week 9 FIFO project: test plan, directed tests, random tests with a scoreboard, assertions and functional coverage."},{id:"dv-proj",title:"Verification projects",note:"Complete verification environments: FIFO, round-robin arbiter, APB register block and UART. Each project has stimulus, checking (scoreboard + assertions) and coverage. Find the bug in the design and fix it."}],He=[{id:"sva-b1",group:"sva-basic",tag:"SVA basics \xB7 Lab 1",title:"Immediate assertions: executable comments",std:"2012",design:`// Program counter + one-hot FSM, from a small DSP. Two bugs are hidden in it.
+module pc_fsm (
+  input  logic       clk, rst_n, load, inc,
+  input  logic [7:0] d,
+  output logic [7:0] pc,
+  output logic [3:0] state            // one-hot: 0001 RESET, 0010 FETCH, 0100 DECODE, 1000 STORE
+);
+  always_ff @(posedge clk or negedge rst_n)
+    if (!rst_n)      pc <= 0;
+    else if (load)   pc <= d;
+    else if (inc)    pc <= pc + 1;
+  always_ff @(posedge clk or negedge rst_n)
+    if (!rst_n) state <= 4'b0001;
+    else case (state)
+      4'b0001: state <= 4'b0010;
+      4'b0010: state <= 4'b0100;
+      4'b0100: state <= (pc == 8'h13) ? 4'b1100 : 4'b1000;   // bug: two states at once
+      default: state <= 4'b0010;
+    endcase
+endmodule
+`,tb:`module tb;
+  logic clk = 0;
+  always #5 clk = ~clk;          // posedges at 5, 15, 25, ...
+  logic rst_n = 0, load = 0, inc = 0; logic [7:0] d = 0, pc; logic [3:0] state;
+  int errors = 0;
+  pc_fsm dut (.*);
+
+  // TODO: two immediate assertions, checked after every change of state / at every clock:
+  //   a_onehot: state is one-hot          ($onehot)
+  //   a_no_x:   d has no X or Z bits while load is high  ($isunknown)
+  // In each else branch: errors++ and $error("...").
+  always @(state) begin
+  end
+  always @(posedge clk) begin
+  end
+
+  initial begin
+    $dumpfile("dump.vcd"); $dumpvars(0, tb);
+    #12 rst_n = 1;
+    @(negedge clk) load = 1; d = 8'h10;
+    @(negedge clk) load = 0; inc = 1;
+    repeat (8) @(negedge clk);
+    inc = 0; load = 1; d = 8'bx;          // a test bench bug: an unknown load value
+    @(negedge clk) load = 0;
+    repeat (2) @(negedge clk);
+    if (errors == 2) $display("PASS: the assertions caught both bugs (%0d errors)", errors);
+    else             $display("FAIL: expected 2 assertion errors, got %0d", errors);
+    $finish;
+  end
+endmodule
+`,solution:{tb:`module tb;
+  logic clk = 0;
+  always #5 clk = ~clk;          // posedges at 5, 15, 25, ...
+  logic rst_n = 0, load = 0, inc = 0; logic [7:0] d = 0, pc; logic [3:0] state;
+  int errors = 0;
+  pc_fsm dut (.*);
+
+  always @(state) begin
+    a_onehot: assert ($onehot(state)) else begin errors++; $error("state %b is not one-hot", state); end
+  end
+  always @(posedge clk) begin
+    if (load) a_no_x: assert (!$isunknown(d)) else begin errors++; $error("load with unknown d = %b", d); end
+  end
+
+  initial begin
+    $dumpfile("dump.vcd"); $dumpvars(0, tb);
+    #12 rst_n = 1;
+    @(negedge clk) load = 1; d = 8'h10;
+    @(negedge clk) load = 0; inc = 1;
+    repeat (8) @(negedge clk);
+    inc = 0; load = 1; d = 8'bx;          // a test bench bug: an unknown load value
+    @(negedge clk) load = 0;
+    repeat (2) @(negedge clk);
+    if (errors == 2) $display("PASS: the assertions caught both bugs (%0d errors)", errors);
+    else             $display("FAIL: expected 2 assertion errors, got %0d", errors);
+    $finish;
+  end
+endmodule
+`}},{id:"sva-b2",group:"sva-basic",tag:"SVA basics \xB7 Lab 2",title:"Your first concurrent assertion: request and acknowledge",std:"2012",design:"",tb:`// A request must be acknowledged 1 to 3 clocks later.
+module tb;
+  logic clk = 0;
+  always #5 clk = ~clk;          // posedges at 5, 15, 25, ...
+  logic req = 0, ack = 0;
+  // A simple responder: it answers after a delay set by the test.
+  int delay = 2;
+  always @(posedge clk) if (req) fork begin repeat (delay) @(negedge clk); ack <= 1; @(negedge clk) ack <= 0; end join_none
+
+  // TODO: on every clock where req rises, ack must be high 1 to 3 clocks later.
+  a_req_ack: assert property (@(posedge clk) 1'b1);
+
+  initial begin
+    $dumpfile("dump.vcd"); $dumpvars(0, tb);
+    repeat (2) @(negedge clk);
+    req = 1; @(negedge clk) req = 0;           // answered after 2 clocks: fine
+    repeat (5) @(negedge clk);
+    delay = 3; req = 1; @(negedge clk) req = 0; // after 3: fine
+    repeat (6) @(negedge clk);
+    delay = 5; req = 1; @(negedge clk) req = 0; // after 5: too late
+    repeat (8) @(negedge clk);
+    $finish;
+  end
+endmodule
+`,solution:{tb:`// A request must be acknowledged 1 to 3 clocks later.
+module tb;
+  logic clk = 0;
+  always #5 clk = ~clk;          // posedges at 5, 15, 25, ...
+  logic req = 0, ack = 0;
+  // A simple responder: it answers after a delay set by the test.
+  int delay = 2;
+  always @(posedge clk) if (req) fork begin repeat (delay) @(negedge clk); ack <= 1; @(negedge clk) ack <= 0; end join_none
+
+  a_req_ack: assert property (@(posedge clk) $rose(req) |-> ##[1:3] ack);
+
+  initial begin
+    $dumpfile("dump.vcd"); $dumpvars(0, tb);
+    repeat (2) @(negedge clk);
+    req = 1; @(negedge clk) req = 0;           // answered after 2 clocks: fine
+    repeat (5) @(negedge clk);
+    delay = 3; req = 1; @(negedge clk) req = 0; // after 3: fine
+    repeat (6) @(negedge clk);
+    delay = 5; req = 1; @(negedge clk) req = 0; // after 5: too late
+    repeat (8) @(negedge clk);
+    $finish;
+  end
+endmodule
+`},check:[{assert:"a_req_ack",fails:[185],minPass:1}]},{id:"sva-b3",group:"sva-basic",tag:"SVA basics \xB7 Lab 3",title:"Sampling: why assertions see the old value",std:"2012",design:"",tb:`// The same check, written twice: as an immediate assertion and as a concurrent one.
+// The test drives 'go' and 'done' right AT the clock edge, with blocking assignments.
+module tb;
+  logic clk = 0;
+  always #5 clk = ~clk;          // posedges at 5, 15, 25, ...
+  logic go = 0, done = 0;
+  int imm_t = -1, conc_t = -1;
+  // immediate: reads the values at the moment the always block runs (after #0)
+  always @(posedge clk) begin #0;
+    a_imm: assert (!(go && done)) else if (imm_t < 0) imm_t = $time;
+  end
+  // concurrent: reads the values sampled just before the edge (Preponed region)
+  a_conc: assert property (@(posedge clk) !(go && done)) else if (conc_t < 0) conc_t = $time;
+
+  initial begin
+    $dumpfile("dump.vcd"); $dumpvars(0, tb);
+    // TODO: these four steps drive at the rising edge. Make them drive on @(negedge clk).
+    @(posedge clk); go = 1;
+    @(posedge clk); done = 1;
+    @(posedge clk); go = 0;
+    @(posedge clk); done = 0;
+    repeat (3) @(posedge clk);
+    $display("immediate assertion first failed at %0t, concurrent at %0t", imm_t, conc_t);
+    if (imm_t == conc_t && imm_t > 0) $display("PASS: both assertions agree");
+    else $display("FAIL: the assertions disagree: the test races with the sampling edge");
+    $finish;
+  end
+endmodule
+`,solution:{tb:`// The same check, written twice: as an immediate assertion and as a concurrent one.
+// The test now drives on the falling edge: both assertions agree.
+module tb;
+  logic clk = 0;
+  always #5 clk = ~clk;          // posedges at 5, 15, 25, ...
+  logic go = 0, done = 0;
+  int imm_t = -1, conc_t = -1;
+  always @(posedge clk) begin #0;
+    a_imm: assert (!(go && done)) else if (imm_t < 0) imm_t = $time;
+  end
+  a_conc: assert property (@(posedge clk) !(go && done)) else if (conc_t < 0) conc_t = $time;
+
+  initial begin
+    $dumpfile("dump.vcd"); $dumpvars(0, tb);
+    @(negedge clk); go = 1;
+    @(negedge clk); done = 1;
+    @(negedge clk); go = 0;
+    @(negedge clk); done = 0;
+    repeat (3) @(posedge clk);
+    $display("immediate assertion first failed at %0t, concurrent at %0t", imm_t, conc_t);
+    if (imm_t == conc_t && imm_t > 0) $display("PASS: both assertions agree");
+    else $display("FAIL: the assertions disagree: the test races with the sampling edge");
+    $finish;
+  end
+endmodule
+`}},{id:"sva-b4",group:"sva-basic",tag:"SVA basics \xB7 Lab 4",title:"Overlapping |-> and non-overlapping |=> implication",std:"2012",design:"",tb:`// Memory enable protocol: when mem_en is high, req must be high in the same cycle (|->),
+// and ack must follow req two cycles later. In a second version, req may start one cycle later (|=>).
+module tb;
+  logic clk = 0;
+  always #5 clk = ~clk;          // posedges at 5, 15, 25, ...
+  logic mem_en = 0, req = 0, ack = 0;
+  // mem_en for one cycle; req req_lag cycles later; ack ack_lag cycles after req (each one cycle long)
+  task automatic access(int req_lag, int ack_lag);
+    fork
+      begin mem_en = 1; @(negedge clk) mem_en = 0; end
+      begin repeat (req_lag) @(negedge clk); req = 1; @(negedge clk) req = 0; end
+      begin repeat (req_lag + ack_lag) @(negedge clk); ack = 1; @(negedge clk) ack = 0; end
+    join
+  endtask
+
+  // TODO a_same: mem_en |-> req ##2 ack       (req in the same cycle as mem_en)
+  // TODO a_next: mem_en |=> req ##2 ack       (req in the cycle after mem_en)
+  a_same: assert property (@(posedge clk) 1'b1);
+  a_next: assert property (@(posedge clk) 1'b1);
+
+  initial begin
+    $dumpfile("dump.vcd"); $dumpvars(0, tb);
+    repeat (2) @(negedge clk);
+    access(0, 2);  repeat (3) @(negedge clk);   // req with mem_en
+    access(1, 2);  repeat (3) @(negedge clk);   // req one cycle after mem_en
+    access(0, 3);  repeat (4) @(negedge clk);   // ack one cycle late
+    $finish;
+  end
+endmodule
+`,solution:{tb:`// Memory enable protocol: when mem_en is high, req must be high in the same cycle (|->),
+// and ack must follow req two cycles later. In a second version, req may start one cycle later (|=>).
+module tb;
+  logic clk = 0;
+  always #5 clk = ~clk;          // posedges at 5, 15, 25, ...
+  logic mem_en = 0, req = 0, ack = 0;
+  // mem_en for one cycle; req req_lag cycles later; ack ack_lag cycles after req (each one cycle long)
+  task automatic access(int req_lag, int ack_lag);
+    fork
+      begin mem_en = 1; @(negedge clk) mem_en = 0; end
+      begin repeat (req_lag) @(negedge clk); req = 1; @(negedge clk) req = 0; end
+      begin repeat (req_lag + ack_lag) @(negedge clk); ack = 1; @(negedge clk) ack = 0; end
+    join
+  endtask
+
+  a_same: assert property (@(posedge clk) mem_en |-> req ##2 ack);
+  a_next: assert property (@(posedge clk) mem_en |=> req ##2 ack);
+
+  initial begin
+    $dumpfile("dump.vcd"); $dumpvars(0, tb);
+    repeat (2) @(negedge clk);
+    access(0, 2);  repeat (3) @(negedge clk);   // req with mem_en
+    access(1, 2);  repeat (3) @(negedge clk);   // req one cycle after mem_en
+    access(0, 3);  repeat (4) @(negedge clk);   // ack one cycle late
+    $finish;
+  end
+endmodule
+`},check:[{assert:"a_same",fails:[85,175],minPass:1},{assert:"a_next",fails:[35,165],minPass:1}]},{id:"sva-b5",group:"sva-basic",tag:"SVA basics \xB7 Lab 5",title:"The level vs edge gotcha",std:"2012",design:"",tb:`// Spec: 'ack must RISE two clocks after req rises'. The assertion below was written
+// from 'ack is high two clocks after req'. Run it: it fails on good behaviour and
+// passes the bug. Fix it.
+module tb;
+  logic clk = 0;
+  always #5 clk = ~clk;          // posedges at 5, 15, 25, ...
+  logic req = 0, ack = 0;
+  a_req_ack: assert property (@(posedge clk) req |-> ##2 ack);   // TODO: fix
+
+  initial begin
+    $dumpfile("dump.vcd"); $dumpvars(0, tb);
+    repeat (2) @(negedge clk);
+    // good: req held 3 cycles, ack pulses 2 cycles after req rises
+    req = 1; repeat (2) @(negedge clk); ack = 1; @(negedge clk) begin req = 0; ack = 0; end
+    repeat (3) @(negedge clk);
+    // bug: ack was already high (stuck) before req: it never rises
+    ack = 1; @(negedge clk); req = 1; @(negedge clk) req = 0; repeat (4) @(negedge clk); ack = 0;
+    repeat (4) @(negedge clk);
+    $finish;
+  end
+endmodule
+`,solution:{tb:`// Spec: 'ack must RISE two clocks after req rises'.
+module tb;
+  logic clk = 0;
+  always #5 clk = ~clk;          // posedges at 5, 15, 25, ...
+  logic req = 0, ack = 0;
+  a_req_ack: assert property (@(posedge clk) $rose(req) |-> ##2 $rose(ack));
+
+  initial begin
+    $dumpfile("dump.vcd"); $dumpvars(0, tb);
+    repeat (2) @(negedge clk);
+    req = 1; repeat (2) @(negedge clk); ack = 1; @(negedge clk) begin req = 0; ack = 0; end
+    repeat (3) @(negedge clk);
+    ack = 1; @(negedge clk); req = 1; @(negedge clk) req = 0; repeat (4) @(negedge clk); ack = 0;
+    repeat (4) @(negedge clk);
+    $finish;
+  end
+endmodule
+`},check:[{assert:"a_req_ack",fails:[115],minPass:1}]},{id:"sva-b6",group:"sva-basic",tag:"SVA basics \xB7 Lab 6",title:"Resets: disable iff",std:"2012",design:`// A down-counter that reloads from 'load_val' when it reaches zero. 'tick' is high for one clock at the reload.
+module reload_counter (input logic clk, rst_n, input logic [3:0] load_val, output logic [3:0] cnt, output logic tick);
+  always_ff @(posedge clk or negedge rst_n)
+    if (!rst_n) cnt <= 4'hf;
+    else if (cnt == 0) cnt <= load_val;
+    else cnt <= cnt - 1;
+  assign tick = (cnt == 0);
+endmodule
+`,tb:`module tb;
+  logic clk = 0;
+  always #5 clk = ~clk;          // posedges at 5, 15, 25, ...
+  logic rst_n = 0; logic [3:0] load_val = 4'd3, cnt; logic tick;
+  reload_counter dut (.*);
+  // Rule: after a tick, the counter holds load_val.
+  // TODO: it fails during and right after reset. Add disable iff so it only checks out of reset.
+  a_reload: assert property (@(posedge clk) tick |=> cnt == load_val);
+
+  initial begin
+    $dumpfile("dump.vcd"); $dumpvars(0, tb);
+    force dut.cnt = 0; #22 release dut.cnt;            // the counter powers up at 0 while in reset
+    #10 rst_n = 1;
+    repeat (12) @(negedge clk);
+    rst_n = 0; @(negedge clk) rst_n = 1;               // reset pulse in the middle of the run
+    repeat (25) @(negedge clk);
+    wait (tick); @(posedge clk); @(negedge clk) force dut.cnt = 4'd5; @(negedge clk) release dut.cnt;   // a real bug: cnt glitches right after a reload
+    repeat (8) @(negedge clk);
+    $finish;
+  end
+endmodule
+`,solution:{tb:`module tb;
+  logic clk = 0;
+  always #5 clk = ~clk;          // posedges at 5, 15, 25, ...
+  logic rst_n = 0; logic [3:0] load_val = 4'd3, cnt; logic tick;
+  reload_counter dut (.*);
+  a_reload: assert property (@(posedge clk) disable iff (!rst_n) tick |=> cnt == load_val);
+
+  initial begin
+    $dumpfile("dump.vcd"); $dumpvars(0, tb);
+    force dut.cnt = 0; #22 release dut.cnt;
+    #10 rst_n = 1;
+    repeat (12) @(negedge clk);
+    rst_n = 0; @(negedge clk) rst_n = 1;
+    repeat (25) @(negedge clk);
+    wait (tick); @(posedge clk); @(negedge clk) force dut.cnt = 4'd5; @(negedge clk) release dut.cnt;
+    repeat (8) @(negedge clk);
+    $finish;
+  end
+endmodule
+`},check:[{assert:"a_reload",fails:[445],minPass:1}]},{id:"sva-b7",group:"sva-basic",tag:"SVA basics \xB7 Lab 7",title:"Action blocks, severity and $assertoff",std:"2012",design:"",tb:`// A handshake checker whose pass and fail actions count results.
+module tb;
+  logic clk = 0;
+  always #5 clk = ~clk;          // posedges at 5, 15, 25, ...
+  logic rst_n = 0, valid = 0, ready = 0;
+  int n_pass = 0, n_fail = 0;
+  // valid must be answered by ready in the next clock
+  property p_vr; @(posedge clk) disable iff (!rst_n) $rose(valid) |=> ready; endproperty
+  // TODO: add a pass action (n_pass++) and a fail action (n_fail++ and $error with the time)
+  a_vr: assert property (p_vr);
+
+  initial begin
+    $dumpfile("dump.vcd"); $dumpvars(0, tb);
+    #12 rst_n = 1;
+    repeat (3) begin @(negedge clk) valid = 1; @(negedge clk) begin valid = 0; ready = 1; end @(negedge clk) ready = 0; end
+    // the test enters a 'low power' phase where the protocol is not used:
+    // TODO: switch a_vr off here with $assertoff(0, tb.a_vr) ...
+    repeat (2) begin @(negedge clk) valid = 1; @(negedge clk) valid = 0; end
+    // ... and back on here with $asserton(0, tb.a_vr)
+    @(negedge clk) valid = 1; @(negedge clk) valid = 0;        // a real miss
+    repeat (3) @(negedge clk);
+    $display("pass action ran %0d times, fail action %0d times", n_pass, n_fail);
+    if (n_pass > 0 && n_fail == 1) $display("PASS: the checker counted its results");
+    else $display("FAIL: expected the pass action to run and exactly 1 failure");
+    $finish;
+  end
+endmodule
+`,solution:{tb:`// A handshake checker whose pass and fail actions count results.
+module tb;
+  logic clk = 0;
+  always #5 clk = ~clk;          // posedges at 5, 15, 25, ...
+  logic rst_n = 0, valid = 0, ready = 0;
+  int n_pass = 0, n_fail = 0;
+  property p_vr; @(posedge clk) disable iff (!rst_n) $rose(valid) |=> ready; endproperty
+  a_vr: assert property (p_vr) n_pass++; else begin n_fail++; $error("valid at %0t was not answered", $time - 10); end
+
+  initial begin
+    $dumpfile("dump.vcd"); $dumpvars(0, tb);
+    #12 rst_n = 1;
+    repeat (3) begin @(negedge clk) valid = 1; @(negedge clk) begin valid = 0; ready = 1; end @(negedge clk) ready = 0; end
+    $assertoff(0, tb.a_vr);
+    repeat (2) begin @(negedge clk) valid = 1; @(negedge clk) valid = 0; end
+    $asserton(0, tb.a_vr);
+    @(negedge clk) valid = 1; @(negedge clk) valid = 0;
+    repeat (3) @(negedge clk);
+    $display("pass action ran %0d times, fail action %0d times", n_pass, n_fail);
+    if (n_pass > 0 && n_fail == 1) $display("PASS: the checker counted its results");
+    else $display("FAIL: expected the pass action to run and exactly 1 failure");
+    $finish;
+  end
+endmodule
+`}},{id:"sva-b8",group:"sva-basic",tag:"SVA basics \xB7 Lab 8",title:"assert, assume and cover: one property, three jobs",std:"2012",design:"",tb:`// An arbiter's environment promises that 'req' never stays high more than 4 clocks.
+// The design promises 'gnt' only when requested. And we want to SEE a back-to-back grant.
+module tb;
+  logic clk = 0;
+  always #5 clk = ~clk;          // posedges at 5, 15, 25, ...
+  logic req = 0, gnt = 0;
+  always @(posedge clk) gnt <= req;             // the 'design'
+  property p_req_short; @(posedge clk) $rose(req) |-> ##[1:4] !req; endproperty
+
+  // TODO m_req: use p_req_short as an assumption on the inputs (assume property)
+  // TODO a_gnt: assert that gnt is only high one clock after req was high: gnt |-> $past(req)
+  // TODO c_b2b: cover the sequence gnt ##1 !gnt ##1 gnt (grant, gap, grant)
+  m_req: assume property (@(posedge clk) 1'b1);
+  a_gnt: assert property (@(posedge clk) 1'b1);
+  c_b2b: cover property (@(posedge clk) 1'b0);
+
+  initial begin
+    $dumpfile("dump.vcd"); $dumpvars(0, tb);
+    repeat (2) @(negedge clk);
+    req = 1; @(negedge clk) req = 0; @(negedge clk) req = 1; @(negedge clk) req = 0;   // back to back
+    repeat (3) @(negedge clk);
+    req = 1; repeat (6) @(negedge clk); req = 0;                                       // breaks the assumption
+    repeat (3) @(negedge clk);
+    force gnt = 1; @(negedge clk) release gnt;                                         // a spurious grant
+    repeat (3) @(negedge clk);
+    $finish;
+  end
+endmodule
+`,solution:{tb:`module tb;
+  logic clk = 0;
+  always #5 clk = ~clk;          // posedges at 5, 15, 25, ...
+  logic req = 0, gnt = 0;
+  always @(posedge clk) gnt <= req;
+  property p_req_short; @(posedge clk) $rose(req) |-> ##[1:4] !req; endproperty
+
+  m_req: assume property (p_req_short);
+  a_gnt: assert property (@(posedge clk) gnt |-> $past(req));
+  c_b2b: cover property (@(posedge clk) gnt ##1 !gnt ##1 gnt);
+
+  initial begin
+    $dumpfile("dump.vcd"); $dumpvars(0, tb);
+    repeat (2) @(negedge clk);
+    req = 1; @(negedge clk) req = 0; @(negedge clk) req = 1; @(negedge clk) req = 0;
+    repeat (3) @(negedge clk);
+    req = 1; repeat (6) @(negedge clk); req = 0;
+    repeat (3) @(negedge clk);
+    force gnt = 1; @(negedge clk) release gnt;
+    repeat (3) @(negedge clk);
+    $finish;
+  end
+endmodule
+`},check:[{assert:"m_req",fails:[125],minPass:1},{assert:"a_gnt",fails:[175,185],minPass:1},{assert:"c_b2b",matches:1}]},{id:"sva-b9",group:"sva-basic",tag:"SVA basics \xB7 Lab 9",title:"bind: add checkers without touching the design",std:"2012",design:`// A 2-stage valid/data pipeline. You may not edit this file (it is 'frozen' RTL).
+module pipe2 (input logic clk, rst_n, in_v, input logic [7:0] in_d, output logic out_v, output logic [7:0] out_d);
+  logic v1; logic [7:0] d1;
+  always_ff @(posedge clk or negedge rst_n)
+    if (!rst_n) begin v1 <= 0; out_v <= 0; end
+    else begin v1 <= in_v; out_v <= v1; d1 <= in_d; out_d <= (d1 == 8'h5a) ? 8'h00 : d1; end
+endmodule
+`,tb:`// TODO: write a checker module with the assertion, then bind it to every pipe2.
+// a_lat2: in_v |-> ##2 out_v && out_d == $past(in_d, 2)
+module pipe2_sva (input logic clk, rst_n, in_v, input logic [7:0] in_d, input logic out_v, input logic [7:0] out_d);
+endmodule
+// bind pipe2 pipe2_sva u_sva (.*);
+
+module tb;
+  logic clk = 0;
+  always #5 clk = ~clk;          // posedges at 5, 15, 25, ...
+  logic rst_n = 0, in_v = 0; logic [7:0] in_d = 0, out_d; logic out_v;
+  pipe2 dut (.*);
+  initial begin
+    $dumpfile("dump.vcd"); $dumpvars(0, tb);
+    #12 rst_n = 1;
+    for (int k = 0; k < 8; k++) begin @(negedge clk) in_v = 1; in_d = 8'h55 + k; end
+    @(negedge clk) in_v = 0;
+    repeat (4) @(negedge clk);
+    $finish;
+  end
+endmodule
+`,solution:{tb:`module pipe2_sva (input logic clk, rst_n, in_v, input logic [7:0] in_d, input logic out_v, input logic [7:0] out_d);
+  a_lat2: assert property (@(posedge clk) disable iff (!rst_n) in_v |-> ##2 out_v && out_d == $past(in_d, 2));
+endmodule
+bind pipe2 pipe2_sva u_sva (.*);
+
+module tb;
+  logic clk = 0;
+  always #5 clk = ~clk;          // posedges at 5, 15, 25, ...
+  logic rst_n = 0, in_v = 0; logic [7:0] in_d = 0, out_d; logic out_v;
+  pipe2 dut (.*);
+  initial begin
+    $dumpfile("dump.vcd"); $dumpvars(0, tb);
+    #12 rst_n = 1;
+    for (int k = 0; k < 8; k++) begin @(negedge clk) in_v = 1; in_d = 8'h55 + k; end
+    @(negedge clk) in_v = 0;
+    repeat (4) @(negedge clk);
+    $finish;
+  end
+endmodule
+`},check:[{assert:"a_lat2",fails:[95],minPass:1}]},{id:"sva-b10",group:"sva-basic",tag:"SVA basics \xB7 Lab 10",title:"Reusable properties: arguments and default clocking",std:"2012",design:"",tb:`// Three handshakes with different latencies. Write ONE property with arguments and
+// instantiate it three times. Use default clocking and default disable iff.
+module tb;
+  logic clk = 0;
+  always #5 clk = ~clk;          // posedges at 5, 15, 25, ...
+  logic rst_n = 0;
+  logic [2:0] req = 0, ack = 0;
+  int lat [3] = '{1, 2, 4};
+  for (genvar i = 0; i < 3; i++) begin : resp
+    always @(posedge clk) if (req[i]) fork begin repeat (lat[i]) @(negedge clk); ack[i] <= 1; @(negedge clk) ack[i] <= 0; end join_none
+  end
+
+  // TODO: default clocking @(posedge clk); default disable iff (!rst_n);
+  // TODO: property p_handshake(r, a, max); $rose(r) |-> ##[1:max] a; endproperty
+  // TODO: a_h0 (max 1), a_h1 (max 2), a_h2 (max 3) on req[i]/ack[i]
+  a_h0: assert property (@(posedge clk) 1'b1);
+  a_h1: assert property (@(posedge clk) 1'b1);
+  a_h2: assert property (@(posedge clk) 1'b1);
+
+  initial begin
+    $dumpfile("dump.vcd"); $dumpvars(0, tb);
+    #12 rst_n = 1;
+    repeat (2) begin @(negedge clk) req = 3'b111; @(negedge clk) req = 0; repeat (6) @(negedge clk); end
+    $finish;
+  end
+endmodule
+`,solution:{tb:`module tb;
+  logic clk = 0;
+  always #5 clk = ~clk;          // posedges at 5, 15, 25, ...
+  logic rst_n = 0;
+  logic [2:0] req = 0, ack = 0;
+  int lat [3] = '{1, 2, 4};
+  for (genvar i = 0; i < 3; i++) begin : resp
+    always @(posedge clk) if (req[i]) fork begin repeat (lat[i]) @(negedge clk); ack[i] <= 1; @(negedge clk) ack[i] <= 0; end join_none
+  end
+
+  default clocking cb @(posedge clk); endclocking
+  default disable iff (!rst_n);
+  property p_handshake(r, a, max);
+    $rose(r) |-> ##[1:max] a;
+  endproperty
+  a_h0: assert property (p_handshake(req[0], ack[0], 1));
+  a_h1: assert property (p_handshake(req[1], ack[1], 2));
+  a_h2: assert property (p_handshake(req[2], ack[2], 3));
+
+  initial begin
+    $dumpfile("dump.vcd"); $dumpvars(0, tb);
+    #12 rst_n = 1;
+    repeat (2) begin @(negedge clk) req = 3'b111; @(negedge clk) req = 0; repeat (6) @(negedge clk); end
+    $finish;
+  end
+endmodule
+`},check:[{assert:"a_h0",fails:[],minPass:1},{assert:"a_h1",fails:[],minPass:1},{assert:"a_h2",fails:[55,135]}]},{id:"sva-s1",group:"sva-seq",tag:"Sequences \xB7 Lab 1",title:"Delays and ranges: ##n, ##[m:n], ##[1:$]",std:"2012",design:"",tb:`module tb;
+  logic clk = 0;
+  always #5 clk = ~clk;          // posedges at 5, 15, 25, ...
+  logic start = 0, done = 0, cmd = 0, resp = 0;
+  // TODO a_win: done 2 to 4 cycles after start rises
+  a_win: assert property (@(posedge clk) 1'b1);
+  // TODO a_ev: resp some time after cmd rises (weak: may be unfinished)
+  a_ev: assert property (@(posedge clk) 1'b1);
+  // TODO a_sev: the same, but strong: must happen before the end
+  a_sev: assert property (@(posedge clk) 1'b1);
+  initial begin
+    $dumpfile("dump.vcd"); $dumpvars(0, tb);
+    // cycle i is sampled at time 15 + 10*i
+    @(negedge clk) begin start = 0; done = 0; cmd = 0; resp = 0; end   // cycle 0, t=15
+    @(negedge clk) begin start = 1; end   // cycle 1, t=25
+    @(negedge clk) begin start = 0; cmd = 1; end   // cycle 2, t=35
+    @(negedge clk) begin cmd = 0; end   // cycle 3, t=45
+    @(negedge clk) begin done = 1; end   // cycle 4, t=55
+    @(negedge clk) begin done = 0; end   // cycle 5, t=65
+    @(negedge clk) begin resp = 1; end   // cycle 6, t=75
+    @(negedge clk) begin resp = 0; end   // cycle 7, t=85
+    @(negedge clk) begin start = 1; end   // cycle 8, t=95
+    @(negedge clk) begin start = 0; end   // cycle 9, t=105
+    @(negedge clk);                  // cycle 10, t=115
+    @(negedge clk);                  // cycle 11, t=125
+    @(negedge clk);                  // cycle 12, t=135
+    @(negedge clk) begin done = 1; end   // cycle 13, t=145
+    @(negedge clk) begin done = 0; end   // cycle 14, t=155
+    @(negedge clk) begin cmd = 1; end   // cycle 15, t=165
+    @(negedge clk) begin cmd = 0; end   // cycle 16, t=175
+    @(negedge clk);                  // cycle 17, t=185
+    @(negedge clk);                  // cycle 18, t=195
+    @(negedge clk);                  // cycle 19, t=205
+    @(negedge clk);                  // cycle 20, t=215
+    @(negedge clk);                  // cycle 21, t=225
+    repeat (3) @(negedge clk);
+    $finish;
+  end
+endmodule
+`,solution:{tb:`module tb;
+  logic clk = 0;
+  always #5 clk = ~clk;          // posedges at 5, 15, 25, ...
+  logic start = 0, done = 0, cmd = 0, resp = 0;
+  a_win: assert property (@(posedge clk) $rose(start) |-> ##[2:4] done); // done 2 to 4 cycles after start rises
+  a_ev:  assert property (@(posedge clk) $rose(cmd) |-> ##[1:$] resp); // resp some time after cmd rises (weak: may be unfinished)
+  a_sev: assert property (@(posedge clk) $rose(cmd) |-> s_eventually resp); // the same, but strong: must happen before the end
+  initial begin
+    $dumpfile("dump.vcd"); $dumpvars(0, tb);
+    // cycle i is sampled at time 15 + 10*i
+    @(negedge clk) begin start = 0; done = 0; cmd = 0; resp = 0; end   // cycle 0, t=15
+    @(negedge clk) begin start = 1; end   // cycle 1, t=25
+    @(negedge clk) begin start = 0; cmd = 1; end   // cycle 2, t=35
+    @(negedge clk) begin cmd = 0; end   // cycle 3, t=45
+    @(negedge clk) begin done = 1; end   // cycle 4, t=55
+    @(negedge clk) begin done = 0; end   // cycle 5, t=65
+    @(negedge clk) begin resp = 1; end   // cycle 6, t=75
+    @(negedge clk) begin resp = 0; end   // cycle 7, t=85
+    @(negedge clk) begin start = 1; end   // cycle 8, t=95
+    @(negedge clk) begin start = 0; end   // cycle 9, t=105
+    @(negedge clk);                  // cycle 10, t=115
+    @(negedge clk);                  // cycle 11, t=125
+    @(negedge clk);                  // cycle 12, t=135
+    @(negedge clk) begin done = 1; end   // cycle 13, t=145
+    @(negedge clk) begin done = 0; end   // cycle 14, t=155
+    @(negedge clk) begin cmd = 1; end   // cycle 15, t=165
+    @(negedge clk) begin cmd = 0; end   // cycle 16, t=175
+    @(negedge clk);                  // cycle 17, t=185
+    @(negedge clk);                  // cycle 18, t=195
+    @(negedge clk);                  // cycle 19, t=205
+    @(negedge clk);                  // cycle 20, t=215
+    @(negedge clk);                  // cycle 21, t=225
+    repeat (3) @(negedge clk);
+    $finish;
+  end
+endmodule
+`},check:[{assert:"a_win",fails:[135],minPass:1},{assert:"a_ev",fails:[],minPass:1},{assert:"a_sev",fails:[245],minPass:1}]},{id:"sva-s2",group:"sva-seq",tag:"Sequences \xB7 Lab 2",title:"Consecutive repetition [*n] and [*m:n]",std:"2012",design:"",tb:`module tb;
+  logic clk = 0;
+  always #5 clk = ~clk;          // posedges at 5, 15, 25, ...
+  logic bstart = 0, bvalid = 0, req = 0, rdy = 0;
+  // TODO a_burst: bvalid high exactly 4 cycles after bstart, then low
+  a_burst: assert property (@(posedge clk) 1'b1);
+  // TODO a_wait: after req: 0 to 3 wait cycles (rdy low), then rdy
+  a_wait: assert property (@(posedge clk) 1'b1);
+  initial begin
+    $dumpfile("dump.vcd"); $dumpvars(0, tb);
+    // cycle i is sampled at time 15 + 10*i
+    @(negedge clk) begin bstart = 0; bvalid = 0; req = 0; rdy = 0; end   // cycle 0, t=15
+    @(negedge clk) begin bstart = 1; end   // cycle 1, t=25
+    @(negedge clk) begin bstart = 0; bvalid = 1; end   // cycle 2, t=35
+    @(negedge clk);                  // cycle 3, t=45
+    @(negedge clk);                  // cycle 4, t=55
+    @(negedge clk);                  // cycle 5, t=65
+    @(negedge clk) begin bvalid = 0; end   // cycle 6, t=75
+    @(negedge clk);                  // cycle 7, t=85
+    @(negedge clk);                  // cycle 8, t=95
+    @(negedge clk) begin bstart = 1; end   // cycle 9, t=105
+    @(negedge clk) begin bstart = 0; end   // cycle 10, t=115
+    @(negedge clk) begin bvalid = 1; end   // cycle 11, t=125
+    @(negedge clk);                  // cycle 12, t=135
+    @(negedge clk);                  // cycle 13, t=145
+    @(negedge clk) begin bvalid = 0; end   // cycle 14, t=155
+    @(negedge clk);                  // cycle 15, t=165
+    @(negedge clk) begin req = 1; end   // cycle 16, t=175
+    @(negedge clk) begin req = 0; rdy = 1; end   // cycle 17, t=185
+    @(negedge clk) begin rdy = 0; end   // cycle 18, t=195
+    @(negedge clk);                  // cycle 19, t=205
+    @(negedge clk);                  // cycle 20, t=215
+    @(negedge clk);                  // cycle 21, t=225
+    @(negedge clk);                  // cycle 22, t=235
+    @(negedge clk) begin req = 1; end   // cycle 23, t=245
+    @(negedge clk) begin req = 0; end   // cycle 24, t=255
+    @(negedge clk);                  // cycle 25, t=265
+    @(negedge clk);                  // cycle 26, t=275
+    repeat (3) @(negedge clk);
+    $finish;
+  end
+endmodule
+`,solution:{tb:`module tb;
+  logic clk = 0;
+  always #5 clk = ~clk;          // posedges at 5, 15, 25, ...
+  logic bstart = 0, bvalid = 0, req = 0, rdy = 0;
+  a_burst: assert property (@(posedge clk) $rose(bstart) |=> bvalid[*4] ##1 !bvalid); // bvalid high exactly 4 cycles after bstart, then low
+  a_wait:  assert property (@(posedge clk) $rose(req) |=> !rdy[*0:3] ##1 rdy); // after req: 0 to 3 wait cycles (rdy low), then rdy
+  initial begin
+    $dumpfile("dump.vcd"); $dumpvars(0, tb);
+    // cycle i is sampled at time 15 + 10*i
+    @(negedge clk) begin bstart = 0; bvalid = 0; req = 0; rdy = 0; end   // cycle 0, t=15
+    @(negedge clk) begin bstart = 1; end   // cycle 1, t=25
+    @(negedge clk) begin bstart = 0; bvalid = 1; end   // cycle 2, t=35
+    @(negedge clk);                  // cycle 3, t=45
+    @(negedge clk);                  // cycle 4, t=55
+    @(negedge clk);                  // cycle 5, t=65
+    @(negedge clk) begin bvalid = 0; end   // cycle 6, t=75
+    @(negedge clk);                  // cycle 7, t=85
+    @(negedge clk);                  // cycle 8, t=95
+    @(negedge clk) begin bstart = 1; end   // cycle 9, t=105
+    @(negedge clk) begin bstart = 0; end   // cycle 10, t=115
+    @(negedge clk) begin bvalid = 1; end   // cycle 11, t=125
+    @(negedge clk);                  // cycle 12, t=135
+    @(negedge clk);                  // cycle 13, t=145
+    @(negedge clk) begin bvalid = 0; end   // cycle 14, t=155
+    @(negedge clk);                  // cycle 15, t=165
+    @(negedge clk) begin req = 1; end   // cycle 16, t=175
+    @(negedge clk) begin req = 0; rdy = 1; end   // cycle 17, t=185
+    @(negedge clk) begin rdy = 0; end   // cycle 18, t=195
+    @(negedge clk);                  // cycle 19, t=205
+    @(negedge clk);                  // cycle 20, t=215
+    @(negedge clk);                  // cycle 21, t=225
+    @(negedge clk);                  // cycle 22, t=235
+    @(negedge clk) begin req = 1; end   // cycle 23, t=245
+    @(negedge clk) begin req = 0; end   // cycle 24, t=255
+    @(negedge clk);                  // cycle 25, t=265
+    @(negedge clk);                  // cycle 26, t=275
+    repeat (3) @(negedge clk);
+    $finish;
+  end
+endmodule
+`},check:[{assert:"a_burst",fails:[115],minPass:1},{assert:"a_wait",fails:[285],minPass:1}]},{id:"sva-s3",group:"sva-seq",tag:"Sequences \xB7 Lab 3",title:"Goto [->n] and non-consecutive [=n] repetition",std:"2012",design:"",tb:`module tb;
+  logic clk = 0;
+  always #5 clk = ~clk;          // posedges at 5, 15, 25, ...
+  logic rd = 0, dval = 0, done = 0;
+  // TODO a_goto: done in the cycle right after the 4th data beat
+  a_goto: assert property (@(posedge clk) 1'b1);
+  // TODO a_ncons: done some time after the 4th beat, with no 5th beat before it
+  a_ncons: assert property (@(posedge clk) 1'b1);
+  initial begin
+    $dumpfile("dump.vcd"); $dumpvars(0, tb);
+    // cycle i is sampled at time 15 + 10*i
+    @(negedge clk) begin rd = 0; dval = 0; done = 0; end   // cycle 0, t=15
+    @(negedge clk) begin rd = 1; end   // cycle 1, t=25
+    @(negedge clk) begin rd = 0; dval = 1; end   // cycle 2, t=35
+    @(negedge clk) begin dval = 0; end   // cycle 3, t=45
+    @(negedge clk) begin dval = 1; end   // cycle 4, t=55
+    @(negedge clk) begin dval = 0; end   // cycle 5, t=65
+    @(negedge clk) begin dval = 1; end   // cycle 6, t=75
+    @(negedge clk);                  // cycle 7, t=85
+    @(negedge clk) begin dval = 0; done = 1; end   // cycle 8, t=95
+    @(negedge clk) begin done = 0; end   // cycle 9, t=105
+    @(negedge clk);                  // cycle 10, t=115
+    @(negedge clk);                  // cycle 11, t=125
+    @(negedge clk);                  // cycle 12, t=135
+    @(negedge clk) begin rd = 1; end   // cycle 13, t=145
+    @(negedge clk) begin rd = 0; end   // cycle 14, t=155
+    @(negedge clk) begin dval = 1; end   // cycle 15, t=165
+    @(negedge clk);                  // cycle 16, t=175
+    @(negedge clk) begin dval = 0; end   // cycle 17, t=185
+    @(negedge clk) begin dval = 1; end   // cycle 18, t=195
+    @(negedge clk);                  // cycle 19, t=205
+    @(negedge clk) begin dval = 0; end   // cycle 20, t=215
+    @(negedge clk);                  // cycle 21, t=225
+    @(negedge clk) begin done = 1; end   // cycle 22, t=235
+    @(negedge clk) begin done = 0; end   // cycle 23, t=245
+    @(negedge clk);                  // cycle 24, t=255
+    @(negedge clk);                  // cycle 25, t=265
+    @(negedge clk);                  // cycle 26, t=275
+    @(negedge clk);                  // cycle 27, t=285
+    @(negedge clk);                  // cycle 28, t=295
+    @(negedge clk);                  // cycle 29, t=305
+    @(negedge clk) begin rd = 1; end   // cycle 30, t=315
+    @(negedge clk) begin rd = 0; dval = 1; end   // cycle 31, t=325
+    @(negedge clk) begin dval = 0; end   // cycle 32, t=335
+    @(negedge clk) begin dval = 1; end   // cycle 33, t=345
+    @(negedge clk) begin dval = 0; end   // cycle 34, t=355
+    @(negedge clk) begin dval = 1; end   // cycle 35, t=365
+    @(negedge clk) begin dval = 0; end   // cycle 36, t=375
+    @(negedge clk) begin dval = 1; end   // cycle 37, t=385
+    @(negedge clk) begin dval = 0; end   // cycle 38, t=395
+    @(negedge clk) begin dval = 1; end   // cycle 39, t=405
+    @(negedge clk) begin dval = 0; end   // cycle 40, t=415
+    @(negedge clk);                  // cycle 41, t=425
+    @(negedge clk) begin done = 1; end   // cycle 42, t=435
+    @(negedge clk) begin done = 0; end   // cycle 43, t=445
+    @(negedge clk);                  // cycle 44, t=455
+    @(negedge clk);                  // cycle 45, t=465
+    repeat (3) @(negedge clk);
+    $finish;
+  end
+endmodule
+`,solution:{tb:`module tb;
+  logic clk = 0;
+  always #5 clk = ~clk;          // posedges at 5, 15, 25, ...
+  logic rd = 0, dval = 0, done = 0;
+  a_goto: assert property (@(posedge clk) $rose(rd) |=> dval[->4] ##1 done); // done in the cycle right after the 4th data beat
+  a_ncons: assert property (@(posedge clk) $rose(rd) |=> dval[=4] ##1 done); // done some time after the 4th beat, with no 5th beat before it
+  initial begin
+    $dumpfile("dump.vcd"); $dumpvars(0, tb);
+    // cycle i is sampled at time 15 + 10*i
+    @(negedge clk) begin rd = 0; dval = 0; done = 0; end   // cycle 0, t=15
+    @(negedge clk) begin rd = 1; end   // cycle 1, t=25
+    @(negedge clk) begin rd = 0; dval = 1; end   // cycle 2, t=35
+    @(negedge clk) begin dval = 0; end   // cycle 3, t=45
+    @(negedge clk) begin dval = 1; end   // cycle 4, t=55
+    @(negedge clk) begin dval = 0; end   // cycle 5, t=65
+    @(negedge clk) begin dval = 1; end   // cycle 6, t=75
+    @(negedge clk);                  // cycle 7, t=85
+    @(negedge clk) begin dval = 0; done = 1; end   // cycle 8, t=95
+    @(negedge clk) begin done = 0; end   // cycle 9, t=105
+    @(negedge clk);                  // cycle 10, t=115
+    @(negedge clk);                  // cycle 11, t=125
+    @(negedge clk);                  // cycle 12, t=135
+    @(negedge clk) begin rd = 1; end   // cycle 13, t=145
+    @(negedge clk) begin rd = 0; end   // cycle 14, t=155
+    @(negedge clk) begin dval = 1; end   // cycle 15, t=165
+    @(negedge clk);                  // cycle 16, t=175
+    @(negedge clk) begin dval = 0; end   // cycle 17, t=185
+    @(negedge clk) begin dval = 1; end   // cycle 18, t=195
+    @(negedge clk);                  // cycle 19, t=205
+    @(negedge clk) begin dval = 0; end   // cycle 20, t=215
+    @(negedge clk);                  // cycle 21, t=225
+    @(negedge clk) begin done = 1; end   // cycle 22, t=235
+    @(negedge clk) begin done = 0; end   // cycle 23, t=245
+    @(negedge clk);                  // cycle 24, t=255
+    @(negedge clk);                  // cycle 25, t=265
+    @(negedge clk);                  // cycle 26, t=275
+    @(negedge clk);                  // cycle 27, t=285
+    @(negedge clk);                  // cycle 28, t=295
+    @(negedge clk);                  // cycle 29, t=305
+    @(negedge clk) begin rd = 1; end   // cycle 30, t=315
+    @(negedge clk) begin rd = 0; dval = 1; end   // cycle 31, t=325
+    @(negedge clk) begin dval = 0; end   // cycle 32, t=335
+    @(negedge clk) begin dval = 1; end   // cycle 33, t=345
+    @(negedge clk) begin dval = 0; end   // cycle 34, t=355
+    @(negedge clk) begin dval = 1; end   // cycle 35, t=365
+    @(negedge clk) begin dval = 0; end   // cycle 36, t=375
+    @(negedge clk) begin dval = 1; end   // cycle 37, t=385
+    @(negedge clk) begin dval = 0; end   // cycle 38, t=395
+    @(negedge clk) begin dval = 1; end   // cycle 39, t=405
+    @(negedge clk) begin dval = 0; end   // cycle 40, t=415
+    @(negedge clk);                  // cycle 41, t=425
+    @(negedge clk) begin done = 1; end   // cycle 42, t=435
+    @(negedge clk) begin done = 0; end   // cycle 43, t=445
+    @(negedge clk);                  // cycle 44, t=455
+    @(negedge clk);                  // cycle 45, t=465
+    repeat (3) @(negedge clk);
+    $finish;
+  end
+endmodule
+`},check:[{assert:"a_goto",fails:[215,395],minPass:1},{assert:"a_ncons",fails:[405],minPass:1}]},{id:"sva-s4",group:"sva-seq",tag:"Sequences \xB7 Lab 4",title:"throughout: a condition held for a whole sequence",std:"2012",design:"",tb:`module tb;
+  logic clk = 0;
+  always #5 clk = ~clk;          // posedges at 5, 15, 25, ...
+  logic start = 0, gnt = 0, ack = 0;
+  // TODO a_gnt: gnt high from start until the 3rd ack
+  a_gnt: assert property (@(posedge clk) 1'b1);
+  initial begin
+    $dumpfile("dump.vcd"); $dumpvars(0, tb);
+    // cycle i is sampled at time 15 + 10*i
+    @(negedge clk) begin start = 0; gnt = 0; ack = 0; end   // cycle 0, t=15
+    @(negedge clk) begin start = 1; gnt = 1; end   // cycle 1, t=25
+    @(negedge clk) begin start = 0; end   // cycle 2, t=35
+    @(negedge clk) begin ack = 1; end   // cycle 3, t=45
+    @(negedge clk) begin ack = 0; end   // cycle 4, t=55
+    @(negedge clk) begin ack = 1; end   // cycle 5, t=65
+    @(negedge clk) begin ack = 0; end   // cycle 6, t=75
+    @(negedge clk);                  // cycle 7, t=85
+    @(negedge clk) begin ack = 1; end   // cycle 8, t=95
+    @(negedge clk) begin gnt = 0; ack = 0; end   // cycle 9, t=105
+    @(negedge clk);                  // cycle 10, t=115
+    @(negedge clk);                  // cycle 11, t=125
+    @(negedge clk);                  // cycle 12, t=135
+    @(negedge clk) begin start = 1; gnt = 1; end   // cycle 13, t=145
+    @(negedge clk) begin start = 0; end   // cycle 14, t=155
+    @(negedge clk) begin ack = 1; end   // cycle 15, t=165
+    @(negedge clk) begin ack = 0; end   // cycle 16, t=175
+    @(negedge clk) begin ack = 1; end   // cycle 17, t=185
+    @(negedge clk) begin gnt = 0; ack = 0; end   // cycle 18, t=195
+    @(negedge clk);                  // cycle 19, t=205
+    @(negedge clk);                  // cycle 20, t=215
+    @(negedge clk);                  // cycle 21, t=225
+    @(negedge clk);                  // cycle 22, t=235
+    @(negedge clk);                  // cycle 23, t=245
+    @(negedge clk);                  // cycle 24, t=255
+    @(negedge clk);                  // cycle 25, t=265
+    @(negedge clk);                  // cycle 26, t=275
+    repeat (3) @(negedge clk);
+    $finish;
+  end
+endmodule
+`,solution:{tb:`module tb;
+  logic clk = 0;
+  always #5 clk = ~clk;          // posedges at 5, 15, 25, ...
+  logic start = 0, gnt = 0, ack = 0;
+  a_gnt: assert property (@(posedge clk) $rose(start) |-> gnt throughout ack[->3]); // gnt high from start until the 3rd ack
+  initial begin
+    $dumpfile("dump.vcd"); $dumpvars(0, tb);
+    // cycle i is sampled at time 15 + 10*i
+    @(negedge clk) begin start = 0; gnt = 0; ack = 0; end   // cycle 0, t=15
+    @(negedge clk) begin start = 1; gnt = 1; end   // cycle 1, t=25
+    @(negedge clk) begin start = 0; end   // cycle 2, t=35
+    @(negedge clk) begin ack = 1; end   // cycle 3, t=45
+    @(negedge clk) begin ack = 0; end   // cycle 4, t=55
+    @(negedge clk) begin ack = 1; end   // cycle 5, t=65
+    @(negedge clk) begin ack = 0; end   // cycle 6, t=75
+    @(negedge clk);                  // cycle 7, t=85
+    @(negedge clk) begin ack = 1; end   // cycle 8, t=95
+    @(negedge clk) begin gnt = 0; ack = 0; end   // cycle 9, t=105
+    @(negedge clk);                  // cycle 10, t=115
+    @(negedge clk);                  // cycle 11, t=125
+    @(negedge clk);                  // cycle 12, t=135
+    @(negedge clk) begin start = 1; gnt = 1; end   // cycle 13, t=145
+    @(negedge clk) begin start = 0; end   // cycle 14, t=155
+    @(negedge clk) begin ack = 1; end   // cycle 15, t=165
+    @(negedge clk) begin ack = 0; end   // cycle 16, t=175
+    @(negedge clk) begin ack = 1; end   // cycle 17, t=185
+    @(negedge clk) begin gnt = 0; ack = 0; end   // cycle 18, t=195
+    @(negedge clk);                  // cycle 19, t=205
+    @(negedge clk);                  // cycle 20, t=215
+    @(negedge clk);                  // cycle 21, t=225
+    @(negedge clk);                  // cycle 22, t=235
+    @(negedge clk);                  // cycle 23, t=245
+    @(negedge clk);                  // cycle 24, t=255
+    @(negedge clk);                  // cycle 25, t=265
+    @(negedge clk);                  // cycle 26, t=275
+    repeat (3) @(negedge clk);
+    $finish;
+  end
+endmodule
+`},check:[{assert:"a_gnt",fails:[195],minPass:1}]},{id:"sva-s5",group:"sva-seq",tag:"Sequences \xB7 Lab 5",title:"within and intersect: windows and lengths",std:"2012",design:"",tb:`module tb;
+  logic clk = 0;
+  always #5 clk = ~clk;          // posedges at 5, 15, 25, ...
+  logic cs_n = 1, we = 0, sop = 0, eop = 0;
+  // TODO a_we: a 2-cycle write pulse inside the 6 cycles cs_n is low
+  a_we: assert property (@(posedge clk) 1'b1);
+  // TODO a_len: eop arrives so that the packet is 2 to 8 cycles long
+  a_len: assert property (@(posedge clk) 1'b1);
+  initial begin
+    $dumpfile("dump.vcd"); $dumpvars(0, tb);
+    // cycle i is sampled at time 15 + 10*i
+    @(negedge clk) begin cs_n = 1; we = 0; sop = 0; eop = 0; end   // cycle 0, t=15
+    @(negedge clk) begin cs_n = 0; end   // cycle 1, t=25
+    @(negedge clk);                  // cycle 2, t=35
+    @(negedge clk);                  // cycle 3, t=45
+    @(negedge clk) begin we = 1; end   // cycle 4, t=55
+    @(negedge clk);                  // cycle 5, t=65
+    @(negedge clk) begin we = 0; end   // cycle 6, t=75
+    @(negedge clk) begin cs_n = 1; end   // cycle 7, t=85
+    @(negedge clk);                  // cycle 8, t=95
+    @(negedge clk);                  // cycle 9, t=105
+    @(negedge clk);                  // cycle 10, t=115
+    @(negedge clk);                  // cycle 11, t=125
+    @(negedge clk) begin cs_n = 0; end   // cycle 12, t=135
+    @(negedge clk);                  // cycle 13, t=145
+    @(negedge clk);                  // cycle 14, t=155
+    @(negedge clk);                  // cycle 15, t=165
+    @(negedge clk);                  // cycle 16, t=175
+    @(negedge clk);                  // cycle 17, t=185
+    @(negedge clk) begin cs_n = 1; end   // cycle 18, t=195
+    @(negedge clk) begin we = 1; end   // cycle 19, t=205
+    @(negedge clk);                  // cycle 20, t=215
+    @(negedge clk) begin we = 0; end   // cycle 21, t=225
+    @(negedge clk) begin sop = 1; end   // cycle 22, t=235
+    @(negedge clk) begin sop = 0; end   // cycle 23, t=245
+    @(negedge clk);                  // cycle 24, t=255
+    @(negedge clk) begin eop = 1; end   // cycle 25, t=265
+    @(negedge clk) begin eop = 0; end   // cycle 26, t=275
+    @(negedge clk);                  // cycle 27, t=285
+    @(negedge clk);                  // cycle 28, t=295
+    @(negedge clk);                  // cycle 29, t=305
+    @(negedge clk);                  // cycle 30, t=315
+    @(negedge clk);                  // cycle 31, t=325
+    @(negedge clk);                  // cycle 32, t=335
+    @(negedge clk) begin sop = 1; end   // cycle 33, t=345
+    @(negedge clk) begin sop = 0; end   // cycle 34, t=355
+    @(negedge clk);                  // cycle 35, t=365
+    @(negedge clk);                  // cycle 36, t=375
+    @(negedge clk);                  // cycle 37, t=385
+    @(negedge clk);                  // cycle 38, t=395
+    @(negedge clk);                  // cycle 39, t=405
+    @(negedge clk);                  // cycle 40, t=415
+    @(negedge clk);                  // cycle 41, t=425
+    @(negedge clk);                  // cycle 42, t=435
+    @(negedge clk);                  // cycle 43, t=445
+    @(negedge clk);                  // cycle 44, t=455
+    @(negedge clk) begin eop = 1; end   // cycle 45, t=465
+    repeat (3) @(negedge clk);
+    $finish;
+  end
+endmodule
+`,solution:{tb:`module tb;
+  logic clk = 0;
+  always #5 clk = ~clk;          // posedges at 5, 15, 25, ...
+  logic cs_n = 1, we = 0, sop = 0, eop = 0;
+  a_we: assert property (@(posedge clk) $fell(cs_n) |-> (we[*2]) within (!cs_n[*6])); // a 2-cycle write pulse inside the 6 cycles cs_n is low
+  a_len: assert property (@(posedge clk) $rose(sop) |-> eop[->1] intersect 1'b1[*2:8]); // eop arrives so that the packet is 2 to 8 cycles long
+  initial begin
+    $dumpfile("dump.vcd"); $dumpvars(0, tb);
+    // cycle i is sampled at time 15 + 10*i
+    @(negedge clk) begin cs_n = 1; we = 0; sop = 0; eop = 0; end   // cycle 0, t=15
+    @(negedge clk) begin cs_n = 0; end   // cycle 1, t=25
+    @(negedge clk);                  // cycle 2, t=35
+    @(negedge clk);                  // cycle 3, t=45
+    @(negedge clk) begin we = 1; end   // cycle 4, t=55
+    @(negedge clk);                  // cycle 5, t=65
+    @(negedge clk) begin we = 0; end   // cycle 6, t=75
+    @(negedge clk) begin cs_n = 1; end   // cycle 7, t=85
+    @(negedge clk);                  // cycle 8, t=95
+    @(negedge clk);                  // cycle 9, t=105
+    @(negedge clk);                  // cycle 10, t=115
+    @(negedge clk);                  // cycle 11, t=125
+    @(negedge clk) begin cs_n = 0; end   // cycle 12, t=135
+    @(negedge clk);                  // cycle 13, t=145
+    @(negedge clk);                  // cycle 14, t=155
+    @(negedge clk);                  // cycle 15, t=165
+    @(negedge clk);                  // cycle 16, t=175
+    @(negedge clk);                  // cycle 17, t=185
+    @(negedge clk) begin cs_n = 1; end   // cycle 18, t=195
+    @(negedge clk) begin we = 1; end   // cycle 19, t=205
+    @(negedge clk);                  // cycle 20, t=215
+    @(negedge clk) begin we = 0; end   // cycle 21, t=225
+    @(negedge clk) begin sop = 1; end   // cycle 22, t=235
+    @(negedge clk) begin sop = 0; end   // cycle 23, t=245
+    @(negedge clk);                  // cycle 24, t=255
+    @(negedge clk) begin eop = 1; end   // cycle 25, t=265
+    @(negedge clk) begin eop = 0; end   // cycle 26, t=275
+    @(negedge clk);                  // cycle 27, t=285
+    @(negedge clk);                  // cycle 28, t=295
+    @(negedge clk);                  // cycle 29, t=305
+    @(negedge clk);                  // cycle 30, t=315
+    @(negedge clk);                  // cycle 31, t=325
+    @(negedge clk);                  // cycle 32, t=335
+    @(negedge clk) begin sop = 1; end   // cycle 33, t=345
+    @(negedge clk) begin sop = 0; end   // cycle 34, t=355
+    @(negedge clk);                  // cycle 35, t=365
+    @(negedge clk);                  // cycle 36, t=375
+    @(negedge clk);                  // cycle 37, t=385
+    @(negedge clk);                  // cycle 38, t=395
+    @(negedge clk);                  // cycle 39, t=405
+    @(negedge clk);                  // cycle 40, t=415
+    @(negedge clk);                  // cycle 41, t=425
+    @(negedge clk);                  // cycle 42, t=435
+    @(negedge clk);                  // cycle 43, t=445
+    @(negedge clk);                  // cycle 44, t=455
+    @(negedge clk) begin eop = 1; end   // cycle 45, t=465
+    repeat (3) @(negedge clk);
+    $finish;
+  end
+endmodule
+`},check:[{assert:"a_we",fails:[185],minPass:1},{assert:"a_len",fails:[415],minPass:1}]},{id:"sva-s6",group:"sva-seq",tag:"Sequences \xB7 Lab 6",title:"and, or, first_match",std:"2012",design:"",tb:`module tb;
+  logic clk = 0;
+  always #5 clk = ~clk;          // posedges at 5, 15, 25, ...
+  logic req = 0, ack_a = 0, ack_b = 0, retry = 0, done = 0, gnt = 0;
+  // TODO a_both: both acks, in any order, within 4 cycles
+  a_both: assert property (@(posedge clk) 1'b1);
+  // TODO a_either: retry within 2 cycles, or done within 6
+  a_either: assert property (@(posedge clk) 1'b1);
+  // TODO c_first: cover only the first gnt after each request
+  c_first: cover property (@(posedge clk) 1'b0);
+  initial begin
+    $dumpfile("dump.vcd"); $dumpvars(0, tb);
+    // cycle i is sampled at time 15 + 10*i
+    @(negedge clk) begin req = 0; ack_a = 0; ack_b = 0; retry = 0; done = 0; gnt = 0; end   // cycle 0, t=15
+    @(negedge clk) begin req = 1; end   // cycle 1, t=25
+    @(negedge clk) begin req = 0; ack_b = 1; gnt = 1; end   // cycle 2, t=35
+    @(negedge clk) begin ack_a = 1; ack_b = 0; end   // cycle 3, t=45
+    @(negedge clk) begin ack_a = 0; gnt = 0; end   // cycle 4, t=55
+    @(negedge clk) begin done = 1; end   // cycle 5, t=65
+    @(negedge clk) begin done = 0; end   // cycle 6, t=75
+    @(negedge clk);                  // cycle 7, t=85
+    @(negedge clk);                  // cycle 8, t=95
+    @(negedge clk);                  // cycle 9, t=105
+    @(negedge clk) begin req = 1; end   // cycle 10, t=115
+    @(negedge clk) begin req = 0; gnt = 1; end   // cycle 11, t=125
+    @(negedge clk) begin ack_b = 1; end   // cycle 12, t=135
+    @(negedge clk) begin ack_b = 0; gnt = 0; end   // cycle 13, t=145
+    @(negedge clk) begin gnt = 1; end   // cycle 14, t=155
+    @(negedge clk) begin gnt = 0; end   // cycle 15, t=165
+    @(negedge clk) begin ack_a = 1; end   // cycle 16, t=175
+    @(negedge clk) begin ack_a = 0; end   // cycle 17, t=185
+    @(negedge clk);                  // cycle 18, t=195
+    @(negedge clk);                  // cycle 19, t=205
+    @(negedge clk);                  // cycle 20, t=215
+    @(negedge clk) begin req = 1; end   // cycle 21, t=225
+    @(negedge clk) begin req = 0; end   // cycle 22, t=235
+    @(negedge clk) begin ack_b = 1; retry = 1; end   // cycle 23, t=245
+    @(negedge clk) begin ack_a = 1; ack_b = 0; retry = 0; end   // cycle 24, t=255
+    @(negedge clk) begin ack_a = 0; end   // cycle 25, t=265
+    @(negedge clk);                  // cycle 26, t=275
+    @(negedge clk);                  // cycle 27, t=285
+    @(negedge clk);                  // cycle 28, t=295
+    @(negedge clk);                  // cycle 29, t=305
+    repeat (3) @(negedge clk);
+    $finish;
+  end
+endmodule
+`,solution:{tb:`module tb;
+  logic clk = 0;
+  always #5 clk = ~clk;          // posedges at 5, 15, 25, ...
+  logic req = 0, ack_a = 0, ack_b = 0, retry = 0, done = 0, gnt = 0;
+  a_both: assert property (@(posedge clk) $rose(req) |-> (##[1:4] ack_a) and (##[1:4] ack_b)); // both acks, in any order, within 4 cycles
+  a_either: assert property (@(posedge clk) $rose(req) |-> (##[1:2] retry) or (##[1:6] done)); // retry within 2 cycles, or done within 6
+  c_first: cover property (@(posedge clk) $rose(req) ##0 first_match(##[1:5] gnt)); // cover only the first gnt after each request
+  initial begin
+    $dumpfile("dump.vcd"); $dumpvars(0, tb);
+    // cycle i is sampled at time 15 + 10*i
+    @(negedge clk) begin req = 0; ack_a = 0; ack_b = 0; retry = 0; done = 0; gnt = 0; end   // cycle 0, t=15
+    @(negedge clk) begin req = 1; end   // cycle 1, t=25
+    @(negedge clk) begin req = 0; ack_b = 1; gnt = 1; end   // cycle 2, t=35
+    @(negedge clk) begin ack_a = 1; ack_b = 0; end   // cycle 3, t=45
+    @(negedge clk) begin ack_a = 0; gnt = 0; end   // cycle 4, t=55
+    @(negedge clk) begin done = 1; end   // cycle 5, t=65
+    @(negedge clk) begin done = 0; end   // cycle 6, t=75
+    @(negedge clk);                  // cycle 7, t=85
+    @(negedge clk);                  // cycle 8, t=95
+    @(negedge clk);                  // cycle 9, t=105
+    @(negedge clk) begin req = 1; end   // cycle 10, t=115
+    @(negedge clk) begin req = 0; gnt = 1; end   // cycle 11, t=125
+    @(negedge clk) begin ack_b = 1; end   // cycle 12, t=135
+    @(negedge clk) begin ack_b = 0; gnt = 0; end   // cycle 13, t=145
+    @(negedge clk) begin gnt = 1; end   // cycle 14, t=155
+    @(negedge clk) begin gnt = 0; end   // cycle 15, t=165
+    @(negedge clk) begin ack_a = 1; end   // cycle 16, t=175
+    @(negedge clk) begin ack_a = 0; end   // cycle 17, t=185
+    @(negedge clk);                  // cycle 18, t=195
+    @(negedge clk);                  // cycle 19, t=205
+    @(negedge clk);                  // cycle 20, t=215
+    @(negedge clk) begin req = 1; end   // cycle 21, t=225
+    @(negedge clk) begin req = 0; end   // cycle 22, t=235
+    @(negedge clk) begin ack_b = 1; retry = 1; end   // cycle 23, t=245
+    @(negedge clk) begin ack_a = 1; ack_b = 0; retry = 0; end   // cycle 24, t=255
+    @(negedge clk) begin ack_a = 0; end   // cycle 25, t=265
+    @(negedge clk);                  // cycle 26, t=275
+    @(negedge clk);                  // cycle 27, t=285
+    @(negedge clk);                  // cycle 28, t=295
+    @(negedge clk);                  // cycle 29, t=305
+    repeat (3) @(negedge clk);
+    $finish;
+  end
+endmodule
+`},check:[{assert:"a_both",fails:[155],minPass:1},{assert:"a_either",fails:[175],minPass:1},{assert:"c_first",matches:2}]},{id:"sva-s7",group:"sva-seq",tag:"Sequences \xB7 Lab 7",title:"Named sequences, arguments and .triggered",std:"2012",design:"",tb:`module tb;
+  logic clk = 0;
+  always #5 clk = ~clk;          // posedges at 5, 15, 25, ...
+  logic wr = 0, wack = 0, irq = 0; logic [3:0] addr = 0;
+  localparam logic [3:0] STATUS = 4'h4;
+  sequence s_write(a);
+    wr && addr == a ##1 wack;
+  endsequence
+  // TODO a_wr: every write is acknowledged in the next cycle
+  a_wr: assert property (@(posedge clk) 1'b1);
+  // TODO a_irq: an interrupt only in the cycle a write to STATUS completes
+  a_irq: assert property (@(posedge clk) 1'b1);
+  initial begin
+    $dumpfile("dump.vcd"); $dumpvars(0, tb);
+    // cycle i is sampled at time 15 + 10*i
+    @(negedge clk) begin wr = 0; addr = 0; wack = 0; irq = 0; end   // cycle 0, t=15
+    @(negedge clk) begin wr = 1; addr = 4; end   // cycle 1, t=25
+    @(negedge clk) begin wr = 0; wack = 1; irq = 1; end   // cycle 2, t=35
+    @(negedge clk) begin wack = 0; irq = 0; end   // cycle 3, t=45
+    @(negedge clk);                  // cycle 4, t=55
+    @(negedge clk);                  // cycle 5, t=65
+    @(negedge clk) begin wr = 1; addr = 2; end   // cycle 6, t=75
+    @(negedge clk) begin wr = 0; wack = 1; irq = 1; end   // cycle 7, t=85
+    @(negedge clk) begin wack = 0; irq = 0; end   // cycle 8, t=95
+    @(negedge clk);                  // cycle 9, t=105
+    @(negedge clk);                  // cycle 10, t=115
+    @(negedge clk);                  // cycle 11, t=125
+    @(negedge clk);                  // cycle 12, t=135
+    @(negedge clk) begin wr = 1; addr = 4; end   // cycle 13, t=145
+    @(negedge clk) begin wr = 0; wack = 1; end   // cycle 14, t=155
+    @(negedge clk) begin wack = 0; end   // cycle 15, t=165
+    @(negedge clk);                  // cycle 16, t=175
+    @(negedge clk);                  // cycle 17, t=185
+    @(negedge clk) begin irq = 1; end   // cycle 18, t=195
+    @(negedge clk) begin irq = 0; end   // cycle 19, t=205
+    @(negedge clk);                  // cycle 20, t=215
+    @(negedge clk);                  // cycle 21, t=225
+    @(negedge clk);                  // cycle 22, t=235
+    @(negedge clk);                  // cycle 23, t=245
+    @(negedge clk);                  // cycle 24, t=255
+    repeat (3) @(negedge clk);
+    $finish;
+  end
+endmodule
+`,solution:{tb:`module tb;
+  logic clk = 0;
+  always #5 clk = ~clk;          // posedges at 5, 15, 25, ...
+  logic wr = 0, wack = 0, irq = 0; logic [3:0] addr = 0;
+  localparam logic [3:0] STATUS = 4'h4;
+  sequence s_write(a);
+    wr && addr == a ##1 wack;
+  endsequence
+  a_wr:  assert property (@(posedge clk) wr |-> ##1 wack); // every write is acknowledged in the next cycle
+  a_irq: assert property (@(posedge clk) $rose(irq) |-> s_write(STATUS).triggered); // an interrupt only in the cycle a write to STATUS completes
+  initial begin
+    $dumpfile("dump.vcd"); $dumpvars(0, tb);
+    // cycle i is sampled at time 15 + 10*i
+    @(negedge clk) begin wr = 0; addr = 0; wack = 0; irq = 0; end   // cycle 0, t=15
+    @(negedge clk) begin wr = 1; addr = 4; end   // cycle 1, t=25
+    @(negedge clk) begin wr = 0; wack = 1; irq = 1; end   // cycle 2, t=35
+    @(negedge clk) begin wack = 0; irq = 0; end   // cycle 3, t=45
+    @(negedge clk);                  // cycle 4, t=55
+    @(negedge clk);                  // cycle 5, t=65
+    @(negedge clk) begin wr = 1; addr = 2; end   // cycle 6, t=75
+    @(negedge clk) begin wr = 0; wack = 1; irq = 1; end   // cycle 7, t=85
+    @(negedge clk) begin wack = 0; irq = 0; end   // cycle 8, t=95
+    @(negedge clk);                  // cycle 9, t=105
+    @(negedge clk);                  // cycle 10, t=115
+    @(negedge clk);                  // cycle 11, t=125
+    @(negedge clk);                  // cycle 12, t=135
+    @(negedge clk) begin wr = 1; addr = 4; end   // cycle 13, t=145
+    @(negedge clk) begin wr = 0; wack = 1; end   // cycle 14, t=155
+    @(negedge clk) begin wack = 0; end   // cycle 15, t=165
+    @(negedge clk);                  // cycle 16, t=175
+    @(negedge clk);                  // cycle 17, t=185
+    @(negedge clk) begin irq = 1; end   // cycle 18, t=195
+    @(negedge clk) begin irq = 0; end   // cycle 19, t=205
+    @(negedge clk);                  // cycle 20, t=215
+    @(negedge clk);                  // cycle 21, t=225
+    @(negedge clk);                  // cycle 22, t=235
+    @(negedge clk);                  // cycle 23, t=245
+    @(negedge clk);                  // cycle 24, t=255
+    repeat (3) @(negedge clk);
+    $finish;
+  end
+endmodule
+`},check:[{assert:"a_wr",fails:[],minPass:1},{assert:"a_irq",fails:[85,195],minPass:1}]},{id:"sva-p1",group:"sva-prop",tag:"Properties \xB7 Lab 1",title:"$stable, $changed: a valid/ready handshake",std:"2012",design:"",tb:`module tb;
+  logic clk = 0;
+  always #5 clk = ~clk;          // posedges at 5, 15, 25, ...
+  logic valid = 0, ready = 0; logic [7:0] data = 0;
+  // TODO a_hold: once valid, it stays high until ready
+  a_hold: assert property (@(posedge clk) 1'b1);
+  // TODO a_stable: data does not change while valid waits for ready
+  a_stable: assert property (@(posedge clk) 1'b1);
+  // TODO c_stall: cover a transfer that waited at least one cycle
+  c_stall: cover property (@(posedge clk) 1'b0);
+  initial begin
+    $dumpfile("dump.vcd"); $dumpvars(0, tb);
+    // cycle i is sampled at time 15 + 10*i
+    @(negedge clk) begin valid = 0; ready = 0; data = 8'h00; end   // cycle 0, t=15
+    @(negedge clk);                  // cycle 1, t=25
+    @(negedge clk) begin valid = 1; data = 8'h11; end   // cycle 2, t=35
+    @(negedge clk);                  // cycle 3, t=45
+    @(negedge clk) begin ready = 1; end   // cycle 4, t=55
+    @(negedge clk) begin valid = 0; ready = 0; end   // cycle 5, t=65
+    @(negedge clk);                  // cycle 6, t=75
+    @(negedge clk);                  // cycle 7, t=85
+    @(negedge clk) begin valid = 1; data = 8'h22; end   // cycle 8, t=95
+    @(negedge clk);                  // cycle 9, t=105
+    @(negedge clk) begin data = 8'h23; end   // cycle 10, t=115
+    @(negedge clk) begin ready = 1; end   // cycle 11, t=125
+    @(negedge clk) begin valid = 0; ready = 0; end   // cycle 12, t=135
+    @(negedge clk);                  // cycle 13, t=145
+    @(negedge clk);                  // cycle 14, t=155
+    @(negedge clk);                  // cycle 15, t=165
+    @(negedge clk);                  // cycle 16, t=175
+    @(negedge clk);                  // cycle 17, t=185
+    @(negedge clk) begin valid = 1; data = 8'h33; end   // cycle 18, t=195
+    @(negedge clk) begin ready = 1; end   // cycle 19, t=205
+    @(negedge clk) begin valid = 0; ready = 0; end   // cycle 20, t=215
+    @(negedge clk) begin valid = 1; data = 8'h44; end   // cycle 21, t=225
+    @(negedge clk);                  // cycle 22, t=235
+    @(negedge clk) begin valid = 0; end   // cycle 23, t=245
+    @(negedge clk);                  // cycle 24, t=255
+    @(negedge clk) begin valid = 1; data = 8'h55; end   // cycle 25, t=265
+    @(negedge clk) begin ready = 1; end   // cycle 26, t=275
+    @(negedge clk) begin valid = 0; ready = 0; end   // cycle 27, t=285
+    @(negedge clk);                  // cycle 28, t=295
+    @(negedge clk);                  // cycle 29, t=305
+    repeat (3) @(negedge clk);
+    $finish;
+  end
+endmodule
+`,solution:{tb:`module tb;
+  logic clk = 0;
+  always #5 clk = ~clk;          // posedges at 5, 15, 25, ...
+  logic valid = 0, ready = 0; logic [7:0] data = 0;
+  a_hold:   assert property (@(posedge clk) valid && !ready |=> valid); // once valid, it stays high until ready
+  a_stable: assert property (@(posedge clk) valid && !ready |=> $stable(data)); // data does not change while valid waits for ready
+  c_stall:  cover property (@(posedge clk) valid && !ready ##1 valid && ready); // cover a transfer that waited at least one cycle
+  initial begin
+    $dumpfile("dump.vcd"); $dumpvars(0, tb);
+    // cycle i is sampled at time 15 + 10*i
+    @(negedge clk) begin valid = 0; ready = 0; data = 8'h00; end   // cycle 0, t=15
+    @(negedge clk);                  // cycle 1, t=25
+    @(negedge clk) begin valid = 1; data = 8'h11; end   // cycle 2, t=35
+    @(negedge clk);                  // cycle 3, t=45
+    @(negedge clk) begin ready = 1; end   // cycle 4, t=55
+    @(negedge clk) begin valid = 0; ready = 0; end   // cycle 5, t=65
+    @(negedge clk);                  // cycle 6, t=75
+    @(negedge clk);                  // cycle 7, t=85
+    @(negedge clk) begin valid = 1; data = 8'h22; end   // cycle 8, t=95
+    @(negedge clk);                  // cycle 9, t=105
+    @(negedge clk) begin data = 8'h23; end   // cycle 10, t=115
+    @(negedge clk) begin ready = 1; end   // cycle 11, t=125
+    @(negedge clk) begin valid = 0; ready = 0; end   // cycle 12, t=135
+    @(negedge clk);                  // cycle 13, t=145
+    @(negedge clk);                  // cycle 14, t=155
+    @(negedge clk);                  // cycle 15, t=165
+    @(negedge clk);                  // cycle 16, t=175
+    @(negedge clk);                  // cycle 17, t=185
+    @(negedge clk) begin valid = 1; data = 8'h33; end   // cycle 18, t=195
+    @(negedge clk) begin ready = 1; end   // cycle 19, t=205
+    @(negedge clk) begin valid = 0; ready = 0; end   // cycle 20, t=215
+    @(negedge clk) begin valid = 1; data = 8'h44; end   // cycle 21, t=225
+    @(negedge clk);                  // cycle 22, t=235
+    @(negedge clk) begin valid = 0; end   // cycle 23, t=245
+    @(negedge clk);                  // cycle 24, t=255
+    @(negedge clk) begin valid = 1; data = 8'h55; end   // cycle 25, t=265
+    @(negedge clk) begin ready = 1; end   // cycle 26, t=275
+    @(negedge clk) begin valid = 0; ready = 0; end   // cycle 27, t=285
+    @(negedge clk);                  // cycle 28, t=295
+    @(negedge clk);                  // cycle 29, t=305
+    repeat (3) @(negedge clk);
+    $finish;
+  end
+endmodule
+`},check:[{assert:"a_hold",fails:[245],minPass:1},{assert:"a_stable",fails:[115],minPass:1},{assert:"c_stall",matches:4}]},{id:"sva-p2",group:"sva-prop",tag:"Properties \xB7 Lab 2",title:"$past and the expression width gotcha",std:"2012",design:"",tb:`module tb;
+  logic clk = 0;
+  always #5 clk = ~clk;          // posedges at 5, 15, 25, ...
+  logic rst_n = 0, inc = 0, skip = 0; logic [3:0] cnt;
+  always_ff @(posedge clk or negedge rst_n)
+    if (!rst_n) cnt <= 0; else if (inc && !(cnt == 9 && skip)) cnt <= cnt + 1;
+  // Given (wrong): fails when cnt wraps from 15 to 0, though the counter is right.
+  // TODO a_inc: fix the wrap: compare in 4 bits with a cast, 4'(...)
+  a_inc: assert property (@(posedge clk) 1'b1);
+  initial begin
+    $dumpfile("dump.vcd"); $dumpvars(0, tb);
+    // cycle i is sampled at time 15 + 10*i
+    @(negedge clk) begin rst_n = 0; inc = 0; skip = 0; end   // cycle 0, t=15
+    @(negedge clk) begin rst_n = 1; end   // cycle 1, t=25
+    @(negedge clk) begin inc = 1; end   // cycle 2, t=35
+    @(negedge clk);                  // cycle 3, t=45
+    @(negedge clk);                  // cycle 4, t=55
+    @(negedge clk);                  // cycle 5, t=65
+    @(negedge clk);                  // cycle 6, t=75
+    @(negedge clk);                  // cycle 7, t=85
+    @(negedge clk);                  // cycle 8, t=95
+    @(negedge clk);                  // cycle 9, t=105
+    @(negedge clk);                  // cycle 10, t=115
+    @(negedge clk);                  // cycle 11, t=125
+    @(negedge clk);                  // cycle 12, t=135
+    @(negedge clk);                  // cycle 13, t=145
+    @(negedge clk);                  // cycle 14, t=155
+    @(negedge clk);                  // cycle 15, t=165
+    @(negedge clk);                  // cycle 16, t=175
+    @(negedge clk);                  // cycle 17, t=185
+    @(negedge clk);                  // cycle 18, t=195
+    @(negedge clk);                  // cycle 19, t=205
+    @(negedge clk);                  // cycle 20, t=215
+    @(negedge clk);                  // cycle 21, t=225
+    @(negedge clk);                  // cycle 22, t=235
+    @(negedge clk);                  // cycle 23, t=245
+    @(negedge clk);                  // cycle 24, t=255
+    @(negedge clk);                  // cycle 25, t=265
+    @(negedge clk);                  // cycle 26, t=275
+    @(negedge clk) begin skip = 1; end   // cycle 27, t=285
+    @(negedge clk) begin skip = 0; end   // cycle 28, t=295
+    @(negedge clk);                  // cycle 29, t=305
+    @(negedge clk);                  // cycle 30, t=315
+    @(negedge clk);                  // cycle 31, t=325
+    @(negedge clk);                  // cycle 32, t=335
+    @(negedge clk);                  // cycle 33, t=345
+    @(negedge clk);                  // cycle 34, t=355
+    @(negedge clk);                  // cycle 35, t=365
+    @(negedge clk);                  // cycle 36, t=375
+    repeat (3) @(negedge clk);
+    $finish;
+  end
+endmodule
+`,solution:{tb:`module tb;
+  logic clk = 0;
+  always #5 clk = ~clk;          // posedges at 5, 15, 25, ...
+  logic rst_n = 0, inc = 0, skip = 0; logic [3:0] cnt;
+  always_ff @(posedge clk or negedge rst_n)
+    if (!rst_n) cnt <= 0; else if (inc && !(cnt == 9 && skip)) cnt <= cnt + 1;
+  // Given (wrong): fails when cnt wraps from 15 to 0, though the counter is right.
+  a_inc: assert property (@(posedge clk) disable iff (!rst_n) inc |=> cnt == 4'($past(cnt) + 1)); // fix the wrap: compare in 4 bits with a cast, 4'(...)
+  initial begin
+    $dumpfile("dump.vcd"); $dumpvars(0, tb);
+    // cycle i is sampled at time 15 + 10*i
+    @(negedge clk) begin rst_n = 0; inc = 0; skip = 0; end   // cycle 0, t=15
+    @(negedge clk) begin rst_n = 1; end   // cycle 1, t=25
+    @(negedge clk) begin inc = 1; end   // cycle 2, t=35
+    @(negedge clk);                  // cycle 3, t=45
+    @(negedge clk);                  // cycle 4, t=55
+    @(negedge clk);                  // cycle 5, t=65
+    @(negedge clk);                  // cycle 6, t=75
+    @(negedge clk);                  // cycle 7, t=85
+    @(negedge clk);                  // cycle 8, t=95
+    @(negedge clk);                  // cycle 9, t=105
+    @(negedge clk);                  // cycle 10, t=115
+    @(negedge clk);                  // cycle 11, t=125
+    @(negedge clk);                  // cycle 12, t=135
+    @(negedge clk);                  // cycle 13, t=145
+    @(negedge clk);                  // cycle 14, t=155
+    @(negedge clk);                  // cycle 15, t=165
+    @(negedge clk);                  // cycle 16, t=175
+    @(negedge clk);                  // cycle 17, t=185
+    @(negedge clk);                  // cycle 18, t=195
+    @(negedge clk);                  // cycle 19, t=205
+    @(negedge clk);                  // cycle 20, t=215
+    @(negedge clk);                  // cycle 21, t=225
+    @(negedge clk);                  // cycle 22, t=235
+    @(negedge clk);                  // cycle 23, t=245
+    @(negedge clk);                  // cycle 24, t=255
+    @(negedge clk);                  // cycle 25, t=265
+    @(negedge clk);                  // cycle 26, t=275
+    @(negedge clk) begin skip = 1; end   // cycle 27, t=285
+    @(negedge clk) begin skip = 0; end   // cycle 28, t=295
+    @(negedge clk);                  // cycle 29, t=305
+    @(negedge clk);                  // cycle 30, t=315
+    @(negedge clk);                  // cycle 31, t=325
+    @(negedge clk);                  // cycle 32, t=335
+    @(negedge clk);                  // cycle 33, t=345
+    @(negedge clk);                  // cycle 34, t=355
+    @(negedge clk);                  // cycle 35, t=365
+    @(negedge clk);                  // cycle 36, t=375
+    repeat (3) @(negedge clk);
+    $finish;
+  end
+endmodule
+`},check:[{assert:"a_inc",fails:[295],minPass:1}]},{id:"sva-p3",group:"sva-prop",tag:"Properties \xB7 Lab 3",title:"System functions: $onehot, $onehot0, $isunknown, $countones",std:"2012",design:"",tb:`module tb;
+  logic clk = 0;
+  always #5 clk = ~clk;          // posedges at 5, 15, 25, ...
+  logic valid = 0; logic [3:0] gnt = 0, req = 0; logic [7:0] addr = 0;
+  // TODO a_gnt1: at most one grant at a time
+  a_gnt1: assert property (@(posedge clk) 1'b1);
+  // TODO a_noX: no X or Z on addr while valid
+  a_noX: assert property (@(posedge clk) 1'b1);
+  // TODO a_reqs: at most 2 requests at once (an environment rule)
+  a_reqs: assert property (@(posedge clk) 1'b1);
+  initial begin
+    $dumpfile("dump.vcd"); $dumpvars(0, tb);
+    // cycle i is sampled at time 15 + 10*i
+    @(negedge clk) begin gnt = 4'b0000; valid = 0; addr = 8'h00; req = 4'b0000; end   // cycle 0, t=15
+    @(negedge clk) begin gnt = 4'b0001; req = 4'b0011; end   // cycle 1, t=25
+    @(negedge clk) begin gnt = 4'b0010; valid = 1; addr = 8'h10; req = 4'b0010; end   // cycle 2, t=35
+    @(negedge clk) begin gnt = 4'b0000; addr = 8'h11; req = 4'b0110; end   // cycle 3, t=45
+    @(negedge clk) begin gnt = 4'b0100; valid = 0; addr = 8'h00; req = 4'b0100; end   // cycle 4, t=55
+    @(negedge clk) begin gnt = 4'b0110; req = 4'b0111; end   // cycle 5, t=65
+    @(negedge clk) begin gnt = 4'b0000; req = 4'b0000; end   // cycle 6, t=75
+    @(negedge clk) begin gnt = 4'b1000; req = 4'b1000; end   // cycle 7, t=85
+    @(negedge clk) begin gnt = 4'b0000; valid = 1; addr = 8'h2x; req = 4'b0000; end   // cycle 8, t=95
+    @(negedge clk) begin addr = 8'h20; end   // cycle 9, t=105
+    @(negedge clk) begin valid = 0; addr = 8'h00; end   // cycle 10, t=115
+    @(negedge clk);                  // cycle 11, t=125
+    repeat (3) @(negedge clk);
+    $finish;
+  end
+endmodule
+`,solution:{tb:`module tb;
+  logic clk = 0;
+  always #5 clk = ~clk;          // posedges at 5, 15, 25, ...
+  logic valid = 0; logic [3:0] gnt = 0, req = 0; logic [7:0] addr = 0;
+  a_gnt1: assert property (@(posedge clk) $onehot0(gnt)); // at most one grant at a time
+  a_noX:  assert property (@(posedge clk) valid |-> !$isunknown(addr)); // no X or Z on addr while valid
+  a_reqs: assert property (@(posedge clk) $countones(req) <= 2); // at most 2 requests at once (an environment rule)
+  initial begin
+    $dumpfile("dump.vcd"); $dumpvars(0, tb);
+    // cycle i is sampled at time 15 + 10*i
+    @(negedge clk) begin gnt = 4'b0000; valid = 0; addr = 8'h00; req = 4'b0000; end   // cycle 0, t=15
+    @(negedge clk) begin gnt = 4'b0001; req = 4'b0011; end   // cycle 1, t=25
+    @(negedge clk) begin gnt = 4'b0010; valid = 1; addr = 8'h10; req = 4'b0010; end   // cycle 2, t=35
+    @(negedge clk) begin gnt = 4'b0000; addr = 8'h11; req = 4'b0110; end   // cycle 3, t=45
+    @(negedge clk) begin gnt = 4'b0100; valid = 0; addr = 8'h00; req = 4'b0100; end   // cycle 4, t=55
+    @(negedge clk) begin gnt = 4'b0110; req = 4'b0111; end   // cycle 5, t=65
+    @(negedge clk) begin gnt = 4'b0000; req = 4'b0000; end   // cycle 6, t=75
+    @(negedge clk) begin gnt = 4'b1000; req = 4'b1000; end   // cycle 7, t=85
+    @(negedge clk) begin gnt = 4'b0000; valid = 1; addr = 8'h2x; req = 4'b0000; end   // cycle 8, t=95
+    @(negedge clk) begin addr = 8'h20; end   // cycle 9, t=105
+    @(negedge clk) begin valid = 0; addr = 8'h00; end   // cycle 10, t=115
+    @(negedge clk);                  // cycle 11, t=125
+    repeat (3) @(negedge clk);
+    $finish;
+  end
+endmodule
+`},check:[{assert:"a_gnt1",fails:[65],minPass:1},{assert:"a_noX",fails:[95],minPass:1},{assert:"a_reqs",fails:[65],minPass:1}]},{id:"sva-p4",group:"sva-prop",tag:"Properties \xB7 Lab 4",title:"not, and if/else in properties",std:"2012",design:"",tb:`module tb;
+  logic clk = 0;
+  always #5 clk = ~clk;          // posedges at 5, 15, 25, ...
+  logic wr = 0, rd = 0, fast = 0, req = 0, ack = 0;
+  // TODO a_rw: never a read right after a write (turn-around cycle)
+  a_rw: assert property (@(posedge clk) 1'b1);
+  // TODO a_lat: fast requests: ack after 1; slow: ack after 3
+  a_lat: assert property (@(posedge clk) 1'b1);
+  initial begin
+    $dumpfile("dump.vcd"); $dumpvars(0, tb);
+    // cycle i is sampled at time 15 + 10*i
+    @(negedge clk) begin wr = 0; rd = 0; fast = 0; req = 0; ack = 0; end   // cycle 0, t=15
+    @(negedge clk);                  // cycle 1, t=25
+    @(negedge clk) begin wr = 1; end   // cycle 2, t=35
+    @(negedge clk) begin wr = 0; end   // cycle 3, t=45
+    @(negedge clk) begin rd = 1; end   // cycle 4, t=55
+    @(negedge clk) begin rd = 0; end   // cycle 5, t=65
+    @(negedge clk);                  // cycle 6, t=75
+    @(negedge clk);                  // cycle 7, t=85
+    @(negedge clk);                  // cycle 8, t=95
+    @(negedge clk) begin wr = 1; end   // cycle 9, t=105
+    @(negedge clk) begin wr = 0; rd = 1; end   // cycle 10, t=115
+    @(negedge clk) begin rd = 0; end   // cycle 11, t=125
+    @(negedge clk);                  // cycle 12, t=135
+    @(negedge clk);                  // cycle 13, t=145
+    @(negedge clk) begin fast = 1; req = 1; end   // cycle 14, t=155
+    @(negedge clk) begin fast = 0; req = 0; ack = 1; end   // cycle 15, t=165
+    @(negedge clk) begin ack = 0; end   // cycle 16, t=175
+    @(negedge clk);                  // cycle 17, t=185
+    @(negedge clk);                  // cycle 18, t=195
+    @(negedge clk) begin req = 1; end   // cycle 19, t=205
+    @(negedge clk) begin req = 0; end   // cycle 20, t=215
+    @(negedge clk) begin ack = 1; end   // cycle 21, t=225
+    @(negedge clk) begin ack = 0; end   // cycle 22, t=235
+    @(negedge clk);                  // cycle 23, t=245
+    repeat (3) @(negedge clk);
+    $finish;
+  end
+endmodule
+`,solution:{tb:`module tb;
+  logic clk = 0;
+  always #5 clk = ~clk;          // posedges at 5, 15, 25, ...
+  logic wr = 0, rd = 0, fast = 0, req = 0, ack = 0;
+  a_rw:  assert property (@(posedge clk) not (wr ##1 rd)); // never a read right after a write (turn-around cycle)
+  a_lat: assert property (@(posedge clk) $rose(req) |-> if (fast) ##1 ack else ##3 ack); // fast requests: ack after 1; slow: ack after 3
+  initial begin
+    $dumpfile("dump.vcd"); $dumpvars(0, tb);
+    // cycle i is sampled at time 15 + 10*i
+    @(negedge clk) begin wr = 0; rd = 0; fast = 0; req = 0; ack = 0; end   // cycle 0, t=15
+    @(negedge clk);                  // cycle 1, t=25
+    @(negedge clk) begin wr = 1; end   // cycle 2, t=35
+    @(negedge clk) begin wr = 0; end   // cycle 3, t=45
+    @(negedge clk) begin rd = 1; end   // cycle 4, t=55
+    @(negedge clk) begin rd = 0; end   // cycle 5, t=65
+    @(negedge clk);                  // cycle 6, t=75
+    @(negedge clk);                  // cycle 7, t=85
+    @(negedge clk);                  // cycle 8, t=95
+    @(negedge clk) begin wr = 1; end   // cycle 9, t=105
+    @(negedge clk) begin wr = 0; rd = 1; end   // cycle 10, t=115
+    @(negedge clk) begin rd = 0; end   // cycle 11, t=125
+    @(negedge clk);                  // cycle 12, t=135
+    @(negedge clk);                  // cycle 13, t=145
+    @(negedge clk) begin fast = 1; req = 1; end   // cycle 14, t=155
+    @(negedge clk) begin fast = 0; req = 0; ack = 1; end   // cycle 15, t=165
+    @(negedge clk) begin ack = 0; end   // cycle 16, t=175
+    @(negedge clk);                  // cycle 17, t=185
+    @(negedge clk);                  // cycle 18, t=195
+    @(negedge clk) begin req = 1; end   // cycle 19, t=205
+    @(negedge clk) begin req = 0; end   // cycle 20, t=215
+    @(negedge clk) begin ack = 1; end   // cycle 21, t=225
+    @(negedge clk) begin ack = 0; end   // cycle 22, t=235
+    @(negedge clk);                  // cycle 23, t=245
+    repeat (3) @(negedge clk);
+    $finish;
+  end
+endmodule
+`},check:[{assert:"a_rw",fails:[115],minPass:1},{assert:"a_lat",fails:[235],minPass:1}]},{id:"sva-p5",group:"sva-prop",tag:"Properties \xB7 Lab 5",title:"Local variables: data integrity through a pipeline",std:"2012",design:`// 3-stage pipeline: out_d = in_d + 1, three clocks later. One value is corrupted.
+module pipe3 (input logic clk, rst_n, in_v, input logic [7:0] in_d, output logic out_v, output logic [7:0] out_d);
+  logic [2:0] v; logic [7:0] d0, d1;
+  always_ff @(posedge clk or negedge rst_n)
+    if (!rst_n) v <= 0;
+    else begin v <= {v[1:0], in_v}; d0 <= in_d + 1; d1 <= d0; out_d <= (d1 == 8'h37) ? 8'h73 : d1; end
+  assign out_v = v[2];
+endmodule
+`,tb:`module tb;
+  logic clk = 0;
+  always #5 clk = ~clk;          // posedges at 5, 15, 25, ...
+  logic rst_n = 0, in_v = 0; logic [7:0] in_d = 0, out_d; logic out_v;
+  pipe3 dut (.*);
+  property p_data;
+    logic [7:0] x;
+    @(posedge clk) disable iff (!rst_n) (in_v, x = in_d + 1) |-> ##3 out_v && out_d == x;
+  endproperty
+  // TODO a_data: capture in_d + 1 in a local variable; compare with out_d 3 clocks later
+  a_data: assert property (@(posedge clk) 1'b1);
+  initial begin
+    $dumpfile("dump.vcd"); $dumpvars(0, tb);
+    #12 rst_n = 1;
+    for (int k = 0; k < 10; k++) begin @(negedge clk) in_v = 1; in_d = 8'h30 + k; end
+    @(negedge clk) in_v = 0;
+    repeat (5) @(negedge clk);
+    $finish;
+  end
+endmodule
+`,solution:{tb:`module tb;
+  logic clk = 0;
+  always #5 clk = ~clk;          // posedges at 5, 15, 25, ...
+  logic rst_n = 0, in_v = 0; logic [7:0] in_d = 0, out_d; logic out_v;
+  pipe3 dut (.*);
+  property p_data;
+    logic [7:0] x;
+    @(posedge clk) disable iff (!rst_n) (in_v, x = in_d + 1) |-> ##3 out_v && out_d == x;
+  endproperty
+  a_data: assert property (p_data); // capture in_d + 1 in a local variable; compare with out_d 3 clocks later
+  initial begin
+    $dumpfile("dump.vcd"); $dumpvars(0, tb);
+    #12 rst_n = 1;
+    for (int k = 0; k < 10; k++) begin @(negedge clk) in_v = 1; in_d = 8'h30 + k; end
+    @(negedge clk) in_v = 0;
+    repeat (5) @(negedge clk);
+    $finish;
+  end
+endmodule
+`},check:[{assert:"a_data",fails:[115],minPass:1}]},{id:"sva-p6",group:"sva-prop",tag:"Properties \xB7 Lab 6",title:"Local variables: matching IDs out of order",std:"2012",design:"",tb:`module tb;
+  logic clk = 0;
+  always #5 clk = ~clk;          // posedges at 5, 15, 25, ...
+  logic req = 0, rsp = 0; logic [1:0] id = 0, rsp_id = 0;
+  property p_id;
+    logic [1:0] v;
+    @(posedge clk) (req, v = id) |-> ##[1:6] (rsp && rsp_id == v);
+  endproperty
+  // TODO a_id: every request ID gets a response with the same ID within 1 to 6 cycles
+  a_id: assert property (@(posedge clk) 1'b1);
+  initial begin
+    $dumpfile("dump.vcd"); $dumpvars(0, tb);
+    // cycle i is sampled at time 15 + 10*i
+    @(negedge clk) begin req = 0; id = 2'd0; rsp = 0; rsp_id = 2'd0; end   // cycle 0, t=15
+    @(negedge clk) begin req = 1; id = 2'd1; end   // cycle 1, t=25
+    @(negedge clk) begin id = 2'd2; end   // cycle 2, t=35
+    @(negedge clk) begin id = 2'd3; rsp = 1; rsp_id = 2'd2; end   // cycle 3, t=45
+    @(negedge clk) begin req = 0; id = 2'd0; rsp = 0; rsp_id = 2'd0; end   // cycle 4, t=55
+    @(negedge clk) begin rsp = 1; rsp_id = 2'd1; end   // cycle 5, t=65
+    @(negedge clk);                  // cycle 6, t=75
+    @(negedge clk) begin rsp = 0; rsp_id = 2'd0; end   // cycle 7, t=85
+    @(negedge clk);                  // cycle 8, t=95
+    @(negedge clk);                  // cycle 9, t=105
+    @(negedge clk);                  // cycle 10, t=115
+    @(negedge clk);                  // cycle 11, t=125
+    @(negedge clk) begin req = 1; id = 2'd2; end   // cycle 12, t=135
+    @(negedge clk) begin req = 0; end   // cycle 13, t=145
+    @(negedge clk) begin rsp = 1; rsp_id = 2'd1; end   // cycle 14, t=155
+    @(negedge clk) begin rsp = 0; end   // cycle 15, t=165
+    @(negedge clk);                  // cycle 16, t=175
+    @(negedge clk);                  // cycle 17, t=185
+    @(negedge clk);                  // cycle 18, t=195
+    @(negedge clk);                  // cycle 19, t=205
+    @(negedge clk);                  // cycle 20, t=215
+    @(negedge clk);                  // cycle 21, t=225
+    @(negedge clk);                  // cycle 22, t=235
+    @(negedge clk);                  // cycle 23, t=245
+    @(negedge clk);                  // cycle 24, t=255
+    @(negedge clk);                  // cycle 25, t=265
+    repeat (3) @(negedge clk);
+    $finish;
+  end
+endmodule
+`,solution:{tb:`module tb;
+  logic clk = 0;
+  always #5 clk = ~clk;          // posedges at 5, 15, 25, ...
+  logic req = 0, rsp = 0; logic [1:0] id = 0, rsp_id = 0;
+  property p_id;
+    logic [1:0] v;
+    @(posedge clk) (req, v = id) |-> ##[1:6] (rsp && rsp_id == v);
+  endproperty
+  a_id: assert property (p_id); // every request ID gets a response with the same ID within 1 to 6 cycles
+  initial begin
+    $dumpfile("dump.vcd"); $dumpvars(0, tb);
+    // cycle i is sampled at time 15 + 10*i
+    @(negedge clk) begin req = 0; id = 2'd0; rsp = 0; rsp_id = 2'd0; end   // cycle 0, t=15
+    @(negedge clk) begin req = 1; id = 2'd1; end   // cycle 1, t=25
+    @(negedge clk) begin id = 2'd2; end   // cycle 2, t=35
+    @(negedge clk) begin id = 2'd3; rsp = 1; rsp_id = 2'd2; end   // cycle 3, t=45
+    @(negedge clk) begin req = 0; id = 2'd0; rsp = 0; rsp_id = 2'd0; end   // cycle 4, t=55
+    @(negedge clk) begin rsp = 1; rsp_id = 2'd1; end   // cycle 5, t=65
+    @(negedge clk);                  // cycle 6, t=75
+    @(negedge clk) begin rsp = 0; rsp_id = 2'd0; end   // cycle 7, t=85
+    @(negedge clk);                  // cycle 8, t=95
+    @(negedge clk);                  // cycle 9, t=105
+    @(negedge clk);                  // cycle 10, t=115
+    @(negedge clk);                  // cycle 11, t=125
+    @(negedge clk) begin req = 1; id = 2'd2; end   // cycle 12, t=135
+    @(negedge clk) begin req = 0; end   // cycle 13, t=145
+    @(negedge clk) begin rsp = 1; rsp_id = 2'd1; end   // cycle 14, t=155
+    @(negedge clk) begin rsp = 0; end   // cycle 15, t=165
+    @(negedge clk);                  // cycle 16, t=175
+    @(negedge clk);                  // cycle 17, t=185
+    @(negedge clk);                  // cycle 18, t=195
+    @(negedge clk);                  // cycle 19, t=205
+    @(negedge clk);                  // cycle 20, t=215
+    @(negedge clk);                  // cycle 21, t=225
+    @(negedge clk);                  // cycle 22, t=235
+    @(negedge clk);                  // cycle 23, t=245
+    @(negedge clk);                  // cycle 24, t=255
+    @(negedge clk);                  // cycle 25, t=265
+    repeat (3) @(negedge clk);
+    $finish;
+  end
+endmodule
+`},check:[{assert:"a_id",fails:[105,195],minPass:1}]},{id:"sva-p7",group:"sva-prop",tag:"Properties \xB7 Lab 7",title:"until, eventually and liveness at the end of a test",std:"2012",design:"",tb:`module tb;
+  logic clk = 0;
+  always #5 clk = ~clk;          // posedges at 5, 15, 25, ...
+  logic err = 0, led = 0, clr = 0, req = 0, gnt = 0;
+  // TODO a_led: after an error, led stays on until clr
+  a_led: assert property (@(posedge clk) 1'b1);
+  // TODO a_live: every request is granted before the test ends
+  a_live: assert property (@(posedge clk) 1'b1);
+  initial begin
+    $dumpfile("dump.vcd"); $dumpvars(0, tb);
+    // cycle i is sampled at time 15 + 10*i
+    @(negedge clk) begin err = 0; led = 0; clr = 0; req = 0; gnt = 0; end   // cycle 0, t=15
+    @(negedge clk) begin err = 1; end   // cycle 1, t=25
+    @(negedge clk) begin err = 0; led = 1; end   // cycle 2, t=35
+    @(negedge clk) begin req = 1; end   // cycle 3, t=45
+    @(negedge clk) begin req = 0; end   // cycle 4, t=55
+    @(negedge clk);                  // cycle 5, t=65
+    @(negedge clk) begin gnt = 1; end   // cycle 6, t=75
+    @(negedge clk) begin gnt = 0; end   // cycle 7, t=85
+    @(negedge clk) begin clr = 1; end   // cycle 8, t=95
+    @(negedge clk) begin led = 0; clr = 0; end   // cycle 9, t=105
+    @(negedge clk);                  // cycle 10, t=115
+    @(negedge clk);                  // cycle 11, t=125
+    @(negedge clk) begin err = 1; end   // cycle 12, t=135
+    @(negedge clk) begin err = 0; end   // cycle 13, t=145
+    @(negedge clk);                  // cycle 14, t=155
+    @(negedge clk) begin led = 1; end   // cycle 15, t=165
+    @(negedge clk);                  // cycle 16, t=175
+    @(negedge clk);                  // cycle 17, t=185
+    @(negedge clk);                  // cycle 18, t=195
+    @(negedge clk) begin led = 0; clr = 1; end   // cycle 19, t=205
+    @(negedge clk) begin clr = 0; end   // cycle 20, t=215
+    @(negedge clk) begin req = 1; end   // cycle 21, t=225
+    @(negedge clk) begin req = 0; end   // cycle 22, t=235
+    @(negedge clk);                  // cycle 23, t=245
+    @(negedge clk);                  // cycle 24, t=255
+    @(negedge clk);                  // cycle 25, t=265
+    @(negedge clk);                  // cycle 26, t=275
+    @(negedge clk);                  // cycle 27, t=285
+    repeat (3) @(negedge clk);
+    $finish;
+  end
+endmodule
+`,solution:{tb:`module tb;
+  logic clk = 0;
+  always #5 clk = ~clk;          // posedges at 5, 15, 25, ...
+  logic err = 0, led = 0, clr = 0, req = 0, gnt = 0;
+  a_led:  assert property (@(posedge clk) $rose(err) |=> led until clr); // after an error, led stays on until clr
+  a_live: assert property (@(posedge clk) req |-> s_eventually gnt); // every request is granted before the test ends
+  initial begin
+    $dumpfile("dump.vcd"); $dumpvars(0, tb);
+    // cycle i is sampled at time 15 + 10*i
+    @(negedge clk) begin err = 0; led = 0; clr = 0; req = 0; gnt = 0; end   // cycle 0, t=15
+    @(negedge clk) begin err = 1; end   // cycle 1, t=25
+    @(negedge clk) begin err = 0; led = 1; end   // cycle 2, t=35
+    @(negedge clk) begin req = 1; end   // cycle 3, t=45
+    @(negedge clk) begin req = 0; end   // cycle 4, t=55
+    @(negedge clk);                  // cycle 5, t=65
+    @(negedge clk) begin gnt = 1; end   // cycle 6, t=75
+    @(negedge clk) begin gnt = 0; end   // cycle 7, t=85
+    @(negedge clk) begin clr = 1; end   // cycle 8, t=95
+    @(negedge clk) begin led = 0; clr = 0; end   // cycle 9, t=105
+    @(negedge clk);                  // cycle 10, t=115
+    @(negedge clk);                  // cycle 11, t=125
+    @(negedge clk) begin err = 1; end   // cycle 12, t=135
+    @(negedge clk) begin err = 0; end   // cycle 13, t=145
+    @(negedge clk);                  // cycle 14, t=155
+    @(negedge clk) begin led = 1; end   // cycle 15, t=165
+    @(negedge clk);                  // cycle 16, t=175
+    @(negedge clk);                  // cycle 17, t=185
+    @(negedge clk);                  // cycle 18, t=195
+    @(negedge clk) begin led = 0; clr = 1; end   // cycle 19, t=205
+    @(negedge clk) begin clr = 0; end   // cycle 20, t=215
+    @(negedge clk) begin req = 1; end   // cycle 21, t=225
+    @(negedge clk) begin req = 0; end   // cycle 22, t=235
+    @(negedge clk);                  // cycle 23, t=245
+    @(negedge clk);                  // cycle 24, t=255
+    @(negedge clk);                  // cycle 25, t=265
+    @(negedge clk);                  // cycle 26, t=275
+    @(negedge clk);                  // cycle 27, t=285
+    repeat (3) @(negedge clk);
+    $finish;
+  end
+endmodule
+`},check:[{assert:"a_led",fails:[145],minPass:1},{assert:"a_live",fails:[305],minPass:1}]},{id:"sva-p8",group:"sva-prop",tag:"Properties \xB7 Lab 8",title:"Checking the checker: vacuity and cover",std:"2012",design:`// Write-back FSM: IDLE -> REQ -> WAIT -> WRITE -> IDLE. In WRITE, 'we' must be high.
+module wb_fsm (input logic clk, rst_n, go, ack, output logic we, output logic [1:0] state);
+  localparam IDLE = 2'd0, REQ = 2'd1, WAIT = 2'd2, WRITE = 2'd3;
+  always_ff @(posedge clk or negedge rst_n)
+    if (!rst_n) state <= IDLE;
+    else case (state)
+      IDLE:  if (go) state <= REQ;
+      REQ:   state <= WAIT;
+      WAIT:  if (ack) state <= WRITE;
+      WRITE: state <= IDLE;
+    endcase
+  assign we = (state == WRITE) && !(ack && go);   // bug: we dropped in a corner case
+endmodule
+`,tb:`module tb;
+  logic clk = 0;
+  always #5 clk = ~clk;          // posedges at 5, 15, 25, ...
+  logic rst_n = 0, go = 0, ack = 0, we; logic [1:0] state;
+  wb_fsm dut (.*);
+  // The given assertion never fails... because its antecedent never happens: 2'd4 does not fit in 2 bits.
+  // TODO a_we: fix the antecedent: WRITE is state 2'd3 (the given code had 2'd4)
+  a_we: assert property (@(posedge clk) 1'b1);
+  // TODO c_wr: cover the antecedent: does WRITE ever happen?
+  c_wr: cover property (@(posedge clk) 1'b0);
+  initial begin
+    $dumpfile("dump.vcd"); $dumpvars(0, tb);
+    #12 rst_n = 1;
+    repeat (2) begin @(negedge clk) go = 1; @(negedge clk) go = 0; repeat (2) @(negedge clk); ack = 1; @(negedge clk) ack = 0; repeat (2) @(negedge clk); end
+    @(negedge clk) go = 1; @(negedge clk) go = 0; repeat (2) @(negedge clk); ack = 1; go = 1; @(negedge clk) begin ack = 1; go = 1; end @(negedge clk) begin ack = 0; go = 0; end
+    repeat (3) @(negedge clk);
+    $finish;
+  end
+endmodule
+`,solution:{tb:`module tb;
+  logic clk = 0;
+  always #5 clk = ~clk;          // posedges at 5, 15, 25, ...
+  logic rst_n = 0, go = 0, ack = 0, we; logic [1:0] state;
+  wb_fsm dut (.*);
+  // The given assertion never fails... because its antecedent never happens: 2'd4 does not fit in 2 bits.
+  a_we:   assert property (@(posedge clk) disable iff (!rst_n) state == 2'd3 |-> we); // fix the antecedent: WRITE is state 2'd3 (the given code had 2'd4)
+  c_wr:   cover property (@(posedge clk) state == 2'd3); // cover the antecedent: does WRITE ever happen?
+  initial begin
+    $dumpfile("dump.vcd"); $dumpvars(0, tb);
+    #12 rst_n = 1;
+    repeat (2) begin @(negedge clk) go = 1; @(negedge clk) go = 0; repeat (2) @(negedge clk); ack = 1; @(negedge clk) ack = 0; repeat (2) @(negedge clk); end
+    @(negedge clk) go = 1; @(negedge clk) go = 0; repeat (2) @(negedge clk); ack = 1; go = 1; @(negedge clk) begin ack = 1; go = 1; end @(negedge clk) begin ack = 0; go = 0; end
+    repeat (3) @(negedge clk);
+    $finish;
+  end
+endmodule
+`},check:[{assert:"a_we",fails:[205],minPass:1},{assert:"c_wr",matches:3}]},{id:"sva-a1",group:"sva-apps",tag:"Applications \xB7 Lab 1",title:"FSM assertions: one-hot, reset, legal transitions",std:"2012",design:`// Instruction-cycle controller (one-hot): RESET -> FETCH -> DECODE -> EXEC -> STORE -> FETCH.
+// DECODE may only be entered from FETCH. A rare path breaks this rule.
+module ctrl (input logic clk, rst_n, stall, irq, output logic [4:0] state);
+  localparam RESET = 5'b00001, FETCH = 5'b00010, DECODE = 5'b00100, EXEC = 5'b01000, STORE = 5'b10000;
+  always_ff @(posedge clk or negedge rst_n)
+    if (!rst_n) state <= RESET;
+    else case (state)
+      RESET:  state <= FETCH;
+      FETCH:  state <= stall ? FETCH : DECODE;
+      DECODE: state <= EXEC;
+      EXEC:   state <= (irq && stall) ? DECODE : STORE;     // bug: re-decodes on irq during a stall
+      STORE:  state <= FETCH;
+      default: state <= RESET;
+    endcase
+endmodule
+`,tb:`module tb;
+  logic clk = 0;
+  always #5 clk = ~clk;          // posedges at 5, 15, 25, ...
+  logic rst_n = 0, stall = 0, irq = 0; logic [4:0] state;
+  localparam RESET = 5'b00001, FETCH = 5'b00010, DECODE = 5'b00100, EXEC = 5'b01000, STORE = 5'b10000;
+  ctrl dut (.*);
+  // TODO a_onehot: state is always one-hot (out of reset)
+  a_onehot: assert property (@(posedge clk) 1'b1);
+  // TODO a_reset: leaving reset, the state is RESET
+  a_reset: assert property (@(posedge clk) 1'b1);
+  // TODO a_decode: DECODE is only entered from FETCH
+  a_decode: assert property (@(posedge clk) 1'b1);
+  // TODO a_store: EXEC is always followed by STORE
+  a_store: assert property (@(posedge clk) 1'b1);
+  initial begin
+    $dumpfile("dump.vcd"); $dumpvars(0, tb);
+    #12 rst_n = 1;
+    repeat (8) @(negedge clk);
+    stall = 1; @(negedge clk) stall = 0;
+    repeat (6) @(negedge clk);
+    do @(negedge clk); while (state != EXEC);
+    stall = 1; irq = 1; @(negedge clk) begin stall = 0; irq = 0; end
+    repeat (8) @(negedge clk);
+    $finish;
+  end
+endmodule
+`,solution:{tb:`module tb;
+  logic clk = 0;
+  always #5 clk = ~clk;          // posedges at 5, 15, 25, ...
+  logic rst_n = 0, stall = 0, irq = 0; logic [4:0] state;
+  localparam RESET = 5'b00001, FETCH = 5'b00010, DECODE = 5'b00100, EXEC = 5'b01000, STORE = 5'b10000;
+  ctrl dut (.*);
+  a_onehot: assert property (@(posedge clk) disable iff (!rst_n) $onehot(state)); // state is always one-hot (out of reset)
+  a_reset:  assert property (@(posedge clk) $rose(rst_n) |-> state == RESET); // leaving reset, the state is RESET
+  a_decode: assert property (@(posedge clk) disable iff (!rst_n) state == DECODE |-> $past(state) == FETCH); // DECODE is only entered from FETCH
+  a_store:  assert property (@(posedge clk) disable iff (!rst_n) state == EXEC |=> state == STORE); // EXEC is always followed by STORE
+  initial begin
+    $dumpfile("dump.vcd"); $dumpvars(0, tb);
+    #12 rst_n = 1;
+    repeat (8) @(negedge clk);
+    stall = 1; @(negedge clk) stall = 0;
+    repeat (6) @(negedge clk);
+    do @(negedge clk); while (state != EXEC);
+    stall = 1; irq = 1; @(negedge clk) begin stall = 0; irq = 0; end
+    repeat (8) @(negedge clk);
+    $finish;
+  end
+endmodule
+`},check:[{assert:"a_onehot",fails:[],minPass:1},{assert:"a_reset",fails:[],minPass:1},{assert:"a_decode",fails:[215],minPass:1},{assert:"a_store",fails:[215],minPass:1}]},{id:"sva-a2",group:"sva-apps",tag:"Applications \xB7 Lab 2",title:"FIFO assertions (week 9 exercise)",std:"2012",design:`// 8-deep synchronous FIFO with a show-ahead output (dout is the oldest entry).
+// Bug: 'full' is computed one entry too late.
+module fifo8 (input logic clk, rst_n, push, pop, input logic [7:0] din,
+              output logic [7:0] dout, output logic full, empty, output logic [3:0] count);
+  logic [7:0] mem [8]; logic [2:0] wp, rp;
+  always_ff @(posedge clk or negedge rst_n)
+    if (!rst_n) begin wp <= 0; rp <= 0; count <= 0; end
+    else begin
+      if (push && count != 8) begin mem[wp] <= din; wp <= wp + 1; end
+      if (pop && !empty) rp <= rp + 1;
+      count <= count + (push && count != 8) - (pop && !empty);
+    end
+  assign dout = mem[rp];
+  assign empty = count == 0;
+  assign full = count == 8 && !push;          // bug: should be count == 8
+endmodule
+`,tb:`module tb;
+  logic clk = 0;
+  always #5 clk = ~clk;          // posedges at 5, 15, 25, ...
+  logic rst_n = 0, push = 0, pop = 0, full, empty; logic [7:0] din = 0, dout; logic [3:0] count;
+  fifo8 dut (.*);
+  default clocking cb @(posedge clk); endclocking
+  default disable iff (!rst_n);
+  // TODO a_fe: never full and empty together
+  a_fe: assert property (@(posedge clk) 1'b1);
+  // TODO a_full: full exactly when 8 entries are stored
+  a_full: assert property (@(posedge clk) 1'b1);
+  // TODO a_empty: empty exactly when no entry is stored
+  a_empty: assert property (@(posedge clk) 1'b1);
+  // TODO a_count: count goes up on an accepted push and down on an accepted pop
+  a_count: assert property (@(posedge clk) 1'b1);
+  property p_first;
+    logic [7:0] v;
+    (push && empty, v = din) |=> dout == v;
+  endproperty
+  // TODO a_first: a word pushed into an empty FIFO is at dout in the next cycle
+  a_first: assert property (@(posedge clk) 1'b1);
+  initial begin
+    $dumpfile("dump.vcd"); $dumpvars(0, tb);
+    #22 rst_n = 1;                    // two clocks in reset: count is known before the checks start
+    @(negedge clk) begin push = 1; din = 8'hA0; end
+    @(negedge clk) push = 0;
+    @(negedge clk) pop = 1; @(negedge clk) pop = 0;
+    for (int k = 1; k <= 10; k++) begin @(negedge clk) begin push = 1; din = 8'hA0 + k; end end
+    @(negedge clk) push = 0;
+    repeat (10) @(negedge clk) pop = 1;
+    @(negedge clk) pop = 0;
+    repeat (3) @(negedge clk);
+    $finish;
+  end
+endmodule
+`,solution:{tb:`module tb;
+  logic clk = 0;
+  always #5 clk = ~clk;          // posedges at 5, 15, 25, ...
+  logic rst_n = 0, push = 0, pop = 0, full, empty; logic [7:0] din = 0, dout; logic [3:0] count;
+  fifo8 dut (.*);
+  default clocking cb @(posedge clk); endclocking
+  default disable iff (!rst_n);
+  a_fe:     assert property (!(full && empty)); // never full and empty together
+  a_full:   assert property (full == (count == 8)); // full exactly when 8 entries are stored
+  a_empty:  assert property (empty == (count == 0)); // empty exactly when no entry is stored
+  a_count:  assert property (count == 4'($past(count) + ($past(push) && !$past(full)) - ($past(pop) && !$past(empty)))); // count goes up on an accepted push and down on an accepted pop
+  property p_first;
+    logic [7:0] v;
+    (push && empty, v = din) |=> dout == v;
+  endproperty
+  a_first:  assert property (p_first); // a word pushed into an empty FIFO is at dout in the next cycle
+  initial begin
+    $dumpfile("dump.vcd"); $dumpvars(0, tb);
+    #22 rst_n = 1;                    // two clocks in reset: count is known before the checks start
+    @(negedge clk) begin push = 1; din = 8'hA0; end
+    @(negedge clk) push = 0;
+    @(negedge clk) pop = 1; @(negedge clk) pop = 0;
+    for (int k = 1; k <= 10; k++) begin @(negedge clk) begin push = 1; din = 8'hA0 + k; end end
+    @(negedge clk) push = 0;
+    repeat (10) @(negedge clk) pop = 1;
+    @(negedge clk) pop = 0;
+    repeat (3) @(negedge clk);
+    $finish;
+  end
+endmodule
+`},check:[{assert:"a_fe",fails:[],minPass:1},{assert:"a_full",fails:[155,165],minPass:1},{assert:"a_empty",fails:[],minPass:1},{assert:"a_count",fails:[165,175],minPass:1},{assert:"a_first",fails:[],minPass:1}]},{id:"sva-a3",group:"sva-apps",tag:"Applications \xB7 Lab 3",title:"Memory assertions: write-then-read and access rules",std:"2012",design:`// 16 x 8 RAM, read data one clock after re. Bug: address bit 3 is stuck at 0 on writes.
+module ram16 (input logic clk, we, re, input logic [3:0] addr, input logic [7:0] wdata, output logic [7:0] rdata);
+  logic [7:0] m [16];
+  always_ff @(posedge clk) begin
+    if (we) m[{1'b0, addr[2:0]}] <= wdata;
+    if (re) rdata <= m[addr];
+  end
+endmodule
+`,tb:`module tb;
+  logic clk = 0;
+  always #5 clk = ~clk;          // posedges at 5, 15, 25, ...
+  logic we = 0, re = 0; logic [3:0] addr = 0; logic [7:0] wdata = 0, rdata;
+  ram16 dut (.*);
+  // TODO a_mutex: never read and write in the same cycle
+  a_mutex: assert property (@(posedge clk) 1'b1);
+  // TODO a_addr: no unknown address on an access
+  a_addr: assert property (@(posedge clk) 1'b1);
+  property p_wr_rd;
+    logic [3:0] a; logic [7:0] d;
+    (we, a = addr, d = wdata) ##1 (re && addr == a)[->1] |=> rdata == d;
+  endproperty
+  // TODO a_data: a read of an address returns the last value written there
+  a_data: assert property (@(posedge clk) 1'b1);
+  initial begin
+    $dumpfile("dump.vcd"); $dumpvars(0, tb);
+    for (int k = 0; k < 4; k++) begin @(negedge clk) begin we = 1; addr = k * 3; wdata = 8'h10 + k; end end
+    @(negedge clk) we = 0;
+    for (int k = 0; k < 4; k++) begin @(negedge clk) begin re = 1; addr = k * 3; end end
+    @(negedge clk) re = 0;
+    repeat (3) @(negedge clk);
+    $finish;
+  end
+endmodule
+`,solution:{tb:`module tb;
+  logic clk = 0;
+  always #5 clk = ~clk;          // posedges at 5, 15, 25, ...
+  logic we = 0, re = 0; logic [3:0] addr = 0; logic [7:0] wdata = 0, rdata;
+  ram16 dut (.*);
+  a_mutex: assert property (@(posedge clk) !(we && re)); // never read and write in the same cycle
+  a_addr:  assert property (@(posedge clk) (we || re) |-> !$isunknown(addr)); // no unknown address on an access
+  property p_wr_rd;
+    logic [3:0] a; logic [7:0] d;
+    (we, a = addr, d = wdata) ##1 (re && addr == a)[->1] |=> rdata == d;
+  endproperty
+  a_data:  assert property (@(posedge clk) p_wr_rd); // a read of an address returns the last value written there
+  initial begin
+    $dumpfile("dump.vcd"); $dumpvars(0, tb);
+    for (int k = 0; k < 4; k++) begin @(negedge clk) begin we = 1; addr = k * 3; wdata = 8'h10 + k; end end
+    @(negedge clk) we = 0;
+    for (int k = 0; k < 4; k++) begin @(negedge clk) begin re = 1; addr = k * 3; end end
+    @(negedge clk) re = 0;
+    repeat (3) @(negedge clk);
+    $finish;
+  end
+endmodule
+`},check:[{assert:"a_mutex",fails:[],minPass:1},{assert:"a_addr",fails:[],minPass:1},{assert:"a_data",fails:[105],minPass:1}]},{id:"sva-a4",group:"sva-apps",tag:"Applications \xB7 Lab 4",title:"Arbiter: exclusive grants and fairness",std:"2012",design:`// 4-requester round-robin arbiter. Bug: requester 3 is skipped when requester 0 also requests.
+module rr_arb (input logic clk, rst_n, input logic [3:0] req, output logic [3:0] gnt);
+  logic [1:0] last;
+  always_ff @(posedge clk or negedge rst_n)
+    if (!rst_n) begin gnt <= 0; last <= 3; end
+    else begin
+      gnt <= 0;
+      for (int k = 1; k <= 4; k++) begin
+        automatic int i = (last + k) % 4;
+        if (req[i] && gnt == 0 && !(i == 3 && req[0])) begin gnt[i] <= 1; last <= i; break; end
+      end
+    end
+endmodule
+`,tb:`module tb;
+  logic clk = 0;
+  always #5 clk = ~clk;          // posedges at 5, 15, 25, ...
+  logic rst_n = 0; logic [3:0] req = 0, gnt;
+  rr_arb dut (.*);
+  // TODO a_one: at most one grant
+  a_one: assert property (@(posedge clk) 1'b1);
+  // TODO a_req: a grant only to a requester (from the previous cycle)
+  a_req: assert property (@(posedge clk) 1'b1);
+  for (genvar i = 0; i < 4; i++) begin : fair
+    // TODO a_fair: a request is granted within 4 cycles
+    a_fair: assert property (@(posedge clk) 1'b1);
+  end
+  initial begin
+    $dumpfile("dump.vcd"); $dumpvars(0, tb);
+    #12 rst_n = 1;
+    @(negedge clk) req = 4'b0110;
+    repeat (4) @(negedge clk);
+    req = 4'b1000; repeat (2) @(negedge clk);
+    req = 4'b1001; repeat (6) @(negedge clk);
+    req = 0; repeat (3) @(negedge clk);
+    $finish;
+  end
+endmodule
+`,solution:{tb:`module tb;
+  logic clk = 0;
+  always #5 clk = ~clk;          // posedges at 5, 15, 25, ...
+  logic rst_n = 0; logic [3:0] req = 0, gnt;
+  rr_arb dut (.*);
+  a_one:  assert property (@(posedge clk) disable iff (!rst_n) $onehot0(gnt)); // at most one grant
+  a_req:  assert property (@(posedge clk) disable iff (!rst_n) (gnt & ~$past(req)) == 0); // a grant only to a requester (from the previous cycle)
+  for (genvar i = 0; i < 4; i++) begin : fair
+    a_fair: assert property (@(posedge clk) disable iff (!rst_n) req[i] |-> ##[1:4] gnt[i]); // a request is granted within 4 cycles
+  end
+  initial begin
+    $dumpfile("dump.vcd"); $dumpvars(0, tb);
+    #12 rst_n = 1;
+    @(negedge clk) req = 4'b0110;
+    repeat (4) @(negedge clk);
+    req = 4'b1000; repeat (2) @(negedge clk);
+    req = 4'b1001; repeat (6) @(negedge clk);
+    req = 0; repeat (3) @(negedge clk);
+    $finish;
+  end
+endmodule
+`},check:[{assert:"a_one",fails:[],minPass:1},{assert:"a_req",fails:[],minPass:1},{assert:"tb.fair[0].a_fair",fails:[],minPass:1},{assert:"tb.fair[3].a_fair",fails:[115,125,135,145,155,165],minPass:1}]},{id:"sva-a5",group:"sva-apps",tag:"Applications \xB7 Lab 5",title:"APB protocol assertions",std:"2012",design:`// A small APB master that writes and reads registers. Bug: on a wait state it changes PADDR.
+module apb_master (input logic clk, rst_n, start, input logic [1:0] n_wait_ignored,
+                   output logic psel, penable, pwrite, output logic [7:0] paddr, pwdata, input logic pready);
+  typedef enum logic [1:0] {IDLE, SETUP, ACCESS} st_t;
+  st_t st; logic [7:0] a;
+  always_ff @(posedge clk or negedge rst_n)
+    if (!rst_n) begin st <= IDLE; psel <= 0; penable <= 0; a <= 8'h10; end
+    else case (st)
+      IDLE:   if (start) begin st <= SETUP; psel <= 1; penable <= 0; paddr <= a; pwrite <= a[4]; pwdata <= a + 1; end
+      SETUP:  begin st <= ACCESS; penable <= 1; end
+      ACCESS: if (pready) begin st <= IDLE; psel <= 0; penable <= 0; a <= a + 8'h04; end
+              else if (a == 8'h18) paddr <= paddr + 1;        // bug
+    endcase
+endmodule
+`,tb:`module tb;
+  logic clk = 0;
+  always #5 clk = ~clk;          // posedges at 5, 15, 25, ...
+  logic rst_n = 0, start = 0, psel, penable, pwrite, pready = 0; logic [7:0] paddr, pwdata;
+  apb_master m (.clk, .rst_n, .start, .n_wait_ignored(2'd0), .psel, .penable, .pwrite, .paddr, .pwdata, .pready);
+  // slave: 0, 1 or 2 wait states
+  int ws = 0;
+  always @(negedge clk) pready <= psel && penable && (ws-- <= 0);
+  default clocking cb @(posedge clk); endclocking
+  default disable iff (!rst_n);
+  // TODO a_setup: the first cycle of a transfer is SETUP (penable low)
+  a_setup: assert property (@(posedge clk) 1'b1);
+  // TODO a_access: SETUP is always followed by ACCESS
+  a_access: assert property (@(posedge clk) 1'b1);
+  // TODO a_stable: address and control hold during wait states
+  a_stable: assert property (@(posedge clk) 1'b1);
+  // TODO a_end: after the last ACCESS cycle, penable drops
+  a_end: assert property (@(posedge clk) 1'b1);
+  initial begin
+    $dumpfile("dump.vcd"); $dumpvars(0, tb);
+    #12 rst_n = 1;
+    for (int k = 0; k < 4; k++) begin
+      ws = k % 3; @(negedge clk) start = 1; @(negedge clk) start = 0;
+      wait (!psel); @(negedge clk);
+    end
+    repeat (3) @(negedge clk);
+    $finish;
+  end
+endmodule
+`,solution:{tb:`module tb;
+  logic clk = 0;
+  always #5 clk = ~clk;          // posedges at 5, 15, 25, ...
+  logic rst_n = 0, start = 0, psel, penable, pwrite, pready = 0; logic [7:0] paddr, pwdata;
+  apb_master m (.clk, .rst_n, .start, .n_wait_ignored(2'd0), .psel, .penable, .pwrite, .paddr, .pwdata, .pready);
+  // slave: 0, 1 or 2 wait states
+  int ws = 0;
+  always @(negedge clk) pready <= psel && penable && (ws-- <= 0);
+  default clocking cb @(posedge clk); endclocking
+  default disable iff (!rst_n);
+  a_setup:  assert property ($rose(psel) |-> !penable); // the first cycle of a transfer is SETUP (penable low)
+  a_access: assert property (psel && !penable |=> psel && penable); // SETUP is always followed by ACCESS
+  a_stable: assert property (psel && penable && !pready |=> $stable(paddr) && $stable(pwrite) && $stable(pwdata)); // address and control hold during wait states
+  a_end:    assert property (psel && penable && pready |=> !penable); // after the last ACCESS cycle, penable drops
+  initial begin
+    $dumpfile("dump.vcd"); $dumpvars(0, tb);
+    #12 rst_n = 1;
+    for (int k = 0; k < 4; k++) begin
+      ws = k % 3; @(negedge clk) start = 1; @(negedge clk) start = 0;
+      wait (!psel); @(negedge clk);
+    end
+    repeat (3) @(negedge clk);
+    $finish;
+  end
+endmodule
+`},check:[{assert:"a_setup",fails:[],minPass:1},{assert:"a_access",fails:[],minPass:1},{assert:"a_stable",fails:[145,155],minPass:1},{assert:"a_end",fails:[],minPass:1}]},{id:"sva-a6",group:"sva-apps",tag:"Applications \xB7 Lab 6",title:"Four-phase handshake ordering",std:"2012",design:"",tb:`module tb;
+  logic clk = 0;
+  always #5 clk = ~clk;          // posedges at 5, 15, 25, ...
+  bit req = 0, ack = 0;     // 2-state: no X before the first clock
+  // TODO a_r_up: req rises only while ack is low
+  a_r_up: assert property (@(posedge clk) 1'b1);
+  // TODO a_a_up: ack rises only while req is high
+  a_a_up: assert property (@(posedge clk) 1'b1);
+  // TODO a_r_down: req falls only after ack is high
+  a_r_down: assert property (@(posedge clk) 1'b1);
+  // TODO a_a_down: ack falls only after req is low
+  a_a_down: assert property (@(posedge clk) 1'b1);
+  // TODO a_live: ack within 6 cycles of req
+  a_live: assert property (@(posedge clk) 1'b1);
+  initial begin
+    $dumpfile("dump.vcd"); $dumpvars(0, tb);
+    // cycle i is sampled at time 15 + 10*i
+    @(negedge clk) begin req = 0; ack = 0; end   // cycle 0, t=15
+    @(negedge clk) begin req = 1; end   // cycle 1, t=25
+    @(negedge clk);                  // cycle 2, t=35
+    @(negedge clk);                  // cycle 3, t=45
+    @(negedge clk) begin ack = 1; end   // cycle 4, t=55
+    @(negedge clk) begin req = 0; end   // cycle 5, t=65
+    @(negedge clk);                  // cycle 6, t=75
+    @(negedge clk);                  // cycle 7, t=85
+    @(negedge clk) begin ack = 0; end   // cycle 8, t=95
+    @(negedge clk);                  // cycle 9, t=105
+    @(negedge clk);                  // cycle 10, t=115
+    @(negedge clk) begin req = 1; end   // cycle 11, t=125
+    @(negedge clk);                  // cycle 12, t=135
+    @(negedge clk) begin ack = 1; end   // cycle 13, t=145
+    @(negedge clk);                  // cycle 14, t=155
+    @(negedge clk) begin req = 0; end   // cycle 15, t=165
+    @(negedge clk) begin ack = 0; end   // cycle 16, t=175
+    @(negedge clk);                  // cycle 17, t=185
+    @(negedge clk);                  // cycle 18, t=195
+    @(negedge clk);                  // cycle 19, t=205
+    @(negedge clk) begin req = 1; end   // cycle 20, t=215
+    @(negedge clk) begin ack = 1; end   // cycle 21, t=225
+    @(negedge clk);                  // cycle 22, t=235
+    @(negedge clk) begin ack = 0; end   // cycle 23, t=245
+    @(negedge clk) begin req = 0; end   // cycle 24, t=255
+    @(negedge clk);                  // cycle 25, t=265
+    @(negedge clk);                  // cycle 26, t=275
+    @(negedge clk);                  // cycle 27, t=285
+    @(negedge clk);                  // cycle 28, t=295
+    @(negedge clk);                  // cycle 29, t=305
+    @(negedge clk);                  // cycle 30, t=315
+    repeat (3) @(negedge clk);
+    $finish;
+  end
+endmodule
+`,solution:{tb:`module tb;
+  logic clk = 0;
+  always #5 clk = ~clk;          // posedges at 5, 15, 25, ...
+  bit req = 0, ack = 0;     // 2-state: no X before the first clock
+  a_r_up:   assert property (@(posedge clk) $rose(req) |-> !ack); // req rises only while ack is low
+  a_a_up:   assert property (@(posedge clk) $rose(ack) |-> req); // ack rises only while req is high
+  a_r_down: assert property (@(posedge clk) $fell(req) |-> ack); // req falls only after ack is high
+  a_a_down: assert property (@(posedge clk) $fell(ack) |-> !req); // ack falls only after req is low
+  a_live:   assert property (@(posedge clk) $rose(req) |-> ##[1:6] ack); // ack within 6 cycles of req
+  initial begin
+    $dumpfile("dump.vcd"); $dumpvars(0, tb);
+    // cycle i is sampled at time 15 + 10*i
+    @(negedge clk) begin req = 0; ack = 0; end   // cycle 0, t=15
+    @(negedge clk) begin req = 1; end   // cycle 1, t=25
+    @(negedge clk);                  // cycle 2, t=35
+    @(negedge clk);                  // cycle 3, t=45
+    @(negedge clk) begin ack = 1; end   // cycle 4, t=55
+    @(negedge clk) begin req = 0; end   // cycle 5, t=65
+    @(negedge clk);                  // cycle 6, t=75
+    @(negedge clk);                  // cycle 7, t=85
+    @(negedge clk) begin ack = 0; end   // cycle 8, t=95
+    @(negedge clk);                  // cycle 9, t=105
+    @(negedge clk);                  // cycle 10, t=115
+    @(negedge clk) begin req = 1; end   // cycle 11, t=125
+    @(negedge clk);                  // cycle 12, t=135
+    @(negedge clk) begin ack = 1; end   // cycle 13, t=145
+    @(negedge clk);                  // cycle 14, t=155
+    @(negedge clk) begin req = 0; end   // cycle 15, t=165
+    @(negedge clk) begin ack = 0; end   // cycle 16, t=175
+    @(negedge clk);                  // cycle 17, t=185
+    @(negedge clk);                  // cycle 18, t=195
+    @(negedge clk);                  // cycle 19, t=205
+    @(negedge clk) begin req = 1; end   // cycle 20, t=215
+    @(negedge clk) begin ack = 1; end   // cycle 21, t=225
+    @(negedge clk);                  // cycle 22, t=235
+    @(negedge clk) begin ack = 0; end   // cycle 23, t=245
+    @(negedge clk) begin req = 0; end   // cycle 24, t=255
+    @(negedge clk);                  // cycle 25, t=265
+    @(negedge clk);                  // cycle 26, t=275
+    @(negedge clk);                  // cycle 27, t=285
+    @(negedge clk);                  // cycle 28, t=295
+    @(negedge clk);                  // cycle 29, t=305
+    @(negedge clk);                  // cycle 30, t=315
+    repeat (3) @(negedge clk);
+    $finish;
+  end
+endmodule
+`},check:[{assert:"a_r_up",fails:[],minPass:1},{assert:"a_a_up",fails:[],minPass:1},{assert:"a_r_down",fails:[255],minPass:1},{assert:"a_a_down",fails:[245],minPass:1},{assert:"a_live",fails:[],minPass:1}]},{id:"sva-a7",group:"sva-apps",tag:"Applications \xB7 Lab 7",title:"UART frame checker",std:"2012",design:`// UART transmitter: 4 clocks per bit, 8N1 frames (start 0, 8 data bits LSB first, stop 1).
+// Bug: for the byte 8'hC3 it sends a stop bit of 0.
+module uart_tx (input logic clk, rst_n, send, input logic [7:0] data, output logic tx, busy);
+  logic [3:0] bitn; logic [1:0] ph; logic [9:0] sh;
+  always_ff @(posedge clk or negedge rst_n)
+    if (!rst_n) begin tx <= 1; busy <= 0; end
+    else if (!busy) begin if (send) begin busy <= 1; sh <= {(data == 8'hC3) ? 1'b0 : 1'b1, data, 1'b0}; bitn <= 0; ph <= 0; end end
+    else begin
+      tx <= sh[0];
+      ph <= ph + 1;
+      if (ph == 3) begin sh <= {1'b1, sh[9:1]}; bitn <= bitn + 1; if (bitn == 9) begin busy <= 0; tx <= 1; end end
+    end
+endmodule
+`,tb:`module tb;
+  logic clk = 0;
+  always #5 clk = ~clk;          // posedges at 5, 15, 25, ...
+  logic rst_n = 0, send = 0, tx, busy; logic [7:0] data = 0;
+  uart_tx dut (.*);
+  // Auxiliary code: fcnt counts the clocks of a frame (0 = line idle), so that falling
+  // edges inside the data bits are not taken for start bits.
+  int fcnt = 0; logic tx_q = 1;
+  always @(posedge clk) begin tx_q <= tx; if (fcnt == 0) begin if (tx_q && !tx) fcnt <= 1; end else fcnt <= (fcnt == 39) ? 0 : fcnt + 1; end
+  // TODO a_start: a start bit (a fall while idle) lasts a whole bit time (4 clocks)
+  a_start: assert property (@(posedge clk) 1'b1);
+  // TODO a_stop: the stop bit (bit 9) is high: 36 clocks after the start edge
+  a_stop: assert property (@(posedge clk) 1'b1);
+  initial begin
+    $dumpfile("dump.vcd"); $dumpvars(0, tb);
+    #12 rst_n = 1;
+    for (int k = 0; k < 3; k++) begin
+      @(negedge clk) begin send = 1; data = k == 0 ? 8'h5A : k == 1 ? 8'hC3 : 8'h0F; end
+      @(negedge clk) send = 0;
+      wait (!busy); repeat (2) @(negedge clk);
+    end
+    $finish;
+  end
+endmodule
+`,solution:{tb:`module tb;
+  logic clk = 0;
+  always #5 clk = ~clk;          // posedges at 5, 15, 25, ...
+  logic rst_n = 0, send = 0, tx, busy; logic [7:0] data = 0;
+  uart_tx dut (.*);
+  // Auxiliary code: fcnt counts the clocks of a frame (0 = line idle), so that falling
+  // edges inside the data bits are not taken for start bits.
+  int fcnt = 0; logic tx_q = 1;
+  always @(posedge clk) begin tx_q <= tx; if (fcnt == 0) begin if (tx_q && !tx) fcnt <= 1; end else fcnt <= (fcnt == 39) ? 0 : fcnt + 1; end
+  a_start: assert property (@(posedge clk) disable iff (!rst_n) $fell(tx) && fcnt == 0 |-> !tx[*4]); // a start bit (a fall while idle) lasts a whole bit time (4 clocks)
+  a_stop:  assert property (@(posedge clk) disable iff (!rst_n) $fell(tx) && fcnt == 0 |-> ##36 tx[*4]); // the stop bit (bit 9) is high: 36 clocks after the start edge
+  initial begin
+    $dumpfile("dump.vcd"); $dumpvars(0, tb);
+    #12 rst_n = 1;
+    for (int k = 0; k < 3; k++) begin
+      @(negedge clk) begin send = 1; data = k == 0 ? 8'h5A : k == 1 ? 8'hC3 : 8'h0F; end
+      @(negedge clk) send = 0;
+      wait (!busy); repeat (2) @(negedge clk);
+    end
+    $finish;
+  end
+endmodule
+`},check:[{assert:"a_start",fails:[],minPass:1},{assert:"a_stop",fails:[835],minPass:1}]},{id:"sva-a8",group:"sva-apps",tag:"Applications \xB7 Lab 8",title:"Program counter: load, increment, hold",std:"2012",design:`// Program counter from the DesignCon DSP example. Bug: an increment while 'hold_req' is high is lost.
+module pc (input logic clk, rst_n, load, inc, hold_req, input logic [7:0] d, output logic [7:0] pc_cnt);
+  always_ff @(posedge clk or negedge rst_n)
+    if (!rst_n) pc_cnt <= 0;
+    else if (load) pc_cnt <= d;
+    else if (inc && !hold_req) pc_cnt <= pc_cnt + 1;
+endmodule
+`,tb:`module tb;
+  logic clk = 0;
+  always #5 clk = ~clk;          // posedges at 5, 15, 25, ...
+  logic rst_n = 0, load = 0, inc = 0, hold_req = 0; logic [7:0] d = 0, pc_cnt;
+  pc dut (.*);
+  default clocking cb @(posedge clk); endclocking
+  default disable iff (!rst_n);
+  // TODO a_load: load: pc_cnt takes d
+  a_load: assert property (@(posedge clk) 1'b1);
+  // TODO a_inc: increment (with 8-bit wrap) when not loading
+  a_inc: assert property (@(posedge clk) 1'b1);
+  // TODO a_hold: otherwise pc_cnt holds
+  a_hold: assert property (@(posedge clk) 1'b1);
+  initial begin
+    $dumpfile("dump.vcd"); $dumpvars(0, tb);
+    #12 rst_n = 1;
+    @(negedge clk) begin load = 1; d = 8'hFD; end
+    @(negedge clk) begin load = 0; inc = 1; end
+    repeat (5) @(negedge clk);
+    inc = 0; repeat (2) @(negedge clk);
+    inc = 1; hold_req = 1; @(negedge clk) hold_req = 0;
+    repeat (2) @(negedge clk); inc = 0;
+    repeat (3) @(negedge clk);
+    $finish;
+  end
+endmodule
+`,solution:{tb:`module tb;
+  logic clk = 0;
+  always #5 clk = ~clk;          // posedges at 5, 15, 25, ...
+  logic rst_n = 0, load = 0, inc = 0, hold_req = 0; logic [7:0] d = 0, pc_cnt;
+  pc dut (.*);
+  default clocking cb @(posedge clk); endclocking
+  default disable iff (!rst_n);
+  a_load: assert property (load |=> pc_cnt == $past(d)); // load: pc_cnt takes d
+  a_inc:  assert property (inc && !load |=> pc_cnt == 8'($past(pc_cnt) + 1)); // increment (with 8-bit wrap) when not loading
+  a_hold: assert property (!load && !inc |=> $stable(pc_cnt)); // otherwise pc_cnt holds
+  initial begin
+    $dumpfile("dump.vcd"); $dumpvars(0, tb);
+    #12 rst_n = 1;
+    @(negedge clk) begin load = 1; d = 8'hFD; end
+    @(negedge clk) begin load = 0; inc = 1; end
+    repeat (5) @(negedge clk);
+    inc = 0; repeat (2) @(negedge clk);
+    inc = 1; hold_req = 1; @(negedge clk) hold_req = 0;
+    repeat (2) @(negedge clk); inc = 0;
+    repeat (3) @(negedge clk);
+    $finish;
+  end
+endmodule
+`},check:[{assert:"a_load",fails:[],minPass:1},{assert:"a_inc",fails:[115],minPass:1},{assert:"a_hold",fails:[],minPass:1}]},{id:"cov-1",group:"cov-fc",tag:"Coverage \xB7 Lab 1",title:"Coverpoints and automatic bins",std:"2012",design:"",tb:`module tb;
+  logic clk = 0;
+  always #5 clk = ~clk;          // posedges at 5, 15, 25, ...
+  logic [2:0] opcode = 0; logic [7:0] addr = 0;
+  covergroup cg_cmd @(posedge clk);
+    cp_op: coverpoint opcode;              // automatic bins: one per value (8)
+    // TODO: add cp_addr: coverpoint addr, with option.auto_bin_max = 4 (4 bins of 64 addresses)
+  endgroup
+  cg_cmd cov = new;
+
+  initial begin
+    $dumpfile("dump.vcd"); $dumpvars(0, tb);
+    repeat (12) @(negedge clk) begin opcode = $urandom_range(0, 7); addr = $urandom_range(0, 150); end
+    @(negedge clk);
+    $finish;
+  end
+endmodule
+`,solution:{tb:`module tb;
+  logic clk = 0;
+  always #5 clk = ~clk;          // posedges at 5, 15, 25, ...
+  logic [2:0] opcode = 0; logic [7:0] addr = 0;
+  covergroup cg_cmd @(posedge clk);
+    cp_op: coverpoint opcode;
+    cp_addr: coverpoint addr { option.auto_bin_max = 4; }
+  endgroup
+  cg_cmd cov = new;
+
+  initial begin
+    $dumpfile("dump.vcd"); $dumpvars(0, tb);
+    repeat (12) @(negedge clk) begin opcode = $urandom_range(0, 7); addr = $urandom_range(0, 150); end
+    @(negedge clk);
+    $finish;
+  end
+endmodule
+`},check:[{cg:"cg_cmd",coverage:62.5,bins:{cp_op:8,cp_addr:4}}]},{id:"cov-2",group:"cov-fc",tag:"Coverage \xB7 Lab 2",title:"Explicit bins: values, ranges and arrays",std:"2012",design:"",tb:`module tb;
+  logic clk = 0;
+  always #5 clk = ~clk;          // posedges at 5, 15, 25, ...
+  logic [7:0] a = 0; logic [1:0] op = 0;   // op: 0 ADD, 1 SUB, 2 AND, 3 OR
+  covergroup cg_alu @(posedge clk);
+    // TODO cp_a: bins zero = {0}; small = [1:15]; big[3] = [16:254] (3 bins); max = {255}
+    cp_a: coverpoint a;
+    // TODO cp_op: one bin per operation with bins ops[] = {[0:3]}
+    cp_op: coverpoint op;
+  endgroup
+  cg_alu cov = new;
+
+  initial begin
+    $dumpfile("dump.vcd"); $dumpvars(0, tb);
+    for (int k = 0; k < 6; k++) begin
+      @(negedge clk) begin a = k == 0 ? 0 : k == 1 ? 7 : k == 2 ? 40 : k == 3 ? 200 : k == 4 ? 255 : 9; op = k % 3; end
+    end
+    @(negedge clk);
+    $finish;
+  end
+endmodule
+`,solution:{tb:`module tb;
+  logic clk = 0;
+  always #5 clk = ~clk;          // posedges at 5, 15, 25, ...
+  logic [7:0] a = 0; logic [1:0] op = 0;   // op: 0 ADD, 1 SUB, 2 AND, 3 OR
+  covergroup cg_alu @(posedge clk);
+    cp_a: coverpoint a {
+      bins zero   = {0};
+      bins small  = {[1:15]};
+      bins big[3] = {[16:254]};
+      bins max    = {255};
+    }
+    cp_op: coverpoint op { bins ops[] = {[0:3]}; }
+  endgroup
+  cg_alu cov = new;
+
+  initial begin
+    $dumpfile("dump.vcd"); $dumpvars(0, tb);
+    for (int k = 0; k < 6; k++) begin
+      @(negedge clk) begin a = k == 0 ? 0 : k == 1 ? 7 : k == 2 ? 40 : k == 3 ? 200 : k == 4 ? 255 : 9; op = k % 3; end
+    end
+    @(negedge clk);
+    $finish;
+  end
+endmodule
+`},check:[{cg:"cg_alu",coverage:79.17,bins:{cp_a:6,cp_op:4}}]},{id:"cov-3",group:"cov-fc",tag:"Coverage \xB7 Lab 3",title:"Transition bins: covering a state machine",std:"2012",design:"",tb:`module tb;
+  logic clk = 0;
+  always #5 clk = ~clk;          // posedges at 5, 15, 25, ...
+  typedef enum logic [1:0] {IDLE, SETUP, ACCESS} st_t; st_t st = IDLE;
+  st_t seq [14] = '{IDLE, SETUP, ACCESS, IDLE, SETUP, ACCESS, ACCESS, SETUP, ACCESS, IDLE, IDLE, ACCESS, IDLE, IDLE};
+  covergroup cg_fsm @(posedge clk);
+    // TODO cp_tr: transition bins
+    //   start = (IDLE => SETUP); go = (SETUP => ACCESS); done = (ACCESS => IDLE);
+    //   b2b = (ACCESS => SETUP); wait2 = (ACCESS [*3]) (two wait states: 3 ACCESS cycles in a row)
+    //   illegal_bins skip = (IDLE => ACCESS);
+    cp_tr: coverpoint st;
+  endgroup
+  cg_fsm cov = new;
+
+  initial begin
+    $dumpfile("dump.vcd"); $dumpvars(0, tb);
+    // IDLE SETUP ACCESS IDLE | SETUP ACCESS ACCESS SETUP ACCESS IDLE | IDLE ACCESS (illegal) IDLE
+    foreach (seq[k]) @(negedge clk) st = seq[k];
+    @(negedge clk);
+    $finish;
+  end
+endmodule
+`,solution:{tb:`module tb;
+  logic clk = 0;
+  always #5 clk = ~clk;          // posedges at 5, 15, 25, ...
+  typedef enum logic [1:0] {IDLE, SETUP, ACCESS} st_t; st_t st = IDLE;
+  st_t seq [14] = '{IDLE, SETUP, ACCESS, IDLE, SETUP, ACCESS, ACCESS, SETUP, ACCESS, IDLE, IDLE, ACCESS, IDLE, IDLE};
+  covergroup cg_fsm @(posedge clk);
+    cp_tr: coverpoint st {
+      bins start = (IDLE => SETUP);
+      bins go    = (SETUP => ACCESS);
+      bins done  = (ACCESS => IDLE);
+      bins b2b   = (ACCESS => SETUP);
+      bins wait2 = (ACCESS [*3]);
+      illegal_bins skip = (IDLE => ACCESS);
+    }
+  endgroup
+  cg_fsm cov = new;
+
+  initial begin
+    $dumpfile("dump.vcd"); $dumpvars(0, tb);
+    // IDLE SETUP ACCESS IDLE | SETUP ACCESS ACCESS SETUP ACCESS IDLE | IDLE ACCESS (illegal) IDLE
+    foreach (seq[k]) @(negedge clk) st = seq[k];
+    @(negedge clk);
+    $finish;
+  end
+endmodule
+`},check:[{cg:"cg_fsm",coverage:80,bins:{cp_tr:5}}]},{id:"cov-4",group:"cov-fc",tag:"Coverage \xB7 Lab 4",title:"wildcard, ignore_bins and illegal_bins",std:"2012",design:"",tb:`module tb;
+  logic clk = 0;
+  always #5 clk = ~clk;          // posedges at 5, 15, 25, ...
+  logic [3:0] cmd = 0;   // 1xxx: writes, 0xxx: reads; 4'b0111 and 4'b1111 reserved; 4'b0000 is NOP
+  logic [3:0] cmds [10] = '{4'h0, 4'h1, 4'h2, 4'h9, 4'h0, 4'h3, 4'hF, 4'h4, 4'h5, 4'h0};
+  covergroup cg_cmd @(posedge clk);
+    // TODO: wildcard bins wr = {4'b1???}; wildcard bins rd = {4'b0???};
+    //       ignore_bins nop = {4'b0000}; illegal_bins rsvd = {4'b0111, 4'b1111};
+    //       bins each_rd[] = {[1:6]};
+    cp_cmd: coverpoint cmd;
+  endgroup
+  cg_cmd cov = new;
+
+  initial begin
+    $dumpfile("dump.vcd"); $dumpvars(0, tb);
+    foreach (cmds[k]) @(negedge clk) cmd = cmds[k];
+    @(negedge clk);
+    $finish;
+  end
+endmodule
+`,solution:{tb:`module tb;
+  logic clk = 0;
+  always #5 clk = ~clk;          // posedges at 5, 15, 25, ...
+  logic [3:0] cmd = 0;   // 1xxx: writes, 0xxx: reads; 4'b0111 and 4'b1111 reserved; 4'b0000 is NOP
+  logic [3:0] cmds [10] = '{4'h0, 4'h1, 4'h2, 4'h9, 4'h0, 4'h3, 4'hF, 4'h4, 4'h5, 4'h0};
+  covergroup cg_cmd @(posedge clk);
+    cp_cmd: coverpoint cmd {
+      wildcard bins wr = {4'b1???};
+      wildcard bins rd = {4'b0???};
+      bins each_rd[] = {[1:6]};
+      ignore_bins nop = {4'b0000};
+      illegal_bins rsvd = {4'b0111, 4'b1111};
+    }
+  endgroup
+  cg_cmd cov = new;
+
+  initial begin
+    $dumpfile("dump.vcd"); $dumpvars(0, tb);
+    foreach (cmds[k]) @(negedge clk) cmd = cmds[k];
+    @(negedge clk);
+    $finish;
+  end
+endmodule
+`},check:[{cg:"cg_cmd",coverage:87.5,bins:{cp_cmd:8}}]},{id:"cov-5",group:"cov-fc",tag:"Coverage \xB7 Lab 5",title:"Cross coverage and binsof",std:"2012",design:"",tb:`module tb;
+  logic clk = 0;
+  always #5 clk = ~clk;          // posedges at 5, 15, 25, ...
+  logic [1:0] btype = 0; logic [2:0] blen = 0; logic wr = 0;   // btype 0 FIXED, 1 INCR, 2 WRAP; blen 0..7 = 1..8 beats
+  covergroup cg_burst @(posedge clk);
+    cp_type: coverpoint btype { bins fixed = {0}; bins incr = {1}; bins wrap = {2}; }
+    cp_len:  coverpoint blen  { bins one = {0}; bins two_four = {[1:3]}; bins long = {[4:7]}; }
+    cp_dir:  coverpoint wr;
+    // TODO x_tl: cross cp_type, cp_len; WRAP bursts of one beat are illegal in this protocol:
+    //   ignore_bins wrap1 = binsof(cp_type.wrap) && binsof(cp_len.one);
+    // TODO x_td: cross cp_type, cp_dir;
+  endgroup
+  cg_burst cov = new;
+
+  initial begin
+    $dumpfile("dump.vcd"); $dumpvars(0, tb);
+    for (int k = 0; k < 14; k++) @(negedge clk) begin btype = k % 3; blen = (k * 5) % 8; wr = k[0] ^ k[2]; end
+    @(negedge clk);
+    $finish;
+  end
+endmodule
+`,solution:{tb:`module tb;
+  logic clk = 0;
+  always #5 clk = ~clk;          // posedges at 5, 15, 25, ...
+  logic [1:0] btype = 0; logic [2:0] blen = 0; logic wr = 0;   // btype 0 FIXED, 1 INCR, 2 WRAP; blen 0..7 = 1..8 beats
+  covergroup cg_burst @(posedge clk);
+    cp_type: coverpoint btype { bins fixed = {0}; bins incr = {1}; bins wrap = {2}; }
+    cp_len:  coverpoint blen  { bins one = {0}; bins two_four = {[1:3]}; bins long = {[4:7]}; }
+    cp_dir:  coverpoint wr;
+    x_tl: cross cp_type, cp_len { ignore_bins wrap1 = binsof(cp_type.wrap) && binsof(cp_len.one); }
+    x_td: cross cp_type, cp_dir;
+  endgroup
+  cg_burst cov = new;
+
+  initial begin
+    $dumpfile("dump.vcd"); $dumpvars(0, tb);
+    for (int k = 0; k < 14; k++) @(negedge clk) begin btype = k % 3; blen = (k * 5) % 8; wr = k[0] ^ k[2]; end
+    @(negedge clk);
+    $finish;
+  end
+endmodule
+`},check:[{cg:"cg_burst",coverage:95,bins:{cp_type:3,cp_len:3,cp_dir:2,x_tl:8,x_td:6}}]},{id:"cov-6",group:"cov-fc",tag:"Coverage \xB7 Lab 6",title:"Options, instances and get_coverage",std:"2012",design:"",tb:`module tb;
+  logic clk = 0;
+  always #5 clk = ~clk;          // posedges at 5, 15, 25, ...
+  logic [1:0] p0 = 0, p1 = 0;
+  logic [1:0] s0 [8] = '{0, 1, 2, 3, 0, 1, 2, 2};
+  logic [1:0] s1 [8] = '{3, 3, 3, 1, 1, 0, 0, 0};
+  covergroup cg_port(ref logic [1:0] v, input string nm);
+    // TODO: option.per_instance = 1; option.at_least = 2;  (a bin counts after 2 hits)
+    cp_v: coverpoint v;
+  endgroup
+  cg_port c0 = new(p0, "port0");
+  cg_port c1 = new(p1, "port1");
+  always @(posedge clk) begin c0.sample(); c1.sample(); end
+
+  initial begin
+    $dumpfile("dump.vcd"); $dumpvars(0, tb);
+    foreach (s0[k]) @(negedge clk) begin p0 = s0[k]; p1 = s1[k]; end
+    @(negedge clk);
+    $display("type coverage %0.1f%%, port0 %0.1f%%, port1 %0.1f%%", c0.get_coverage(), c0.get_inst_coverage(), c1.get_inst_coverage());
+    $finish;
+  end
+endmodule
+`,solution:{tb:`module tb;
+  logic clk = 0;
+  always #5 clk = ~clk;          // posedges at 5, 15, 25, ...
+  logic [1:0] p0 = 0, p1 = 0;
+  logic [1:0] s0 [8] = '{0, 1, 2, 3, 0, 1, 2, 2};
+  logic [1:0] s1 [8] = '{3, 3, 3, 1, 1, 0, 0, 0};
+  covergroup cg_port(ref logic [1:0] v, input string nm);
+    option.per_instance = 1;
+    option.at_least = 2;
+    cp_v: coverpoint v;
+  endgroup
+  cg_port c0 = new(p0, "port0");
+  cg_port c1 = new(p1, "port1");
+  always @(posedge clk) begin c0.sample(); c1.sample(); end
+
+  initial begin
+    $dumpfile("dump.vcd"); $dumpvars(0, tb);
+    foreach (s0[k]) @(negedge clk) begin p0 = s0[k]; p1 = s1[k]; end
+    @(negedge clk);
+    $display("type coverage %0.1f%%, port0 %0.1f%%, port1 %0.1f%%", c0.get_coverage(), c0.get_inst_coverage(), c1.get_inst_coverage());
+    $finish;
+  end
+endmodule
+`},check:[{cg:"cg_port",coverage:75,bins:{cp_v:4}}]},{id:"cov-7",group:"cov-fc",tag:"Coverage \xB7 Lab 7",title:"Sampling transactions: sample() arguments and iff",std:"2012",design:"",tb:`module tb;
+  logic clk = 0;
+  always #5 clk = ~clk;          // posedges at 5, 15, 25, ...
+  logic [7:0] addr; logic wr, err; int n = 0;
+  // A monitor reports each completed transfer. Sample coverage once per transfer, and not for errored ones.
+  covergroup cg_tr with function sample(logic [7:0] a, logic w, logic e);
+    // TODO: cp_reg: coverpoint a iff (!e) { bins ctrl = {8'h00}; bins stat = {8'h04}; bins data[] = {8'h10, 8'h14, 8'h18}; }
+    // TODO: cp_dir: coverpoint w iff (!e);
+    cp_reg: coverpoint a;
+  endgroup
+  cg_tr cov = new;
+  task automatic transfer(logic [7:0] a, logic w, logic e);
+    @(negedge clk) begin addr = a; wr = w; err = e; end
+    cov.sample(a, w, e);
+  endtask
+
+  initial begin
+    $dumpfile("dump.vcd"); $dumpvars(0, tb);
+    transfer(8'h00, 1, 0); transfer(8'h04, 0, 0); transfer(8'h10, 1, 0);
+    transfer(8'h14, 0, 1);      // errored: must not count
+    transfer(8'h18, 0, 0); transfer(8'h10, 0, 0);
+    $display("coverage %0.1f%%", cov.get_coverage());
+    $finish;
+  end
+endmodule
+`,solution:{tb:`module tb;
+  logic clk = 0;
+  always #5 clk = ~clk;          // posedges at 5, 15, 25, ...
+  logic [7:0] addr; logic wr, err; int n = 0;
+  covergroup cg_tr with function sample(logic [7:0] a, logic w, logic e);
+    cp_reg: coverpoint a iff (!e) { bins ctrl = {8'h00}; bins stat = {8'h04}; bins data[] = {8'h10, 8'h14, 8'h18}; }
+    cp_dir: coverpoint w iff (!e);
+  endgroup
+  cg_tr cov = new;
+  task automatic transfer(logic [7:0] a, logic w, logic e);
+    @(negedge clk) begin addr = a; wr = w; err = e; end
+    cov.sample(a, w, e);
+  endtask
+
+  initial begin
+    $dumpfile("dump.vcd"); $dumpvars(0, tb);
+    transfer(8'h00, 1, 0); transfer(8'h04, 0, 0); transfer(8'h10, 1, 0);
+    transfer(8'h14, 0, 1);      // errored: must not count
+    transfer(8'h18, 0, 0); transfer(8'h10, 0, 0);
+    $display("coverage %0.1f%%", cov.get_coverage());
+    $finish;
+  end
+endmodule
+`},check:[{cg:"cg_tr",coverage:90,bins:{cp_reg:5,cp_dir:2}}]},{id:"cov-8",group:"cov-fc",tag:"Coverage \xB7 Lab 8",title:"A coverage model for APB (week 9 exercise)",std:"2012",design:"",tb:`module tb;
+  logic clk = 0;
+  always #5 clk = ~clk;          // posedges at 5, 15, 25, ...
+  
+  // APB master model: one transfer with 'ws' wait states
+  logic psel = 0, penable = 0, pwrite = 0, pready = 0; logic [7:0] paddr = 0;
+  int ws_cnt;
+  task automatic apb(logic [7:0] a, logic w, int ws);
+    @(negedge clk) begin psel = 1; penable = 0; paddr = a; pwrite = w; end
+    @(negedge clk) penable = 1; pready = (ws == 0);
+    for (int k = 1; k <= ws; k++) @(negedge clk) pready = (k == ws);
+    @(negedge clk) begin psel = 0; penable = 0; pready = 0; end
+  endtask
+  // wait states of the current transfer, counted by a small monitor
+  always @(posedge clk) if (psel && penable) ws_cnt <= pready ? 0 : ws_cnt + 1; else ws_cnt <= 0;
+  // TODO: cg_apb sampled at the end of every transfer (psel && penable && pready):
+  //   cp_reg:  regions CTRL 8'h00, STAT 8'h04, FIFO [8'h10:8'h1F], other: default
+  //   cp_dir:  read / write
+  //   cp_wait: 0, 1, 2, 3+ wait states (ws_cnt)
+  //   x_reg_dir: cross cp_reg, cp_dir; STAT is read-only: ignore STAT writes
+  covergroup cg_apb @(posedge clk iff (psel && penable && pready));
+    cp_dir: coverpoint pwrite;
+  endgroup
+  cg_apb cov = new;
+
+  initial begin
+    $dumpfile("dump.vcd"); $dumpvars(0, tb);
+    apb(8'h00, 1, 0); apb(8'h04, 0, 1); apb(8'h10, 1, 2); apb(8'h14, 0, 0);
+    apb(8'h00, 0, 1); apb(8'h80, 1, 0); apb(8'h1C, 1, 0);
+    $display("APB coverage %0.1f%%", cov.get_coverage());
+    $finish;
+  end
+endmodule
+`,solution:{tb:`module tb;
+  logic clk = 0;
+  always #5 clk = ~clk;          // posedges at 5, 15, 25, ...
+  
+  // APB master model: one transfer with 'ws' wait states
+  logic psel = 0, penable = 0, pwrite = 0, pready = 0; logic [7:0] paddr = 0;
+  int ws_cnt;
+  task automatic apb(logic [7:0] a, logic w, int ws);
+    @(negedge clk) begin psel = 1; penable = 0; paddr = a; pwrite = w; end
+    @(negedge clk) penable = 1; pready = (ws == 0);
+    for (int k = 1; k <= ws; k++) @(negedge clk) pready = (k == ws);
+    @(negedge clk) begin psel = 0; penable = 0; pready = 0; end
+  endtask
+  // wait states of the current transfer, counted by a small monitor
+  always @(posedge clk) if (psel && penable) ws_cnt <= pready ? 0 : ws_cnt + 1; else ws_cnt <= 0;
+  covergroup cg_apb @(posedge clk iff (psel && penable && pready));
+    cp_reg:  coverpoint paddr { bins ctrl = {8'h00}; bins stat = {8'h04}; bins fifo = {[8'h10:8'h1F]}; bins other = default; }
+    cp_dir:  coverpoint pwrite { bins rd = {0}; bins wr = {1}; }
+    cp_wait: coverpoint ws_cnt { bins w0 = {0}; bins w1 = {1}; bins w2 = {2}; bins w3plus = {[3:$]}; }
+    x_reg_dir: cross cp_reg, cp_dir { ignore_bins stat_wr = binsof(cp_reg.stat) && binsof(cp_dir.wr); }
+  endgroup
+  cg_apb cov = new;
+
+  initial begin
+    $dumpfile("dump.vcd"); $dumpvars(0, tb);
+    apb(8'h00, 1, 0); apb(8'h04, 0, 1); apb(8'h10, 1, 2); apb(8'h14, 0, 0);
+    apb(8'h00, 0, 1); apb(8'h80, 1, 0); apb(8'h1C, 1, 0);
+    $display("APB coverage %0.1f%%", cov.get_coverage());
+    $finish;
+  end
+endmodule
+`},check:[{cg:"cg_apb",coverage:93.75,bins:{cp_reg:3,cp_dir:2,cp_wait:4,x_reg_dir:5}}]},{id:"cov-9",group:"cov-fc",tag:"Coverage \xB7 Lab 9",title:"Coverage-driven closure",std:"2012",design:"",tb:`module tb;
+  logic clk = 0;
+  always #5 clk = ~clk;          // posedges at 5, 15, 25, ...
+  logic [7:0] len = 0; logic wr = 0;
+  covergroup cg_pkt @(posedge clk);
+    cp_len: coverpoint len { bins zero = {0}; bins small = {[1:15]}; bins mid = {[16:239]}; bins big = {[240:254]}; bins max = {255}; }
+    cp_wr: coverpoint wr;
+    x: cross cp_len, cp_wr;
+  endgroup
+  cg_pkt cov = new;
+
+  initial begin
+    $dumpfile("dump.vcd"); $dumpvars(0, tb);
+    // Random packets until coverage stops improving.
+    for (int k = 0; k < 200 && cov.get_coverage() < 100; k++)
+      @(negedge clk) begin len = $urandom_range(1, 254); wr = $urandom_range(0, 1); end
+    // TODO: the random test never reaches some bins (look at the report). Add directed packets
+    // here (len = ...; wr = ...;) to close the holes.
+    @(negedge clk);
+    $display("coverage %0.1f%%", cov.get_coverage());
+    if (cov.get_coverage() >= 100) $display("PASS: coverage closed"); else $display("FAIL: coverage is not 100%%");
+    $finish;
+  end
+endmodule
+`,solution:{tb:`module tb;
+  logic clk = 0;
+  always #5 clk = ~clk;          // posedges at 5, 15, 25, ...
+  logic [7:0] len = 0; logic wr = 0;
+  covergroup cg_pkt @(posedge clk);
+    cp_len: coverpoint len { bins zero = {0}; bins small = {[1:15]}; bins mid = {[16:239]}; bins big = {[240:254]}; bins max = {255}; }
+    cp_wr: coverpoint wr;
+    x: cross cp_len, cp_wr;
+  endgroup
+  cg_pkt cov = new;
+
+  logic [7:0] corner [4] = '{0, 0, 255, 255};
+  initial begin
+    $dumpfile("dump.vcd"); $dumpvars(0, tb);
+    // Random packets until coverage stops improving.
+    for (int k = 0; k < 200 && cov.get_coverage() < 100; k++)
+      @(negedge clk) begin len = $urandom_range(1, 254); wr = $urandom_range(0, 1); end
+    // Directed packets for the corners random stimulus cannot reach:
+    foreach (corner[k]) @(negedge clk) begin len = corner[k]; wr = k[0]; end
+    @(negedge clk);
+    $display("coverage %0.1f%%", cov.get_coverage());
+    if (cov.get_coverage() >= 100) $display("PASS: coverage closed"); else $display("FAIL: coverage is not 100%%");
+    $finish;
+  end
+endmodule
+`}},{id:"dv-1",group:"dv-w7",tag:"Week 7 \xB7 Lab 1",title:"Clock generation three ways",std:"2012",design:"",tb:`\`timescale 1ns/1ps
+// Generate three clocks, each a different way, and let the checker measure them.
+//   clk_a: 100 MHz, 50% duty   -- an always block with a delay
+//   clk_b: programmable frequency FREQ_MHZ (real), 50% duty -- initial + forever
+//   clk_c: 40 MHz, 25% duty (high 25% of the period) -- a task with two delays
+module tb;
+  parameter real FREQ_MHZ = 125.0;
+  logic clk_a = 0, clk_b = 0, clk_c = 0;
+  // TODO clk_a
+
+  // TODO clk_b: period in ns is 1000.0 / FREQ_MHZ
+
+  // TODO clk_c
+
+  // ---- checker: measures period and high time of a clock (do not edit) ----
+  int errors = 0;
+  task automatic edge_of(int i, bit rise);
+    case (i) 0: if (rise) @(posedge clk_a); else @(negedge clk_a);
+             1: if (rise) @(posedge clk_b); else @(negedge clk_b);
+             default: if (rise) @(posedge clk_c); else @(negedge clk_c); endcase
+  endtask
+  task automatic measure(string name, int c, input real period, input real high);
+    realtime r1, f1, r2;
+    edge_of(c, 1); r1 = $realtime; edge_of(c, 0); f1 = $realtime; edge_of(c, 1); r2 = $realtime;
+    $display("%s: period %0.3f ns, high %0.3f ns", name, r2 - r1, f1 - r1);
+    if ((r2 - r1) - period > 0.01 || period - (r2 - r1) > 0.01 || (f1 - r1) - high > 0.01 || high - (f1 - r1) > 0.01) begin
+      $display("  expected period %0.3f ns, high %0.3f ns", period, high); errors++;
+    end
+  endtask
+  initial begin
+    $dumpfile("dump.vcd"); $dumpvars(0, tb);
+    fork
+      measure("clk_a", 0, 10.0, 5.0);
+      measure("clk_b", 1, 1000.0 / FREQ_MHZ, 500.0 / FREQ_MHZ);
+      measure("clk_c", 2, 25.0, 6.25);
+    join
+    #10;
+    if (errors == 0) $display("PASS: all three clocks are right"); else $display("FAIL: %0d clock(s) wrong", errors);
+    $finish;
+  end
+  initial #2000 begin $display("FAIL: a clock never toggles"); $finish; end
+endmodule
+`,solution:{tb:`\`timescale 1ns/1ps
+module tb;
+  parameter real FREQ_MHZ = 125.0;
+  logic clk_a = 0, clk_b = 0, clk_c = 0;
+  always #5 clk_a = ~clk_a;
+  initial forever #(500.0 / FREQ_MHZ) clk_b = ~clk_b;
+  task automatic duty_clock(ref logic c, input real period, input real duty);
+    forever begin c = 1; #(period * duty); c = 0; #(period * (1.0 - duty)); end
+  endtask
+  initial duty_clock(clk_c, 25.0, 0.25);
+
+  int errors = 0;
+  task automatic edge_of(int i, bit rise);
+    case (i) 0: if (rise) @(posedge clk_a); else @(negedge clk_a);
+             1: if (rise) @(posedge clk_b); else @(negedge clk_b);
+             default: if (rise) @(posedge clk_c); else @(negedge clk_c); endcase
+  endtask
+  task automatic measure(string name, int c, input real period, input real high);
+    realtime r1, f1, r2;
+    edge_of(c, 1); r1 = $realtime; edge_of(c, 0); f1 = $realtime; edge_of(c, 1); r2 = $realtime;
+    $display("%s: period %0.3f ns, high %0.3f ns", name, r2 - r1, f1 - r1);
+    if ((r2 - r1) - period > 0.01 || period - (r2 - r1) > 0.01 || (f1 - r1) - high > 0.01 || high - (f1 - r1) > 0.01) begin
+      $display("  expected period %0.3f ns, high %0.3f ns", period, high); errors++;
+    end
+  endtask
+  initial begin
+    $dumpfile("dump.vcd"); $dumpvars(0, tb);
+    fork
+      measure("clk_a", 0, 10.0, 5.0);
+      measure("clk_b", 1, 1000.0 / FREQ_MHZ, 500.0 / FREQ_MHZ);
+      measure("clk_c", 2, 25.0, 6.25);
+    join
+    #10;
+    if (errors == 0) $display("PASS: all three clocks are right"); else $display("FAIL: %0d clock(s) wrong", errors);
+    $finish;
+  end
+  initial #2000 begin $display("FAIL: a clock never toggles"); $finish; end
+endmodule
+`}},{id:"dv-2",group:"dv-w7",tag:"Week 7 \xB7 Lab 2",title:"Reset sequences with three resets",std:"2012",design:"",tb:`\`timescale 1ns/1ps
+// Generate the three resets of this waveform (times in ns, clk = 100 MHz):
+//   por_n     : low from 0, high at 23 (asynchronous, power-on reset)
+//   sys_rst_n : low from 0, goes high on the 2nd rising clk edge AFTER por_n is high (synchronous release)
+//   soft_rst  : active-high pulse, exactly 3 clock cycles, starting at the first rising edge at or after 100 ns
+module tb;
+  logic clk = 0; always #5 clk = ~clk;
+  logic por_n, sys_rst_n, soft_rst;
+  // TODO: generate por_n, sys_rst_n and soft_rst
+
+  // ---- checker (do not edit) ----
+  realtime t_por = -1, t_sys = -1, t_soft_on = -1, t_soft_off = -1;
+  always @(posedge por_n) t_por = $realtime;
+  always @(posedge sys_rst_n) t_sys = $realtime;
+  always @(posedge soft_rst) t_soft_on = $realtime;
+  always @(negedge soft_rst) t_soft_off = $realtime;
+  initial begin
+    $dumpfile("dump.vcd"); $dumpvars(0, tb);
+    #300;
+    $display("por_n high at %0t, sys_rst_n high at %0t, soft_rst %0t to %0t", t_por, t_sys, t_soft_on, t_soft_off);
+    if (t_por == 23 && t_sys == 35 && t_soft_on == 105 && t_soft_off == 135) $display("PASS: reset sequence matches the waveform");
+    else $display("FAIL: expected 23, 35, 105 to 135");
+    $finish;
+  end
+endmodule
+`,solution:{tb:`\`timescale 1ns/1ps
+module tb;
+  logic clk = 0; always #5 clk = ~clk;
+  logic por_n, sys_rst_n, soft_rst;
+  initial begin por_n = 0; #23 por_n = 1; end
+  initial begin
+    sys_rst_n = 0;
+    wait (por_n);
+    repeat (2) @(posedge clk);
+    sys_rst_n <= 1;
+  end
+  initial begin
+    soft_rst = 0;
+    #100; @(posedge clk);
+    soft_rst <= 1;
+    repeat (3) @(posedge clk);
+    soft_rst <= 0;
+  end
+
+  realtime t_por = -1, t_sys = -1, t_soft_on = -1, t_soft_off = -1;
+  always @(posedge por_n) t_por = $realtime;
+  always @(posedge sys_rst_n) t_sys = $realtime;
+  always @(posedge soft_rst) t_soft_on = $realtime;
+  always @(negedge soft_rst) t_soft_off = $realtime;
+  initial begin
+    $dumpfile("dump.vcd"); $dumpvars(0, tb);
+    #300;
+    $display("por_n high at %0t, sys_rst_n high at %0t, soft_rst %0t to %0t", t_por, t_sys, t_soft_on, t_soft_off);
+    if (t_por == 23 && t_sys == 35 && t_soft_on == 105 && t_soft_off == 135) $display("PASS: reset sequence matches the waveform");
+    else $display("FAIL: expected 23, 35, 105 to 135");
+    $finish;
+  end
+endmodule
+`}},{id:"dv-3",group:"dv-w7",tag:"Week 7 \xB7 Lab 3",title:"Random numbers in Verilog: even, odd, one-hot",std:"2012",design:"",tb:`// Generate 20 random even numbers, 20 random odd numbers and 20 random one-hot 16-bit values
+// with $urandom / $urandom_range only (no constraints yet: that is week 8).
+module tb;
+  logic [15:0] even_v, odd_v, onehot_v;
+  int errors = 0;
+  initial begin
+    for (int k = 0; k < 20; k++) begin
+      // TODO: even_v = ...;  odd_v = ...;  onehot_v = ...;
+      even_v = $urandom; odd_v = $urandom; onehot_v = $urandom;
+      if (even_v[0] != 0) errors++;
+      if (odd_v[0] != 1) errors++;
+      if ($countones(onehot_v) != 1) errors++;
+      if (k < 4) $display("even %5d  odd %5d  one-hot %b", even_v, odd_v, onehot_v);
+    end
+    if (errors == 0) $display("PASS: 60 values with the right properties"); else $display("FAIL: %0d wrong values", errors);
+  end
+endmodule
+`,solution:{tb:`module tb;
+  logic [15:0] even_v, odd_v, onehot_v;
+  int errors = 0;
+  initial begin
+    for (int k = 0; k < 20; k++) begin
+      even_v = $urandom & 16'hFFFE;              // clear bit 0
+      odd_v = $urandom | 16'h0001;               // set bit 0
+      onehot_v = 16'h1 << $urandom_range(0, 15); // shift a single 1 to a random position
+      if (even_v[0] != 0) errors++;
+      if (odd_v[0] != 1) errors++;
+      if ($countones(onehot_v) != 1) errors++;
+      if (k < 4) $display("even %5d  odd %5d  one-hot %b", even_v, odd_v, onehot_v);
+    end
+    if (errors == 0) $display("PASS: 60 values with the right properties"); else $display("FAIL: %0d wrong values", errors);
+  end
+endmodule
+`}},{id:"dv-4",group:"dv-w7",tag:"Week 7 \xB7 Lab 4",title:"Counter verification: test plan and directed tests",std:"2012",design:`// 4-bit up/down counter with synchronous load and enable.
+module updown (input logic clk, rst_n, en, up, load, input logic [3:0] d, output logic [3:0] q);
+  always_ff @(posedge clk or negedge rst_n)
+    if (!rst_n) q <= 0;
+    else if (load) q <= d;
+    else if (en) q <= up ? q + 1 : (q == 0 ? 4'd14 : q - 1);     // bug: 0 - 1 must wrap to 15
+endmodule
+`,tb:`module tb;
+  logic clk = 0; always #5 clk = ~clk;
+  logic rst_n = 0, en = 0, up = 1, load = 0; logic [3:0] d = 0, q;
+  updown dut (.*);
+  // reference model and checker (given)
+  logic [3:0] model = 0; int errors = 0, checks = 0;
+  always @(posedge clk or negedge rst_n)
+    if (!rst_n) model <= 0; else if (load) model <= d; else if (en) model <= up ? model + 1 : model - 1;
+  always @(negedge clk) if (rst_n) begin checks++; if (q !== model) begin errors++; $display("%0t: q = %0d, expected %0d", $time, q, model); end end
+  // test plan items, marked when exercised
+  bit hit_load, hit_up, hit_down, hit_wrap_up, hit_wrap_down, hit_hold;
+  always @(posedge clk) if (rst_n) begin
+    if (load) hit_load = 1;
+    if (!load && en && up) begin hit_up = 1; if (model == 15) hit_wrap_up = 1; end
+    if (!load && en && !up) begin hit_down = 1; if (model == 0) hit_wrap_down = 1; end
+    if (!load && !en) hit_hold = 1;
+  end
+  task automatic report();
+    int plan = hit_load + hit_up + hit_down + hit_wrap_up + hit_wrap_down + hit_hold;
+    $display("test plan: %0d of 6 items exercised, %0d checks, %0d errors", plan, checks, errors);
+    if (plan == 6 && errors == 0) $display("PASS: every plan item tested, no mismatch");
+    else $display("FAIL: %0s", plan < 6 ? "test plan not complete" : "mismatches: find and fix the bug in the design");
+  endtask
+  initial begin
+    $dumpfile("dump.vcd"); $dumpvars(0, tb);
+    #12 rst_n = 1;
+    // TODO: directed tests for each item of the test plan:
+    //   load a value, count up, count down, wrap up (15 -> 0), wrap down (0 -> 15), hold (en = 0)
+    @(negedge clk) begin load = 1; d = 4'd5; end
+    @(negedge clk) load = 0;
+    repeat (3) @(negedge clk);
+    report();
+    $finish;
+  end
+endmodule
+`,solution:{design:`// 4-bit up/down counter with synchronous load and enable.
+module updown (input logic clk, rst_n, en, up, load, input logic [3:0] d, output logic [3:0] q);
+  always_ff @(posedge clk or negedge rst_n)
+    if (!rst_n) q <= 0;
+    else if (load) q <= d;
+    else if (en) q <= up ? q + 1 : q - 1;
+endmodule
+`,tb:`module tb;
+  logic clk = 0; always #5 clk = ~clk;
+  logic rst_n = 0, en = 0, up = 1, load = 0; logic [3:0] d = 0, q;
+  updown dut (.*);
+  // reference model and checker (given)
+  logic [3:0] model = 0; int errors = 0, checks = 0;
+  always @(posedge clk or negedge rst_n)
+    if (!rst_n) model <= 0; else if (load) model <= d; else if (en) model <= up ? model + 1 : model - 1;
+  always @(negedge clk) if (rst_n) begin checks++; if (q !== model) begin errors++; $display("%0t: q = %0d, expected %0d", $time, q, model); end end
+  // test plan items, marked when exercised
+  bit hit_load, hit_up, hit_down, hit_wrap_up, hit_wrap_down, hit_hold;
+  always @(posedge clk) if (rst_n) begin
+    if (load) hit_load = 1;
+    if (!load && en && up) begin hit_up = 1; if (model == 15) hit_wrap_up = 1; end
+    if (!load && en && !up) begin hit_down = 1; if (model == 0) hit_wrap_down = 1; end
+    if (!load && !en) hit_hold = 1;
+  end
+  task automatic report();
+    int plan = hit_load + hit_up + hit_down + hit_wrap_up + hit_wrap_down + hit_hold;
+    $display("test plan: %0d of 6 items exercised, %0d checks, %0d errors", plan, checks, errors);
+    if (plan == 6 && errors == 0) $display("PASS: every plan item tested, no mismatch");
+    else $display("FAIL: %0s", plan < 6 ? "test plan not complete" : "mismatches: find and fix the bug in the design");
+  endtask
+  initial begin
+    $dumpfile("dump.vcd"); $dumpvars(0, tb);
+    #12 rst_n = 1;
+    @(negedge clk) begin load = 1; d = 4'd13; end          // load
+    @(negedge clk) begin load = 0; en = 1; up = 1; end     // up: 13, 14, 15, wrap to 0
+    repeat (4) @(negedge clk);
+    up = 0;                                                // down: 1 -> 0 -> wrap to 15
+    repeat (3) @(negedge clk);
+    en = 0;                                                // hold
+    repeat (2) @(negedge clk);
+    report();
+    $finish;
+  end
+endmodule
+`}},{id:"dv-5",group:"dv-w7",tag:"Week 7 \xB7 Lab 5",title:"Counter verification: random tests",std:"2012",design:`// 4-bit up/down counter with synchronous load and enable.
+module updown (input logic clk, rst_n, en, up, load, input logic [3:0] d, output logic [3:0] q);
+  always_ff @(posedge clk or negedge rst_n)
+    if (!rst_n) q <= 0;
+    else if (load) q <= d;
+    else if (en) q <= up ? q + 1 : q - 1;
+// (fixed in the previous lab)
+endmodule
+`,tb:`module tb;
+  logic clk = 0; always #5 clk = ~clk;
+  logic rst_n = 0, en = 0, up = 1, load = 0; logic [3:0] d = 0, q;
+  updown dut (.*);
+  // reference model and checker (given)
+  logic [3:0] model = 0; int errors = 0, checks = 0;
+  always @(posedge clk or negedge rst_n)
+    if (!rst_n) model <= 0; else if (load) model <= d; else if (en) model <= up ? model + 1 : model - 1;
+  always @(negedge clk) if (rst_n) begin checks++; if (q !== model) begin errors++; $display("%0t: q = %0d, expected %0d", $time, q, model); end end
+  // test plan items, marked when exercised
+  bit hit_load, hit_up, hit_down, hit_wrap_up, hit_wrap_down, hit_hold;
+  always @(posedge clk) if (rst_n) begin
+    if (load) hit_load = 1;
+    if (!load && en && up) begin hit_up = 1; if (model == 15) hit_wrap_up = 1; end
+    if (!load && en && !up) begin hit_down = 1; if (model == 0) hit_wrap_down = 1; end
+    if (!load && !en) hit_hold = 1;
+  end
+  task automatic report();
+    int plan = hit_load + hit_up + hit_down + hit_wrap_up + hit_wrap_down + hit_hold;
+    $display("test plan: %0d of 6 items exercised, %0d checks, %0d errors", plan, checks, errors);
+    if (plan == 6 && errors == 0) $display("PASS: every plan item tested, no mismatch");
+    else $display("FAIL: %0s", plan < 6 ? "test plan not complete" : "mismatches: find and fix the bug in the design");
+  endtask
+  initial begin
+    $dumpfile("dump.vcd"); $dumpvars(0, tb);
+    #12 rst_n = 1;
+    // TODO: 200 cycles of random stimulus with $urandom_range: load rarely (about 1 in 16),
+    // en most of the time, up and d random. Stop early when all 6 plan items are hit.
+    repeat (20) @(negedge clk) en = 1;
+    report();
+    $finish;
+  end
+endmodule
+`,solution:{tb:`module tb;
+  logic clk = 0; always #5 clk = ~clk;
+  logic rst_n = 0, en = 0, up = 1, load = 0; logic [3:0] d = 0, q;
+  updown dut (.*);
+  // reference model and checker (given)
+  logic [3:0] model = 0; int errors = 0, checks = 0;
+  always @(posedge clk or negedge rst_n)
+    if (!rst_n) model <= 0; else if (load) model <= d; else if (en) model <= up ? model + 1 : model - 1;
+  always @(negedge clk) if (rst_n) begin checks++; if (q !== model) begin errors++; $display("%0t: q = %0d, expected %0d", $time, q, model); end end
+  // test plan items, marked when exercised
+  bit hit_load, hit_up, hit_down, hit_wrap_up, hit_wrap_down, hit_hold;
+  always @(posedge clk) if (rst_n) begin
+    if (load) hit_load = 1;
+    if (!load && en && up) begin hit_up = 1; if (model == 15) hit_wrap_up = 1; end
+    if (!load && en && !up) begin hit_down = 1; if (model == 0) hit_wrap_down = 1; end
+    if (!load && !en) hit_hold = 1;
+  end
+  task automatic report();
+    int plan = hit_load + hit_up + hit_down + hit_wrap_up + hit_wrap_down + hit_hold;
+    $display("test plan: %0d of 6 items exercised, %0d checks, %0d errors", plan, checks, errors);
+    if (plan == 6 && errors == 0) $display("PASS: every plan item tested, no mismatch");
+    else $display("FAIL: %0s", plan < 6 ? "test plan not complete" : "mismatches: find and fix the bug in the design");
+  endtask
+  initial begin
+    $dumpfile("dump.vcd"); $dumpvars(0, tb);
+    #12 rst_n = 1;
+    for (int k = 0; k < 200; k++) begin
+      @(negedge clk) begin
+        load = ($urandom_range(0, 15) == 0);
+        en   = ($urandom_range(0, 7) != 0);
+        up   = $urandom_range(0, 1);
+        d    = $urandom_range(0, 15);
+      end
+      if (hit_load + hit_up + hit_down + hit_wrap_up + hit_wrap_down + hit_hold == 6 && k > 20) break;
+    end
+    @(negedge clk) begin load = 0; en = 0; end
+    report();
+    $finish;
+  end
+endmodule
+`}},{id:"dv-6",group:"dv-w8",tag:"Week 8 \xB7 Lab 1",title:"SystemVerilog data types: a behavioral memory model",std:"2012",design:`// TODO: a behavioral single-port memory model (week 8 exercise), without classes.
+//   - parameters AW (address bits) and DW (data bits)
+//   - an unpacked array of logic [DW-1:0] for the storage
+//   - write on posedge clk when we; rdata is registered (one-cycle read latency) when re
+//   - typedef enum for an 'op' status output: IDLE, READ, WRITE (what the last cycle did)
+module mem_model #(parameter int AW = 4, DW = 8) (input logic clk, we, re, input logic [AW-1:0] addr,
+    input logic [DW-1:0] wdata, output logic [DW-1:0] rdata, output logic [1:0] op);
+endmodule
+`,tb:`module tb;
+  logic clk = 0; always #5 clk = ~clk;
+  logic we = 0, re = 0; logic [3:0] addr = 0; logic [7:0] wdata = 0, rdata; logic [1:0] op;
+  mem_model #(.AW(4), .DW(8)) dut (.*);
+  int errors = 0;
+  // Testbench tasks and a function with SystemVerilog argument types
+  task automatic write(input logic [3:0] a, input logic [7:0] d);
+    @(negedge clk) begin we = 1; re = 0; addr = a; wdata = d; end
+    @(negedge clk) we = 0;
+  endtask
+  task automatic read(input logic [3:0] a, output logic [7:0] d);
+    @(negedge clk) begin re = 1; we = 0; addr = a; end
+    @(negedge clk) begin re = 0; d = rdata; end
+  endtask
+  function automatic logic [7:0] pattern(int i); return 8'(i * 37 + 5); endfunction
+  initial begin
+    logic [7:0] got;
+    $dumpfile("dump.vcd"); $dumpvars(0, tb);
+    for (int i = 0; i < 16; i++) write(i, pattern(i));
+    for (int i = 15; i >= 0; i--) begin read(i, got); if (got !== pattern(i)) begin errors++; $display("addr %0d: read %h, expected %h", i, got, pattern(i)); end end
+    @(negedge clk) begin we = 1; addr = 3; end #1 if (op !== 2'd0) ; @(posedge clk); #1 if (op !== 2'd2) begin errors++; $display("op after a write: %0d, expected WRITE (2)", op); end
+    we = 0;
+    if (errors == 0) $display("PASS: 16 writes and reads, op status correct"); else $display("FAIL: %0d errors", errors);
+    $finish;
+  end
+endmodule
+`,solution:{design:`module mem_model #(parameter int AW = 4, DW = 8) (input logic clk, we, re, input logic [AW-1:0] addr,
+    input logic [DW-1:0] wdata, output logic [DW-1:0] rdata, output logic [1:0] op);
+  typedef enum logic [1:0] {IDLE, READ, WRITE} op_t;
+  logic [DW-1:0] mem [2**AW];
+  op_t last;
+  always_ff @(posedge clk) begin
+    if (we) mem[addr] <= wdata;
+    if (re) rdata <= mem[addr];
+    if (we) last <= WRITE; else if (re) last <= READ; else last <= IDLE;
+  end
+  assign op = last;
+endmodule
+`}},{id:"dv-7",group:"dv-w8",tag:"Week 8 \xB7 Lab 2",title:"Interfaces and modports: a FIFO interface with driver tasks",std:"2012",design:`// Synchronous FIFO used by the week 8-9 labs and the FIFO project.
+module sync_fifo #(parameter int DW = 8, DEPTH = 8) (input logic clk, rst_n, push, pop, input logic [DW-1:0] din,
+    output logic [DW-1:0] dout, output logic full, empty);
+  localparam int AW = $clog2(DEPTH);
+  logic [DW-1:0] mem [DEPTH]; logic [AW:0] wp, rp;
+  always_ff @(posedge clk or negedge rst_n)
+    if (!rst_n) begin wp <= 0; rp <= 0; end
+    else begin
+      if (push && !full) begin mem[wp[AW-1:0]] <= din; wp <= wp + 1; end
+      if (pop && !empty) rp <= rp + 1;
+    end
+  assign dout = mem[rp[AW-1:0]];
+  assign empty = wp == rp;
+  assign full = (wp[AW-1:0] == rp[AW-1:0]) && (wp[AW] != rp[AW]);
+endmodule
+`,tb:`// TODO: an interface fifo_if bundling the FIFO signals, with
+//   - modport dut (inputs push, pop, din; outputs dout, full, empty)
+//   - tasks push_word(d) and pop_word(output d) that drive the signals on clock edges
+interface fifo_if (input logic clk);
+  logic push = 0, pop = 0, full, empty; logic [7:0] din = 0, dout;
+  task automatic push_word(input logic [7:0] d); @(negedge clk); endtask
+  task automatic pop_word(output logic [7:0] d); @(negedge clk); d = 'x; endtask
+endinterface
+
+module tb;
+  logic clk = 0, rst_n = 0; always #5 clk = ~clk;
+  fifo_if f (clk);
+  sync_fifo dut (.clk, .rst_n, .push(f.push), .pop(f.pop), .din(f.din), .dout(f.dout), .full(f.full), .empty(f.empty));
+  int errors = 0;
+  initial begin
+    logic [7:0] d;
+    $dumpfile("dump.vcd"); $dumpvars(0, tb);
+    #12 rst_n = 1;
+    // uses the interface tasks
+    for (int i = 0; i < 5; i++) f.push_word(8'h40 + i);
+    for (int i = 0; i < 5; i++) begin f.pop_word(d); if (d !== 8'h40 + i) begin errors++; $display("popped %h, expected %h", d, 8'h40 + i); end end
+    if (errors == 0 && f.empty) $display("PASS: data in order through the interface tasks"); else $display("FAIL: %0d errors", errors);
+    $finish;
+  end
+endmodule
+`,solution:{tb:`interface fifo_if (input logic clk);
+  logic push = 0, pop = 0, full, empty; logic [7:0] din = 0, dout;
+  modport dut (input clk, push, pop, din, output dout, full, empty);
+  task automatic push_word(input logic [7:0] d);
+    @(negedge clk); while (full) @(negedge clk);
+    push = 1; din = d;
+    @(negedge clk) push = 0;
+  endtask
+  task automatic pop_word(output logic [7:0] d);
+    @(negedge clk); while (empty) @(negedge clk);
+    d = dout; pop = 1;
+    @(negedge clk) pop = 0;
+  endtask
+endinterface
+
+module tb;
+  logic clk = 0, rst_n = 0; always #5 clk = ~clk;
+  fifo_if f (clk);
+  sync_fifo dut (.clk, .rst_n, .push(f.push), .pop(f.pop), .din(f.din), .dout(f.dout), .full(f.full), .empty(f.empty));
+  int errors = 0;
+  initial begin
+    logic [7:0] d;
+    $dumpfile("dump.vcd"); $dumpvars(0, tb);
+    #12 rst_n = 1;
+    for (int i = 0; i < 5; i++) f.push_word(8'h40 + i);
+    for (int i = 0; i < 5; i++) begin f.pop_word(d); if (d !== 8'h40 + i) begin errors++; $display("popped %h, expected %h", d, 8'h40 + i); end end
+    if (errors == 0 && f.empty) $display("PASS: data in order through the interface tasks"); else $display("FAIL: %0d errors", errors);
+    $finish;
+  end
+endmodule
+`}},{id:"dv-8",group:"dv-w8",tag:"Week 8 \xB7 Lab 3",title:"Classes: transactions, copy, compare, inheritance",std:"2012",design:"",tb:`// A bus transaction as a class (vlsimentor labs 35-40, Cadence SV lab topics).
+class Txn;
+  logic [7:0] addr; logic [31:0] data; bit write;
+  function new(logic [7:0] a = 0, logic [31:0] d = 0, bit w = 0); addr = a; data = d; write = w; endfunction
+  virtual function string sprint(); return $sformatf("%s addr=%h data=%h", write ? "WR" : "RD", addr, data); endfunction
+  // TODO: copy() must return a NEW object with the same fields (deep copy)
+  function Txn copy(); return this; endfunction
+  // TODO: compare() must return 1 when all fields match
+  function bit compare(Txn other); return 0; endfunction
+endclass
+// TODO: override sprint() in ErrTxn: call super.sprint() and append " err=<n>"
+class ErrTxn extends Txn;
+  bit [1:0] err;
+  function new(logic [7:0] a = 0, logic [31:0] d = 0, bit w = 0); super.new(a, d, w); endfunction
+endclass
+
+module tb;
+  int errors = 0;
+  initial begin
+    Txn a, b, c; ErrTxn e;
+    a = new(8'h10, 32'hDEAD_BEEF, 1);
+    b = a;                         // handle copy: same object
+    c = a.copy();                  // object copy: a new object
+    b.addr = 8'h20;
+    if (a.addr !== 8'h20) begin errors++; $display("a and b should be the same object"); end
+    if (c.addr !== 8'h10) begin errors++; $display("c should be an independent copy"); end
+    if (!a.compare(b) || a.compare(c)) begin errors++; $display("compare is wrong"); end
+    e = new(8'h30, 32'h1, 0); e.err = 2;
+    a = e;                         // base handle to a derived object
+    $display("%s", a.sprint());    // virtual: calls ErrTxn::sprint
+    if (a.sprint() != "RD addr=30 data=00000001 err=2") begin errors++; $display("polymorphic sprint is wrong"); end
+    if (errors == 0) $display("PASS: handles, copies, compare and virtual methods"); else $display("FAIL: %0d errors", errors);
+  end
+endmodule
+`,solution:{tb:`class Txn;
+  logic [7:0] addr; logic [31:0] data; bit write;
+  function new(logic [7:0] a = 0, logic [31:0] d = 0, bit w = 0); addr = a; data = d; write = w; endfunction
+  virtual function string sprint(); return $sformatf("%s addr=%h data=%h", write ? "WR" : "RD", addr, data); endfunction
+  function Txn copy(); Txn t = new(addr, data, write); return t; endfunction
+  function bit compare(Txn other); return other.addr == addr && other.data == data && other.write == write; endfunction
+endclass
+class ErrTxn extends Txn;
+  bit [1:0] err;
+  function new(logic [7:0] a = 0, logic [31:0] d = 0, bit w = 0); super.new(a, d, w); endfunction
+  virtual function string sprint(); return $sformatf("%s err=%0d", super.sprint(), err); endfunction
+endclass
+
+module tb;
+  int errors = 0;
+  initial begin
+    Txn a, b, c; ErrTxn e;
+    a = new(8'h10, 32'hDEAD_BEEF, 1);
+    b = a;
+    c = a.copy();
+    b.addr = 8'h20;
+    if (a.addr !== 8'h20) begin errors++; $display("a and b should be the same object"); end
+    if (c.addr !== 8'h10) begin errors++; $display("c should be an independent copy"); end
+    if (!a.compare(b) || a.compare(c)) begin errors++; $display("compare is wrong"); end
+    e = new(8'h30, 32'h1, 0); e.err = 2;
+    a = e;
+    $display("%s", a.sprint());
+    if (a.sprint() != "RD addr=30 data=00000001 err=2") begin errors++; $display("polymorphic sprint is wrong"); end
+    if (errors == 0) $display("PASS: handles, copies, compare and virtual methods"); else $display("FAIL: %0d errors", errors);
+  end
+endmodule
+`}},{id:"dv-9",group:"dv-w8",tag:"Week 8 \xB7 Lab 4",title:"Threads: fork/join, join_any, join_none, timeouts",std:"2012",design:"",tb:`module tb;
+  logic clk = 0; always #5 clk = ~clk;
+  logic busy = 0; int log_q [$];       // records the order of events
+  task automatic job(int id, int cycles); repeat (cycles) @(posedge clk); log_q.push_back(id); endtask
+  task wait_done(output bit timed_out);      // a static task (this simulator cannot 'disable fork' inside an automatic one)
+    // TODO: wait for 'busy' to fall, but give up after 20 clock cycles:
+    //   fork the two waits, join_any, then disable fork. Set timed_out when the timeout won.
+    timed_out = 0;
+  endtask
+  initial begin
+    bit to1, to2; string order = "";
+    $dumpfile("dump.vcd"); $dumpvars(0, tb);
+    // TODO 1: run job(1, 3) and job(2, 1) in parallel and wait for BOTH (fork ... join)
+    // TODO 2: run job(3, 4) and job(4, 2) in parallel and continue as soon as ONE ends (join_any)
+    // TODO 3: start job(5, 6) in the background (join_none) and continue at once
+    log_q.push_back(99);                // marks 'the main thread got here'
+    busy = 1; fork begin repeat (5) @(posedge clk); busy = 0; end join_none
+    wait_done(to1);                     // busy falls after 5 cycles: no timeout
+    busy = 1;                           // stays busy forever
+    wait_done(to2);                     // must time out
+    repeat (10) @(posedge clk);
+    foreach (log_q[i]) order = {order, $sformatf("%0d ", log_q[i])};
+    $display("order: %s  timeouts: %0d %0d", order, to1, to2);
+    if (order == "2 1 4 99 3 5 " && !to1 && to2) $display("PASS: fork/join variants and timeout correct");
+    else $display("FAIL: expected order '{2, 1, 4, 99, 3, 5} and timeouts 0 1");
+    $finish;
+  end
+endmodule
+`,solution:{tb:`module tb;
+  logic clk = 0; always #5 clk = ~clk;
+  logic busy = 0; int log_q [$];
+  task automatic job(int id, int cycles); repeat (cycles) @(posedge clk); log_q.push_back(id); endtask
+  task wait_done(output bit timed_out);      // a static task (this simulator cannot 'disable fork' inside an automatic one)
+    timed_out = 0;
+    fork
+      begin wait (!busy); end
+      begin repeat (20) @(posedge clk); timed_out = 1; end
+    join_any
+    disable fork;
+  endtask
+  initial begin
+    bit to1, to2; string order = "";
+    $dumpfile("dump.vcd"); $dumpvars(0, tb);
+    fork job(1, 3); job(2, 1); join
+    fork job(3, 4); job(4, 2); join_any
+    fork job(5, 6); join_none
+    log_q.push_back(99);
+    busy = 1; fork begin repeat (5) @(posedge clk); busy = 0; end join_none
+    wait_done(to1);
+    busy = 1;
+    wait_done(to2);
+    repeat (10) @(posedge clk);
+    foreach (log_q[i]) order = {order, $sformatf("%0d ", log_q[i])};
+    $display("order: %s  timeouts: %0d %0d", order, to1, to2);
+    if (order == "2 1 4 99 3 5 " && !to1 && to2) $display("PASS: fork/join variants and timeout correct");
+    else $display("FAIL: expected order '{2, 1, 4, 99, 3, 5} and timeouts 0 1");
+    $finish;
+  end
+endmodule
+`}},{id:"dv-10",group:"dv-w8",tag:"Week 8 \xB7 Lab 5",title:"FIFO push and pop drivers with random delays (week 8 exercise)",std:"2012",design:`// Synchronous FIFO used by the week 8-9 labs and the FIFO project.
+module sync_fifo #(parameter int DW = 8, DEPTH = 8) (input logic clk, rst_n, push, pop, input logic [DW-1:0] din,
+    output logic [DW-1:0] dout, output logic full, empty);
+  localparam int AW = $clog2(DEPTH);
+  logic [DW-1:0] mem [DEPTH]; logic [AW:0] wp, rp;
+  always_ff @(posedge clk or negedge rst_n)
+    if (!rst_n) begin wp <= 0; rp <= 0; end
+    else begin
+      if (push && !full) begin mem[wp[AW-1:0]] <= din; wp <= wp + 1; end
+      if (pop && !empty) rp <= rp + 1;
+    end
+  assign dout = mem[rp[AW-1:0]];
+  assign empty = wp == rp;
+  assign full = (wp[AW-1:0] == rp[AW-1:0]) && (wp[AW] != rp[AW]);
+endmodule
+`,tb:`module tb;
+  logic clk = 0, rst_n = 0; always #5 clk = ~clk;
+  logic push = 0, pop = 0, full, empty; logic [7:0] din = 0, dout;
+  sync_fifo dut (.*);
+  logic [7:0] exp_q [$];             // scoreboard: expected data, in order
+  int errors = 0, n_push = 0, n_pop = 0;
+  localparam int N = 40;
+  // TODO push_driver: N times: wait 0..3 random cycles, then push one random byte (wait while full);
+  //                   record each pushed byte in exp_q
+  task automatic push_driver();
+  endtask
+  // TODO pop_driver: N times: wait 0..3 random cycles, then pop one byte (wait while empty);
+  //                  compare dout with exp_q.pop_front()
+  task automatic pop_driver();
+  endtask
+  initial begin
+    $dumpfile("dump.vcd"); $dumpvars(0, tb);
+    #12 rst_n = 1;
+    fork push_driver(); pop_driver(); join
+    $display("%0d pushes, %0d pops, %0d errors", n_push, n_pop, errors);
+    if (n_push == N && n_pop == N && errors == 0 && exp_q.size() == 0) $display("PASS: random push/pop traffic, data in order");
+    else $display("FAIL");
+    $finish;
+  end
+  initial #20000 begin $display("FAIL: timeout"); $finish; end
+endmodule
+`,solution:{tb:`module tb;
+  logic clk = 0, rst_n = 0; always #5 clk = ~clk;
+  logic push = 0, pop = 0, full, empty; logic [7:0] din = 0, dout;
+  sync_fifo dut (.*);
+  logic [7:0] exp_q [$];
+  int errors = 0, n_push = 0, n_pop = 0;
+  localparam int N = 40;
+  task automatic push_driver();
+    repeat (N) begin
+      repeat ($urandom_range(0, 3)) @(negedge clk);
+      @(negedge clk); while (full) @(negedge clk);
+      push = 1; din = $urandom; exp_q.push_back(din); n_push++;
+      @(negedge clk) push = 0;
+    end
+  endtask
+  task automatic pop_driver();
+    repeat (N) begin
+      repeat ($urandom_range(0, 3)) @(negedge clk);
+      @(negedge clk); while (empty) @(negedge clk);
+      if (exp_q.size() == 0 || dout !== exp_q[0]) begin errors++; $display("%0t: popped %h, expected %h", $time, dout, exp_q[0]); end
+      void'(exp_q.pop_front());
+      pop = 1; n_pop++;
+      @(negedge clk) pop = 0;
+    end
+  endtask
+  initial begin
+    $dumpfile("dump.vcd"); $dumpvars(0, tb);
+    #12 rst_n = 1;
+    fork push_driver(); pop_driver(); join
+    $display("%0d pushes, %0d pops, %0d errors", n_push, n_pop, errors);
+    if (n_push == N && n_pop == N && errors == 0 && exp_q.size() == 0) $display("PASS: random push/pop traffic, data in order");
+    else $display("FAIL");
+    $finish;
+  end
+  initial #20000 begin $display("FAIL: timeout"); $finish; end
+endmodule
+`}},{id:"dv-11",group:"dv-cr",tag:"Random \xB7 Lab 1",title:"rand, randc and randomize(): even, odd and one-hot (week 8 exercise)",std:"2012",design:"",tb:`class Nums;
+  rand bit [15:0] ev, od, oh;
+  randc bit [2:0] tag;               // cycles through all 8 values before repeating
+  // TODO: constraint c_even { ... }  ev is even
+  // TODO: constraint c_odd  { ... }  od is odd
+  // TODO: constraint c_hot  { ... }  oh is one-hot ($onehot or $countones)
+endclass
+module tb;
+  int errors = 0;
+  initial begin
+    Nums n = new;
+    int seen [8];
+    for (int k = 0; k < 16; k++) begin
+      if (!n.randomize()) begin errors++; $display("randomize() failed"); end
+      if (n.ev[0] || !n.od[0] || $countones(n.oh) != 1) errors++;
+      seen[n.tag]++;
+      if (k < 4) $display("ev %5d od %5d oh %b tag %0d", n.ev, n.od, n.oh, n.tag);
+    end
+    foreach (seen[i]) if (seen[i] != 2) begin errors++; $display("tag %0d seen %0d times in 16 calls (randc: exactly 2)", i, seen[i]); end
+    if (errors == 0) $display("PASS"); else $display("FAIL: %0d errors", errors);
+  end
+endmodule
+`,solution:{tb:`class Nums;
+  rand bit [15:0] ev, od, oh;
+  randc bit [2:0] tag;
+  constraint c_even { ev % 2 == 0; }
+  constraint c_odd  { od[0] == 1; }
+  constraint c_hot  { $countones(oh) == 1; }
+endclass
+module tb;
+  int errors = 0;
+  initial begin
+    Nums n = new;
+    int seen [8];
+    for (int k = 0; k < 16; k++) begin
+      if (!n.randomize()) begin errors++; $display("randomize() failed"); end
+      if (n.ev[0] || !n.od[0] || $countones(n.oh) != 1) errors++;
+      seen[n.tag]++;
+      if (k < 4) $display("ev %5d od %5d oh %b tag %0d", n.ev, n.od, n.oh, n.tag);
+    end
+    foreach (seen[i]) if (seen[i] != 2) begin errors++; $display("tag %0d seen %0d times in 16 calls (randc: exactly 2)", i, seen[i]); end
+    if (errors == 0) $display("PASS"); else $display("FAIL: %0d errors", errors);
+  end
+endmodule
+`}},{id:"dv-12",group:"dv-cr",tag:"Random \xB7 Lab 2",title:"inside, ranges and dist: shaping the distribution",std:"2012",design:"",tb:`class Pkt;
+  rand bit [7:0] len;
+  rand bit [3:0] kind;
+  // TODO c_len: len in 1..64, and weighted: 1 gets weight 20, [2:63] share 60 in total (:/), 64 gets 20
+  // TODO c_kind: kind inside {0, 1, 2, [8:10]}
+endclass
+module tb;
+  int errors = 0;
+  initial begin
+    Pkt p = new;
+    int n1 = 0, n64 = 0, nmid = 0, bad = 0;
+    repeat (1000) begin
+      void'(p.randomize());
+      if (p.len == 1) n1++; else if (p.len == 64) n64++; else if (p.len >= 2 && p.len <= 63) nmid++; else bad++;
+      if (!(p.kind inside {0, 1, 2, [8:10]})) bad++;
+    end
+    $display("len=1: %0d   len 2..63: %0d   len=64: %0d   (expected about 200 / 600 / 200)", n1, nmid, n64);
+    if (bad || n1 < 150 || n1 > 250 || n64 < 150 || n64 > 250) errors++;
+    if (errors == 0) $display("PASS"); else $display("FAIL: %0d errors", errors);
+  end
+endmodule
+`,solution:{tb:`class Pkt;
+  rand bit [7:0] len;
+  rand bit [3:0] kind;
+  constraint c_len { len dist { 1 := 20, [2:63] :/ 60, 64 := 20 }; }
+  constraint c_kind { kind inside {0, 1, 2, [8:10]}; }
+endclass
+module tb;
+  int errors = 0;
+  initial begin
+    Pkt p = new;
+    int n1 = 0, n64 = 0, nmid = 0, bad = 0;
+    repeat (1000) begin
+      void'(p.randomize());
+      if (p.len == 1) n1++; else if (p.len == 64) n64++; else if (p.len >= 2 && p.len <= 63) nmid++; else bad++;
+      if (!(p.kind inside {0, 1, 2, [8:10]})) bad++;
+    end
+    $display("len=1: %0d   len 2..63: %0d   len=64: %0d   (expected about 200 / 600 / 200)", n1, nmid, n64);
+    if (bad || n1 < 150 || n1 > 250 || n64 < 150 || n64 > 250) errors++;
+    if (errors == 0) $display("PASS"); else $display("FAIL: %0d errors", errors);
+  end
+endmodule
+`}},{id:"dv-13",group:"dv-cr",tag:"Random \xB7 Lab 3",title:"Implication, if/else and solve...before",std:"2012",design:"",tb:`class Mode;
+  rand bit short_pkt;          // a short packet ...
+  rand bit [1:0] len;      // ... must have len == 0
+  // TODO c_imp: short_pkt -> len == 0;
+endclass
+class ModeSB extends Mode;
+  // TODO c_order: solve short_pkt before len;
+endclass
+module tb;
+  int errors = 0;
+  initial begin
+    Mode m = new; ModeSB s = new;
+    int a = 0, b = 0;
+    repeat (2000) begin void'(m.randomize()); a += m.short_pkt; if (m.short_pkt && m.len != 0) errors++; void'(s.randomize()); b += s.short_pkt; end
+    $display("short_pkt = 1: %0d of 2000 without solve-before, %0d with", a, b);
+    // solutions: (0,0) (0,1) (0,2) (0,3) (1,0): uniform gives small = 1 in 1 of 5; solve-before gives 1 in 2
+    if (a < 300 || a > 500 || b < 900 || b > 1100) errors++;
+    if (errors == 0) $display("PASS"); else $display("FAIL: %0d errors", errors);
+  end
+endmodule
+`,solution:{tb:`class Mode;
+  rand bit short_pkt;
+  rand bit [1:0] len;
+  constraint c_imp { short_pkt -> len == 0; }
+endclass
+class ModeSB extends Mode;
+  constraint c_order { solve short_pkt before len; }
+endclass
+module tb;
+  int errors = 0;
+  initial begin
+    Mode m = new; ModeSB s = new;
+    int a = 0, b = 0;
+    repeat (2000) begin void'(m.randomize()); a += m.short_pkt; if (m.short_pkt && m.len != 0) errors++; void'(s.randomize()); b += s.short_pkt; end
+    $display("short_pkt = 1: %0d of 2000 without solve-before, %0d with", a, b);
+    // solutions: (0,0) (0,1) (0,2) (0,3) (1,0): uniform gives small = 1 in 1 of 5; solve-before gives 1 in 2
+    if (a < 300 || a > 500 || b < 900 || b > 1100) errors++;
+    if (errors == 0) $display("PASS"); else $display("FAIL: %0d errors", errors);
+  end
+endmodule
+`}},{id:"dv-14",group:"dv-cr",tag:"Random \xB7 Lab 4",title:"Array constraints: N numbers in [X:Y] adding up to Z (week 8 exercise)",std:"2012",design:"",tb:`class Split;
+  int unsigned n = 6, lo = 5, hi = 30, total = 100;
+  rand int unsigned v[];
+  // TODO c_size: v.size() == n
+  // TODO c_each: every element in [lo:hi]   (foreach)
+  // TODO c_sum:  v.sum() == total
+  // TODO c_uniq: all elements different     (unique)
+endclass
+module tb;
+  int errors = 0;
+  initial begin
+    Split s = new;
+    for (int k = 0; k < 5; k++) begin
+      int sum; string t;
+      sum = 0; t = "";                 // (an initializer here would run only once: the block is static)
+      if (!s.randomize()) begin errors++; $display("randomize() failed"); continue; end
+      for (int i = 0; i < s.v.size(); i++) begin sum += s.v[i]; t = {t, $sformatf("%0d ", s.v[i])}; if (s.v[i] < 5 || s.v[i] > 30) errors++; for (int j = 0; j < i; j++) if (s.v[j] == s.v[i]) errors++; end
+      $display("%s= %0d", t, sum);
+      if (s.v.size() != 6 || sum != 100) errors++;
+    end
+    if (errors == 0) $display("PASS"); else $display("FAIL: %0d errors", errors);
+  end
+endmodule
+`,solution:{tb:`class Split;
+  int unsigned n = 6, lo = 5, hi = 30, total = 100;
+  rand int unsigned v[];
+  constraint c_size { v.size() == n; }
+  constraint c_each { foreach (v[i]) v[i] inside {[lo:hi]}; }
+  constraint c_sum  { v.sum() == total; }
+  constraint c_uniq { unique {v}; }
+endclass
+module tb;
+  int errors = 0;
+  initial begin
+    Split s = new;
+    for (int k = 0; k < 5; k++) begin
+      int sum; string t;
+      sum = 0; t = "";                 // (an initializer here would run only once: the block is static)
+      if (!s.randomize()) begin errors++; $display("randomize() failed"); continue; end
+      for (int i = 0; i < s.v.size(); i++) begin sum += s.v[i]; t = {t, $sformatf("%0d ", s.v[i])}; if (s.v[i] < 5 || s.v[i] > 30) errors++; for (int j = 0; j < i; j++) if (s.v[j] == s.v[i]) errors++; end
+      $display("%s= %0d", t, sum);
+      if (s.v.size() != 6 || sum != 100) errors++;
+    end
+    if (errors == 0) $display("PASS"); else $display("FAIL: %0d errors", errors);
+  end
+endmodule
+`}},{id:"dv-15",group:"dv-cr",tag:"Random \xB7 Lab 5",title:"Inline constraints, modes, pre/post_randomize and soft",std:"2012",design:"",tb:`class Txn;
+  rand bit [7:0] addr; rand bit [7:0] len; rand bit wr;
+  bit [7:0] last_addr;
+  constraint c_addr { addr inside {[8'h10:8'hEF]}; }
+  constraint c_len  { soft len inside {[1:16]}; }       // a default that a test may override
+  // TODO post_randomize(): remember addr in last_addr
+endclass
+module tb;
+  int errors = 0;
+  initial begin
+    Txn t = new;
+    // TODO 1: one write to address 8'h20 with an inline constraint:  t.randomize() with { ... }
+    // TODO 2: a long packet: inline len == 200 (overrides the soft constraint)
+    // TODO 3: an address outside c_addr (8'hF8): switch c_addr off with constraint_mode(0), then on again
+    // TODO 4: keep wr fixed at 0 with rand_mode(0) and set it by hand
+    void'(t.randomize());
+    if (t.addr != 8'h20 || !t.wr) begin errors++; $display("1: addr %h wr %0d", t.addr, t.wr); end
+    if (t.last_addr != t.addr) begin errors++; $display("post_randomize did not run"); end
+    void'(t.randomize());
+    if (t.len != 200) begin errors++; $display("2: len %0d", t.len); end
+    void'(t.randomize());
+    if (t.addr != 8'hF8) begin errors++; $display("3: addr %h", t.addr); end
+    repeat (5) begin void'(t.randomize()); if (t.wr != 0) begin errors++; $display("4: wr changed"); end end
+    if (errors == 0) $display("PASS"); else $display("FAIL: %0d errors", errors);
+  end
+endmodule
+`,solution:{tb:`class Txn;
+  rand bit [7:0] addr; rand bit [7:0] len; rand bit wr;
+  bit [7:0] last_addr;
+  constraint c_addr { addr inside {[8'h10:8'hEF]}; }
+  constraint c_len  { soft len inside {[1:16]}; }
+  function void post_randomize(); last_addr = addr; endfunction
+endclass
+module tb;
+  int errors = 0;
+  initial begin
+    Txn t = new;
+    // TODO 1: one write to address 8'h20 with an inline constraint:  t.randomize() with { ... }
+    // TODO 2: a long packet: inline len == 200 (overrides the soft constraint)
+    // TODO 3: an address outside c_addr (8'hF8): switch c_addr off with constraint_mode(0), then on again
+    // TODO 4: keep wr fixed at 0 with rand_mode(0) and set it by hand
+    void'(t.randomize() with { addr == 8'h20; wr == 1; });
+    if (t.addr != 8'h20 || !t.wr) begin errors++; $display("1: addr %h wr %0d", t.addr, t.wr); end
+    if (t.last_addr != t.addr) begin errors++; $display("post_randomize did not run"); end
+    void'(t.randomize() with { len == 200; });
+    if (t.len != 200) begin errors++; $display("2: len %0d", t.len); end
+    t.c_addr.constraint_mode(0);
+    void'(t.randomize() with { addr == 8'hF8; });
+    t.c_addr.constraint_mode(1);
+    if (t.addr != 8'hF8) begin errors++; $display("3: addr %h", t.addr); end
+    t.wr.rand_mode(0); t.wr = 0;
+    repeat (5) begin void'(t.randomize()); if (t.wr != 0) begin errors++; $display("4: wr changed"); end end
+    if (errors == 0) $display("PASS"); else $display("FAIL: %0d errors", errors);
+  end
+endmodule
+`}},{id:"dv-16",group:"dv-w9",tag:"Week 9 \xB7 Lab 1",title:"Packages and system tasks: counting up or down (week 9 exercise)",std:"2012",design:"",tb:`// Week 9 exercise: given a direction flag and a number, display every number up to it,
+// or from it down to 0. Put the shared types and the function in a package.
+package count_pkg;
+  typedef enum bit {UP, DOWN} dir_t;
+  // TODO: function automatic string count_list(dir_t dir, int n);
+  //   UP, 3   -> "0 1 2 3"      DOWN, 3 -> "3 2 1 0"
+  function automatic string count_list(dir_t dir, int n); return ""; endfunction
+endpackage
+
+module tb;
+  import count_pkg::*;
+  int errors = 0, fd; string line;
+  task automatic check(dir_t d, int n, string want);
+    string got = count_list(d, n);
+    $display("%s %0d -> \\"%s\\"", d == UP ? "UP  " : "DOWN", n, got);
+    if (got != want) begin errors++; $display("   expected \\"%s\\"", want); end
+  endtask
+  initial begin
+    check(UP, 3, "0 1 2 3"); check(DOWN, 5, "5 4 3 2 1 0"); check(UP, 0, "0");
+    // write a list to a file and read it back with the file system tasks
+    fd = $fopen("counts.txt", "w"); $fdisplay(fd, "%s", count_list(DOWN, 4)); $fclose(fd);
+    fd = $fopen("counts.txt", "r"); void'($fgets(line, fd)); $fclose(fd);
+    if (line != "4 3 2 1 0\\n") begin errors++; $display("file read back: %s", line); end
+    if (errors == 0) $display("PASS: lists and file I/O correct"); else $display("FAIL: %0d errors", errors);
+  end
+endmodule
+`,solution:{tb:`package count_pkg;
+  typedef enum bit {UP, DOWN} dir_t;
+  function automatic string count_list(dir_t dir, int n);
+    string s = "";
+    for (int i = 0; i <= n; i++) s = {s, i == 0 ? "" : " ", $sformatf("%0d", dir == UP ? i : n - i)};
+    return s;
+  endfunction
+endpackage
+
+module tb;
+  import count_pkg::*;
+  int errors = 0, fd; string line;
+  task automatic check(dir_t d, int n, string want);
+    string got = count_list(d, n);
+    $display("%s %0d -> \\"%s\\"", d == UP ? "UP  " : "DOWN", n, got);
+    if (got != want) begin errors++; $display("   expected \\"%s\\"", want); end
+  endtask
+  initial begin
+    check(UP, 3, "0 1 2 3"); check(DOWN, 5, "5 4 3 2 1 0"); check(UP, 0, "0");
+    fd = $fopen("counts.txt", "w"); $fdisplay(fd, "%s", count_list(DOWN, 4)); $fclose(fd);
+    fd = $fopen("counts.txt", "r"); void'($fgets(line, fd)); $fclose(fd);
+    if (line != "4 3 2 1 0\\n") begin errors++; $display("file read back: %s", line); end
+    if (errors == 0) $display("PASS: lists and file I/O correct"); else $display("FAIL: %0d errors", errors);
+  end
+endmodule
+`}},{id:"dv-17",group:"dv-w9",tag:"Week 9 \xB7 Lab 2",title:"FIFO verification 1: test plan and directed tests",std:"2012",design:`// Synchronous FIFO used by the week 8-9 labs and the FIFO project.
+module sync_fifo #(parameter int DW = 8, DEPTH = 8) (input logic clk, rst_n, push, pop, input logic [DW-1:0] din,
+    output logic [DW-1:0] dout, output logic full, empty);
+  localparam int AW = $clog2(DEPTH);
+  logic [DW-1:0] mem [DEPTH]; logic [AW:0] wp, rp;
+  always_ff @(posedge clk or negedge rst_n)
+    if (!rst_n) begin wp <= 0; rp <= 0; end
+    else begin
+      if (push && !full) begin mem[wp[AW-1:0]] <= din; wp <= wp + 1; end
+      if (pop && !empty && !(push && full)) rp <= rp + 1;   // bug: pop ignored when full and pushing
+    end
+  assign dout = mem[rp[AW-1:0]];
+  assign empty = wp == rp;
+  assign full = (wp[AW-1:0] == rp[AW-1:0]) && (wp[AW] != rp[AW]);
+endmodule
+`,tb:`module tb;
+  logic clk = 0, rst_n = 0; always #5 clk = ~clk;
+  logic push = 0, pop = 0, full, empty; logic [7:0] din = 0, dout;
+  sync_fifo #(.DW(8), .DEPTH(4)) dut (.*);
+  // reference model: a queue, checked on every clock
+  logic [7:0] model [$]; int errors = 0;
+  always @(posedge clk) if (rst_n) begin
+    if (dout !== (model.size() ? model[0] : dout) || full !== (model.size() == 4) || empty !== (model.size() == 0)) begin
+      errors++; $display("%0t: dout %h full %b empty %b, model has %0d entries", $time, dout, full, empty, model.size()); end
+    begin int n; n = model.size();         // a push is accepted only if the FIFO was not full
+      if (pop && n) void'(model.pop_front());
+      if (push && n < 4) model.push_back(din); end
+  end
+  // test plan as functional coverage
+  covergroup cg_plan @(posedge clk iff rst_n);
+    cp_op: coverpoint {push, pop} { bins idle = {0}; bins rd = {1}; bins wr = {2}; bins both = {3}; }
+    cp_lvl: coverpoint model.size() { bins empty = {0}; bins mid = {[1:3]}; bins full = {4}; }
+    x: cross cp_op, cp_lvl;   // e.g. push when full, pop when empty, both when full
+  endgroup
+  cg_plan cov = new;
+  task automatic op(bit pu, bit po, logic [7:0] d = 0); @(negedge clk) begin push = pu; pop = po; din = d; end endtask
+  task automatic report();
+    @(negedge clk) begin push = 0; pop = 0; end
+    @(negedge clk);
+    $display("test plan coverage %0.1f%%, %0d mismatches", cov.get_coverage(), errors);
+    if (cov.get_coverage() >= 100 && errors == 0) $display("PASS: every plan combination tested, no mismatch");
+    else $display("FAIL: %s", errors ? "mismatches: fix the design" : "test plan not complete: see the cross holes");
+  endtask
+  initial begin
+    $dumpfile("dump.vcd"); $dumpvars(0, tb);
+    #12 rst_n = 1;
+    // TODO: directed tests that cover every combination of {idle, read, write, both} x {empty, mid, full}:
+    // fill to full, push when full, pop when empty, push and pop together at each level ...
+    op(1, 0, 8'h11); op(1, 0, 8'h22); op(0, 1); op(0, 1);
+    report();
+    $finish;
+  end
+endmodule
+`,solution:{design:`// Synchronous FIFO used by the week 8-9 labs and the FIFO project.
+module sync_fifo #(parameter int DW = 8, DEPTH = 8) (input logic clk, rst_n, push, pop, input logic [DW-1:0] din,
+    output logic [DW-1:0] dout, output logic full, empty);
+  localparam int AW = $clog2(DEPTH);
+  logic [DW-1:0] mem [DEPTH]; logic [AW:0] wp, rp;
+  always_ff @(posedge clk or negedge rst_n)
+    if (!rst_n) begin wp <= 0; rp <= 0; end
+    else begin
+      if (push && !full) begin mem[wp[AW-1:0]] <= din; wp <= wp + 1; end
+      if (pop && !empty) rp <= rp + 1;
+    end
+  assign dout = mem[rp[AW-1:0]];
+  assign empty = wp == rp;
+  assign full = (wp[AW-1:0] == rp[AW-1:0]) && (wp[AW] != rp[AW]);
+endmodule
+`,tb:`module tb;
+  logic clk = 0, rst_n = 0; always #5 clk = ~clk;
+  logic push = 0, pop = 0, full, empty; logic [7:0] din = 0, dout;
+  sync_fifo #(.DW(8), .DEPTH(4)) dut (.*);
+  // reference model: a queue, checked on every clock
+  logic [7:0] model [$]; int errors = 0;
+  always @(posedge clk) if (rst_n) begin
+    if (dout !== (model.size() ? model[0] : dout) || full !== (model.size() == 4) || empty !== (model.size() == 0)) begin
+      errors++; $display("%0t: dout %h full %b empty %b, model has %0d entries", $time, dout, full, empty, model.size()); end
+    begin int n; n = model.size();         // a push is accepted only if the FIFO was not full
+      if (pop && n) void'(model.pop_front());
+      if (push && n < 4) model.push_back(din); end
+  end
+  // test plan as functional coverage
+  covergroup cg_plan @(posedge clk iff rst_n);
+    cp_op: coverpoint {push, pop} { bins idle = {0}; bins rd = {1}; bins wr = {2}; bins both = {3}; }
+    cp_lvl: coverpoint model.size() { bins empty = {0}; bins mid = {[1:3]}; bins full = {4}; }
+    x: cross cp_op, cp_lvl;   // e.g. push when full, pop when empty, both when full
+  endgroup
+  cg_plan cov = new;
+  task automatic op(bit pu, bit po, logic [7:0] d = 0); @(negedge clk) begin push = pu; pop = po; din = d; end endtask
+  task automatic report();
+    @(negedge clk) begin push = 0; pop = 0; end
+    @(negedge clk);
+    $display("test plan coverage %0.1f%%, %0d mismatches", cov.get_coverage(), errors);
+    if (cov.get_coverage() >= 100 && errors == 0) $display("PASS: every plan combination tested, no mismatch");
+    else $display("FAIL: %s", errors ? "mismatches: fix the design" : "test plan not complete: see the cross holes");
+  endtask
+  initial begin
+    $dumpfile("dump.vcd"); $dumpvars(0, tb);
+    #12 rst_n = 1;
+    op(0, 0); op(0, 1); op(1, 1, 8'h01);                 // at empty: idle, pop, both
+    op(0, 1); op(1, 0, 8'h02);                           // read at mid (back to empty), write at empty
+    op(1, 0, 8'h10); op(0, 0); op(1, 1, 8'h11); op(0, 1); // mid: write, idle, both, read
+    repeat (3) op(1, 0, 8'h20);                          // fill to full
+    op(0, 0); op(1, 0, 8'hEE); op(1, 1, 8'h21);          // at full: idle, push (rejected), both
+    op(1, 0, 8'h22); op(0, 1);                           // full again, read at full
+    repeat (4) op(0, 1);                                 // drain
+    report();
+    $finish;
+  end
+endmodule
+`}},{id:"dv-18",group:"dv-w9",tag:"Week 9 \xB7 Lab 3",title:"FIFO verification 2: random tests and coverage closure",std:"2012",design:`// Synchronous FIFO used by the week 8-9 labs and the FIFO project.
+module sync_fifo #(parameter int DW = 8, DEPTH = 8) (input logic clk, rst_n, push, pop, input logic [DW-1:0] din,
+    output logic [DW-1:0] dout, output logic full, empty);
+  localparam int AW = $clog2(DEPTH);
+  logic [DW-1:0] mem [DEPTH]; logic [AW:0] wp, rp;
+  always_ff @(posedge clk or negedge rst_n)
+    if (!rst_n) begin wp <= 0; rp <= 0; end
+    else begin
+      if (push && !full) begin mem[wp[AW-1:0]] <= din; wp <= wp + 1; end
+      if (pop && !empty) rp <= rp + 1;
+    end
+  assign dout = mem[rp[AW-1:0]];
+  assign empty = wp == rp;
+  assign full = (wp[AW-1:0] == rp[AW-1:0]) && (wp[AW] != rp[AW]);
+endmodule
+`,tb:`class FifoOp;
+  rand bit push, pop; rand logic [7:0] data;
+  int mode = 0;                         // 0 balanced, 1 fill (mostly push), 2 drain (mostly pop)
+  constraint c_mode {
+    if (mode == 1) { push dist {1 := 4, 0 := 1}; pop dist {1 := 1, 0 := 4}; }
+    else if (mode == 2) { push dist {1 := 1, 0 := 4}; pop dist {1 := 4, 0 := 1}; }
+  }
+endclass
+module tb;
+  logic clk = 0, rst_n = 0; always #5 clk = ~clk;
+  logic push = 0, pop = 0, full, empty; logic [7:0] din = 0, dout;
+  sync_fifo #(.DW(8), .DEPTH(4)) dut (.*);
+  // reference model: a queue, checked on every clock
+  logic [7:0] model [$]; int errors = 0;
+  always @(posedge clk) if (rst_n) begin
+    if (dout !== (model.size() ? model[0] : dout) || full !== (model.size() == 4) || empty !== (model.size() == 0)) begin
+      errors++; $display("%0t: dout %h full %b empty %b, model has %0d entries", $time, dout, full, empty, model.size()); end
+    begin int n; n = model.size();         // a push is accepted only if the FIFO was not full
+      if (pop && n) void'(model.pop_front());
+      if (push && n < 4) model.push_back(din); end
+  end
+  // test plan as functional coverage
+  covergroup cg_plan @(posedge clk iff rst_n);
+    cp_op: coverpoint {push, pop} { bins idle = {0}; bins rd = {1}; bins wr = {2}; bins both = {3}; }
+    cp_lvl: coverpoint model.size() { bins empty = {0}; bins mid = {[1:3]}; bins full = {4}; }
+    x: cross cp_op, cp_lvl;   // e.g. push when full, pop when empty, both when full
+  endgroup
+  cg_plan cov = new;
+  task automatic op(bit pu, bit po, logic [7:0] d = 0); @(negedge clk) begin push = pu; pop = po; din = d; end endtask
+  task automatic report();
+    @(negedge clk) begin push = 0; pop = 0; end
+    @(negedge clk);
+    $display("test plan coverage %0.1f%%, %0d mismatches", cov.get_coverage(), errors);
+    if (cov.get_coverage() >= 100 && errors == 0) $display("PASS: every plan combination tested, no mismatch");
+    else $display("FAIL: %s", errors ? "mismatches: fix the design" : "test plan not complete: see the cross holes");
+  endtask
+  initial begin
+    FifoOp t = new;
+    $dumpfile("dump.vcd"); $dumpvars(0, tb);
+    #12 rst_n = 1;
+    // TODO: random test: phases of 'mode' (fill, balanced, drain) until coverage reaches 100% or 400 operations.
+    // Each step: t.randomize(), then op(t.push, t.pop, t.data).
+    repeat (40) begin void'(t.randomize()); op(t.push, t.pop, t.data); end
+    report();
+    $finish;
+  end
+endmodule
+`,solution:{tb:`class FifoOp;
+  rand bit push, pop; rand logic [7:0] data;
+  int mode = 0;                         // 0 balanced, 1 fill (mostly push), 2 drain (mostly pop)
+  constraint c_mode {
+    if (mode == 1) { push dist {1 := 4, 0 := 1}; pop dist {1 := 1, 0 := 4}; }
+    else if (mode == 2) { push dist {1 := 1, 0 := 4}; pop dist {1 := 4, 0 := 1}; }
+  }
+endclass
+module tb;
+  logic clk = 0, rst_n = 0; always #5 clk = ~clk;
+  logic push = 0, pop = 0, full, empty; logic [7:0] din = 0, dout;
+  sync_fifo #(.DW(8), .DEPTH(4)) dut (.*);
+  // reference model: a queue, checked on every clock
+  logic [7:0] model [$]; int errors = 0;
+  always @(posedge clk) if (rst_n) begin
+    if (dout !== (model.size() ? model[0] : dout) || full !== (model.size() == 4) || empty !== (model.size() == 0)) begin
+      errors++; $display("%0t: dout %h full %b empty %b, model has %0d entries", $time, dout, full, empty, model.size()); end
+    begin int n; n = model.size();         // a push is accepted only if the FIFO was not full
+      if (pop && n) void'(model.pop_front());
+      if (push && n < 4) model.push_back(din); end
+  end
+  // test plan as functional coverage
+  covergroup cg_plan @(posedge clk iff rst_n);
+    cp_op: coverpoint {push, pop} { bins idle = {0}; bins rd = {1}; bins wr = {2}; bins both = {3}; }
+    cp_lvl: coverpoint model.size() { bins empty = {0}; bins mid = {[1:3]}; bins full = {4}; }
+    x: cross cp_op, cp_lvl;   // e.g. push when full, pop when empty, both when full
+  endgroup
+  cg_plan cov = new;
+  task automatic op(bit pu, bit po, logic [7:0] d = 0); @(negedge clk) begin push = pu; pop = po; din = d; end endtask
+  task automatic report();
+    @(negedge clk) begin push = 0; pop = 0; end
+    @(negedge clk);
+    $display("test plan coverage %0.1f%%, %0d mismatches", cov.get_coverage(), errors);
+    if (cov.get_coverage() >= 100 && errors == 0) $display("PASS: every plan combination tested, no mismatch");
+    else $display("FAIL: %s", errors ? "mismatches: fix the design" : "test plan not complete: see the cross holes");
+  endtask
+  initial begin
+    FifoOp t = new;
+    $dumpfile("dump.vcd"); $dumpvars(0, tb);
+    #12 rst_n = 1;
+    for (int k = 0; k < 400 && cov.get_coverage() < 100; k++) begin
+      t.mode = (k / 20) % 3 == 0 ? 1 : (k / 20) % 3 == 1 ? 0 : 2;     // fill, balanced, drain, ...
+      if (!t.randomize()) $display("randomize failed");
+      op(t.push, t.pop, t.data);
+    end
+    report();
+    $finish;
+  end
+endmodule
+`}},{id:"dv-19",group:"dv-w9",tag:"Week 9 \xB7 Lab 4",title:"FIFO verification 3: assertions for what the scoreboard misses",std:"2012",design:`// Synchronous FIFO used by the week 8-9 labs and the FIFO project.
+module sync_fifo #(parameter int DW = 8, DEPTH = 8) (input logic clk, rst_n, push, pop, input logic [DW-1:0] din,
+    output logic [DW-1:0] dout, output logic full, empty);
+  localparam int AW = $clog2(DEPTH);
+  logic [DW-1:0] mem [DEPTH]; logic [AW:0] wp, rp;
+  always_ff @(posedge clk or negedge rst_n)
+    if (!rst_n) begin wp <= 0; rp <= 0; end
+    else begin
+      if (push && !full) begin mem[wp[AW-1:0]] <= din; wp <= wp + 1; end
+      if (pop && !empty) rp <= rp + 1;
+    end
+  assign dout = mem[rp[AW-1:0]];
+  assign empty = (wp == rp) || (pop && wp == rp + 1);   // bug: a pop of the last word drops 'empty' a cycle early
+  assign full = (wp[AW-1:0] == rp[AW-1:0]) && (wp[AW] != rp[AW]);
+endmodule
+`,tb:`// The scoreboard below checks data only. Write the FIFO assertions (week 9 exercise)
+// in a checker module and bind it to sync_fifo.
+module fifo_sva #(parameter int DEPTH = 4) (input logic clk, rst_n, push, pop, full, empty);
+  int level;   // auxiliary: entries stored, from the accepted pushes and pops
+  always @(posedge clk or negedge rst_n) if (!rst_n) level <= 0; else level <= level + (push && !full) - (pop && !empty);
+  // TODO a_empty: empty is high exactly when level == 0
+  // TODO a_full:  full is high exactly when level == DEPTH
+  // TODO a_fe:    never full and empty together
+endmodule
+// TODO: bind sync_fifo fifo_sva #(.DEPTH(DEPTH)) u_sva (.*);
+
+module tb;
+  logic clk = 0, rst_n = 0; always #5 clk = ~clk;
+  logic push = 0, pop = 0, full, empty; logic [7:0] din = 0, dout;
+  sync_fifo #(.DW(8), .DEPTH(4)) dut (.*);
+  logic [7:0] exp_q [$]; int errors = 0;
+  always @(posedge clk) if (rst_n) begin
+    if (pop && !empty) begin if (dout !== exp_q[0]) errors++; void'(exp_q.pop_front()); end
+    if (push && !full) exp_q.push_back(din);
+  end
+  initial begin
+    $dumpfile("dump.vcd"); $dumpvars(0, tb);
+    #12 rst_n = 1;
+    repeat (60) @(negedge clk) begin push = $urandom_range(0, 1); pop = $urandom_range(0, 1); din = $urandom; end
+    @(negedge clk) begin push = 0; pop = 0; end
+    $display("scoreboard: %0d data errors", errors);
+    $finish;
+  end
+endmodule
+`,solution:{tb:`module fifo_sva #(parameter int DEPTH = 4) (input logic clk, rst_n, push, pop, full, empty);
+  int level;
+  always @(posedge clk or negedge rst_n) if (!rst_n) level <= 0; else level <= level + (push && !full) - (pop && !empty);
+  default clocking cb @(posedge clk); endclocking
+  default disable iff (!rst_n);
+  a_empty: assert property (empty == (level == 0));
+  a_full:  assert property (full == (level == DEPTH));
+  a_fe:    assert property (!(full && empty));
+endmodule
+bind sync_fifo fifo_sva #(.DEPTH(DEPTH)) u_sva (.*);
+
+module tb;
+  logic clk = 0, rst_n = 0; always #5 clk = ~clk;
+  logic push = 0, pop = 0, full, empty; logic [7:0] din = 0, dout;
+  sync_fifo #(.DW(8), .DEPTH(4)) dut (.*);
+  logic [7:0] exp_q [$]; int errors = 0;
+  always @(posedge clk) if (rst_n) begin
+    if (pop && !empty) begin if (dout !== exp_q[0]) errors++; void'(exp_q.pop_front()); end
+    if (push && !full) exp_q.push_back(din);
+  end
+  initial begin
+    $dumpfile("dump.vcd"); $dumpvars(0, tb);
+    #12 rst_n = 1;
+    repeat (60) @(negedge clk) begin push = $urandom_range(0, 1); pop = $urandom_range(0, 1); din = $urandom; end
+    @(negedge clk) begin push = 0; pop = 0; end
+    $display("scoreboard: %0d data errors", errors);
+    $finish;
+  end
+endmodule
+`},check:[{assert:"tb.dut.u_sva.a_empty",fails:[35,55,175,195,245,255,505],minPass:1},{assert:"tb.dut.u_sva.a_full",fails:[],minPass:1},{assert:"tb.dut.u_sva.a_fe",fails:[],minPass:1}]},{id:"dv-p1",group:"dv-proj",tag:"Project \xB7 Lab 1",title:"Project 1: a layered FIFO verification environment",std:"2012",design:`// Synchronous FIFO, DEPTH need not be a power of 2. Find the bug with the environment.
+module fifo_np2 #(parameter int DW = 8, DEPTH = 6) (input logic clk, rst_n, push, pop, input logic [DW-1:0] din,
+    output logic [DW-1:0] dout, output logic full, empty);
+  logic [DW-1:0] mem [DEPTH]; logic [$clog2(DEPTH)-1:0] wp, rp; logic [$clog2(DEPTH+1)-1:0] cnt;
+  wire do_push = push && !full, do_pop = pop && !empty;
+  always_ff @(posedge clk or negedge rst_n)
+    if (!rst_n) begin wp <= 0; rp <= 0; cnt <= 0; end
+    else begin
+      if (do_push) begin mem[wp] <= din; wp <= (wp == DEPTH - 1) ? 0 : wp + 1; end
+      if (do_pop) rp <= (rp == DEPTH) ? 0 : rp + 1;                 // bug: wraps one entry too late
+      cnt <= cnt + do_push - do_pop;
+    end
+  assign dout = mem[rp]; assign full = cnt == DEPTH; assign empty = cnt == 0;
+endmodule
+`,tb:`// ---------------- layered testbench: transaction, generator, driver, monitor, scoreboard, coverage, assertions
+class FifoTxn;
+  rand bit push, pop; rand logic [7:0] data;
+  int fill_bias = 50;                                      // % of pushes
+  constraint c_bias { push dist {1 := fill_bias, 0 := 100 - fill_bias}; pop dist {1 := 100 - fill_bias, 0 := fill_bias}; }
+  function string sprint(); return $sformatf("push=%0d pop=%0d data=%h", push, pop, data); endfunction
+endclass
+class Scoreboard;
+  logic [7:0] q [$]; int n_ok = 0, n_err = 0;
+  function void write(logic [7:0] d); q.push_back(d); endfunction
+  function void check(logic [7:0] got);
+    logic [7:0] want;
+    if (q.size() == 0) begin n_err++; $display("scoreboard: pop from an empty model"); return; end
+    want = q.pop_front();
+    if (got !== want) begin n_err++; if (n_err <= 5) $display("%0t scoreboard: got %h, expected %h", $time, got, want); end else n_ok++;
+  endfunction
+endclass
+
+module fifo_sva6 #(parameter int DEPTH = 6) (input logic clk, rst_n, push, pop, full, empty);
+  default clocking cb @(posedge clk); endclocking
+  default disable iff (!rst_n);
+  a_fe:   assert property (!(full && empty));
+  a_full_push: assert property (full && push && !pop |=> full);
+  c_full: cover property (full ##1 !full ##1 full);
+endmodule
+bind fifo_np2 fifo_sva6 #(.DEPTH(DEPTH)) u_sva (.*);
+
+module tb;
+  logic clk = 0, rst_n = 0; always #5 clk = ~clk;
+  logic push = 0, pop = 0, full, empty; logic [7:0] din = 0, dout;
+  fifo_np2 #(.DW(8), .DEPTH(6)) dut (.*);
+  Scoreboard sb = new;
+  // coverage: operation x level, sampled by the monitor
+  covergroup cg_env with function sample(bit pu, bit po, bit f, bit e);
+    cp_op: coverpoint {pu, po} { bins idle = {0}; bins rd = {1}; bins wr = {2}; bins both = {3}; }
+    cp_lvl: coverpoint {f, e} { bins empty = {2'b01}; bins mid = {2'b00}; bins full = {2'b10}; }
+    x: cross cp_op, cp_lvl;
+  endgroup
+  cg_env cov = new;
+  // driver: applies one transaction on the next falling edge
+  task automatic drive(FifoTxn t); @(negedge clk) begin push = t.push; pop = t.pop; din = t.data; end endtask
+  // monitor: at each rising edge, accepted pushes go to the scoreboard, accepted pops are checked
+  always @(posedge clk) if (rst_n) begin
+    cov.sample(push, pop, full, empty);
+    if (pop && !empty) sb.check(dout);
+    if (push && !full) sb.write(din);
+  end
+  initial begin
+    FifoTxn t = new;
+    $dumpfile("dump.vcd"); $dumpvars(0, tb);
+    #12 rst_n = 1;
+    // TODO: generator. Phases of 30 transactions with fill_bias 80 (fill), 50, 20 (drain), repeated,
+    // until coverage is 100% (at least 300 transactions). Check randomize()'s return value.
+    repeat (20) begin void'(t.randomize()); drive(t); end
+    @(negedge clk) begin push = 0; pop = 0; end
+    $display("scoreboard: %0d matched, %0d errors; coverage %0.1f%%", sb.n_ok, sb.n_err, cov.get_coverage());
+    if (sb.n_err == 0 && sb.n_ok > 80 && cov.get_coverage() >= 100) $display("PASS: environment clean, coverage closed");
+    else $display("FAIL: %s", sb.n_err ? "scoreboard errors: find the bug in design.sv" : "not enough traffic / coverage");
+    $finish;
+  end
+endmodule
+`,solution:{design:`// Synchronous FIFO, DEPTH need not be a power of 2.
+module fifo_np2 #(parameter int DW = 8, DEPTH = 6) (input logic clk, rst_n, push, pop, input logic [DW-1:0] din,
+    output logic [DW-1:0] dout, output logic full, empty);
+  logic [DW-1:0] mem [DEPTH]; logic [$clog2(DEPTH)-1:0] wp, rp; logic [$clog2(DEPTH+1)-1:0] cnt;
+  wire do_push = push && !full, do_pop = pop && !empty;
+  always_ff @(posedge clk or negedge rst_n)
+    if (!rst_n) begin wp <= 0; rp <= 0; cnt <= 0; end
+    else begin
+      if (do_push) begin mem[wp] <= din; wp <= (wp == DEPTH - 1) ? 0 : wp + 1; end
+      if (do_pop) rp <= (rp == DEPTH - 1) ? 0 : rp + 1;
+      cnt <= cnt + do_push - do_pop;
+    end
+  assign dout = mem[rp]; assign full = cnt == DEPTH; assign empty = cnt == 0;
+endmodule
+`,tb:`// ---------------- layered testbench: transaction, generator, driver, monitor, scoreboard, coverage, assertions
+class FifoTxn;
+  rand bit push, pop; rand logic [7:0] data;
+  int fill_bias = 50;                                      // % of pushes
+  constraint c_bias { push dist {1 := fill_bias, 0 := 100 - fill_bias}; pop dist {1 := 100 - fill_bias, 0 := fill_bias}; }
+  function string sprint(); return $sformatf("push=%0d pop=%0d data=%h", push, pop, data); endfunction
+endclass
+class Scoreboard;
+  logic [7:0] q [$]; int n_ok = 0, n_err = 0;
+  function void write(logic [7:0] d); q.push_back(d); endfunction
+  function void check(logic [7:0] got);
+    logic [7:0] want;
+    if (q.size() == 0) begin n_err++; $display("scoreboard: pop from an empty model"); return; end
+    want = q.pop_front();
+    if (got !== want) begin n_err++; if (n_err <= 5) $display("%0t scoreboard: got %h, expected %h", $time, got, want); end else n_ok++;
+  endfunction
+endclass
+
+module fifo_sva6 #(parameter int DEPTH = 6) (input logic clk, rst_n, push, pop, full, empty);
+  default clocking cb @(posedge clk); endclocking
+  default disable iff (!rst_n);
+  a_fe:   assert property (!(full && empty));
+  a_full_push: assert property (full && push && !pop |=> full);
+  c_full: cover property (full ##1 !full ##1 full);
+endmodule
+bind fifo_np2 fifo_sva6 #(.DEPTH(DEPTH)) u_sva (.*);
+
+module tb;
+  logic clk = 0, rst_n = 0; always #5 clk = ~clk;
+  logic push = 0, pop = 0, full, empty; logic [7:0] din = 0, dout;
+  fifo_np2 #(.DW(8), .DEPTH(6)) dut (.*);
+  Scoreboard sb = new;
+  // coverage: operation x level, sampled by the monitor
+  covergroup cg_env with function sample(bit pu, bit po, bit f, bit e);
+    cp_op: coverpoint {pu, po} { bins idle = {0}; bins rd = {1}; bins wr = {2}; bins both = {3}; }
+    cp_lvl: coverpoint {f, e} { bins empty = {2'b01}; bins mid = {2'b00}; bins full = {2'b10}; }
+    x: cross cp_op, cp_lvl;
+  endgroup
+  cg_env cov = new;
+  // driver: applies one transaction on the next falling edge
+  task automatic drive(FifoTxn t); @(negedge clk) begin push = t.push; pop = t.pop; din = t.data; end endtask
+  // monitor: at each rising edge, accepted pushes go to the scoreboard, accepted pops are checked
+  always @(posedge clk) if (rst_n) begin
+    cov.sample(push, pop, full, empty);
+    if (pop && !empty) sb.check(dout);
+    if (push && !full) sb.write(din);
+  end
+  initial begin
+    FifoTxn t = new;
+    $dumpfile("dump.vcd"); $dumpvars(0, tb);
+    #12 rst_n = 1;
+    for (int k = 0; k < 300 || cov.get_coverage() < 100; k++) begin
+      if (k > 2000) break;
+      t.fill_bias = (k / 30) % 3 == 0 ? 80 : (k / 30) % 3 == 1 ? 50 : 20;
+      if (!t.randomize()) $display("randomize failed: %s", t.sprint());
+      drive(t);
+    end
+    @(negedge clk) begin push = 0; pop = 0; end
+    $display("scoreboard: %0d matched, %0d errors; coverage %0.1f%%", sb.n_ok, sb.n_err, cov.get_coverage());
+    if (sb.n_err == 0 && sb.n_ok > 80 && cov.get_coverage() >= 100) $display("PASS: environment clean, coverage closed");
+    else $display("FAIL: %s", sb.n_err ? "scoreboard errors: find the bug in design.sv" : "not enough traffic / coverage");
+    $finish;
+  end
+endmodule
+`}},{id:"dv-p2",group:"dv-proj",tag:"Project \xB7 Lab 2",title:"Project 2: round-robin arbiter verification",std:"2012",design:`// 4-requester round-robin arbiter: grant one cycle after request, priority rotates after each grant.
+module rr4 (input logic clk, rst_n, input logic [3:0] req, output logic [3:0] gnt);
+  logic [1:0] ptr;                     // requester with the highest priority
+  always_ff @(posedge clk or negedge rst_n)
+    if (!rst_n) begin gnt <= 0; ptr <= 0; end
+    else begin
+      gnt <= 0;
+      for (int k = 0; k < 4; k++) begin
+        automatic logic [1:0] i = ptr + k;
+        if (req[i]) begin gnt <= 4'b1 << i; ptr <= i; break; end     // bug: should rotate past the winner (i + 1)
+      end
+    end
+endmodule
+`,tb:`module tb;
+  logic clk = 0, rst_n = 0; always #5 clk = ~clk;
+  logic [3:0] req = 0, gnt;
+  rr4 dut (.*);
+  default clocking cb @(posedge clk); endclocking
+  default disable iff (!rst_n);
+  a_one: assert property ($onehot0(gnt));
+  a_req: assert property ((gnt & ~$past(req)) == 0);
+  for (genvar i = 0; i < 4; i++) begin : fair
+    // a requester holds req until granted: a fair arbiter grants it within 4 cycles
+    a_fair: assert property (req[i] |-> ##[1:4] gnt[i]);
+  end
+  covergroup cg_arb @(posedge clk iff rst_n);
+    cp_n: coverpoint $countones(req) { bins n[] = {[0:4]}; }    // 0 to 4 simultaneous requests
+    cp_gnt: coverpoint gnt { bins g[] = {1, 2, 4, 8}; bins none = {0}; }
+  endgroup
+  cg_arb cov = new;
+  // requesters: new work arrives at random (load %); a requester keeps req high while it has
+  // pending work, so it requests again right after a grant when it has more to do
+  int load = 30;
+  int loads [5] = '{10, 30, 60, 90, 100};
+  int pending [4];
+  always @(negedge clk) if (rst_n) for (int i = 0; i < 4; i++) begin
+    int p; p = pending[i] - gnt[i];
+    if (p < 3 && $urandom_range(0, 99) < load) p++;
+    pending[i] = p; req[i] <= p > 0;
+  end
+  initial begin
+    $dumpfile("dump.vcd"); $dumpvars(0, tb);
+    #12 rst_n = 1;
+    // TODO: run traffic phases of 60 cycles at each load in 'loads' (light to saturated)
+    // so that 0..4 simultaneous requests and every grant are covered.
+    repeat (60) @(negedge clk);
+    $display("request coverage %0.1f%%", cov.get_coverage());
+    $finish;
+  end
+endmodule
+`,solution:{design:`// 4-requester round-robin arbiter: grant one cycle after request, priority rotates after each grant.
+module rr4 (input logic clk, rst_n, input logic [3:0] req, output logic [3:0] gnt);
+  logic [1:0] ptr;                     // requester with the highest priority
+  always_ff @(posedge clk or negedge rst_n)
+    if (!rst_n) begin gnt <= 0; ptr <= 0; end
+    else begin
+      gnt <= 0;
+      for (int k = 0; k < 4; k++) begin
+        automatic logic [1:0] i = ptr + k;
+        if (req[i]) begin gnt <= 4'b1 << i; ptr <= i + 1; break; end
+      end
+    end
+endmodule
+`,tb:`module tb;
+  logic clk = 0, rst_n = 0; always #5 clk = ~clk;
+  logic [3:0] req = 0, gnt;
+  rr4 dut (.*);
+  default clocking cb @(posedge clk); endclocking
+  default disable iff (!rst_n);
+  a_one: assert property ($onehot0(gnt));
+  a_req: assert property ((gnt & ~$past(req)) == 0);
+  for (genvar i = 0; i < 4; i++) begin : fair
+    // a requester holds req until granted: a fair arbiter grants it within 4 cycles
+    a_fair: assert property (req[i] |-> ##[1:4] gnt[i]);
+  end
+  covergroup cg_arb @(posedge clk iff rst_n);
+    cp_n: coverpoint $countones(req) { bins n[] = {[0:4]}; }    // 0 to 4 simultaneous requests
+    cp_gnt: coverpoint gnt { bins g[] = {1, 2, 4, 8}; bins none = {0}; }
+  endgroup
+  cg_arb cov = new;
+  // requesters: new work arrives at random (load %); a requester keeps req high while it has
+  // pending work, so it requests again right after a grant when it has more to do
+  int load = 30;
+  int loads [5] = '{10, 30, 60, 90, 100};
+  int pending [4];
+  always @(negedge clk) if (rst_n) for (int i = 0; i < 4; i++) begin
+    int p; p = pending[i] - gnt[i];
+    if (p < 3 && $urandom_range(0, 99) < load) p++;
+    pending[i] = p; req[i] <= p > 0;
+  end
+  initial begin
+    $dumpfile("dump.vcd"); $dumpvars(0, tb);
+    #12 rst_n = 1;
+    foreach (loads[k]) begin load = loads[k]; repeat (60) @(negedge clk); end
+    $display("request coverage %0.1f%%", cov.get_coverage());
+    $finish;
+  end
+endmodule
+`},check:[{assert:"a_one",fails:[],minPass:1},{assert:"a_req",fails:[],minPass:1},{assert:"tb.fair[0].a_fair",fails:[],minPass:1},{assert:"tb.fair[1].a_fair",fails:[],minPass:1},{assert:"tb.fair[2].a_fair",fails:[],minPass:1},{assert:"tb.fair[3].a_fair",fails:[],minPass:1},{cg:"cg_arb",min:100}]},{id:"dv-p3",group:"dv-proj",tag:"Project \xB7 Lab 3",title:"Project 3: APB register block",std:"2012",design:`// APB register block: CTRL (0x0, rw, 8 bits), STAT (0x4, read-only: {4'h0, busy, err, rdy, en}),
+// DATA (0x8, rw), IRQ (0xC, write-1-to-clear: bits set by 'irq_in').
+module apb_regs (input logic pclk, presetn, psel, penable, pwrite, input logic [7:0] paddr, pwdata,
+                 output logic [7:0] prdata, output logic pready, input logic [3:0] irq_in);
+  logic [7:0] ctrl, data; logic [3:0] irq;
+  assign pready = 1;
+  wire wr = psel && penable && pwrite;
+  always_ff @(posedge pclk or negedge presetn)
+    if (!presetn) begin ctrl <= 0; data <= 0; irq <= 0; end
+    else begin
+      if (wr && paddr == 8'h0) ctrl <= pwdata;
+      if (wr && paddr == 8'h8) data <= pwdata;
+      irq <= (irq | irq_in) & ~((wr && paddr == 8'hC) ? pwdata[3:0] : 4'h0);
+      if (wr && paddr == 8'h4) ctrl <= pwdata;               // bug: a write to STAT changes CTRL
+    end
+  always_comb case (paddr)
+    8'h0: prdata = ctrl; 8'h4: prdata = {4'h0, 2'b00, 1'b1, ctrl[0]}; 8'h8: prdata = data; 8'hC: prdata = {4'h0, irq};
+    default: prdata = 8'h00;
+  endcase
+endmodule
+`,tb:`// Register model: what each register should read back, updated by every write.
+class RegModel;
+  logic [7:0] ctrl = 0, data = 0; logic [3:0] irq = 0;
+  function void write(logic [7:0] a, logic [7:0] d);
+    case (a) 8'h0: ctrl = d; 8'h8: data = d; 8'hC: irq = irq & ~d[3:0]; default: ; endcase
+  endfunction
+  function logic [7:0] read(logic [7:0] a);
+    case (a) 8'h0: return ctrl; 8'h4: return {4'h0, 2'b00, 1'b1, ctrl[0]}; 8'h8: return data; 8'hC: return {4'h0, irq}; default: return 0; endcase
+  endfunction
+endclass
+
+module tb;
+  logic clk = 0, rst_n = 0; always #5 clk = ~clk;
+  logic psel = 0, penable = 0, pwrite = 0, pready; logic [7:0] paddr = 0, pwdata = 0, prdata; logic [3:0] irq_in = 0;
+  apb_regs dut (.pclk(clk), .presetn(rst_n), .*);
+  RegModel m = new;
+  int errors = 0, n_rd = 0;
+  // APB driver tasks
+  task automatic apb_write(logic [7:0] a, logic [7:0] d);
+    @(negedge clk) begin psel = 1; penable = 0; pwrite = 1; paddr = a; pwdata = d; end
+    @(negedge clk) penable = 1;
+    @(negedge clk) begin psel = 0; penable = 0; end
+    m.write(a, d);
+  endtask
+  task automatic apb_read(logic [7:0] a);
+    @(negedge clk) begin psel = 1; penable = 0; pwrite = 0; paddr = a; end
+    @(negedge clk) penable = 1;
+    @(posedge clk) begin n_rd++; if (prdata !== m.read(a)) begin errors++; $display("%0t: read %h = %h, model %h", $time, a, prdata, m.read(a)); end end
+    @(negedge clk) begin psel = 0; penable = 0; end
+  endtask
+  // interrupt sources: pulse irq bits now and then (the model tracks them too)
+  always @(negedge clk) begin irq_in = 0; if (rst_n && $urandom_range(0, 9) == 0) irq_in = 4'b1 << $urandom_range(0, 3); end
+  always @(posedge clk) if (rst_n) m.irq = m.irq | irq_in;
+  // protocol assertions
+  default clocking cb @(posedge clk); endclocking
+  default disable iff (!rst_n);
+  a_setup:  assert property ($rose(psel) |-> !penable);
+  a_access: assert property (psel && !penable |=> psel && penable);
+  a_stable: assert property (psel && penable && !pready |=> $stable(paddr) && $stable(pwrite));
+  // address-map coverage
+  covergroup cg_map @(posedge clk iff (psel && penable));
+    cp_a: coverpoint paddr { bins ctrl = {8'h0}; bins stat = {8'h4}; bins data = {8'h8}; bins irq = {8'hC}; }
+    cp_d: coverpoint pwrite;
+    x: cross cp_a, cp_d;
+  endgroup
+  cg_map cov = new;
+  initial begin
+    $dumpfile("dump.vcd"); $dumpvars(0, tb);
+    #12 rst_n = 1;
+    // TODO: a random register test: 80 accesses to random registers (0, 4, 8, C), random read/write
+    // and data. Every register must be written and read at least once (see the cross coverage).
+    apb_write(8'h0, 8'h5A); apb_read(8'h0);
+    $display("%0d reads checked, %0d errors, map coverage %0.1f%%", n_rd, errors, cov.get_coverage());
+    if (errors == 0 && cov.get_coverage() >= 100) $display("PASS: registers behave as specified"); else $display("FAIL");
+    $finish;
+  end
+endmodule
+`,solution:{design:`// APB register block: CTRL (0x0, rw, 8 bits), STAT (0x4, read-only: {4'h0, busy, err, rdy, en}),
+// DATA (0x8, rw), IRQ (0xC, write-1-to-clear: bits set by 'irq_in').
+module apb_regs (input logic pclk, presetn, psel, penable, pwrite, input logic [7:0] paddr, pwdata,
+                 output logic [7:0] prdata, output logic pready, input logic [3:0] irq_in);
+  logic [7:0] ctrl, data; logic [3:0] irq;
+  assign pready = 1;
+  wire wr = psel && penable && pwrite;
+  always_ff @(posedge pclk or negedge presetn)
+    if (!presetn) begin ctrl <= 0; data <= 0; irq <= 0; end
+    else begin
+      if (wr && paddr == 8'h0) ctrl <= pwdata;
+      if (wr && paddr == 8'h8) data <= pwdata;
+      irq <= (irq | irq_in) & ~((wr && paddr == 8'hC) ? pwdata[3:0] : 4'h0);
+    end
+  always_comb case (paddr)
+    8'h0: prdata = ctrl; 8'h4: prdata = {4'h0, 2'b00, 1'b1, ctrl[0]}; 8'h8: prdata = data; 8'hC: prdata = {4'h0, irq};
+    default: prdata = 8'h00;
+  endcase
+endmodule
+`,tb:`// Register model: what each register should read back, updated by every write.
+class RegModel;
+  logic [7:0] ctrl = 0, data = 0; logic [3:0] irq = 0;
+  function void write(logic [7:0] a, logic [7:0] d);
+    case (a) 8'h0: ctrl = d; 8'h8: data = d; 8'hC: irq = irq & ~d[3:0]; default: ; endcase
+  endfunction
+  function logic [7:0] read(logic [7:0] a);
+    case (a) 8'h0: return ctrl; 8'h4: return {4'h0, 2'b00, 1'b1, ctrl[0]}; 8'h8: return data; 8'hC: return {4'h0, irq}; default: return 0; endcase
+  endfunction
+endclass
+
+module tb;
+  logic clk = 0, rst_n = 0; always #5 clk = ~clk;
+  logic psel = 0, penable = 0, pwrite = 0, pready; logic [7:0] paddr = 0, pwdata = 0, prdata; logic [3:0] irq_in = 0;
+  apb_regs dut (.pclk(clk), .presetn(rst_n), .*);
+  RegModel m = new;
+  int errors = 0, n_rd = 0;
+  // APB driver tasks
+  task automatic apb_write(logic [7:0] a, logic [7:0] d);
+    @(negedge clk) begin psel = 1; penable = 0; pwrite = 1; paddr = a; pwdata = d; end
+    @(negedge clk) penable = 1;
+    @(negedge clk) begin psel = 0; penable = 0; end
+    m.write(a, d);
+  endtask
+  task automatic apb_read(logic [7:0] a);
+    @(negedge clk) begin psel = 1; penable = 0; pwrite = 0; paddr = a; end
+    @(negedge clk) penable = 1;
+    @(posedge clk) begin n_rd++; if (prdata !== m.read(a)) begin errors++; $display("%0t: read %h = %h, model %h", $time, a, prdata, m.read(a)); end end
+    @(negedge clk) begin psel = 0; penable = 0; end
+  endtask
+  // interrupt sources: pulse irq bits now and then (the model tracks them too)
+  always @(negedge clk) begin irq_in = 0; if (rst_n && $urandom_range(0, 9) == 0) irq_in = 4'b1 << $urandom_range(0, 3); end
+  always @(posedge clk) if (rst_n) m.irq = m.irq | irq_in;
+  // protocol assertions
+  default clocking cb @(posedge clk); endclocking
+  default disable iff (!rst_n);
+  a_setup:  assert property ($rose(psel) |-> !penable);
+  a_access: assert property (psel && !penable |=> psel && penable);
+  a_stable: assert property (psel && penable && !pready |=> $stable(paddr) && $stable(pwrite));
+  // address-map coverage
+  covergroup cg_map @(posedge clk iff (psel && penable));
+    cp_a: coverpoint paddr { bins ctrl = {8'h0}; bins stat = {8'h4}; bins data = {8'h8}; bins irq = {8'hC}; }
+    cp_d: coverpoint pwrite;
+    x: cross cp_a, cp_d;
+  endgroup
+  cg_map cov = new;
+  initial begin
+    $dumpfile("dump.vcd"); $dumpvars(0, tb);
+    #12 rst_n = 1;
+    repeat (80) begin
+      logic [7:0] a; a = 8'($urandom_range(0, 3) * 4);
+      if ($urandom_range(0, 1)) apb_write(a, $urandom); else apb_read(a);
+    end
+    $display("%0d reads checked, %0d errors, map coverage %0.1f%%", n_rd, errors, cov.get_coverage());
+    if (errors == 0 && cov.get_coverage() >= 100) $display("PASS: registers behave as specified"); else $display("FAIL");
+    $finish;
+  end
+endmodule
+`}},{id:"dv-p4",group:"dv-proj",tag:"Project \xB7 Lab 4",title:"Project 4: UART with error injection",std:"2012",design:`// UART loopback: transmitter -> receiver, 8N1, 4 clocks per bit. The receiver flags a framing
+// error (frame_err) when the stop bit is 0. A test hook (force_bad_stop) makes the TX send a 0 stop bit.
+module uart_lb (input logic clk, rst_n, send, force_bad_stop, input logic [7:0] tx_data,
+                output logic tx, tx_busy, rx_valid, frame_err, output logic [7:0] rx_data);
+  // transmitter
+  logic [9:0] sh; logic [3:0] tb_n; logic [1:0] tph;
+  always_ff @(posedge clk or negedge rst_n)
+    if (!rst_n) begin tx <= 1; tx_busy <= 0; end
+    else if (!tx_busy) begin if (send) begin tx_busy <= 1; sh <= {!force_bad_stop, tx_data, 1'b0}; tb_n <= 0; tph <= 0; end end
+    else begin tx <= sh[0]; tph <= tph + 1; if (tph == 3) begin sh <= {1'b1, sh[9:1]}; tb_n <= tb_n + 1; if (tb_n == 9) begin tx_busy <= 0; tx <= 1; end end end
+  // receiver: detects the start edge, samples in the middle of each bit
+  logic busy; logic [3:0] rb_n; logic [1:0] rph; logic [8:0] rsh; logic tx_q;
+  always_ff @(posedge clk or negedge rst_n)
+    if (!rst_n) begin busy <= 0; rx_valid <= 0; frame_err <= 0; tx_q <= 1; end
+    else begin
+      tx_q <= tx; rx_valid <= 0; frame_err <= 0;
+      if (!busy) begin if (tx_q && !tx) begin busy <= 1; rph <= 1; rb_n <= 0; end end
+      else begin
+        rph <= rph + 1;
+        if (rph == 2) begin                                      // middle of the bit
+          if (rb_n == 9) begin busy <= 0; rx_valid <= 1; rx_data <= rsh[8:1]; frame_err <= 1'b0; end   // bug: stop bit not checked
+          else begin rsh <= {tx, rsh[8:1]}; rb_n <= rb_n + 1; end
+        end
+      end
+    end
+endmodule
+`,tb:`module tb;
+  logic clk = 0, rst_n = 0; always #5 clk = ~clk;
+  logic send = 0, bad = 0, tx, tx_busy, rx_valid, frame_err; logic [7:0] tx_data = 0, rx_data;
+  uart_lb dut (.clk, .rst_n, .send, .force_bad_stop(bad), .tx_data, .tx, .tx_busy, .rx_valid, .frame_err, .rx_data);
+  // scoreboard: every frame sent is expected back, with its framing status
+  logic [8:0] exp_q [$]; int n_ok = 0, errors = 0;
+  always @(posedge clk) if (rx_valid) begin
+    logic [8:0] e; e = exp_q.pop_front();
+    if ({frame_err, rx_data} !== e) begin errors++; $display("%0t: received %h err=%b, expected %h err=%b", $time, rx_data, frame_err, e[7:0], e[8]); end else n_ok++;
+  end
+  // line assertions (with the frame counter from the SVA UART lab)
+  int fcnt = 0; logic tq = 1;
+  always @(posedge clk) begin tq <= tx; if (fcnt == 0) begin if (tq && !tx) fcnt <= 1; end else fcnt <= (fcnt == 39) ? 0 : fcnt + 1; end
+  a_start: assert property (@(posedge clk) disable iff (!rst_n) $fell(tx) && fcnt == 0 |-> !tx[*4]);
+  // coverage: data patterns and framing errors
+  covergroup cg_uart with function sample(logic [7:0] d, logic err);
+    cp_d: coverpoint d { bins zero = {0}; bins ones = {8'hFF}; bins alt = {8'h55, 8'hAA}; bins other = {[1:8'hFE]}; }
+    cp_err: coverpoint err;
+  endgroup
+  cg_uart cov = new;
+  task automatic send_byte(logic [7:0] d, bit bad_stop = 0);
+    @(negedge clk) begin send = 1; tx_data = d; bad = bad_stop; end
+    exp_q.push_back({bad_stop, d}); cov.sample(d, bad_stop);
+    @(negedge clk) send = 0;
+    wait (!tx_busy); repeat (3) @(negedge clk);
+  endtask
+  initial begin
+    $dumpfile("dump.vcd"); $dumpvars(0, tb);
+    #12 rst_n = 1;
+    // TODO: send the corner bytes 00, FF, 55, AA, 20 random bytes, and 4 frames with a bad stop bit
+    // (error injection: send_byte(d, 1)). The scoreboard expects frame_err for those.
+    send_byte(8'h3C);
+    repeat (10) @(negedge clk);
+    $display("%0d frames ok, %0d errors, coverage %0.1f%%", n_ok, errors, cov.get_coverage());
+    if (errors == 0 && n_ok >= 28 && cov.get_coverage() >= 100) $display("PASS: data and framing errors verified"); else $display("FAIL");
+    $finish;
+  end
+endmodule
+`,solution:{design:`// UART loopback: transmitter -> receiver, 8N1, 4 clocks per bit. The receiver flags a framing
+// error (frame_err) when the stop bit is 0. A test hook (force_bad_stop) makes the TX send a 0 stop bit.
+module uart_lb (input logic clk, rst_n, send, force_bad_stop, input logic [7:0] tx_data,
+                output logic tx, tx_busy, rx_valid, frame_err, output logic [7:0] rx_data);
+  // transmitter
+  logic [9:0] sh; logic [3:0] tb_n; logic [1:0] tph;
+  always_ff @(posedge clk or negedge rst_n)
+    if (!rst_n) begin tx <= 1; tx_busy <= 0; end
+    else if (!tx_busy) begin if (send) begin tx_busy <= 1; sh <= {!force_bad_stop, tx_data, 1'b0}; tb_n <= 0; tph <= 0; end end
+    else begin tx <= sh[0]; tph <= tph + 1; if (tph == 3) begin sh <= {1'b1, sh[9:1]}; tb_n <= tb_n + 1; if (tb_n == 9) begin tx_busy <= 0; tx <= 1; end end end
+  // receiver: detects the start edge, samples in the middle of each bit
+  logic busy; logic [3:0] rb_n; logic [1:0] rph; logic [8:0] rsh; logic tx_q;
+  always_ff @(posedge clk or negedge rst_n)
+    if (!rst_n) begin busy <= 0; rx_valid <= 0; frame_err <= 0; tx_q <= 1; end
+    else begin
+      tx_q <= tx; rx_valid <= 0; frame_err <= 0;
+      if (!busy) begin if (tx_q && !tx) begin busy <= 1; rph <= 1; rb_n <= 0; end end
+      else begin
+        rph <= rph + 1;
+        if (rph == 2) begin                                      // middle of the bit
+          if (rb_n == 9) begin busy <= 0; rx_valid <= 1; rx_data <= rsh[8:1]; frame_err <= !tx; end
+          else begin rsh <= {tx, rsh[8:1]}; rb_n <= rb_n + 1; end
+        end
+      end
+    end
+endmodule
+`,tb:`module tb;
+  logic clk = 0, rst_n = 0; always #5 clk = ~clk;
+  logic send = 0, bad = 0, tx, tx_busy, rx_valid, frame_err; logic [7:0] tx_data = 0, rx_data;
+  uart_lb dut (.clk, .rst_n, .send, .force_bad_stop(bad), .tx_data, .tx, .tx_busy, .rx_valid, .frame_err, .rx_data);
+  // scoreboard: every frame sent is expected back, with its framing status
+  logic [8:0] exp_q [$]; int n_ok = 0, errors = 0;
+  always @(posedge clk) if (rx_valid) begin
+    logic [8:0] e; e = exp_q.pop_front();
+    if ({frame_err, rx_data} !== e) begin errors++; $display("%0t: received %h err=%b, expected %h err=%b", $time, rx_data, frame_err, e[7:0], e[8]); end else n_ok++;
+  end
+  // line assertions (with the frame counter from the SVA UART lab)
+  int fcnt = 0; logic tq = 1;
+  always @(posedge clk) begin tq <= tx; if (fcnt == 0) begin if (tq && !tx) fcnt <= 1; end else fcnt <= (fcnt == 39) ? 0 : fcnt + 1; end
+  a_start: assert property (@(posedge clk) disable iff (!rst_n) $fell(tx) && fcnt == 0 |-> !tx[*4]);
+  // coverage: data patterns and framing errors
+  covergroup cg_uart with function sample(logic [7:0] d, logic err);
+    cp_d: coverpoint d { bins zero = {0}; bins ones = {8'hFF}; bins alt = {8'h55, 8'hAA}; bins other = {[1:8'hFE]}; }
+    cp_err: coverpoint err;
+  endgroup
+  cg_uart cov = new;
+  task automatic send_byte(logic [7:0] d, bit bad_stop = 0);
+    @(negedge clk) begin send = 1; tx_data = d; bad = bad_stop; end
+    exp_q.push_back({bad_stop, d}); cov.sample(d, bad_stop);
+    @(negedge clk) send = 0;
+    wait (!tx_busy); repeat (3) @(negedge clk);
+  endtask
+  logic [7:0] corners [4] = '{8'h00, 8'hFF, 8'h55, 8'hAA};
+  initial begin
+    $dumpfile("dump.vcd"); $dumpvars(0, tb);
+    #12 rst_n = 1;
+    foreach (corners[k]) send_byte(corners[k]);
+    repeat (20) send_byte($urandom);
+    repeat (4) send_byte($urandom, 1);
+    repeat (10) @(negedge clk);
+    $display("%0d frames ok, %0d errors, coverage %0.1f%%", n_ok, errors, cov.get_coverage());
+    if (errors == 0 && n_ok >= 28 && cov.get_coverage() >= 100) $display("PASS: data and framing errors verified"); else $display("FAIL");
+    $finish;
+  end
+endmodule
+`}}],Me={"sva-b1":{problem:"A comment like 'state is one-hot' is never checked. An immediate assertion turns it into code that runs every time the procedure runs, and stops being silent the moment the design breaks it.",tasks:["Write a_onehot inside always @(state) with $onehot.","Write a_no_x at each clock, only while load is high, with $isunknown.","Run: count the errors and find the two bugs (one in the design, one in the testbench)."],learn:"Immediate assertions: syntax, labels, else actions with $error, and the $onehot / $isunknown system functions."},"sva-b2":{problem:"'Every request is acknowledged within 3 clocks' needs a fork, a timeout and a disable in plain Verilog. In SVA it is one line, it checks every request independently, and it shows each attempt on the waveform.",tasks:["Write a_req_ack: $rose(req) |-> ##[1:3] ack, clocked on posedge clk.","Run: one request is answered too late. Find the \u25BC on the waveform.","Hover the green \u25B2: which clock did each passing attempt end on?"],learn:"Concurrent assertions: clock, implication |->, delay ranges ##[m:n], and how each attempt passes or fails."},"sva-b3":{problem:"A test that changes signals exactly at the clock edge creates a race: code that reads the signals at that edge may see the old or the new value. Concurrent assertions avoid the race: they always sample the value from just before the edge.",tasks:["Run: compare when a_imm and a_conc first fail (output and \u25BC markers).","Explain the one-clock difference with the Preponed region.","Change the test to drive on @(negedge clk) and run again until both agree."],learn:"SVA sampling: values are taken in the Preponed region, evaluated in Observed, actions run in Reactive. Drive away from the sampling edge."},"sva-b4":{problem:"Off-by-one-cycle mistakes are the most common assertion bug. |-> starts the consequent in the same clock as the antecedent match; |=> starts it in the next clock.",tasks:["Write a_same with |-> and a_next with |=>.","Run: for each of the three accesses, which assertion passes and which fails? Read the \u25B2/\u25BC on the waveform.","Explain why the late ack fails both."],learn:"Overlapping vs non-overlapping implication, and that a false antecedent is a vacuous success."},"sva-b5":{problem:"Two classic gotchas (Sutherland, DesignCon 2006): with a level antecedent, every clock while req is high starts a new attempt; with a level consequent, an ack that was already high passes even though it never rose.",tasks:["Run the given assertion: note the false failure and the missed bug.","Use $rose on both sides and run again.","Check: exactly one failure, at the stuck-ack request."],learn:"Level vs edge in properties: $rose / $fell to start one attempt per event and to require a change."},"sva-b6":{problem:"Assertions written for normal operation fire during reset, when outputs are forced to their reset values. Those failures are noise and they hide real ones.",tasks:["Run: count the failures and find which happen in reset.","Add disable iff (!rst_n).","Run again: only the real glitch must fail."],learn:"disable iff: an asynchronous abort that cancels attempts while reset is active (it uses current values, not sampled ones)."},"sva-b7":{problem:"Assertion results feed the test: counters, error limits, end-of-test status. Some phases of a test deliberately break a protocol, and the checker must be switched off there.",tasks:["Add a pass action that counts passes and a fail action that counts and reports failures.","Wrap the low-power phase in $assertoff / $asserton.","Run until the test prints PASS."],learn:"Pass/else action blocks, $error vs $fatal, and assertion control tasks ($assertoff, $asserton, $assertkill)."},"sva-b8":{problem:"The same temporal property can be an obligation of the design (assert), a promise about the environment (assume: formal tools use it to restrict inputs, simulation checks it), or evidence that a scenario happened (cover).",tasks:["Write the assumption, the assertion and the cover.","Run: which one catches the long request, which one the spurious grant?","Check that c_b2b was covered once."],learn:"assert vs assume vs cover property, and how each is reported."},"sva-b9":{problem:"Verification engineers often cannot edit the RTL, and designers do not want verification code in it. bind instantiates a checker module inside every instance of a design module from the outside.",tasks:["Write a_lat2 in pipe2_sva.","Bind pipe2_sva to pipe2 with .* port connections.","Run: the assertion appears as tb.dut.u_sva.a_lat2. Which data value is corrupted?"],learn:"bind syntax, checker modules, and $past(expr, n) to compare with a value from n clocks ago."},"sva-b10":{problem:"Copying the same assertion with small changes is error-prone. Properties take arguments (signals, expressions, even delays), and default clocking / default disable iff remove the repeated clock and reset.",tasks:["Declare default clocking and default disable iff.","Write p_handshake(r, a, max) and instantiate it three times.","Run: which channel misses its window?"],learn:"Property declarations with formal arguments, default clocking, default disable iff."},"sva-s1":{problem:"Most protocol rules are 'B follows A within N cycles' or 'B follows A eventually'. SVA expresses both with cycle delays: ##n exactly, ##[m:n] a window, ##[m:$] unbounded.",tasks:["Write a_win, a_ev and a_sev.","Run: one done is late; one cmd is never answered.","Compare a_ev (weak, unfinished at the end) with a_sev (strong, fails at the end)."],learn:"Cycle delays and ranges, unbounded ranges, and weak vs strong behaviour at the end of simulation."},"sva-s2":{problem:"Bursts and wait states are counts of consecutive cycles. [*n] repeats a Boolean or a sequence n times back to back; [*m:n] allows a range.",tasks:["Write a_burst and a_wait.","Run: one burst is one beat short; one request waits too long.","Find both \u25BC and explain the failure times."],learn:"Consecutive repetition, zero repetitions ([*0:n]) and how a range ends early when the next element matches."},"sva-s3":{problem:"Data beats are not always back to back. 'The 4th beat' is a goto repetition b[->4]; 'exactly 4 beats, then later' is non-consecutive b[=4].",tasks:["Write a_goto and a_ncons.","Run the three reads: on time, done late, and a 5th beat.","Explain which assertion fails for each read."],learn:"b[->n] ends ON the nth b; b[=n] allows more cycles after it as long as b does not occur again."},"sva-s4":{problem:"A bus master must keep its grant for the whole transfer. 'Throughout' ties a Boolean to every cycle of a sequence.",tasks:["Write a_gnt with throughout and a goto repetition.","Run: in the second transfer gnt drops before the 3rd ack.","Why does it fail when gnt drops, not at the end?"],learn:"expr throughout seq = (expr[*0:$]) intersect seq: checked at every cycle of the sequence."},"sva-s5":{problem:"Some rules bound where something happens (inside a window) or how long a sequence lasts. within and intersect express both without counting by hand.",tasks:["Write a_we with within and a_len with intersect.","Run: in the 2nd chip-select window the write pulse sticks out of the window; the 2nd packet is too long.","Explain the failure times."],learn:"s1 within s2 (s1 happens somewhere inside s2), s1 intersect s2 (same start and same end), length limits with 1[*m:n]."},"sva-s6":{problem:"Two acknowledges that may come in any order, two acceptable outcomes, the first of several matches: and, or and first_match cover these without writing every case.",tasks:["Write a_both, a_either and c_first.","Run: one request misses ack_a; one request gets neither retry nor done in time.","Remove first_match from c_first and compare the cover count."],learn:"Sequence and (both match, end at the later one), or (either), first_match (keep only the earliest match)."},"sva-s7":{problem:"A named sequence can be reused with different arguments, and its end point can be tested from another property with .triggered: 'X happens only when sequence S has just completed'.",tasks:["Write a_wr, and a_irq using s_write(STATUS).triggered.","Run: one interrupt fires after a write to another register, one without any write.","Explain why .triggered is true only in the cycle the sequence ends."],learn:"sequence declarations with arguments, sequence instances, and the .triggered end-point method."},"sva-p1":{problem:"In a valid/ready (AXI-stream style) handshake the sender may not change its mind: once valid is high, valid and data must hold until ready. Two simple rules with $stable catch most sender bugs.",tasks:["Write a_hold, a_stable and the cover.","Run: one transfer changes data while stalled, one drops valid before ready.","Read the waveform rows \u25C6 for the cover hits."],learn:"$stable / $changed compare the sampled value with the previous clock's; the 'valid && !ready |=> \u2026' pattern."},"sva-p2":{problem:"cnt == $past(cnt) + 1 looks right, but Verilog sizes it to 32 bits (the literal 1 is 32-bit): 15 + 1 is 16, not 0, so the assertion fails at every wrap. The fix is a cast back to 4 bits.",tasks:["Run the starting code first (the placeholder) and then write cnt == $past(cnt) + 1: see it fail at each wrap.","Fix it with 4'($past(cnt) + 1).","Check that only the real bug (a missed increment) still fails."],learn:"$past(expr, n), and Verilog expression sizing inside assertions."},"sva-p3":{problem:"Many checks are about bit patterns: one-hot state, at most one grant, no unknown bits. SVA's system functions make them one-liners.",tasks:["Write the three assertions.","Run: find the double grant, the X in the address and the 3 simultaneous requests.","Why must X be checked with $isunknown and not with == 'x?"],learn:"$onehot, $onehot0, $isunknown, $countones (and $countbits)."},"sva-p4":{problem:"Some rules forbid a scenario ('never a read right after a write'); others depend on a mode. not and if/else express these directly.",tasks:["Write a_rw with not, and a_lat with if/else.","Run: one read follows a write directly; one slow request is acknowledged after 2 cycles.","What does a vacuous success of a_lat look like?"],learn:"not (property), if (cond) p1 else p2, and that a forbidden sequence fails at the cycle it completes."},"sva-p5":{problem:"Checking data needs memory: the value that went in must be compared with what comes out later. A local variable stores it per attempt, so overlapping transactions each keep their own value.",tasks:["Write p_data with a local variable x, assigned when in_v is high.","Run: which input value comes out wrong?","Why would a module-level variable not work with back-to-back inputs?"],learn:"Local variables in properties: declaration, assignment in a sequence match item, use in the consequent."},"sva-p6":{problem:"Responses can come back out of order. A local variable captures each request's ID so the response with that ID is found, whatever comes in between.",tasks:["Write p_id with a local variable v.","Run: ID 3 is never answered; ID 2's second request gets the wrong ID back.","What happens if two requests with the same ID overlap?"],learn:"Local variables for transaction IDs, and ##[m:n] searching for a matching response."},"sva-p7":{problem:"'Stay on until cleared' and 'eventually granted' have no fixed length. until and s_eventually express them; at the end of simulation, strong operators report what never happened.",tasks:["Write a_led with until and a_live with s_eventually.","Run: the LED goes off before clr in the 2nd error; the last request is never granted.","When is a_live's failure reported?"],learn:"until / until_with, s_eventually, and why liveness failures are only known at the end of the test."},"sva-p8":{problem:"An assertion that never fails is not necessarily right: if its antecedent never happens, every attempt is a vacuous success. A cover on the antecedent shows whether the assertion was ever really tested.",tasks:["Run the starting code: a_we never fails, but check its vacuous count.","Add c_wr on the antecedent: it is never covered with the typo 2'd4.","Fix the antecedent and find the real bug."],learn:"Vacuous success, antecedent coverage, and why every assertion should have a companion cover."},"sva-a1":{problem:"FSM bugs are illegal states and illegal transitions. Four short assertions cover most of them: encoding, reset state, how a state may be entered, and what must follow.",tasks:["Write the four assertions (labels given).","Run: the irq-during-stall path re-enters DECODE from EXEC.","Which two assertions catch it, and at which clocks?"],learn:"FSM checks: $onehot encoding, reset value, entry conditions with $past, and successor rules with |=>."},"sva-a2":{problem:"A FIFO's flags and occupancy must agree on every cycle, and data must come out as it went in. Five assertions (from the week 9 FIFO exercise) pin down the contract.",tasks:["Write the five assertions; default clocking and disable iff are given.","Run: the test pushes 10 words into an 8-deep FIFO. Which assertion catches the late full flag?","Write a cover for 'push while full' (not checked)."],learn:"Interface-level FIFO checks: flag consistency, occupancy bookkeeping with $past, and first-word data integrity with a local variable."},"sva-a3":{problem:"Memories are checked by their data contract: whatever was last written to an address comes back when it is read. Local variables carry the address and data from the write to the read.",tasks:["Write a_mutex, a_addr and a_data.","Run: which address reads back wrong data?","Explain why the bug only shows for addresses 8 to 15."],learn:"Memory data integrity with local variables and a goto search for the matching read."},"sva-a4":{problem:"An arbiter must give at most one grant, only to requesters, and never starve anyone. Fairness is a liveness-like property bounded by the number of requesters: a request is granted within N cycles.",tasks:["Write a_one and a_req.","Write the fairness assertion inside the generate loop: one instance per requester.","Run: which requester starves, and when does fair[3].a_fair report it?"],learn:"Exclusive grants with $onehot0, grant-implies-request, and per-requester bounded fairness in a generate loop."},"sva-a5":{problem:"APB has two phases: SETUP (PSEL high, PENABLE low) then ACCESS (PENABLE high) until PREADY. During wait states the master must hold address, direction and write data. Four assertions check a master against the spec.",tasks:["Write the four assertions (default clocking and reset are given).","Run: one transfer with wait states changes PADDR. Which assertion fails?","Add a cover for a transfer with exactly 2 wait states."],learn:"Writing protocol checkers from a bus specification: phase order and signal stability."},"sva-a6":{problem:"A four-phase (return-to-zero) handshake has a strict order: req\u2191, ack\u2191, req\u2193, ack\u2193. Each edge has a precondition; checking edges with $rose/$fell captures the protocol.",tasks:["Write the five assertions.","Run: in the third handshake ack falls before req. Which assertions fail?","Draw the four phases on the waveform."],learn:"Edge-based protocol checks with $rose/$fell and Boolean preconditions."},"sva-a7":{problem:"A serial frame is a fixed pattern in time: start bit, 8 data bits, stop bit, each a fixed number of clocks. Delays and repetition counts in bit times turn the frame format into assertions.",tasks:["Write a_start (start bit lasts a full bit time) and a_stop (stop bit is high), using the frame counter fcnt.","Run three frames: which byte has a framing error?","Remove '&& fcnt == 0' and run: why do falling edges inside the data now cause false failures?"],learn:"Timing-based protocol checks: delays and repetitions measured in bit times."},"sva-a8":{problem:"The DesignCon tutorial's test plan for a program counter: load, increment, hold. One assertion per row of the plan, written from the spec and not from the RTL.",tasks:["Write a_load, a_inc and a_hold.","Run: the counter wraps through FF \u2192 00 (a_inc must still pass) and loses one increment.","Which row of the test plan catches the bug?"],learn:"Turning a test plan table into assertions; $past for load values; casts for wrap-around arithmetic."},"cov-1":{problem:"Coverage measures what the stimulus did, not what it was meant to do. The simplest model is a coverpoint with automatic bins: one bin per value for small fields, and auto_bin_max (default 64) equal ranges for wide ones.",tasks:["Run the starting code: 8 bins for opcode. How many were hit?","Add cp_addr with option.auto_bin_max = 4.","Run: which address range is never hit, and why (look at the stimulus)?"],learn:"covergroup, coverpoint, automatic bins, auto_bin_max, sampling on a clock event, and reading a coverage report."},"cov-2":{problem:"Automatic bins rarely match what matters. Operands are interesting at 0, at the maximum, small and big; operations one by one. Explicit bins turn the verification plan into the coverage model.",tasks:["Write the bins of cp_a: zero, small, big[3], max.","Write cp_op with bins ops[] (one per value).","Run: which bins are empty? Which test would fill them?"],learn:"bins name = {values, [ranges]}; bins name[] (one per value); bins name[N] (values split into N bins)."},"cov-3":{problem:"Covering every state is not enough: bugs live in transitions (back-to-back transfers, wait states). Transition bins count sequences of values; illegal_bins flag transitions that must never happen.",tasks:["Write the five transition bins and the illegal bin.","Run: which transition is not covered, and what does the illegal bin report?","Add the missing scenario to the test and reach 100%."],learn:"Transition bins (a => b), repetition [*n], and illegal_bins for transitions."},"cov-4":{problem:"Command encodings group values by bit patterns, some codes do not matter (NOP) and some must never appear (reserved). wildcard, ignore_bins and illegal_bins express exactly that.",tasks:["Write the five bins (wildcard wr/rd, each_rd[], ignore nop, illegal rsvd).","Run: the test sends one reserved command. Find the error.","Which read command is never sent?"],learn:"wildcard bins with ?, ignore_bins (excluded from coverage), illegal_bins (errors), and that ignored values are removed from other bins."},"cov-5":{problem:"Each field covered alone says nothing about combinations: was a long WRAP write ever sent? Cross coverage counts every combination of bins; binsof prunes combinations that cannot or need not happen.",tasks:["Write x_tl with an ignore_bins for one-beat WRAP bursts, and x_td.","Run: count the cross bins (9 \u2212 1 ignored = 8, and 6).","Which combinations are missing?"],learn:"cross, automatic cross bins, binsof(cp.bin), && / || in select expressions, ignore_bins in crosses."},"cov-6":{problem:"One covergroup type often has several instances (one per port). Type coverage merges them; instance coverage shows each port. Options such as at_least make a bin count only after enough hits.",tasks:["Add option.per_instance = 1 and option.at_least = 2.","Run: compare type coverage with each instance's coverage.","Why is the type coverage higher than either port's?"],learn:"Covergroup arguments (ref signals), several instances, per_instance, at_least, get_coverage() vs get_inst_coverage()."},"cov-7":{problem:"Coverage sampled on every clock counts idle cycles and half-finished transfers. A covergroup with 'with function sample(...)' is sampled by the monitor once per completed transaction, with the transaction's fields as arguments; iff drops the ones that do not count.",tasks:["Write cp_reg with its bins and iff (!e), and cp_dir.","Run: the errored transfer to 8'h14 must not cover data[8'h14].","Which register was never written?"],learn:"with function sample(args), calling sample() from a monitor task, and iff on coverpoints."},"cov-8":{problem:"The week 9 exercise: a functional coverage model for an APB bus. It must show which registers were accessed in which direction and with how many wait states, while ignoring combinations the spec forbids.",tasks:["Write cp_reg (with a default bin), cp_dir, cp_wait (3+ as one bin) and the cross with an ignore for STAT writes.","Sample only at the end of a transfer (the clocking event with iff is given).","Run: list the holes, then add transfers until coverage is 100%."],learn:"Building a coverage model from a protocol spec: regions, directions, latencies, crosses and exclusions."},"cov-9":{problem:"Random stimulus quickly covers the middle and then plateaus: corners such as 0 and 255 are outside its range or too rare. Coverage closure means reading the holes and adding the stimulus (constraints or directed tests) that fills them.",tasks:["Run: the loop stops at 200 packets. Which bins are holes?","Add directed packets for the holes (both directions).","Run until the test prints PASS."],learn:"The coverage-driven loop: run, read holes, target them, re-run; get_coverage() inside the test."},"dv-1":{problem:"Every testbench starts with a clock. The period must be exact (real arithmetic and `timescale precision), some tests need a programmable frequency, and some interfaces need a duty cycle other than 50%.",tasks:["Write clk_a with always #5.","Write clk_b with initial forever and a delay computed from FREQ_MHZ.","Write clk_c (25% duty) with a task and two delays. Run until PASS, then try FREQ_MHZ = 33.3."],learn:"always vs initial-forever clock generators, real delays, `timescale, and a task-based clock with a duty cycle."},"dv-2":{problem:"Real chips have several resets: an asynchronous power-on reset, a system reset released synchronously to the clock, and software resets that pulse for a few cycles. The testbench must reproduce the sequence exactly.",tasks:["Generate por_n with a delay.","Release sys_rst_n on the 2nd clock edge after por_n (wait + repeat @(posedge clk)).","Pulse soft_rst for exactly 3 cycles from the first edge after 100 ns. Run until PASS."],learn:"Asynchronous assertion, synchronous release, wait(), repeat(n) @(posedge clk), and nonblocking assignments in testbench code."},"dv-3":{problem:"Before constraints, random values with properties are built from plain random numbers with masks and shifts. It is the week 7 exercise and a good reminder of how much work constraints save later.",tasks:["Make even_v even (clear bit 0) and odd_v odd (set bit 0).","Make onehot_v one-hot by shifting 1 to a random position.","Run until PASS."],learn:"$urandom, $urandom_range, bit masks and shifts to shape random values."},"dv-4":{problem:"Verification starts with a test plan: the list of features to exercise (load, up, down, both wraps, hold). Directed tests hit each item on purpose; a reference model and checker compare every cycle.",tasks:["Write directed tests that exercise all 6 plan items (the testbench counts them).","Run: a mismatch appears in one item. Which?","Fix the bug in design.sv and run until PASS."],learn:"Test plans, directed tests, reference models, self-checking testbenches."},"dv-5":{problem:"Directed tests only cover what you thought of. Random stimulus with sensible weights explores combinations automatically; the same reference model checks the results and the plan items show what was reached.",tasks:["Replace the stimulus with a 200-cycle random loop (weights given in the TODO).","Stop early when all plan items are hit.","Run until PASS. How many cycles did it take?"],learn:"Random stimulus in plain Verilog, weighting with $urandom_range, and measuring progress with plan items."},"dv-6":{problem:"Week 8 starts with SystemVerilog data types: logic, parameterized widths, unpacked arrays, enums, and tasks/functions with typed arguments. A behavioral memory model uses all of them.",tasks:["Write mem_model: storage array, registered read, write on we.","Add an enum for the last operation and drive op from it.","Run until PASS: the testbench writes and reads all 16 addresses."],learn:"logic, parameters, unpacked arrays with 2**AW entries, typedef enum, and testbench tasks with output arguments."},"dv-7":{problem:"Port lists repeat the same bundle of signals in the DUT, the testbench and every checker. An interface bundles them once; modports state each side's directions; tasks inside the interface give tests a transaction-level way to drive it.",tasks:["Add modport dut to fifo_if.","Write push_word and pop_word: wait while full/empty, drive for one cycle.","Run until PASS."],learn:"interface, modport, tasks in an interface, and calling them through the instance (f.push_word). (Virtual interfaces and clocking blocks are not supported by this simulator.)"},"dv-8":{problem:"Testbenches move transactions, not wires. A transaction class bundles the fields with methods (print, copy, compare). Handles are references: b = a shares the object; copy() makes a new one. Inheritance adds variants (error-injecting transactions) that work through base-class handles.",tasks:["Write copy() and compare() in Txn.","Write ErrTxn with err and an overriding sprint() that calls super.sprint().","Run until PASS."],learn:"Classes, constructors, handles vs objects, deep copy, compare, inheritance, super, and virtual methods (polymorphism)."},"dv-9":{problem:"Drivers, monitors and checkers run in parallel. fork/join waits for all threads, join_any for the first, join_none for none; disable fork cleans up the losers. A timeout is a race between the wait and a counter.",tasks:["Write the three fork blocks (join, join_any, join_none).","Write wait_done: race wait(!busy) against 20 cycles, then disable fork.","Run until PASS and explain the order of the log."],learn:"fork/join, join_any, join_none, disable fork, and bounded waits so a hung design fails instead of hanging."},"dv-10":{problem:"The week 8 exercise: two independent drivers, one pushing and one popping, each with random delays, so the FIFO sees bursts, stalls, full and empty. A queue in the testbench is the scoreboard: pushes append, pops compare with the front.",tasks:["Write push_driver: random delay, wait while full, push a random byte, record it.","Write pop_driver: random delay, wait while empty, compare dout with the queue front, pop.","Run until PASS; look for full and empty on the waveform."],learn:"Concurrent drivers with fork/join, random delays, queues as scoreboards ($ queues, push_back, pop_front)."},"dv-11":{problem:"The week 7 exercise again, with constraints: properties are declared, and the solver finds values. randc variables cycle through every value before repeating; randomize() returns 0 when it cannot find a solution, and good testbenches check it.",tasks:["Write the three constraint blocks.","Run: 16 calls must give every tag exactly twice (randc).","Check the return value of randomize() in your own code from now on."],learn:"rand, randc, constraint blocks, randomize() and its return value."},"dv-12":{problem:"Uniform random values waste most of the simulation on uninteresting cases. inside restricts values to legal sets; dist weights them, for example to hit the minimum and maximum packet lengths far more often than any single middle value.",tasks:["Write c_len with dist: := gives each value the weight, :/ shares the weight over a range.","Write c_kind with inside.","Run: 1000 packets, check the histogram is close to 20/60/20%."],learn:"inside with values and ranges, dist with := and :/, and measuring a distribution."},"dv-13":{problem:"short_pkt -> len == 0 has five solutions, only one with small = 1, so a uniform solver picks small = 1 only 20% of the time. solve short_pkt before len picks small first (50/50) and then len: the same legal values, a different distribution.",tasks:["Write the implication constraint.","Add solve short_pkt before len in the derived class.","Run: compare the two counts with 20% and 50%."],learn:"Implication (->) and if/else constraints, the uniform-over-solutions rule, and solve...before."},"dv-14":{problem:"The week 8 exercise: N random numbers between X and Y that add up to Z. Array constraints describe the whole array at once: its size, each element (foreach), an aggregate (sum) and uniqueness.",tasks:["Write the four constraints.","Run: five solutions of six numbers each.","Change total to 200: why does randomize() now fail, and what does the message say?"],learn:"Dynamic array constraints: size(), foreach, sum(), unique; and over-constrained problems."},"dv-15":{problem:"Tests steer one randomize() call at a time: inline 'with' constraints add rules for one call, soft constraints give defaults that a test may override, constraint_mode and rand_mode switch constraints and variables off, and post_randomize fixes up derived fields.",tasks:["Write post_randomize().","Replace the four plain randomize() calls with the four techniques in the TODOs.","Run until PASS; then try addr == 8'hF8 with c_addr still on and read the solver's message."],learn:"randomize() with { }, soft constraints, constraint_mode(), rand_mode(), post_randomize()."},"dv-16":{problem:"Shared types and helper functions belong in a package, imported where needed. System tasks format strings ($sformatf) and read and write files ($fopen, $fdisplay, $fgets) for test vectors and logs.",tasks:["Write count_list in the package.","Run: the checks call it with both directions, and the file round trip must match.","Add a third direction DOWN_EVEN as an exercise (not checked)."],learn:"package / import, typedef enum in a package, automatic functions returning strings, $sformatf, $fopen / $fdisplay / $fgets / $fclose."},"dv-17":{problem:"Week 9 FIFO project, step 1: a test plan written as a cross of operation \xD7 fill level, measured with functional coverage. Directed tests fill the cross; a queue-based reference model checks every cycle and exposes a corner-case bug.",tasks:["Write directed tests until cg_plan reaches 100% (the report lists the holes).","A mismatch appears at one combination: which?","Fix design.sv and run until PASS."],learn:"Test plans as coverage crosses, directed corner-case tests, cycle-by-cycle reference models."},"dv-18":{problem:"Balanced random push/pop keeps a FIFO half full: the full corners are rare. A transaction class with modes (fill, balanced, drain) changes the distribution so random tests reach every corner; coverage tells when to stop.",tasks:["Run the starting test: which cross bins stay empty?","Loop through fill / balanced / drain phases until coverage is 100% (or 400 operations).","Run until PASS: how many operations did it take?"],learn:"Transaction classes with mode-dependent dist constraints, coverage-driven random tests, stopping on get_coverage()."},"dv-19":{problem:"A data scoreboard only sees what was popped. A flag that is wrong for one cycle (empty going high while a word is still stored) changes no data in this test, but it would starve a real consumer. Assertions on the flags catch it immediately.",tasks:["Write the three assertions in fifo_sva (labels given).","Bind fifo_sva to sync_fifo.","Run: the scoreboard says 0 errors, the assertions do not. When does empty go wrong?"],learn:"Combining scoreboards and assertions; auxiliary code in checkers; bind with parameters."},"dv-p1":{problem:"Project 1 (vlsimentor's FIFO environment, week 9 project): put everything together. A transaction class with a bias knob feeds a driver; a monitor sends accepted pushes to a scoreboard and checks pops; coverage and bound assertions run alongside. The FIFO has a non-power-of-2 depth and a pointer bug only long random runs reveal.",tasks:["Write the generator: phases of fill / balanced / drain bias until 300 transactions and 100% coverage.","Run: the scoreboard reports errors. Use the waveform (rp, wp) to find the bug.","Fix design.sv and run until PASS."],learn:"Layered testbench architecture (transaction, generator, driver, monitor, scoreboard, coverage, assertions) and debugging from scoreboard errors to RTL."},"dv-p2":{problem:"Project 2 (vlsimentor's arbiter environment): fairness is the hard property of an arbiter. Requesters hold their request until granted; under heavy load a correct round-robin grants everyone within 4 cycles. The design under test rotates its priority to the wrong place.",tasks:["Write the traffic phases (light to saturated) so that 0 to 4 simultaneous requests are covered.","Run: which fairness assertion fails, under which load?","Fix the priority rotation in design.sv; run until all assertions pass and coverage is 100%."],learn:"Liveness bounded as fairness assertions in a generate loop, reactive requester models, coverage of contention levels, and debugging priority logic."},"dv-p3":{problem:"Project 3 (vlsimentor's APB peripheral): a register block is verified against its register map. A register model class predicts every read; random reads and writes to random registers compare against it; protocol assertions check the bus; coverage proves every register was written and read. Read-only and write-1-to-clear registers are where bugs hide.",tasks:["Write the random register test (80 random accesses).","Run: a read of CTRL returns an unexpected value after some writes. Which write caused it?","Fix design.sv; run until PASS."],learn:"Register models (mirror, read prediction), APB driver tasks, write-1-to-clear and read-only behaviour, address-map coverage."},"dv-p4":{problem:"Project 4 (vlsimentor's UART environment): a serial link is verified end to end: bytes go through the transmitter and come back from the receiver. Good data is not enough: error handling must be tested by injecting errors (a bad stop bit) and checking that the receiver flags them.",tasks:["Send the corner bytes, 20 random bytes and 4 frames with a bad stop bit.","Run: the scoreboard expects frame_err for the injected frames. What does the receiver do?","Fix the stop-bit check in design.sv; run until PASS."],learn:"End-to-end scoreboards, error injection, coverage of data patterns and error cases, and line-level assertions."}},ze={"sva-b1":[{type:"number",q:"At what time does a_onehot fail?",answer:65,tol:0,unit:"",explain:"DECODE with pc = 13h goes to 1100; the next clock leaves it.",try:!1},{type:"choice",q:"Why use always @(state) for a_onehot instead of a clock?",options:["It checks every new value of state as soon as it changes","Immediate assertions need a clock","It is required by $onehot","It makes the assertion concurrent"],answer:0,explain:"An immediate assertion runs whenever its procedure runs.",try:!1},{type:"choice",q:"Where does $error print its message?",options:["In the simulation output, with the time and the assertion scope","Only in the waveform","Nowhere unless you call $display","In a separate log file only"],answer:0,explain:"",try:!1}],"sva-b2":[{type:"number",q:"At what time does a_req_ack fail?",answer:185,tol:0,unit:"",explain:"The window ##[1:3] closes three clocks after the third request.",try:!1},{type:"number",q:"How many attempts pass non-vacuously?",answer:2,tol:0,unit:"",explain:"",try:!1},{type:"choice",q:"Why $rose(req) and not req?",options:["req is high for one clock here, but $rose also stays correct if req were held high","$rose is faster","req alone does not compile","It turns off vacuity"],answer:0,explain:"With a level, a long req would start a new attempt every clock.",try:!1}],"sva-b3":[{type:"number",q:"Starting code: when does the immediate assertion first fail?",answer:15,tol:0,unit:"",explain:"It reads done = 1 right after the edge at 15.",try:!1},{type:"number",q:"Starting code: when does the concurrent assertion first fail?",answer:25,tol:0,unit:"",explain:"At 15 the sampled done is still 0; both are 1 in the sample at 25.",try:!1},{type:"choice",q:"In which scheduling region does a concurrent assertion sample its signals?",options:["Preponed","Active","NBA","Reactive"],answer:0,explain:"Preponed: before anything changes in that time step.",try:!1}],"sva-b4":[{type:"number",q:"How many times does a_same fail?",answer:2,tol:0,unit:"",explain:"The second access (req one cycle late) and the third (late ack).",try:!1},{type:"number",q:"At what time does a_next first fail?",answer:35,tol:0,unit:"",explain:"The first access has req in the same cycle as mem_en, so a_next looks one cycle too late.",try:!1},{type:"choice",q:"a |=> b is the same as \u2026",options:["a |-> ##1 b","a ##1 b","a |-> b","a |-> ##[0:1] b"],answer:0,explain:"",try:!1}],"sva-b5":[{type:"number",q:"With the given assertion, how many (false) failures are there on the good request?",answer:2,tol:0,unit:"",explain:"req is high for 3 clocks: 3 attempts, only the first sees ack two clocks later.",try:!1},{type:"number",q:"After the fix, at what time does the assertion fail?",answer:115,tol:0,unit:"",explain:"",try:!1},{type:"choice",q:"What does $rose(ack) check?",options:["The LSB of ack is 1 now and was not 1 at the previous clock","ack is 1 now","ack changed in either direction","ack is 1 for two clocks"],answer:0,explain:"",try:!1}],"sva-b6":[{type:"number",q:"Without disable iff: how many failures?",answer:4,tol:0,unit:"",explain:"",try:!1},{type:"number",q:"With disable iff: at what time is the real failure?",answer:445,tol:0,unit:"",explain:"",try:!1},{type:"choice",q:"Does disable iff use sampled or current values?",options:["Current values: it reacts as soon as reset changes","Sampled values, like the rest of the property","Only values at the start of the attempt","Values at the end of the attempt"],answer:0,explain:"",try:!1}],"sva-b7":[{type:"choice",q:"Which severity task stops the simulation?",options:["$fatal","$error","$warning","$info"],answer:0,explain:"",try:!1},{type:"number",q:"How many times did the pass action run?",answer:13,tol:0,unit:"",explain:"Far more than 3: by default the pass action also runs on vacuous successes (every clock where $rose(valid) is false), except while the assertion is off or in reset.",try:!1},{type:"choice",q:"Why are vacuous successes usually not what you want to count?",options:["They only mean the antecedent did not happen","They are failures","They are counted twice","They only happen in reset"],answer:0,explain:"Use a cover property to count real occurrences.",try:!1}],"sva-b8":[{type:"number",q:"At what time does m_req (the assumption) fail?",answer:125,tol:0,unit:"",explain:"",try:!1},{type:"number",q:"At what time does a_gnt fail?",answer:175,tol:0,unit:"",explain:"",try:!1},{type:"choice",q:"In formal verification, what does assume property do?",options:["It restricts the inputs the tool may drive","It is ignored","It must be proven like an assert","It counts coverage"],answer:0,explain:"",try:!1}],"sva-b9":[{type:"number",q:"At what time does a_lat2 fail?",answer:95,tol:0,unit:"",explain:"",try:!1},{type:"choice",q:"What is the hierarchical name of the bound assertion?",options:["tb.dut.u_sva.a_lat2","tb.u_sva.a_lat2","pipe2_sva.a_lat2","tb.a_lat2"],answer:0,explain:"",try:!1},{type:"number",q:"Which in_d value (hex) does the design corrupt? Answer in decimal.",answer:90,tol:0,unit:"",explain:"8'h5a is replaced by 00.",try:!1}],"sva-b10":[{type:"number",q:"How many failures does a_h2 report?",answer:2,tol:0,unit:"",explain:"",try:!1},{type:"choice",q:"Can a delay bound like ##[1:max] come from a property argument?",options:["Yes, if the actual argument is a constant","No, delays must be literals","Only in sequences","Only with default clocking"],answer:0,explain:"",try:!1}],"sva-s1":[{type:"number",q:"At what time does a_win fail?",answer:135,tol:0,unit:"",explain:"",try:!1},{type:"number",q:"How many a_ev attempts are unfinished at the end?",answer:1,tol:0,unit:"",explain:"",try:!1},{type:"choice",q:"##[1:3] b is the same as \u2026",options:["##1 b or ##2 b or ##3 b","##1 b and ##2 b and ##3 b","##3 b","b[*3]"],answer:0,explain:"",try:!1}],"sva-s2":[{type:"number",q:"At what time does a_burst fail?",answer:115,tol:0,unit:"",explain:"",try:!1},{type:"number",q:"At what time does a_wait fail?",answer:285,tol:0,unit:"",explain:"",try:!1},{type:"choice",q:"a[*0:2] ##1 b matches \u2026",options:["b, a ##1 b, or a ##1 a ##1 b","only a ##1 a ##1 b","a and b together","b two cycles later"],answer:0,explain:"",try:!1}],"sva-s3":[{type:"number",q:"At what time does a_goto fail?",answer:215,tol:0,unit:"",explain:"",try:!1},{type:"number",q:"At what time does a_ncons fail?",answer:405,tol:0,unit:"",explain:"",try:!1},{type:"choice",q:"b[->3] is equivalent to \u2026",options:["(!b[*0:$] ##1 b)[*3]","b[*3]","b ##[1:$] b ##[1:$] b ##1 1","(b ##1 !b)[*3]"],answer:0,explain:"",try:!1}],"sva-s4":[{type:"number",q:"At what time does a_gnt fail?",answer:195,tol:0,unit:"",explain:"",try:!1},{type:"number",q:"How many non-vacuous passes?",answer:1,tol:0,unit:"",explain:"",try:!1}],"sva-s5":[{type:"number",q:"At what time does a_we fail?",answer:185,tol:0,unit:"",explain:"",try:!1},{type:"number",q:"At what time does a_len fail?",answer:415,tol:0,unit:"",explain:"",try:!1},{type:"choice",q:"s1 intersect s2 requires \u2026",options:["both to start together and end in the same cycle","s1 to end before s2","only one of them to match","s1 inside s2"],answer:0,explain:"",try:!1}],"sva-s6":[{type:"number",q:"At what time does a_both fail?",answer:155,tol:0,unit:"",explain:"",try:!1},{type:"number",q:"At what time does a_either fail?",answer:175,tol:0,unit:"",explain:"",try:!1},{type:"number",q:"How many times is c_first covered?",answer:2,tol:0,unit:"",explain:"",try:!1}],"sva-s7":[{type:"number",q:"At what time does a_irq fail?",answer:85,tol:0,unit:"",explain:"",try:!1},{type:"number",q:"How many times does a_irq fail?",answer:2,tol:0,unit:"",explain:"",try:!1}],"sva-p1":[{type:"number",q:"At what time does a_stable fail?",answer:115,tol:0,unit:"",explain:"",try:!1},{type:"number",q:"At what time does a_hold fail?",answer:245,tol:0,unit:"",explain:"",try:!1},{type:"number",q:"How many stalled transfers does c_stall see?",answer:4,tol:0,unit:"",explain:"",try:!1}],"sva-p2":[{type:"number",q:"At what time does a_inc fail?",answer:295,tol:0,unit:"",explain:"",try:!1},{type:"choice",q:"Why does cnt == $past(cnt) + 1 fail at 15 \u2192 0?",options:["The literal 1 is 32 bits, so the sum is computed in 32 bits: 16 \u2260 0","$past is wrong at wrap","cnt is signed","The clock is too fast"],answer:0,explain:"",try:!1},{type:"choice",q:"What is $past(cnt, 2)?",options:["The sampled value of cnt two clocks ago","cnt plus 2","cnt two time units ago","The value at the start of the attempt"],answer:0,explain:"",try:!1}],"sva-p3":[{type:"number",q:"At what time does a_gnt1 fail?",answer:65,tol:0,unit:"",explain:"",try:!1},{type:"number",q:"At what time does a_noX fail?",answer:95,tol:0,unit:"",explain:"",try:!1},{type:"number",q:"At what time does a_reqs fail?",answer:65,tol:0,unit:"",explain:"",try:!1}],"sva-p4":[{type:"number",q:"At what time does a_rw fail?",answer:115,tol:0,unit:"",explain:"",try:!1},{type:"number",q:"At what time does a_lat fail?",answer:235,tol:0,unit:"",explain:"",try:!1}],"sva-p5":[{type:"number",q:"At what time does a_data fail?",answer:115,tol:0,unit:"",explain:"",try:!1},{type:"number",q:"Which input value (decimal) is corrupted? (in_d + 1 = 8'h37)",answer:54,tol:0,unit:"",explain:"",try:!1},{type:"choice",q:"Each attempt of a_data has \u2026",options:["its own copy of x","one shared x","no storage","x reset every clock"],answer:0,explain:"",try:!1}],"sva-p6":[{type:"number",q:"At what time does a_id fail?",answer:105,tol:0,unit:"",explain:"",try:!1},{type:"number",q:"How many requests are never answered correctly?",answer:2,tol:0,unit:"",explain:"",try:!1}],"sva-p7":[{type:"number",q:"At what time does a_led fail?",answer:145,tol:0,unit:"",explain:"",try:!1},{type:"number",q:"At what time does a_live fail?",answer:305,tol:0,unit:"",explain:"",try:!1},{type:"choice",q:"With weak eventually (##[1:$]) instead of s_eventually, the missing grant is \u2026",options:["reported as unfinished, not failed","a failure","a vacuous pass","ignored silently and counted as a pass"],answer:0,explain:"",try:!1}],"sva-p8":[{type:"number",q:"At what time does a_we fail?",answer:205,tol:0,unit:"",explain:"",try:!1},{type:"number",q:"How many times is WRITE covered?",answer:3,tol:0,unit:"",explain:"",try:!1},{type:"choice",q:"An assertion with 0 failures and only vacuous passes \u2026",options:["was never really exercised","proves the design right","is a syntax error","means the clock is missing"],answer:0,explain:"",try:!1}],"sva-a1":[{type:"number",q:"At what time does a_decode fail?",answer:215,tol:0,unit:"",explain:"",try:!1},{type:"number",q:"At what time does a_store fail?",answer:215,tol:0,unit:"",explain:"",try:!1},{type:"choice",q:"Which assertion style checks how a state was entered?",options:["state == S |-> $past(state) == P","state == P |=> state == S","$onehot(state)","$stable(state)"],answer:0,explain:"",try:!1}],"sva-a2":[{type:"number",q:"At what time does a_full fail?",answer:155,tol:0,unit:"",explain:"",try:!1},{type:"number",q:"How many times does a_full fail?",answer:2,tol:0,unit:"",explain:"",try:!1},{type:"choice",q:"Why is a_count written with $past?",options:["count changes one clock after the push/pop that caused it","$past is required for counters","To avoid disable iff","To make it vacuous"],answer:0,explain:"",try:!1}],"sva-a3":[{type:"number",q:"At what time does a_data fail?",answer:105,tol:0,unit:"",explain:"",try:!1},{type:"choice",q:"What does (re && addr == a)[->1] match?",options:["The next cycle with a read of address a","Any read","A read exactly one cycle later","The first write after the read"],answer:0,explain:"",try:!1}],"sva-a4":[{type:"number",q:"At what time does fair[3].a_fair first fail?",answer:115,tol:0,unit:"",explain:"",try:!1},{type:"choice",q:"Why ##[1:4] for 4 requesters?",options:["In round robin, each requester waits at most for the other 3","Because the clock period is 4","It is arbitrary","To make it vacuous"],answer:0,explain:"",try:!1}],"sva-a5":[{type:"number",q:"At what time does a_stable fail?",answer:145,tol:0,unit:"",explain:"",try:!1},{type:"choice",q:"In APB, when does a transfer complete?",options:["In an ACCESS cycle with PREADY high","When PSEL rises","In the SETUP cycle","When PENABLE rises"],answer:0,explain:"",try:!1}],"sva-a6":[{type:"number",q:"At what time does a_a_down fail?",answer:245,tol:0,unit:"",explain:"",try:!1},{type:"number",q:"At what time does a_r_down fail?",answer:255,tol:0,unit:"",explain:"",try:!1},{type:"number",q:"How many of the five assertions fail at least once?",answer:2,tol:0,unit:"",explain:"",try:!1}],"sva-a7":[{type:"number",q:"At what time does a_stop fail?",answer:835,tol:0,unit:"",explain:"",try:!1},{type:"number",q:"How many clocks long is one complete frame (start + 8 data + stop)?",answer:40,tol:0,unit:"",explain:"",try:!1}],"sva-a8":[{type:"number",q:"At what time does a_inc fail?",answer:115,tol:0,unit:"",explain:"",try:!1},{type:"choice",q:"Why the 8'(\u2026) cast in a_inc?",options:["So FF + 1 wraps to 00 like the 8-bit register","To make it signed","Because $past returns 32 bits","It is optional"],answer:0,explain:"",try:!1}],"cov-1":[{type:"number",q:"What is the coverage of cg_cmd with your solution (%)?",answer:62.5,tol:.1,unit:"",explain:"",try:!1},{type:"choice",q:"Which address bin is never hit?",options:["auto[192:255]","auto[0:63]","auto[64:127]","none"],answer:0,explain:"",try:!1},{type:"number",q:"Without auto_bin_max, how many automatic bins would an 8-bit coverpoint get?",answer:64,tol:0,unit:"",explain:"auto_bin_max defaults to 64, so 256 values go into 64 bins of 4.",try:!1}],"cov-2":[{type:"number",q:"Coverage of cg_alu with your bins (%)?",answer:79.2,tol:.1,unit:"",explain:"",try:!1},{type:"number",q:"How many bins does big[3] = {[16:254]} create?",answer:3,tol:0,unit:"",explain:"",try:!1},{type:"choice",q:"Which operation is never covered?",options:["OR (3)","ADD (0)","SUB (1)","AND (2)"],answer:0,explain:"op = k % 3 never gives 3.",try:!1}],"cov-3":[{type:"number",q:"Coverage with your bins (%)?",answer:80,tol:.1,unit:"",explain:"",try:!1},{type:"choice",q:"Which bin is not covered?",options:["wait2","start","b2b","done"],answer:0,explain:"",try:!1},{type:"choice",q:"What happens when an illegal bin is hit?",options:["The simulator reports an error; the value is not counted in other bins","The bin counts towards coverage","Nothing","The simulation stops"],answer:0,explain:"",try:!1}],"cov-4":[{type:"number",q:"Coverage (%)?",answer:87.5,tol:.1,unit:"",explain:"",try:!1},{type:"number",q:"How many bins does each_rd[] = {[1:6]} create?",answer:6,tol:0,unit:"",explain:"",try:!1},{type:"choice",q:"A value in ignore_bins \u2026",options:["is not counted in any bin of the coverpoint","counts as a hit","causes an error","is counted twice"],answer:0,explain:"",try:!1}],"cov-5":[{type:"number",q:"Coverage (%)?",answer:95,tol:.1,unit:"",explain:"",try:!1},{type:"number",q:"How many bins does x_tl have after the ignore?",answer:8,tol:0,unit:"",explain:"",try:!1},{type:"choice",q:"binsof(cp_type.wrap) && binsof(cp_len.one) selects \u2026",options:["the cross bins where cp_type is in bin wrap and cp_len in bin one","all wrap bins and all one bins","nothing","the bins that are not wrap"],answer:0,explain:"",try:!1}],"cov-6":[{type:"number",q:"Type coverage reported by get_coverage() (%)?",answer:100,tol:.1,unit:"",explain:"",try:!1},{type:"number",q:"port1 instance coverage (%)?",answer:75,tol:.1,unit:"",explain:"",try:!1},{type:"choice",q:"What does option.at_least = 2 change?",options:["A bin is covered only after 2 hits","Coverage must reach 200%","Two coverpoints are required","Sampling happens twice"],answer:0,explain:"",try:!1}],"cov-7":[{type:"number",q:"Coverage (%)?",answer:90,tol:.1,unit:"",explain:"",try:!1},{type:"choice",q:"Why is data[8'h14] not covered?",options:["Its only transfer had an error and iff (!e) excluded it","8'h14 is not in the bins","sample() was not called","It is an ignore bin"],answer:0,explain:"",try:!1}],"cov-8":[{type:"number",q:"Coverage with the given transfers (%)?",answer:93.8,tol:.1,unit:"",explain:"",try:!1},{type:"choice",q:"Which wait-state bin is empty?",options:["w3plus","w0","w1","w2"],answer:0,explain:"",try:!1},{type:"number",q:"How many bins does x_reg_dir have?",answer:5,tol:0,unit:"",explain:"3 regions \xD7 2 directions \u2212 1 ignored STAT write = 5: the default bin is not crossed.",try:!1}],"cov-9":[{type:"number",q:"Starting code: coverage after the random loop (%)?",answer:83.3,tol:.1,unit:"",explain:"",try:!1},{type:"choice",q:"Why can the random loop never hit bins zero and max?",options:["$urandom_range(1, 254) never produces 0 or 255","They are ignore bins","The covergroup is not sampled","Coverage is capped at 90%"],answer:0,explain:"",try:!1},{type:"choice",q:"A hole that cannot happen in the real design should be \u2026",options:["excluded with ignore_bins, with a reason in the plan","left as a hole","filled with a forced value","removed from the design"],answer:0,explain:"",try:!1}],"dv-1":[{type:"number",q:"Period of clk_b in ns at 125 MHz?",answer:8,tol:0,unit:"",explain:"",try:!1},{type:"choice",q:"Why does `timescale 1ns/1ps matter for FREQ_MHZ = 33.3?",options:["Delays are rounded to the 1 ps precision","It sets the clock frequency","It makes reals into integers","It is ignored for clocks"],answer:0,explain:"",try:!1}],"dv-2":[{type:"number",q:"At what time is sys_rst_n released (ns)?",answer:35,tol:0,unit:"",explain:"",try:!1},{type:"choice",q:"Why release sys_rst_n on a clock edge?",options:["So flip-flops leave reset in the same cycle (no recovery/removal violation)","To save power","It is required by Verilog","To make por_n synchronous"],answer:0,explain:"",try:!1}],"dv-3":[{type:"choice",q:"Is 16'h1 << $urandom_range(0,15) uniformly distributed over the 16 one-hot values?",options:["Yes: each position is equally likely","No: low bits are more likely","No: it can be zero","Only for even positions"],answer:0,explain:"",try:!1}],"dv-4":[{type:"choice",q:"Which plan item found the bug?",options:["wrap down (0 \u2192 15)","load","wrap up","hold"],answer:0,explain:"",try:!1},{type:"choice",q:"Why compare against a reference model rather than expected values typed in the test?",options:["It checks every cycle of any test, not just the cases you thought of","It is faster to simulate","It removes the need for a test plan","It finds timing bugs"],answer:0,explain:"",try:!1}],"dv-5":[{type:"choice",q:"Why make load rare?",options:["Frequent loads would keep the counter from ever reaching the wrap values","Loads are illegal","To save simulation time","Loads break the model"],answer:0,explain:"",try:!1}],"dv-6":[{type:"choice",q:"How many entries does logic [7:0] mem [2**4] have?",options:["16","8","4","256"],answer:0,explain:"",try:!1},{type:"choice",q:"Why are the testbench tasks declared automatic?",options:["Each call gets its own copy of its arguments and locals","To make them faster","Automatic tasks can be synthesized","To allow output arguments"],answer:0,explain:"",try:!1}],"dv-7":[{type:"choice",q:"What does a modport define?",options:["The direction of each interface signal as seen by one side","A clock domain","A new module","Timing checks"],answer:0,explain:"",try:!1}],"dv-8":[{type:"choice",q:"After b = a; b.addr = 8'h20; what is a.addr?",options:["8'h20: a and b are the same object","8'h10","x","a compile error"],answer:0,explain:"",try:!1},{type:"choice",q:"What makes a.sprint() call ErrTxn::sprint when a holds an ErrTxn?",options:["sprint is virtual","ErrTxn calls super.new","copy()","Nothing: it calls Txn::sprint"],answer:0,explain:"",try:!1}],"dv-9":[{type:"choice",q:"After fork ... join_any, the other threads \u2026",options:["keep running unless you disable them","are killed","are paused","restart"],answer:0,explain:"",try:!1},{type:"choice",q:"Why do testbenches need timeouts on waits?",options:["A hung design would otherwise hang the test forever","Waits are slow","Waits are not allowed in tasks","For coverage"],answer:0,explain:"",try:!1}],"dv-10":[{type:"choice",q:"Why compare dout before asserting pop in this FIFO?",options:["dout shows the oldest word before the pop (show-ahead)","pop clears dout","It is faster","To avoid an X"],answer:0,explain:"",try:!1}],"dv-11":[{type:"choice",q:"What does randc guarantee for a 3-bit variable?",options:["Each of the 8 values once before any repeats","Uniform distribution only","Increasing values","No repeats ever"],answer:0,explain:"",try:!1}],"dv-12":[{type:"choice",q:"[2:63] := 60 instead of :/ 60 would \u2026",options:["give each of the 62 values weight 60, so the middle dominates","be the same","give the range weight 60 in total","be a syntax error"],answer:0,explain:"",try:!1}],"dv-13":[{type:"number",q:"Without solve-before, about how many of 2000 have small = 1?",answer:416,tol:120,unit:"",explain:"",try:!1},{type:"choice",q:"Does solve...before change which values are legal?",options:["No, only their probabilities","Yes, it removes solutions","It makes small always 1","It is ignored by solvers"],answer:0,explain:"",try:!1}],"dv-14":[{type:"choice",q:"With n = 6 and hi = 30, what is the largest possible total?",options:["180","200","100","30"],answer:0,explain:"",try:!1},{type:"choice",q:"Why can v.sum() overflow for an array of byte?",options:["sum() has the element's width (8 bits), so the total wraps","It cannot","sum() is always 32 bits","Only for signed bytes"],answer:0,explain:"",try:!1}],"dv-15":[{type:"choice",q:"What happens to a soft constraint when an inline constraint conflicts with it?",options:["The soft constraint is dropped for that call","randomize() fails","The inline constraint is ignored","A compile error"],answer:0,explain:"",try:!1}],"dv-16":[{type:"choice",q:"What does import count_pkg::*; do?",options:["Makes the package's names visible without the count_pkg:: prefix","Copies the package into the module","Compiles the package","Creates an instance of the package"],answer:0,explain:"",try:!1}],"dv-17":[{type:"choice",q:"Which plan combination exposes the bug?",options:["both (push and pop) at full","read at empty","write at mid","idle at full"],answer:0,explain:"",try:!1},{type:"number",q:"How many bins does the cross have?",answer:12,tol:0,unit:"",explain:"",try:!1}],"dv-18":[{type:"choice",q:"Why does balanced 50/50 traffic rarely reach full?",options:["The level does a random walk around its start and rarely drifts 4 steps up","Push is ignored","The FIFO is too deep","Coverage is not sampled"],answer:0,explain:"",try:!1}],"dv-19":[{type:"number",q:"At what time does a_empty first fail?",answer:35,tol:0,unit:"",explain:"",try:!1},{type:"choice",q:"Why does the scoreboard not see this bug?",options:["It only compares popped data, and in this test the extra empty cycle does not change which data comes out","It is disabled","The bug is in the testbench","It only checks full"],answer:0,explain:"",try:!1}],"dv-p1":[{type:"choice",q:"Why is a non-power-of-2 depth risky for pointer logic?",options:["Pointers must wrap explicitly at DEPTH-1 instead of overflowing naturally","It uses more area","It cannot be full","Gray codes are required"],answer:0,explain:"",try:!1},{type:"choice",q:"Which component would you change to test a 12-deep FIFO?",options:["Only the DUT parameter (and the assertion parameter): the environment is generic","All of them","The scoreboard","The transaction class"],answer:0,explain:"",try:!1}],"dv-p2":[{type:"choice",q:"Under which load does starvation show?",options:["Heavy/saturated: several requesters wait at the same time","Light load","Only after reset","Never"],answer:0,explain:"",try:!1},{type:"choice",q:"Why ##[1:4] for 4 requesters?",options:["Each waits at most for the other 3 grants","It is the clock period","To match the coverage","Arbitrary"],answer:0,explain:"",try:!1}],"dv-p3":[{type:"choice",q:"What is a write-1-to-clear (W1C) register?",options:["Writing 1 to a bit clears it; writing 0 leaves it","It is cleared after any write","It can only be written once","Reading it clears it"],answer:0,explain:"",try:!1},{type:"choice",q:"Why does the bug need random register order to show?",options:["CTRL must be read after a write to STAT, with no CTRL write in between","It needs 1000 cycles","It is a timing bug","It only shows with interrupts"],answer:0,explain:"",try:!1}],"dv-p4":[{type:"choice",q:"Why is error injection necessary?",options:["Without it, the error-detection logic is never exercised","To slow down the test","To test the clock","For code coverage only"],answer:0,explain:"",try:!1},{type:"number",q:"How many clock cycles does one frame take at 4 clocks per bit?",answer:40,tol:0,unit:"",explain:"",try:!1}]};var je={"sva-b1":{b:"{tb stimulus} > [pc_fsm] > (state, pc); (state, pc) .checked by.> {immediate assertions}",f:["P: The spec says 'state is one-hot' and 'never load an unknown value'.","S: assert ($onehot(state)) in always @(state).","S: if (load) assert (!$isunknown(d)) at each clock.","X: state = 1100 after DECODE when pc = 13h.","OK: Each broken rule prints an error with time and scope."]},"sva-b2":{b:"{test} -req-> {responder} -ack-> {test}; {test} .req, ack.> {a_req_ack}",f:["P: Every request must be acknowledged 1 to 3 clocks later.","S: $rose(req) starts an attempt (the antecedent).","S: ##[1:3] ack must match (the consequent).","X: The third request is answered after 5 clocks.","OK: One failure, at the clock where the window closes."]},"sva-b3":{b:"{test: blocking writes at posedge} > (go, done); (go, done) -now-> {immediate assertion}; (go, done) -preponed-> {concurrent assertion}",f:["P: The test writes go/done at the same edge that checks them.","S: The immediate assertion (after #0) sees the new values.","S: The concurrent assertion sees the values from before the edge.","Q: Which edge does each one fail on?","OK: Drive on the other edge: no race, both agree."]},"sva-b4":{b:"{access task} > (mem_en) > (req) > (ack); (mem_en, req, ack) .> {a_same |->}; (mem_en, req, ack) .> {a_next |=>}",f:["P: Same cycle or next cycle? The spec must say.","S: a |-> b: b starts in the cycle a matched.","S: a |=> b: b starts one cycle later (same as a |-> ##1 b).","Q: Which access matches which assertion?","OK: Each access passes exactly the assertion written for it."]},"sva-b5":{b:"{test} > (req) > {a_req_ack}; {test} > (ack) > {a_req_ack}",f:["P: req |-> ##2 ack fails on good behaviour and passes a stuck ack.","X: req held 3 clocks starts 3 attempts.","X: ack high before req: ##2 ack is trivially true.","S: $rose(req) |-> ##2 $rose(ack).","OK: One attempt per request, and ack must change."]},"sva-b6":{b:"(rst_n) > [reload_counter]; (load_val) > [reload_counter] > (cnt, tick); (cnt, tick) > {a_reload}; (rst_n) .disables.> {a_reload}",f:["P: The assertion fails while the counter is held in reset.","S: disable iff (!rst_n) cancels every attempt in progress when reset asserts.","S: no new attempt starts while reset is active.","OK: Only the real glitch fails."]},"sva-b7":{b:"{test phases} > (valid, ready) > {a_vr} -pass/fail actions-> {counters}; {test phases} .$assertoff/$asserton.> {a_vr}",f:["P: The test needs the number of passes and failures.","S: assert property (p) pass_stmt; else fail_stmt;","S: $assertoff(0, tb.a_vr) for the phase where the rule does not apply.","Q: Does the pass action run on vacuous passes? (here: $rose(valid) false)","OK: 3 passes, 1 failure: PASS."]},"sva-b8":{b:"{environment} -req-> [design] -gnt->; {environment} .m_req assume.> (req); [design] .a_gnt assert.> (gnt); (gnt) .c_b2b cover.> {coverage}",f:["P: One property, three roles.","S: assume: a rule the inputs must follow.","S: assert: a rule the design must follow.","S: cover: a scenario we must see at least once.","OK: Each failure points at the side that broke the rule."]},"sva-b9":{b:"{tb} > [pipe2]; {bind pipe2 pipe2_sva} .instantiates inside.> [pipe2]; [pipe2] .ports.> {u_sva: a_lat2}",f:["P: Add assertions to frozen RTL.","S: Put them in a separate checker module.","S: bind <design> <checker> <instance> (.*);","OK: The checker runs inside every pipe2 instance."]},"sva-b10":{b:"{p_handshake(r, a, max)} > {a_h0: req0/ack0/1}; {p_handshake(r, a, max)} > {a_h1: req1/ack1/2}; {p_handshake(r, a, max)} > {a_h2: req2/ack2/3}",f:["P: Three copies of one rule, with different limits.","S: property p(r, a, max) with arguments.","S: default clocking + default disable iff for the whole module.","OK: Three one-line assertions; channel 2 (latency 4 > 3) fails."]},"sva-s1":{b:"(start) > {##[2:4]} > (done); (cmd) > {##[1:$]} > (resp)",f:["P: 'within 2 to 4 cycles' and 'eventually'.","S: ##[2:4] tries each delay: passes on the first that matches.","S: ##[1:$] never fails: the attempt stays open.","Q: What happens to an open attempt when the simulation ends?","OK: weak: unfinished; strong (s_eventually): fails."]},"sva-s2":{b:"(bstart) > {bvalid[*4]} > (!bvalid); (req) > {!rdy[*0:3]} > (rdy)",f:["P: Count consecutive cycles.","S: b[*4] = b ##1 b ##1 b ##1 b.","S: !rdy[*0:3] ##1 rdy: rdy after 0..3 wait cycles.","X: a 3-beat burst; a 4-cycle wait.","OK: each fails at the first cycle that breaks the pattern."]},"sva-s3":{b:"(rd) > {dval[->4]} > (done); (rd) > {dval[=4]} > (done)",f:["P: 4 beats with gaps, then done.","S: dval[->4] ##1 done: done the next cycle.","S: dval[=4] ##1 done: done later, no extra beat.","X: read 2: done 2 cycles late. Read 3: 5 beats.","OK: goto catches the late done; [=4] catches the 5th beat."]},"sva-s4":{b:"(start) > {gnt throughout ack[->3]}",f:["P: gnt must hold until the 3rd ack.","S: gnt throughout ack[->3].","X: gnt drops after the 2nd ack.","OK: fails in the cycle gnt is low."]},"sva-s5":{b:"(cs_n) > {window !cs_n[*6]} > {we[*2] within}; (sop) > {eop[->1] intersect 1[*2:8]}",f:["P: 'inside the window' and 'at most 8 cycles'.","S: within: the inner sequence starts and ends inside the outer one.","S: intersect with 1[*2:8]: same length as a 2..8 cycle sequence.","OK: both bugs fail."]},"sva-s6":{b:"(req) > {##[1:4] ack_a and ##[1:4] ack_b}; (req) > {retry or done}; (req) > {first_match(##[1:5] gnt)}",f:["P: Order-free and alternative outcomes.","S: and: both sequences match; or: either.","S: first_match keeps only the earliest end.","OK: failures point at the missing ack and the missing outcome."]},"sva-s7":{b:"{s_write(a): wr && addr==a ##1 wack} .triggered.> {a_irq}; (irq) > {a_irq}",f:["P: irq must be caused by a write to STATUS.","S: Name the cause as a sequence with an argument.","S: s_write(STATUS).triggered is true when it ends.","OK: irq without the write fails."]},"sva-p1":{b:"{sender} -valid, data-> {receiver}; {receiver} -ready-> {sender}; (valid, ready, data) .> {a_hold, a_stable}",f:["P: The sender must hold valid and data until ready.","S: valid && !ready |=> valid.","S: valid && !ready |=> $stable(data).","X: data 22 \u2192 23 while stalled; valid dropped at 24.","OK: each rule fails once."]},"sva-p2":{b:"(inc) > [cnt register] > (cnt); (cnt) .$past.> {a_inc}",f:["P: cnt == $past(cnt) + 1 fails when cnt wraps.","S: The comparison is evaluated in 32 bits.","S: 4'($past(cnt) + 1) wraps like the counter.","OK: Only the missed increment fails."]},"sva-p3":{b:"(gnt) > {$onehot0}; (addr) > {$isunknown}; (req) > {$countones}",f:["P: Bit-pattern rules.","S: $onehot0(gnt): zero or one bit set.","S: !$isunknown(addr): no X/Z bits.","S: $countones(req) <= 2.","OK: three bugs, three failures."]},"sva-p4":{b:"(wr, rd) > {not (wr ##1 rd)}; (req, fast) > {if fast ##1 ack else ##3 ack}",f:["P: Forbidden sequences and mode-dependent latency.","S: not (wr ##1 rd).","S: if (fast) ##1 ack else ##3 ack.","OK: both bugs fail."]},"sva-p5":{b:"(in_v, in_d) > [stage 1] > [stage 2] > [stage 3] > (out_v, out_d); (in_d) .x = in_d + 1.> {a_data}",f:["P: Compare each output with its own input, 3 clocks later.","S: (in_v, x = in_d + 1) stores the value in the attempt.","S: ##3 out_d == x checks it.","OK: one attempt per input; the corrupted one fails."]},"sva-p6":{b:"(req, id) > {v = id} > {##[1:6] rsp && rsp_id == v}",f:["P: Match responses to requests out of order.","S: (req, v = id) stores the ID per attempt.","S: ##[1:6] (rsp && rsp_id == v).","OK: unanswered IDs fail when the window closes."]},"sva-p7":{b:"(err) > {led until clr}; (req) > {s_eventually gnt}",f:["P: 'Until' and 'eventually' have no bound.","S: led until clr: led every cycle until clr.","S: s_eventually: must happen before the end (strong).","OK: the LED bug fails at once; the missing grant at the end."]},"sva-p8":{b:"(go, ack) > [wb_fsm] > (state, we); (state) .> {c_wr cover}; (state, we) .> {a_we}",f:["P: The assertion never fails. Is the design right?","Q: Was the antecedent ever true? Cover it.","X: state == 2'd4 can never be true in 2 bits.","S: Fix the antecedent to 2'd3.","OK: the corner-case bug fails."]},"sva-a1":{b:"(stall, irq) > [ctrl FSM] > (state); (state) .> {onehot, reset, entry, successor checks}",f:["P: Illegal transitions hide in rare paths.","S: a_decode: DECODE only from FETCH ($past).","S: a_store: EXEC always followed by STORE.","X: EXEC \u2192 DECODE when irq and stall.","OK: both transition checks fail at the same event."]},"sva-a2":{b:"(push, din) > [fifo8] > (dout); [fifo8] > (full, empty, count); (full, empty, count) .> {flag and count assertions}",f:["P: Flags, count and data must agree.","S: full == (count == 8), empty == (count == 0).","S: count follows accepted pushes and pops ($past).","X: full is low while pushing into a full FIFO.","OK: a_full fails exactly when the FIFO is full and push is high."]},"sva-a3":{b:"(we, addr, wdata) > [ram16] > (rdata); (re) > [ram16]; (we, re, addr, wdata, rdata) .> {a_data: write then read}",f:["P: The value written must be the value read.","S: (we, a = addr, d = wdata) captures the write.","S: ##1 (re && addr == a)[->1] finds the read of that address.","S: |=> rdata == d (read latency 1).","X: address 9 is written to address 1."]},"sva-a4":{b:"(req[3:0]) > [rr_arb] > (gnt[3:0]); (req, gnt) .> {onehot0, gnt\u2192req, fairness \xD74}",f:["P: Exclusive, justified and fair grants.","S: $onehot0(gnt); gnt only where $past(req).","S: req[i] |-> ##[1:4] gnt[i] for each i.","X: requester 3 is skipped while requester 0 requests.","OK: fair[3] fails."]},"sva-a5":{b:"[apb_master] -psel, penable, paddr, pwrite, pwdata-> [slave]; [slave] -pready-> [apb_master]; (APB signals) .> {protocol assertions}",f:["P: Check a bus master against the APB spec.","S: SETUP then ACCESS: $rose(psel) |-> !penable; psel && !penable |=> penable.","S: wait states: $stable(paddr, pwrite, pwdata).","X: PADDR changes during a wait state.","OK: a_stable fails."]},"sva-a6":{b:"{sender} -req-> {receiver}; {receiver} -ack-> {sender}; (req, ack) .> {four edge rules + liveness}",f:["P: Four phases in a fixed order.","S: Each edge of req/ack has a condition on the other signal.","X: ack drops while req is still high.","OK: the ack-down rule fails."]},"sva-a7":{b:"(send, data) > [uart_tx] > (tx); (tx) .> {start bit check, stop bit check}",f:["P: 8N1 framing at 4 clocks per bit.","S: $fell(tx) starts a frame: !tx[*4].","S: bit 9 (stop) at ##36: tx[*4].","X: byte C3 is sent with stop bit 0.","OK: a_stop fails for that frame."]},"sva-a8":{b:"(load, inc, d) > [pc] > (pc_cnt); (pc_cnt) .> {load, inc, hold checks}",f:["P: Verify the PC test plan: load, increment, hold.","S: load |=> pc == $past(d).","S: inc && !load |=> pc == 8'($past(pc) + 1).","S: !load && !inc |=> $stable(pc).","X: an increment lost when hold_req is high."]},"cov-1":{b:"{random stimulus} > (opcode, addr) > {cg_cmd @(posedge clk)} > {bins and coverage %}",f:["P: Did the random test reach all opcodes and all address ranges?","S: coverpoint opcode: 8 automatic bins.","S: coverpoint addr with auto_bin_max = 4: 4 ranges of 64.","Q: The stimulus only uses 0..150: which bin stays empty?","OK: The report shows the holes."]},"cov-2":{b:"(a, op) > {cg_alu} > {cp_a: zero, small, big[0..2], max}; {cg_alu} > {cp_op: ops[0..3]}",f:["P: The plan says: corner values and every operation.","S: bins zero, small, big[3], max.","S: bins ops[] = {[0:3]}: 4 bins.","Q: Which corners did the test miss?","OK: The holes name the missing tests."]},"cov-3":{b:"(st) > {cp_tr: start, go, done, b2b, wait2}; (st) .IDLE => ACCESS.> {illegal_bins}",f:["P: Were all transitions exercised?","S: bins t = (A => B) counts each transition.","S: (ACCESS [*3]) counts 3 ACCESS cycles in a row.","X: IDLE => ACCESS is illegal: reported as an error.","OK: The hole: no transfer with two wait states."]},"cov-4":{b:"(cmd) > {wildcard wr / rd}; (cmd) > {each_rd[1..6]}; (cmd) .0000.> {ignore}; (cmd) .0111, 1111.> {illegal: error}",f:["P: Group, ignore and forbid command codes.","S: wildcard bins wr = {4'b1???}.","S: ignore_bins nop: not counted at all.","X: 4'hF is reserved: illegal_bins reports it.","OK: The report lists the missing read command."]},"cov-5":{b:"(btype) > {cp_type}; (blen) > {cp_len}; (wr) > {cp_dir}; {cp_type} > {x_tl}; {cp_len} > {x_tl}; {cp_type} > {x_td}; {cp_dir} > {x_td}",f:["P: Single-field coverage hides missing combinations.","S: cross cp_type, cp_len: 3 \xD7 3 bins.","S: ignore_bins with binsof removes WRAP \xD7 one.","Q: Which combinations did the test not create?","OK: The cross report lists them."]},"cov-6":{b:"(p0) > {c0: cg_port}; (p1) > {c1: cg_port}; {c0} > {type coverage}; {c1} > {type coverage}",f:["P: Two ports, one coverage model.","S: covergroup with a ref argument; one instance per port.","S: at_least = 2: a bin needs 2 hits.","Q: Type coverage merges the instances' hits.","OK: Each port alone has holes the other fills."]},"cov-7":{b:"{transfer task} -a, w, e-> {cov.sample(a, w, e)} > {cg_tr}; (e) .iff (!e).> {cg_tr}",f:["P: Count transactions, not clock cycles.","S: with function sample(a, w, e).","S: the monitor calls cov.sample() per transfer.","S: iff (!e) ignores errored transfers.","OK: data[14h] stays empty."]},"cov-8":{b:"{APB master} > (psel, penable, pready, paddr, pwrite) > {cg_apb at transfer end}; (ws_cnt) > {cg_apb at transfer end}",f:["P: Which registers, directions and latencies did the test cover?","S: sample at psel && penable && pready.","S: regions, read/write, 0/1/2/3+ waits.","S: cross region \xD7 direction, ignore STAT writes.","OK: the holes are the next tests to write."]},"cov-9":{b:"{random packets} > (len, wr) > {cg_pkt}; {directed corners} > (len, wr) > {cg_pkt}; {cg_pkt} .get_coverage().> {random packets}",f:["P: Random tests plateau below 100%.","S: Read the holes in the report.","S: Add stimulus aimed at each hole.","Q: Is a hole unreachable (then ignore it) or just untested?","OK: coverage closed at 100%."]},"dv-1":{b:"{always #5} > (clk_a); {initial forever, FREQ_MHZ} > (clk_b); {task: duty 25%} > (clk_c); (clk_a, clk_b, clk_c) > {period/duty checker}",f:["P: Exact, programmable clocks for the testbench.","S: always #(P/2) clk = ~clk.","S: forever #(500.0/FREQ_MHZ) for any frequency.","S: high for duty \xD7 P, low for the rest.","OK: the checker measures all three."]},"dv-2":{b:"{delay 23 ns} > (por_n) > {2 clk edges} > (sys_rst_n); {#100 + 1st edge} > (soft_rst, 3 cycles)",f:["P: Three resets with different timing rules.","S: por_n: plain delay.","S: sys_rst_n: wait(por_n), then 2 clock edges.","S: soft_rst: 3-cycle pulse on clock edges.","OK: the checker sees 23, 35, 105-135."]},"dv-3":{b:"($urandom) > {& FFFE} > (even); ($urandom) > {| 0001} > (odd); ($urandom_range 0..15) > {1 << n} > (one-hot)",f:["P: Random values with properties, without constraints.","S: even: clear bit 0.","S: odd: set bit 0.","S: one-hot: 1 << random position.","OK: 60 values pass the checks."]},"dv-4":{b:"{directed tests} > (en, up, load, d) > [updown]; (en, up, load, d) > {reference model}; [updown] -q-> {checker}; {reference model} -model-> {checker}",f:["P: Verify a counter feature by feature.","S: Test plan: load, up, down, wrap up, wrap down, hold.","S: One directed test per item; a model checks every cycle.","X: Counting down from 0 gives 14.","OK: Fix the design: every item passes."]},"dv-5":{b:"{random loop: $urandom_range} > (en, up, load, d) > [updown]; [updown] > {checker vs model}; {plan items} .stop when 6/6.> {random loop}",f:["P: Find bugs nobody thought of.","S: Random inputs with weights (load rare, en common).","S: The model checks every cycle.","Q: Did random stimulus reach both wraps?","OK: all items hit, no mismatch."]},"dv-6":{b:"{tb: write(), read() tasks} > (we, re, addr, wdata) > [mem_model: logic [DW-1:0] mem[2**AW]] > (rdata, op)",f:["P: A memory model for the testbench.","S: mem[2**AW] of logic [DW-1:0].","S: registered read, write on we.","S: enum {IDLE, READ, WRITE} for the status.","OK: 16 writes, 16 reads, status checked."]},"dv-7":{b:"{test} -f.push_word / f.pop_word-> {fifo_if: signals + tasks}; {fifo_if: signals + tasks} -modport dut-> [sync_fifo]",f:["P: The same signal bundle everywhere.","S: interface fifo_if with the signals.","S: modport dut for directions.","S: push_word/pop_word tasks drive one transfer.","OK: the test only calls tasks."]},"dv-8":{b:"{Txn: addr, data, write, sprint, copy, compare} > {ErrTxn: + err, sprint override}; {handle a} .points to.> {object}",f:["P: Transactions as objects.","S: b = a copies the handle, a.copy() the object.","S: compare() checks every field.","S: ErrTxn extends Txn; virtual sprint() overrides.","OK: a base handle calls the derived sprint."]},"dv-9":{b:"{main thread} > {fork job1 job2 join}; {main thread} > {fork job3 job4 join_any}; {main thread} > {fork job5 join_none}; {wait_done} > {wait(!busy) vs 20 cycles}",f:["P: Parallel activity and waits that can hang.","S: join waits for all, join_any for one, join_none for none.","S: Timeout: fork the wait and a counter, join_any, disable fork.","OK: order 2 1 4 99 3 5; second wait times out."]},"dv-10":{b:"{push_driver} -push, din-> [sync_fifo]; {pop_driver} -pop-> [sync_fifo]; [sync_fifo] -dout-> {pop_driver}; {push_driver} -expected-> {exp_q}; {exp_q} > {pop_driver}",f:["P: Exercise the FIFO with realistic traffic.","S: Two drivers in parallel with random delays.","S: The queue models the FIFO: push_back on push, compare on pop.","OK: 40 words in order."]},"dv-11":{b:"{class Nums: rand ev, od, oh; randc tag} > {constraints} > {solver} > (values)",f:["P: Random values with properties.","S: constraint c_even { ev % 2 == 0; }","S: $countones(oh) == 1 for one-hot.","S: randc tag: a permutation of 0..7 per cycle.","OK: 16 calls, every tag twice."]},"dv-12":{b:"{c_len: dist 1:=20, [2:63]:/60, 64:=20} > {solver} > (len histogram)",f:["P: Bias stimulus toward corner cases.","S: inside { ... } for legal values.","S: dist with := per value, :/ per range.","Q: What would [2:63] := 60 do instead?","OK: 20 / 60 / 20 % within tolerance."]},"dv-13":{b:"{Mode: short_pkt -> len == 0} > (small = 1 in 20%); {ModeSB: + solve short_pkt before len} > (small = 1 in 50%)",f:["P: Why is small so rare?","S: The solver is uniform over all solutions: 1 of 5 has small = 1.","S: solve short_pkt before len: choose small first.","OK: 20% vs 50%."]},"dv-14":{b:"{v.size() == n} > {foreach v[i] in [lo:hi]} > {v.sum() == total} > {unique {v}} > (6 numbers)",f:["P: Several numbers with a joint property.","S: size() first, then foreach for each element.","S: sum() ties them together; unique {v} keeps them distinct.","Q: 6 \xD7 30 = 180 < 200: is total = 200 possible?","OK: five valid splits."]},"dv-15":{b:"{test} -with {addr == 20h}-> {Txn.randomize()}; {test} .constraint_mode(0).> {c_addr}; {test} .rand_mode(0).> (wr); {Txn.randomize()} > {post_randomize}",f:["P: Steer single calls without new classes.","S: inline with { } adds constraints for one call.","S: soft gives way to a conflicting hard constraint.","S: constraint_mode / rand_mode switch rules and variables off.","OK: all four steering tests pass."]},"dv-16":{b:"{package count_pkg: dir_t, count_list()} > {tb: import count_pkg::*}; {tb} > {$fdisplay counts.txt} > {$fgets}",f:["P: Reusable types and helpers, and file I/O.","S: package with the enum and the function.","S: import into the testbench.","S: write the list to a file, read it back.","OK: all checks match."]},"dv-17":{b:"{directed tests} > (push, pop, din) > [sync_fifo]; (push, pop, din) > {queue model}; [sync_fifo] -dout, full, empty-> {compare}; {queue model} > {compare}; (push, pop, level) > {cg_plan: op \xD7 level}",f:["P: Which FIFO scenarios matter, and were they tested?","S: Plan = {idle, rd, wr, both} \xD7 {empty, mid, full}.","S: One directed step per hole until 100%.","X: push + pop together when full: the pop is ignored.","OK: fix the design: 100% and no mismatch."]},"dv-18":{b:"{FifoOp: rand push, pop, data; mode} > {op task} > [sync_fifo]; [sync_fifo] > {model check}; (ops, level) > {cg_plan} .get_coverage().> {phase loop}",f:["P: Balanced random traffic never fills the FIFO.","S: mode-dependent dist: fill, balanced, drain.","S: switch phases every 20 operations.","S: stop when the plan coverage reaches 100%.","OK: all 12 plan bins, no mismatch."]},"dv-19":{b:"[sync_fifo] -dout-> {data scoreboard}; [sync_fifo] -full, empty-> {fifo_sva (bound)}; (push, pop) > {aux level counter} > {fifo_sva (bound)}",f:["P: The data is right, so is the FIFO right?","S: Bind a checker with flag assertions.","S: An auxiliary level counter is the reference.","X: empty rises while popping with 2 words stored.","OK: a_empty fails although the scoreboard passes."]},"dv-p1":{b:"{generator: FifoTxn} > {driver} > [fifo_np2]; [fifo_np2] > {monitor}; {monitor} -push data-> {scoreboard}; {monitor} -pop data-> {scoreboard}; {monitor} > {coverage}; [fifo_np2] .bind.> {assertions}",f:["P: Verify a FIFO with depth 6 (not a power of 2).","S: Random phases fill, balance and drain the FIFO.","S: The scoreboard compares every popped word.","X: rp wraps at DEPTH instead of DEPTH-1: data from a stale slot.","OK: fixed RTL: clean scoreboard, 100% coverage."]},"dv-p2":{b:"{requester models \xD74: hold until granted} > (req[3:0]) > [rr4] > (gnt[3:0]); (req, gnt) .> {onehot0, gnt\u2192req, fair[i] \xD74}; (req) > {cg_arb: 0..4 requests}",f:["P: Is the arbiter fair under every load?","S: Requesters hold req until granted.","S: fair[i]: req[i] |-> ##[1:4] gnt[i].","X: ptr <= winner keeps the winner on top: others starve under saturation.","OK: ptr <= winner + 1: all assertions pass."]},"dv-p3":{b:"{random test} > {apb_write / apb_read} > [apb_regs]; {apb_write / apb_read} > {RegModel}; [apb_regs] -prdata-> {compare}; {RegModel} -predicted-> {compare}; (APB) .> {protocol assertions, map coverage}",f:["P: Does every register follow the map?","S: A model class mirrors each register.","S: Random reads compare with the prediction.","X: a write to read-only STAT changes CTRL.","OK: fixed RTL: all reads match, map 100%."]},"dv-p4":{b:"{test: bytes + error injection} > [uart TX] -tx-> [uart RX] > (rx_data, frame_err) > {scoreboard}; {test} -expected-> {scoreboard}; (tx) .> {a_start}",f:["P: Does the receiver detect framing errors?","S: Inject bad stop bits on purpose.","S: The scoreboard expects {err, data} per frame.","X: the receiver never checks the stop bit.","OK: frame_err <= !tx at the stop bit: PASS."]}};function Xe(t){let e=[],n=new Map,s=[],a="",i=0,d=t.split(/\s+/),r=!0,b=0,m=0;for(;i<d.length;){let u=d[i++];if(!u)continue;if(r){if(u==="$scope"){for(i++,s.push(d[i++]);d[i]!=="$end";)i++;i++}else if(u==="$upscope"){for(s.pop();d[i]!=="$end";)i++;i++}else if(u==="$timescale"){let y=[];for(;d[i]!=="$end";)y.push(d[i++]);i++,a=y.join("")}else if(u==="$var"){let y=d[i++],h=parseInt(d[i++],10),c=d[i++],f=[];for(;d[i]!=="$end";)f.push(d[i++]);i++;let w=f[0];f[1]&&f[1].startsWith("[")&&(w+=f[1]);let S=[...s,w].join(".");if(y==="parameter")continue;if(n.has(c)){n.get(c).aliases.push(S);continue}let q=[...s.slice(1),w].join("."),R={id:c,name:S,short:q||w,depth:s.length,width:h,type:y,changes:[],aliases:[]};n.set(c,R),e.push(R)}else if(u==="$enddefinitions"){for(;d[i]!=="$end";)i++;i++,r=!1}else if(u.startsWith("$")){for(;i<d.length&&d[i]!=="$end";)i++;i++}continue}let p=u[0];if(p==="#")b=Number(u.slice(1)),b>m&&(m=b);else if(p!=="$")if(p==="b"||p==="B"||p==="r"||p==="R"){let y=u.slice(1),h=d[i++],c=n.get(h);c&&Ue(c,b,p==="r"||p==="R"?Number(y):y)}else{let y=n.get(u.slice(1));y&&Ue(y,b,p.toLowerCase())}}return{signals:e,timescale:a,endTime:m}}function Ue(t,e,n){let s=t.changes;s.length&&s[s.length-1][0]===e?s[s.length-1][1]=n:(!s.length||s[s.length-1][1]!==n)&&s.push([e,n])}function Ve(t,e){let n=t.changes,s=0,a=n.length-1,i=-1;for(;s<=a;){let d=s+a>>1;n[d][0]<=e?(i=d,s=d+1):a=d-1}return i<0?null:n[i][1]}function xe(t,e,n){if(e==null)return"";if(typeof e=="number")return String(+e.toPrecision(6));if(t.width===1)return e;let s=e.padStart(t.width,e[0]==="x"||e[0]==="z"?e[0]:"0");if(/[xz]/i.test(s))return/^x+$/i.test(s)?"x":/^z+$/i.test(s)?"z":n==="bin"?s:"x";if(n==="bin")return s;let a=BigInt("0b"+s);if(n==="dec")return a.toString(10);if(n==="sdec"){let i=BigInt(t.width);return(s[0]==="1"?a-(1n<<i):a).toString(10)}return a.toString(16).toUpperCase().padStart(Math.ceil(t.width/4),"0")}var le=class{constructor(e,n){this.c=e,this.ctx=e.getContext("2d"),this.data=null,this.radix="hex",this.cursor=null,this.t0=0,this.t1=1,this.onCursor=n.onCursor||(()=>{}),this.nameW=190,this.rowH=28,this.axisH=26,this.theme=n.theme,e.addEventListener("mousedown",s=>this.click(s)),e.addEventListener("wheel",s=>this.wheel(s),{passive:!1}),new ResizeObserver(()=>this.draw()).observe(e.parentElement)}setData(e){this.data=e,this.cursor=null,this.t0=0,this.t1=Math.max(1,e.endTime),this.draw(),this.onCursor(null)}clear(){this.data=null,this.draw()}zoom(e,n){if(!this.data)return;let s=this.t1-this.t0,a=n??this.cursor??this.t0+s/2,i=Math.min(Math.max(s*e,2),Math.max(1,this.data.endTime)*1.05),d=a-(a-this.t0)*(i/s);d=Math.max(0,Math.min(d,Math.max(0,this.data.endTime-i))),this.t0=d,this.t1=d+i,this.draw()}fit(){this.data&&(this.t0=0,this.t1=Math.max(1,this.data.endTime),this.draw())}pan(e){if(!this.data)return;let n=this.t1-this.t0,s=this.t0+n*e;s=Math.max(0,Math.min(s,Math.max(0,this.data.endTime-n))),this.t0=s,this.t1=s+n,this.draw()}xOf(e,n){return this.nameW+(e-this.t0)/(this.t1-this.t0)*(n-this.nameW-8)}tOf(e,n){return this.t0+(e-this.nameW)/(n-this.nameW-8)*(this.t1-this.t0)}click(e){if(!this.data)return;let n=this.c.getBoundingClientRect(),s=e.clientX-n.left;s<this.nameW||(this.cursor=Math.max(0,Math.round(this.tOf(s,n.width))),this.draw(),this.onCursor(this.cursor))}wheel(e){if(!this.data)return;let n=this.c.getBoundingClientRect();e.ctrlKey||e.metaKey||Math.abs(e.deltaY)>Math.abs(e.deltaX)&&e.shiftKey===!1&&e.altKey?(e.preventDefault(),this.zoom(e.deltaY>0?1.25:.8,this.tOf(e.clientX-n.left,n.width))):(Math.abs(e.deltaX)>Math.abs(e.deltaY)||e.shiftKey)&&(e.preventDefault(),this.pan((e.deltaX||e.deltaY)/600))}draw(){let e=this.theme(),s=this.c.parentElement.clientWidth;this.nameW=s<640?112:190;let a=this.data?this.data.signals:[],i=this.axisH+Math.max(a.length,3)*this.rowH+8,d=window.devicePixelRatio||1;this.c.style.width=s+"px",this.c.style.height=i+"px",this.c.width=Math.round(s*d),this.c.height=Math.round(i*d);let r=this.ctx;if(r.setTransform(d,0,0,d,0,0),r.fillStyle=e.bg,r.fillRect(0,0,s,i),r.font="12px 'JetBrains Mono', ui-monospace, monospace",r.textBaseline="middle",!this.data){r.fillStyle=e.muted,r.fillText("Run a simulation that calls $dumpvars to see waveforms here.",16,i/2);return}let b=this.t1-this.t0,m=(s-this.nameW)/110,u=b/Math.max(1,m),p=Math.pow(10,Math.floor(Math.log10(u))),y=[1,2,5,10].map(h=>h*p).find(h=>h>=u)||p*10;r.strokeStyle=e.grid,r.fillStyle=e.muted,r.lineWidth=1;for(let h=Math.ceil(this.t0/y)*y;h<=this.t1;h+=y){let c=Math.round(this.xOf(h,s))+.5;r.beginPath(),r.moveTo(c,this.axisH-6),r.lineTo(c,i),r.stroke(),r.fillText(me(h,this.data.timescale),c+3,11)}if(r.strokeStyle=e.line,r.beginPath(),r.moveTo(0,this.axisH+.5),r.lineTo(s,this.axisH+.5),r.stroke(),a.forEach((h,c)=>{let f=this.axisH+c*this.rowH,w=f+6,S=f+this.rowH-6,q=(w+S)/2;r.fillStyle=c%2?e.rowAlt:e.bg,r.fillRect(0,f+1,s,this.rowH-1),r.fillStyle=e.text;let R=h.short+(h.width>1&&!h.short.includes("[")?` [${h.width-1}:0]`:"");if(r.fillText(Ke(r,R,this.nameW-16),10,q),r.save(),r.beginPath(),r.rect(this.nameW,f,s-this.nameW,this.rowH),r.clip(),h.kind==="assert"){this.drawAssert(r,h,s,w,S,q,e),r.restore();return}let L=h.changes;for(let I=0;I<L.length;I++){let H=L[I][0],j=I+1<L.length?L[I+1][0]:this.data.endTime;if(j<this.t0||H>this.t1)continue;let D=this.xOf(H,s),$=this.xOf(j,s),O=L[I][1];if(h.width===1&&typeof O=="string"){let W=O==="x"?e.x:O==="z"?e.z:e.wave;r.strokeStyle=W,r.lineWidth=1.5,O==="x"&&(r.fillStyle=e.xFill,r.fillRect(D,w,$-D,S-w));let J=O==="1"?w:O==="0"?S:q;if(r.beginPath(),I>0){let E=L[I-1][1],ne=E==="1"?w:E==="0"?S:q;r.moveTo(D,ne)}else r.moveTo(D,J);r.lineTo(D,J),r.lineTo($,J),r.stroke()}else{let W=xe(h,O,this.radix),J=W==="x"||W==="z";r.strokeStyle=J?e.x:e.wave,r.lineWidth=1.2,r.fillStyle=J?e.xFill:e.busFill;let E=Math.min(4,($-D)/2);r.beginPath(),r.moveTo(D,q),r.lineTo(D+E,w),r.lineTo($-E,w),r.lineTo($,q),r.lineTo($-E,S),r.lineTo(D+E,S),r.closePath(),r.fill(),r.stroke();let ne=$-D-10;ne>14&&(r.fillStyle=e.text,r.fillText(Ke(r,W,ne),Math.max(D,this.nameW)+6,q))}}r.restore()}),r.strokeStyle=e.line,r.beginPath(),r.moveTo(this.nameW+.5,0),r.lineTo(this.nameW+.5,i),r.stroke(),this.cursor!==null&&this.cursor>=this.t0&&this.cursor<=this.t1){let h=Math.round(this.xOf(this.cursor,s))+.5;r.strokeStyle=e.cursor,r.lineWidth=1.5,r.beginPath(),r.moveTo(h,0),r.lineTo(h,i),r.stroke()}}};le.prototype.drawAssert=function(t,e,n,s,a,i,d){let r={pass:d.pass||"#2e9d5b",fail:d.fail||"#d64545",cover:d.coverc||"#3b7dd8",incomplete:d.muted,disabled:d.muted};t.strokeStyle=d.grid,t.lineWidth=1,t.beginPath(),t.moveTo(this.nameW,i),t.lineTo(n,i),t.stroke();let b=e.events||[];for(let m of b){if(m.s1<this.t0||m.s0>this.t1)continue;let u=this.xOf(m.s0,n),p=this.xOf(m.s1,n),y=r[m.kind]||d.muted;(m.kind==="fail"||m.kind==="incomplete"||p-u>3&&b.length<400)&&(t.globalAlpha=m.kind==="fail"?.28:.14,t.fillStyle=y,t.fillRect(u,s+3,Math.max(1,p-u),a-s-6),t.globalAlpha=1),t.fillStyle=y,t.beginPath(),m.kind==="pass"?(t.moveTo(p,s),t.lineTo(p+5,a),t.lineTo(p-5,a)):m.kind==="fail"?(t.moveTo(p-6,s),t.lineTo(p+6,s),t.lineTo(p,a)):m.kind==="cover"?(t.moveTo(p,s),t.lineTo(p+5,i),t.lineTo(p,a),t.lineTo(p-5,i)):t.arc(p,i,4,0,2*Math.PI),t.closePath(),t.fill()}};function Ke(t,e,n){if(t.measureText(e).width<=n)return e;for(;e.length>1&&t.measureText(e+"\u2026").width>n;)e=e.slice(0,-1);return e+"\u2026"}function me(t,e){let n=/^(\d+)(s|ms|us|ns|ps|fs)$/.exec(e||"");if(!n)return String(t);let s=["fs","ps","ns","us","ms","s"],a=t*Number(n[1]),i=s.indexOf(n[2]);for(;i<s.length-1&&Math.abs(a)>=1e3&&a%1e3===0;)a/=1e3,i++;return i<2&&Math.abs(a)>=1e3&&(a/=1e3,i++,a=+a.toFixed(3)),`${a} ${s[i]}`}var Z=document.body.dataset.lab;var un=Z==="sva"||Z==="dv",hn=t=>t.startsWith("sva-")||t.startsWith("cov-")||t.startsWith("dv-"),Ze=t=>Z==="sva"?t.startsWith("sva-")||t.startsWith("cov-"):Z==="dv"?t.startsWith("dv-"):Z==="systemverilog"?t==="sv":Z==="logic"?t.startsWith("ld-"):t!=="sv"&&!t.startsWith("ld-")&&!hn(t),Ye=[...Ce.map(t=>({group:"examples",...t})),...Be,...He];for(let t of Ye)t.quiz=Ee[t.id]||ze[t.id]||[];var en={...Pe,...Me},nn={...Le,...je},C=Ye.filter(t=>Ze(t.group)),mn=[{id:"examples",title:"Examples",note:"Ready-to-copy examples: counters, FSMs, FIFOs, CDC synchronizers, SystemVerilog. Edit anything and press Run."},...We.map(t=>({...t,note:"Write the design in the Design pane: the ports are given. The testbench checks it and prints PASS or FAIL. A \u2713 marks the labs you have passed."})),...Ne],ye=mn.filter(t=>Ze(t.id)),ce="vdd-vlabs-code-v1",ke="vdd-vlabs-pass-v1",de=t=>{try{return JSON.parse(localStorage.getItem(t)||"{}")||{}}catch{return{}}},qe=(t,e)=>{try{localStorage.setItem(t,JSON.stringify(e))}catch{}},_=t=>document.querySelector(t),Ge=15e3,tn=Z==="systemverilog"?"vdd-svlabs-v1":Z==="logic"?"vdd-logiclabs-v1":Z==="sva"?"vdd-svalabs-v1":Z==="dv"?"vdd-dvlabs-v1":"vdd-playground-v1",g={example:C[0].id,track:C[0].group,usedSolution:!1,std:C[0].std,running:!1,worker:null,ready:!1,timer:null,startedAt:0,lastVcd:null};function Qe(t){let e=t.querySelector("textarea");if(window.CodeMirror){let n=window.CodeMirror.fromTextArea(e,{mode:"verilog",lineNumbers:!0,indentUnit:2,tabSize:2,smartIndent:!0,matchBrackets:!0,viewportMargin:1/0,extraKeys:{Tab:s=>s.replaceSelection("  ")}});return{get:()=>n.getValue(),set:s=>{n.setValue(s),n.clearHistory()},onChange:s=>n.on("change",s),refresh:()=>n.refresh(),goto:s=>{n.focus(),n.setCursor({line:s-1,ch:0}),n.addLineClass(s-1,"background","cm-errline"),setTimeout(()=>n.removeLineClass(s-1,"background","cm-errline"),2500),n.scrollIntoView({line:s-1,ch:0},80)},addKeys:s=>n.addKeyMap(s)}}return e.classList.add("plain-editor"),{get:()=>e.value,set:n=>{e.value=n},onChange:n=>e.addEventListener("input",n),refresh(){},goto:n=>{let s=e.value.split(`
+`),a=0;for(let i=0;i<n-1&&i<s.length;i++)a+=s[i].length+1;e.focus(),e.setSelectionRange(a,a+(s[n-1]||"").length)},addKeys(){}}}var F={design:Qe(_("#ed-design")),tb:Qe(_("#ed-tb"))};function pe(){return g.std==="2012"?{design:"design.sv",tb:"testbench.sv"}:{design:"design.v",tb:"testbench.v"}}function Se(){let t=pe();_("#name-design").textContent=t.design,_("#name-tb").textContent=t.tb}var bn=()=>ye.find(t=>t.id===g.track)||ye[0],fn=t=>(C.find(e=>e.id===t)||C[0]).group;function ge(){let t=_("#vtracks");t.innerHTML="";for(let e of ye){let n=document.createElement("button");n.type="button",n.className="vtrack"+(e.id===g.track?" active":""),n.setAttribute("role","tab"),n.setAttribute("aria-selected",e.id===g.track?"true":"false");let s=C.filter(i=>i.group===e.id),a=e.id==="examples"?0:s.filter(i=>de(ke)[i.id]).length;n.innerHTML='<span class="vtrack-t"></span><span class="vtrack-n"></span>',n.querySelector(".vtrack-t").textContent=e.title,n.querySelector(".vtrack-n").textContent=s.length+(e.id==="examples"?" examples":" labs")+(a?` \xB7 ${a} \u2713`:""),n.addEventListener("click",()=>yn(e.id)),t.appendChild(n)}_("#vtrack-note").textContent=bn().note,document.body.dataset.track!==g.track&&(document.body.dataset.track=g.track,document.dispatchEvent(new CustomEvent("vdd-track"))),_("#side-title").textContent=g.track==="examples"?"// Examples":"// Labs",_("#side-note").hidden=g.track!=="examples",_("#reset").textContent=g.track==="examples"?"Reset example":"Reset lab"}function yn(t){g.track=t;try{let e=new URL(location.href);e.searchParams.set("track",t),history.replaceState(null,"",e.pathname+e.search)}catch{}fn(g.example)!==t?ae(C.find(e=>e.group===t).id):(ge(),re())}var ue=null;function re(){let t=_("#examples");t.innerHTML="";let e=de(ke),n=C.filter(a=>a.group===g.track);for(let a of n){let i=document.createElement("button");if(i.type="button",i.className="ex"+(a.id===g.example?" active":""),i.innerHTML='<span class="ex-tag"></span><span class="ex-title"></span>',i.querySelector(".ex-tag").textContent=a.tag,e[a.id]){let r=document.createElement("span");r.className="ex-pass",r.textContent="\u2713 passed",i.querySelector(".ex-tag").appendChild(r)}let d=ue&&ue.status(a.id);if(d&&d.checked){let r=document.createElement("span");r.className="ex-pass",r.textContent=`quiz ${d.score}/${d.total}`,i.querySelector(".ex-tag").appendChild(r)}i.querySelector(".ex-title").textContent=a.title,i.addEventListener("click",()=>ae(a.id)),t.appendChild(i)}let s=_("#ex-select");s.innerHTML=n.map(a=>`<option value="${a.id}">${a.group==="examples"?"":a.tag+" \xB7 "}${a.title}</option>`).join(""),n.some(a=>a.id===g.example)&&(s.value=g.example)}function kn(){let t=C.find(n=>n.id===g.example);if(!t||t.group==="examples")return;let e=de(ce);e[t.id]={design:F.design.get(),tb:F.tb.get()},qe(ce,e)}function ae(t,e){let n=C.find(a=>a.id===t)||C[0];g.example=n.id,g.std=n.std,g.track=n.group,g.usedSolution=!1,_("#std").value=n.std;let s=!e&&n.group!=="examples"?de(ce)[n.id]:null;if(F.design.set(s?s.design:n.design),F.tb.set(s?s.tb:n.tb),e&&n.group!=="examples"){let a=de(ce);delete a[n.id],qe(ce,a)}_("#show-solution").hidden=!n.solution,Se(),ge(),re(),ve(en,n.id,nn),ue.render(n),oe(),$e(),T.clear(),_("#wave-values").textContent="",an(null),ie("Ready","idle")}function wn(){let t=C.find(e=>e.id===g.example);!t||!t.solution||(t.solution.design&&F.design.set(t.solution.design),t.solution.tb&&F.tb.set(t.solution.tb),g.usedSolution=!0,oe(),$e(),Q("Loaded the solution. Run it to see PASS. Reset lab brings your starting point back.","meta"))}function _n(t){let e=C.find(s=>s.id===g.example);if(!e||e.group==="examples"||g.usedSolution||!/(^|\n)PASS\b/.test(t))return;let n=de(ke);n[e.id]||(n[e.id]=Date.now(),qe(ke,n),ge(),re())}function oe(){kn();try{localStorage.setItem(tn,JSON.stringify({example:g.example,std:g.std,design:F.design.get(),tb:F.tb.get()}))}catch{}}function vn(){try{let t=JSON.parse(localStorage.getItem(tn)||"null");if(t&&t.design!=null)return t}catch{}return null}async function xn(){let t=JSON.stringify({s:g.std,d:F.design.get(),t:F.tb.get()}),e=new Blob([t]).stream().pipeThrough(new CompressionStream("deflate-raw")),n=new Uint8Array(await new Response(e).arrayBuffer()),s="";for(let a of n)s+=String.fromCharCode(a);return btoa(s).replace(/\+/g,"-").replace(/\//g,"_").replace(/=+$/,"")}async function qn(t){let e=atob(t.replace(/-/g,"+").replace(/_/g,"/")),n=Uint8Array.from(e,a=>a.charCodeAt(0)),s=new Blob([n]).stream().pipeThrough(new DecompressionStream("deflate-raw"));return JSON.parse(await new Response(s).text())}async function be(t,e){let n=!1;try{await navigator.clipboard.writeText(t),n=!0}catch{let a=document.createElement("textarea");a.value=t,a.style.position="fixed",a.style.opacity="0",document.body.appendChild(a),a.select();try{n=document.execCommand("copy")}catch{}a.remove()}if(e){let s=e.dataset.label||e.textContent;e.dataset.label=s,e.textContent=n?"Copied":"Press Ctrl+C",e.classList.toggle("ok",n),setTimeout(()=>{e.textContent=s,e.classList.remove("ok")},1600)}}function Je(t,e){let n=document.createElement("a");n.href=URL.createObjectURL(new Blob([e],{type:"text/plain"})),n.download=t,document.body.appendChild(n),n.click(),setTimeout(()=>{URL.revokeObjectURL(n.href),n.remove()},500)}var se=_("#console");function $e(){se.textContent=""}function Q(t,e){let n=document.createElement("div");n.className="ln "+(e||"");let s=/^(?:\/work\/)?([\w.-]+\.s?v):(\d+):/.exec(t);if(s){let a=s[1]===pe().design?"design":s[1]===pe().tb?"tb":null,i=document.createElement("button");i.type="button",i.className="loc",i.textContent=`${s[1]}:${s[2]}`,a&&i.addEventListener("click",()=>F[a].goto(+s[2])),n.appendChild(i),n.appendChild(document.createTextNode(":"+t.slice(s[0].length)))}else n.textContent=t;/qualities are ignored/.test(t)?n.classList.add("warn"):/\berror\b|ERROR|sorry|FAIL|MISMATCH|Internal error|Unable to/.test(t)?n.classList.add("err"):/\bwarning\b/i.test(t)?n.classList.add("warn"):/\bPASS\b/.test(t)&&n.classList.add("pass"),se.appendChild(n),se.childElementCount>6e3&&se.firstChild.remove(),se.scrollTop=se.scrollHeight}function ie(t,e){let n=_("#status");n.textContent=t,n.dataset.kind=e}var Ae=new URL(un?"/dv/":"/verilog/",location.href).href;function Sn(){return new URL("worker.js",Ae).href}function Te(){g.worker&&g.worker.terminate(),g.ready=!1;let t=new Worker(Sn());t.onmessage=e=>$n(e.data),t.onerror=e=>{Q("Simulator failed to start: "+(e.message||"worker error"),"err"),De(!1)},t.postMessage({type:"load",base:Ae}),g.worker=t}function $n(t){if(t.type==="ready")g.ready=!0,g.running||ie("Ready","idle");else if(t.type==="stage")ie(t.stage+"\u2026","busy"),t.stage==="Simulating"&&Q("\u2500\u2500 simulation output \u2500\u2500","meta");else if(t.type==="line")Q(t.line.replace(/\/work\//g,""),t.kind==="meta"?"meta":t.kind==="pass"?"pass":t.stream==="err"?"stderr":"");else if(t.type==="done"){if(t.ok){Q(`\u2500\u2500 finished in ${t.ms} ms \u2500\u2500`,"meta"),t.dv&&Tn(t.dv),_n(se.innerText),an(t.dv);let e=(t.vcd||[])[0];if(e){g.lastVcd=e;try{let n=Xe(e.text);An(n,t.dv),T.setData(n),_("#wave-meta").textContent=`${n.signals.length} signals \xB7 ${me(n.endTime,n.timescale)}`}catch(n){Q("Could not read waveform: "+n.message,"err")}}else T.clear(),_("#wave-meta").textContent='No waveform: add $dumpfile("dump.vcd"); $dumpvars(0, tb);'}else t.phase==="compile"?Q("\u2500\u2500 compile failed: fix the errors above and run again \u2500\u2500","meta err"):t.phase==="sim"&&Q(`\u2500\u2500 simulation exited with code ${t.rc} \u2500\u2500`,"meta err");De(t.ok,t.phase)}}function fe(){if(g.running)return;window.vddSubscribe&&window.vddSubscribe(),g.worker||Te(),oe(),$e(),_("#wave-values").textContent="",g.running=!0,g.startedAt=performance.now(),_("#run").disabled=!0,_("#stop").disabled=!1,ie(g.ready?"Compiling\u2026":"Loading simulator\u2026","busy");let t=pe(),e={[t.design]:F.design.get(),[t.tb]:F.tb.get()},n=_("#top").value.trim();g.worker.postMessage({type:"run",files:e,std:g.std,top:n,base:Ae}),clearTimeout(g.timer),g.timer=setTimeout(()=>sn(`Stopped after ${Ge/1e3} s. Does your testbench call $finish?`),Ge)}function sn(t){g.running&&(Q(t||"Stopped.","meta err"),De(!1,"stopped"),Te())}function De(t,e){clearTimeout(g.timer),g.running=!1,_("#run").disabled=!1,_("#stop").disabled=!0,e==="stopped"?ie("Stopped","err"):ie(t?"Done":e==="compile"?"Compile errors":"Error",t?"ok":"err")}function An(t,e){if(t.signals=t.signals.filter(n=>!/(^|\.)(__dv|_ivl_)/.test(n.name)),!(!e||!e.asserts))for(let n of e.asserts){if(!n.events||!n.events.length)continue;let s=n.name.split(".").slice(1).join(".")||n.name;t.signals.push({id:"assert:"+n.name,name:n.name,short:"\u25C6 "+s,width:1,kind:"assert",changes:[],events:n.events})}}function ee(t){return String(t).replace(/[&<>"]/g,e=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"})[e])}function an(t){let e=_("#dvres");if(!e)return;if(!t||!t.asserts.length&&!t.coverage.length){e.hidden=!0;return}e.hidden=!1;let n="";if(t.asserts.length){n+='<h3>Assertions</h3><div class="dv-tablewrap"><table class="dv-table"><thead><tr><th>Assertion</th><th>Passed</th><th>Failed</th><th>Vacuous</th><th>Unfinished</th><th>Covered</th></tr></thead><tbody>';for(let s of t.asserts){let a=s.kind==="cover"||s.kind==="coverseq",i=s.events.find(d=>d.kind==="fail");n+=`<tr class="${s.fail?"bad":a&&!s.matches?"warnr":""}"><td><button type="button" class="dv-a" data-t="${i?i.s1:""}" data-line="${s.line}">${ee(s.name)}</button>${a?' <span class="dv-k">cover</span>':s.kind==="assume"?' <span class="dv-k">assume</span>':""}</td><td>${a?"":s.pass}</td><td>${a?"":s.fail}</td><td>${a?"":s.vacuous}</td><td>${s.incomplete||""}</td><td>${a?s.matches:""}</td></tr>`}n+='</tbody></table></div><p class="dv-note">Click an assertion to jump to its first failure. In the waveform: \u25B2 pass, \u25BC fail, \u25C6 cover, \u25CB unfinished at the end of the run.</p>'}for(let s of t.coverage){n+=`<h3>Covergroup ${ee(s.type)} <span class="dv-inst">${ee(s.name)}</span> <span class="dv-pct ${s.coverage>=100?"ok":""}">${s.coverage.toFixed(1)}%</span></h3>`;let a=[...s.cps.map(i=>({...i,what:"coverpoint"})),...s.crosses.map(i=>({...i,what:"cross"}))];for(let i of a){let d=i.bins.filter(b=>b.n>=i.at_least).length;n+=`<details class="dv-cp"${i.coverage<100?" open":""}><summary>${i.what} <b>${ee(i.name)}</b>: ${i.coverage.toFixed(1)}% (${d} of ${i.bins.length} bins)</summary><div class="dv-bins">`;let r=Math.max(1,...i.bins.map(b=>b.n));for(let b of i.bins.slice(0,300))n+=`<div class="dv-bin ${b.n>=i.at_least?"hit":"miss"}"><span class="dv-bn">${ee(b.name)}${b.label?` <i>${ee(b.label)}</i>`:""}</span><span class="dv-bar"><span style="width:${100*b.n/r}%"></span></span><span class="dv-bc">${b.n}</span></div>`;i.bins.length>300&&(n+=`<div class="dv-note">\u2026 ${i.bins.length-300} more bins</div>`),i.def&&(n+=`<div class="dv-bin def"><span class="dv-bn">${ee(i.def.name)} (default, not counted)</span><span class="dv-bar"></span><span class="dv-bc">${i.def.n}</span></div>`),i.ignore&&i.ignore.length&&(n+=`<div class="dv-note">ignore_bins: ${ee(i.ignore.join(", "))}</div>`),i.illegal&&i.illegal.length&&(n+=`<div class="dv-note">illegal_bins: ${ee(i.illegal.join(", "))}</div>`),n+="</div></details>"}}e.querySelector(".dv-body").innerHTML=n,e.querySelectorAll(".dv-a").forEach(s=>s.addEventListener("click",()=>{let a=s.dataset.t;if(a!==""&&T.data){T.cursor=+a;let d=T.t1-T.t0;T.t0=Math.max(0,+a-d/2),T.t1=T.t0+d,T.draw(),T.onCursor(+a)}if(+s.dataset.line){let d=g.lastFiles||{}}}))}function Tn(t){let e=C.find(a=>a.id===g.example);if(!e||!e.check)return;let n=[],s=a=>a.split(".").pop();for(let a of e.check){if(a.assert){let i=t.asserts.find(r=>s(r.name)===a.assert||r.name===a.assert);if(!i){n.push(`assertion ${a.assert} is missing (keep the label ${a.assert})`);continue}let d=i.events.filter(r=>r.kind==="fail").map(r=>r.t1);if(a.fails!==void 0){let r=a.fails.join(","),b=d.join(",");r!==b&&n.push(`${a.assert}: expected failures at [${r||"none"}], got [${b||"none"}]`)}a.minPass!==void 0&&i.pass<a.minPass&&n.push(`${a.assert}: only ${i.pass} non-vacuous passes (expected at least ${a.minPass}) \u2014 is it vacuous?`),a.matches!==void 0&&i.matches!==a.matches&&n.push(`${a.assert}: covered ${i.matches} times, expected ${a.matches}`)}if(a.cg){let i=t.coverage.find(d=>d.type===a.cg||d.name===a.cg);if(!i){n.push(`covergroup ${a.cg} has no samples`);continue}if(a.coverage!==void 0&&Math.abs(i.coverage-a.coverage)>.05&&n.push(`${a.cg}: coverage ${i.coverage.toFixed(1)}%, expected ${a.coverage.toFixed(1)}%`),a.min!==void 0&&i.coverage<a.min&&n.push(`${a.cg}: coverage ${i.coverage.toFixed(1)}% is below ${a.min}%`),a.bins)for(let[d,r]of Object.entries(a.bins)){let b=[...i.cps,...i.crosses].find(m=>m.name===d);b?b.bins.length!==r&&n.push(`${a.cg}.${d}: ${b.bins.length} bins, expected ${r}`):n.push(`${a.cg}: no coverpoint or cross named ${d}`)}}}if(n.length){Q(`FAIL: ${n.length} check${n.length>1?"s":""} did not match the lab`,"err");for(let a of n)Q("  "+a,"err")}else Q(e.check.some(a=>a.assert)?e.check.some(a=>a.cg)?"PASS: assertions and coverage behave as the lab expects":"PASS: your assertions behave as the lab expects":"PASS: your coverage model matches the lab","pass")}var X=t=>getComputedStyle(document.documentElement).getPropertyValue(t).trim(),T=new le(_("#wave"),{theme:()=>({pass:X("--ok")||"#2e9d5b",fail:X("--err")||"#d64545",bg:X("--wave-bg"),rowAlt:X("--wave-row"),grid:X("--wave-grid"),line:X("--line"),text:X("--text"),muted:X("--muted"),wave:X("--wave"),busFill:X("--wave-bus"),x:X("--wave-x"),xFill:X("--wave-xfill"),z:X("--wave-z"),cursor:X("--accent")}),onCursor:t=>{let e=_("#wave-values");if(t===null||!T.data){e.textContent="";return}e.innerHTML="";let n=document.createElement("div");n.className="cur-time",n.textContent="Cursor @ "+me(t,T.data.timescale),e.appendChild(n);for(let s of T.data.signals){let a=document.createElement("div");a.className="cur-row";let i=document.createElement("span");i.textContent=s.name;let d=document.createElement("span");d.textContent=xe(s,Ve(s,t),T.radix),a.append(i,d),e.appendChild(a)}}});Dn().addEventListener?.("change",()=>T.draw());function Dn(){return window.matchMedia("(prefers-color-scheme: dark)")}function On(){_("#run").addEventListener("click",fe),_("#stop").addEventListener("click",()=>sn()),_("#std").addEventListener("change",e=>{g.std=e.target.value,Se(),oe()}),_("#ex-select").addEventListener("change",e=>ae(e.target.value)),document.querySelectorAll("[data-copy]").forEach(e=>e.addEventListener("click",()=>be(F[e.dataset.copy].get(),e))),document.querySelectorAll("[data-download]").forEach(e=>e.addEventListener("click",()=>Je(pe()[e.dataset.download],F[e.dataset.download].get()))),_("#copy-output").addEventListener("click",e=>be(se.innerText,e.currentTarget)),_("#reset").addEventListener("click",()=>ae(g.example,!0)),_("#show-solution").addEventListener("click",wn),_("#share").addEventListener("click",async e=>{let n=e.currentTarget;try{let s=await xn(),a=location.href.split("#")[0]+"#code="+s;history.replaceState(null,"","#code="+s),be(a,n)}catch{be(location.href,n)}}),_("#zoom-in").addEventListener("click",()=>T.zoom(.5)),_("#zoom-out").addEventListener("click",()=>T.zoom(2)),_("#zoom-fit").addEventListener("click",()=>T.fit()),_("#pan-left").addEventListener("click",()=>T.pan(-.4)),_("#pan-right").addEventListener("click",()=>T.pan(.4)),_("#radix").addEventListener("change",e=>{T.radix=e.target.value,T.draw(),T.onCursor(T.cursor)}),_("#dl-vcd").addEventListener("click",()=>{g.lastVcd&&Je("dump.vcd",g.lastVcd.text)});let t={"Ctrl-Enter":fe,"Cmd-Enter":fe};F.design.addKeys(t),F.tb.addKeys(t),document.addEventListener("keydown",e=>{(e.ctrlKey||e.metaKey)&&e.key==="Enter"&&(e.preventDefault(),fe())}),F.design.onChange(()=>oe()),F.tb.onChange(()=>oe())}async function Pn(){ue=Re({key:"vdd-vlabs-quiz-v1",onChange:()=>re()}),On();let t=!1,e=new URLSearchParams(location.search),n=e.get("track"),s=e.get("lab"),a=new URLSearchParams(location.hash.slice(1)).get("code");if(a){try{let i=await qn(a);g.std=i.s==="2012"?"2012":"2005",g.example=null,_("#std").value=g.std,F.design.set(i.d||""),F.tb.set(i.t||""),t=!0}catch{}t&&(ge(),re())}if(!t&&s&&C.some(i=>i.id===s)&&(ae(s),t=!0),!t&&n&&ye.some(i=>i.id===n)&&(ae(C.find(i=>i.group===n).id),t=!0),!t){let i=vn();if(i&&C.some(d=>d.id===i.example)){let d=C.find(r=>r.id===i.example);g.example=d.id,g.track=d.group,g.std=i.std||"2005",_("#std").value=g.std,F.design.set(i.design),F.tb.set(i.tb),_("#show-solution").hidden=!d.solution,ge(),re(),ve(en,g.example,nn),ue.render(d),t=!0}}t||ae(C[0].id),Se(),ie("Loading simulator\u2026","busy"),Te(),T.clear()}Pn();})();
