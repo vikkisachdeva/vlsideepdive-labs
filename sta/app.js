@@ -1,4 +1,4 @@
-(()=>{var et={basic:{problem:"Every flop-to-flop path must meet setup and hold. How does STA find the worst path and its slack?",tasks:["Run and read the setup and hold reports.","Find the startpoint, endpoint and slack."],learn:"Read a basic timing report: arrival, required time and slack."},violation:{problem:"The clock is too fast for the logic. The report shows negative slack: what does it mean and where does the time go?",tasks:["Run and find the failing path.","Change the clock period until it passes."],learn:"Read a setup violation and find the period the design can meet."},io:{problem:"Paths to and from the chip pins are only checked if you tell STA what happens outside the block.",tasks:["Run and read the input and output paths.","Change set_input_delay and set_output_delay and see the slack move."],learn:"Constrain I/O paths with input and output delays."},exceptions:{problem:"Some paths are never used, others are allowed more than one cycle. Without exceptions STA reports false failures.",tasks:["Run with and without the false path and multicycle path.","See which paths each exception changes."],learn:"Write false paths and multicycle paths, including the hold adjustment."},ocv:{problem:"Real clocks arrive late, jitter and vary across the die. Ideal clocks make timing look better than it is.",tasks:["Add clock latency, uncertainty and OCV derates.","Watch the slack shrink."],learn:"Model clock latency, uncertainty and on-chip variation."},corners:{problem:"A design must work at slow and fast process corners. Setup fails at the slow corner, hold at the fast one.",tasks:["Run at both corners.","Find which corner limits setup and which limits hold."],learn:"Multi-corner analysis with slow and fast libraries."},spef:{problem:"Wires have resistance and capacitance. Without them, delays are too optimistic.",tasks:["Run without SPEF, then with it.","Compare the net delays."],learn:"Annotate parasitics from SPEF and see their effect on delay."},gcd:{problem:"A real placed-and-routed block: does it meet timing, and how much power does it use?",tasks:["Run timing with SPEF.","Read the power report."],learn:"Run STA and power on a real block, the way signoff does."},"ws-lab1":{problem:"You have a library, a netlist and constraints. Where do you start? Your first timing report.",tasks:["Run and read the 5 worst paths.","Find the startpoint, endpoint and slack of each.","Edit the clock period and input delay and run again."],learn:"The basic STA flow and the parts of a timing report."},"ws-lab2":{problem:"Cell delay depends on the library corner and on the wires. How much does each change in the RC network move the delay?",tasks:["Run without SPEF, then with each SPEF file.","Compare the delays and slack."],learn:"Delay calculation with min/max libraries and SPEF parasitics."},"ws-lab3":{problem:"Can you compute setup slack by hand and match the tool to the picosecond? If not, you cannot debug a real report.",tasks:["Run and pick the reported path.","Work out the slack from clock edges, latency and cell delays.","Check your number against the report."],learn:"Compute setup slack by hand from a report."},"ws-lab6":{problem:"A clock gate must switch only while the clock is inactive, or it chops the clock into glitches.",tasks:["Run and find the clock gating check.","Analyse its slack."],learn:"Clock gating setup and hold checks."},"ws-lab7":{problem:"An asynchronous reset must release far enough from the clock edge, or flops go metastable.",tasks:["Run and find the recovery and removal checks.","Analyse their slack."],learn:"Recovery and removal checks on asynchronous pins."},"ws-lab12":{problem:"The same path gives different slack with one library, min/max libraries, or parasitics. Why?",tasks:["Run example2, example3 and example4.","Compare the three reports."],learn:"How libraries and parasitics change one path's slack."},"ws-lab4":{problem:"Launch and capture clocks share part of their path. Counting its variation twice makes timing look worse than it is.",tasks:["Note the slack, then enable CRPR and run again.","Find the common point and the difference."],learn:"Common path pessimism removal (CPPR/CRPR)."},"ws-lab5":{problem:"Timing fails after layout. You cannot re-synthesize: you fix it with a small change to the netlist, an ECO.",tasks:["Run the ECO script that inserts a clock buffer.","Compare s27_eco.v with s27.v and the slack before and after."],learn:"Timing ECOs and re-timing a changed netlist."},"ws-lab8":{problem:"Hold checks use different clock edges from setup. Picking the wrong edge gives the wrong answer.",tasks:["Run and read the hold report.","Explain the launch and capture edges it picks."],learn:"Hold slack and how hold edges are chosen."},"ws-lab10":{problem:"A chip runs in several modes, each with its own constraints. Checking one mode at a time does not scale.",tasks:["Review mode1.sdc, then add the other modes.","Write one merged SDC covering all four."],learn:"Multi-mode constraints and mode merging."},"ws-lab11":{problem:"Silicon varies with process, voltage and temperature, and across the die. Which corner and derate limits the design?",tasks:["Run three corners with \xB110% derating.","Compare the reports."],learn:"Multi-corner analysis with derates."},"ws-lab13":{problem:"Several clocks with different waveforms: which edges does STA pair up, and what does a multicycle path change?",tasks:["Run and analyse the clock waveforms.","Add a setup multicycle path between clk2 and clk3 and check setup and hold."],learn:"Multiple clocks and multicycle paths, including the hold side effect."},"ws-lab14":{problem:"A path from a rising edge to a falling edge has only half a cycle. Easy to miss, easy to fail.",tasks:["Run and find any half-cycle paths.","Check the edges used for setup and hold."],learn:"Half-cycle paths and how they are timed."},"ws-lab9":{problem:"The report says no paths were found. Something is unconstrained, and that is worse than a violation.",tasks:["Run and confirm there are no paths.","Debug with check_setup -verbose and report_checks -unconstrained."],learn:"Debug an unconstrained design."},"ws-lab15":{problem:"This is how STA looks on a real design: a RISC-V core with about 14,000 cells.",tasks:["Run the full flow.","Read the summary and the worst paths."],learn:"Run a production-style STA flow on a CPU core."},"so-s1":{problem:"At signoff you need one answer fast: does the block meet timing, and by how much?",tasks:["Run the full flow on the routed GCD block.","Read WNS, TNS and the violation counts, then the worst path."],learn:"The signoff analysis flow and timing summary."},"so-s2":{problem:"A clean timing report means nothing if paths are not constrained. Bad constraints are the most common signoff escape.",tasks:["Run check_setup -verbose and list every problem.","Fix ctrl.sdc and see which new paths appear."],learn:"Validate constraints before trusting any timing report."},"so-s3":{problem:"Most timing errors start with wrong clocks: ideal versus propagated, missing latency, a wrongly defined divided clock.",tasks:["Compare ideal and propagated clocks.","Find where each part of the latency comes from and check the divided clock."],learn:"Define and check generated clocks, latency and uncertainty."},"so-s4":{problem:"Exceptions change what STA checks. One wrong exception can hide a real failure.",tasks:["Enable one exception at a time in exc.sdc.","See which path each one changes."],learn:"Case analysis, false paths, multicycle paths and max delay."},"so-s5":{problem:"Signoff engineers spend most of their time asking the design questions. You need fast answers.",tasks:["Run endpoint summaries and full path reports.","Query cells, nets and registers with Tcl."],learn:"Read reports and query a design quickly."},"so-s6":{problem:"OCV derates can turn a passing path into a failing one, and CRPR gives some of it back. How much?",tasks:["Apply derates and watch the slack.","Measure what CRPR recovers."],learn:"On-chip variation and CRPR at signoff."},"so-s7":{problem:"A latch lets a slow path borrow time from the next stage. Borrowing hides slack problems if you do not check it.",tasks:["Find how much L1 borrows and the most it could.","Limit borrowing and see the result."],learn:"Latch timing and time borrowing."},"so-s8":{problem:"You have one setup and one hold violation and no time to re-run layout.",tasks:["Run as given, then enable the upsizing ECO and the hold buffer ECO.","Compare eco_after.v and the new slack."],learn:"Fix setup and hold violations with netlist ECOs."},"so-s9":{problem:"A block must pass at every corner. Setup and hold are limited by different corners.",tasks:["Run at ss, tt and ff.","Find which corner limits setup and which limits hold."],learn:"Multi-corner signoff."}};function nt(t,n){let e=document.getElementById("lab-brief");if(!e)return;let a=t[n];if(!a){e.hidden=!0;return}e.querySelector(".brief-problem").textContent=a.problem;let r=e.querySelector(".brief-tasks");r.innerHTML="";for(let i of a.tasks){let c=document.createElement("li");c.textContent=i,r.appendChild(c)}e.querySelector(".brief-learn").textContent=a.learn,e.hidden=!1}var st=[{id:"ws-lab1",group:"STA workshop",tag:"Day 1",title:"Lab 1 \xB7 Your first timing report",script:"run.tcl",files:{"run.tcl":`# Lab 1 (Day 1): read a library, a netlist and constraints, then report the 5 worst paths.
+(()=>{var te={basic:{problem:"Every flop-to-flop path must meet setup and hold. How does STA find the worst path and its slack?",tasks:["Run and read the setup and hold reports.","Find the startpoint, endpoint and slack."],learn:"Read a basic timing report: arrival, required time and slack."},violation:{problem:"The clock is too fast for the logic. The report shows negative slack: what does it mean and where does the time go?",tasks:["Run and find the failing path.","Change the clock period until it passes."],learn:"Read a setup violation and find the period the design can meet."},io:{problem:"Paths to and from the chip pins are only checked if you tell STA what happens outside the block.",tasks:["Run and read the input and output paths.","Change set_input_delay and set_output_delay and see the slack move."],learn:"Constrain I/O paths with input and output delays."},exceptions:{problem:"Some paths are never used, others are allowed more than one cycle. Without exceptions STA reports false failures.",tasks:["Run with and without the false path and multicycle path.","See which paths each exception changes."],learn:"Write false paths and multicycle paths, including the hold adjustment."},ocv:{problem:"Real clocks arrive late, jitter and vary across the die. Ideal clocks make timing look better than it is.",tasks:["Add clock latency, uncertainty and OCV derates.","Watch the slack shrink."],learn:"Model clock latency, uncertainty and on-chip variation."},corners:{problem:"A design must work at slow and fast process corners. Setup fails at the slow corner, hold at the fast one.",tasks:["Run at both corners.","Find which corner limits setup and which limits hold."],learn:"Multi-corner analysis with slow and fast libraries."},spef:{problem:"Wires have resistance and capacitance. Without them, delays are too optimistic.",tasks:["Run without SPEF, then with it.","Compare the net delays."],learn:"Annotate parasitics from SPEF and see their effect on delay."},gcd:{problem:"A real placed-and-routed block: does it meet timing, and how much power does it use?",tasks:["Run timing with SPEF.","Read the power report."],learn:"Run STA and power on a real block, the way signoff does."},"ws-lab1":{problem:"You have a library, a netlist and constraints. Where do you start? Your first timing report.",tasks:["Run and read the 5 worst paths.","Find the startpoint, endpoint and slack of each.","Edit the clock period and input delay and run again."],learn:"The basic STA flow and the parts of a timing report."},"ws-lab2":{problem:"Cell delay depends on the library corner and on the wires. How much does each change in the RC network move the delay?",tasks:["Run without SPEF, then with each SPEF file.","Compare the delays and slack."],learn:"Delay calculation with min/max libraries and SPEF parasitics."},"ws-lab3":{problem:"Can you compute setup slack by hand and match the tool to the picosecond? If not, you cannot debug a real report.",tasks:["Run and pick the reported path.","Work out the slack from clock edges, latency and cell delays.","Check your number against the report."],learn:"Compute setup slack by hand from a report."},"ws-lab6":{problem:"A clock gate must switch only while the clock is inactive, or it chops the clock into glitches.",tasks:["Run and find the clock gating check.","Analyse its slack."],learn:"Clock gating setup and hold checks."},"ws-lab7":{problem:"An asynchronous reset must release far enough from the clock edge, or flops go metastable.",tasks:["Run and find the recovery and removal checks.","Analyse their slack."],learn:"Recovery and removal checks on asynchronous pins."},"ws-lab12":{problem:"The same path gives different slack with one library, min/max libraries, or parasitics. Why?",tasks:["Run example2, example3 and example4.","Compare the three reports."],learn:"How libraries and parasitics change one path's slack."},"ws-lab4":{problem:"Launch and capture clocks share part of their path. Counting its variation twice makes timing look worse than it is.",tasks:["Note the slack, then enable CRPR and run again.","Find the common point and the difference."],learn:"Common path pessimism removal (CPPR/CRPR)."},"ws-lab5":{problem:"Timing fails after layout. You cannot re-synthesize: you fix it with a small change to the netlist, an ECO.",tasks:["Run the ECO script that inserts a clock buffer.","Compare s27_eco.v with s27.v and the slack before and after."],learn:"Timing ECOs and re-timing a changed netlist."},"ws-lab8":{problem:"Hold checks use different clock edges from setup. Picking the wrong edge gives the wrong answer.",tasks:["Run and read the hold report.","Explain the launch and capture edges it picks."],learn:"Hold slack and how hold edges are chosen."},"ws-lab10":{problem:"A chip runs in several modes, each with its own constraints. Checking one mode at a time does not scale.",tasks:["Review mode1.sdc, then add the other modes.","Write one merged SDC covering all four."],learn:"Multi-mode constraints and mode merging."},"ws-lab11":{problem:"Silicon varies with process, voltage and temperature, and across the die. Which corner and derate limits the design?",tasks:["Run three corners with \xB110% derating.","Compare the reports."],learn:"Multi-corner analysis with derates."},"ws-lab13":{problem:"Several clocks with different waveforms: which edges does STA pair up, and what does a multicycle path change?",tasks:["Run and analyse the clock waveforms.","Add a setup multicycle path between clk2 and clk3 and check setup and hold."],learn:"Multiple clocks and multicycle paths, including the hold side effect."},"ws-lab14":{problem:"A path from a rising edge to a falling edge has only half a cycle. Easy to miss, easy to fail.",tasks:["Run and find any half-cycle paths.","Check the edges used for setup and hold."],learn:"Half-cycle paths and how they are timed."},"ws-lab9":{problem:"The report says no paths were found. Something is unconstrained, and that is worse than a violation.",tasks:["Run and confirm there are no paths.","Debug with check_setup -verbose and report_checks -unconstrained."],learn:"Debug an unconstrained design."},"ws-lab15":{problem:"This is how STA looks on a real design: a RISC-V core with about 14,000 cells.",tasks:["Run the full flow.","Read the summary and the worst paths."],learn:"Run a production-style STA flow on a CPU core."},"so-s1":{problem:"At signoff you need one answer fast: does the block meet timing, and by how much?",tasks:["Run the full flow on the routed GCD block.","Read WNS, TNS and the violation counts, then the worst path."],learn:"The signoff analysis flow and timing summary."},"so-s2":{problem:"A clean timing report means nothing if paths are not constrained. Bad constraints are the most common signoff escape.",tasks:["Run check_setup -verbose and list every problem.","Fix ctrl.sdc and see which new paths appear."],learn:"Validate constraints before trusting any timing report."},"so-s3":{problem:"Most timing errors start with wrong clocks: ideal versus propagated, missing latency, a wrongly defined divided clock.",tasks:["Compare ideal and propagated clocks.","Find where each part of the latency comes from and check the divided clock."],learn:"Define and check generated clocks, latency and uncertainty."},"so-s4":{problem:"Exceptions change what STA checks. One wrong exception can hide a real failure.",tasks:["Enable one exception at a time in exc.sdc.","See which path each one changes."],learn:"Case analysis, false paths, multicycle paths and max delay."},"so-s5":{problem:"Signoff engineers spend most of their time asking the design questions. You need fast answers.",tasks:["Run endpoint summaries and full path reports.","Query cells, nets and registers with Tcl."],learn:"Read reports and query a design quickly."},"so-s6":{problem:"OCV derates can turn a passing path into a failing one, and CRPR gives some of it back. How much?",tasks:["Apply derates and watch the slack.","Measure what CRPR recovers."],learn:"On-chip variation and CRPR at signoff."},"so-s7":{problem:"A latch lets a slow path borrow time from the next stage. Borrowing hides slack problems if you do not check it.",tasks:["Find how much L1 borrows and the most it could.","Limit borrowing and see the result."],learn:"Latch timing and time borrowing."},"so-s8":{problem:"You have one setup and one hold violation and no time to re-run layout.",tasks:["Run as given, then enable the upsizing ECO and the hold buffer ECO.","Compare eco_after.v and the new slack."],learn:"Fix setup and hold violations with netlist ECOs."},"so-s9":{problem:"A block must pass at every corner. Setup and hold are limited by different corners.",tasks:["Run at ss, tt and ff.","Find which corner limits setup and which limits hold."],learn:"Multi-corner signoff."},"sdc-c1":{problem:"Every timing check starts from the clock waveforms. If you cannot draw a clock from its create_clock line, you cannot check a single path.",tasks:["Draw clk1, clk2 and clk3 on paper.","Run and compare with report_clock_properties.","Find the edges STA pairs between two clocks."],learn:"Read -period and -waveform, and how STA picks launch and capture edges between clocks."},"sdc-c2":{problem:"Two clocks share the same flops through a clock mux. Unless you say so, STA times them against each other: paths that can never happen in silicon.",tasks:["Count the launch/capture pairs STA times.","Try set_clock_groups -logically_exclusive.","Try set_case_analysis instead and compare."],learn:"Constrain clock muxes with exclusive clock groups or case analysis."},"sdc-c3":{problem:"A clock doubler makes a new waveform from CLK. STA only knows about it if you define a generated clock in the right place.",tasks:["Read the generated clock definition and its waveform.","Check the CLK \u2192 CLKOUT path.","Switch to propagated clocks."],learn:"Where and how to define a generated clock with -edges and -edge_shift."},"sdc-c4":{problem:"A flop divides the clock by 2, and its inverted output makes a second clock. Get the definitions wrong and every path between them is wrong.",tasks:["Read GCLK1 and GCLK2.","Check the half-period path GCLK1 \u2192 GCLK2.","Rewrite GCLK1 with -edges."],learn:"Divided and inverted generated clocks with -divide_by, -invert and -edges."},"sdc-c5":{problem:"Clocks reach flops directly and through a mux. Some pairs never meet, some are asynchronous. Each relationship must be declared, or STA times nonsense.",tasks:["Count the clock pairs STA times.","Declare the mux clocks exclusive.","Declare the two families asynchronous."],learn:"Define clock relationships with set_clock_groups, and generated clocks on a mux with -add."},"sdc-c6":{problem:"A clock through an XOR may pass unchanged, inverted, or STA cannot tell. A non-unate cell doubles the clock edges at the flop.",tasks:["Find the clock sense at r1, r2 and r3.","Count the checks at r3.","Fix it with set_clock_sense."],learn:"Clock unateness, constants from tie cells, and set_clock_sense."},"sdc-c7":{problem:"A false path removes exactly the paths it describes, no more and no less. Predicting which ones is a daily signoff skill.",tasks:["Predict which paths each command removes.","Apply one step at a time.","Count the paths left."],learn:"set_false_path with -through a pin, through a cell output, and -from a clock."},"sdc-c8":{problem:"-rise_from and -fall_to name edges of the clock at its source. With an inverter in the clock tree, the edge at the flop is the opposite one.",tasks:["Predict which of paths A to D each command removes.","Run each step and check."],learn:"Edge-specific exceptions and how inverted clocks change them."},"sdc-c9":{problem:"A multicycle path between clocks of different frequency counts cycles of one of them. Pick the wrong one and the budget is off by a factor.",tasks:["Apply -end and -start and read the new capture edge.","See the hold check move.","Fix hold with a hold multicycle."],learn:"set_multicycle_path -start and -end, and the hold adjustment."},"sdc-c10":{problem:"Two exceptions cover the same path. Only one applies, and guessing wrong hides a violation or a false failure.",tasks:["Answer Q1 and Q2 on paper.","Apply each pair and check the slacks."],learn:"Exception priority: false path, max delay, multicycle, and the more specific one wins."},"sdc-c11":{problem:"A chip has several modes. Running STA once per mode is slow and easy to get wrong; one merged SDC must cover them all safely.",tasks:["Run mode1 and mode2.","Run merged and compare the paths.","Explain the false path on SEL."],learn:"Merge mode constraints into one SDC without losing a real path."},"sdc-c12":{problem:"The IP team's SDC uses the IP's names. At the SoC the clocks are renamed and ports become hierarchical pins, so the constraints must be promoted.",tasks:["Time the IP alone with ip.sdc.","Time the SoC, then apply each promoted step.","Check the IP paths match."],learn:"Promote IP constraints to the SoC: renamed clocks, hierarchical pins, -through."},"sdc-c13":{problem:"Paths to other chips are only checked if you describe what happens outside: when data arrives and when it is needed.",tasks:["Read setup and hold on the input and output.","Launch din on the falling edge and see the effect."],learn:"set_input_delay and set_output_delay with -max, -min and a virtual clock."},"sdc-c14":{problem:"Without a driver and a load, STA thinks inputs switch instantly and outputs drive nothing. Slew and capacitance limits catch weak drivers.",tasks:["Find the slew and capacitance violations.","Try a stronger driver and a bigger buffer.","See which violation remains."],learn:"set_driving_cell, set_input_transition, set_load and design rule limits."},"sdc-c15":{problem:"Before clock tree synthesis there is no real clock tree. The SDC estimates it with latency, uncertainty and transition.",tasks:["Find each clock term in the setup and hold reports.","Switch to propagated clocks and compare."],learn:"Clock latency (source and network), uncertainty and transition."},"sdc-c16":{problem:"Paths between asynchronous clocks have no real timing, but they still need constraints: cut them, or limit how long they take.",tasks:["See the meaningless violation.","Cut it with asynchronous clock groups.","Limit a Gray pointer with set_max_delay instead."],learn:"Constrain clock domain crossings with clock groups or max delay."},"sdc-c17":{problem:"Someone hands you a netlist and no SDC. Can you write it from scratch so that every path is checked correctly?",tasks:["Follow the checklist in my.sdc, one step at a time.","Run check_setup after each step.","Compare with solution.sdc."],learn:"Write a complete SDC: clocks, generated clocks, I/O, false paths and multicycle paths."},"sdc-c18":{problem:"Doing more work per clock means fewer clocks but a longer path. Where is the sweet spot?",tasks:["Run the divider with K = 1, 2, 4 and 8.","Read WNS for each.","Work out the fastest clock and the total time."],learn:"Trade logic per cycle against clock period, and read WNS and TNS."},"sdc-c19":{problem:"Datasheets give clock-to-output, setup, hold and trace delays, not SDC. You have to turn them into input and output delays.",tasks:["Check the formulas in usb.sdc.","Write the wb_data output delays yourself.","Read the hold result."],learn:"Derive I/O delays from datasheet numbers."},"sdc-c20":{problem:"A clock interaction table shows every clock pair STA times. Pairs with no common source give tiny, meaningless requirements.",tasks:["Read the table and find the unsafe pair.","Declare it asynchronous.","Give the ALU path two cycles, with the hold fix."],learn:"Review clock interactions, and add a multicycle path -through a block."}};function ne(e,n){let t=document.getElementById("lab-brief");if(!t)return;let a=e[n];if(!a){t.hidden=!0;return}t.querySelector(".brief-problem").textContent=a.problem;let r=t.querySelector(".brief-tasks");r.innerHTML="";for(let o of a.tasks){let c=document.createElement("li");c.textContent=o,r.appendChild(c)}t.querySelector(".brief-learn").textContent=a.learn,t.hidden=!1}var se=[{id:"ws-lab1",group:"STA workshop",tag:"Day 1",title:"Lab 1 \xB7 Your first timing report",script:"run.tcl",files:{"run.tcl":`# Lab 1 (Day 1): read a library, a netlist and constraints, then report the 5 worst paths.
 # Exercises: find the startpoint, endpoint and slack of each path.
 # Then edit simple.sdc (clock period, input delay) and run again to see the slack move.
 
@@ -1796,7 +1796,950 @@ set_input_delay  $io_delay -clock clk [delete_from_list [all_inputs] [get_ports 
 set_output_delay $io_delay -clock clk [all_outputs]
 set_input_transition 0.1 [all_inputs]
 set_load 0.01 [all_outputs]
-`},quiz:[{type:"choice",q:"Which corner gives the worst setup slack?",options:["ss","tt","ff"],answer:0,explain:"Slow silicon, 100 \xB0C, 1.60 V: \u22124.86 ns.",try:!1},{type:"number",q:"What is the worst setup slack at the ss corner?",answer:-4.86,tol:.01,unit:"ns",explain:"",try:!1},{type:"choice",q:"At ss the worst endpoint is a register, but at tt it is an output. Why?",options:["The netlist changes per corner","Output paths have a fixed external delay, while register paths scale with cell delays","The ss library has no outputs","It is random"],answer:1,explain:"Register-to-register paths are all cell delay, so they grow most at the slow corner. The output delay (1 ns) does not scale.",try:!1},{type:"choice",q:"Which corner gives the worst hold slack?",options:["ss","tt","ff"],answer:2,explain:"Fast silicon: data arrives soonest.",try:!1},{type:"number",q:"What is the worst hold slack?",answer:.19,tol:.01,unit:"ns",explain:"_412_ \u2192 _412_ at the ff corner.",try:!1},{type:"number",q:"Try it: set the period to 11.0 in gcd.sdc. What is the worst setup slack at ss?",answer:.45,tol:.01,unit:"ns",explain:"At the slow corner this block needs roughly twice the typical-corner period.",try:!0}]}];var G=`// Two flops feeding a third through a buffer and an AND gate.
+`},quiz:[{type:"choice",q:"Which corner gives the worst setup slack?",options:["ss","tt","ff"],answer:0,explain:"Slow silicon, 100 \xB0C, 1.60 V: \u22124.86 ns.",try:!1},{type:"number",q:"What is the worst setup slack at the ss corner?",answer:-4.86,tol:.01,unit:"ns",explain:"",try:!1},{type:"choice",q:"At ss the worst endpoint is a register, but at tt it is an output. Why?",options:["The netlist changes per corner","Output paths have a fixed external delay, while register paths scale with cell delays","The ss library has no outputs","It is random"],answer:1,explain:"Register-to-register paths are all cell delay, so they grow most at the slow corner. The output delay (1 ns) does not scale.",try:!1},{type:"choice",q:"Which corner gives the worst hold slack?",options:["ss","tt","ff"],answer:2,explain:"Fast silicon: data arrives soonest.",try:!1},{type:"number",q:"What is the worst hold slack?",answer:.19,tol:.01,unit:"ns",explain:"_412_ \u2192 _412_ at the ff corner.",try:!1},{type:"number",q:"Try it: set the period to 11.0 in gcd.sdc. What is the worst setup slack at ss?",answer:.45,tol:.01,unit:"ns",explain:"At the slow corner this block needs roughly twice the typical-corner period.",try:!0}]},{id:"sdc-c1",group:"SDC & constraints",tag:"SDC 1",title:"Clock waveforms",script:"run.tcl",files:{"run.tcl":`# SDC 1: draw the waveforms of three clock definitions, then check them with OpenSTA.
+# Exercises: sketch clk1, clk2 and clk3 on paper first. Then run and compare with
+# report_clock_properties, and see which edges STA pairs for a path between two clocks.
+
+read_liberty sky130_fd_sc_hd__tt_025C_1v80.lib
+read_verilog waves.v
+link_design waves
+read_sdc waves.sdc
+
+puts "### Clock definitions: period and waveform (rising and falling edge times)"
+report_clock_properties
+puts "\\n### clk1 -> clk2: which edges does STA pair for setup?"
+report_checks -from ra/CLK -to rb/D -path_delay max
+puts "\\n### clk1 -> clk3"
+report_checks -from ra/CLK -to rc/D -path_delay max
+`,"waves.v":`// Three flops, each on its own clock port, and two cross-clock paths.
+module waves (clk1, clk2, clk3, d, q2, q3);
+  input  clk1, clk2, clk3, d;
+  output q2, q3;
+  wire   a, b, c;
+  sky130_fd_sc_hd__dfxtp_1 ra (.D(d), .CLK(clk1), .Q(a));
+  sky130_fd_sc_hd__dfxtp_1 rb (.D(a), .CLK(clk2), .Q(b));
+  sky130_fd_sc_hd__dfxtp_1 rc (.D(a), .CLK(clk3), .Q(c));
+  assign q2 = b;
+  assign q3 = c;
+endmodule
+`,"waves.sdc":`# The three clock definitions from the workshop. Draw each waveform on paper first.
+create_clock -name clk1 -period 14 [get_ports clk1]
+create_clock -name clk2 -period 10 -waveform {2 7} [get_ports clk2]
+create_clock -name clk3 -period 20 -waveform {2 4 12 16} [get_ports clk3]
+`},quiz:[{type:"number",q:"At what time does clk2 rise?",answer:2,tol:0,unit:"ns",explain:"-waveform {2 7}: rise at 2 ns, fall at 7 ns, period 10 ns.",try:!1},{type:"number",q:"For how long is clk2 high in each period?",answer:5,tol:0,unit:"ns",explain:"From 2 to 7 ns.",try:!1},{type:"number",q:"How many rising edges does clk3 have in one 20 ns period?",answer:2,tol:0,unit:"",explain:"-waveform {2 4 12 16}: rise 2, fall 4, rise 12, fall 16. Two pulses per period.",try:!1},{type:"number",q:"At what time does clk1 fall?",answer:7,tol:0,unit:"ns",explain:"No -waveform: the default is a 50% duty cycle starting with a rise at 0.",try:!1},{type:"number",q:"For the path ra (clk1) \u2192 rb (clk2), at what time is the capture edge?",answer:2,tol:0,unit:"ns",explain:"STA finds the closest pair of edges: clk1 at 0 and clk2 at 2 (also 28 \u2192 30).",try:!1},{type:"choice",q:"Try it: change clk2 to -waveform {0 5} and run. The setup slack stays 1.61 ns. Why?",options:["The waveform is ignored","clk1 at 28 ns and clk2 at 30 ns are still only 2 ns apart, and STA always uses the tightest pair","Setup only uses clk1","clk2 is not used"],answer:1,explain:"With periods 14 and 10, the edges line up every 70 ns. STA checks every pair in that window and keeps the tightest.",try:!0}]},{id:"sdc-c2",group:"SDC & constraints",tag:"SDC 2",title:"Clocks through a clock mux",script:"run.tcl",files:{"run.tcl":`# SDC 2: define all the clocks in a design where C1 and C2 share flops through a clock mux.
+# Exercises: run as given and count the launch/capture clock pairs, then try each step in clkmux.sdc.
+
+read_liberty sky130_fd_sc_hd__tt_025C_1v80.lib
+read_verilog clkmux.v
+link_design clkmux
+read_sdc clkmux.sdc
+
+puts "### Which clocks reach the flops?"
+report_clock_properties
+puts "\\n### Every launch/capture clock pair (worst slack over all endpoints)"
+foreach launch {C1 C2} {
+  foreach capture {C1 C2} {
+    set p [find_timing_paths -from [get_clocks $launch] -to [get_clocks $capture] -path_delay max]
+    if {[llength $p]} { puts "$launch -> $capture : slack [format %.2f [get_property [lindex $p 0] slack]]" } else { puts "$launch -> $capture : not timed" }
+  }
+}
+puts "\\n### Worst setup path"
+report_checks -path_delay max
+`,"clkmux.v":`// Two clock sources C1 and C2 reach the same flops through a clock mux.
+module clkmux (c1, c2, sel, d, q);
+  input  c1, c2, sel, d;
+  output q;
+  wire   clk, a, b1, b2, b3, q;
+  sky130_fd_sc_hd__mux2_1  cmux (.A0(c1), .A1(c2), .S(sel), .X(clk));
+  sky130_fd_sc_hd__dfxtp_1 r1 (.D(d),  .CLK(clk), .Q(a));
+  sky130_fd_sc_hd__inv_1   g1 (.A(a),  .Y(b1));
+  sky130_fd_sc_hd__inv_1   g2 (.A(b1), .Y(b2));
+  sky130_fd_sc_hd__inv_1   g3 (.A(b2), .Y(b3));
+  sky130_fd_sc_hd__dfxtp_1 r2 (.D(b3), .CLK(clk), .Q(q));
+endmodule
+`,"clkmux.sdc":`# Define all the clocks in this design: C1 and C2 both reach r1 and r2 through cmux.
+create_clock -name C1 -period 10 [get_ports c1]
+create_clock -name C2 -period 6  [get_ports c2]
+set_input_delay 1 -clock C1 [get_ports {d sel}]
+
+# Only one clock passes the mux at a time. Without telling STA, it also times
+# paths launched by C1 and captured by C2 (and the other way round).
+# Remove the # from ONE of these steps at a time and run again:
+# Step 1: the two clocks never coexist at the flops
+# set_clock_groups -logically_exclusive -group C1 -group C2
+# Step 2: or analyse one mode only (sel = 0 selects C1)
+# set_case_analysis 0 [get_ports sel]
+`},quiz:[{type:"number",q:"Run as given. How many launch/capture clock pairs does STA time?",answer:4,tol:0,unit:"",explain:"C1\u2192C1, C1\u2192C2, C2\u2192C1 and C2\u2192C2: STA assumes both clocks can be on the flops at once.",try:!1},{type:"number",q:"What is the worst setup slack (from the C1 \u2192 C2 pair)?",answer:.9,tol:.01,unit:"ns",explain:"d arrives 1 ns after a C1 edge and is captured by the C2 edge 1 ns later: a pairing that can never happen through the mux.",try:!1},{type:"number",q:"Try it: apply Step 1 (set_clock_groups -logically_exclusive). How many pairs are timed now?",answer:2,tol:0,unit:"",explain:"Only C1\u2192C1 and C2\u2192C2 remain.",try:!0},{type:"number",q:"Try it: use Step 2 (set_case_analysis 0 on sel) instead. How many pairs are timed?",answer:1,tol:0,unit:"",explain:"Only C1 passes the mux, so only C1\u2192C1 is timed: one mode at a time.",try:!0},{type:"choice",q:"When would you use -physically_exclusive instead of -logically_exclusive?",options:["When the clocks have different periods","When the two clocks can never exist on the chip at the same time at all, such as two definitions on the same port","When the clocks are asynchronous","Never"],answer:1,explain:"Logically exclusive: both exist, but not on the same logic at once (a mux). Physically exclusive: they never exist together; crosstalk between them is not possible either.",try:!1}]},{id:"sdc-c3",group:"SDC & constraints",tag:"SDC 3",title:"Where to define a generated clock",script:"run.tcl",files:{"run.tcl":`# SDC 3: a clock doubler (CLK XOR a 3 ns delayed CLK). CLK period = 10 ns.
+# Exercises: find where the generated clock is defined and read its waveform,
+# then add set_propagated_clock and compare.
+
+read_liberty sky130_fd_sc_hd__tt_025C_1v80.lib
+read_verilog doubler.v
+link_design doubler
+read_sdc doubler.sdc
+
+puts "### Clocks"
+report_clock_properties
+puts "\\n### CLK -> CLKOUT (r0 -> r1)"
+report_checks -from r0/CLK -to r1/D -path_delay max
+puts "\\n### CLKOUT -> CLKOUT (r1 -> r2)"
+report_checks -from r1/CLK -to r2/D -path_delay max
+`,"doubler.v":`// Clock doubler: CLK XOR a delayed copy of CLK gives a pulse on every edge of CLK.
+// dly1/dly2 are the "Delay" block. r0 runs on CLK, r1 and r2 on CLKOUT.
+module doubler (CLK, d, q);
+  input  CLK, d;
+  output q;
+  wire   dl1, dclk, CLKOUT, a, b, c;
+  sky130_fd_sc_hd__dlygate4sd3_1 dly1 (.A(CLK), .X(dl1));
+  sky130_fd_sc_hd__dlygate4sd3_1 dly2 (.A(dl1), .X(dclk));
+  sky130_fd_sc_hd__xor2_1        XOR1 (.A(CLK), .B(dclk), .X(CLKOUT));
+  sky130_fd_sc_hd__dfxtp_1 r0 (.D(d), .CLK(CLK),    .Q(a));
+  sky130_fd_sc_hd__dfxtp_1 r1 (.D(a), .CLK(CLKOUT), .Q(b));
+  sky130_fd_sc_hd__inv_1   g1 (.A(b), .Y(c));
+  sky130_fd_sc_hd__dfxtp_1 r2 (.D(c), .CLK(CLKOUT), .Q(q));
+endmodule
+`,"doubler.sdc":`# CLK period = 10 ns. The delay block is 3 ns, so CLKOUT pulses high for 3 ns
+# after every rising and every falling edge of CLK.
+create_clock -name CLK -period 10 [get_ports CLK]
+set_input_delay 1 -clock CLK [get_ports d]
+
+# A generated clock goes on the pin where the new waveform appears: the XOR output.
+# Edges 1, 2, 3 of CLK are at 0, 5 and 10 ns. CLKOUT rises at edge 1 (0 ns), falls 3 ns
+# later, rises at edge 2 (5 ns), falls 3 ns later, and repeats from edge 3 (10 ns).
+create_generated_clock -name CLKOUT -source [get_ports CLK] \\
+  -edges {1 1 2} -edge_shift {0 3 0} [get_pins XOR1/X]
+`},quiz:[{type:"number",q:"What is the period of CLKOUT?",answer:5,tol:0,unit:"ns",explain:"A pulse on every edge of the 10 ns CLK: twice the frequency.",try:!1},{type:"number",q:"At what time does CLKOUT fall in its first period?",answer:3,tol:0,unit:"ns",explain:"-edge_shift {0 3 0}: rise at edge 1 (0 ns), fall 3 ns later.",try:!1},{type:"choice",q:"Where is the generated clock defined?",options:["On the CLK port","On the output of the delay cell","On the XOR output XOR1/X, where the new waveform appears","On r1/CLK"],answer:2,explain:"Define a generated clock where its waveform is created, so every flop downstream sees it.",try:!1},{type:"number",q:"What is the setup slack of r0 (CLK) \u2192 r1 (CLKOUT)?",answer:4.62,tol:.01,unit:"ns",explain:"Launch CLK at 0, capture CLKOUT at 5.",try:!1},{type:"number",q:"Try it: add set_propagated_clock [all_clocks] at the end of doubler.sdc. What is the r0 \u2192 r1 setup slack now?",answer:4.77,tol:.01,unit:"ns",explain:"The capture clock now arrives 0.12 ns late through the XOR, which helps setup.",try:!0}]},{id:"sdc-c4",group:"SDC & constraints",tag:"SDC 4",title:"Divided clocks from a flop",script:"run.tcl",files:{"run.tcl":`# SDC 4: FF1 divides CLK by 2. GCLK1 comes from Q, GCLK2 from the inverted output Q_N.
+# Exercises: read the generated clock waveforms, then write GCLK1 with -edges instead.
+
+read_liberty sky130_fd_sc_hd__tt_025C_1v80.lib
+read_verilog divider.v
+link_design divider
+read_sdc divider.sdc
+
+puts "### Clocks"
+report_clock_properties
+puts "\\n### GCLK1 -> GCLK2 (r1 -> r2)"
+report_checks -from r1/CLK -to r2/D -path_delay max
+puts "\\n### GCLK2 -> CLK (r2 -> r3)"
+report_checks -from r2/CLK -to r3/D -path_delay max
+`,"divider.v":`// FF1 divides CLK by 2: its Q is GCLK1 and its inverted output Q_N is GCLK2.
+module divider (CLK, d, q);
+  input  CLK, d;
+  output q;
+  wire   GCLK1, GCLK2, a, b;
+  sky130_fd_sc_hd__dfxbp_1 FF1 (.D(GCLK2), .CLK(CLK), .Q(GCLK1), .Q_N(GCLK2));
+  sky130_fd_sc_hd__dfxtp_1 r1  (.D(d), .CLK(GCLK1), .Q(a));
+  sky130_fd_sc_hd__dfxtp_1 r2  (.D(a), .CLK(GCLK2), .Q(b));
+  sky130_fd_sc_hd__dfxtp_1 r3  (.D(b), .CLK(CLK),   .Q(q));
+endmodule
+`,"divider.sdc":`create_clock -name CLK -period 10 [get_ports CLK]
+set_input_delay 1 -clock CLK [get_ports d]
+
+# GCLK1 changes on every rising edge of CLK: half the frequency, same phase.
+create_generated_clock -name GCLK1 -source [get_ports CLK] -divide_by 2 [get_pins FF1/Q]
+# GCLK2 is the same divided clock, inverted.
+create_generated_clock -name GCLK2 -source [get_ports CLK] -divide_by 2 -invert [get_pins FF1/Q_N]
+
+# Exercise: the same GCLK1 written with -edges (edges 1, 3 and 5 of CLK):
+# create_generated_clock -name GCLK1 -source [get_ports CLK] -edges {1 3 5} [get_pins FF1/Q]
+`},quiz:[{type:"number",q:"What is the period of GCLK1?",answer:20,tol:0,unit:"ns",explain:"-divide_by 2 of a 10 ns clock.",try:!1},{type:"number",q:"At what time does GCLK2 rise?",answer:10,tol:0,unit:"ns",explain:"GCLK2 is GCLK1 inverted: waveform {10 20}.",try:!1},{type:"number",q:"For r1 (GCLK1) \u2192 r2 (GCLK2), at what time is the capture edge?",answer:10,tol:0,unit:"ns",explain:"GCLK1 rises at 0, GCLK2 next rises at 10: half of the divided period.",try:!1},{type:"choice",q:"Try it: define GCLK1 with -edges {1 3 5} instead of -divide_by 2. What changes?",options:["The period doubles again","Nothing: edges 1, 3 and 5 of CLK (0, 10, 20 ns) give the same 20 ns waveform","GCLK1 becomes inverted","STA reports an error"],answer:1,explain:"-edges lists the source edges for rise, fall and the next rise. It can describe any divided waveform.",try:!0}]},{id:"sdc-c5",group:"SDC & constraints",tag:"SDC 5",title:"Clock relationships",script:"run.tcl",files:{"run.tcl":`# SDC 5: define all the clock relationships. C1 and C2 reach F1/F2 through a mux and
+# also clock F3 and F4 directly. Exercises: count the clock pairs STA times, then apply each step.
+
+read_liberty sky130_fd_sc_hd__tt_025C_1v80.lib
+read_verilog relate.v
+link_design relate
+read_sdc relate.sdc
+
+puts "### Clocks"
+report_clock_properties
+puts "\\n### Every launch/capture clock pair that STA times (worst setup slack)"
+set n 0
+foreach launch {C1 C2 GC1 GC2} {
+  foreach capture {C1 C2 GC1 GC2} {
+    set p [find_timing_paths -from [get_clocks $launch] -to [get_clocks $capture] -path_delay max]
+    if {[llength $p]} { incr n; puts [format "%-4s -> %-4s : slack %.2f" $launch $capture [get_property [lindex $p 0] slack]] }
+  }
+}
+puts "Clock pairs timed: $n"
+`,"relate.v":`// C1 and C2 reach F1/F2 through a clock mux, and also clock F3 (C1) and F4 (C2) directly.
+module relate (c1, c2, sel, d1, d3, q2, q4);
+  input  c1, c2, sel, d1, d3;
+  output q2, q4;
+  wire   gclk, a1, b1, a3, b3, x;
+  sky130_fd_sc_hd__mux2_1  cmux (.A0(c1), .A1(c2), .S(sel), .X(gclk));
+  sky130_fd_sc_hd__dfxtp_1 F1 (.D(d1), .CLK(gclk), .Q(a1));
+  sky130_fd_sc_hd__inv_1   u1 (.A(a1), .Y(b1));
+  sky130_fd_sc_hd__dfxtp_1 F2 (.D(b1), .CLK(gclk), .Q(q2));
+  sky130_fd_sc_hd__dfxtp_1 F3 (.D(d3), .CLK(c1),   .Q(a3));
+  sky130_fd_sc_hd__nand2_1 u3 (.A(a3), .B(a1), .Y(b3));     // F1 also feeds the F3 -> F4 logic
+  sky130_fd_sc_hd__dfxtp_1 F4 (.D(b3), .CLK(c2),   .Q(q4));
+endmodule
+`,"relate.sdc":`# C1 and C2 come from two different PLLs: they are asynchronous to each other.
+create_clock -name C1 -period 10 [get_ports c1]
+create_clock -name C2 -period 8  [get_ports c2]
+set_input_delay 1 -clock C1 [get_ports {d1 d3 sel}]
+
+# Clocks at the mux output, one per input. They can never be on gclk at the same time.
+create_generated_clock -name GC1 -source [get_ports c1] -master_clock C1 -combinational [get_pins cmux/X]
+create_generated_clock -name GC2 -source [get_ports c2] -master_clock C2 -combinational -add [get_pins cmux/X]
+
+# Define the clock relationships. Remove the # from each step in turn and run again.
+# Step 1: GC1 and GC2 never exist together on gclk
+# set_clock_groups -logically_exclusive -group GC1 -group GC2
+# Step 2: the C1 family and the C2 family are asynchronous
+# set_clock_groups -asynchronous -group {C1 GC1} -group {C2 GC2}
+`},quiz:[{type:"number",q:"Run as given. How many launch/capture clock pairs are timed?",answer:10,tol:0,unit:"",explain:"Without relationships, STA times every pair it can find.",try:!1},{type:"number",q:"Try it: apply Step 1 only. How many pairs are timed?",answer:8,tol:0,unit:"",explain:"GC1 \u2192 GC2 and GC2 \u2192 GC1 are gone: they are never on gclk together.",try:!0},{type:"number",q:"Try it: apply Steps 1 and 2. How many pairs are timed?",answer:5,tol:0,unit:"",explain:"Every pair between the C1 family and the C2 family is cut as asynchronous.",try:!0},{type:"choice",q:"Why does the GC2 definition need -add?",options:["To make it faster","Without -add, a second clock on the same pin replaces the first one","-add makes it asynchronous","It is optional"],answer:1,explain:"Two clocks on one pin need -add, or GC1 would be removed.",try:!1},{type:"choice",q:"F3 (C1) \u2192 F4 (C2) is a real crossing. What does this design still need?",options:["Nothing","A synchronizer in the design: the SDC only stops STA from timing it","A multicycle path","A clock mux"],answer:1,explain:"set_clock_groups -asynchronous hides the path from STA. Making it safe is the designer's job (see the CDC lab).",try:!1}]},{id:"sdc-c6",group:"SDC & constraints",tag:"SDC 6",title:"Clock sense",script:"run.tcl",files:{"run.tcl":`# SDC 6: the clock passes through XOR gates. One passes it, one inverts it, one is non-unate.
+# Exercises: find the clock sense at each flop, then fix the non-unate one with set_clock_sense.
+
+read_liberty sky130_fd_sc_hd__tt_025C_1v80.lib
+read_verilog sense.v
+link_design sense
+read_sdc sense.sdc
+
+puts "### Paths r1 -> r2 (XOR1 clock -> XOR2 clock)"
+report_checks -from r1/CLK -to r2/D -path_delay max
+puts "\\n### Paths r2 -> r3 (XOR2 clock -> XOR3 clock): every capture edge"
+report_checks -from r2/CLK -to r3/D -path_delay max -group_path_count 4 -endpoint_path_count 4 -format end
+puts "\\n### Worst r2 -> r3 path in detail"
+report_checks -from r2/CLK -to r3/D -path_delay max
+`,"sense.v":`// CLK passes through XOR gates before it reaches the flops.
+//   XOR1: other input tied to 0 -> the clock passes unchanged (positive unate)
+//   XOR2: other input tied to 1 -> the clock is inverted (negative unate)
+//   XOR3: other input is a control signal -> STA cannot tell (non-unate)
+module sense (CLK, inv_en, d, q);
+  input  CLK, inv_en, d;
+  output q;
+  wire   lo, hi, c1, c2, c3, a, b;
+  sky130_fd_sc_hd__conb_1  tie  (.HI(hi), .LO(lo));
+  sky130_fd_sc_hd__xor2_1  XOR1 (.A(CLK), .B(lo),     .X(c1));
+  sky130_fd_sc_hd__xor2_1  XOR2 (.A(CLK), .B(hi),     .X(c2));
+  sky130_fd_sc_hd__xor2_1  XOR3 (.A(CLK), .B(inv_en), .X(c3));
+  sky130_fd_sc_hd__dfxtp_1 r1 (.D(d), .CLK(c1), .Q(a));
+  sky130_fd_sc_hd__dfxtp_1 r2 (.D(a), .CLK(c2), .Q(b));
+  sky130_fd_sc_hd__dfxtp_1 r3 (.D(b), .CLK(c3), .Q(q));
+endmodule
+`,"sense.sdc":`create_clock -name CLK -period 10 [get_ports CLK]
+set_input_delay 1 -clock CLK [get_ports {d inv_en}]
+
+# XOR3 is non-unate: STA propagates both a rising and a falling clock edge through it.
+# In this design inv_en is 0 in normal operation, so the clock is NOT inverted.
+# Step 1: remove the # to tell STA the sense of the clock at XOR3's output
+# set_clock_sense -positive -clocks [get_clocks CLK] [get_pins XOR3/X]
+`},quiz:[{type:"choice",q:"Which clock does r2 see?",options:["CLK","CLK' (inverted), because XOR2's other input is tied to 1","No clock","Both senses"],answer:1,explain:"OpenSTA propagates the tie-cell constant and knows XOR2 inverts the clock.",try:!1},{type:"number",q:"What is the setup slack of r1 \u2192 r2?",answer:4.62,tol:.01,unit:"ns",explain:"r1 launches on the CLK rise at 0, r2 captures on CLK' at 5 (the CLK fall).",try:!1},{type:"number",q:"How many setup checks does report_checks list for r3/D?",answer:4,tol:0,unit:"",explain:"XOR3 is non-unate, so r3 is clocked by both a rising and a falling CLK edge.",try:!1},{type:"number",q:"Try it: apply Step 1 (set_clock_sense -positive). How many checks are listed for r3/D now?",answer:2,tol:0,unit:"",explain:"Only the positive sense reaches r3.",try:!0}]},{id:"sdc-c7",group:"SDC & constraints",tag:"SDC 7",title:"False paths: -through and -from",script:"run.tcl",files:{"run.tcl":`# SDC 7: identify the paths each set_false_path command removes.
+# Exercises: predict first, then remove the # from one step at a time and run.
+
+read_liberty sky130_fd_sc_hd__tt_025C_1v80.lib
+read_verilog fp.v
+link_design fp
+read_sdc fp.sdc
+
+puts "### Every flop-to-flop path that is still timed"
+set n 0
+foreach from {F1 F2 F3} {
+  foreach to {F4 F5 F6 F7} {
+    set p [find_timing_paths -from [get_pins $from/CLK] -to [get_pins $to/D] -path_delay max]
+    if {[llength $p]} { incr n; puts [format "%s -> %s  slack %.2f" $from $to [get_property [lindex $p 0] slack]] }
+  }
+}
+puts "Paths timed: $n"
+`,"fp.v":`// Seven flops and three gates. Which paths does each false path remove?
+//   F1 -> U1/A ; F2 -> U1/B and U2/A ; F3 -> U2/B
+//   U1/Z -> U3 -> F4 ; U1/Z -> F5 ; U2/Z -> F6 and F7
+module fp (CK, d1, d2, d3, q4, q5, q6, q7);
+  input  CK, d1, d2, d3;
+  output q4, q5, q6, q7;
+  wire   f1, f2, f3, z1, z2, o3;
+  sky130_fd_sc_hd__dfxtp_1 F1 (.D(d1), .CLK(CK), .Q(f1));
+  sky130_fd_sc_hd__dfxtp_1 F2 (.D(d2), .CLK(CK), .Q(f2));
+  sky130_fd_sc_hd__dfxtp_1 F3 (.D(d3), .CLK(CK), .Q(f3));
+  sky130_fd_sc_hd__and2_1  U1 (.A(f1), .B(f2), .X(z1));
+  sky130_fd_sc_hd__and2_1  U2 (.A(f2), .B(f3), .X(z2));
+  sky130_fd_sc_hd__inv_1   U3 (.A(z1), .Y(o3));
+  sky130_fd_sc_hd__dfxtp_1 F4 (.D(o3), .CLK(CK), .Q(q4));
+  sky130_fd_sc_hd__dfxtp_1 F5 (.D(z1), .CLK(CK), .Q(q5));
+  sky130_fd_sc_hd__dfxtp_1 F6 (.D(z2), .CLK(CK), .Q(q6));
+  sky130_fd_sc_hd__dfxtp_1 F7 (.D(z2), .CLK(CK), .Q(q7));
+endmodule
+`,"fp.sdc":`create_clock -name CK -period 2 [get_ports CK]
+# (no input or output delays: only the flop-to-flop paths are timed here)
+
+# Remove the # from ONE false path at a time, run, and see which paths disappear.
+# Step 1
+# set_false_path -through [get_pins U1/A]
+# Step 2
+# set_false_path -through [get_pins U2/X]
+# Step 3
+# set_false_path -from [get_clocks CK]
+`},quiz:[{type:"number",q:"Run as given. How many flop-to-flop paths are timed?",answer:8,tol:0,unit:"",explain:"F1\u2192F4, F1\u2192F5, F2\u2192F4..F7 and F3\u2192F6, F3\u2192F7.",try:!1},{type:"number",q:"Try it: Step 1, -through U1/A. How many paths remain?",answer:6,tol:0,unit:"",explain:"Only paths that pass through U1/A are removed: F1\u2192F4 and F1\u2192F5.",try:!0},{type:"choice",q:"After Step 1, why are F2 \u2192 F4 and F2 \u2192 F5 still timed?",options:["They are not","They go through U1/B, not U1/A","F2 is on another clock","False paths only apply to inputs"],answer:1,explain:"-through a pin removes only the paths that pass through that exact pin.",try:!1},{type:"number",q:"Try it: Step 2 alone, -through U2/X (the slide's U2/Z). How many paths remain?",answer:4,tol:0,unit:"",explain:"Every path through U2's output: F2\u2192F6, F2\u2192F7, F3\u2192F6, F3\u2192F7.",try:!0},{type:"number",q:"Try it: Step 3 alone, -from [get_clocks CK]. How many paths remain?",answer:0,tol:0,unit:"",explain:"Every path launched by CK is false. Use clock-level false paths with care.",try:!0}]},{id:"sdc-c8",group:"SDC & constraints",tag:"SDC 8",title:"False paths on clock edges",script:"run.tcl",files:{"run.tcl":`# SDC 8: -rise_from and -fall_to refer to edges of the clock at its source.
+# Exercises: predict which of paths A to D each command removes, then run each step.
+
+read_liberty sky130_fd_sc_hd__tt_025C_1v80.lib
+read_verilog edges.v
+link_design edges
+read_sdc edges.sdc
+
+puts "### Paths A to D: still timed?"
+set n 0
+foreach {name from to} {A FF1 FF2  B FF3 FF4  C FF5 FF6  D FF7 FF8} {
+  set p [find_timing_paths -from [get_pins $from/CLK] -to [get_pins $to/D] -path_delay max]
+  if {[llength $p]} { incr n; puts [format "Path %s (%s -> %s): slack %.2f" $name $from $to [get_property [lindex $p 0] slack]] } else { puts "Path $name ($from -> $to): not timed" }
+}
+puts "Paths timed: $n"
+puts "\\n### Path B in detail: which CLK edges launch and capture it?"
+report_checks -from FF3/CLK -to FF4/D -path_delay max
+`,"edges.v":`// Four paths on one clock. CLKB is CLK through an inverter.
+//   Path A: FF1 (CLK)  -> FF2 (CLK)
+//   Path B: FF3 (CLK)  -> FF4 (CLKB)
+//   Path C: FF5 (CLKB) -> FF6 (CLK)
+//   Path D: FF7 (CLKB) -> FF8 (CLKB)
+module edges (CLK, da, db, dc, dd, qa, qb, qc, qd);
+  input  CLK, da, db, dc, dd;
+  output qa, qb, qc, qd;
+  wire   CLKB, a, b, c, d, ai, bi, ci, di;
+  sky130_fd_sc_hd__clkinv_1 ci0 (.A(CLK), .Y(CLKB));
+  sky130_fd_sc_hd__dfxtp_1 FF1 (.D(da), .CLK(CLK),  .Q(a));
+  sky130_fd_sc_hd__inv_1   ia  (.A(a),  .Y(ai));
+  sky130_fd_sc_hd__dfxtp_1 FF2 (.D(ai), .CLK(CLK),  .Q(qa));
+  sky130_fd_sc_hd__dfxtp_1 FF3 (.D(db), .CLK(CLK),  .Q(b));
+  sky130_fd_sc_hd__inv_1   ib  (.A(b),  .Y(bi));
+  sky130_fd_sc_hd__dfxtp_1 FF4 (.D(bi), .CLK(CLKB), .Q(qb));
+  sky130_fd_sc_hd__dfxtp_1 FF5 (.D(dc), .CLK(CLKB), .Q(c));
+  sky130_fd_sc_hd__inv_1   ic  (.A(c),  .Y(ci));
+  sky130_fd_sc_hd__dfxtp_1 FF6 (.D(ci), .CLK(CLK),  .Q(qc));
+  sky130_fd_sc_hd__dfxtp_1 FF7 (.D(dd), .CLK(CLKB), .Q(d));
+  sky130_fd_sc_hd__inv_1   id  (.A(d),  .Y(di));
+  sky130_fd_sc_hd__dfxtp_1 FF8 (.D(di), .CLK(CLKB), .Q(qd));
+endmodule
+`,"edges.sdc":`create_clock -name CLK -period 10 [get_ports CLK]
+
+# -rise_from / -fall_to refer to the edge of the CLOCK at its source, not at the flop pin.
+# A flop on CLKB is triggered by the rising edge of CLKB, which is the FALLING edge of CLK.
+# Remove the # from one step at a time:
+# Step 1
+# set_false_path -rise_from [get_clocks CLK]
+# Step 2
+# set_false_path -fall_to [get_clocks CLK]
+`},quiz:[{type:"choice",q:"Path B: on which CLK edge is it captured?",options:["Rise at 10","Fall at 5: FF4 sees CLKB, the inverted clock","Rise at 0","Fall at 15"],answer:1,explain:"The report shows CLK' (rise edge) at 5 ns, which is the falling edge of CLK.",try:!1},{type:"choice",q:"Try it: Step 1, -rise_from CLK. Which paths are removed?",options:["A and C","A and B","B and D","C and D"],answer:1,explain:"A and B are launched by flops on CLK, so by the rising edge of CLK.",try:!0},{type:"choice",q:"Try it: Step 2, -fall_to CLK. Which paths are removed?",options:["A and B","B and D","C and D","A and C"],answer:1,explain:"B and D are captured by flops on CLKB, so by the falling edge of CLK.",try:!0},{type:"number",q:"How many paths remain after Step 2?",answer:2,tol:0,unit:"",explain:"A and C.",try:!1}]},{id:"sdc-c9",group:"SDC & constraints",tag:"SDC 9",title:"Multicycle paths: -start and -end",script:"run.tcl",files:{"run.tcl":`# SDC 9: a multicycle path counts cycles of the launch clock (-start) or the capture clock (-end).
+# Exercises: apply each step and read the new capture edge, then fix the hold checks.
+
+read_liberty sky130_fd_sc_hd__tt_025C_1v80.lib
+read_verilog mcp.v
+link_design mcp
+read_sdc mcp.sdc
+
+puts "### slow -> fast (rs1 -> rf1): setup"
+report_checks -from rs1/CLK -to rf1/D -path_delay max
+puts "\\n### fast -> slow (rf2 -> rs2): setup"
+report_checks -from rf2/CLK -to rs2/D -path_delay max
+puts "\\n### Hold checks for both"
+report_checks -from rs1/CLK -to rf1/D -path_delay min -format end
+report_checks -from rf2/CLK -to rs2/D -path_delay min -format end
+`,"mcp.v":`// A slow clock domain (clk_s, 20 ns) and a fast one (clk_f, 5 ns).
+//   rs1 (slow) -> rf1 (fast) and rf2 (fast) -> rs2 (slow)
+module mcp (clk_s, clk_f, d, q);
+  input  clk_s, clk_f, d;
+  output q;
+  wire   a, b, c, x, y;
+  sky130_fd_sc_hd__dfxtp_1 rs1 (.D(d), .CLK(clk_s), .Q(a));
+  sky130_fd_sc_hd__inv_1   g1  (.A(a), .Y(x));
+  sky130_fd_sc_hd__dfxtp_1 rf1 (.D(x), .CLK(clk_f), .Q(b));
+  sky130_fd_sc_hd__dfxtp_1 rf2 (.D(b), .CLK(clk_f), .Q(c));
+  sky130_fd_sc_hd__inv_1   g2  (.A(c), .Y(y));
+  sky130_fd_sc_hd__dfxtp_1 rs2 (.D(y), .CLK(clk_s), .Q(q));
+endmodule
+`,"mcp.sdc":`# The two clocks come from the same PLL and are synchronous.
+create_clock -name clk_s -period 20 [get_ports clk_s]
+create_clock -name clk_f -period 5  [get_ports clk_f]
+set_input_delay 1 -clock clk_s [get_ports d]
+
+# A multicycle path counts cycles of ONE clock:
+#   -end   (the default for setup) counts cycles of the capture clock
+#   -start counts cycles of the launch clock
+# Remove the # from one step at a time:
+# Step 1: slow -> fast, 3 fast (capture) cycles
+# set_multicycle_path 3 -setup -end   -from [get_clocks clk_s] -to [get_clocks clk_f]
+# Step 2: fast -> slow, 2 fast (launch) cycles
+# set_multicycle_path 2 -setup -start -from [get_clocks clk_f] -to [get_clocks clk_s]
+# Step 3: what if Step 2 used -end instead? (2 slow cycles)
+# set_multicycle_path 2 -setup -end   -from [get_clocks clk_f] -to [get_clocks clk_s]
+# Step 4: a setup multicycle also moves the hold check. Move it back (hold = setup - 1),
+#         counting cycles of the same clock as the setup multicycle:
+# set_multicycle_path 2 -hold -end   -from [get_clocks clk_s] -to [get_clocks clk_f]
+# set_multicycle_path 1 -hold -start -from [get_clocks clk_f] -to [get_clocks clk_s]
+`},quiz:[{type:"number",q:"Run as given. What is the setup slack of rs1 (slow) \u2192 rf1 (fast)?",answer:4.58,tol:.01,unit:"ns",explain:"Launch 0, capture at the next fast edge, 5 ns.",try:!1},{type:"number",q:"Try it: Step 1 (3 cycles, -end). What is the setup slack now?",answer:14.58,tol:.01,unit:"ns",explain:"The capture edge moves to 15 ns: 3 fast (capture clock) cycles.",try:!0},{type:"number",q:"With Step 1 only, what is the hold slack of rs1 \u2192 rf1?",answer:-9.66,tol:.01,unit:"ns",explain:"The hold check moved along with the setup check, to 10 ns. That is why a setup multicycle path needs a hold multicycle too.",try:!1},{type:"number",q:"Try it: Step 2 (2 cycles, -start). What is the setup slack of rf2 \u2192 rs2?",answer:9.58,tol:.01,unit:"ns",explain:"The fast launch clock moves back one cycle: 10 ns of budget instead of 5.",try:!0},{type:"number",q:"Try it: use Step 3 (-end) instead of Step 2. What is the setup slack?",answer:24.58,tol:.01,unit:"ns",explain:"-end counts slow capture cycles: 2 \xD7 20 ns. Probably not what the designer meant.",try:!0},{type:"number",q:"Try it: apply Steps 1, 2 and 4. What is the hold slack of both paths?",answer:.34,tol:.01,unit:"ns",explain:"The hold checks are back on their original edges.",try:!0}]},{id:"sdc-c10",group:"SDC & constraints",tag:"SDC 10",title:"Exception priority",script:"run.tcl",files:{"run.tcl":`# SDC 10: when two exceptions cover the same path, which one applies?
+# Exercises: answer Q1 and Q2 on paper, then remove the # from each pair and check.
+
+read_liberty sky130_fd_sc_hd__tt_025C_1v80.lib
+read_verilog fp.v
+link_design fp
+read_sdc prio.sdc
+
+puts "### Every flop-to-flop path that is still timed"
+set n 0
+foreach from {F1 F2 F3} {
+  foreach to {F4 F5 F6 F7} {
+    set p [find_timing_paths -from [get_pins $from/CLK] -to [get_pins $to/D] -path_delay max]
+    if {[llength $p]} { incr n; puts [format "%s -> %s  slack %.2f" $from $to [get_property [lindex $p 0] slack]] }
+  }
+}
+puts "Paths timed: $n"
+puts "\\n### Paths into F4 in detail"
+report_checks -to F4/D -path_delay max -group_path_count 4 -endpoint_path_count 4 -format end
+`,"fp.v":`// Seven flops and three gates. Which paths does each false path remove?
+//   F1 -> U1/A ; F2 -> U1/B and U2/A ; F3 -> U2/B
+//   U1/Z -> U3 -> F4 ; U1/Z -> F5 ; U2/Z -> F6 and F7
+module fp (CK, d1, d2, d3, q4, q5, q6, q7);
+  input  CK, d1, d2, d3;
+  output q4, q5, q6, q7;
+  wire   f1, f2, f3, z1, z2, o3;
+  sky130_fd_sc_hd__dfxtp_1 F1 (.D(d1), .CLK(CK), .Q(f1));
+  sky130_fd_sc_hd__dfxtp_1 F2 (.D(d2), .CLK(CK), .Q(f2));
+  sky130_fd_sc_hd__dfxtp_1 F3 (.D(d3), .CLK(CK), .Q(f3));
+  sky130_fd_sc_hd__and2_1  U1 (.A(f1), .B(f2), .X(z1));
+  sky130_fd_sc_hd__and2_1  U2 (.A(f2), .B(f3), .X(z2));
+  sky130_fd_sc_hd__inv_1   U3 (.A(z1), .Y(o3));
+  sky130_fd_sc_hd__dfxtp_1 F4 (.D(o3), .CLK(CK), .Q(q4));
+  sky130_fd_sc_hd__dfxtp_1 F5 (.D(z1), .CLK(CK), .Q(q5));
+  sky130_fd_sc_hd__dfxtp_1 F6 (.D(z2), .CLK(CK), .Q(q6));
+  sky130_fd_sc_hd__dfxtp_1 F7 (.D(z2), .CLK(CK), .Q(q7));
+endmodule
+`,"prio.sdc":`create_clock -name CK -period 2 [get_ports CK]
+
+# When several exceptions cover the same path, only one wins:
+#   1. set_false_path beats set_max_delay, which beats set_multicycle_path
+#   2. between two of the same kind, the more specific one wins:
+#      -from pin > -from clock, and -from and -to together beat -to alone
+# Q1: remove the # from both lines of Q1 and run. Then put them back and try Q2.
+# Q1
+# set_false_path -from [get_pins F1/CLK]
+# set_multicycle_path 2 -setup -to [get_pins F4/D]
+# Q2
+# set_multicycle_path 2 -setup -to [get_pins F4/D]
+# set_multicycle_path 4 -setup -from [get_pins F2/CLK] -to [get_pins F4/D]
+`},quiz:[{type:"choice",q:"Q1: the false path from F1 and the multicycle path to F4 both cover F1 \u2192 F4. Which applies?",options:["The multicycle path","The false path: a false path has the highest priority","Both","Neither"],answer:1,explain:"Priority: false path, then max/min delay, then multicycle path.",try:!1},{type:"number",q:"Try it: apply Q1. How many paths are timed?",answer:6,tol:0,unit:"",explain:"F1 \u2192 F4 and F1 \u2192 F5 are false.",try:!0},{type:"number",q:"With Q1, what is the setup slack of F2 \u2192 F4?",answer:3.45,tol:.01,unit:"ns",explain:"The multicycle path to F4 still applies to F2: 2 cycles of 2 ns.",try:!1},{type:"number",q:"Try it: apply Q2. What is the setup slack of F2 \u2192 F4?",answer:7.45,tol:.01,unit:"ns",explain:"-from F2 -to F4 is more specific than -to F4 alone, so 4 cycles apply.",try:!0},{type:"number",q:"With Q2, what is the setup slack of F1 \u2192 F4?",answer:3.47,tol:.01,unit:"ns",explain:"Only the -to F4 multicycle covers F1: 2 cycles.",try:!1}]},{id:"sdc-c11",group:"SDC & constraints",tag:"SDC 11",title:"Merging mode constraints",script:"run.tcl",files:{"run.tcl":`# SDC 11: one SDC that covers two modes. SEL selects FF1 (mode1) or FF2 (mode2).
+# Exercises: run mode1, mode2 and merged (change the first line) and compare the paths.
+
+# Change the mode here (mode1, mode2 or merged) and run again.
+set mode mode1
+
+read_liberty sky130_fd_sc_hd__tt_025C_1v80.lib
+read_verilog modes.v
+link_design modes
+read_sdc $mode.sdc
+
+puts "### Mode: $mode"
+puts "### Paths into FF3"
+foreach from {FF1 FF2} {
+  set p [find_timing_paths -from [get_pins $from/CLK] -to [get_pins FF3/D] -path_delay max]
+  if {[llength $p]} { puts [format "%s -> FF3  slack %.2f" $from [get_property [lindex $p 0] slack]] } else { puts "$from -> FF3  not timed" }
+}
+puts "\\n### Worst setup path"
+report_checks -path_delay max -to FF3/D
+`,"modes.v":`// FF1 and FF2 reach FF3 through a mux. SEL is a mode pin: it is set once and never changes.
+//   mode1: SEL = 0, FF1 -> FF3 (short path)
+//   mode2: SEL = 1, FF2 -> FF3 (long path)
+module modes (CLK, SEL, d1, d2, q);
+  input  CLK, SEL, d1, d2;
+  output q;
+  wire   a, b, b1, b4, m;
+  sky130_fd_sc_hd__dfxtp_1 FF1 (.D(d1), .CLK(CLK), .Q(a));
+  sky130_fd_sc_hd__dfxtp_1 FF2 (.D(d2), .CLK(CLK), .Q(b));
+  sky130_fd_sc_hd__dlygate4sd3_1 y1 (.A(b),  .X(b1));
+  sky130_fd_sc_hd__dlygate4sd3_1 y2 (.A(b1), .X(b4));
+  sky130_fd_sc_hd__mux2_1  mx (.A0(a), .A1(b4), .S(SEL), .X(m));
+  sky130_fd_sc_hd__dfxtp_1 FF3 (.D(m), .CLK(CLK), .Q(q));
+endmodule
+`,"mode1.sdc":`# mode1.sdc
+create_clock -name CLK -period 2.0 [get_ports CLK]
+set_case_analysis 0 [get_ports SEL]
+`,"mode2.sdc":`# mode2.sdc
+create_clock -name CLK -period 2.0 [get_ports CLK]
+set_case_analysis 1 [get_ports SEL]
+`,"merged.sdc":`# merged.sdc: one set of constraints that covers mode1 AND mode2.
+# Both modes use the same clock, so it is defined once.
+create_clock -name CLK -period 2.0 [get_ports CLK]
+# SEL is 0 in mode1 and 1 in mode2, so no set_case_analysis: both mux inputs are timed.
+# SEL itself never toggles while the chip runs, so paths from SEL are false.
+set_false_path -from [get_ports SEL]
+`},quiz:[{type:"number",q:"mode1: what is the setup slack of FF1 \u2192 FF3?",answer:1.35,tol:.01,unit:"ns",explain:"SEL = 0, so only the FF1 input of the mux is timed.",try:!1},{type:"number",q:"Try it: mode2. What is the setup slack of FF2 \u2192 FF3?",answer:.26,tol:.01,unit:"ns",explain:"The long path through two delay cells.",try:!0},{type:"choice",q:"Try it: merged. Which paths are timed?",options:["Only FF1 \u2192 FF3","Only FF2 \u2192 FF3","Both, with the same slacks as in mode1 and mode2","Neither"],answer:2,explain:"The merged SDC covers both modes in one run: every path that is real in at least one mode.",try:!0},{type:"choice",q:"Why does merged.sdc set a false path from SEL?",options:["SEL is a clock","SEL is a static mode pin: it never toggles during operation, so its timing does not matter","To hide a violation","It is required by OpenSTA"],answer:1,explain:"Without a case value, SEL \u2192 FF3 becomes a timed path. It is static, so it is false.",try:!1}]},{id:"sdc-c12",group:"SDC & constraints",tag:"SDC 12",title:"Promoting IP constraints",script:"run.tcl",files:{"run.tcl":`# SDC 12: the IP team's SDC must be promoted to the SoC, where names and clocks change.
+# Exercises: time the IP alone (level ip), then the SoC, and apply each promoted step.
+
+# Set level to "ip" to time the IP alone with ip.sdc, or "soc" for the SoC with soc.sdc.
+set level soc
+
+read_liberty sky130_fd_sc_hd__tt_025C_1v80.lib
+read_verilog soc.v
+if {$level eq "ip"} { link_design ip; read_sdc ip.sdc; set u2 U2_reg } \\
+else                { link_design soc; read_sdc soc.sdc; set u2 uIP/U2_reg }
+
+puts "### Level: $level"
+puts "### Clocks"
+report_clock_properties
+puts "\\n### Into U2_reg (the multicycle path)"
+report_checks -to $u2/D -path_delay max -group_path_count 4 -endpoint_path_count 4 -format end
+puts "\\n### Through B and Z (the false path)"
+if {$level eq "ip"} { set p [find_timing_paths -from [get_ports B] -to [get_ports Z] -path_delay max] } \\
+else                { set p [find_timing_paths -through [get_pins uIP/B] -through [get_pins uIP/Z] -path_delay max] }
+if {[llength $p]} { puts [format "timed, worst slack %.2f" [get_property [lindex $p 0] slack]] } else { puts "not timed (false path)" }
+puts "\\n### Worst setup paths"
+report_checks -path_delay max -group_path_count 5 -format end
+`,"soc.v":`// An IP block and the SoC that uses it.
+//   IP:  B -> logic -> Z (a feed-through), and clk -> U1_reg -> logic -> U2_reg
+//   SoC: B_top -> logic -> uIP/B, uIP/Z -> logic -> top_reg; the IP clock comes from a
+//        mux of sysclk (scanmode = 0) and testclk (scanmode = 1).
+module ip (clk, B, din, Z, dout);
+  input  clk, B, din;
+  output Z, dout;
+  wire   z1, u1q, m1, m2, m3, m4;
+  sky130_fd_sc_hd__dlygate4sd3_1 fb1 (.A(B),  .X(z1));
+  sky130_fd_sc_hd__dlygate4sd3_1 fb2 (.A(z1), .X(Z));
+  sky130_fd_sc_hd__dfxtp_1 U1_reg (.D(din), .CLK(clk), .Q(u1q));
+  sky130_fd_sc_hd__dlygate4sd3_1 mc1 (.A(u1q), .X(m1));
+  sky130_fd_sc_hd__dlygate4sd3_1 mc2 (.A(m1),  .X(m2));
+  sky130_fd_sc_hd__dlygate4sd3_1 mc3 (.A(m2),  .X(m3));
+  sky130_fd_sc_hd__dlygate4sd3_1 mc4 (.A(m3),  .X(m4));
+  sky130_fd_sc_hd__dfxtp_1 U2_reg (.D(m4), .CLK(clk), .Q(dout));
+endmodule
+
+module soc (sysclk, testclk, scanmode, B_top, din, dout, q);
+  input  sysclk, testclk, scanmode, B_top, din;
+  output dout, q;
+  wire   clk, b1, bin, z, z1, zq;
+  sky130_fd_sc_hd__mux2_1 cmux (.A0(sysclk), .A1(testclk), .S(scanmode), .X(clk));
+  sky130_fd_sc_hd__dlygate4sd3_1 bt1 (.A(B_top), .X(b1));
+  sky130_fd_sc_hd__dlygate4sd3_1 bt2 (.A(b1),    .X(bin));
+  ip uIP (.clk(clk), .B(bin), .din(din), .Z(z), .dout(dout));
+  sky130_fd_sc_hd__dlygate4sd3_1 zt1 (.A(z), .X(z1));
+  sky130_fd_sc_hd__dfxtp_1 top_reg (.D(z1), .CLK(clk), .Q(q));
+endmodule
+`,"ip.sdc":`# SDC for IP, written by the IP team (ports and clock names of module ip)
+create_clock clk -period 6 -name clk
+set_input_delay 0 -clock clk [get_ports {B din}]
+set_output_delay 0 -clock clk [get_ports {Z dout}]
+set_false_path -from [get_ports B] -to [get_ports Z]
+set_multicycle_path 2 -setup -from [get_clocks clk] -to [get_cells U2_reg]
+set_multicycle_path 1 -hold  -from [get_clocks clk] -to [get_cells U2_reg]
+`,"soc.sdc":`# SoC constraints. The IP's clock and exceptions must be PROMOTED to the SoC:
+# the names change (ports become hierarchical pins, clk becomes sysclk).
+create_clock -name sysclk  -period 6  [get_ports sysclk]
+create_clock -name testclk -period 20 [get_ports testclk]
+set_input_delay 0 -clock sysclk [get_ports {B_top din}]
+set_output_delay 0 -clock sysclk [get_ports dout]
+
+# Promoted constraints: remove the # from each step in turn and run again.
+# Step 1: functional mode only (scanmode = 0 selects sysclk)
+# set_case_analysis 0 [get_ports scanmode]
+# Step 2: the IP's "-from B -to Z" false path. B and Z are no longer start or end
+#         points at the SoC level, so the promoted version uses -through.
+# set_false_path -through [get_pins uIP/B] -through [get_pins uIP/Z]
+# Step 3: the IP's multicycle path into U2_reg, with the SoC clock name
+# set_multicycle_path 2 -setup -from [get_clocks sysclk] -to [get_cells uIP/U2_reg]
+# set_multicycle_path 1 -hold  -from [get_clocks sysclk] -to [get_cells uIP/U2_reg]
+`},quiz:[{type:"number",q:"level ip: what is the setup slack into U2_reg (multicycle 2)?",answer:9.47,tol:.01,unit:"ns",explain:"12 ns of budget for a 2.4 ns path.",try:!1},{type:"number",q:"level soc, no steps: what is the worst setup slack in the report?",answer:-.8,tol:.01,unit:"ns",explain:"top_reg in the testclk group: without case analysis, sysclk and testclk both pass the mux and STA times paths between them.",try:!1},{type:"number",q:"Try it: Step 1. What is the setup slack into uIP/U2_reg?",answer:3.47,tol:.01,unit:"ns",explain:"Only sysclk now, but the IP's multicycle path is not promoted yet: one 6 ns cycle.",try:!0},{type:"choice",q:"Why does the promoted false path use -through uIP/B -through uIP/Z, not -from/-to?",options:["-from is not allowed","uIP/B and uIP/Z are hierarchical pins, not start or end points: paths only pass through them at the SoC","-through is faster","To include more paths"],answer:1,explain:"A port of the IP is a startpoint at IP level but only a pin on the path at SoC level.",try:!1},{type:"number",q:"Try it: Steps 1 to 3. What is the setup slack into uIP/U2_reg?",answer:9.47,tol:.01,unit:"ns",explain:"The same as the IP alone: the constraints were promoted correctly.",try:!0}]},{id:"sdc-c13",group:"SDC & constraints",tag:"SDC 13",title:"I/O constraints with a virtual clock",script:"run.tcl",files:{"run.tcl":`# SDC 13: input and output delays for a block between two chips, with -max and -min values.
+# Exercises: read the setup and hold checks on both ports, then launch din on the falling edge.
+
+read_liberty sky130_fd_sc_hd__tt_025C_1v80.lib
+read_verilog io.v
+link_design io
+read_sdc io.sdc
+
+puts "### Input path: setup and hold"
+report_checks -from din -path_delay min_max
+puts "\\n### Output path: setup and hold"
+report_checks -to dout -path_delay min_max
+`,"io.v":`// A block between two chips. din comes from an upstream chip, dout goes to a downstream chip.
+// Both chips run on the same board clock as this block.
+module io (clk, din, dout);
+  input  clk, din;
+  output dout;
+  wire   a, a1, b, b1;
+  sky130_fd_sc_hd__dlygate4sd3_1 ib (.A(din), .X(a1));     // input logic
+  sky130_fd_sc_hd__dfxtp_1 r_in  (.D(a1), .CLK(clk), .Q(a));
+  sky130_fd_sc_hd__dfxtp_1 r_out (.D(a),  .CLK(clk), .Q(b));
+  sky130_fd_sc_hd__dlygate4sd3_1 ob (.A(b), .X(b1));        // output logic
+  sky130_fd_sc_hd__buf_1   obuf (.A(b1), .X(dout));
+endmodule
+`,"io.sdc":`# The block clock, and a VIRTUAL clock for the other chips (no pin in this design).
+create_clock -name clk   -period 4 [get_ports clk]
+create_clock -name board -period 4
+
+# Upstream chip: its flop launches din on board; din takes 1.2 to 2.5 ns to arrive.
+set_input_delay  -max 2.5 -clock board [get_ports din]
+set_input_delay  -min 1.2 -clock board [get_ports din]
+# Downstream chip: needs dout 1.0 ns before its clock edge (setup) and 0.3 ns after it (hold).
+set_output_delay -max 1.0  -clock board [get_ports dout]
+set_output_delay -min -0.3 -clock board [get_ports dout]
+set_load 0.01 [get_ports dout]
+
+# Step 1: the upstream chip launches on the FALLING edge of board. Remove the # :
+# set_input_delay -max 2.5 -clock board -clock_fall [get_ports din]
+# set_input_delay -min 1.2 -clock board -clock_fall [get_ports din]
+`},quiz:[{type:"number",q:"What is the setup slack of the input path din \u2192 r_in?",answer:.86,tol:.01,unit:"ns",explain:"din arrives 2.5 ns (max) after board, plus 0.52 ns of logic, against the 4 ns clk edge.",try:!1},{type:"number",q:"What is the hold slack of the input path?",answer:1.75,tol:.01,unit:"ns",explain:"Uses the -min input delay, 1.2 ns.",try:!1},{type:"number",q:"What is the setup slack of the output path to dout?",answer:2.06,tol:.01,unit:"ns",explain:"Required at 4 \u2212 1.0 = 3.0 ns.",try:!1},{type:"number",q:"What is the hold slack of the output path?",answer:.62,tol:.01,unit:"ns",explain:"-min \u22120.3 means dout must not change until 0.3 ns after the edge.",try:!1},{type:"number",q:"Try it: Step 1, launch din on the falling edge of board. What is the setup slack now?",answer:-1.14,tol:.01,unit:"ns",explain:"din now starts at 2 + 2.5 = 4.5 ns: later than the next clk edge.",try:!0},{type:"choice",q:"Why use a virtual clock (board) for the I/O delays?",options:["It is faster","The other chips' flops are not in this design; a virtual clock models their clock with its own latency and edges","OpenSTA requires it","To avoid hold checks"],answer:1,explain:"It keeps I/O constraints separate from the internal clock tree, so propagated clock latency inside the block is not applied to the outside world.",try:!1}]},{id:"sdc-c14",group:"SDC & constraints",tag:"SDC 14",title:"Driving cells, loads and design rules",script:"run.tcl",files:{"run.tcl":`# SDC 14: describe the environment around the block and set design rule limits.
+# Exercises: find the slew and capacitance violations, then try each fix.
+
+read_liberty sky130_fd_sc_hd__tt_025C_1v80.lib
+read_verilog env.v
+link_design env
+read_sdc env.sdc
+
+puts "### Design rule violations (slew and capacitance)"
+report_check_types -max_slew -max_capacitance -violators
+puts "\\n### Path from en"
+report_checks -from en -path_delay max -fields {slew cap fanout}
+puts "\\n### Path to dout"
+report_checks -to dout -path_delay max -fields {slew cap fanout}
+`,"env.v":`// One input drives a big fanout; one output drives a long board trace.
+module env (clk, en, din, dout);
+  input  clk, en, din;
+  output dout;
+  wire   a, e, q0, q1, q2, q3, q4, q5, q6, q7, o;
+  sky130_fd_sc_hd__dfxtp_1 rin (.D(din), .CLK(clk), .Q(a));
+  sky130_fd_sc_hd__and2_1 g0 (.A(a), .B(en), .X(q0));
+  sky130_fd_sc_hd__and2_1 g1 (.A(a), .B(en), .X(q1));
+  sky130_fd_sc_hd__and2_1 g2 (.A(a), .B(en), .X(q2));
+  sky130_fd_sc_hd__and2_1 g3 (.A(a), .B(en), .X(q3));
+  sky130_fd_sc_hd__and2_1 g4 (.A(a), .B(en), .X(q4));
+  sky130_fd_sc_hd__and2_1 g5 (.A(a), .B(en), .X(q5));
+  sky130_fd_sc_hd__and2_1 g6 (.A(a), .B(en), .X(q6));
+  sky130_fd_sc_hd__and2_1 g7 (.A(a), .B(en), .X(q7));
+  sky130_fd_sc_hd__dfxtp_1 r0 (.D(q0), .CLK(clk), .Q());
+  sky130_fd_sc_hd__dfxtp_1 r1 (.D(q1), .CLK(clk), .Q());
+  sky130_fd_sc_hd__dfxtp_1 r2 (.D(q2), .CLK(clk), .Q());
+  sky130_fd_sc_hd__dfxtp_1 r3 (.D(q3), .CLK(clk), .Q());
+  sky130_fd_sc_hd__dfxtp_1 r4 (.D(q4), .CLK(clk), .Q());
+  sky130_fd_sc_hd__dfxtp_1 r5 (.D(q5), .CLK(clk), .Q());
+  sky130_fd_sc_hd__dfxtp_1 r6 (.D(q6), .CLK(clk), .Q());
+  sky130_fd_sc_hd__dfxtp_1 r7 (.D(q7), .CLK(clk), .Q(o));
+  sky130_fd_sc_hd__buf_1  ob (.A(o), .X(dout));
+endmodule
+`,"env.sdc":`create_clock -name clk -period 3 [get_ports clk]
+set_input_delay  0.5 -clock clk [get_ports {din en}]
+set_output_delay 0.5 -clock clk [get_ports dout]
+
+# The environment around the block. Without these, inputs switch in zero time and outputs drive nothing.
+# en comes from a weak driver in the next block; din has a 0.2 ns slew.
+set_driving_cell -lib_cell sky130_fd_sc_hd__inv_1 -pin Y [get_ports en]
+set_input_transition 0.2 [get_ports din]
+# dout drives a long trace: 0.05 pF.
+set_load 0.05 [get_ports dout]
+
+# Design rules every net must meet (slew and load capacitance).
+set_max_transition 0.5 [current_design]
+set_max_capacitance 0.04 [current_design]
+
+# Step 1: a stronger driver for en. Change inv_1 to inv_4 above and run again.
+# Step 2: drive dout with a bigger buffer. Change buf_1 to buf_4 in env.v and run again.
+`},quiz:[{type:"number",q:"How many pins violate max slew?",answer:2,tol:0,unit:"",explain:"ob/X and the port dout: buf_1 driving 0.05 pF has a 0.59 ns slew against a 0.5 ns limit.",try:!1},{type:"number",q:"What is the max capacitance slack on ob/X?",answer:-.01,tol:.01,unit:"pF",explain:"0.05 pF load against a 0.04 pF limit.",try:!1},{type:"number",q:"Try it: Step 1, drive en with inv_4. What is the slew on the en port now?",answer:.02,tol:.01,unit:"ns",explain:"From 0.06 ns with inv_1: a stronger driver switches the 8 loads faster.",try:!0},{type:"choice",q:"Try it: Step 2, use buf_4 for ob. Which violations remain?",options:["None","Only max capacitance: the 0.05 pF load is above the 0.04 pF limit whatever drives it","Only max slew","Both"],answer:1,explain:"A bigger driver fixes slew. The capacitance limit is on the net itself: reduce the load or split the net.",try:!0}]},{id:"sdc-c15",group:"SDC & constraints",tag:"SDC 15",title:"Clock latency, uncertainty and transition",script:"run.tcl",files:{"run.tcl":`# SDC 15: before clock tree synthesis, the clock tree is estimated in the SDC.
+# Exercises: find each clock term in the setup and hold reports, then switch to propagated clocks.
+
+read_liberty sky130_fd_sc_hd__tt_025C_1v80.lib
+read_verilog lat.v
+link_design lat
+read_sdc lat.sdc
+
+puts "### r1 -> r2: setup"
+report_checks -from r1/CLK -to r2/D -path_delay max
+puts "\\n### r1 -> r2: hold"
+report_checks -from r1/CLK -to r2/D -path_delay min
+`,"lat.v":`// A small clock tree: CLK -> cb1 -> cb2 -> r1, and CLK -> cb3 -> r2.
+module lat (CLK, d, q);
+  input  CLK, d;
+  output q;
+  wire   n1, n2, n3, a, b;
+  sky130_fd_sc_hd__clkbuf_1 cb1 (.A(CLK), .X(n1));
+  sky130_fd_sc_hd__clkbuf_1 cb2 (.A(n1),  .X(n2));
+  sky130_fd_sc_hd__clkbuf_1 cb3 (.A(CLK), .X(n3));
+  sky130_fd_sc_hd__dfxtp_1 r1 (.D(d), .CLK(n2), .Q(a));
+  sky130_fd_sc_hd__inv_1   g1 (.A(a), .Y(b));
+  sky130_fd_sc_hd__dfxtp_1 r2 (.D(b), .CLK(n3), .Q(q));
+endmodule
+`,"lat.sdc":`create_clock -name CLK -period 2 [get_ports CLK]
+set_input_delay 0.2 -clock CLK [get_ports d]
+
+# Before clock tree synthesis there is no real tree yet, so we estimate it:
+set_clock_latency -source 0.4 [get_clocks CLK]   ;# from the PLL to the CLK port
+set_clock_latency 0.3 [get_clocks CLK]           ;# estimated tree delay (network latency)
+set_clock_uncertainty -setup 0.15 [get_clocks CLK]   ;# jitter + skew margin
+set_clock_uncertainty -hold  0.05 [get_clocks CLK]
+set_clock_transition 0.1 [get_clocks CLK]
+
+# Step 1: after clock tree synthesis the tree is real. Remove the # to use the real
+#         delays of cb1, cb2 and cb3 instead of the 0.3 ns estimate:
+# set_propagated_clock [all_clocks]
+`},quiz:[{type:"number",q:"What is the clock network delay at r1/CLK in the setup report?",answer:.7,tol:.01,unit:"ns",explain:"0.4 ns source latency + 0.3 ns network latency (ideal clock).",try:!1},{type:"number",q:"What is the setup slack r1 \u2192 r2?",answer:1.42,tol:.01,unit:"ns",explain:"The 0.15 ns setup uncertainty is subtracted from the required time.",try:!1},{type:"number",q:"What is the hold slack r1 \u2192 r2?",answer:.31,tol:.01,unit:"ns",explain:"Hold uses the 0.05 ns hold uncertainty.",try:!1},{type:"number",q:"Try it: Step 1, set_propagated_clock. What is the clock network delay at r1/CLK now?",answer:.53,tol:.01,unit:"ns",explain:"0.4 ns source latency + 0.13 ns through cb1 and cb2. The 0.3 ns estimate is no longer used.",try:!0},{type:"number",q:"With propagated clocks, what is the setup slack?",answer:1.36,tol:.01,unit:"ns",explain:"The capture clock through cb3 is now earlier than the launch clock: negative skew costs setup.",try:!1}]},{id:"sdc-c16",group:"SDC & constraints",tag:"SDC 16",title:"Constraining clock domain crossings",script:"run.tcl",files:{"run.tcl":`# SDC 16: asynchronous clocks need constraints too: cut the paths, or limit them.
+# Exercises: run as given, then try each step and compare which crossings are checked.
+
+read_liberty sky130_fd_sc_hd__tt_025C_1v80.lib
+read_verilog cdc.v
+link_design cdc
+read_sdc cdc.sdc
+
+puts "### Crossings into clk_b"
+foreach {from to} {ra s1_reg p0_reg g0_reg p1_reg g1_reg p2_reg g2_reg} {
+  set p [find_timing_paths -from [get_pins $from/CLK] -to [get_pins $to/D] -path_delay max]
+  if {[llength $p]} { puts [format "%-7s -> %-7s slack %.2f" $from $to [get_property [lindex $p 0] slack]] } else { puts [format "%-7s -> %-7s not timed" $from $to] }
+}
+puts "\\n### Worst crossing path in detail"
+report_checks -from [get_clocks clk_a] -to [get_clocks clk_b] -path_delay max
+`,"cdc.v":`// Two asynchronous clocks. A 2-flop synchronizer (s1, s2) carries one control bit,
+// and a 3-bit Gray-coded pointer (p0..p2 -> g0..g2) crosses bit by bit.
+module cdc (clk_a, clk_b, d, din0, din1, din2, q, q0, q1, q2);
+  input  clk_a, clk_b, d, din0, din1, din2;
+  output q, q0, q1, q2;
+  wire   a, s1, p0, p1, p2, n0, n1, n2, n2a;
+  sky130_fd_sc_hd__dfxtp_1 ra (.D(d),  .CLK(clk_a), .Q(a));
+  sky130_fd_sc_hd__dfxtp_1 s1_reg (.D(a),  .CLK(clk_b), .Q(s1));
+  sky130_fd_sc_hd__dfxtp_1 s2_reg (.D(s1), .CLK(clk_b), .Q(q));
+  sky130_fd_sc_hd__dfxtp_1 p0_reg (.D(din0), .CLK(clk_a), .Q(p0));
+  sky130_fd_sc_hd__dfxtp_1 p1_reg (.D(din1), .CLK(clk_a), .Q(p1));
+  sky130_fd_sc_hd__dfxtp_1 p2_reg (.D(din2), .CLK(clk_a), .Q(p2));
+  sky130_fd_sc_hd__dlygate4sd3_1 w0 (.A(p0), .X(n0));     // long routes across the chip
+  sky130_fd_sc_hd__dlygate4sd3_1 w1 (.A(p1), .X(n1));
+  sky130_fd_sc_hd__dlygate4sd3_1 w2a (.A(p2), .X(n2a));
+  sky130_fd_sc_hd__dlygate4sd3_1 w2b (.A(n2a), .X(n2));
+  sky130_fd_sc_hd__dfxtp_1 g0_reg (.D(n0), .CLK(clk_b), .Q(q0));
+  sky130_fd_sc_hd__dfxtp_1 g1_reg (.D(n1), .CLK(clk_b), .Q(q1));
+  sky130_fd_sc_hd__dfxtp_1 g2_reg (.D(n2), .CLK(clk_b), .Q(q2));
+endmodule
+`,"cdc.sdc":`create_clock -name clk_a -period 4 [get_ports clk_a]
+create_clock -name clk_b -period 3 [get_ports clk_b]
+
+# Without a constraint, STA treats clk_a and clk_b as synchronous and times every
+# crossing against the closest pair of edges: that gives meaningless violations.
+# Remove the # from ONE step at a time:
+# Step 1: cut all paths between the clocks
+# set_clock_groups -asynchronous -group clk_a -group clk_b
+# Step 2: better for the Gray pointer: keep a delay limit so the bits arrive close together.
+#         -ignore_clock_latency limits only the data path delay, not the clock edges.
+# set_max_delay 1.0 -ignore_clock_latency -from [get_cells p*_reg] -to [get_cells g*_reg]
+# set_false_path -from [get_cells ra] -to [get_cells s1_reg]
+`},quiz:[{type:"number",q:"Run as given. What is the worst slack on a crossing?",answer:-.46,tol:.01,unit:"ns",explain:"p2_reg \u2192 g2_reg, timed against the closest edges of two clocks that have no fixed phase.",try:!1},{type:"number",q:"Try it: Step 1. How many crossings are still timed?",answer:0,tol:0,unit:"",explain:"set_clock_groups -asynchronous cuts every path between clk_a and clk_b, in both directions.",try:!0},{type:"choice",q:"Try it: Step 2 instead. Which pointer bit fails the 1.0 ns max delay?",options:["g0","g1","g2: its route is twice as long","None"],answer:2,explain:"All bits of a Gray pointer must arrive within about one destination period of each other. A max delay keeps the skew in check; a false path would not.",try:!0},{type:"choice",q:"Why use set_max_delay instead of a false path for a Gray-coded pointer?",options:["It is faster to run","A false path lets the bits arrive at any time; a max delay keeps them close enough that the destination never sees two bits change at once","OpenSTA cannot do false paths","It is the same"],answer:1,explain:"See the Gray code lab in the CDC lab.",try:!1}]},{id:"sdc-c17",group:"SDC & constraints",tag:"SDC 17",title:"Write the SDC from scratch",script:"run.tcl",files:{"run.tcl":`# SDC 17: constrain a block yourself. my.sdc has a checklist; solution.sdc has one answer.
+# Exercises: add one constraint at a time to my.sdc and run until check_setup is clean.
+
+# Change to solution.sdc to compare with the answer.
+set sdc my.sdc
+
+read_liberty sky130_fd_sc_hd__tt_025C_1v80.lib
+read_verilog chip.v
+link_design chip
+read_sdc $sdc
+
+puts "### Constraint problems (check_setup)"
+check_setup -verbose
+puts "\\n### Endpoints"
+report_checks -path_delay max -group_path_count 20 -format end
+puts "\\n### Summary"
+report_wns
+report_tns
+`,"chip.v":`// A small block to constrain from scratch.
+//   clk      : 250 MHz system clock (4 ns)
+//   div_reg  : divides clk by 2 -> clk_half drives the slow registers s1, s2
+//   cfg      : a static configuration pin, set once after reset
+//   in1/out1 : data from and to other chips on the same clock
+//   m1 -> m2 : a two-cycle arithmetic path (by design)
+module chip (clk, rst_n, cfg, in1, out1, outs);
+  input  clk, rst_n, cfg, in1;
+  output out1, outs;
+  wire   clk_half, dn, a, c, m, m1, m2, m3, m4, m5, m6, m7, m8, x, s, sx;
+  sky130_fd_sc_hd__dfrbp_1 div_reg (.D(dn), .CLK(clk), .RESET_B(rst_n), .Q(clk_half), .Q_N(dn));
+  sky130_fd_sc_hd__dfrtp_1 r_in  (.D(in1), .CLK(clk), .RESET_B(rst_n), .Q(a));
+  sky130_fd_sc_hd__dfrtp_1 r_cfg (.D(cfg), .CLK(clk), .RESET_B(rst_n), .Q(c));
+  sky130_fd_sc_hd__xor2_1  g1 (.A(a), .B(c), .X(m));
+  sky130_fd_sc_hd__dfrtp_1 m1_reg (.D(m), .CLK(clk), .RESET_B(rst_n), .Q(m1));
+  sky130_fd_sc_hd__dlygate4sd3_1 d1 (.A(m1), .X(m2));
+  sky130_fd_sc_hd__dlygate4sd3_1 d2 (.A(m2), .X(m3));
+  sky130_fd_sc_hd__dlygate4sd3_1 d3 (.A(m3), .X(m4));
+  sky130_fd_sc_hd__dlygate4sd3_1 d4 (.A(m4), .X(m5));
+  sky130_fd_sc_hd__dlygate4sd3_1 d5 (.A(m5), .X(m6));
+  sky130_fd_sc_hd__dlygate4sd3_1 d6 (.A(m6), .X(m7));
+  sky130_fd_sc_hd__dlygate4sd3_1 d7 (.A(m7), .X(m8));
+  sky130_fd_sc_hd__dlygate4sd3_1 d8 (.A(m8), .X(x));
+  sky130_fd_sc_hd__dfrtp_1 m2_reg (.D(x), .CLK(clk), .RESET_B(rst_n), .Q(out1));
+  sky130_fd_sc_hd__dfrtp_1 s1 (.D(a), .CLK(clk_half), .RESET_B(rst_n), .Q(s));
+  sky130_fd_sc_hd__inv_1   g2 (.A(s), .Y(sx));
+  sky130_fd_sc_hd__dfrtp_1 s2 (.D(sx), .CLK(clk_half), .RESET_B(rst_n), .Q(outs));
+endmodule
+`,"my.sdc":`# Write the constraints for chip.v here. Run after each step and watch check_setup.
+# Checklist:
+#   1. the clock on clk (4 ns)
+#   2. the divided clock on div_reg/Q
+#   3. input delay on in1 (1.0 ns) and output delays on out1 and outs (1.0 ns)
+#   4. cfg is static: give it an input delay like any input, then cut its paths
+#   5. rst_n: input delay too (it is released synchronously by a reset synchronizer upstream)
+#   6. m1_reg -> m2_reg takes two clock cycles (setup 2, hold 1)
+# solution.sdc has one answer. Try it yourself first.
+`,"solution.sdc":`# One solution for chip.v
+create_clock -name clk -period 4 [get_ports clk]
+create_generated_clock -name clk_half -source [get_ports clk] -divide_by 2 [get_pins div_reg/Q]
+set_input_delay  1.0 -clock clk [get_ports {in1 rst_n cfg}]
+set_output_delay 1.0 -clock clk [get_ports {out1 outs}]
+set_false_path -from [get_ports cfg]
+set_multicycle_path 2 -setup -from [get_cells m1_reg] -to [get_cells m2_reg]
+set_multicycle_path 1 -hold  -from [get_cells m1_reg] -to [get_cells m2_reg]
+`},quiz:[{type:"number",q:"With the empty my.sdc, how many unclocked register pins does check_setup report?",answer:7,tol:0,unit:"",explain:"Every flop: there is no clock yet.",try:!1},{type:"number",q:"With the empty my.sdc, how many unconstrained endpoints are there?",answer:9,tol:0,unit:"",explain:"7 flop D pins and 2 outputs.",try:!1},{type:"choice",q:"With solution.sdc, check_setup still reports one unconstrained endpoint, r_cfg/D. Why is that fine?",options:["It is a bug","Its only path comes from cfg, which is a false path on purpose","r_cfg has no clock","It is an output"],answer:1,explain:"Every warning should be explained. This one is expected.",try:!1},{type:"number",q:"Try it: comment out the two multicycle lines in solution.sdc. What is the WNS?",answer:-.75,tol:.01,unit:"ns",explain:"m1_reg \u2192 m2_reg needs 4.63 ns: it only meets timing with its two cycles.",try:!0}]},{id:"sdc-c18",group:"SDC & constraints",tag:"SDC 18",title:"How much logic fits in one clock?",script:"run.tcl",files:{"run.tcl":`# SDC 18: an 8-bit divider (division by repeated subtraction), synthesised with K = 1, 2, 4 and 8
+# subtractions per clock. More work per clock means fewer clocks, but a longer path.
+# Exercises: run each K at 10 ns, read WNS, and work out the fastest clock for each.
+
+# The divider subtracts K times per clock. Netlists: div_k1.v div_k2.v div_k4.v div_k8.v
+# Change k to 1, 2, 4 or 8 and run again.
+set k 1
+
+read_liberty sky130_fd_sc_hd__tt_025C_1v80.lib
+read_verilog div_k$k.v
+link_design div_k$k
+read_sdc divider.sdc
+
+puts "### K = $k subtractions per clock"
+puts "### Timing summary"
+report_wns
+report_tns
+puts [format "Endpoints failing setup: %d" [llength [find_timing_paths -path_delay max -slack_max 0 -group_path_count 1000 -endpoint_path_count 1]]]
+puts "\\n### Worst setup path"
+report_checks -path_delay max -format full -digits 2
+puts "\\n### Constraint check (check_setup -verbose lists every port)"
+check_setup
+`,"divider.sdc":`# 100 MHz clock: 10 ns period, 50% duty cycle
+create_clock -name clk -period 10 [get_ports clk]
+# The same clock written with -waveform: rise at 0, fall at 5
+# create_clock -name clk -period 10 -waveform {0 5} [get_ports clk]
+
+# Switches and buttons change by hand, far slower than any clock: no timing needed
+set_false_path -through [get_ports {xin[*] yin[*] start rst}]
+# LEDs and displays are read by a person: no timing needed either
+set_false_path -from [all_registers] -to [get_ports {quotient[*] remainder[*] done}]
+`},quiz:[{type:"number",q:"K = 1: what is the setup slack at a 10 ns clock?",answer:6.1,tol:.01,unit:"ns",explain:"One subtractor and one mux between the registers.",try:!1},{type:"number",q:"K = 4: what is the setup slack?",answer:.6,tol:.01,unit:"ns",explain:"Four cascaded subtractors still fit in 10 ns, just.",try:!0},{type:"number",q:"K = 8: what is the WNS?",answer:-7.21,tol:.01,unit:"ns",explain:"Eight subtractors need about 17.2 ns: the design fails at 10 ns.",try:!0},{type:"number",q:"K = 8: how many endpoints fail setup?",answer:34,tol:0,unit:"",explain:"Most of the x, q, quotient and remainder bits.",try:!0},{type:"number",q:"K = 1: what is the shortest clock period it can run at (10 \u2212 slack)?",answer:3.9,tol:.01,unit:"ns",explain:"10 \u2212 6.10 = 3.90 ns, about 256 MHz.",try:!1},{type:"number",q:"13 \xF7 3 with K = 1 takes 5 COMPUTE cycles (4 subtractions and 1 that fails). How long is that at the shortest period of 3.90 ns?",answer:19.5,tol:.01,unit:"ns",explain:"5 \xD7 3.90 = 19.5 ns. With K = 4 it takes 2 cycles of 9.40 ns = 18.8 ns: barely faster, with four times the subtractors.",try:!1},{type:"choice",q:"Why are the switch inputs and LED outputs false paths here?",options:["They are too slow to measure","A person changes the switches and reads the LEDs: nothing on those paths has to meet a clock","OpenSTA cannot time ports","To make timing pass"],answer:1,explain:"check_setup still lists them as missing I/O delays. That is expected here, and worth knowing why.",try:!1}]},{id:"sdc-c19",group:"SDC & constraints",tag:"SDC 19",title:"I/O delays from datasheet numbers",script:"run.tcl",files:{"run.tcl":`# SDC 19: turn datasheet numbers (clock-to-output, setup, hold, board trace) into input and
+# output delays. Exercises: check the formulas in usb.sdc, then write the two wb_data lines yourself.
+
+read_liberty sky130_fd_sc_hd__tt_025C_1v80.lib
+read_verilog usb.v
+link_design usb
+read_sdc usb.sdc
+
+puts "### Inputs: setup and hold"
+report_checks -from [get_ports {DataIn[*] RxValid}] -path_delay min_max -group_path_count 20 -format end
+puts "\\n### Outputs: setup and hold"
+report_checks -to [get_ports {DataOut[*] TxValid wb_data}] -path_delay min_max -group_path_count 20 -format end
+puts "\\n### Worst input setup path"
+report_checks -from [get_ports {DataIn[*] RxValid}] -path_delay max
+puts "\\n### Constraint check"
+check_setup -verbose
+`,"usb.v":`// A USB PHY interface (ULPI-like) on sysClk, plus a CPU interrupt input and a data
+// output read by a bus clock that exists only outside this block.
+module usb (sysClk, DataIn, RxValid, cpu_int, DataOut, TxValid, wb_data);
+  input  sysClk, cpu_int;
+  input  [1:0] DataIn;
+  input  RxValid;
+  output [1:0] DataOut;
+  output TxValid, wb_data;
+  wire   d0, d1, v, i0, o0, o1, t, w, x0, x1;
+  sky130_fd_sc_hd__dlygate4sd3_1 id0 (.A(DataIn[0]), .X(x0));
+  sky130_fd_sc_hd__dlygate4sd3_1 id1 (.A(DataIn[1]), .X(x1));
+  sky130_fd_sc_hd__dfxtp_1 din0_reg (.D(x0), .CLK(sysClk), .Q(d0));
+  sky130_fd_sc_hd__dfxtp_1 din1_reg (.D(x1), .CLK(sysClk), .Q(d1));
+  sky130_fd_sc_hd__dfxtp_1 vld_reg  (.D(RxValid), .CLK(sysClk), .Q(v));
+  sky130_fd_sc_hd__dfxtp_1 int_reg  (.D(cpu_int), .CLK(sysClk), .Q(i0));
+  sky130_fd_sc_hd__xor2_1  g0 (.A(d0), .B(v), .X(o0));
+  sky130_fd_sc_hd__xor2_1  g1 (.A(d1), .B(v), .X(o1));
+  sky130_fd_sc_hd__dfxtp_1 dout0_reg (.D(o0), .CLK(sysClk), .Q(DataOut[0]));
+  sky130_fd_sc_hd__dfxtp_1 dout1_reg (.D(o1), .CLK(sysClk), .Q(DataOut[1]));
+  sky130_fd_sc_hd__dfxtp_1 txv_reg   (.D(v),  .CLK(sysClk), .Q(t));
+  sky130_fd_sc_hd__buf_2   ob (.A(t), .X(TxValid));
+  sky130_fd_sc_hd__and2_1  g2 (.A(i0), .B(d0), .X(w));
+  sky130_fd_sc_hd__dfxtp_1 wb_reg    (.D(w),  .CLK(sysClk), .Q(wb_data));
+endmodule
+`,"usb.sdc":`# Constraints from the datasheets of the chips around this block.
+create_clock -name sysClk -period 10 [get_ports sysClk]
+# The bus that reads wb_data runs on its own clock (25 MHz, same source): a virtual clock.
+create_clock -name wbClk  -period 40
+
+# PHY -> DataIn, RxValid (launched by sysClk at the PHY):
+#   PHY clock-to-output tco: min 1.0, max 2.0 ns; board trace: min 1.0, max 1.0 ns
+#   input delay max = tco_max + trace_max     min = tco_min + trace_min
+set_input_delay -max 3.0 -clock sysClk [get_ports {DataIn[*] RxValid}]
+set_input_delay -min 2.0 -clock sysClk [get_ports {DataIn[*] RxValid}]
+
+# DataOut, TxValid -> PHY (captured by sysClk at the PHY):
+#   PHY setup tsu 1.0, hold thd 0.1 ns; board trace: min 0.1, max 0.1 ns
+#   output delay max = tsu + trace_max        min = trace_min - thd
+set_output_delay -max 1.1 -clock sysClk [get_ports {DataOut[*] TxValid}]
+set_output_delay -min 0.0 -clock sysClk [get_ports {DataOut[*] TxValid}]
+
+# wb_data -> bus device (captured by wbClk): tsu 2.1, thd 0.6, trace min 0.0, max 0.1 ns
+# Exercise: work out the two values and remove the # :
+# set_output_delay -max ?? -clock wbClk [get_ports wb_data]
+# set_output_delay -min ?? -clock wbClk [get_ports wb_data]
+
+# cpu_int comes from another clock domain and is synchronized inside: no timing.
+set_false_path -from [get_ports cpu_int]
+`},quiz:[{type:"number",q:"Input delay max = tco_max + trace_max. With tco_max 2.0 ns and trace 1.0 ns, what is it?",answer:3,tol:.01,unit:"ns",explain:"The latest the data can arrive after the PHY's clock edge.",try:!1},{type:"number",q:"What is the setup slack on din0_reg/D?",answer:6.36,tol:.01,unit:"ns",explain:"Arrives at 3.0 + 0.52 ns of input logic; required at 10 \u2212 setup.",try:!1},{type:"number",q:"Output delay min = trace_min \u2212 thd. With trace 0.1 and thd 0.1, what is it?",answer:0,tol:.01,unit:"ns",explain:"The PHY's hold need is cancelled by the trace delay.",try:!1},{type:"number",q:"For wb_data (tsu 2.1, trace max 0.1), what is the -max output delay?",answer:2.2,tol:.01,unit:"ns",explain:"tsu + trace_max.",try:!1},{type:"number",q:"And the -min output delay (thd 0.6, trace min 0.0)?",answer:-.6,tol:.01,unit:"ns",explain:"trace_min \u2212 thd = 0.0 \u2212 0.6.",try:!1},{type:"number",q:"Try it: add the two wb_data lines. What is the hold slack on wb_data?",answer:-.34,tol:.01,unit:"ns",explain:"The bus device needs wb_data held 0.6 ns, but it changes 0.26 ns after the clock. Add delay on the output, or ask for a different interface timing.",try:!0},{type:"choice",q:"Why is wbClk a virtual clock?",options:["It is faster","It clocks only the external bus device, so it has no pin in this design","Virtual clocks have no jitter","To avoid hold checks"],answer:1,explain:"A virtual clock describes a clock outside the block for I/O constraints.",try:!1}]},{id:"sdc-c20",group:"SDC & constraints",tag:"SDC 20",title:"Clock interaction and a multicycle path",script:"run.tcl",files:{"run.tcl":`# SDC 20: a clock interaction table shows every pair of clocks STA times. Find the unsafe
+# pair, declare it, then give the slow ALU path its two cycles. Exercises: apply each step.
+
+read_liberty sky130_fd_sc_hd__tt_025C_1v80.lib
+read_verilog cpu.v
+link_design cpu
+read_sdc cpu.sdc
+
+puts "### Clocks"
+report_clock_properties
+puts "\\n### Clock interaction: worst setup slack for each launch -> capture pair"
+puts [format "%-8s %-8s %8s" From To Slack]
+foreach launch {sysClk cpuClk gtClk} {
+  foreach capture {sysClk cpuClk gtClk} {
+    set p [find_timing_paths -from [get_clocks $launch] -to [get_clocks $capture] -path_delay max]
+    if {[llength $p]} { puts [format "%-8s %-8s %8.2f" $launch $capture [get_property [lindex $p 0] slack]] }
+  }
+}
+puts "\\n### gtClk -> sysClk in detail: how much time does STA allow?"
+report_checks -from [get_clocks gtClk] -to [get_clocks sysClk] -path_delay max
+puts "\\n### Through the ALU (setup and hold)"
+report_checks -through [get_pins alu_16/X] -path_delay min_max -format end
+puts "\\n### Summary"
+report_wns
+report_tns
+`,"cpu.v":`// sysClk (4 ns) feeds the core. div_reg makes cpuClk = sysClk / 2 for the CPU.
+// gtClk (12.8 ns) comes from a serial transceiver: it has its own source.
+module cpu (sysClk, gtClk, din, gtin, dout);
+  input  sysClk, gtClk, din, gtin;
+  output dout;
+  wire   cpuClk, dn, s, c, a, r, g, gx, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15;
+  sky130_fd_sc_hd__dfxbp_1 div_reg (.D(dn), .CLK(sysClk), .Q(cpuClk), .Q_N(dn));
+  sky130_fd_sc_hd__dfxtp_1 sys_reg (.D(din), .CLK(sysClk), .Q(s));
+  sky130_fd_sc_hd__dfxtp_1 op_reg  (.D(s),   .CLK(cpuClk), .Q(c));      // sysClk -> cpuClk
+  sky130_fd_sc_hd__dlygate4sd3_1 alu_1 (.A(c), .X(a1));
+  sky130_fd_sc_hd__dlygate4sd3_1 alu_2 (.A(a1), .X(a2));
+  sky130_fd_sc_hd__dlygate4sd3_1 alu_3 (.A(a2), .X(a3));
+  sky130_fd_sc_hd__dlygate4sd3_1 alu_4 (.A(a3), .X(a4));
+  sky130_fd_sc_hd__dlygate4sd3_1 alu_5 (.A(a4), .X(a5));
+  sky130_fd_sc_hd__dlygate4sd3_1 alu_6 (.A(a5), .X(a6));
+  sky130_fd_sc_hd__dlygate4sd3_1 alu_7 (.A(a6), .X(a7));
+  sky130_fd_sc_hd__dlygate4sd3_1 alu_8 (.A(a7), .X(a8));
+  sky130_fd_sc_hd__dlygate4sd3_1 alu_9 (.A(a8), .X(a9));
+  sky130_fd_sc_hd__dlygate4sd3_1 alu_10 (.A(a9), .X(a10));
+  sky130_fd_sc_hd__dlygate4sd3_1 alu_11 (.A(a10), .X(a11));
+  sky130_fd_sc_hd__dlygate4sd3_1 alu_12 (.A(a11), .X(a12));
+  sky130_fd_sc_hd__dlygate4sd3_1 alu_13 (.A(a12), .X(a13));
+  sky130_fd_sc_hd__dlygate4sd3_1 alu_14 (.A(a13), .X(a14));
+  sky130_fd_sc_hd__dlygate4sd3_1 alu_15 (.A(a14), .X(a15));
+  sky130_fd_sc_hd__dlygate4sd3_1 alu_16 (.A(a15), .X(a));
+  sky130_fd_sc_hd__dfxtp_1 res_reg (.D(a),   .CLK(cpuClk), .Q(r));
+  sky130_fd_sc_hd__dfxtp_1 gt_reg  (.D(gtin), .CLK(gtClk), .Q(g));
+  sky130_fd_sc_hd__xor2_1  mix (.A(g), .B(r), .X(gx));                   // gtClk -> sysClk
+  sky130_fd_sc_hd__dfxtp_1 out_reg (.D(gx),  .CLK(sysClk), .Q(dout));
+endmodule
+`,"cpu.sdc":`create_clock -name sysClk -period 4    [get_ports sysClk]
+create_clock -name gtClk  -period 12.8 [get_ports gtClk]
+create_generated_clock -name cpuClk -source [get_ports sysClk] -divide_by 2 [get_pins div_reg/Q]
+set_input_delay 1 -clock sysClk [get_ports din]
+set_input_delay 1 -clock gtClk  [get_ports gtin]
+set_output_delay 1 -clock sysClk [get_ports dout]
+
+# Step 1: gtClk has its own source. gt_reg -> out_reg is a CDC path with a synchronizer
+#         in the real design, so declare the clocks asynchronous:
+# set_clock_groups -asynchronous -group {gtClk} -group {sysClk cpuClk}
+# Step 2: the ALU result is only used every other cpuClk cycle:
+# set_multicycle_path 2 -setup -through [get_pins alu_*/X]
+# set_multicycle_path 1 -hold  -through [get_pins alu_*/X]
+`},quiz:[{type:"number",q:"Run as given. How much time does STA allow from gtClk to sysClk (capture edge minus launch edge)?",answer:.8,tol:.01,unit:"ns",explain:"52.0 \u2212 51.2: the tightest pair of edges within the common period of 4 ns and 12.8 ns clocks. Clocks from different sources have no fixed phase, so this number is meaningless.",try:!1},{type:"number",q:"What is the worst slack in the cpuClk \u2192 cpuClk row?",answer:-.99,tol:.01,unit:"ns",explain:"The 16-stage ALU path needs 8.87 ns in an 8 ns cycle.",try:!1},{type:"choice",q:"Try it: Step 1. What happens to the gtClk \u2192 sysClk row?",options:["Its slack improves","It disappears: the clocks are asynchronous, so the path is no longer timed","It becomes a hold check","Nothing"],answer:1,explain:"The CDC path must now be made safe in the design, with a synchronizer.",try:!0},{type:"number",q:"Try it: Steps 1 and 2. What is the setup slack through the ALU?",answer:7.01,tol:.01,unit:"ns",explain:"Two cpuClk cycles: required 15.88 ns.",try:!0},{type:"number",q:"With Step 2, what is the hold slack through the ALU?",answer:8.71,tol:.01,unit:"ns",explain:"The -hold 1 line keeps the hold check on the original edge. Without it, hold would move by one cycle too.",try:!1}]}];var q=`// Two flops feeding a third through a buffer and an AND gate.
 // Cells come from the open-source SkyWater 130 nm high-density library.
 module top (in1, in2, clk1, clk2, clk3, out);
   input  in1, in2, clk1, clk2, clk3;
@@ -1809,14 +2752,14 @@ module top (in1, in2, clk1, clk2, clk3, out);
   sky130_fd_sc_hd__and2_1  u2 (.A(r1q), .B(u1x), .X(u2x));
   sky130_fd_sc_hd__dfxtp_1 r3 (.D(u2x), .CLK(clk3), .Q(out));
 endmodule
-`,yt=`# One 10 ns clock drives all three flops
+`,ge=`# One 10 ns clock drives all three flops
 create_clock -name clk -period 10 {clk1 clk2 clk3}
 set_input_delay 0 -clock clk {in1 in2}
-`,T=`read_liberty sky130hd_tt.lib.gz
+`,D=`read_liberty sky130hd_tt.lib.gz
 read_verilog netlist.v
 link_design top
 read_sdc constraints.sdc
-`,at=`// The same three-flop circuit built from ASAP7 7 nm predictive cells.
+`,ae=`// The same three-flop circuit built from ASAP7 7 nm predictive cells.
 module top (in1, in2, clk1, clk2, clk3, out);
   input  in1, in2, clk1, clk2, clk3;
   output out;
@@ -1828,8 +2771,8 @@ module top (in1, in2, clk1, clk2, clk3, out);
   AND2x2_ASAP7_75t_R  u2 (.A(r1q), .B(u1z), .Y(u2z));
   DFFHQx4_ASAP7_75t_R r3 (.D(u2z), .CLK(clk3), .Q(out));
 endmodule
-`,bt=[{id:"basic",title:"Setup & hold checks",tag:"Basics",files:{"netlist.v":G,"constraints.sdc":yt,"run.tcl":`# Load the library, the netlist and the constraints
-${T}
+`,be=[{id:"basic",title:"Setup & hold checks",tag:"Basics",files:{"netlist.v":q,"constraints.sdc":ge,"run.tcl":`# Load the library, the netlist and the constraints
+${D}
 # Worst setup (max) path
 report_checks -path_delay max
 
@@ -1840,10 +2783,10 @@ report_checks -path_delay min
 
 report_wns
 report_tns
-`}},{id:"violation",title:"Setup violation: fast clock",tag:"Basics",files:{"netlist.v":G,"constraints.sdc":`# Squeeze the clock to 0.5 ns (2 GHz): the r2 -> r3 path no longer fits
+`}},{id:"violation",title:"Setup violation: fast clock",tag:"Basics",files:{"netlist.v":q,"constraints.sdc":`# Squeeze the clock to 0.5 ns (2 GHz): the r2 -> r3 path no longer fits
 create_clock -name clk -period 0.5 {clk1 clk2 clk3}
 set_input_delay 0 -clock clk {in1 in2}
-`,"run.tcl":`${T}
+`,"run.tcl":`${D}
 # Show slew, load and fanout at every stage of the failing path
 report_checks -path_delay max -fields {slew cap fanout} -digits 3
 
@@ -1852,7 +2795,7 @@ report_checks -path_delay max -group_path_count 10 -endpoint_path_count 1 -forma
 
 report_worst_slack -max
 report_tns
-`}},{id:"io",title:"Input & output delays",tag:"Constraints",files:{"netlist.v":G,"constraints.sdc":`create_clock -name clk -period 2 {clk1 clk2 clk3}
+`}},{id:"io",title:"Input & output delays",tag:"Constraints",files:{"netlist.v":q,"constraints.sdc":`create_clock -name clk -period 2 {clk1 clk2 clk3}
 
 # The block's neighbours use part of the cycle
 set_input_delay  0.6 -clock clk {in1 in2}
@@ -1861,13 +2804,13 @@ set_output_delay 0.8 -clock clk [get_ports out]
 # Realistic edges and loads at the boundary
 set_input_transition 0.1 {in1 in2}
 set_load 0.02 [get_ports out]
-`,"run.tcl":`${T}
+`,"run.tcl":`${D}
 puts "### Input to register"
 report_checks -from [get_ports in1] -fields {slew cap}
 
 puts "\\n### Register to output"
 report_checks -to [get_ports out] -fields {slew cap}
-`}},{id:"exceptions",title:"False & multicycle paths",tag:"Constraints",files:{"netlist.v":G,"constraints.sdc":`create_clock -name clk -period 0.45 {clk1 clk2 clk3}
+`}},{id:"exceptions",title:"False & multicycle paths",tag:"Constraints",files:{"netlist.v":q,"constraints.sdc":`create_clock -name clk -period 0.45 {clk1 clk2 clk3}
 set_input_delay 0 -clock clk {in1 in2}
 
 # r2 only launches new data every 2 cycles
@@ -1876,7 +2819,7 @@ set_multicycle_path -hold  1 -from [get_cells r2] -to [get_cells r3]
 
 # in1 is a static configuration pin: ignore it
 set_false_path -from [get_ports in1]
-`,"run.tcl":`${T}
+`,"run.tcl":`${D}
 # A 0.45 ns clock: without exceptions both paths into r3 would fail.
 # r2 -> r3 now passes thanks to the multicycle path...
 report_checks -from [get_cells r2] -to [get_cells r3]
@@ -1884,7 +2827,7 @@ report_checks -from [get_cells r2] -to [get_cells r3]
 # ...but r1 -> r3 still fails. Add a multicycle path for it too and run again.
 report_checks -from [get_cells r1] -to [get_cells r3]
 report_wns
-`}},{id:"ocv",title:"Clock latency, uncertainty & OCV",tag:"Clocks",files:{"netlist.v":G,"constraints.sdc":`create_clock -name clk -period 2 {clk1 clk2 clk3}
+`}},{id:"ocv",title:"Clock latency, uncertainty & OCV",tag:"Clocks",files:{"netlist.v":q,"constraints.sdc":`create_clock -name clk -period 2 {clk1 clk2 clk3}
 set_input_delay 0.3 -clock clk {in1 in2}
 
 # Clock tree not built yet: model it
@@ -1892,13 +2835,13 @@ set_clock_latency -source 0.30 [get_clocks clk]
 set_clock_latency        0.20 [get_clocks clk]
 set_clock_uncertainty -setup 0.10 [get_clocks clk]
 set_clock_uncertainty -hold  0.05 [get_clocks clk]
-`,"run.tcl":`${T}
+`,"run.tcl":`${D}
 # On-chip variation: for setup, data is slowed by 8% and the capture clock sped up by 8%
 set_timing_derate -early 0.92
 set_timing_derate -late  1.08
 
 report_checks -path_delay min_max -fields {slew}
-`}},{id:"corners",title:"Multi-corner: slow & fast",tag:"Corners",files:{"netlist.v":at,"constraints.sdc":`# ASAP7 libraries use picoseconds: a 300 ps clock
+`}},{id:"corners",title:"Multi-corner: slow & fast",tag:"Corners",files:{"netlist.v":ae,"constraints.sdc":`# ASAP7 libraries use picoseconds: a 300 ps clock
 create_clock -name clk -period 300 {clk1 clk2 clk3}
 set_input_delay 0 -clock clk {in1 in2}
 `,"run.tcl":`# Slow (ss) and fast (ff) corners of the ASAP7 library
@@ -1919,7 +2862,7 @@ foreach s {ss ff} {
   puts "\\n### Scene $s"
   report_checks -scene $s -path_delay min_max -format summary
 }
-`}},{id:"spef",title:"Wire parasitics from SPEF",tag:"Parasitics",files:{"netlist.v":at,"constraints.sdc":`create_clock -name clk -period 300 {clk1 clk2 clk3}
+`}},{id:"spef",title:"Wire parasitics from SPEF",tag:"Parasitics",files:{"netlist.v":ae,"constraints.sdc":`create_clock -name clk -period 300 {clk1 clk2 clk3}
 set_input_delay 0 -clock clk {in1 in2}
 `,"parasitics.spef":null,"run.tcl":`read_liberty asap7_small_ss.lib.gz
 read_verilog netlist.v
@@ -1956,6 +2899,6 @@ report_tns
 set_power_activity -input -activity 0.1
 set_power_activity -input_port reset -activity 0
 report_power
-`},load:{"netlist.v":"gcd_sky130hd.v"}}],m=[...bt.map(t=>({group:"Basic labs",...t})),...st],v=[{id:"basic",group:"Basic labs",title:"Basic labs",note:"Short examples: setup and hold, constraints, OCV, corners, SPEF, a real block with power."},{id:"workshop",group:"STA workshop",title:"STA workshop",note:"The 8-day workshop: 15 labs from your first timing report to a RISC-V core. Each lab has a quiz."},{id:"signoff",group:"Signoff STA",title:"Signoff STA",note:"9 labs on constraints, clocks, exceptions, OCV, latches, ECOs and multi-corner signoff. Each lab has a quiz."}],rt=["sky130hd_tt.lib.gz","asap7_small_ss.lib.gz","asap7_small_ff.lib.gz","gcd_sky130hd.spef.gz","sky130_fd_sc_hd__tt_025C_1v80.lib","sky130_fd_sc_hd__ss_100C_1v60.lib","sky130_fd_sc_hd__ff_n40C_1v95.lib","s27_Early.lib","s27_Late.lib","s27_min.lib","s27_max.lib","ibex_top.v","gcd_sky130hd.v"],it=[["sky130hd_tt.lib.gz","SkyWater 130 nm HD, typical (ns, pF)"],["asap7_small_ss.lib.gz","ASAP7 7 nm, slow; 3 cells (ps, fF)"],["asap7_small_ff.lib.gz","ASAP7 7 nm, fast; 3 cells (ps, fF)"],["gcd_sky130hd.spef.gz","Parasitics for the GCD block"],["sky130_fd_sc_hd__tt_025C_1v80.lib","Sky130 HD typical, 25 \xB0C, 1.80 V (workshop)"],["sky130_fd_sc_hd__ss_100C_1v60.lib","Sky130 HD slow, 100 \xB0C, 1.60 V"],["sky130_fd_sc_hd__ff_n40C_1v95.lib","Sky130 HD fast, \u221240 \xB0C, 1.95 V"],["s27_Late.lib","TAU 2015 contest library, late/max (ps); s27_max.lib is a copy"],["s27_Early.lib","TAU 2015 contest library, early/min (ps); s27_min.lib is a copy"],["ibex_top.v","ibex RISC-V core netlist, Sky130 HD (2.3 MB)"]];var l=t=>document.querySelector(t),lt=6e4,dt="vdd-sta-lab-v1",b="run.tcl",s={example:m[0].id,track:"basic",script:b,files:{},order:[],current:b,running:!1,ready:!1,worker:null,timer:null},ut=()=>s.order.filter(t=>/\.tcl$/i.test(t));function D(){return s.files[s.script]!==void 0?s.script:s.files[b]!==void 0?b:ut()[0]||b}function xt(){let t=l("#script-wrap"),n=l("#script"),e=ut(),a=D();t.hidden=!(e.length>1||e.length===1&&a!==b),n.innerHTML="";for(let r of e){let i=document.createElement("option");i.value=r,i.textContent=r,n.appendChild(i)}n.value=a}var g=new Map,o=null,y=l("#editor textarea");function H(t){return/\.s?v$/i.test(t)?"verilog":/\.(tcl|sdc)$/i.test(t)?"tcl":"text/plain"}window.CodeMirror?(o=window.CodeMirror.fromTextArea(y,{lineNumbers:!0,indentUnit:2,tabSize:2,matchBrackets:!0,extraKeys:{Tab:t=>t.replaceSelection("  ")}}),o.on("change",()=>{s.files[s.current]=o.getValue(),O()})):(y.classList.add("plain-editor"),y.addEventListener("input",()=>{s.files[s.current]=y.value,O()}));function B(t){o?s.files[s.current]=o.getValue():s.files[s.current]=y.value,s.current=t,o?(g.has(t)||g.set(t,window.CodeMirror.Doc(s.files[t]??"",H(t))),o.swapDoc(g.get(t)),setTimeout(()=>o.refresh(),0)):y.value=s.files[t]??"",P()}function wt(t,n){B(t),o&&(o.focus(),o.setCursor({line:n-1,ch:0}),o.addLineClass(n-1,"background","cm-errline"),setTimeout(()=>o.removeLineClass(n-1,"background","cm-errline"),2500),o.scrollIntoView({line:n-1,ch:0},80))}function K(t,n,e){g.clear(),s.files={...t},s.order=n||Object.keys(t),s.current=e&&s.order.includes(e)?e:s.order.includes(D())?D():s.order[0],o?(g.set(s.current,window.CodeMirror.Doc(s.files[s.current]??"",H(s.current))),o.swapDoc(g.get(s.current))):y.value=s.files[s.current]??"",P()}function P(){let t=l("#tabs");t.innerHTML="";for(let n of s.order){let e=document.createElement("button");if(e.type="button",e.className="tab"+(n===s.current?" active":""),e.setAttribute("role","tab"),e.setAttribute("aria-selected",n===s.current?"true":"false"),e.textContent=n,e.addEventListener("click",()=>B(n)),t.appendChild(e),n===s.current&&s.order.length>1){let a=document.createElement("button");a.type="button",a.className="tab-x",a.textContent="\xD7",a.title="Remove "+n,a.setAttribute("aria-label","Remove file "+n),a.addEventListener("click",()=>vt(n)),t.appendChild(a)}}xt()}function ht(t,n,e){s.files[t]===void 0&&s.order.push(t),s.files[t]=n,g.delete(t),e?P():B(t),O()}function vt(t){o&&(s.files[s.current]=o.getValue()),delete s.files[t],g.delete(t),s.order=s.order.filter(n=>n!==t),s.current=s.order[0],o?(g.has(s.current)||g.set(s.current,window.CodeMirror.Doc(s.files[s.current]??"",H(s.current))),o.swapDoc(g.get(s.current))):y.value=s.files[s.current]??"",P(),O()}function Ct(){let t=(window.prompt("New file name (for example mode2.sdc, extra.tcl, top.v):","")||"").trim();if(t){if(!/^[\w.+-]+$/.test(t)){x("File names can use letters, digits, dot, dash and underscore only.","err");return}if(s.files[t]!==void 0){B(t);return}ht(t,"")}}var L=t=>{let n=m.find(e=>e.id===t);return n?(v.find(e=>e.group===n.group)||v[0]).id:null},w=()=>v.find(t=>t.id===s.track)||v[0];function $(){let t=l("#tracks");t.innerHTML="";for(let e of v){let a=document.createElement("button");a.type="button",a.className="track"+(e.id===w().id?" active":""),a.setAttribute("role","tab"),a.setAttribute("aria-selected",e.id===w().id?"true":"false");let r=m.filter(i=>i.group===e.group).length;a.innerHTML='<span class="track-t"></span><span class="track-n"></span>',a.querySelector(".track-t").textContent=e.title,a.querySelector(".track-n").textContent=r+" labs",a.addEventListener("click",()=>St(e.id)),t.appendChild(a)}let n=l("#track-note");if(n.textContent=w().note+" ",w().id==="workshop"){let e=document.createElement("a");e.href="STA_Workshop_Labs.pdf",e.target="_blank",e.rel="noopener",e.className="btn small",e.textContent="Workshop slides (PDF)",n.appendChild(e)}}async function St(t,n){s.track=t;try{let e=new URL(location.href);e.searchParams.set("track",t),history.replaceState(null,"",e.pathname+e.search+location.hash)}catch{}$(),!n&&L(s.example)!==t?await N(m.find(e=>e.group===w().group).id):R()}function R(){let t=l("#examples");t.innerHTML="";for(let e of m.filter(a=>a.group===w().group)){let a=document.createElement("button");a.type="button",a.className="ex"+(e.id===s.example?" active":""),a.innerHTML='<span class="ex-tag"></span><span class="ex-title"></span>',a.querySelector(".ex-tag").textContent=e.tag;let r=e.quiz&&e.quiz.length?I()[e.id]:null;if(r&&r.checked){let i=document.createElement("span");i.className="ex-done",i.textContent=(r.score===r.total?"\u2713 ":"")+`quiz ${r.score}/${r.total}`,a.querySelector(".ex-tag").appendChild(i)}a.querySelector(".ex-title").textContent=e.title,a.addEventListener("click",()=>N(e.id)),t.appendChild(a)}let n=l("#ex-select");n.innerHTML=m.filter(e=>e.group===w().group).map(e=>`<option value="${e.id}">${e.group!=="Basic labs"?e.tag+" \xB7 ":""}${e.title}</option>`).join(""),s.example&&(n.value=s.example)}async function N(t){let n=m.find(r=>r.id===t)||m[0];s.example=n.id,L(n.id)!==s.track&&(s.track=L(n.id),$()),s.script=n.script||b;let e={};for(let[r,i]of Object.entries(n.files))if(i!==null)e[r]=i;else try{let c=await fetch(new URL("data/"+(n.load||{})[r],location.href));e[r]=c.ok?await c.text():`// Could not load ${n.load[r]}`}catch{e[r]=`// Could not load ${n.load[r]}`}let a=Object.keys(n.files).sort((r,i)=>ct(r)-ct(i));K(e,a,s.script),R(),V(),W(),mt(),Z(null),E(s.ready?"Ready":"Loading OpenSTA\u2026",s.ready?"idle":"busy")}var kt="vdd-sta-quiz-v1";function I(){try{return JSON.parse(localStorage.getItem(kt)||"{}")||{}}catch{return{}}}function M(t){try{localStorage.setItem(kt,JSON.stringify(t))}catch{}}var U=()=>m.find(t=>t.id===s.example&&t.quiz&&t.quiz.length);function At(t){let n=String(t||"").replace(/[−–—]/g,"-").replace(/,/g,"").match(/[-+]?\d*\.?\d+(?:[eE][-+]?\d+)?/);return n?parseFloat(n[0]):NaN}function Et(t,n){if(t.type==="choice")return n!=null&&+n===t.answer;let e=At(n);return isFinite(e)&&Math.abs(e-t.answer)<=(t.tol??.01)+1e-9}var Gt=t=>t.type==="choice"?t.options[t.answer]:`${Number.isInteger(t.answer)?t.answer:t.answer.toFixed(2)}${t.unit?" "+t.unit:""}`;function V(){nt(et,s.example);let t=l("#quiz"),n=l("#quiz-list"),e=U();if(!e){t.hidden=!0;return}t.hidden=!1;let a=I()[e.id]||{},r=a.a||[];n.innerHTML="",e.quiz.forEach((i,c)=>{let k=document.createElement("li"),f=document.createElement("div");if(f.className="quiz-q",i.try){let _=document.createElement("span");_.className="quiz-try",_.textContent="Try it",f.appendChild(_)}let d=i.q.replace(/^Try it: /,"");if(f.appendChild(document.createTextNode(d.charAt(0).toUpperCase()+d.slice(1))),k.appendChild(f),i.type==="choice"){let _=document.createElement("div");_.className="quiz-opts",_.setAttribute("role","radiogroup"),i.options.forEach((p,h)=>{let C=document.createElement("label"),S=document.createElement("input");S.type="radio",S.name=`q${c}`,S.value=h,r[c]!==void 0&&+r[c]===h&&(S.checked=!0),S.addEventListener("change",()=>ot(e,c,h));let tt=document.createElement("span");tt.textContent=p,C.append(S,tt),_.appendChild(C)}),k.appendChild(_)}else{let _=document.createElement("div");_.className="quiz-num";let p=document.createElement("input");if(p.type="text",p.inputMode="decimal",p.autocomplete="off",p.setAttribute("aria-label","Answer to question "+(c+1)),p.placeholder="e.g. -1.23",r[c]!==void 0&&(p.value=r[c]),p.addEventListener("input",()=>ot(e,c,p.value)),p.addEventListener("keydown",h=>{h.key==="Enter"&&z()}),_.appendChild(p),i.unit){let h=document.createElement("span");h.className="unit",h.textContent=i.unit,_.appendChild(h)}k.appendChild(_)}let u=document.createElement("div");u.className="quiz-fb",u.hidden=!0,u.setAttribute("aria-live","polite"),k.appendChild(u),n.appendChild(k)}),a.checked?z(!0):ft(null)}function ot(t,n,e){let a=I(),r=a[t.id]||{a:[]};r.a=r.a||[],r.a[n]=e,r.checked=!1,a[t.id]=r,M(a);let i=l("#quiz-list").children[n]?.querySelector(".quiz-fb");i&&(i.hidden=!0)}function ft(t,n){let e=l("#quiz-score");if(t===null){e.textContent="",e.classList.remove("done");return}e.textContent=`${t} / ${n} correct`,e.classList.toggle("done",t===n)}function z(t){let n=U();if(!n)return;let e=I(),a=e[n.id]||{a:[]},r=0;n.quiz.forEach((i,c)=>{let k=l("#quiz-list").children[c],f=i.type==="choice"?(k.querySelector("input:checked")||{}).value:k.querySelector("input").value;a.a[c]=f;let d=k.querySelector(".quiz-fb"),u=f===void 0||f==="",_=!u&&Et(i,f);_&&r++,d.hidden=!1,d.className="quiz-fb "+(_?"ok":"bad"),d.innerHTML="";let p=document.createElement("b");p.textContent=_?"Correct.":u?"Not answered yet.":"Not quite.",d.appendChild(p),_&&i.explain?d.appendChild(document.createTextNode(i.explain)):!_&&!u&&d.appendChild(document.createTextNode(i.type==="number"?"Check the report again: read the exact value, including its sign.":"Look at the report again and try another option."))}),a.checked=!0,a.score=r,a.total=n.quiz.length,e[n.id]=a,M(e),ft(r,n.quiz.length),t||R()}function Tt(){let t=U();t&&t.quiz.forEach((n,e)=>{let a=l("#quiz-list").children[e].querySelector(".quiz-fb");a.hidden=!1,a.className="quiz-fb shown",a.innerHTML="";let r=document.createElement("b");r.textContent="Answer: "+Gt(n)+".",a.appendChild(r),n.explain&&a.appendChild(document.createTextNode(n.explain))})}function qt(){let t=U();if(!t)return;let n=I();delete n[t.id],M(n),V(),R()}function ct(t){return t===s.script?-1:/\.tcl$/.test(t)?0:/\.s?v$/.test(t)?1:/\.sdc$/.test(t)?2:3}var _t=null;function O(){clearTimeout(_t),_t=setTimeout(W,400)}function W(){try{localStorage.setItem(dt,JSON.stringify({example:s.example,script:s.script,files:s.files,order:s.order,current:s.current}))}catch{}}function Dt(){try{let t=JSON.parse(localStorage.getItem(dt)||"null");if(t&&t.files&&t.order)return t}catch{}return null}async function Lt(){let t=JSON.stringify({f:s.files,o:s.order,s:D()}),n=new Blob([t]).stream().pipeThrough(new CompressionStream("deflate-raw")),e=new Uint8Array(await new Response(n).arrayBuffer()),a="";for(let r of e)a+=String.fromCharCode(r);return btoa(a).replace(/\+/g,"-").replace(/\//g,"_").replace(/=+$/,"")}async function Nt(t){let n=atob(t.replace(/-/g,"+").replace(/_/g,"/")),e=new Blob([Uint8Array.from(n,a=>a.charCodeAt(0))]).stream().pipeThrough(new DecompressionStream("deflate-raw"));return JSON.parse(await new Response(e).text())}async function q(t,n){let e=!1;try{await navigator.clipboard.writeText(t),e=!0}catch{let r=document.createElement("textarea");r.value=t,r.style.position="fixed",r.style.opacity="0",document.body.appendChild(r),r.select();try{e=document.execCommand("copy")}catch{}r.remove()}if(n){let a=n.dataset.label||n.textContent;n.dataset.label=a,n.textContent=e?"Copied":"Press Ctrl+C",n.classList.toggle("ok",e),setTimeout(()=>{n.textContent=a,n.classList.remove("ok")},1600)}}function Rt(t,n){let e=document.createElement("a");e.href=URL.createObjectURL(new Blob([n],{type:"text/plain"})),e.download=t,document.body.appendChild(e),e.click(),setTimeout(()=>{URL.revokeObjectURL(e.href),e.remove()},500)}var A=l("#console"),X=[];function mt(){A.textContent="",X=[]}function x(t,n){X.push(t);let e=document.createElement("div");e.className="ln "+(n||"");let a=/\b([\w.-]+\.(?:v|sdc|tcl|spef)),? (?:line )?(\d+)\b/.exec(t);if(a&&s.files[a[1]]!==void 0){let r=t.indexOf(a[0]);e.appendChild(document.createTextNode(t.slice(0,r)));let i=document.createElement("button");i.type="button",i.className="loc",i.textContent=a[0],i.addEventListener("click",()=>wt(a[1],+a[2])),e.appendChild(i),e.appendChild(document.createTextNode(t.slice(r+a[0].length)))}else e.textContent=t;/slack \(VIOLATED\)/.test(t)?e.classList.add("viol"):/slack \(MET\)/.test(t)?e.classList.add("met"):/^(Error|ERROR)|\bError:|Internal error/.test(t)?e.classList.add("err"):/^Warning/.test(t)?e.classList.add("warn"):/^(Startpoint|Endpoint):/.test(t)?e.classList.add("head"):/^###/.test(t)&&e.classList.add("sec"),A.appendChild(e),A.childElementCount>2e4&&A.firstChild.remove()}function Z(t){let n=l("#summary");if(!t){n.innerHTML="",n.hidden=!0;return}let e=[],a=d=>{let u=d.exec(t);return u?parseFloat(u[1]):null},r=a(/^wns(?: max)? (-?[\d.eE+-]+)/m)??a(/^worst slack max (-?[\d.eE+-]+)/m),i=a(/^tns(?: max)? (-?[\d.eE+-]+)/m),c=(t.match(/slack \(VIOLATED\)/g)||[]).length,k=(t.match(/slack \(MET\)/g)||[]).length;r!==null&&e.push(["WNS",r.toFixed(3),r<0?"bad":"good"]),i!==null&&e.push(["TNS",i.toFixed(3),i<0?"bad":"good"]),c+k&&e.push(["Paths reported",`${k} met \xB7 ${c} violated`,c?"bad":"good"]);let f=/^Total\s+\S+\s+\S+\s+\S+\s+(\S+)/m.exec(t);f&&e.push(["Total power",It(parseFloat(f[1])),""]),n.innerHTML="";for(let[d,u,_]of e){let p=document.createElement("div");p.className="chip "+_;let h=document.createElement("span");h.className="k",h.textContent=d;let C=document.createElement("span");C.className="v",C.textContent=u,p.append(h,C),n.appendChild(p)}n.hidden=e.length===0}function It(t){return isFinite(t)?t>=1?t.toFixed(3)+" W":t>=.001?(t*1e3).toFixed(3)+" mW":(t*1e6).toFixed(2)+" \xB5W":"\u2013"}function E(t,n){let e=l("#status");e.textContent=t,e.dataset.kind=n}function j(){s.worker&&s.worker.terminate(),s.ready=!1;let t=new Worker(new URL("worker.js",location.href).href);t.onmessage=n=>Ft(n.data),t.onerror=n=>{x("OpenSTA failed to start: "+(n.message||"worker error"),"err"),J(!1)},t.postMessage({type:"load",base:new URL(".",location.href).href}),s.worker=t}var Q=[],Y=null;function F(){Y=null;for(let[t,n]of Q)x(t,n);Q=[],A.scrollTop=A.scrollHeight}function Ft(t){if(t.type==="ready")s.ready=!0,s.running||E("Ready","idle");else if(t.type==="stage")E(t.stage+"\u2026","busy");else if(t.type==="file"){F();let n=s.files[t.name]===void 0;ht(t.name,t.content,!0),x(`\u2500\u2500 OpenSTA ${n?"wrote":"updated"} ${t.name}: open its tab to read it \u2500\u2500`,"meta")}else t.type==="line"?(Q.push([t.line,t.stream==="err"?"stderr":""]),Y||(Y=requestAnimationFrame(F))):t.type==="done"&&(F(),t.ok?x(`\u2500\u2500 finished in ${t.ms} ms \u2500\u2500`,"meta"):x(t.rc===-1?"\u2500\u2500 OpenSTA stopped with an internal error \u2500\u2500":`\u2500\u2500 OpenSTA exited with code ${t.rc}: check the errors above \u2500\u2500`,"meta err"),Z(X.join(`
-`)),J(t.ok))}function pt(){if(s.running)return;window.vddSubscribe&&window.vddSubscribe(),o?s.files[s.current]=o.getValue():s.files[s.current]=y.value;let t=D();if(s.files[t]===void 0){x(`Add a Tcl script (for example ${b}): it is what OpenSTA runs.`,"err");return}s.worker||j(),W(),mt(),Z(null),s.running=!0,l("#run").disabled=!0,l("#stop").disabled=!1,E(s.ready?"Running OpenSTA\u2026":"Loading OpenSTA\u2026","busy"),x(`$ sta ${t}`,"meta"),s.worker.postMessage({type:"run",files:{...s.files},script:t,dataFiles:rt,base:new URL(".",location.href).href}),clearTimeout(s.timer),s.timer=setTimeout(()=>gt(`Stopped after ${lt/1e3} s.`),lt)}function gt(t){s.running&&(F(),x(t||"Stopped.","meta err"),J(!1,!0),j())}function J(t,n){clearTimeout(s.timer),s.running=!1,l("#run").disabled=!1,l("#stop").disabled=!0,E(n?"Stopped":t?"Done":"Errors",n||!t?"err":"ok")}function Ot(){l("#run").addEventListener("click",pt),l("#stop").addEventListener("click",()=>gt()),l("#script").addEventListener("change",n=>{s.script=n.target.value,W()}),l("#new-file").addEventListener("click",Ct),l("#quiz-check").addEventListener("click",()=>z()),l("#quiz-reveal").addEventListener("click",Tt),l("#quiz-reset").addEventListener("click",qt),l("#ex-select").addEventListener("change",n=>N(n.target.value)),l("#reset").addEventListener("click",()=>N(s.example||m[0].id)),l("#copy-file").addEventListener("click",n=>q(o?o.getValue():y.value,n.currentTarget)),l("#download-file").addEventListener("click",()=>Rt(s.current,o?o.getValue():y.value)),l("#copy-output").addEventListener("click",n=>q(X.join(`
-`),n.currentTarget)),l("#share").addEventListener("click",async n=>{let e=n.currentTarget;o&&(s.files[s.current]=o.getValue());try{let a=await Lt();history.replaceState(null,"","#code="+a),q(location.href.split("#")[0]+"#code="+a,e)}catch{q(location.href,e)}}),document.addEventListener("keydown",n=>{(n.ctrlKey||n.metaKey)&&n.key==="Enter"&&(n.preventDefault(),pt())});let t=l("#libs");t.innerHTML="";for(let[n,e]of it){let a=document.createElement("li"),r=document.createElement("button");r.type="button",r.className="libname",r.textContent=n,r.title="Copy file name",r.addEventListener("click",()=>q(n,null));let i=document.createElement("span");i.textContent=e,a.append(r,i),t.appendChild(a)}}async function Bt(){Ot();let t=!1,n=new URLSearchParams(location.hash.slice(1)).get("code");if(n)try{let r=await Nt(n);s.example=null,s.script=r.s||b,s.order=r.o,s.files=r.f,K(r.f,r.o,s.script),t=!0}catch{}if(!t){let r=Dt();r&&(s.example=r.example,s.script=r.script||b,s.files=r.files,s.order=r.order,K(r.files,r.order,r.current),t=!0)}let e=new URLSearchParams(location.search).get("track"),a=v.some(r=>r.id===e);s.track=a?e:L(s.example)||"basic",$(),!t||a&&L(s.example)!==e&&!n?await N(m.find(r=>r.group===w().group).id):(R(),V()),E("Loading OpenSTA\u2026","busy"),j()}Bt();})();
+`},load:{"netlist.v":"gcd_sky130hd.v"}}],m=[...be.map(e=>({group:"Basic labs",...e})),...se],C=[{id:"basic",group:"Basic labs",title:"Basic labs",note:"Short examples: setup and hold, constraints, OCV, corners, SPEF, a real block with power."},{id:"workshop",group:"STA workshop",title:"STA workshop",note:"The 8-day workshop: 15 labs from your first timing report to a RISC-V core. Each lab has a quiz."},{id:"signoff",group:"Signoff STA",title:"Signoff STA",note:"9 labs on constraints, clocks, exceptions, OCV, latches, ECOs and multi-corner signoff. Each lab has a quiz."},{id:"sdc",group:"SDC & constraints",title:"SDC & constraints",note:"20 labs on timing constraints: clock waveforms, generated clocks, clock relationships and sense, false and multicycle paths, exception priority, mode merging, constraint promotion, I/O delays from datasheets, environment, latency, CDC and clock interaction. Each lab has a quiz."}],re=["sky130hd_tt.lib.gz","asap7_small_ss.lib.gz","asap7_small_ff.lib.gz","gcd_sky130hd.spef.gz","sky130_fd_sc_hd__tt_025C_1v80.lib","sky130_fd_sc_hd__ss_100C_1v60.lib","sky130_fd_sc_hd__ff_n40C_1v95.lib","s27_Early.lib","s27_Late.lib","s27_min.lib","s27_max.lib","ibex_top.v","gcd_sky130hd.v","div_k1.v","div_k2.v","div_k4.v","div_k8.v"],oe=[["sky130hd_tt.lib.gz","SkyWater 130 nm HD, typical (ns, pF)"],["asap7_small_ss.lib.gz","ASAP7 7 nm, slow; 3 cells (ps, fF)"],["asap7_small_ff.lib.gz","ASAP7 7 nm, fast; 3 cells (ps, fF)"],["gcd_sky130hd.spef.gz","Parasitics for the GCD block"],["sky130_fd_sc_hd__tt_025C_1v80.lib","Sky130 HD typical, 25 \xB0C, 1.80 V (workshop)"],["sky130_fd_sc_hd__ss_100C_1v60.lib","Sky130 HD slow, 100 \xB0C, 1.60 V"],["sky130_fd_sc_hd__ff_n40C_1v95.lib","Sky130 HD fast, \u221240 \xB0C, 1.95 V"],["s27_Late.lib","TAU 2015 contest library, late/max (ps); s27_max.lib is a copy"],["s27_Early.lib","TAU 2015 contest library, early/min (ps); s27_min.lib is a copy"],["ibex_top.v","ibex RISC-V core netlist, Sky130 HD (2.3 MB)"],["div_k1.v \u2026 div_k8.v","8-bit divider, 1 to 8 subtractions per clock, Sky130 HD"]];var i=e=>document.querySelector(e),ie=6e4,pe="vdd-sta-lab-v1",w="run.tcl",s={example:m[0].id,track:"basic",script:w,files:{},order:[],current:w,running:!1,ready:!1,worker:null,timer:null},ue=()=>s.order.filter(e=>/\.tcl$/i.test(e));function E(){return s.files[s.script]!==void 0?s.script:s.files[w]!==void 0?w:ue()[0]||w}function we(){let e=i("#script-wrap"),n=i("#script"),t=ue(),a=E();e.hidden=!(t.length>1||t.length===1&&a!==w),n.innerHTML="";for(let r of t){let o=document.createElement("option");o.value=r,o.textContent=r,n.appendChild(o)}n.value=a}var y=new Map,l=null,g=i("#editor textarea");function H(e){return/\.s?v$/i.test(e)?"verilog":/\.(tcl|sdc)$/i.test(e)?"tcl":"text/plain"}window.CodeMirror?(l=window.CodeMirror.fromTextArea(g,{lineNumbers:!0,indentUnit:2,tabSize:2,matchBrackets:!0,extraKeys:{Tab:e=>e.replaceSelection("  ")}}),l.on("change",()=>{s.files[s.current]=l.getValue(),I()})):(g.classList.add("plain-editor"),g.addEventListener("input",()=>{s.files[s.current]=g.value,I()}));function O(e){l?s.files[s.current]=l.getValue():s.files[s.current]=g.value,s.current=e,l?(y.has(e)||y.set(e,window.CodeMirror.Doc(s.files[e]??"",H(e))),l.swapDoc(y.get(e)),setTimeout(()=>l.refresh(),0)):g.value=s.files[e]??"",B()}function xe(e,n){O(e),l&&(l.focus(),l.setCursor({line:n-1,ch:0}),l.addLineClass(n-1,"background","cm-errline"),setTimeout(()=>l.removeLineClass(n-1,"background","cm-errline"),2500),l.scrollIntoView({line:n-1,ch:0},80))}function U(e,n,t){y.clear(),s.files={...e},s.order=n||Object.keys(e),s.current=t&&s.order.includes(t)?t:s.order.includes(E())?E():s.order[0],l?(y.set(s.current,window.CodeMirror.Doc(s.files[s.current]??"",H(s.current))),l.swapDoc(y.get(s.current))):g.value=s.files[s.current]??"",B()}function B(){let e=i("#tabs");e.innerHTML="";for(let n of s.order){let t=document.createElement("button");if(t.type="button",t.className="tab"+(n===s.current?" active":""),t.setAttribute("role","tab"),t.setAttribute("aria-selected",n===s.current?"true":"false"),t.textContent=n,t.addEventListener("click",()=>O(n)),e.appendChild(t),n===s.current&&s.order.length>1){let a=document.createElement("button");a.type="button",a.className="tab-x",a.textContent="\xD7",a.title="Remove "+n,a.setAttribute("aria-label","Remove file "+n),a.addEventListener("click",()=>Ce(n)),e.appendChild(a)}}we()}function he(e,n,t){s.files[e]===void 0&&s.order.push(e),s.files[e]=n,y.delete(e),t?B():O(e),I()}function Ce(e){l&&(s.files[s.current]=l.getValue()),delete s.files[e],y.delete(e),s.order=s.order.filter(n=>n!==e),s.current=s.order[0],l?(y.has(s.current)||y.set(s.current,window.CodeMirror.Doc(s.files[s.current]??"",H(s.current))),l.swapDoc(y.get(s.current))):g.value=s.files[s.current]??"",B(),I()}function ve(){let e=(window.prompt("New file name (for example mode2.sdc, extra.tcl, top.v):","")||"").trim();if(e){if(!/^[\w.+-]+$/.test(e)){x("File names can use letters, digits, dot, dash and underscore only.","err");return}if(s.files[e]!==void 0){O(e);return}he(e,"")}}var F=e=>{let n=m.find(t=>t.id===e);return n?(C.find(t=>t.group===n.group)||C[0]).id:null},b=()=>C.find(e=>e.id===s.track)||C[0];function Y(){let e=i("#tracks");e.innerHTML="";for(let t of C){let a=document.createElement("button");a.type="button",a.className="track"+(t.id===b().id?" active":""),a.setAttribute("role","tab"),a.setAttribute("aria-selected",t.id===b().id?"true":"false");let r=m.filter(o=>o.group===t.group).length;a.innerHTML='<span class="track-t"></span><span class="track-n"></span>',a.querySelector(".track-t").textContent=t.title,a.querySelector(".track-n").textContent=r+" labs",a.addEventListener("click",()=>Se(t.id)),e.appendChild(a)}document.body.dataset.track!==b().id&&(document.body.dataset.track=b().id,document.dispatchEvent(new CustomEvent("vdd-track")));let n=i("#track-note");if(n.textContent=b().note+" ",b().id==="workshop"){let t=document.createElement("a");t.href="STA_Workshop_Labs.pdf",t.target="_blank",t.rel="noopener",t.className="btn small",t.textContent="Workshop slides (PDF)",n.appendChild(t)}}async function Se(e,n){s.track=e;try{let t=new URL(location.href);t.searchParams.set("track",e),history.replaceState(null,"",t.pathname+t.search+location.hash)}catch{}Y(),!n&&F(s.example)!==e?await K(m.find(t=>t.group===b().group).id):G()}function G(){let e=i("#examples");e.innerHTML="";for(let t of m.filter(a=>a.group===b().group)){let a=document.createElement("button");a.type="button",a.className="ex"+(t.id===s.example?" active":""),a.innerHTML='<span class="ex-tag"></span><span class="ex-title"></span>',a.querySelector(".ex-tag").textContent=t.tag;let r=t.quiz&&t.quiz.length?R()[t.id]:null;if(r&&r.checked){let o=document.createElement("span");o.className="ex-done",o.textContent=(r.score===r.total?"\u2713 ":"")+`quiz ${r.score}/${r.total}`,a.querySelector(".ex-tag").appendChild(o)}a.querySelector(".ex-title").textContent=t.title,a.addEventListener("click",()=>K(t.id)),e.appendChild(a)}let n=i("#ex-select");n.innerHTML=m.filter(t=>t.group===b().group).map(t=>`<option value="${t.id}">${t.group!=="Basic labs"?t.tag+" \xB7 ":""}${t.title}</option>`).join(""),s.example&&(n.value=s.example)}async function K(e){let n=m.find(r=>r.id===e)||m[0];s.example=n.id,F(n.id)!==s.track&&(s.track=F(n.id),Y()),s.script=n.script||w;let t={};for(let[r,o]of Object.entries(n.files))if(o!==null)t[r]=o;else try{let c=await fetch(new URL("data/"+(n.load||{})[r],location.href));t[r]=c.ok?await c.text():`// Could not load ${n.load[r]}`}catch{t[r]=`// Could not load ${n.load[r]}`}let a=Object.keys(n.files).sort((r,o)=>ce(r)-ce(o));U(t,a,s.script),G(),M(),P(),me(),Z(null),L(s.ready?"Ready":"Loading OpenSTA\u2026",s.ready?"idle":"busy")}var ke="vdd-sta-quiz-v1";function R(){try{return JSON.parse(localStorage.getItem(ke)||"{}")||{}}catch{return{}}}function V(e){try{localStorage.setItem(ke,JSON.stringify(e))}catch{}}var W=()=>m.find(e=>e.id===s.example&&e.quiz&&e.quiz.length);function Ae(e){let n=String(e||"").replace(/[−–—]/g,"-").replace(/,/g,"").match(/[-+]?\d*\.?\d+(?:[eE][-+]?\d+)?/);return n?parseFloat(n[0]):NaN}function Le(e,n){if(e.type==="choice")return n!=null&&+n===e.answer;let t=Ae(n);return isFinite(t)&&Math.abs(t-e.answer)<=(e.tol??.01)+1e-9}var qe=e=>e.type==="choice"?e.options[e.answer]:`${Number.isInteger(e.answer)?e.answer:e.answer.toFixed(2)}${e.unit?" "+e.unit:""}`;function M(){ne(te,s.example);let e=i("#quiz"),n=i("#quiz-list"),t=W();if(!t){e.hidden=!0;return}e.hidden=!1;let a=R()[t.id]||{},r=a.a||[];n.innerHTML="",t.quiz.forEach((o,c)=>{let k=document.createElement("li"),f=document.createElement("div");if(f.className="quiz-q",o.try){let _=document.createElement("span");_.className="quiz-try",_.textContent="Try it",f.appendChild(_)}let p=o.q.replace(/^Try it: /,"");if(f.appendChild(document.createTextNode(p.charAt(0).toUpperCase()+p.slice(1))),k.appendChild(f),o.type==="choice"){let _=document.createElement("div");_.className="quiz-opts",_.setAttribute("role","radiogroup"),o.options.forEach((d,h)=>{let v=document.createElement("label"),S=document.createElement("input");S.type="radio",S.name=`q${c}`,S.value=h,r[c]!==void 0&&+r[c]===h&&(S.checked=!0),S.addEventListener("change",()=>le(t,c,h));let ee=document.createElement("span");ee.textContent=d,v.append(S,ee),_.appendChild(v)}),k.appendChild(_)}else{let _=document.createElement("div");_.className="quiz-num";let d=document.createElement("input");if(d.type="text",d.inputMode="decimal",d.autocomplete="off",d.setAttribute("aria-label","Answer to question "+(c+1)),d.placeholder="e.g. -1.23",r[c]!==void 0&&(d.value=r[c]),d.addEventListener("input",()=>le(t,c,d.value)),d.addEventListener("keydown",h=>{h.key==="Enter"&&Q()}),_.appendChild(d),o.unit){let h=document.createElement("span");h.className="unit",h.textContent=o.unit,_.appendChild(h)}k.appendChild(_)}let u=document.createElement("div");u.className="quiz-fb",u.hidden=!0,u.setAttribute("aria-live","polite"),k.appendChild(u),n.appendChild(k)}),a.checked?Q(!0):fe(null)}function le(e,n,t){let a=R(),r=a[e.id]||{a:[]};r.a=r.a||[],r.a[n]=t,r.checked=!1,a[e.id]=r,V(a);let o=i("#quiz-list").children[n]?.querySelector(".quiz-fb");o&&(o.hidden=!0)}function fe(e,n){let t=i("#quiz-score");if(e===null){t.textContent="",t.classList.remove("done");return}t.textContent=`${e} / ${n} correct`,t.classList.toggle("done",e===n)}function Q(e){let n=W();if(!n)return;let t=R(),a=t[n.id]||{a:[]},r=0;n.quiz.forEach((o,c)=>{let k=i("#quiz-list").children[c],f=o.type==="choice"?(k.querySelector("input:checked")||{}).value:k.querySelector("input").value;a.a[c]=f;let p=k.querySelector(".quiz-fb"),u=f===void 0||f==="",_=!u&&Le(o,f);_&&r++,p.hidden=!1,p.className="quiz-fb "+(_?"ok":"bad"),p.innerHTML="";let d=document.createElement("b");d.textContent=_?"Correct.":u?"Not answered yet.":"Not quite.",p.appendChild(d),_&&o.explain?p.appendChild(document.createTextNode(o.explain)):!_&&!u&&p.appendChild(document.createTextNode(o.type==="number"?"Check the report again: read the exact value, including its sign.":"Look at the report again and try another option."))}),a.checked=!0,a.score=r,a.total=n.quiz.length,t[n.id]=a,V(t),fe(r,n.quiz.length),e||G()}function De(){let e=W();e&&e.quiz.forEach((n,t)=>{let a=i("#quiz-list").children[t].querySelector(".quiz-fb");a.hidden=!1,a.className="quiz-fb shown",a.innerHTML="";let r=document.createElement("b");r.textContent="Answer: "+qe(n)+".",a.appendChild(r),n.explain&&a.appendChild(document.createTextNode(n.explain))})}function Te(){let e=W();if(!e)return;let n=R();delete n[e.id],V(n),M(),G()}function ce(e){return e===s.script?-1:/\.tcl$/.test(e)?0:/\.s?v$/.test(e)?1:/\.sdc$/.test(e)?2:3}var _e=null;function I(){clearTimeout(_e),_e=setTimeout(P,400)}function P(){try{localStorage.setItem(pe,JSON.stringify({example:s.example,script:s.script,files:s.files,order:s.order,current:s.current}))}catch{}}function Ee(){try{let e=JSON.parse(localStorage.getItem(pe)||"null");if(e&&e.files&&e.order)return e}catch{}return null}async function Fe(){let e=JSON.stringify({f:s.files,o:s.order,s:E()}),n=new Blob([e]).stream().pipeThrough(new CompressionStream("deflate-raw")),t=new Uint8Array(await new Response(n).arrayBuffer()),a="";for(let r of t)a+=String.fromCharCode(r);return btoa(a).replace(/\+/g,"-").replace(/\//g,"_").replace(/=+$/,"")}async function Ke(e){let n=atob(e.replace(/-/g,"+").replace(/_/g,"/")),t=new Blob([Uint8Array.from(n,a=>a.charCodeAt(0))]).stream().pipeThrough(new DecompressionStream("deflate-raw"));return JSON.parse(await new Response(t).text())}async function T(e,n){let t=!1;try{await navigator.clipboard.writeText(e),t=!0}catch{let r=document.createElement("textarea");r.value=e,r.style.position="fixed",r.style.opacity="0",document.body.appendChild(r),r.select();try{t=document.execCommand("copy")}catch{}r.remove()}if(n){let a=n.dataset.label||n.textContent;n.dataset.label=a,n.textContent=t?"Copied":"Press Ctrl+C",n.classList.toggle("ok",t),setTimeout(()=>{n.textContent=a,n.classList.remove("ok")},1600)}}function Ge(e,n){let t=document.createElement("a");t.href=URL.createObjectURL(new Blob([n],{type:"text/plain"})),t.download=e,document.body.appendChild(t),t.click(),setTimeout(()=>{URL.revokeObjectURL(t.href),t.remove()},500)}var A=i("#console"),X=[];function me(){A.textContent="",X=[]}function x(e,n){X.push(e);let t=document.createElement("div");t.className="ln "+(n||"");let a=/\b([\w.-]+\.(?:v|sdc|tcl|spef)),? (?:line )?(\d+)\b/.exec(e);if(a&&s.files[a[1]]!==void 0){let r=e.indexOf(a[0]);t.appendChild(document.createTextNode(e.slice(0,r)));let o=document.createElement("button");o.type="button",o.className="loc",o.textContent=a[0],o.addEventListener("click",()=>xe(a[1],+a[2])),t.appendChild(o),t.appendChild(document.createTextNode(e.slice(r+a[0].length)))}else t.textContent=e;/slack \(VIOLATED\)/.test(e)?t.classList.add("viol"):/slack \(MET\)/.test(e)?t.classList.add("met"):/^(Error|ERROR)|\bError:|Internal error/.test(e)?t.classList.add("err"):/^Warning/.test(e)?t.classList.add("warn"):/^(Startpoint|Endpoint):/.test(e)?t.classList.add("head"):/^###/.test(e)&&t.classList.add("sec"),A.appendChild(t),A.childElementCount>2e4&&A.firstChild.remove()}function Z(e){let n=i("#summary");if(!e){n.innerHTML="",n.hidden=!0;return}let t=[],a=p=>{let u=p.exec(e);return u?parseFloat(u[1]):null},r=a(/^wns(?: max)? (-?[\d.eE+-]+)/m)??a(/^worst slack max (-?[\d.eE+-]+)/m),o=a(/^tns(?: max)? (-?[\d.eE+-]+)/m),c=(e.match(/slack \(VIOLATED\)/g)||[]).length,k=(e.match(/slack \(MET\)/g)||[]).length;r!==null&&t.push(["WNS",r.toFixed(3),r<0?"bad":"good"]),o!==null&&t.push(["TNS",o.toFixed(3),o<0?"bad":"good"]),c+k&&t.push(["Paths reported",`${k} met \xB7 ${c} violated`,c?"bad":"good"]);let f=/^Total\s+\S+\s+\S+\s+\S+\s+(\S+)/m.exec(e);f&&t.push(["Total power",Re(parseFloat(f[1])),""]),n.innerHTML="";for(let[p,u,_]of t){let d=document.createElement("div");d.className="chip "+_;let h=document.createElement("span");h.className="k",h.textContent=p;let v=document.createElement("span");v.className="v",v.textContent=u,d.append(h,v),n.appendChild(d)}n.hidden=t.length===0}function Re(e){return isFinite(e)?e>=1?e.toFixed(3)+" W":e>=.001?(e*1e3).toFixed(3)+" mW":(e*1e6).toFixed(2)+" \xB5W":"\u2013"}function L(e,n){let t=i("#status");t.textContent=e,t.dataset.kind=n}function j(){s.worker&&s.worker.terminate(),s.ready=!1;let e=new Worker(new URL("worker.js",location.href).href);e.onmessage=n=>Ne(n.data),e.onerror=n=>{x("OpenSTA failed to start: "+(n.message||"worker error"),"err"),J(!1)},e.postMessage({type:"load",base:new URL(".",location.href).href}),s.worker=e}var z=[],$=null;function N(){$=null;for(let[e,n]of z)x(e,n);z=[],A.scrollTop=A.scrollHeight}function Ne(e){if(e.type==="ready")s.ready=!0,s.running||L("Ready","idle");else if(e.type==="stage")L(e.stage+"\u2026","busy");else if(e.type==="file"){N();let n=s.files[e.name]===void 0;he(e.name,e.content,!0),x(`\u2500\u2500 OpenSTA ${n?"wrote":"updated"} ${e.name}: open its tab to read it \u2500\u2500`,"meta")}else e.type==="line"?(z.push([e.line,e.stream==="err"?"stderr":""]),$||($=requestAnimationFrame(N))):e.type==="done"&&(N(),e.ok?x(`\u2500\u2500 finished in ${e.ms} ms \u2500\u2500`,"meta"):x(e.rc===-1?"\u2500\u2500 OpenSTA stopped with an internal error \u2500\u2500":`\u2500\u2500 OpenSTA exited with code ${e.rc}: check the errors above \u2500\u2500`,"meta err"),Z(X.join(`
+`)),J(e.ok))}function de(){if(s.running)return;window.vddSubscribe&&window.vddSubscribe(),l?s.files[s.current]=l.getValue():s.files[s.current]=g.value;let e=E();if(s.files[e]===void 0){x(`Add a Tcl script (for example ${w}): it is what OpenSTA runs.`,"err");return}s.worker||j(),P(),me(),Z(null),s.running=!0,i("#run").disabled=!0,i("#stop").disabled=!1,L(s.ready?"Running OpenSTA\u2026":"Loading OpenSTA\u2026","busy"),x(`$ sta ${e}`,"meta"),s.worker.postMessage({type:"run",files:{...s.files},script:e,dataFiles:re,base:new URL(".",location.href).href}),clearTimeout(s.timer),s.timer=setTimeout(()=>ye(`Stopped after ${ie/1e3} s.`),ie)}function ye(e){s.running&&(N(),x(e||"Stopped.","meta err"),J(!1,!0),j())}function J(e,n){clearTimeout(s.timer),s.running=!1,i("#run").disabled=!1,i("#stop").disabled=!0,L(n?"Stopped":e?"Done":"Errors",n||!e?"err":"ok")}function Ie(){i("#run").addEventListener("click",de),i("#stop").addEventListener("click",()=>ye()),i("#script").addEventListener("change",n=>{s.script=n.target.value,P()}),i("#new-file").addEventListener("click",ve),i("#quiz-check").addEventListener("click",()=>Q()),i("#quiz-reveal").addEventListener("click",De),i("#quiz-reset").addEventListener("click",Te),i("#ex-select").addEventListener("change",n=>K(n.target.value)),i("#reset").addEventListener("click",()=>K(s.example||m[0].id)),i("#copy-file").addEventListener("click",n=>T(l?l.getValue():g.value,n.currentTarget)),i("#download-file").addEventListener("click",()=>Ge(s.current,l?l.getValue():g.value)),i("#copy-output").addEventListener("click",n=>T(X.join(`
+`),n.currentTarget)),i("#share").addEventListener("click",async n=>{let t=n.currentTarget;l&&(s.files[s.current]=l.getValue());try{let a=await Fe();history.replaceState(null,"","#code="+a),T(location.href.split("#")[0]+"#code="+a,t)}catch{T(location.href,t)}}),document.addEventListener("keydown",n=>{(n.ctrlKey||n.metaKey)&&n.key==="Enter"&&(n.preventDefault(),de())});let e=i("#libs");e.innerHTML="";for(let[n,t]of oe){let a=document.createElement("li"),r=document.createElement("button");r.type="button",r.className="libname",r.textContent=n,r.title="Copy file name",r.addEventListener("click",()=>T(n,null));let o=document.createElement("span");o.textContent=t,a.append(r,o),e.appendChild(a)}}async function Oe(){Ie();let e=!1,n=new URLSearchParams(location.hash.slice(1)).get("code");if(n)try{let r=await Ke(n);s.example=null,s.script=r.s||w,s.order=r.o,s.files=r.f,U(r.f,r.o,s.script),e=!0}catch{}if(!e){let r=Ee();r&&(s.example=r.example,s.script=r.script||w,s.files=r.files,s.order=r.order,U(r.files,r.order,r.current),e=!0)}let t=new URLSearchParams(location.search).get("track"),a=C.some(r=>r.id===t);s.track=a?t:F(s.example)||"basic",Y(),!e||a&&F(s.example)!==t&&!n?await K(m.find(r=>r.group===b().group).id):(G(),M()),L("Loading OpenSTA\u2026","busy"),j()}Oe();})();

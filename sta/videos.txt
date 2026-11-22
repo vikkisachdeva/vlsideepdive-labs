@@ -5,3 +5,7 @@
 # Edit this file on GitHub and click "Commit changes"; the lab updates about a minute later.
 
 https://www.youtube.com/watch?v=za2o93ldrVQ | Static Timing Analysis Fundamentals Full Course: Setup, Hold, Skew & SDC
+
+# Videos for the SDC & constraints track only
+[sdc]
+https://www.youtube.com/watch?v=VGQp99ArgSE | Complete SDC Timing Constraints Course | Full Series Deep Dive

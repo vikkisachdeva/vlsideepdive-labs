@@ -26,6 +26,8 @@ const HOME_CARDS = [
     desc: "Short examples to start with: setup and hold, I/O constraints, exceptions, OCV, corners, SPEF and power on a real block." },
   { title: "STA workshop", href: "/sta/?track=workshop", tag: "Timing · 15 labs · quizzes",
     desc: "The 8-day STA workshop, from your first timing report to STA on a RISC-V core. Slides and an auto-checked quiz for every lab." },
+  { title: "SDC & constraints", href: "/sta/?track=sdc", tag: "Timing · 20 labs · quizzes",
+    desc: "Timing constraints hands-on: clocks and generated clocks, clock groups and sense, false and multicycle paths, I/O delays, modes and CDC." },
   { title: "Signoff STA", href: "/sta/?track=signoff", tag: "Timing · 9 labs · quizzes",
     desc: "Signoff skills: validating constraints, clocks, timing exceptions, OCV and CRPR, latches, ECO fixes and multi-corner signoff." },
   labById("tips"),
@@ -131,6 +133,8 @@ window.vddSubscribe = function () {
 
 // YouTube videos inside a lab: <section class="lab-videos" data-src="videos.txt"></section>
 // The list lives in a plain text file next to the lab: one YouTube link per line, optional title after "|".
+// A line "[track-id]" starts videos for one track only (the page sets <body data-track>); "[all]" goes back
+// to videos for every track. Videos for a track are shown instead of the general ones when it has any.
 (function () {
   const sections = document.querySelectorAll(".lab-videos");
   if (!sections.length) return;
@@ -140,16 +144,14 @@ window.vddSubscribe = function () {
   };
   sections.forEach((sec) => {
     const grid = sec.querySelector(".video-grid");
-    fetch(sec.dataset.src, { cache: "no-cache" }).then((r) => (r.ok ? r.text() : "")).then((txt) => {
-      const vids = [];
-      for (const raw of txt.split("\n")) {
-        const line = raw.trim();
-        if (!line || line.startsWith("#")) continue;
-        const [url, ...rest] = line.split("|");
-        const id = idOf(url.trim());
-        if (id) vids.push({ id, title: rest.join("|").trim() });
-      }
-      if (!vids.length) { sec.querySelector(".video-empty").hidden = false; return; }
+    let all = null;
+    const render = () => {
+      if (!all) return;
+      const track = document.body.dataset.track || "";
+      const own = all.filter((v) => v.track && v.track === track);
+      const vids = own.length ? own : all.filter((v) => !v.track);
+      grid.innerHTML = "";
+      sec.querySelector(".video-empty").hidden = !!vids.length;
       for (const v of vids) {
         const card = document.createElement("div"); card.className = "video";
         const btn = document.createElement("button"); btn.type = "button"; btn.className = "video-thumb";
@@ -170,6 +172,20 @@ window.vddSubscribe = function () {
         card.appendChild(cap);
         grid.appendChild(card);
       }
+    };
+    document.addEventListener("vdd-track", render);
+    fetch(sec.dataset.src, { cache: "no-cache" }).then((r) => (r.ok ? r.text() : "")).then((txt) => {
+      all = []; let track = "";
+      for (const raw of txt.split("\n")) {
+        const line = raw.trim();
+        if (!line || line.startsWith("#")) continue;
+        const h = /^\[([\w-]+)\]$/.exec(line);
+        if (h) { track = h[1] === "all" ? "" : h[1]; continue; }
+        const [url, ...rest] = line.split("|");
+        const id = idOf(url.trim());
+        if (id) all.push({ id, title: rest.join("|").trim(), track });
+      }
+      render();
     }).catch(() => { sec.querySelector(".video-empty").hidden = false; });
   });
 })();
