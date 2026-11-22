@@ -87,7 +87,7 @@ const HOME_CARDS = [
 })();
 
 // Accounts and leaderboards (/lb.js), on every page
-(function () { const s = document.createElement("script"); s.src = "/lb.js?v=71918adfca"; s.defer = true; document.head.appendChild(s); })();
+(function () { const s = document.createElement("script"); s.src = "/lb.js?v=69c3eafb1b"; s.defer = true; document.head.appendChild(s); })();
 
 // Tip box inside a lab: <div class="lab-tip" data-topics="STA,Constraints"></div>
 (function () {
@@ -178,7 +178,11 @@ window.vddVideo = (function () {
   function share(id) { const v = jget(VKEY)[id]; if (!v || !v.d || !v.s) return 0; let n = 0; for (const c of v.s) if (c === "1") n++; return Math.min(1, n / Math.max(1, Math.min(Math.floor(v.d * HALF), MAX_S))); }
   function label(el, id) {
     if (!el) return;
-    if (badges()[id]) { el.className = "vbadge done"; el.textContent = "🏅 Badge earned"; return; }
+    if (badges()[id]) {
+      el.className = "vbadge done"; el.textContent = "🏅 Badge earned · ";
+      const b = document.createElement("button"); b.type = "button"; b.className = "vbadge-share"; b.textContent = "Share it";
+      b.addEventListener("click", () => window.vddShareBadge && window.vddShareBadge(id)); el.appendChild(b); return;
+    }
     const f = share(id);
     el.className = "vbadge"; el.textContent = f > 0.01 ? `🏅 ${Math.round(f * 100)}% of the way to your badge: keep watching` : "🏅 Watch the video to earn a badge";
   }
