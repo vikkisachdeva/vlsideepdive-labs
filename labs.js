@@ -87,7 +87,7 @@ const HOME_CARDS = [
 })();
 
 // Accounts and leaderboards (/lb.js), on every page
-(function () { const s = document.createElement("script"); s.src = "/lb.js?v=12bd87908e"; s.defer = true; document.head.appendChild(s); })();
+(function () { const s = document.createElement("script"); s.src = "/lb.js?v=71918adfca"; s.defer = true; document.head.appendChild(s); })();
 
 // Tip box inside a lab: <div class="lab-tip" data-topics="STA,Constraints"></div>
 (function () {
@@ -155,11 +155,12 @@ window.vddSubscribe = function () {
 };
 
 // Video badges: a video played on this site through YouTube's player API counts the seconds actually
-// played (skipping ahead does not count). Watching 90% or more of a video earns its badge.
+// played (skipping ahead does not count). Watching half of a video, or 30 minutes of it if that comes first,
+// earns its badge.
 // Progress: localStorage vdd-videos-v1 { id: { d: duration, s: "0101…" one char per second } };
 // badges: vdd-badges-v1 { id: { title, at } } (lb.js syncs them to the leaderboard and offers to share).
 window.vddVideo = (function () {
-  const VKEY = "vdd-videos-v1", BKEY = "vdd-badges-v1", NEED = 0.9;
+  const VKEY = "vdd-videos-v1", BKEY = "vdd-badges-v1", HALF = 0.5, MAX_S = 1800;
   const jget = (k) => { try { return JSON.parse(localStorage.getItem(k) || "{}") || {}; } catch (_) { return {}; } };
   const jset = (k, v) => { try { localStorage.setItem(k, JSON.stringify(v)); } catch (_) {} };
   const badges = () => jget(BKEY);
@@ -173,12 +174,13 @@ window.vddVideo = (function () {
       setTimeout(() => rej(new Error("YouTube API timeout")), 12000);
     }));
   }
-  function share(id) { const v = jget(VKEY)[id]; if (!v || !v.d || !v.s) return 0; let n = 0; for (const c of v.s) if (c === "1") n++; return Math.min(1, n / Math.max(1, Math.floor(v.d) - 1)); }
+  // How far towards the badge: seconds watched over seconds needed (half the video, at most 30 minutes).
+  function share(id) { const v = jget(VKEY)[id]; if (!v || !v.d || !v.s) return 0; let n = 0; for (const c of v.s) if (c === "1") n++; return Math.min(1, n / Math.max(1, Math.min(Math.floor(v.d * HALF), MAX_S))); }
   function label(el, id) {
     if (!el) return;
     if (badges()[id]) { el.className = "vbadge done"; el.textContent = "🏅 Badge earned"; return; }
     const f = share(id);
-    el.className = "vbadge"; el.textContent = f > 0.01 ? `🏅 ${Math.round(f * 100)}% watched: watch it all to earn a badge` : "🏅 Watch the whole video to earn a badge";
+    el.className = "vbadge"; el.textContent = f > 0.01 ? `🏅 ${Math.round(f * 100)}% of the way to your badge: keep watching` : "🏅 Watch the video to earn a badge";
   }
   function plainFrame(btn, v, cls) {
     const f = document.createElement("iframe"); f.className = cls; f.title = v.title || "YouTube video";
@@ -197,7 +199,7 @@ window.vddVideo = (function () {
       const save = () => { if (!dirty) return; const all = jget(VKEY); all[v.id] = r; jset(VKEY, all); dirty = false; label(statusEl, v.id); };
       const check = () => {
         if (badges()[v.id] || !r.d) return;
-        if (share(v.id) >= NEED) { const b = badges(); b[v.id] = { title: v.title || "vlsideepdive video", at: Date.now() }; jset(BKEY, b); label(statusEl, v.id); }
+        if (share(v.id) >= 1) { const b = badges(); b[v.id] = { title: v.title || "vlsideepdive video", at: Date.now() }; jset(BKEY, b); label(statusEl, v.id); }
       };
       const tick = (p) => {
         const d = p.getDuration(), t = p.getCurrentTime();
@@ -252,7 +254,7 @@ window.vddVideo = (function () {
       const box = document.createElement("aside");
       box.className = "sub-pop badge-pop"; box.setAttribute("role", "complementary"); box.setAttribute("aria-label", "Earn a badge");
       box.innerHTML = '<span class="sub-ic" aria-hidden="true">🏅</span>' +
-        '<div><b>Watch the full video to earn a badge</b><p>Watch this lab\'s video to the end here on the site: the badge goes on your leaderboard profile and you can share it on LinkedIn.</p>' +
+        '<div><b>Watch the video to earn a badge</b><p>Watch this lab\'s video here on the site (half of it, or 30 minutes): the badge goes on your leaderboard profile and you can share it on LinkedIn.</p>' +
         '<button type="button" class="sub-go">Watch now</button></div>' +
         '<button type="button" class="sub-x" aria-label="Close">×</button>';
       document.body.appendChild(box);
