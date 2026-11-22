@@ -7,7 +7,7 @@ const LABS = [
     desc: "Logic synthesis with Yosys: from a 2-to-1 mux to a RISC-V core. See RTL and gate-level diagrams, map to standard cells, read cell and area reports." },
   { id: "cdc", title: "CDC lab", href: "/cdc/", tag: "CDC · 13 labs · quizzes",
     desc: "Clock domain crossing: run a CDC check on RTL and SDC, fix synchronizers, then simulate pulse synchronizers, handshakes and an async FIFO with assertions." },
-  { id: "sta", title: "STA lab · OpenSTA", href: "/sta/", tag: "Timing",
+  { id: "sta", title: "STA and Constraints labs", href: "/sta/", tag: "Timing",
     desc: "Static timing analysis with OpenSTA: netlists, SDC, Liberty and SPEF. Setup and hold, exceptions, OCV, multi-corner and power reports." },
   { id: "tips", title: "Vikas Sachdeva's tips", href: "/tips/", tag: "Tips",
     desc: "Practical tips on verification, timing and chip design from 20 years in EDA." },
