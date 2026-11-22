@@ -265,7 +265,7 @@ window.vddVideo = (function () {
         const thumb = sec.querySelector(`.video[data-vid="${todo.id}"] .video-thumb`);
         if (thumb) setTimeout(() => thumb.click(), 400);
       });
-    }, 6000);
+    }, 2000);
   }
   sections.forEach((sec) => {
     const grid = sec.querySelector(".video-grid");
