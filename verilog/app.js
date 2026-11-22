@@ -1,4 +1,4 @@
-(()=>{var J={counter:{problem:"Almost every design needs a counter: for timers, addresses, timeouts. It must reset cleanly, count only when enabled, and wrap at the right value.",tasks:["Run and watch count in the waveform.","Find the cycle where it wraps from 15 to 0.","Change WIDTH and run again."],learn:"Write a parameterised counter with reset and enable, and read it in a waveform."},mux:{problem:"Selecting one of several buses is the most common piece of logic in a datapath. It must pick the right input for every select value.",tasks:["Run and check y for each value of sel.","Change the inputs and run again."],learn:"Write combinational logic with case statements and test it with a simple testbench."},adder:{problem:"Checking results by eye does not scale. A testbench should check every case on its own and say PASS or FAIL.",tasks:["Run: the testbench tries all 512 input combinations.","Break the carry logic in the full adder and see the testbench catch it."],learn:"Build an adder from full adders, and write a self-checking, exhaustive testbench."},fsm:{problem:"Detecting a bit pattern in a serial stream is a classic state machine problem. Overlapping patterns such as 10111011 are easy to get wrong.",tasks:["Run and find each 'pattern 1011 detected' line.","Follow the state in the waveform.","Change the input stream and predict the detections."],learn:"Design a Moore FSM, including overlapping matches, and debug it from the waveform."},cdc:{problem:"A signal from another clock cannot be used directly: the flop that samples it can go metastable. Two flops in a row give it time to settle.",tasks:["Run and see level_dst follow level_src two destination clocks later.","Measure the delay in the waveform."],learn:"The two-flop synchronizer for a single-bit level, and its latency. For full CDC practice, see the CDC labs."},fifo:{problem:"Producer and consumer rarely run at the same rate. A FIFO buffers the data, and it must refuse writes when full and reads when empty.",tasks:["Run: 10 writes into an 8-entry FIFO.","Find the two dropped writes and the full flag.","Read back and check the order."],learn:"Design a synchronous FIFO with full and empty flags."},sv:{problem:"Plain Verilog FSMs use magic numbers and are hard to read. SystemVerilog adds enums, always_ff/always_comb and assertions that check the design while it runs.",tasks:["Run and follow the light sequence.","Read the assertion that exactly one light is on.","Break the FSM and see the assertion fire."],learn:"SystemVerilog enum FSMs, always_ff/always_comb and immediate assertions."},"p1-ha-df":{problem:"Add two bits. The sum is 1 when exactly one input is 1; the carry is 1 when both are.",tasks:["Use only assign statements (dataflow style).","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Dataflow modelling with continuous assignments."},"p1-ha-bh":{problem:"The same half adder, described by its behavior instead of its equations.",tasks:["Use an always @(*) block with a case statement or if/else.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Behavioral modelling with always @(*), and why outputs are declared reg."},"p1-ha-st":{problem:"The same half adder, built from logic gates connected by wires.",tasks:["Use only Verilog gate primitives (xor, and).","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Structural modelling with gate primitives."},"p1-fa-df":{problem:"Add three bits (a, b and a carry in) to get a sum and a carry out.",tasks:["Use only assign statements.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Full adder equations in dataflow style."},"p1-fa-bh":{problem:"The same full adder, described by its behavior.",tasks:["Use an always @(*) block. Hint: {cout, sum} = a + b + cin.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Using Verilog arithmetic inside an always block."},"p1-fa-st":{problem:"Build a full adder from two half adders and an OR gate, the way it is drawn in textbooks.",tasks:["Instantiate half_adder twice and connect them with wires.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Hierarchy: instantiating modules and connecting ports by name."},"p1-ops":{problem:"Verilog has arithmetic, bitwise, logical, reduction, relational, equality, shift, concatenation, replication and conditional operators. Each output of the module uses one of them.",tasks:["Write one assign per output (see the comments for which operator), then read the $display and $monitor lines.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Every Verilog operator, and printing with $display and $monitor."},"p1-c2f":{problem:"Repeated calculations belong in a task: write it once, call it many times.",tasks:["Complete the task c_to_f. The testbench calls it with seven temperatures.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Writing and calling a Verilog task with input and output arguments."},"p2-add4":{problem:"Add two 4-bit numbers and a carry in. The result needs 5 bits: a 4-bit sum and a carry out.",tasks:["Use one assign statement with concatenation on the left.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Multi-bit dataflow arithmetic and concatenation."},"p2-mux2":{problem:"Pick one of two inputs with a select signal: the most common block in digital design.",tasks:["y = a when sel = 0, b when sel = 1.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"The conditional operator ?: as a multiplexer."},"p2-mux4":{problem:"Pick one of four inputs with a 2-bit select.",tasks:["Use a case statement on sel.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Case statements and full case coverage."},"p2-dec24":{problem:"Turn a 2-bit number into four select lines, exactly one of them high, as in an address decoder.",tasks:["y[a] = 1 when en = 1; all zeros when en = 0.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Decoders, enables and the shift operator."},"p2-enc42":{problem:"The reverse of a decoder: find which one of four lines is high and output its number.",tasks:["valid = 1 only when exactly one bit of d is 1.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Encoders and handling inputs that are not allowed."},"p2-penc42":{problem:"When several requests arrive at once, the highest one wins: an interrupt controller does this.",tasks:["y is the position of the highest 1; valid = 0 when d = 0.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Priority logic with casez and don't-care bits."},"p2-cmp4":{problem:"Compare two unsigned 4-bit numbers.",tasks:["Exactly one of gt, eq and lt is 1.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Relational operators and comparator outputs."},"p2-bshift8":{problem:"Shift or rotate a byte by any amount from 0 to 7 in one step, as in a processor's shift unit.",tasks:["dir picks left or right; rotate = 1 brings the bits that fall off back in on the other side.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Shifts, rotates and building a barrel shifter."},"p2-alu":{problem:"The arithmetic logic unit is the heart of a processor: one block, eight operations, chosen by an opcode.",tasks:["Implement the eight operations in the comment, the carry for add and subtract, and the zero flag.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Case-based ALU design, carry out and status flags."},"p3-dlatch":{problem:"A latch is transparent: while en = 1, q follows d. When en = 0 it holds its last value.",tasks:["Write it with always @(*) and an if without an else.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"How an if without else creates a latch, and when you want one."},"p3-dlatch-rst":{problem:"Add a reset that clears the latch at once, whatever en is.",tasks:["rst = 1 forces q = 0 immediately.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Reset priority in a latch."},"p3-dff":{problem:"A flip-flop samples d only at the rising edge of the clock: the basic memory element of synchronous design.",tasks:["Use always @(posedge clk) and a non-blocking assignment.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Edge-triggered storage and non-blocking assignments (<=)."},"p3-dff-arh":{problem:"Reset must work even when the clock is not running.",tasks:["rst = 1 clears q at once. Put posedge rst in the sensitivity list.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Asynchronous reset: the sensitivity list and reset priority."},"p3-dff-neg-arh":{problem:"Some flops capture on the falling edge of the clock, for example in DDR interfaces.",tasks:["Sample d on negedge clk; rst = 1 clears q at once.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Negative-edge flip-flops."},"p3-dff-arl":{problem:"Most chips use an active-low reset (rst_n): 0 means reset.",tasks:["rst_n = 0 clears q at once. Use negedge rst_n.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Active-low reset and the _n naming convention."},"p3-dff-ash":{problem:"Some registers must start at 1, not 0.",tasks:["set = 1 forces q = 1 at once.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Asynchronous set."},"p3-dff-srh":{problem:"A synchronous reset only acts on a clock edge, so it is timed like any other data input.",tasks:["rst = 1 clears q on the next rising edge only. Do not put rst in the sensitivity list.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Synchronous reset, and how it differs from asynchronous reset."},"p3-dff-srl":{problem:"The same synchronous reset, active low.",tasks:["rst_n = 0 clears q on the next rising edge.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Synchronous active-low reset."},"p3-dff-srs":{problem:"When reset and set arrive together, one must win. Here reset has priority.",tasks:["On a rising edge: rst = 1 gives 0, else set = 1 gives 1, else q takes d.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Priority between synchronous controls."},"p3-sync-async":{problem:"One reset, two registers: one resets at once, the other waits for the clock. The waveform shows the difference.",tasks:["Build q_sync with a synchronous reset and q_async with an asynchronous one.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"When each reset style acts, seen side by side."},"p3-twin":{problem:"Two 8-bit registers share a data bus, clock and reset, but load independently.",tasks:["load_a loads d into qa, load_b into qb; otherwise each holds.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Registers with load enables and a shared bus."},"p4-sr5":{problem:"Serial data enters at the left and moves one bit to the right each clock, as in a serial receiver.",tasks:["On each rising edge: q <= {sin, q[4:1]}.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Shift registers with concatenation."},"p4-usr5":{problem:"One register that can hold, shift right, shift left or load in parallel, chosen by a mode input.",tasks:["Implement the four modes in the comment.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Multi-function registers with a case on mode."},"p4-cnt":{problem:"Counters are everywhere: timers, addresses, state sequencing.",tasks:["A 4-bit up counter that wraps from 15 to 0.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"A basic synchronous counter."},"p4-cnt-tb":{problem:"A design is only as good as its testbench. Here the design is given and you write the testbench.",tasks:["Complete the testbench: reset, count, pause with en, check every cycle and print PASS or FAIL. Then set BUG = 1 in the design: your testbench must print FAIL.","Run: your testbench should print PASS, and FAIL once BUG = 1.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Self-checking testbenches with an expected-value model."},"p4-cnt-load":{problem:"Counters often need to start from a given value.",tasks:["load = 1 loads d; otherwise count up.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Synchronous load with priority over counting."},"p4-updown":{problem:"Count in either direction, for example a FIFO level or a position.",tasks:["up = 1 counts up, up = 0 counts down; both wrap.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Up/down counters."},"p4-mod":{problem:"A modulus-N counter counts 0 to N-1 and wraps, such as a decade (mod-10) counter for a clock display.",tasks:["Count 0 to 9 and wrap to 0.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Mod-N counters and parameters."},"p4-range":{problem:"Count only within a range, LOW to HIGH, and start again at LOW.",tasks:["After reset q = LOW (3); count to HIGH (12), then back to LOW.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Parameterized counter limits."},"p4-range-udl":{problem:"All the counter features together: a range, a direction and a load.",tasks:["Load has priority; up wraps HIGH \u2192 LOW; down wraps LOW \u2192 HIGH.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Combining counter features with clear priority."},"p4-div2":{problem:"Make a slower clock from a fast one.",tasks:["clk_out toggles on every rising edge of clk.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Divide-by-2 with a toggle flop."},"p4-div4":{problem:"Divide by 4 with a 50% duty cycle.",tasks:["Use a 2-bit counter; its top bit is clk / 4.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Dividing by a power of 2 with a counter."},"p4-div3":{problem:"Odd dividers are harder: a counter alone gives a 33% duty cycle. The testbench requires exactly 50%.",tasks:["Hint: combine a flop on the rising edge with one on the falling edge.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Odd clock division with a 50% duty cycle using both clock edges."},"p4-fifo":{problem:"A FIFO buffers data between a producer and a consumer running at different rates on the same clock.",tasks:["8 words of 8 bits. Ignore writes when full and reads when empty; dout shows the word on the clock after rd_en.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"FIFO pointers, a word count, and full and empty flags."},"p4-afifo":{problem:"When producer and consumer run on different clocks, the FIFO pointers cross clock domains. They must be Gray coded and synchronized.",tasks:["8 words of 8 bits, wclk and rclk. rdata shows the oldest word; rinc takes it.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Asynchronous FIFOs: Gray pointers, synchronizers, full and empty. See the CDC labs for more."},"p4-mealy-nov":{problem:"Detect the bit pattern 1-0-1 in a serial stream. Mealy: the output depends on the state and the current input.",tasks:["y = 1 while x is the final 1. After a detection, start again from scratch.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Mealy state machines and non-overlapping detection."},"p4-mealy-ov":{problem:"The same pattern, but the final 1 may also start the next 101: 10101 gives two detections.",tasks:["y = 1 while x is the final 1, and keep that 1 for the next pattern.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Overlapping detection in a Mealy machine."},"p4-moore-nov":{problem:"Moore: the output depends on the state only, so it comes one clock later than in a Mealy machine.",tasks:["y = 1 for one clock after the final 1 was clocked in. Start again from scratch after.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Moore state machines and their extra state."},"p4-moore-ov":{problem:"Moore and overlapping together.",tasks:["y = 1 for one clock after 101; the final 1 starts the next pattern.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Overlapping detection in a Moore machine."}};function Q(t,e){let n=document.getElementById("lab-brief");if(!n)return;let s=t[e];if(!s){n.hidden=!0;return}n.querySelector(".brief-problem").textContent=s.problem;let a=n.querySelector(".brief-tasks");a.innerHTML="";for(let i of s.tasks){let b=document.createElement("li");b.textContent=i,a.appendChild(b)}n.querySelector(".brief-learn").textContent=s.learn;let r=n.querySelector(".brief-fig"),d=s.images||(s.image?[{src:s.image,alt:s.imageAlt||""}]:[]);if(d.length||s.html){if(r||(r=document.createElement("figure"),r.className="brief-fig",n.appendChild(r)),r.innerHTML="",d.length){let i=document.createElement("div");i.className="brief-imgs";for(let b of d){let _=document.createElement("a");_.href=b.src,_.target="_blank",_.rel="noopener";let p=document.createElement("img");p.src=b.src,p.alt=b.alt||"",p.loading="lazy",_.appendChild(p),i.appendChild(_)}r.appendChild(i)}if(s.html){let i=document.createElement("div");i.className="brief-html",i.innerHTML=s.html,r.appendChild(i)}if(s.caption){let i=document.createElement("figcaption");i.textContent=s.caption,r.appendChild(i)}}else r&&r.remove();n.hidden=!1}var oe=[{id:"counter",title:"4-bit up counter",tag:"Sequential",std:"2005",design:`\`timescale 1ns/1ps
+(()=>{var j={counter:{problem:"Almost every design needs a counter: for timers, addresses, timeouts. It must reset cleanly, count only when enabled, and wrap at the right value.",tasks:["Run and watch count in the waveform.","Find the cycle where it wraps from 15 to 0.","Change WIDTH and run again."],learn:"Write a parameterised counter with reset and enable, and read it in a waveform."},mux:{problem:"Selecting one of several buses is the most common piece of logic in a datapath. It must pick the right input for every select value.",tasks:["Run and check y for each value of sel.","Change the inputs and run again."],learn:"Write combinational logic with case statements and test it with a simple testbench."},adder:{problem:"Checking results by eye does not scale. A testbench should check every case on its own and say PASS or FAIL.",tasks:["Run: the testbench tries all 512 input combinations.","Break the carry logic in the full adder and see the testbench catch it."],learn:"Build an adder from full adders, and write a self-checking, exhaustive testbench."},fsm:{problem:"Detecting a bit pattern in a serial stream is a classic state machine problem. Overlapping patterns such as 10111011 are easy to get wrong.",tasks:["Run and find each 'pattern 1011 detected' line.","Follow the state in the waveform.","Change the input stream and predict the detections."],learn:"Design a Moore FSM, including overlapping matches, and debug it from the waveform."},cdc:{problem:"A signal from another clock cannot be used directly: the flop that samples it can go metastable. Two flops in a row give it time to settle.",tasks:["Run and see level_dst follow level_src two destination clocks later.","Measure the delay in the waveform."],learn:"The two-flop synchronizer for a single-bit level, and its latency. For full CDC practice, see the CDC labs."},fifo:{problem:"Producer and consumer rarely run at the same rate. A FIFO buffers the data, and it must refuse writes when full and reads when empty.",tasks:["Run: 10 writes into an 8-entry FIFO.","Find the two dropped writes and the full flag.","Read back and check the order."],learn:"Design a synchronous FIFO with full and empty flags."},sv:{problem:"Plain Verilog FSMs use magic numbers and are hard to read. SystemVerilog adds enums, always_ff/always_comb and assertions that check the design while it runs.",tasks:["Run and follow the light sequence.","Read the assertion that exactly one light is on.","Break the FSM and see the assertion fire."],learn:"SystemVerilog enum FSMs, always_ff/always_comb and immediate assertions."},"p1-ha-df":{problem:"Add two bits. The sum is 1 when exactly one input is 1; the carry is 1 when both are.",tasks:["Use only assign statements (dataflow style).","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Dataflow modelling with continuous assignments."},"p1-ha-bh":{problem:"The same half adder, described by its behavior instead of its equations.",tasks:["Use an always @(*) block with a case statement or if/else.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Behavioral modelling with always @(*), and why outputs are declared reg."},"p1-ha-st":{problem:"The same half adder, built from logic gates connected by wires.",tasks:["Use only Verilog gate primitives (xor, and).","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Structural modelling with gate primitives."},"p1-fa-df":{problem:"Add three bits (a, b and a carry in) to get a sum and a carry out.",tasks:["Use only assign statements.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Full adder equations in dataflow style."},"p1-fa-bh":{problem:"The same full adder, described by its behavior.",tasks:["Use an always @(*) block. Hint: {cout, sum} = a + b + cin.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Using Verilog arithmetic inside an always block."},"p1-fa-st":{problem:"Build a full adder from two half adders and an OR gate, the way it is drawn in textbooks.",tasks:["Instantiate half_adder twice and connect them with wires.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Hierarchy: instantiating modules and connecting ports by name."},"p1-ops":{problem:"Verilog has arithmetic, bitwise, logical, reduction, relational, equality, shift, concatenation, replication and conditional operators. Each output of the module uses one of them.",tasks:["Write one assign per output (see the comments for which operator), then read the $display and $monitor lines.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Every Verilog operator, and printing with $display and $monitor."},"p1-c2f":{problem:"Repeated calculations belong in a task: write it once, call it many times.",tasks:["Complete the task c_to_f. The testbench calls it with seven temperatures.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Writing and calling a Verilog task with input and output arguments."},"p2-add4":{problem:"Add two 4-bit numbers and a carry in. The result needs 5 bits: a 4-bit sum and a carry out.",tasks:["Use one assign statement with concatenation on the left.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Multi-bit dataflow arithmetic and concatenation."},"p2-mux2":{problem:"Pick one of two inputs with a select signal: the most common block in digital design.",tasks:["y = a when sel = 0, b when sel = 1.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"The conditional operator ?: as a multiplexer."},"p2-mux4":{problem:"Pick one of four inputs with a 2-bit select.",tasks:["Use a case statement on sel.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Case statements and full case coverage."},"p2-dec24":{problem:"Turn a 2-bit number into four select lines, exactly one of them high, as in an address decoder.",tasks:["y[a] = 1 when en = 1; all zeros when en = 0.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Decoders, enables and the shift operator."},"p2-enc42":{problem:"The reverse of a decoder: find which one of four lines is high and output its number.",tasks:["valid = 1 only when exactly one bit of d is 1.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Encoders and handling inputs that are not allowed."},"p2-penc42":{problem:"When several requests arrive at once, the highest one wins: an interrupt controller does this.",tasks:["y is the position of the highest 1; valid = 0 when d = 0.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Priority logic with casez and don't-care bits."},"p2-cmp4":{problem:"Compare two unsigned 4-bit numbers.",tasks:["Exactly one of gt, eq and lt is 1.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Relational operators and comparator outputs."},"p2-bshift8":{problem:"Shift or rotate a byte by any amount from 0 to 7 in one step, as in a processor's shift unit.",tasks:["dir picks left or right; rotate = 1 brings the bits that fall off back in on the other side.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Shifts, rotates and building a barrel shifter."},"p2-alu":{problem:"The arithmetic logic unit is the heart of a processor: one block, eight operations, chosen by an opcode.",tasks:["Implement the eight operations in the comment, the carry for add and subtract, and the zero flag.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Case-based ALU design, carry out and status flags."},"p3-dlatch":{problem:"A latch is transparent: while en = 1, q follows d. When en = 0 it holds its last value.",tasks:["Write it with always @(*) and an if without an else.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"How an if without else creates a latch, and when you want one."},"p3-dlatch-rst":{problem:"Add a reset that clears the latch at once, whatever en is.",tasks:["rst = 1 forces q = 0 immediately.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Reset priority in a latch."},"p3-dff":{problem:"A flip-flop samples d only at the rising edge of the clock: the basic memory element of synchronous design.",tasks:["Use always @(posedge clk) and a non-blocking assignment.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Edge-triggered storage and non-blocking assignments (<=)."},"p3-dff-arh":{problem:"Reset must work even when the clock is not running.",tasks:["rst = 1 clears q at once. Put posedge rst in the sensitivity list.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Asynchronous reset: the sensitivity list and reset priority."},"p3-dff-neg-arh":{problem:"Some flops capture on the falling edge of the clock, for example in DDR interfaces.",tasks:["Sample d on negedge clk; rst = 1 clears q at once.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Negative-edge flip-flops."},"p3-dff-arl":{problem:"Most chips use an active-low reset (rst_n): 0 means reset.",tasks:["rst_n = 0 clears q at once. Use negedge rst_n.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Active-low reset and the _n naming convention."},"p3-dff-ash":{problem:"Some registers must start at 1, not 0.",tasks:["set = 1 forces q = 1 at once.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Asynchronous set."},"p3-dff-srh":{problem:"A synchronous reset only acts on a clock edge, so it is timed like any other data input.",tasks:["rst = 1 clears q on the next rising edge only. Do not put rst in the sensitivity list.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Synchronous reset, and how it differs from asynchronous reset."},"p3-dff-srl":{problem:"The same synchronous reset, active low.",tasks:["rst_n = 0 clears q on the next rising edge.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Synchronous active-low reset."},"p3-dff-srs":{problem:"When reset and set arrive together, one must win. Here reset has priority.",tasks:["On a rising edge: rst = 1 gives 0, else set = 1 gives 1, else q takes d.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Priority between synchronous controls."},"p3-sync-async":{problem:"One reset, two registers: one resets at once, the other waits for the clock. The waveform shows the difference.",tasks:["Build q_sync with a synchronous reset and q_async with an asynchronous one.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"When each reset style acts, seen side by side."},"p3-twin":{problem:"Two 8-bit registers share a data bus, clock and reset, but load independently.",tasks:["load_a loads d into qa, load_b into qb; otherwise each holds.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Registers with load enables and a shared bus."},"p4-sr5":{problem:"Serial data enters at the left and moves one bit to the right each clock, as in a serial receiver.",tasks:["On each rising edge: q <= {sin, q[4:1]}.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Shift registers with concatenation."},"p4-usr5":{problem:"One register that can hold, shift right, shift left or load in parallel, chosen by a mode input.",tasks:["Implement the four modes in the comment.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Multi-function registers with a case on mode."},"p4-cnt":{problem:"Counters are everywhere: timers, addresses, state sequencing.",tasks:["A 4-bit up counter that wraps from 15 to 0.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"A basic synchronous counter."},"p4-cnt-tb":{problem:"A design is only as good as its testbench. Here the design is given and you write the testbench.",tasks:["Complete the testbench: reset, count, pause with en, check every cycle and print PASS or FAIL. Then set BUG = 1 in the design: your testbench must print FAIL.","Run: your testbench should print PASS, and FAIL once BUG = 1.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Self-checking testbenches with an expected-value model."},"p4-cnt-load":{problem:"Counters often need to start from a given value.",tasks:["load = 1 loads d; otherwise count up.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Synchronous load with priority over counting."},"p4-updown":{problem:"Count in either direction, for example a FIFO level or a position.",tasks:["up = 1 counts up, up = 0 counts down; both wrap.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Up/down counters."},"p4-mod":{problem:"A modulus-N counter counts 0 to N-1 and wraps, such as a decade (mod-10) counter for a clock display.",tasks:["Count 0 to 9 and wrap to 0.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Mod-N counters and parameters."},"p4-range":{problem:"Count only within a range, LOW to HIGH, and start again at LOW.",tasks:["After reset q = LOW (3); count to HIGH (12), then back to LOW.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Parameterized counter limits."},"p4-range-udl":{problem:"All the counter features together: a range, a direction and a load.",tasks:["Load has priority; up wraps HIGH \u2192 LOW; down wraps LOW \u2192 HIGH.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Combining counter features with clear priority."},"p4-div2":{problem:"Make a slower clock from a fast one.",tasks:["clk_out toggles on every rising edge of clk.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Divide-by-2 with a toggle flop."},"p4-div4":{problem:"Divide by 4 with a 50% duty cycle.",tasks:["Use a 2-bit counter; its top bit is clk / 4.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Dividing by a power of 2 with a counter."},"p4-div3":{problem:"Odd dividers are harder: a counter alone gives a 33% duty cycle. The testbench requires exactly 50%.",tasks:["Hint: combine a flop on the rising edge with one on the falling edge.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Odd clock division with a 50% duty cycle using both clock edges."},"p4-fifo":{problem:"A FIFO buffers data between a producer and a consumer running at different rates on the same clock.",tasks:["8 words of 8 bits. Ignore writes when full and reads when empty; dout shows the word on the clock after rd_en.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"FIFO pointers, a word count, and full and empty flags."},"p4-afifo":{problem:"When producer and consumer run on different clocks, the FIFO pointers cross clock domains. They must be Gray coded and synchronized.",tasks:["8 words of 8 bits, wclk and rclk. rdata shows the oldest word; rinc takes it.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Asynchronous FIFOs: Gray pointers, synchronizers, full and empty. See the CDC labs for more."},"p4-mealy-nov":{problem:"Detect the bit pattern 1-0-1 in a serial stream. Mealy: the output depends on the state and the current input.",tasks:["y = 1 while x is the final 1. After a detection, start again from scratch.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Mealy state machines and non-overlapping detection."},"p4-mealy-ov":{problem:"The same pattern, but the final 1 may also start the next 101: 10101 gives two detections.",tasks:["y = 1 while x is the final 1, and keep that 1 for the next pattern.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Overlapping detection in a Mealy machine."},"p4-moore-nov":{problem:"Moore: the output depends on the state only, so it comes one clock later than in a Mealy machine.",tasks:["y = 1 for one clock after the final 1 was clocked in. Start again from scratch after.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Moore state machines and their extra state."},"p4-moore-ov":{problem:"Moore and overlapping together.",tasks:["y = 1 for one clock after 101; the final 1 starts the next pattern.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Overlapping detection in a Moore machine."},"s01-reg":{problem:"Store a byte when enable is high, the most basic piece of a CPU datapath. Write it the SystemVerilog way.",tasks:["Use logic, ANSI ports, timeunit/timeprecision and always_ff. rst_ is asynchronous and active low.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"always_ff, the logic type, and time units in SystemVerilog."},"s02-mux":{problem:"One mux module, any width: the CPU uses it as a 5-bit address mux. The testbench uses an 8-bit and a 1-bit instance.",tasks:["out = sel_a ? in_a : in_b. Use always_comb and unique case with a default that drives X.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Parameters, always_comb and unique case."},"s03-cnt":{problem:"The CPU's program counter: it counts through the program, and loads a new address for a jump.",tasks:["5 bits: load has priority, then enable counts up; rst_ clears it.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Priority in always_ff and counter wrap-around."},"s04-ctrl":{problem:"The CPU's controller steps through 8 states for every instruction and decides which blocks act in each: fetch, decode, operand fetch, execute, store.",tasks:["Use the enum types from package typedefs, state.next() for the sequence, and always_comb with unique case for the outputs in the table in the comments.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Packages, enumerated types and their methods, and Mealy outputs."},"s05-alu":{problem:"The CPU's ALU combines the accumulator with memory data. Its result is registered on the falling clock edge so it is ready for the accumulator on the next rising edge.",tasks:["Compute out on negedge clk for the 8 opcodes; zero = 1 when accum is 0.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Using package enums in a datapath, and two clock edges."},"s06-memtb":{problem:"The memory is given. Write the testbench that proves it works, with reusable tasks.",tasks:["Write tasks write_mem and read_mem with a default debug argument, a void function printstatus, and two tests. Then set BUG = 1: your testbench must report FAIL.","Run: your testbench should print PASS, and FAIL once BUG = 1.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Tasks with default arguments, void functions, and driving on the inactive clock edge."},"s07-struct":{problem:"A bus is many signals that always travel together. Bundling them keeps every module in agreement. SystemVerilog interfaces do this with modports; Icarus Verilog 12 does not support interface ports yet, so this lab uses a packed struct from a package, which every tool supports.",tasks:["Declare mem_req_t (read, write, addr, data in that order) and write the memory using req.field names.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Packed structs, packages, and when to use a struct or an interface."},"s08-cpu":{problem:"Put it all together: the register, mux, counter, controller, ALU and memory make a small CPU that runs programs.",tasks:["Instantiate and connect the seven blocks in module cpu (all blocks are given above it). The testbench runs three programs: a basic test, a sum of 1 to 10, and Fibonacci up to 144.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Building a CPU from blocks, and debugging it from the waveform and program results."},"s09-johnson":{problem:"A Johnson counter is a shift register whose inverted output feeds back: 2N states with only one bit changing at a time.",tasks:["Shift left and feed ~q[N-1] into bit 0. The testbench checks N = 4 and N = 6.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Parameterized shift-register counters."},"s10-gen":{problem:"Hardware is often an array of identical blocks. A generate loop builds it for any size.",tasks:["Build rca from N full_adder instances with a for-generate loop. Do not use + in rca.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Generate loops, genvars and named generate blocks."},"s11-dpram":{problem:"Two ports let one block write while another reads, for example a frame buffer or a FIFO memory.",tasks:["Port A writes and reads, port B reads. Both reads are synchronous; port A reads the old data when it writes the same address.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Memory arrays, synchronous reads and read-before-write."},"s12-uart":{problem:"Send bytes over a single wire: a start bit, 8 data bits LSB first, a stop bit. The testbench decodes the line like a real receiver.",tasks:["Write the state machine with an enum type: IDLE, START_BIT, DATA_BITS, STOP_BIT. Each bit lasts CLKS_PER_BIT clocks.","Run: the testbench checks your design and prints PASS or FAIL.","Stuck? Show solution loads one answer. Reset lab brings your starting point back."],learn:"Enum state machines with counters, and serial protocols."}};function Y(t,e){let n=document.getElementById("lab-brief");if(!n)return;let r=t[e];if(!r){n.hidden=!0;return}n.querySelector(".brief-problem").textContent=r.problem;let a=n.querySelector(".brief-tasks");a.innerHTML="";for(let i of r.tasks){let b=document.createElement("li");b.textContent=i,a.appendChild(b)}n.querySelector(".brief-learn").textContent=r.learn;let s=n.querySelector(".brief-fig"),d=r.images||(r.image?[{src:r.image,alt:r.imageAlt||""}]:[]);if(d.length||r.html){if(s||(s=document.createElement("figure"),s.className="brief-fig",n.appendChild(s)),s.innerHTML="",d.length){let i=document.createElement("div");i.className="brief-imgs";for(let b of d){let k=document.createElement("a");k.href=b.src,k.target="_blank",k.rel="noopener";let p=document.createElement("img");p.src=b.src,p.alt=b.alt||"",p.loading="lazy",k.appendChild(p),i.appendChild(k)}s.appendChild(i)}if(r.html){let i=document.createElement("div");i.className="brief-html",i.innerHTML=r.html,s.appendChild(i)}if(r.caption){let i=document.createElement("figcaption");i.textContent=r.caption,s.appendChild(i)}}else s&&s.remove();n.hidden=!1}var oe=[{id:"counter",title:"4-bit up counter",tag:"Sequential",std:"2005",design:`\`timescale 1ns/1ps
 
 // Parameterised up counter with async active-low reset and enable
 module counter #(parameter WIDTH = 4) (
@@ -346,7 +346,7 @@ module tb;
     $finish;
   end
 endmodule
-`}];var de=[{id:"part1",title:"Part 1: adders"},{id:"part2",title:"Part 2: combinational"},{id:"part3",title:"Part 3: latches and flip-flops"},{id:"part4",title:"Part 4: sequential"}],le=[{id:"p1-ha-df",group:"part1",tag:"Part 1 \xB7 Lab 1",title:"Half adder: dataflow",std:"2005",design:`// One-bit half adder, dataflow style: continuous assignments only.
+`}];var de=[{id:"part1",title:"Part 1: adders"},{id:"part2",title:"Part 2: combinational"},{id:"part3",title:"Part 3: latches and flip-flops"},{id:"part4",title:"Part 4: sequential"},{id:"sv",title:"SystemVerilog design"}],le=[{id:"p1-ha-df",group:"part1",tag:"Part 1 \xB7 Lab 1",title:"Half adder: dataflow",std:"2005",design:`// One-bit half adder, dataflow style: continuous assignments only.
 module half_adder (
   input  wire a, b,
   output wire sum, carry
@@ -2772,5 +2772,1131 @@ module seq101_moore_ov (
     endcase
   assign y = (state == S101);
 endmodule
-`}}];function pe(t){let e=[],n=new Map,s=[],a="",r=0,d=t.split(/\s+/),i=!0,b=0,_=0;for(;r<d.length;){let p=d[r++];if(!p)continue;if(i){if(p==="$scope"){for(r++,s.push(d[r++]);d[r]!=="$end";)r++;r++}else if(p==="$upscope"){for(s.pop();d[r]!=="$end";)r++;r++}else if(p==="$timescale"){let m=[];for(;d[r]!=="$end";)m.push(d[r++]);r++,a=m.join("")}else if(p==="$var"){let m=d[r++],c=parseInt(d[r++],10),f=d[r++],S=[];for(;d[r]!=="$end";)S.push(d[r++]);r++;let w=S[0];S[1]&&S[1].startsWith("[")&&(w+=S[1]);let $=[...s,w].join(".");if(m==="parameter")continue;if(n.has(f)){n.get(f).aliases.push($);continue}let q=[...s.slice(1),w].join("."),U={id:f,name:$,short:q||w,depth:s.length,width:c,type:m,changes:[],aliases:[]};n.set(f,U),e.push(U)}else if(p==="$enddefinitions"){for(;d[r]!=="$end";)r++;r++,i=!1}else if(p.startsWith("$")){for(;r<d.length&&d[r]!=="$end";)r++;r++}continue}let y=p[0];if(y==="#")b=Number(p.slice(1)),b>_&&(_=b);else if(y!=="$")if(y==="b"||y==="B"||y==="r"||y==="R"){let m=p.slice(1),c=d[r++],f=n.get(c);f&&ce(f,b,y==="r"||y==="R"?Number(m):m)}else{let m=n.get(p.slice(1));m&&ce(m,b,y.toLowerCase())}}return{signals:e,timescale:a,endTime:_}}function ce(t,e,n){let s=t.changes;s.length&&s[s.length-1][0]===e?s[s.length-1][1]=n:(!s.length||s[s.length-1][1]!==n)&&s.push([e,n])}function ge(t,e){let n=t.changes,s=0,a=n.length-1,r=-1;for(;s<=a;){let d=s+a>>1;n[d][0]<=e?(r=d,s=d+1):a=d-1}return r<0?null:n[r][1]}function Z(t,e,n){if(e==null)return"";if(typeof e=="number")return String(+e.toPrecision(6));if(t.width===1)return e;let s=e.padStart(t.width,e[0]==="x"||e[0]==="z"?e[0]:"0");if(/[xz]/i.test(s))return/^x+$/i.test(s)?"x":/^z+$/i.test(s)?"z":n==="bin"?s:"x";if(n==="bin")return s;let a=BigInt("0b"+s);if(n==="dec")return a.toString(10);if(n==="sdec"){let r=BigInt(t.width);return(s[0]==="1"?a-(1n<<r):a).toString(10)}return a.toString(16).toUpperCase().padStart(Math.ceil(t.width/4),"0")}var B=class{constructor(e,n){this.c=e,this.ctx=e.getContext("2d"),this.data=null,this.radix="hex",this.cursor=null,this.t0=0,this.t1=1,this.onCursor=n.onCursor||(()=>{}),this.nameW=190,this.rowH=28,this.axisH=26,this.theme=n.theme,e.addEventListener("mousedown",s=>this.click(s)),e.addEventListener("wheel",s=>this.wheel(s),{passive:!1}),new ResizeObserver(()=>this.draw()).observe(e.parentElement)}setData(e){this.data=e,this.cursor=null,this.t0=0,this.t1=Math.max(1,e.endTime),this.draw(),this.onCursor(null)}clear(){this.data=null,this.draw()}zoom(e,n){if(!this.data)return;let s=this.t1-this.t0,a=n??this.cursor??this.t0+s/2,r=Math.min(Math.max(s*e,2),Math.max(1,this.data.endTime)*1.05),d=a-(a-this.t0)*(r/s);d=Math.max(0,Math.min(d,Math.max(0,this.data.endTime-r))),this.t0=d,this.t1=d+r,this.draw()}fit(){this.data&&(this.t0=0,this.t1=Math.max(1,this.data.endTime),this.draw())}pan(e){if(!this.data)return;let n=this.t1-this.t0,s=this.t0+n*e;s=Math.max(0,Math.min(s,Math.max(0,this.data.endTime-n))),this.t0=s,this.t1=s+n,this.draw()}xOf(e,n){return this.nameW+(e-this.t0)/(this.t1-this.t0)*(n-this.nameW-8)}tOf(e,n){return this.t0+(e-this.nameW)/(n-this.nameW-8)*(this.t1-this.t0)}click(e){if(!this.data)return;let n=this.c.getBoundingClientRect(),s=e.clientX-n.left;s<this.nameW||(this.cursor=Math.max(0,Math.round(this.tOf(s,n.width))),this.draw(),this.onCursor(this.cursor))}wheel(e){if(!this.data)return;let n=this.c.getBoundingClientRect();e.ctrlKey||e.metaKey||Math.abs(e.deltaY)>Math.abs(e.deltaX)&&e.shiftKey===!1&&e.altKey?(e.preventDefault(),this.zoom(e.deltaY>0?1.25:.8,this.tOf(e.clientX-n.left,n.width))):(Math.abs(e.deltaX)>Math.abs(e.deltaY)||e.shiftKey)&&(e.preventDefault(),this.pan((e.deltaX||e.deltaY)/600))}draw(){let e=this.theme(),s=this.c.parentElement.clientWidth;this.nameW=s<640?112:190;let a=this.data?this.data.signals:[],r=this.axisH+Math.max(a.length,3)*this.rowH+8,d=window.devicePixelRatio||1;this.c.style.width=s+"px",this.c.style.height=r+"px",this.c.width=Math.round(s*d),this.c.height=Math.round(r*d);let i=this.ctx;if(i.setTransform(d,0,0,d,0,0),i.fillStyle=e.bg,i.fillRect(0,0,s,r),i.font="12px 'JetBrains Mono', ui-monospace, monospace",i.textBaseline="middle",!this.data){i.fillStyle=e.muted,i.fillText("Run a simulation that calls $dumpvars to see waveforms here.",16,r/2);return}let b=this.t1-this.t0,_=(s-this.nameW)/110,p=b/Math.max(1,_),y=Math.pow(10,Math.floor(Math.log10(p))),m=[1,2,5,10].map(c=>c*y).find(c=>c>=p)||y*10;i.strokeStyle=e.grid,i.fillStyle=e.muted,i.lineWidth=1;for(let c=Math.ceil(this.t0/m)*m;c<=this.t1;c+=m){let f=Math.round(this.xOf(c,s))+.5;i.beginPath(),i.moveTo(f,this.axisH-6),i.lineTo(f,r),i.stroke(),i.fillText(V(c,this.data.timescale),f+3,11)}if(i.strokeStyle=e.line,i.beginPath(),i.moveTo(0,this.axisH+.5),i.lineTo(s,this.axisH+.5),i.stroke(),a.forEach((c,f)=>{let S=this.axisH+f*this.rowH,w=S+6,$=S+this.rowH-6,q=(w+$)/2;i.fillStyle=f%2?e.rowAlt:e.bg,i.fillRect(0,S+1,s,this.rowH-1),i.fillStyle=e.text;let U=c.short+(c.width>1&&!c.short.includes("[")?` [${c.width-1}:0]`:"");i.fillText(ue(i,U,this.nameW-16),10,q),i.save(),i.beginPath(),i.rect(this.nameW,S,s-this.nameW,this.rowH),i.clip();let T=c.changes;for(let A=0;A<T.length;A++){let ie=T[A][0],ae=A+1<T.length?T[A+1][0]:this.data.endTime;if(ae<this.t0||ie>this.t1)continue;let v=this.xOf(ie,s),O=this.xOf(ae,s),F=T[A][1];if(c.width===1&&typeof F=="string"){let E=F==="x"?e.x:F==="z"?e.z:e.wave;i.strokeStyle=E,i.lineWidth=1.5,F==="x"&&(i.fillStyle=e.xFill,i.fillRect(v,w,O-v,$-w));let C=F==="1"?w:F==="0"?$:q;if(i.beginPath(),A>0){let P=T[A-1][1],G=P==="1"?w:P==="0"?$:q;i.moveTo(v,G)}else i.moveTo(v,C);i.lineTo(v,C),i.lineTo(O,C),i.stroke()}else{let E=Z(c,F,this.radix),C=E==="x"||E==="z";i.strokeStyle=C?e.x:e.wave,i.lineWidth=1.2,i.fillStyle=C?e.xFill:e.busFill;let P=Math.min(4,(O-v)/2);i.beginPath(),i.moveTo(v,q),i.lineTo(v+P,w),i.lineTo(O-P,w),i.lineTo(O,q),i.lineTo(O-P,$),i.lineTo(v+P,$),i.closePath(),i.fill(),i.stroke();let G=O-v-10;G>14&&(i.fillStyle=e.text,i.fillText(ue(i,E,G),Math.max(v,this.nameW)+6,q))}}i.restore()}),i.strokeStyle=e.line,i.beginPath(),i.moveTo(this.nameW+.5,0),i.lineTo(this.nameW+.5,r),i.stroke(),this.cursor!==null&&this.cursor>=this.t0&&this.cursor<=this.t1){let c=Math.round(this.xOf(this.cursor,s))+.5;i.strokeStyle=e.cursor,i.lineWidth=1.5,i.beginPath(),i.moveTo(c,0),i.lineTo(c,r),i.stroke()}}};function ue(t,e,n){if(t.measureText(e).width<=n)return e;for(;e.length>1&&t.measureText(e+"\u2026").width>n;)e=e.slice(0,-1);return e+"\u2026"}function V(t,e){let n=/^(\d+)(s|ms|us|ns|ps|fs)$/.exec(e||"");if(!n)return String(t);let s=["fs","ps","ns","us","ms","s"],a=t*Number(n[1]),r=s.indexOf(n[2]);for(;r<s.length-1&&Math.abs(a)>=1e3&&a%1e3===0;)a/=1e3,r++;return r<2&&Math.abs(a)>=1e3&&(a/=1e3,r++,a=+a.toFixed(3)),`${a} ${s[r]}`}var h=[...oe.map(t=>({group:"examples",...t})),...le],Y=[{id:"examples",title:"Examples",note:"Ready-to-copy examples: counters, FSMs, FIFOs, CDC synchronizers, SystemVerilog. Edit anything and press Run."},...de.map(t=>({...t,note:"Write the design in the Design pane: the ports are given. The testbench checks it and prints PASS or FAIL. A \u2713 marks the labs you have passed."}))],W="vdd-vlabs-code-v1",X="vdd-vlabs-pass-v1",M=t=>{try{return JSON.parse(localStorage.getItem(t)||"{}")||{}}catch{return{}}},ee=(t,e)=>{try{localStorage.setItem(t,JSON.stringify(e))}catch{}},l=t=>document.querySelector(t),he=15e3,fe="vdd-playground-v1",o={example:h[0].id,track:"examples",usedSolution:!1,std:h[0].std,running:!1,worker:null,ready:!1,timer:null,startedAt:0,lastVcd:null};function me(t){let e=t.querySelector("textarea");if(window.CodeMirror){let n=window.CodeMirror.fromTextArea(e,{mode:"verilog",lineNumbers:!0,indentUnit:2,tabSize:2,smartIndent:!0,matchBrackets:!0,viewportMargin:1/0,extraKeys:{Tab:s=>s.replaceSelection("  ")}});return{get:()=>n.getValue(),set:s=>{n.setValue(s),n.clearHistory()},onChange:s=>n.on("change",s),refresh:()=>n.refresh(),goto:s=>{n.focus(),n.setCursor({line:s-1,ch:0}),n.addLineClass(s-1,"background","cm-errline"),setTimeout(()=>n.removeLineClass(s-1,"background","cm-errline"),2500),n.scrollIntoView({line:s-1,ch:0},80)},addKeys:s=>n.addKeyMap(s)}}return e.classList.add("plain-editor"),{get:()=>e.value,set:n=>{e.value=n},onChange:n=>e.addEventListener("input",n),refresh(){},goto:n=>{let s=e.value.split(`
-`),a=0;for(let r=0;r<n-1&&r<s.length;r++)a+=s[r].length+1;e.focus(),e.setSelectionRange(a,a+(s[n-1]||"").length)},addKeys(){}}}var u={design:me(l("#ed-design")),tb:me(l("#ed-tb"))};function H(){return o.std==="2012"?{design:"design.sv",tb:"testbench.sv"}:{design:"design.v",tb:"testbench.v"}}function ne(){let t=H();l("#name-design").textContent=t.design,l("#name-tb").textContent=t.tb}var we=()=>Y.find(t=>t.id===o.track)||Y[0],ke=t=>(h.find(e=>e.id===t)||h[0]).group;function z(){let t=l("#vtracks");t.innerHTML="";for(let e of Y){let n=document.createElement("button");n.type="button",n.className="vtrack"+(e.id===o.track?" active":""),n.setAttribute("role","tab"),n.setAttribute("aria-selected",e.id===o.track?"true":"false");let s=h.filter(r=>r.group===e.id),a=e.id==="examples"?0:s.filter(r=>M(X)[r.id]).length;n.innerHTML='<span class="vtrack-t"></span><span class="vtrack-n"></span>',n.querySelector(".vtrack-t").textContent=e.title,n.querySelector(".vtrack-n").textContent=s.length+(e.id==="examples"?" examples":" labs")+(a?` \xB7 ${a} \u2713`:""),n.addEventListener("click",()=>_e(e.id)),t.appendChild(n)}l("#vtrack-note").textContent=we().note,l("#side-title").textContent=o.track==="examples"?"// Examples":"// Labs",l("#side-note").hidden=o.track!=="examples",l("#reset").textContent=o.track==="examples"?"Reset example":"Reset lab"}function _e(t){o.track=t;try{let e=new URL(location.href);e.searchParams.set("track",t),history.replaceState(null,"",e.pathname+e.search)}catch{}ke(o.example)!==t?I(h.find(e=>e.group===t).id):(z(),N())}function N(){let t=l("#examples");t.innerHTML="";let e=M(X),n=h.filter(a=>a.group===o.track);for(let a of n){let r=document.createElement("button");if(r.type="button",r.className="ex"+(a.id===o.example?" active":""),r.innerHTML='<span class="ex-tag"></span><span class="ex-title"></span>',r.querySelector(".ex-tag").textContent=a.tag,e[a.id]){let d=document.createElement("span");d.className="ex-pass",d.textContent="\u2713 passed",r.querySelector(".ex-tag").appendChild(d)}r.querySelector(".ex-title").textContent=a.title,r.addEventListener("click",()=>I(a.id)),t.appendChild(r)}let s=l("#ex-select");s.innerHTML=n.map(a=>`<option value="${a.id}">${a.group==="examples"?"":a.tag+" \xB7 "}${a.title}</option>`).join(""),n.some(a=>a.id===o.example)&&(s.value=o.example)}function ve(){let t=h.find(n=>n.id===o.example);if(!t||t.group==="examples")return;let e=M(W);e[t.id]={design:u.design.get(),tb:u.tb.get()},ee(W,e)}function I(t,e){let n=h.find(a=>a.id===t)||h[0];o.example=n.id,o.std=n.std,o.track=n.group,o.usedSolution=!1,l("#std").value=n.std;let s=!e&&n.group!=="examples"?M(W)[n.id]:null;if(u.design.set(s?s.design:n.design),u.tb.set(s?s.tb:n.tb),e&&n.group!=="examples"){let a=M(W);delete a[n.id],ee(W,a)}l("#show-solution").hidden=!n.solution,ne(),z(),N(),Q(J,n.id),D(),te(),g.clear(),l("#wave-values").textContent="",R("Ready","idle")}function Se(){let t=h.find(e=>e.id===o.example);!t||!t.solution||(t.solution.design&&u.design.set(t.solution.design),t.solution.tb&&u.tb.set(t.solution.tb),o.usedSolution=!0,D(),te(),x("Loaded the solution. Run it to see PASS. Reset lab brings your starting point back.","meta"))}function $e(t){let e=h.find(s=>s.id===o.example);if(!e||e.group==="examples"||o.usedSolution||!/(^|\n)PASS\b/.test(t))return;let n=M(X);n[e.id]||(n[e.id]=Date.now(),ee(X,n),z(),N())}function D(){ve();try{localStorage.setItem(fe,JSON.stringify({example:o.example,std:o.std,design:u.design.get(),tb:u.tb.get()}))}catch{}}function xe(){try{let t=JSON.parse(localStorage.getItem(fe)||"null");if(t&&t.design!=null)return t}catch{}return null}async function qe(){let t=JSON.stringify({s:o.std,d:u.design.get(),t:u.tb.get()}),e=new Blob([t]).stream().pipeThrough(new CompressionStream("deflate-raw")),n=new Uint8Array(await new Response(e).arrayBuffer()),s="";for(let a of n)s+=String.fromCharCode(a);return btoa(s).replace(/\+/g,"-").replace(/\//g,"_").replace(/=+$/,"")}async function Ae(t){let e=atob(t.replace(/-/g,"+").replace(/_/g,"/")),n=Uint8Array.from(e,a=>a.charCodeAt(0)),s=new Blob([n]).stream().pipeThrough(new DecompressionStream("deflate-raw"));return JSON.parse(await new Response(s).text())}async function K(t,e){let n=!1;try{await navigator.clipboard.writeText(t),n=!0}catch{let a=document.createElement("textarea");a.value=t,a.style.position="fixed",a.style.opacity="0",document.body.appendChild(a),a.select();try{n=document.execCommand("copy")}catch{}a.remove()}if(e){let s=e.dataset.label||e.textContent;e.dataset.label=s,e.textContent=n?"Copied":"Press Ctrl+C",e.classList.toggle("ok",n),setTimeout(()=>{e.textContent=s,e.classList.remove("ok")},1600)}}function be(t,e){let n=document.createElement("a");n.href=URL.createObjectURL(new Blob([e],{type:"text/plain"})),n.download=t,document.body.appendChild(n),n.click(),setTimeout(()=>{URL.revokeObjectURL(n.href),n.remove()},500)}var L=l("#console");function te(){L.textContent=""}function x(t,e){let n=document.createElement("div");n.className="ln "+(e||"");let s=/^(?:\/work\/)?([\w.-]+\.s?v):(\d+):/.exec(t);if(s){let a=s[1]===H().design?"design":s[1]===H().tb?"tb":null,r=document.createElement("button");r.type="button",r.className="loc",r.textContent=`${s[1]}:${s[2]}`,a&&r.addEventListener("click",()=>u[a].goto(+s[2])),n.appendChild(r),n.appendChild(document.createTextNode(":"+t.slice(s[0].length)))}else n.textContent=t;/\berror\b|ERROR|sorry|FAIL|MISMATCH|Internal error|Unable to/.test(t)?n.classList.add("err"):/\bwarning\b/i.test(t)?n.classList.add("warn"):/\bPASS\b/.test(t)&&n.classList.add("pass"),L.appendChild(n),L.childElementCount>6e3&&L.firstChild.remove(),L.scrollTop=L.scrollHeight}function R(t,e){let n=l("#status");n.textContent=t,n.dataset.kind=e}function Le(){return new URL("worker.js",location.href).href}function se(){o.worker&&o.worker.terminate(),o.ready=!1;let t=new Worker(Le());t.onmessage=e=>Oe(e.data),t.onerror=e=>{x("Simulator failed to start: "+(e.message||"worker error"),"err"),re(!1)},t.postMessage({type:"load",base:new URL(".",location.href).href}),o.worker=t}function Oe(t){if(t.type==="ready")o.ready=!0,o.running||R("Ready","idle");else if(t.type==="stage")R(t.stage+"\u2026","busy"),t.stage==="Simulating"&&x("\u2500\u2500 simulation output \u2500\u2500","meta");else if(t.type==="line")x(t.line.replace(/\/work\//g,""),t.stream==="err"?"stderr":"");else if(t.type==="done"){if(t.ok){x(`\u2500\u2500 finished in ${t.ms} ms \u2500\u2500`,"meta"),$e(L.innerText);let e=(t.vcd||[])[0];if(e){o.lastVcd=e;try{let n=pe(e.text);g.setData(n),l("#wave-meta").textContent=`${n.signals.length} signals \xB7 ${V(n.endTime,n.timescale)}`}catch(n){x("Could not read waveform: "+n.message,"err")}}else g.clear(),l("#wave-meta").textContent='No waveform: add $dumpfile("dump.vcd"); $dumpvars(0, tb);'}else t.phase==="compile"?x("\u2500\u2500 compile failed: fix the errors above and run again \u2500\u2500","meta err"):t.phase==="sim"&&x(`\u2500\u2500 simulation exited with code ${t.rc} \u2500\u2500`,"meta err");re(t.ok,t.phase)}}function j(){if(o.running)return;window.vddSubscribe&&window.vddSubscribe(),o.worker||se(),D(),te(),l("#wave-values").textContent="",o.running=!0,o.startedAt=performance.now(),l("#run").disabled=!0,l("#stop").disabled=!1,R(o.ready?"Compiling\u2026":"Loading simulator\u2026","busy");let t=H(),e={[t.design]:u.design.get(),[t.tb]:u.tb.get()},n=l("#top").value.trim();o.worker.postMessage({type:"run",files:e,std:o.std,top:n,base:new URL(".",location.href).href}),clearTimeout(o.timer),o.timer=setTimeout(()=>ye(`Stopped after ${he/1e3} s. Does your testbench call $finish?`),he)}function ye(t){o.running&&(x(t||"Stopped.","meta err"),re(!1,"stopped"),se())}function re(t,e){clearTimeout(o.timer),o.running=!1,l("#run").disabled=!1,l("#stop").disabled=!0,e==="stopped"?R("Stopped","err"):R(t?"Done":e==="compile"?"Compile errors":"Error",t?"ok":"err")}var k=t=>getComputedStyle(document.documentElement).getPropertyValue(t).trim(),g=new B(l("#wave"),{theme:()=>({bg:k("--wave-bg"),rowAlt:k("--wave-row"),grid:k("--wave-grid"),line:k("--line"),text:k("--text"),muted:k("--muted"),wave:k("--wave"),busFill:k("--wave-bus"),x:k("--wave-x"),xFill:k("--wave-xfill"),z:k("--wave-z"),cursor:k("--accent")}),onCursor:t=>{let e=l("#wave-values");if(t===null||!g.data){e.textContent="";return}e.innerHTML="";let n=document.createElement("div");n.className="cur-time",n.textContent="Cursor @ "+V(t,g.data.timescale),e.appendChild(n);for(let s of g.data.signals){let a=document.createElement("div");a.className="cur-row";let r=document.createElement("span");r.textContent=s.name;let d=document.createElement("span");d.textContent=Z(s,ge(s,t),g.radix),a.append(r,d),e.appendChild(a)}}});Fe().addEventListener?.("change",()=>g.draw());function Fe(){return window.matchMedia("(prefers-color-scheme: dark)")}function Pe(){l("#run").addEventListener("click",j),l("#stop").addEventListener("click",()=>ye()),l("#std").addEventListener("change",e=>{o.std=e.target.value,ne(),D()}),l("#ex-select").addEventListener("change",e=>I(e.target.value)),document.querySelectorAll("[data-copy]").forEach(e=>e.addEventListener("click",()=>K(u[e.dataset.copy].get(),e))),document.querySelectorAll("[data-download]").forEach(e=>e.addEventListener("click",()=>be(H()[e.dataset.download],u[e.dataset.download].get()))),l("#copy-output").addEventListener("click",e=>K(L.innerText,e.currentTarget)),l("#reset").addEventListener("click",()=>I(o.example,!0)),l("#show-solution").addEventListener("click",Se),l("#share").addEventListener("click",async e=>{let n=e.currentTarget;try{let s=await qe(),a=location.href.split("#")[0]+"#code="+s;history.replaceState(null,"","#code="+s),K(a,n)}catch{K(location.href,n)}}),l("#zoom-in").addEventListener("click",()=>g.zoom(.5)),l("#zoom-out").addEventListener("click",()=>g.zoom(2)),l("#zoom-fit").addEventListener("click",()=>g.fit()),l("#pan-left").addEventListener("click",()=>g.pan(-.4)),l("#pan-right").addEventListener("click",()=>g.pan(.4)),l("#radix").addEventListener("change",e=>{g.radix=e.target.value,g.draw(),g.onCursor(g.cursor)}),l("#dl-vcd").addEventListener("click",()=>{o.lastVcd&&be("dump.vcd",o.lastVcd.text)});let t={"Ctrl-Enter":j,"Cmd-Enter":j};u.design.addKeys(t),u.tb.addKeys(t),document.addEventListener("keydown",e=>{(e.ctrlKey||e.metaKey)&&e.key==="Enter"&&(e.preventDefault(),j())}),u.design.onChange(()=>D()),u.tb.onChange(()=>D())}async function Ie(){Pe();let t=!1,e=new URLSearchParams(location.search),n=e.get("track"),s=e.get("lab"),a=new URLSearchParams(location.hash.slice(1)).get("code");if(a){try{let r=await Ae(a);o.std=r.s==="2012"?"2012":"2005",o.example=null,l("#std").value=o.std,u.design.set(r.d||""),u.tb.set(r.t||""),t=!0}catch{}t&&(z(),N())}if(!t&&s&&h.some(r=>r.id===s)&&(I(s),t=!0),!t&&n&&Y.some(r=>r.id===n)&&(I(h.find(r=>r.group===n).id),t=!0),!t){let r=xe();if(r&&h.some(d=>d.id===r.example)){let d=h.find(i=>i.id===r.example);o.example=d.id,o.track=d.group,o.std=r.std||"2005",l("#std").value=o.std,u.design.set(r.design),u.tb.set(r.tb),l("#show-solution").hidden=!d.solution,z(),N(),Q(J,o.example),t=!0}}t||I(h[0].id),ne(),R("Loading simulator\u2026","busy"),se(),g.clear()}Ie();})();
+`}},{id:"s01-reg",group:"sv",tag:"SV \xB7 Lab 1",title:"Register",std:"2012",design:`// 8-bit register with enable and asynchronous active-low reset, written with SystemVerilog constructs:
+// timeunit/timeprecision, ANSI ports, logic, always_ff.
+module register (
+  output logic [7:0] out,
+  input  logic [7:0] data,
+  input  logic       enable,
+  input  logic       clk,
+  input  logic       rst_
+);
+  timeunit 1ns; timeprecision 100ps;
+
+  // TODO: write the design here
+
+endmodule
+`,tb:`module tb;
+  timeunit 1ns; timeprecision 100ps;
+  logic [7:0] out, data; logic enable, clk = 0, rst_ = 1;
+  logic [7:0] model;
+  int errors = 0, checks = 0;
+  register dut (.out(out), .data(data), .enable(enable), .clk(clk), .rst_(rst_));
+  always #5 clk = ~clk;
+  always_ff @(posedge clk or negedge rst_) if (!rst_) model <= '0; else if (enable) model <= data;
+  task automatic check();
+    checks++;
+    if (out !== model) begin errors++; if (errors <= 5) $display("  at %0t: enable=%b rst_=%b data=%h out=%h, expected %h", $time, enable, rst_, data, out, model); end
+  endtask
+  initial begin
+    $dumpfile("dump.vcd"); $dumpvars(0, tb);
+    #1 rst_ = 0; #10 rst_ = 1;
+    repeat (100) begin
+      @(negedge clk); data = $urandom; enable = $urandom_range(0, 1);
+      if ($urandom_range(0, 30) == 0) begin #2 rst_ = 0; #1 check(); rst_ = 1; end
+      @(posedge clk); #1 check();
+    end
+    $display("time=%0t enable=%b data=%h out=%h", $time, enable, data, out);
+    if (errors == 0) $display("PASS: REGISTER TEST PASSED (%0d checks)", checks);
+    else             $display("FAIL: REGISTER TEST FAILED, %0d of %0d checks wrong", errors, checks);
+    $finish;
+  end
+endmodule
+`,solution:{design:`// 8-bit register with enable and asynchronous active-low reset, written with SystemVerilog constructs:
+// timeunit/timeprecision, ANSI ports, logic, always_ff.
+module register (
+  output logic [7:0] out,
+  input  logic [7:0] data,
+  input  logic       enable,
+  input  logic       clk,
+  input  logic       rst_
+);
+  timeunit 1ns; timeprecision 100ps;
+
+  always_ff @(posedge clk or negedge rst_)
+    if (!rst_)       out <= '0;
+    else if (enable) out <= data;
+endmodule
+`}},{id:"s02-mux",group:"sv",tag:"SV \xB7 Lab 2",title:"Parameterized multiplexer",std:"2012",design:`// Parameterized 2:1 multiplexer (default width 1): out = sel_a ? in_a : in_b.
+// Uses always_comb and unique case, with a default that drives X for an unknown select.
+module scale_mux #(parameter int WIDTH = 1) (
+  output logic [WIDTH-1:0] out,
+  input  logic [WIDTH-1:0] in_a, in_b,
+  input  logic             sel_a
+);
+  timeunit 1ns; timeprecision 100ps;
+
+  // TODO: write the design here
+
+endmodule
+`,tb:`module tb;
+  timeunit 1ns; timeprecision 100ps;
+  logic [7:0] in_a, in_b, out8; logic sel_a; logic o1;
+  int errors = 0;
+  scale_mux #(.WIDTH(8)) dut8 (.out(out8), .in_a(in_a), .in_b(in_b), .sel_a(sel_a));
+  scale_mux               dut1 (.out(o1),   .in_a(in_a[0]), .in_b(in_b[0]), .sel_a(sel_a));
+  initial begin
+    $timeformat(-9, 0, " ns", 6); $dumpfile("dump.vcd"); $dumpvars(0, tb);
+    for (int i = 0; i < 8; i++) begin
+      {in_a, in_b, sel_a} = {{8{i[2]}}, {8{i[1]}}, i[0]}; #1;
+      $display("%t in_a=%h in_b=%h sel_a=%b out=%h", $time, in_a, in_b, sel_a, out8);
+      if (out8 !== (sel_a ? in_a : in_b)) errors++;
+    end
+    repeat (200) begin
+      in_a = $urandom; in_b = $urandom; sel_a = $urandom; #1;
+      if (out8 !== (sel_a ? in_a : in_b) || o1 !== (sel_a ? in_a[0] : in_b[0])) errors++;
+    end
+    sel_a = 1'bx; #1;
+    if (out8 !== 8'hxx) begin errors++; $display("  sel_a = x should give out = x (the default branch)"); end
+    if (errors == 0) $display("PASS: MUX TEST PASSED (8-bit and default 1-bit instances)");
+    else             $display("FAIL: MUX TEST FAILED, %0d errors", errors);
+    $finish;
+  end
+endmodule
+`,solution:{design:`// Parameterized 2:1 multiplexer (default width 1): out = sel_a ? in_a : in_b.
+// Uses always_comb and unique case, with a default that drives X for an unknown select.
+module scale_mux #(parameter int WIDTH = 1) (
+  output logic [WIDTH-1:0] out,
+  input  logic [WIDTH-1:0] in_a, in_b,
+  input  logic             sel_a
+);
+  timeunit 1ns; timeprecision 100ps;
+
+  always_comb
+    unique case (sel_a)
+      1'b1:    out = in_a;
+      1'b0:    out = in_b;
+      default: out = 'x;
+    endcase
+endmodule
+`}},{id:"s03-cnt",group:"sv",tag:"SV \xB7 Lab 3",title:"Loadable counter",std:"2012",design:`// 5-bit loadable counter with enable and asynchronous active-low reset.
+//   load = 1: count <= data; else enable = 1: count increments (wraps from 31 to 0); else hold.
+module counter (
+  output logic [4:0] count,
+  input  logic [4:0] data,
+  input  logic       load, enable, clk, rst_
+);
+  timeunit 1ns; timeprecision 100ps;
+
+  // TODO: write the design here
+
+endmodule
+`,tb:`module tb;
+  timeunit 1ns; timeprecision 100ps;
+  logic [4:0] count, data; logic load = 0, enable = 0, clk = 1, rst_;
+  logic [4:0] model; int errors = 0;
+  counter dut (.count(count), .data(data), .load(load), .enable(enable), .clk(clk), .rst_(rst_));
+  always #5 clk = ~clk;
+  always_ff @(posedge clk or negedge rst_) if (!rst_) model <= '0; else if (load) model <= data; else if (enable) model <= model + 1'b1;
+  always @(negedge clk) if (rst_ === 1'b1 && count !== model) begin errors++; if (errors <= 5) $display("  at %0t: count=%h, expected %h", $time, count, model); end
+  initial begin
+    $dumpfile("dump.vcd"); $dumpvars(0, tb);
+    #5 rst_ = 0; #10 rst_ = 1; enable = 1;
+    repeat (40) @(negedge clk);                      // count past 31 to check the wrap
+    repeat (150) begin @(negedge clk); load = ($urandom_range(0, 7) == 0); enable = $urandom; data = $urandom; end
+    @(negedge clk);
+    if (errors == 0) $display("PASS: COUNTER TEST PASSED");
+    else             $display("FAIL: COUNTER TEST FAILED, %0d errors", errors);
+    $finish;
+  end
+endmodule
+`,solution:{design:`// 5-bit loadable counter with enable and asynchronous active-low reset.
+//   load = 1: count <= data; else enable = 1: count increments (wraps from 31 to 0); else hold.
+module counter (
+  output logic [4:0] count,
+  input  logic [4:0] data,
+  input  logic       load, enable, clk, rst_
+);
+  timeunit 1ns; timeprecision 100ps;
+
+  always_ff @(posedge clk or negedge rst_)
+    if (!rst_)       count <= '0;
+    else if (load)   count <= data;
+    else if (enable) count <= count + 1'b1;
+endmodule
+`}},{id:"s04-ctrl",group:"sv",tag:"SV \xB7 Lab 4",title:"Sequence controller (FSM)",std:"2012",design:`// Types shared by the VeriRISC CPU blocks
+package typedefs;
+  // 3-bit operation codes of the VeriRISC CPU
+  typedef enum logic [2:0] {HLT, SKZ, ADD, AND, XOR, LDA, STO, JMP} opcode_t;
+  // the 8 controller states, in order
+  typedef enum logic [2:0] {INST_ADDR, INST_FETCH, INST_LOAD, IDLE, OP_ADDR, OP_FETCH, ALU_OP, STORE} state_t;
+endpackage
+// VeriRISC sequence controller: a Mealy state machine that steps through 8 states, one per clock,
+// from INST_ADDR to STORE and back. The outputs depend on the state, the opcode and zero.
+// fetch is 1 in the first four states, while the instruction is read (it selects the program counter
+// as the memory address).
+module control import typedefs::*; (
+  output logic    mem_rd, load_ir, halt, inc_pc, load_ac, load_pc, mem_wr,
+  output logic    fetch,
+  output state_t  state,
+  input  opcode_t opcode,
+  input  logic    zero, clk, rst_
+);
+  timeunit 1ns; timeprecision 100ps;
+
+  // TODO: write the design here
+
+endmodule
+`,tb:`// Checks every state, for every opcode and both values of zero, against the output table.
+module tb;
+  timeunit 1ns; timeprecision 100ps;
+  import typedefs::*;
+  logic mem_rd, load_ir, halt, inc_pc, load_ac, load_pc, mem_wr, fetch, zero, clk = 0, rst_;
+  opcode_t opcode; state_t state;
+  int errors = 0;
+  control dut (.*);
+  always #5 clk = ~clk;
+
+  function automatic string sname(state_t x); return x.name(); endfunction
+  function automatic string oname(opcode_t x); return x.name(); endfunction
+  function automatic logic [7:0] expected(state_t s, opcode_t op, logic z);
+    logic a; a = (op == ADD) || (op == AND) || (op == XOR) || (op == LDA);
+    case (s)                   // {mem_rd, load_ir, halt, inc_pc, load_ac, load_pc, mem_wr, fetch}
+      INST_ADDR:  return 8'b0000000_1;
+      INST_FETCH: return 8'b1000000_1;
+      INST_LOAD:  return 8'b1100000_1;
+      IDLE:       return 8'b1100000_1;
+      OP_ADDR:    return {1'b0, 1'b0, op == HLT, 1'b1, 3'b000, 1'b0};
+      OP_FETCH:   return {a, 6'b000000, 1'b0};
+      ALU_OP:     return {a, 1'b0, 1'b0, (op == SKZ) && z, a, op == JMP, 1'b0, 1'b0};
+      default:    return {a, 1'b0, 1'b0, op == JMP, 1'b0, op == JMP, op == STO, 1'b0};
+    endcase
+  endfunction
+
+  initial begin
+    $dumpfile("dump.vcd"); $dumpvars(0, tb);
+    opcode = HLT; zero = 0;
+    rst_ = 0; #12 rst_ = 1;
+    if (state !== INST_ADDR) begin errors++; $display("  after reset the state is %s, expected INST_ADDR", sname(state)); end
+    for (int i = 0; i < 16; i++) begin                       // 16 passes through the 8 states
+      opcode = opcode_t'(i % 8); zero = i / 8;
+      repeat (8) begin
+        @(negedge clk); #1;
+        if ({mem_rd, load_ir, halt, inc_pc, load_ac, load_pc, mem_wr, fetch} !== expected(state, opcode, zero)) begin
+          errors++;
+          if (errors <= 5) $display("  state %s opcode %s zero %b: {mem_rd,load_ir,halt,inc_pc,load_ac,load_pc,mem_wr,fetch} = %b, should be %b",
+                                    sname(state), oname(opcode), zero, {mem_rd, load_ir, halt, inc_pc, load_ac, load_pc, mem_wr, fetch}, expected(state, opcode, zero));
+        end
+      end
+    end
+    if (errors == 0) $display("PASS: CONTROLLER TEST PASSED (128 state/opcode/zero combinations)");
+    else             $display("FAIL: CONTROLLER TEST FAILED, %0d errors", errors);
+    $finish;
+  end
+endmodule
+`,solution:{design:`// Types shared by the VeriRISC CPU blocks
+package typedefs;
+  // 3-bit operation codes of the VeriRISC CPU
+  typedef enum logic [2:0] {HLT, SKZ, ADD, AND, XOR, LDA, STO, JMP} opcode_t;
+  // the 8 controller states, in order
+  typedef enum logic [2:0] {INST_ADDR, INST_FETCH, INST_LOAD, IDLE, OP_ADDR, OP_FETCH, ALU_OP, STORE} state_t;
+endpackage
+// VeriRISC sequence controller: a Mealy state machine that steps through 8 states, one per clock,
+// from INST_ADDR to STORE and back. The outputs depend on the state, the opcode and zero.
+// fetch is 1 in the first four states, while the instruction is read (it selects the program counter
+// as the memory address).
+module control import typedefs::*; (
+  output logic    mem_rd, load_ir, halt, inc_pc, load_ac, load_pc, mem_wr,
+  output logic    fetch,
+  output state_t  state,
+  input  opcode_t opcode,
+  input  logic    zero, clk, rst_
+);
+  timeunit 1ns; timeprecision 100ps;
+  logic aluop;
+
+  always_ff @(posedge clk or negedge rst_)
+    if (!rst_) state <= INST_ADDR;
+    else       state <= state.next();         // STORE wraps back to INST_ADDR
+
+  assign aluop = (opcode == ADD) || (opcode == AND) || (opcode == XOR) || (opcode == LDA);
+  assign fetch = (state == INST_ADDR) || (state == INST_FETCH) || (state == INST_LOAD) || (state == IDLE);
+
+  always_comb begin
+    {mem_rd, load_ir, halt, inc_pc, load_ac, load_pc, mem_wr} = '0;
+    unique case (state)
+      INST_ADDR:  ;
+      INST_FETCH: mem_rd = 1;
+      INST_LOAD:  begin mem_rd = 1; load_ir = 1; end
+      IDLE:       begin mem_rd = 1; load_ir = 1; end
+      OP_ADDR:    begin halt = (opcode == HLT); inc_pc = 1; end
+      OP_FETCH:   mem_rd = aluop;
+      ALU_OP:     begin mem_rd = aluop; inc_pc = (opcode == SKZ) && zero; load_ac = aluop; load_pc = (opcode == JMP); end
+      STORE:      begin mem_rd = aluop; inc_pc = (opcode == JMP); load_pc = (opcode == JMP); mem_wr = (opcode == STO); end
+      default:    {mem_rd, load_ir, halt, inc_pc, load_ac, load_pc, mem_wr} = 'x;
+    endcase
+  end
+endmodule
+`}},{id:"s05-alu",group:"sv",tag:"SV \xB7 Lab 5",title:"ALU",std:"2012",design:`// Types shared by the VeriRISC CPU blocks
+package typedefs;
+  // 3-bit operation codes of the VeriRISC CPU
+  typedef enum logic [2:0] {HLT, SKZ, ADD, AND, XOR, LDA, STO, JMP} opcode_t;
+  // the 8 controller states, in order
+  typedef enum logic [2:0] {INST_ADDR, INST_FETCH, INST_LOAD, IDLE, OP_ADDR, OP_FETCH, ALU_OP, STORE} state_t;
+endpackage
+// VeriRISC ALU. zero = 1 when accum is 0 (combinational).
+// out is registered on the FALLING edge of clk, so it is ready for the accumulator on the next rising edge.
+//   HLT, SKZ, STO, JMP: accum    ADD: data + accum    AND: data & accum    XOR: data ^ accum    LDA: data
+module alu import typedefs::*; (
+  output logic [7:0] out,
+  output logic       zero,
+  input  logic [7:0] accum, data,
+  input  opcode_t    opcode,
+  input  logic       clk
+);
+  timeunit 1ns; timeprecision 100ps;
+
+  // TODO: write the design here
+
+endmodule
+`,tb:`module tb;
+  timeunit 1ns; timeprecision 100ps;
+  import typedefs::*;
+  logic [7:0] out, accum, data; logic zero, clk = 1;
+  opcode_t opcode; logic [7:0] exp; int errors = 0;
+  alu dut (.out(out), .zero(zero), .accum(accum), .data(data), .opcode(opcode), .clk(clk));
+  always #5 clk = ~clk;                      // falling edges at 5, 15, 25, ...
+  initial begin
+    $dumpfile("dump.vcd"); $dumpvars(0, tb);
+    for (int i = 0; i < 400; i++) begin
+      @(posedge clk); accum = (i % 37 == 0) ? 8'd0 : $urandom; data = $urandom; opcode = opcode_t'(i % 8);
+      #1 if (zero !== (accum == 0)) begin errors++; if (errors <= 5) $display("  zero=%b for accum=%h", zero, accum); end
+      case (opcode) ADD: exp = data + accum; AND: exp = data & accum; XOR: exp = data ^ accum; LDA: exp = data; default: exp = accum; endcase
+      @(negedge clk); #1;
+      if (out !== exp) begin errors++; if (errors <= 5) $display("  opcode %0d accum=%h data=%h: out=%h, expected %h", opcode, accum, data, out, exp); end
+    end
+    if (errors == 0) $display("PASS: ALU TEST PASSED (400 operations, all 8 opcodes)");
+    else             $display("FAIL: ALU TEST FAILED, %0d errors", errors);
+    $finish;
+  end
+endmodule
+`,solution:{design:`// Types shared by the VeriRISC CPU blocks
+package typedefs;
+  // 3-bit operation codes of the VeriRISC CPU
+  typedef enum logic [2:0] {HLT, SKZ, ADD, AND, XOR, LDA, STO, JMP} opcode_t;
+  // the 8 controller states, in order
+  typedef enum logic [2:0] {INST_ADDR, INST_FETCH, INST_LOAD, IDLE, OP_ADDR, OP_FETCH, ALU_OP, STORE} state_t;
+endpackage
+// VeriRISC ALU. zero = 1 when accum is 0 (combinational).
+// out is registered on the FALLING edge of clk, so it is ready for the accumulator on the next rising edge.
+//   HLT, SKZ, STO, JMP: accum    ADD: data + accum    AND: data & accum    XOR: data ^ accum    LDA: data
+module alu import typedefs::*; (
+  output logic [7:0] out,
+  output logic       zero,
+  input  logic [7:0] accum, data,
+  input  opcode_t    opcode,
+  input  logic       clk
+);
+  timeunit 1ns; timeprecision 100ps;
+
+  always_comb zero = (accum == 8'd0);
+
+  always_ff @(negedge clk)
+    unique case (opcode)
+      ADD:     out <= data + accum;
+      AND:     out <= data & accum;
+      XOR:     out <= data ^ accum;
+      LDA:     out <= data;
+      default: out <= accum;            // HLT, SKZ, STO, JMP
+    endcase
+endmodule
+`}},{id:"s06-memtb",group:"sv",tag:"SV \xB7 Lab 6",title:"Memory testbench with tasks",std:"2012",design:`// The memory is given (do not change it). Set BUG to 1 to break it on purpose: your testbench
+// must then report errors.
+//   32 x 8, synchronous: write = 1 stores data_in at addr; read = 1 puts memory[addr] on data_out.
+module mem #(parameter bit BUG = 0) (
+  input  logic       clk, read, write,
+  input  logic [4:0] addr,
+  input  logic [7:0] data_in,
+  output logic [7:0] data_out
+);
+  timeunit 1ns; timeprecision 100ps;
+  logic [7:0] memory [0:31];
+  always_ff @(posedge clk) begin
+    if (write) memory[BUG ? {1'b0, addr[3:0]} : addr] <= data_in;   // BUG: address bit 4 is lost
+    if (read)  data_out <= memory[addr];
+  end
+endmodule
+`,tb:`// Complete this memory testbench. The memory is in the Design pane.
+//   1. task write_mem(address, data, debug = 0): drive write, addr and data_in on the falling edge
+//   2. task read_mem(address, output data, debug = 0): drive read and addr, return data_out
+//   3. void function printstatus(status): print "PASS: ..." when status == 0, else "FAIL: ..."
+//   4. Test 1: write 0 to every address, read back and count errors
+//   5. Test 2: write data = address to every address, read back and count errors
+// Then set BUG to 1 in the design: your testbench must report FAIL.
+module tb;
+  timeunit 1ns; timeprecision 100ps;
+  logic clk = 0, read = 0, write = 0;
+  logic [4:0] addr; logic [7:0] data_in, data_out;
+  int errors = 0;
+  mem dut (.clk(clk), .read(read), .write(write), .addr(addr), .data_in(data_in), .data_out(data_out));
+  always #5 clk = ~clk;
+
+  // TODO: tasks write_mem and read_mem, function printstatus
+
+  initial begin
+    $dumpfile("dump.vcd"); $dumpvars(0, tb);
+    // TODO: the two tests, then printstatus(errors)
+    #100;
+    $finish;
+  end
+endmodule
+`,solution:{tb:`// Memory testbench with SystemVerilog tasks: default argument values and a void function.
+module tb;
+  timeunit 1ns; timeprecision 100ps;
+  logic clk = 0, read = 0, write = 0;
+  logic [4:0] addr; logic [7:0] data_in, data_out;
+  int errors = 0;
+  mem dut (.clk(clk), .read(read), .write(write), .addr(addr), .data_in(data_in), .data_out(data_out));
+  always #5 clk = ~clk;
+
+  // drive on the falling edge so the memory samples stable values on the rising edge
+  task automatic write_mem(input logic [4:0] a, input logic [7:0] d, input bit debug = 0);
+    @(negedge clk); write = 1; read = 0; addr = a; data_in = d;
+    @(negedge clk); write = 0;
+    if (debug) $display("write: memory[%0d] = %h", a, d);
+  endtask
+
+  task automatic read_mem(input logic [4:0] a, output logic [7:0] d, input bit debug = 0);
+    @(negedge clk); read = 1; write = 0; addr = a;
+    @(negedge clk); read = 0;
+    d = data_out;                                 // updated on the rising edge in between
+    if (debug) $display("read:  memory[%0d] = %h", a, d);
+  endtask
+
+  function automatic void printstatus(input int status);
+    if (status == 0) $display("PASS: MEMORY TEST PASSED");
+    else             $display("FAIL: MEMORY TEST FAILED with %0d errors", status);
+  endfunction
+
+  logic [7:0] rdata;
+  initial begin
+    $dumpfile("dump.vcd"); $dumpvars(0, tb);
+    $display("Clearing the memory");
+    for (int i = 0; i < 32; i++) write_mem(i, 8'h00);
+    for (int i = 0; i < 32; i++) begin read_mem(i, rdata); if (rdata !== 8'h00) errors++; end
+    $display("Data = address test");
+    for (int i = 0; i < 32; i++) write_mem(i, i, i < 2);          // debug output for the first two
+    for (int i = 0; i < 32; i++) begin read_mem(i, rdata, i < 2); if (rdata !== i) errors++; end
+    printstatus(errors);
+    $finish;
+  end
+endmodule
+`}},{id:"s07-struct",group:"sv",tag:"SV \xB7 Lab 7",title:"Bundling a bus with a packed struct",std:"2012",design:`// A memory whose request signals travel as one bundle: a packed struct from a package.
+// 1. In package mem_pkg, declare a packed struct mem_req_t with fields, in this order:
+//      read (1 bit), write (1 bit), addr (5 bits), data (8 bits)
+// 2. Write module mem_s: on the rising edge of clk, req.write stores req.data at req.addr,
+//    and req.read puts memory[req.addr] on data_out.
+package mem_pkg;
+  typedef logic [14:0] mem_req_t;     // TODO: replace with the packed struct
+endpackage
+
+module mem_s import mem_pkg::*; (
+  input  logic       clk,
+  input  mem_req_t   req,
+  output logic [7:0] data_out
+);
+  timeunit 1ns; timeprecision 100ps;
+  // TODO: the memory array and the always_ff block
+
+endmodule
+`,tb:`module tb;
+  timeunit 1ns; timeprecision 100ps;
+  import mem_pkg::*;
+  logic clk = 0; mem_req_t req; logic [7:0] data_out;
+  logic [7:0] model [0:31]; int errors = 0;
+  mem_s dut (.clk(clk), .req(req), .data_out(data_out));
+  always #5 clk = ~clk;
+  // the testbench writes the bus as a plain vector {read, write, addr, data}, so the
+  // struct fields must be declared in exactly that order
+  function automatic mem_req_t pack(logic rd, logic wr, logic [4:0] a, logic [7:0] d);
+    return mem_req_t'({rd, wr, a, d});
+  endfunction
+  initial begin
+    $dumpfile("dump.vcd"); $dumpvars(0, tb);
+    if ($bits(mem_req_t) != 15) begin errors++; $display("  mem_req_t is %0d bits, expected 15", $bits(mem_req_t)); end
+    req = '0;
+    for (int i = 0; i < 32; i++) begin
+      @(negedge clk); req = pack(0, 1, i, 8'(i * 7 + 3)); model[i] = 8'(i * 7 + 3);
+    end
+    @(negedge clk); req = '0;
+    for (int i = 0; i < 32; i++) begin
+      @(negedge clk); req = pack(1, 0, 31 - i, 8'h00);
+      @(negedge clk); req = '0;
+      if (data_out !== model[31 - i]) begin errors++; if (errors <= 5) $display("  read %0d: got %h, expected %h", 31 - i, data_out, model[31 - i]); end
+    end
+    if (errors == 0) $display("PASS: MEMORY BUS TEST PASSED");
+    else             $display("FAIL: MEMORY BUS TEST FAILED, %0d errors", errors);
+    $finish;
+  end
+endmodule
+`,solution:{design:`// A memory whose request signals travel as one bundle: a packed struct from a package.
+// One port carries read, write, address and data together, and every module that uses the
+// bus agrees on its layout. (SystemVerilog interfaces do the same with modports; the
+// simulator here, Icarus Verilog 12, does not support interface ports yet.)
+package mem_pkg;
+  typedef struct packed {
+    logic       read;
+    logic       write;
+    logic [4:0] addr;
+    logic [7:0] data;
+  } mem_req_t;
+endpackage
+
+module mem_s import mem_pkg::*; (
+  input  logic       clk,
+  input  mem_req_t   req,
+  output logic [7:0] data_out
+);
+  timeunit 1ns; timeprecision 100ps;
+  logic [7:0] memory [0:31];
+  always_ff @(posedge clk) begin
+    if (req.write) memory[req.addr] <= req.data;
+    if (req.read)  data_out <= memory[req.addr];
+  end
+endmodule
+`}},{id:"s08-cpu",group:"sv",tag:"SV \xB7 Lab 8",title:"VeriRISC CPU",std:"2012",design:`// Types shared by the VeriRISC CPU blocks
+package typedefs;
+  // 3-bit operation codes of the VeriRISC CPU
+  typedef enum logic [2:0] {HLT, SKZ, ADD, AND, XOR, LDA, STO, JMP} opcode_t;
+  // the 8 controller states, in order
+  typedef enum logic [2:0] {INST_ADDR, INST_FETCH, INST_LOAD, IDLE, OP_ADDR, OP_FETCH, ALU_OP, STORE} state_t;
+endpackage
+// 8-bit register with enable and asynchronous active-low reset, written with SystemVerilog constructs:
+// timeunit/timeprecision, ANSI ports, logic, always_ff.
+module register (
+  output logic [7:0] out,
+  input  logic [7:0] data,
+  input  logic       enable,
+  input  logic       clk,
+  input  logic       rst_
+);
+  timeunit 1ns; timeprecision 100ps;
+
+  always_ff @(posedge clk or negedge rst_)
+    if (!rst_)       out <= '0;
+    else if (enable) out <= data;
+endmodule
+// Parameterized 2:1 multiplexer (default width 1): out = sel_a ? in_a : in_b.
+// Uses always_comb and unique case, with a default that drives X for an unknown select.
+module scale_mux #(parameter int WIDTH = 1) (
+  output logic [WIDTH-1:0] out,
+  input  logic [WIDTH-1:0] in_a, in_b,
+  input  logic             sel_a
+);
+  timeunit 1ns; timeprecision 100ps;
+
+  always_comb
+    unique case (sel_a)
+      1'b1:    out = in_a;
+      1'b0:    out = in_b;
+      default: out = 'x;
+    endcase
+endmodule
+// 5-bit loadable counter with enable and asynchronous active-low reset.
+//   load = 1: count <= data; else enable = 1: count increments (wraps from 31 to 0); else hold.
+module counter (
+  output logic [4:0] count,
+  input  logic [4:0] data,
+  input  logic       load, enable, clk, rst_
+);
+  timeunit 1ns; timeprecision 100ps;
+
+  always_ff @(posedge clk or negedge rst_)
+    if (!rst_)       count <= '0;
+    else if (load)   count <= data;
+    else if (enable) count <= count + 1'b1;
+endmodule
+// 32 x 8 memory with a synchronous read and a synchronous write (rising edge of clk).
+//   write = 1: memory[addr] <= data_in      read = 1: data_out <= memory[addr]
+module mem (
+  input  logic       clk, read, write,
+  input  logic [4:0] addr,
+  input  logic [7:0] data_in,
+  output logic [7:0] data_out
+);
+  timeunit 1ns; timeprecision 100ps;
+  logic [7:0] memory [0:31];
+
+  always_ff @(posedge clk) begin
+    if (write) memory[addr] <= data_in;
+    if (read)  data_out <= memory[addr];
+  end
+endmodule
+// VeriRISC ALU. zero = 1 when accum is 0 (combinational).
+// out is registered on the FALLING edge of clk, so it is ready for the accumulator on the next rising edge.
+//   HLT, SKZ, STO, JMP: accum    ADD: data + accum    AND: data & accum    XOR: data ^ accum    LDA: data
+module alu import typedefs::*; (
+  output logic [7:0] out,
+  output logic       zero,
+  input  logic [7:0] accum, data,
+  input  opcode_t    opcode,
+  input  logic       clk
+);
+  timeunit 1ns; timeprecision 100ps;
+
+  always_comb zero = (accum == 8'd0);
+
+  always_ff @(negedge clk)
+    unique case (opcode)
+      ADD:     out <= data + accum;
+      AND:     out <= data & accum;
+      XOR:     out <= data ^ accum;
+      LDA:     out <= data;
+      default: out <= accum;            // HLT, SKZ, STO, JMP
+    endcase
+endmodule
+// VeriRISC sequence controller: a Mealy state machine that steps through 8 states, one per clock,
+// from INST_ADDR to STORE and back. The outputs depend on the state, the opcode and zero.
+// fetch is 1 in the first four states, while the instruction is read (it selects the program counter
+// as the memory address).
+module control import typedefs::*; (
+  output logic    mem_rd, load_ir, halt, inc_pc, load_ac, load_pc, mem_wr,
+  output logic    fetch,
+  output state_t  state,
+  input  opcode_t opcode,
+  input  logic    zero, clk, rst_
+);
+  timeunit 1ns; timeprecision 100ps;
+  logic aluop;
+
+  always_ff @(posedge clk or negedge rst_)
+    if (!rst_) state <= INST_ADDR;
+    else       state <= state.next();         // STORE wraps back to INST_ADDR
+
+  assign aluop = (opcode == ADD) || (opcode == AND) || (opcode == XOR) || (opcode == LDA);
+  assign fetch = (state == INST_ADDR) || (state == INST_FETCH) || (state == INST_LOAD) || (state == IDLE);
+
+  always_comb begin
+    {mem_rd, load_ir, halt, inc_pc, load_ac, load_pc, mem_wr} = '0;
+    unique case (state)
+      INST_ADDR:  ;
+      INST_FETCH: mem_rd = 1;
+      INST_LOAD:  begin mem_rd = 1; load_ir = 1; end
+      IDLE:       begin mem_rd = 1; load_ir = 1; end
+      OP_ADDR:    begin halt = (opcode == HLT); inc_pc = 1; end
+      OP_FETCH:   mem_rd = aluop;
+      ALU_OP:     begin mem_rd = aluop; inc_pc = (opcode == SKZ) && zero; load_ac = aluop; load_pc = (opcode == JMP); end
+      STORE:      begin mem_rd = aluop; inc_pc = (opcode == JMP); load_pc = (opcode == JMP); mem_wr = (opcode == STO); end
+      default:    {mem_rd, load_ir, halt, inc_pc, load_ac, load_pc, mem_wr} = 'x;
+    endcase
+  end
+endmodule
+// The VeriRISC CPU: connect the blocks.
+//   instruction = {opcode[7:5], address[4:0]}
+//   counter   (program counter)      register (instruction register, accumulator)
+//   scale_mux (fetch ? pc_addr : ir_addr)   mem (32 x 8)   alu   control
+module cpu import typedefs::*; (
+  output logic halt, load_ir,
+  input  logic clk, rst_
+);
+  timeunit 1ns; timeprecision 100ps;
+  logic [7:0] data_out, alu_out, accum, ir_out;
+  logic [4:0] pc_addr, ir_addr, addr;
+  logic       mem_rd, mem_wr, inc_pc, load_ac, load_pc, fetch, zero;
+  opcode_t    opcode;
+  state_t     state;
+
+  assign opcode  = opcode_t'(ir_out[7:5]);
+  assign ir_addr = ir_out[4:0];
+
+  // TODO: instantiate and connect the seven blocks:
+  //   counter pc, scale_mux #(5) addr_mux (sel_a = fetch), mem mem1 (data_in = alu_out),
+  //   register ir (loads data_out), register ac (loads alu_out), alu alu1, control cntl.
+  // The testbench needs the names mem1 and pc_addr.
+
+endmodule
+`,tb:`// Runs three programs on the CPU. Each must stop on its HLT at the right address and leave the
+// right result in memory. Instruction = {opcode, address}: HLT 0 SKZ 1 ADD 2 AND 3 XOR 4 LDA 5 STO 6 JMP 7
+module tb;
+  timeunit 1ns; timeprecision 100ps;
+  logic halt, load_ir, clk = 0, rst_ = 1;
+  int errors = 0;
+  cpu dut (.halt(halt), .load_ir(load_ir), .clk(clk), .rst_(rst_));
+  always #5 clk = ~clk;
+
+  function automatic logic [7:0] I(logic [2:0] op, logic [4:0] a); return {op, a}; endfunction
+
+  task automatic run(string name, logic [4:0] halt_at, logic [4:0] res_addr, logic [7:0] res);
+    int cycles = 0;
+    @(negedge clk) rst_ = 0; @(negedge clk) rst_ = 1;
+    while (!halt && cycles < 3000) begin @(negedge clk); cycles++; end
+    if (!halt) begin errors++; $display("%s: no HLT after %0d cycles", name, cycles); end
+    else if (dut.pc_addr !== halt_at) begin errors++; $display("%s: halted at address %h, expected %h", name, dut.pc_addr, halt_at); end
+    else if (dut.mem1.memory[res_addr] !== res) begin errors++; $display("%s: memory[%h] = %0d, expected %0d", name, res_addr, dut.mem1.memory[res_addr], res); end
+    else $display("%s: halted at %h after %0d cycles, memory[%h] = %0d. OK", name, halt_at, cycles, res_addr, res);
+  endtask
+
+  initial begin
+    $dumpfile("dump.vcd"); $dumpvars(0, tb);
+    // ---- Program 1: basic test of every instruction. Success: HLT at 12.
+    for (int i = 0; i < 32; i++) dut.mem1.memory[i] = 0;
+    dut.mem1.memory[5'h00] = I(5, 5'h1C); // LDA 1C   acc = 0
+    dut.mem1.memory[5'h01] = I(1, 0);     // SKZ      zero: skip the next instruction
+    dut.mem1.memory[5'h02] = I(0, 0);     // HLT      (error: SKZ did not skip)
+    dut.mem1.memory[5'h03] = I(5, 5'h1D); // LDA 1D   acc = 1
+    dut.mem1.memory[5'h04] = I(1, 0);     // SKZ      not zero: no skip
+    dut.mem1.memory[5'h05] = I(7, 5'h07); // JMP 07
+    dut.mem1.memory[5'h06] = I(0, 0);     // HLT      (error: JMP failed)
+    dut.mem1.memory[5'h07] = I(4, 5'h1D); // XOR 1D   acc = 0
+    dut.mem1.memory[5'h08] = I(1, 0);     // SKZ
+    dut.mem1.memory[5'h09] = I(0, 0);     // HLT      (error: XOR failed)
+    dut.mem1.memory[5'h0A] = I(2, 5'h1D); // ADD 1D   acc = 1
+    dut.mem1.memory[5'h0B] = I(3, 5'h1F); // AND 1F   acc = 1 & FF = 1
+    dut.mem1.memory[5'h0C] = I(6, 5'h1B); // STO 1B   memory[1B] = 1
+    dut.mem1.memory[5'h0D] = I(5, 5'h1C); // LDA 1C   acc = 0
+    dut.mem1.memory[5'h0E] = I(5, 5'h1B); // LDA 1B   acc = 1 (read back the store)
+    dut.mem1.memory[5'h0F] = I(4, 5'h1D); // XOR 1D   acc = 0
+    dut.mem1.memory[5'h10] = I(1, 0);     // SKZ
+    dut.mem1.memory[5'h11] = I(0, 0);     // HLT      (error: STO or LDA failed)
+    dut.mem1.memory[5'h12] = I(0, 0);     // HLT      success
+    dut.mem1.memory[5'h1D] = 8'h01; dut.mem1.memory[5'h1F] = 8'hFF;
+    run("Program 1 (basic test)", 5'h12, 5'h1B, 8'd1);
+
+    // ---- Program 2: sum of 1 to 10. Success: HLT at 08 with memory[1D] = 55.
+    for (int i = 0; i < 32; i++) dut.mem1.memory[i] = 0;
+    dut.mem1.memory[5'h00] = I(5, 5'h1D); // LDA 1D   acc = sum
+    dut.mem1.memory[5'h01] = I(2, 5'h1C); // ADD 1C   + n
+    dut.mem1.memory[5'h02] = I(6, 5'h1D); // STO 1D
+    dut.mem1.memory[5'h03] = I(5, 5'h1C); // LDA 1C
+    dut.mem1.memory[5'h04] = I(2, 5'h1E); // ADD 1E   n - 1 (adds FF)
+    dut.mem1.memory[5'h05] = I(6, 5'h1C); // STO 1C
+    dut.mem1.memory[5'h06] = I(1, 0);     // SKZ      n == 0: done
+    dut.mem1.memory[5'h07] = I(7, 5'h00); // JMP 00
+    dut.mem1.memory[5'h08] = I(0, 0);     // HLT
+    dut.mem1.memory[5'h1C] = 8'd10; dut.mem1.memory[5'h1E] = 8'hFF;
+    run("Program 2 (sum 1 to 10)", 5'h08, 5'h1D, 8'd55);
+
+    // ---- Program 3: Fibonacci up to 144. Success: HLT at 0A with memory[1D] = 144.
+    for (int i = 0; i < 32; i++) dut.mem1.memory[i] = 0;
+    dut.mem1.memory[5'h00] = I(5, 5'h1D); // LDA 1D   acc = cur
+    dut.mem1.memory[5'h01] = I(2, 5'h1C); // ADD 1C   + prev
+    dut.mem1.memory[5'h02] = I(6, 5'h1E); // STO 1E   next
+    dut.mem1.memory[5'h03] = I(5, 5'h1D); // LDA 1D
+    dut.mem1.memory[5'h04] = I(6, 5'h1C); // STO 1C   prev = cur
+    dut.mem1.memory[5'h05] = I(5, 5'h1E); // LDA 1E
+    dut.mem1.memory[5'h06] = I(6, 5'h1D); // STO 1D   cur = next
+    dut.mem1.memory[5'h07] = I(4, 5'h1F); // XOR 1F   compare with 144
+    dut.mem1.memory[5'h08] = I(1, 0);     // SKZ      equal: done
+    dut.mem1.memory[5'h09] = I(7, 5'h00); // JMP 00
+    dut.mem1.memory[5'h0A] = I(0, 0);     // HLT
+    dut.mem1.memory[5'h1C] = 8'd0; dut.mem1.memory[5'h1D] = 8'd1; dut.mem1.memory[5'h1F] = 8'd144;
+    run("Program 3 (Fibonacci)", 5'h0A, 5'h1D, 8'd144);
+
+    if (errors == 0) $display("PASS: CPU TEST PASSED, all three programs ran correctly");
+    else             $display("FAIL: CPU TEST FAILED, %0d programs went wrong", errors);
+    $finish;
+  end
+endmodule
+`,solution:{design:`// Types shared by the VeriRISC CPU blocks
+package typedefs;
+  // 3-bit operation codes of the VeriRISC CPU
+  typedef enum logic [2:0] {HLT, SKZ, ADD, AND, XOR, LDA, STO, JMP} opcode_t;
+  // the 8 controller states, in order
+  typedef enum logic [2:0] {INST_ADDR, INST_FETCH, INST_LOAD, IDLE, OP_ADDR, OP_FETCH, ALU_OP, STORE} state_t;
+endpackage
+// 8-bit register with enable and asynchronous active-low reset, written with SystemVerilog constructs:
+// timeunit/timeprecision, ANSI ports, logic, always_ff.
+module register (
+  output logic [7:0] out,
+  input  logic [7:0] data,
+  input  logic       enable,
+  input  logic       clk,
+  input  logic       rst_
+);
+  timeunit 1ns; timeprecision 100ps;
+
+  always_ff @(posedge clk or negedge rst_)
+    if (!rst_)       out <= '0;
+    else if (enable) out <= data;
+endmodule
+// Parameterized 2:1 multiplexer (default width 1): out = sel_a ? in_a : in_b.
+// Uses always_comb and unique case, with a default that drives X for an unknown select.
+module scale_mux #(parameter int WIDTH = 1) (
+  output logic [WIDTH-1:0] out,
+  input  logic [WIDTH-1:0] in_a, in_b,
+  input  logic             sel_a
+);
+  timeunit 1ns; timeprecision 100ps;
+
+  always_comb
+    unique case (sel_a)
+      1'b1:    out = in_a;
+      1'b0:    out = in_b;
+      default: out = 'x;
+    endcase
+endmodule
+// 5-bit loadable counter with enable and asynchronous active-low reset.
+//   load = 1: count <= data; else enable = 1: count increments (wraps from 31 to 0); else hold.
+module counter (
+  output logic [4:0] count,
+  input  logic [4:0] data,
+  input  logic       load, enable, clk, rst_
+);
+  timeunit 1ns; timeprecision 100ps;
+
+  always_ff @(posedge clk or negedge rst_)
+    if (!rst_)       count <= '0;
+    else if (load)   count <= data;
+    else if (enable) count <= count + 1'b1;
+endmodule
+// 32 x 8 memory with a synchronous read and a synchronous write (rising edge of clk).
+//   write = 1: memory[addr] <= data_in      read = 1: data_out <= memory[addr]
+module mem (
+  input  logic       clk, read, write,
+  input  logic [4:0] addr,
+  input  logic [7:0] data_in,
+  output logic [7:0] data_out
+);
+  timeunit 1ns; timeprecision 100ps;
+  logic [7:0] memory [0:31];
+
+  always_ff @(posedge clk) begin
+    if (write) memory[addr] <= data_in;
+    if (read)  data_out <= memory[addr];
+  end
+endmodule
+// VeriRISC ALU. zero = 1 when accum is 0 (combinational).
+// out is registered on the FALLING edge of clk, so it is ready for the accumulator on the next rising edge.
+//   HLT, SKZ, STO, JMP: accum    ADD: data + accum    AND: data & accum    XOR: data ^ accum    LDA: data
+module alu import typedefs::*; (
+  output logic [7:0] out,
+  output logic       zero,
+  input  logic [7:0] accum, data,
+  input  opcode_t    opcode,
+  input  logic       clk
+);
+  timeunit 1ns; timeprecision 100ps;
+
+  always_comb zero = (accum == 8'd0);
+
+  always_ff @(negedge clk)
+    unique case (opcode)
+      ADD:     out <= data + accum;
+      AND:     out <= data & accum;
+      XOR:     out <= data ^ accum;
+      LDA:     out <= data;
+      default: out <= accum;            // HLT, SKZ, STO, JMP
+    endcase
+endmodule
+// VeriRISC sequence controller: a Mealy state machine that steps through 8 states, one per clock,
+// from INST_ADDR to STORE and back. The outputs depend on the state, the opcode and zero.
+// fetch is 1 in the first four states, while the instruction is read (it selects the program counter
+// as the memory address).
+module control import typedefs::*; (
+  output logic    mem_rd, load_ir, halt, inc_pc, load_ac, load_pc, mem_wr,
+  output logic    fetch,
+  output state_t  state,
+  input  opcode_t opcode,
+  input  logic    zero, clk, rst_
+);
+  timeunit 1ns; timeprecision 100ps;
+  logic aluop;
+
+  always_ff @(posedge clk or negedge rst_)
+    if (!rst_) state <= INST_ADDR;
+    else       state <= state.next();         // STORE wraps back to INST_ADDR
+
+  assign aluop = (opcode == ADD) || (opcode == AND) || (opcode == XOR) || (opcode == LDA);
+  assign fetch = (state == INST_ADDR) || (state == INST_FETCH) || (state == INST_LOAD) || (state == IDLE);
+
+  always_comb begin
+    {mem_rd, load_ir, halt, inc_pc, load_ac, load_pc, mem_wr} = '0;
+    unique case (state)
+      INST_ADDR:  ;
+      INST_FETCH: mem_rd = 1;
+      INST_LOAD:  begin mem_rd = 1; load_ir = 1; end
+      IDLE:       begin mem_rd = 1; load_ir = 1; end
+      OP_ADDR:    begin halt = (opcode == HLT); inc_pc = 1; end
+      OP_FETCH:   mem_rd = aluop;
+      ALU_OP:     begin mem_rd = aluop; inc_pc = (opcode == SKZ) && zero; load_ac = aluop; load_pc = (opcode == JMP); end
+      STORE:      begin mem_rd = aluop; inc_pc = (opcode == JMP); load_pc = (opcode == JMP); mem_wr = (opcode == STO); end
+      default:    {mem_rd, load_ir, halt, inc_pc, load_ac, load_pc, mem_wr} = 'x;
+    endcase
+  end
+endmodule
+// The VeriRISC CPU: connect the blocks.
+//   instruction = {opcode[7:5], address[4:0]}
+//   counter   (program counter)      register (instruction register, accumulator)
+//   scale_mux (fetch ? pc_addr : ir_addr)   mem (32 x 8)   alu   control
+module cpu import typedefs::*; (
+  output logic halt, load_ir,
+  input  logic clk, rst_
+);
+  timeunit 1ns; timeprecision 100ps;
+  logic [7:0] data_out, alu_out, accum, ir_out;
+  logic [4:0] pc_addr, ir_addr, addr;
+  logic       mem_rd, mem_wr, inc_pc, load_ac, load_pc, fetch, zero;
+  opcode_t    opcode;
+  state_t     state;
+
+  assign opcode  = opcode_t'(ir_out[7:5]);
+  assign ir_addr = ir_out[4:0];
+
+  counter   pc     (.count(pc_addr), .data(ir_addr), .load(load_pc), .enable(inc_pc), .clk(clk), .rst_(rst_));
+  scale_mux #(5) addr_mux (.out(addr), .in_a(pc_addr), .in_b(ir_addr), .sel_a(fetch));
+  mem       mem1   (.clk(clk), .read(mem_rd), .write(mem_wr), .addr(addr), .data_in(alu_out), .data_out(data_out));
+  register  ir     (.out(ir_out), .data(data_out), .enable(load_ir), .clk(clk), .rst_(rst_));
+  register  ac     (.out(accum),  .data(alu_out),  .enable(load_ac), .clk(clk), .rst_(rst_));
+  alu       alu1   (.out(alu_out), .zero(zero), .accum(accum), .data(data_out), .opcode(opcode), .clk(clk));
+  control   cntl   (.mem_rd(mem_rd), .load_ir(load_ir), .halt(halt), .inc_pc(inc_pc), .load_ac(load_ac), .load_pc(load_pc),
+                    .mem_wr(mem_wr), .fetch(fetch), .state(state), .opcode(opcode), .zero(zero), .clk(clk), .rst_(rst_));
+endmodule
+`}},{id:"s09-johnson",group:"sv",tag:"SV \xB7 Lab 9",title:"Johnson counter",std:"2012",design:`// N-bit Johnson (twisted-ring) counter: shift left, and feed the inverted MSB into bit 0.
+// With N = 4 it cycles through 8 states: 0000 0001 0011 0111 1111 1110 1100 1000.
+module johnson #(parameter int N = 4) (
+  output logic [N-1:0] q,
+  input  logic         clk, rst_
+);
+  timeunit 1ns; timeprecision 100ps;
+
+  // TODO: write the design here
+
+endmodule
+`,tb:`module tb;
+  timeunit 1ns; timeprecision 100ps;
+  logic clk = 0, rst_ = 0; logic [3:0] q4; logic [5:0] q6, m6; logic [3:0] m4; int errors = 0;
+  johnson         d4 (.q(q4), .clk(clk), .rst_(rst_));
+  johnson #(.N(6)) d6 (.q(q6), .clk(clk), .rst_(rst_));
+  always #5 clk = ~clk;
+  always_ff @(posedge clk or negedge rst_) if (!rst_) begin m4 <= 0; m6 <= 0; end else begin m4 <= {m4[2:0], ~m4[3]}; m6 <= {m6[4:0], ~m6[5]}; end
+  initial begin
+    $dumpfile("dump.vcd"); $dumpvars(0, tb);
+    #12 rst_ = 1;
+    repeat (30) begin
+      @(negedge clk);
+      if ($time < 100) $display("q = %b", q4);
+      if (q4 !== m4 || q6 !== m6) begin errors++; if (errors <= 5) $display("  q4=%b (expected %b)  q6=%b (expected %b)", q4, m4, q6, m6); end
+    end
+    if (errors == 0) $display("PASS: JOHNSON COUNTER TEST PASSED (N = 4 and N = 6)");
+    else             $display("FAIL: JOHNSON COUNTER TEST FAILED, %0d errors", errors);
+    $finish;
+  end
+endmodule
+`,solution:{design:`// N-bit Johnson (twisted-ring) counter: shift left, and feed the inverted MSB into bit 0.
+// With N = 4 it cycles through 8 states: 0000 0001 0011 0111 1111 1110 1100 1000.
+module johnson #(parameter int N = 4) (
+  output logic [N-1:0] q,
+  input  logic         clk, rst_
+);
+  timeunit 1ns; timeprecision 100ps;
+  always_ff @(posedge clk or negedge rst_)
+    if (!rst_) q <= '0;
+    else       q <= {q[N-2:0], ~q[N-1]};
+endmodule
+`}},{id:"s10-gen",group:"sv",tag:"SV \xB7 Lab 10",title:"Ripple-carry adder with generate",std:"2012",design:`// N-bit ripple-carry adder built with a generate loop: N full_adder instances, each carry out
+// feeding the next carry in. full_adder is given. Do not use + in rca: use the instances.
+module full_adder (
+  output logic sum, cout,
+  input  logic a, b, cin
+);
+  assign {cout, sum} = a + b + cin;
+endmodule
+
+module rca #(parameter int N = 8) (
+  output logic [N-1:0] sum,
+  output logic         cout,
+  input  logic [N-1:0] a, b,
+  input  logic         cin
+);
+  timeunit 1ns; timeprecision 100ps;
+  // TODO: a carry vector c[N:0], then: for (genvar i = 0; i < N; i++) begin : stage ... end
+
+endmodule
+`,tb:`module tb;
+  timeunit 1ns; timeprecision 100ps;
+  logic [7:0] a8, b8, s8; logic [11:0] a12, b12, s12; logic cin, c8, c12; int errors = 0;
+  rca            r8  (.sum(s8),  .cout(c8),  .a(a8),  .b(b8),  .cin(cin));
+  rca #(.N(12))  r12 (.sum(s12), .cout(c12), .a(a12), .b(b12), .cin(cin));
+  initial begin
+    $dumpfile("dump.vcd"); $dumpvars(0, tb);
+    repeat (2000) begin
+      a8 = $urandom; b8 = $urandom; a12 = $urandom; b12 = $urandom; cin = $urandom; #1;
+      if ({c8, s8} !== a8 + b8 + cin || {c12, s12} !== a12 + b12 + cin) begin errors++; if (errors <= 5) $display("  %0d + %0d + %0d = %0d ?", a8, b8, cin, {c8, s8}); end
+    end
+    if (errors == 0) $display("PASS: ADDER TEST PASSED (N = 8 and N = 12, 2000 random sums)");
+    else             $display("FAIL: ADDER TEST FAILED, %0d errors", errors);
+    $finish;
+  end
+endmodule
+`,solution:{design:`// N-bit ripple-carry adder built with a generate loop: N full_adder instances, each carry out
+// feeding the next carry in. full_adder is given.
+module full_adder (
+  output logic sum, cout,
+  input  logic a, b, cin
+);
+  assign {cout, sum} = a + b + cin;
+endmodule
+
+module rca #(parameter int N = 8) (
+  output logic [N-1:0] sum,
+  output logic         cout,
+  input  logic [N-1:0] a, b,
+  input  logic         cin
+);
+  timeunit 1ns; timeprecision 100ps;
+  logic [N:0] c;
+  assign c[0] = cin;
+  for (genvar i = 0; i < N; i++) begin : stage
+    full_adder fa (.sum(sum[i]), .cout(c[i+1]), .a(a[i]), .b(b[i]), .cin(c[i]));
+  end
+  assign cout = c[N];
+endmodule
+`}},{id:"s11-dpram",group:"sv",tag:"SV \xB7 Lab 11",title:"Dual-port RAM",std:"2012",design:`// Dual-port RAM, one clock. Port A writes (and reads); port B only reads.
+// Reads are synchronous: dout_a and dout_b update on the rising edge after the address.
+// When port A writes an address, dout_a shows the OLD contents (read-before-write).
+module dpram #(parameter int AW = 4, DW = 8) (
+  input  logic          clk,
+  input  logic          we_a,
+  input  logic [AW-1:0] addr_a, addr_b,
+  input  logic [DW-1:0] din_a,
+  output logic [DW-1:0] dout_a, dout_b
+);
+  timeunit 1ns; timeprecision 100ps;
+
+  // TODO: write the design here
+
+endmodule
+`,tb:`module tb;
+  timeunit 1ns; timeprecision 100ps;
+  logic clk = 0, we_a = 0; logic [3:0] addr_a = 0, addr_b = 0; logic [7:0] din_a = 0, dout_a, dout_b;
+  logic [7:0] ram [0:15]; logic [7:0] ea, eb; int errors = 0, n = 0;
+  dpram dut (.*);
+  always #5 clk = ~clk;
+  always_ff @(posedge clk) begin if (we_a) ram[addr_a] <= din_a; ea <= ram[addr_a]; eb <= ram[addr_b]; end
+  initial begin
+    $dumpfile("dump.vcd"); $dumpvars(0, tb);
+    for (int i = 0; i < 16; i++) begin @(negedge clk); we_a = 1; addr_a = i; din_a = $urandom; end
+    repeat (300) begin
+      @(negedge clk);
+      if (dout_a !== ea || dout_b !== eb) begin errors++; if (errors <= 5) $display("  at %0t: dout_a=%h (expected %h) dout_b=%h (expected %h)", $time, dout_a, ea, dout_b, eb); end
+      n++; we_a = $urandom; addr_a = $urandom; addr_b = $urandom; din_a = $urandom;
+    end
+    if (errors == 0) $display("PASS: DUAL-PORT RAM TEST PASSED (%0d cycles)", n);
+    else             $display("FAIL: DUAL-PORT RAM TEST FAILED, %0d errors", errors);
+    $finish;
+  end
+endmodule
+`,solution:{design:`// Dual-port RAM, one clock. Port A writes (and reads); port B only reads.
+// Reads are synchronous: dout_a and dout_b update on the rising edge after the address.
+// When port A writes an address, dout_a shows the OLD contents (read-before-write).
+module dpram #(parameter int AW = 4, DW = 8) (
+  input  logic          clk,
+  input  logic          we_a,
+  input  logic [AW-1:0] addr_a, addr_b,
+  input  logic [DW-1:0] din_a,
+  output logic [DW-1:0] dout_a, dout_b
+);
+  timeunit 1ns; timeprecision 100ps;
+  logic [DW-1:0] ram [0:(1<<AW)-1];
+  always_ff @(posedge clk) begin
+    if (we_a) ram[addr_a] <= din_a;
+    dout_a <= ram[addr_a];
+    dout_b <= ram[addr_b];
+  end
+endmodule
+`}},{id:"s12-uart",group:"sv",tag:"SV \xB7 Lab 12",title:"UART transmitter",std:"2012",design:`// UART transmitter (8 data bits, no parity, 1 stop bit) with an enumerated state type.
+// tx idles at 1. When start = 1 and busy = 0, it sends: a start bit (0), data[0] .. data[7]
+// (LSB first), then a stop bit (1). Each bit lasts CLKS_PER_BIT clocks. busy = 1 while sending.
+module uart_tx #(parameter int CLKS_PER_BIT = 4) (
+  input  logic       clk, rst_, start,
+  input  logic [7:0] data,
+  output logic       tx, busy
+);
+  timeunit 1ns; timeprecision 100ps;
+
+  // TODO: write the design here
+
+endmodule
+`,tb:`// Sends bytes and decodes the tx line like a real receiver: it waits for the falling edge of the
+// start bit, then samples every bit in its middle.
+module tb;
+  timeunit 1ns; timeprecision 100ps;
+  localparam int CPB = 4;
+  logic clk = 0, rst_ = 0, start = 0, tx, busy; logic [7:0] data;
+  logic [7:0] sent [$]; int got = 0, errors = 0;
+  uart_tx #(.CLKS_PER_BIT(CPB)) dut (.*);
+  always #5 clk = ~clk;
+  // receiver
+  initial begin : rx
+    logic [7:0] b;
+    @(posedge rst_);
+    forever begin
+      @(negedge tx);
+      #(CPB * 10 / 2);                         // middle of the start bit
+      if (tx !== 1'b0) begin errors++; $display("  start bit not 0"); end
+      for (int i = 0; i < 8; i++) begin #(CPB * 10); b[i] = tx; end
+      #(CPB * 10);
+      if (tx !== 1'b1) begin errors++; $display("  stop bit not 1"); end
+      if (sent.size() == 0) begin errors++; $display("  received a byte nobody sent"); end
+      else begin
+        if (b !== sent[0]) begin errors++; if (errors <= 5) $display("  received %h, expected %h", b, sent[0]); end
+        void'(sent.pop_front());
+      end
+      got++;
+    end
+  end
+  initial begin
+    $dumpfile("dump.vcd"); $dumpvars(0, tb);
+    #12 rst_ = 1;
+    if (tx !== 1'b1 || busy !== 1'b0) begin errors++; $display("  after reset tx should be 1 and busy 0"); end
+    for (int i = 0; i < 12; i++) begin
+      @(negedge clk); while (busy) @(negedge clk);
+      data = (i == 0) ? 8'h55 : (i == 1) ? 8'hA3 : $urandom; start = 1; sent.push_back(data);
+      @(negedge clk); start = 0;
+      if (busy !== 1'b1) begin errors++; $display("  busy should be 1 while sending"); end
+    end
+    while (busy) @(negedge clk);
+    #(CPB * 10 * 2);
+    if (errors == 0 && got == 12) $display("PASS: UART TX TEST PASSED (12 bytes received correctly)");
+    else                          $display("FAIL: UART TX TEST FAILED, %0d errors, %0d of 12 bytes received", errors, got);
+    $finish;
+  end
+  initial begin #100000; $display("FAIL: timeout"); $finish; end
+endmodule
+`,solution:{design:`// UART transmitter (8 data bits, no parity, 1 stop bit) with an enumerated state type.
+// tx idles at 1. When start = 1 and busy = 0, it sends: a start bit (0), data[0] .. data[7]
+// (LSB first), then a stop bit (1). Each bit lasts CLKS_PER_BIT clocks. busy = 1 while sending.
+module uart_tx #(parameter int CLKS_PER_BIT = 4) (
+  input  logic       clk, rst_, start,
+  input  logic [7:0] data,
+  output logic       tx, busy
+);
+  timeunit 1ns; timeprecision 100ps;
+  typedef enum logic [1:0] {IDLE, START_BIT, DATA_BITS, STOP_BIT} state_t;
+  state_t     state;
+  logic [7:0] shreg;
+  logic [2:0] bitn;
+  int         tick;
+
+  assign busy = (state != IDLE);
+
+  always_ff @(posedge clk or negedge rst_)
+    if (!rst_) begin
+      state <= IDLE; tx <= 1'b1; tick <= 0; bitn <= 0; shreg <= '0;
+    end else begin
+      unique case (state)
+        IDLE:      if (start) begin shreg <= data; tx <= 1'b0; tick <= 0; state <= START_BIT; end
+        START_BIT: if (tick == CLKS_PER_BIT - 1) begin tick <= 0; tx <= shreg[0]; bitn <= 0; state <= DATA_BITS; end
+                   else tick <= tick + 1;
+        DATA_BITS: if (tick == CLKS_PER_BIT - 1) begin
+                     tick <= 0;
+                     if (bitn == 7) begin tx <= 1'b1; state <= STOP_BIT; end
+                     else begin bitn <= bitn + 1; tx <= shreg[bitn + 1]; end
+                   end else tick <= tick + 1;
+        STOP_BIT:  if (tick == CLKS_PER_BIT - 1) begin tick <= 0; state <= IDLE; end
+                   else tick <= tick + 1;
+      endcase
+    end
+endmodule
+`}}];function pe(t){let e=[],n=new Map,r=[],a="",s=0,d=t.split(/\s+/),i=!0,b=0,k=0;for(;s<d.length;){let p=d[s++];if(!p)continue;if(i){if(p==="$scope"){for(s++,r.push(d[s++]);d[s]!=="$end";)s++;s++}else if(p==="$upscope"){for(r.pop();d[s]!=="$end";)s++;s++}else if(p==="$timescale"){let h=[];for(;d[s]!=="$end";)h.push(d[s++]);s++,a=h.join("")}else if(p==="$var"){let h=d[s++],c=parseInt(d[s++],10),f=d[s++],v=[];for(;d[s]!=="$end";)v.push(d[s++]);s++;let w=v[0];v[1]&&v[1].startsWith("[")&&(w+=v[1]);let $=[...r,w].join(".");if(h==="parameter")continue;if(n.has(f)){n.get(f).aliases.push($);continue}let x=[...r.slice(1),w].join("."),z={id:f,name:$,short:x||w,depth:r.length,width:c,type:h,changes:[],aliases:[]};n.set(f,z),e.push(z)}else if(p==="$enddefinitions"){for(;d[s]!=="$end";)s++;s++,i=!1}else if(p.startsWith("$")){for(;s<d.length&&d[s]!=="$end";)s++;s++}continue}let y=p[0];if(y==="#")b=Number(p.slice(1)),b>k&&(k=b);else if(y!=="$")if(y==="b"||y==="B"||y==="r"||y==="R"){let h=p.slice(1),c=d[s++],f=n.get(c);f&&ce(f,b,y==="r"||y==="R"?Number(h):h)}else{let h=n.get(p.slice(1));h&&ce(h,b,y.toLowerCase())}}return{signals:e,timescale:a,endTime:k}}function ce(t,e,n){let r=t.changes;r.length&&r[r.length-1][0]===e?r[r.length-1][1]=n:(!r.length||r[r.length-1][1]!==n)&&r.push([e,n])}function me(t,e){let n=t.changes,r=0,a=n.length-1,s=-1;for(;r<=a;){let d=r+a>>1;n[d][0]<=e?(s=d,r=d+1):a=d-1}return s<0?null:n[s][1]}function Q(t,e,n){if(e==null)return"";if(typeof e=="number")return String(+e.toPrecision(6));if(t.width===1)return e;let r=e.padStart(t.width,e[0]==="x"||e[0]==="z"?e[0]:"0");if(/[xz]/i.test(r))return/^x+$/i.test(r)?"x":/^z+$/i.test(r)?"z":n==="bin"?r:"x";if(n==="bin")return r;let a=BigInt("0b"+r);if(n==="dec")return a.toString(10);if(n==="sdec"){let s=BigInt(t.width);return(r[0]==="1"?a-(1n<<s):a).toString(10)}return a.toString(16).toUpperCase().padStart(Math.ceil(t.width/4),"0")}var V=class{constructor(e,n){this.c=e,this.ctx=e.getContext("2d"),this.data=null,this.radix="hex",this.cursor=null,this.t0=0,this.t1=1,this.onCursor=n.onCursor||(()=>{}),this.nameW=190,this.rowH=28,this.axisH=26,this.theme=n.theme,e.addEventListener("mousedown",r=>this.click(r)),e.addEventListener("wheel",r=>this.wheel(r),{passive:!1}),new ResizeObserver(()=>this.draw()).observe(e.parentElement)}setData(e){this.data=e,this.cursor=null,this.t0=0,this.t1=Math.max(1,e.endTime),this.draw(),this.onCursor(null)}clear(){this.data=null,this.draw()}zoom(e,n){if(!this.data)return;let r=this.t1-this.t0,a=n??this.cursor??this.t0+r/2,s=Math.min(Math.max(r*e,2),Math.max(1,this.data.endTime)*1.05),d=a-(a-this.t0)*(s/r);d=Math.max(0,Math.min(d,Math.max(0,this.data.endTime-s))),this.t0=d,this.t1=d+s,this.draw()}fit(){this.data&&(this.t0=0,this.t1=Math.max(1,this.data.endTime),this.draw())}pan(e){if(!this.data)return;let n=this.t1-this.t0,r=this.t0+n*e;r=Math.max(0,Math.min(r,Math.max(0,this.data.endTime-n))),this.t0=r,this.t1=r+n,this.draw()}xOf(e,n){return this.nameW+(e-this.t0)/(this.t1-this.t0)*(n-this.nameW-8)}tOf(e,n){return this.t0+(e-this.nameW)/(n-this.nameW-8)*(this.t1-this.t0)}click(e){if(!this.data)return;let n=this.c.getBoundingClientRect(),r=e.clientX-n.left;r<this.nameW||(this.cursor=Math.max(0,Math.round(this.tOf(r,n.width))),this.draw(),this.onCursor(this.cursor))}wheel(e){if(!this.data)return;let n=this.c.getBoundingClientRect();e.ctrlKey||e.metaKey||Math.abs(e.deltaY)>Math.abs(e.deltaX)&&e.shiftKey===!1&&e.altKey?(e.preventDefault(),this.zoom(e.deltaY>0?1.25:.8,this.tOf(e.clientX-n.left,n.width))):(Math.abs(e.deltaX)>Math.abs(e.deltaY)||e.shiftKey)&&(e.preventDefault(),this.pan((e.deltaX||e.deltaY)/600))}draw(){let e=this.theme(),r=this.c.parentElement.clientWidth;this.nameW=r<640?112:190;let a=this.data?this.data.signals:[],s=this.axisH+Math.max(a.length,3)*this.rowH+8,d=window.devicePixelRatio||1;this.c.style.width=r+"px",this.c.style.height=s+"px",this.c.width=Math.round(r*d),this.c.height=Math.round(s*d);let i=this.ctx;if(i.setTransform(d,0,0,d,0,0),i.fillStyle=e.bg,i.fillRect(0,0,r,s),i.font="12px 'JetBrains Mono', ui-monospace, monospace",i.textBaseline="middle",!this.data){i.fillStyle=e.muted,i.fillText("Run a simulation that calls $dumpvars to see waveforms here.",16,s/2);return}let b=this.t1-this.t0,k=(r-this.nameW)/110,p=b/Math.max(1,k),y=Math.pow(10,Math.floor(Math.log10(p))),h=[1,2,5,10].map(c=>c*y).find(c=>c>=p)||y*10;i.strokeStyle=e.grid,i.fillStyle=e.muted,i.lineWidth=1;for(let c=Math.ceil(this.t0/h)*h;c<=this.t1;c+=h){let f=Math.round(this.xOf(c,r))+.5;i.beginPath(),i.moveTo(f,this.axisH-6),i.lineTo(f,s),i.stroke(),i.fillText(K(c,this.data.timescale),f+3,11)}if(i.strokeStyle=e.line,i.beginPath(),i.moveTo(0,this.axisH+.5),i.lineTo(r,this.axisH+.5),i.stroke(),a.forEach((c,f)=>{let v=this.axisH+f*this.rowH,w=v+6,$=v+this.rowH-6,x=(w+$)/2;i.fillStyle=f%2?e.rowAlt:e.bg,i.fillRect(0,v+1,r,this.rowH-1),i.fillStyle=e.text;let z=c.short+(c.width>1&&!c.short.includes("[")?` [${c.width-1}:0]`:"");i.fillText(ue(i,z,this.nameW-16),10,x),i.save(),i.beginPath(),i.rect(this.nameW,v,r-this.nameW,this.rowH),i.clip();let R=c.changes;for(let q=0;q<R.length;q++){let ie=R[q][0],ae=q+1<R.length?R[q+1][0]:this.data.endTime;if(ae<this.t0||ie>this.t1)continue;let S=this.xOf(ie,r),L=this.xOf(ae,r),D=R[q][1];if(c.width===1&&typeof D=="string"){let N=D==="x"?e.x:D==="z"?e.z:e.wave;i.strokeStyle=N,i.lineWidth=1.5,D==="x"&&(i.fillStyle=e.xFill,i.fillRect(S,w,L-S,$-w));let F=D==="1"?w:D==="0"?$:x;if(i.beginPath(),q>0){let I=R[q-1][1],B=I==="1"?w:I==="0"?$:x;i.moveTo(S,B)}else i.moveTo(S,F);i.lineTo(S,F),i.lineTo(L,F),i.stroke()}else{let N=Q(c,D,this.radix),F=N==="x"||N==="z";i.strokeStyle=F?e.x:e.wave,i.lineWidth=1.2,i.fillStyle=F?e.xFill:e.busFill;let I=Math.min(4,(L-S)/2);i.beginPath(),i.moveTo(S,x),i.lineTo(S+I,w),i.lineTo(L-I,w),i.lineTo(L,x),i.lineTo(L-I,$),i.lineTo(S+I,$),i.closePath(),i.fill(),i.stroke();let B=L-S-10;B>14&&(i.fillStyle=e.text,i.fillText(ue(i,N,B),Math.max(S,this.nameW)+6,x))}}i.restore()}),i.strokeStyle=e.line,i.beginPath(),i.moveTo(this.nameW+.5,0),i.lineTo(this.nameW+.5,s),i.stroke(),this.cursor!==null&&this.cursor>=this.t0&&this.cursor<=this.t1){let c=Math.round(this.xOf(this.cursor,r))+.5;i.strokeStyle=e.cursor,i.lineWidth=1.5,i.beginPath(),i.moveTo(c,0),i.lineTo(c,s),i.stroke()}}};function ue(t,e,n){if(t.measureText(e).width<=n)return e;for(;e.length>1&&t.measureText(e+"\u2026").width>n;)e=e.slice(0,-1);return e+"\u2026"}function K(t,e){let n=/^(\d+)(s|ms|us|ns|ps|fs)$/.exec(e||"");if(!n)return String(t);let r=["fs","ps","ns","us","ms","s"],a=t*Number(n[1]),s=r.indexOf(n[2]);for(;s<r.length-1&&Math.abs(a)>=1e3&&a%1e3===0;)a/=1e3,s++;return s<2&&Math.abs(a)>=1e3&&(a/=1e3,s++,a=+a.toFixed(3)),`${a} ${r[s]}`}var g=[...oe.map(t=>({group:"examples",...t})),...le],X=[{id:"examples",title:"Examples",note:"Ready-to-copy examples: counters, FSMs, FIFOs, CDC synchronizers, SystemVerilog. Edit anything and press Run."},...de.map(t=>({...t,note:"Write the design in the Design pane: the ports are given. The testbench checks it and prints PASS or FAIL. A \u2713 marks the labs you have passed."}))],M="vdd-vlabs-code-v1",Z="vdd-vlabs-pass-v1",C=t=>{try{return JSON.parse(localStorage.getItem(t)||"{}")||{}}catch{return{}}},ee=(t,e)=>{try{localStorage.setItem(t,JSON.stringify(e))}catch{}},l=t=>document.querySelector(t),ge=15e3,fe="vdd-playground-v1",o={example:g[0].id,track:"examples",usedSolution:!1,std:g[0].std,running:!1,worker:null,ready:!1,timer:null,startedAt:0,lastVcd:null};function he(t){let e=t.querySelector("textarea");if(window.CodeMirror){let n=window.CodeMirror.fromTextArea(e,{mode:"verilog",lineNumbers:!0,indentUnit:2,tabSize:2,smartIndent:!0,matchBrackets:!0,viewportMargin:1/0,extraKeys:{Tab:r=>r.replaceSelection("  ")}});return{get:()=>n.getValue(),set:r=>{n.setValue(r),n.clearHistory()},onChange:r=>n.on("change",r),refresh:()=>n.refresh(),goto:r=>{n.focus(),n.setCursor({line:r-1,ch:0}),n.addLineClass(r-1,"background","cm-errline"),setTimeout(()=>n.removeLineClass(r-1,"background","cm-errline"),2500),n.scrollIntoView({line:r-1,ch:0},80)},addKeys:r=>n.addKeyMap(r)}}return e.classList.add("plain-editor"),{get:()=>e.value,set:n=>{e.value=n},onChange:n=>e.addEventListener("input",n),refresh(){},goto:n=>{let r=e.value.split(`
+`),a=0;for(let s=0;s<n-1&&s<r.length;s++)a+=r[s].length+1;e.focus(),e.setSelectionRange(a,a+(r[n-1]||"").length)},addKeys(){}}}var u={design:he(l("#ed-design")),tb:he(l("#ed-tb"))};function H(){return o.std==="2012"?{design:"design.sv",tb:"testbench.sv"}:{design:"design.v",tb:"testbench.v"}}function ne(){let t=H();l("#name-design").textContent=t.design,l("#name-tb").textContent=t.tb}var we=()=>X.find(t=>t.id===o.track)||X[0],_e=t=>(g.find(e=>e.id===t)||g[0]).group;function W(){let t=l("#vtracks");t.innerHTML="";for(let e of X){let n=document.createElement("button");n.type="button",n.className="vtrack"+(e.id===o.track?" active":""),n.setAttribute("role","tab"),n.setAttribute("aria-selected",e.id===o.track?"true":"false");let r=g.filter(s=>s.group===e.id),a=e.id==="examples"?0:r.filter(s=>C(Z)[s.id]).length;n.innerHTML='<span class="vtrack-t"></span><span class="vtrack-n"></span>',n.querySelector(".vtrack-t").textContent=e.title,n.querySelector(".vtrack-n").textContent=r.length+(e.id==="examples"?" examples":" labs")+(a?` \xB7 ${a} \u2713`:""),n.addEventListener("click",()=>ke(e.id)),t.appendChild(n)}l("#vtrack-note").textContent=we().note,document.body.dataset.track!==o.track&&(document.body.dataset.track=o.track,document.dispatchEvent(new CustomEvent("vdd-track"))),l("#side-title").textContent=o.track==="examples"?"// Examples":"// Labs",l("#side-note").hidden=o.track!=="examples",l("#reset").textContent=o.track==="examples"?"Reset example":"Reset lab"}function ke(t){o.track=t;try{let e=new URL(location.href);e.searchParams.set("track",t),history.replaceState(null,"",e.pathname+e.search)}catch{}_e(o.example)!==t?O(g.find(e=>e.group===t).id):(W(),U())}function U(){let t=l("#examples");t.innerHTML="";let e=C(Z),n=g.filter(a=>a.group===o.track);for(let a of n){let s=document.createElement("button");if(s.type="button",s.className="ex"+(a.id===o.example?" active":""),s.innerHTML='<span class="ex-tag"></span><span class="ex-title"></span>',s.querySelector(".ex-tag").textContent=a.tag,e[a.id]){let d=document.createElement("span");d.className="ex-pass",d.textContent="\u2713 passed",s.querySelector(".ex-tag").appendChild(d)}s.querySelector(".ex-title").textContent=a.title,s.addEventListener("click",()=>O(a.id)),t.appendChild(s)}let r=l("#ex-select");r.innerHTML=n.map(a=>`<option value="${a.id}">${a.group==="examples"?"":a.tag+" \xB7 "}${a.title}</option>`).join(""),n.some(a=>a.id===o.example)&&(r.value=o.example)}function Se(){let t=g.find(n=>n.id===o.example);if(!t||t.group==="examples")return;let e=C(M);e[t.id]={design:u.design.get(),tb:u.tb.get()},ee(M,e)}function O(t,e){let n=g.find(a=>a.id===t)||g[0];o.example=n.id,o.std=n.std,o.track=n.group,o.usedSolution=!1,l("#std").value=n.std;let r=!e&&n.group!=="examples"?C(M)[n.id]:null;if(u.design.set(r?r.design:n.design),u.tb.set(r?r.tb:n.tb),e&&n.group!=="examples"){let a=C(M);delete a[n.id],ee(M,a)}l("#show-solution").hidden=!n.solution,ne(),W(),U(),Y(j,n.id),E(),te(),m.clear(),l("#wave-values").textContent="",P("Ready","idle")}function ve(){let t=g.find(e=>e.id===o.example);!t||!t.solution||(t.solution.design&&u.design.set(t.solution.design),t.solution.tb&&u.tb.set(t.solution.tb),o.usedSolution=!0,E(),te(),A("Loaded the solution. Run it to see PASS. Reset lab brings your starting point back.","meta"))}function $e(t){let e=g.find(r=>r.id===o.example);if(!e||e.group==="examples"||o.usedSolution||!/(^|\n)PASS\b/.test(t))return;let n=C(Z);n[e.id]||(n[e.id]=Date.now(),ee(Z,n),W(),U())}function E(){Se();try{localStorage.setItem(fe,JSON.stringify({example:o.example,std:o.std,design:u.design.get(),tb:u.tb.get()}))}catch{}}function Ae(){try{let t=JSON.parse(localStorage.getItem(fe)||"null");if(t&&t.design!=null)return t}catch{}return null}async function xe(){let t=JSON.stringify({s:o.std,d:u.design.get(),t:u.tb.get()}),e=new Blob([t]).stream().pipeThrough(new CompressionStream("deflate-raw")),n=new Uint8Array(await new Response(e).arrayBuffer()),r="";for(let a of n)r+=String.fromCharCode(a);return btoa(r).replace(/\+/g,"-").replace(/\//g,"_").replace(/=+$/,"")}async function qe(t){let e=atob(t.replace(/-/g,"+").replace(/_/g,"/")),n=Uint8Array.from(e,a=>a.charCodeAt(0)),r=new Blob([n]).stream().pipeThrough(new DecompressionStream("deflate-raw"));return JSON.parse(await new Response(r).text())}async function G(t,e){let n=!1;try{await navigator.clipboard.writeText(t),n=!0}catch{let a=document.createElement("textarea");a.value=t,a.style.position="fixed",a.style.opacity="0",document.body.appendChild(a),a.select();try{n=document.execCommand("copy")}catch{}a.remove()}if(e){let r=e.dataset.label||e.textContent;e.dataset.label=r,e.textContent=n?"Copied":"Press Ctrl+C",e.classList.toggle("ok",n),setTimeout(()=>{e.textContent=r,e.classList.remove("ok")},1600)}}function be(t,e){let n=document.createElement("a");n.href=URL.createObjectURL(new Blob([e],{type:"text/plain"})),n.download=t,document.body.appendChild(n),n.click(),setTimeout(()=>{URL.revokeObjectURL(n.href),n.remove()},500)}var T=l("#console");function te(){T.textContent=""}function A(t,e){let n=document.createElement("div");n.className="ln "+(e||"");let r=/^(?:\/work\/)?([\w.-]+\.s?v):(\d+):/.exec(t);if(r){let a=r[1]===H().design?"design":r[1]===H().tb?"tb":null,s=document.createElement("button");s.type="button",s.className="loc",s.textContent=`${r[1]}:${r[2]}`,a&&s.addEventListener("click",()=>u[a].goto(+r[2])),n.appendChild(s),n.appendChild(document.createTextNode(":"+t.slice(r[0].length)))}else n.textContent=t;/qualities are ignored/.test(t)?n.classList.add("warn"):/\berror\b|ERROR|sorry|FAIL|MISMATCH|Internal error|Unable to/.test(t)?n.classList.add("err"):/\bwarning\b/i.test(t)?n.classList.add("warn"):/\bPASS\b/.test(t)&&n.classList.add("pass"),T.appendChild(n),T.childElementCount>6e3&&T.firstChild.remove(),T.scrollTop=T.scrollHeight}function P(t,e){let n=l("#status");n.textContent=t,n.dataset.kind=e}function Te(){return new URL("worker.js",location.href).href}function re(){o.worker&&o.worker.terminate(),o.ready=!1;let t=new Worker(Te());t.onmessage=e=>Le(e.data),t.onerror=e=>{A("Simulator failed to start: "+(e.message||"worker error"),"err"),se(!1)},t.postMessage({type:"load",base:new URL(".",location.href).href}),o.worker=t}function Le(t){if(t.type==="ready")o.ready=!0,o.running||P("Ready","idle");else if(t.type==="stage")P(t.stage+"\u2026","busy"),t.stage==="Simulating"&&A("\u2500\u2500 simulation output \u2500\u2500","meta");else if(t.type==="line")A(t.line.replace(/\/work\//g,""),t.stream==="err"?"stderr":"");else if(t.type==="done"){if(t.ok){A(`\u2500\u2500 finished in ${t.ms} ms \u2500\u2500`,"meta"),$e(T.innerText);let e=(t.vcd||[])[0];if(e){o.lastVcd=e;try{let n=pe(e.text);m.setData(n),l("#wave-meta").textContent=`${n.signals.length} signals \xB7 ${K(n.endTime,n.timescale)}`}catch(n){A("Could not read waveform: "+n.message,"err")}}else m.clear(),l("#wave-meta").textContent='No waveform: add $dumpfile("dump.vcd"); $dumpvars(0, tb);'}else t.phase==="compile"?A("\u2500\u2500 compile failed: fix the errors above and run again \u2500\u2500","meta err"):t.phase==="sim"&&A(`\u2500\u2500 simulation exited with code ${t.rc} \u2500\u2500`,"meta err");se(t.ok,t.phase)}}function J(){if(o.running)return;window.vddSubscribe&&window.vddSubscribe(),o.worker||re(),E(),te(),l("#wave-values").textContent="",o.running=!0,o.startedAt=performance.now(),l("#run").disabled=!0,l("#stop").disabled=!1,P(o.ready?"Compiling\u2026":"Loading simulator\u2026","busy");let t=H(),e={[t.design]:u.design.get(),[t.tb]:u.tb.get()},n=l("#top").value.trim();o.worker.postMessage({type:"run",files:e,std:o.std,top:n,base:new URL(".",location.href).href}),clearTimeout(o.timer),o.timer=setTimeout(()=>ye(`Stopped after ${ge/1e3} s. Does your testbench call $finish?`),ge)}function ye(t){o.running&&(A(t||"Stopped.","meta err"),se(!1,"stopped"),re())}function se(t,e){clearTimeout(o.timer),o.running=!1,l("#run").disabled=!1,l("#stop").disabled=!0,e==="stopped"?P("Stopped","err"):P(t?"Done":e==="compile"?"Compile errors":"Error",t?"ok":"err")}var _=t=>getComputedStyle(document.documentElement).getPropertyValue(t).trim(),m=new V(l("#wave"),{theme:()=>({bg:_("--wave-bg"),rowAlt:_("--wave-row"),grid:_("--wave-grid"),line:_("--line"),text:_("--text"),muted:_("--muted"),wave:_("--wave"),busFill:_("--wave-bus"),x:_("--wave-x"),xFill:_("--wave-xfill"),z:_("--wave-z"),cursor:_("--accent")}),onCursor:t=>{let e=l("#wave-values");if(t===null||!m.data){e.textContent="";return}e.innerHTML="";let n=document.createElement("div");n.className="cur-time",n.textContent="Cursor @ "+K(t,m.data.timescale),e.appendChild(n);for(let r of m.data.signals){let a=document.createElement("div");a.className="cur-row";let s=document.createElement("span");s.textContent=r.name;let d=document.createElement("span");d.textContent=Q(r,me(r,t),m.radix),a.append(s,d),e.appendChild(a)}}});De().addEventListener?.("change",()=>m.draw());function De(){return window.matchMedia("(prefers-color-scheme: dark)")}function Ie(){l("#run").addEventListener("click",J),l("#stop").addEventListener("click",()=>ye()),l("#std").addEventListener("change",e=>{o.std=e.target.value,ne(),E()}),l("#ex-select").addEventListener("change",e=>O(e.target.value)),document.querySelectorAll("[data-copy]").forEach(e=>e.addEventListener("click",()=>G(u[e.dataset.copy].get(),e))),document.querySelectorAll("[data-download]").forEach(e=>e.addEventListener("click",()=>be(H()[e.dataset.download],u[e.dataset.download].get()))),l("#copy-output").addEventListener("click",e=>G(T.innerText,e.currentTarget)),l("#reset").addEventListener("click",()=>O(o.example,!0)),l("#show-solution").addEventListener("click",ve),l("#share").addEventListener("click",async e=>{let n=e.currentTarget;try{let r=await xe(),a=location.href.split("#")[0]+"#code="+r;history.replaceState(null,"","#code="+r),G(a,n)}catch{G(location.href,n)}}),l("#zoom-in").addEventListener("click",()=>m.zoom(.5)),l("#zoom-out").addEventListener("click",()=>m.zoom(2)),l("#zoom-fit").addEventListener("click",()=>m.fit()),l("#pan-left").addEventListener("click",()=>m.pan(-.4)),l("#pan-right").addEventListener("click",()=>m.pan(.4)),l("#radix").addEventListener("change",e=>{m.radix=e.target.value,m.draw(),m.onCursor(m.cursor)}),l("#dl-vcd").addEventListener("click",()=>{o.lastVcd&&be("dump.vcd",o.lastVcd.text)});let t={"Ctrl-Enter":J,"Cmd-Enter":J};u.design.addKeys(t),u.tb.addKeys(t),document.addEventListener("keydown",e=>{(e.ctrlKey||e.metaKey)&&e.key==="Enter"&&(e.preventDefault(),J())}),u.design.onChange(()=>E()),u.tb.onChange(()=>E())}async function Oe(){Ie();let t=!1,e=new URLSearchParams(location.search),n=e.get("track"),r=e.get("lab"),a=new URLSearchParams(location.hash.slice(1)).get("code");if(a){try{let s=await qe(a);o.std=s.s==="2012"?"2012":"2005",o.example=null,l("#std").value=o.std,u.design.set(s.d||""),u.tb.set(s.t||""),t=!0}catch{}t&&(W(),U())}if(!t&&r&&g.some(s=>s.id===r)&&(O(r),t=!0),!t&&n&&X.some(s=>s.id===n)&&(O(g.find(s=>s.group===n).id),t=!0),!t){let s=Ae();if(s&&g.some(d=>d.id===s.example)){let d=g.find(i=>i.id===s.example);o.example=d.id,o.track=d.group,o.std=s.std||"2005",l("#std").value=o.std,u.design.set(s.design),u.tb.set(s.tb),l("#show-solution").hidden=!d.solution,W(),U(),Y(j,o.example),t=!0}}t||O(g[0].id),ne(),P("Loading simulator\u2026","busy"),re(),m.clear()}Oe();})();

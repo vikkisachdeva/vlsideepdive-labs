@@ -5,3 +5,7 @@
 # Edit this file on GitHub and click "Commit changes"; the lab updates about a minute later.
 
 https://www.youtube.com/watch?v=i-46z3tTYGM
+
+# Videos for the SystemVerilog design labs only
+[sv]
+https://www.youtube.com/watch?v=TIZwEGRvhBU
