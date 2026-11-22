@@ -1,4 +1,4 @@
-(()=>{var te={basic:{problem:"Every flop-to-flop path must meet setup and hold. How does STA find the worst path and its slack?",tasks:["Run and read the setup and hold reports.","Find the startpoint, endpoint and slack."],learn:"Read a basic timing report: arrival, required time and slack."},violation:{problem:"The clock is too fast for the logic. The report shows negative slack: what does it mean and where does the time go?",tasks:["Run and find the failing path.","Change the clock period until it passes."],learn:"Read a setup violation and find the period the design can meet."},io:{problem:"Paths to and from the chip pins are only checked if you tell STA what happens outside the block.",tasks:["Run and read the input and output paths.","Change set_input_delay and set_output_delay and see the slack move."],learn:"Constrain I/O paths with input and output delays."},exceptions:{problem:"Some paths are never used, others are allowed more than one cycle. Without exceptions STA reports false failures.",tasks:["Run with and without the false path and multicycle path.","See which paths each exception changes."],learn:"Write false paths and multicycle paths, including the hold adjustment."},ocv:{problem:"Real clocks arrive late, jitter and vary across the die. Ideal clocks make timing look better than it is.",tasks:["Add clock latency, uncertainty and OCV derates.","Watch the slack shrink."],learn:"Model clock latency, uncertainty and on-chip variation."},corners:{problem:"A design must work at slow and fast process corners. Setup fails at the slow corner, hold at the fast one.",tasks:["Run at both corners.","Find which corner limits setup and which limits hold."],learn:"Multi-corner analysis with slow and fast libraries."},spef:{problem:"Wires have resistance and capacitance. Without them, delays are too optimistic.",tasks:["Run without SPEF, then with it.","Compare the net delays."],learn:"Annotate parasitics from SPEF and see their effect on delay."},gcd:{problem:"A real placed-and-routed block: does it meet timing, and how much power does it use?",tasks:["Run timing with SPEF.","Read the power report."],learn:"Run STA and power on a real block, the way signoff does."},"ws-lab1":{problem:"You have a library, a netlist and constraints. Where do you start? Your first timing report.",tasks:["Run and read the 5 worst paths.","Find the startpoint, endpoint and slack of each.","Edit the clock period and input delay and run again."],learn:"The basic STA flow and the parts of a timing report."},"ws-lab2":{problem:"Cell delay depends on the library corner and on the wires. How much does each change in the RC network move the delay?",tasks:["Run without SPEF, then with each SPEF file.","Compare the delays and slack."],learn:"Delay calculation with min/max libraries and SPEF parasitics."},"ws-lab3":{problem:"Can you compute setup slack by hand and match the tool to the picosecond? If not, you cannot debug a real report.",tasks:["Run and pick the reported path.","Work out the slack from clock edges, latency and cell delays.","Check your number against the report."],learn:"Compute setup slack by hand from a report."},"ws-lab6":{problem:"A clock gate must switch only while the clock is inactive, or it chops the clock into glitches.",tasks:["Run and find the clock gating check.","Analyse its slack."],learn:"Clock gating setup and hold checks."},"ws-lab7":{problem:"An asynchronous reset must release far enough from the clock edge, or flops go metastable.",tasks:["Run and find the recovery and removal checks.","Analyse their slack."],learn:"Recovery and removal checks on asynchronous pins."},"ws-lab12":{problem:"The same path gives different slack with one library, min/max libraries, or parasitics. Why?",tasks:["Run example2, example3 and example4.","Compare the three reports."],learn:"How libraries and parasitics change one path's slack."},"ws-lab4":{problem:"Launch and capture clocks share part of their path. Counting its variation twice makes timing look worse than it is.",tasks:["Note the slack, then enable CRPR and run again.","Find the common point and the difference."],learn:"Common path pessimism removal (CPPR/CRPR)."},"ws-lab5":{problem:"Timing fails after layout. You cannot re-synthesize: you fix it with a small change to the netlist, an ECO.",tasks:["Run the ECO script that inserts a clock buffer.","Compare s27_eco.v with s27.v and the slack before and after."],learn:"Timing ECOs and re-timing a changed netlist."},"ws-lab8":{problem:"Hold checks use different clock edges from setup. Picking the wrong edge gives the wrong answer.",tasks:["Run and read the hold report.","Explain the launch and capture edges it picks."],learn:"Hold slack and how hold edges are chosen."},"ws-lab10":{problem:"A chip runs in several modes, each with its own constraints. Checking one mode at a time does not scale.",tasks:["Review mode1.sdc, then add the other modes.","Write one merged SDC covering all four."],learn:"Multi-mode constraints and mode merging."},"ws-lab11":{problem:"Silicon varies with process, voltage and temperature, and across the die. Which corner and derate limits the design?",tasks:["Run three corners with \xB110% derating.","Compare the reports."],learn:"Multi-corner analysis with derates."},"ws-lab13":{problem:"Several clocks with different waveforms: which edges does STA pair up, and what does a multicycle path change?",tasks:["Run and analyse the clock waveforms.","Add a setup multicycle path between clk2 and clk3 and check setup and hold."],learn:"Multiple clocks and multicycle paths, including the hold side effect."},"ws-lab14":{problem:"A path from a rising edge to a falling edge has only half a cycle. Easy to miss, easy to fail.",tasks:["Run and find any half-cycle paths.","Check the edges used for setup and hold."],learn:"Half-cycle paths and how they are timed."},"ws-lab9":{problem:"The report says no paths were found. Something is unconstrained, and that is worse than a violation.",tasks:["Run and confirm there are no paths.","Debug with check_setup -verbose and report_checks -unconstrained."],learn:"Debug an unconstrained design."},"ws-lab15":{problem:"This is how STA looks on a real design: a RISC-V core with about 14,000 cells.",tasks:["Run the full flow.","Read the summary and the worst paths."],learn:"Run a production-style STA flow on a CPU core."},"so-s1":{problem:"At signoff you need one answer fast: does the block meet timing, and by how much?",tasks:["Run the full flow on the routed GCD block.","Read WNS, TNS and the violation counts, then the worst path."],learn:"The signoff analysis flow and timing summary."},"so-s2":{problem:"A clean timing report means nothing if paths are not constrained. Bad constraints are the most common signoff escape.",tasks:["Run check_setup -verbose and list every problem.","Fix ctrl.sdc and see which new paths appear."],learn:"Validate constraints before trusting any timing report."},"so-s3":{problem:"Most timing errors start with wrong clocks: ideal versus propagated, missing latency, a wrongly defined divided clock.",tasks:["Compare ideal and propagated clocks.","Find where each part of the latency comes from and check the divided clock."],learn:"Define and check generated clocks, latency and uncertainty."},"so-s4":{problem:"Exceptions change what STA checks. One wrong exception can hide a real failure.",tasks:["Enable one exception at a time in exc.sdc.","See which path each one changes."],learn:"Case analysis, false paths, multicycle paths and max delay."},"so-s5":{problem:"Signoff engineers spend most of their time asking the design questions. You need fast answers.",tasks:["Run endpoint summaries and full path reports.","Query cells, nets and registers with Tcl."],learn:"Read reports and query a design quickly."},"so-s6":{problem:"OCV derates can turn a passing path into a failing one, and CRPR gives some of it back. How much?",tasks:["Apply derates and watch the slack.","Measure what CRPR recovers."],learn:"On-chip variation and CRPR at signoff."},"so-s7":{problem:"A latch lets a slow path borrow time from the next stage. Borrowing hides slack problems if you do not check it.",tasks:["Find how much L1 borrows and the most it could.","Limit borrowing and see the result."],learn:"Latch timing and time borrowing."},"so-s8":{problem:"You have one setup and one hold violation and no time to re-run layout.",tasks:["Run as given, then enable the upsizing ECO and the hold buffer ECO.","Compare eco_after.v and the new slack."],learn:"Fix setup and hold violations with netlist ECOs."},"so-s9":{problem:"A block must pass at every corner. Setup and hold are limited by different corners.",tasks:["Run at ss, tt and ff.","Find which corner limits setup and which limits hold."],learn:"Multi-corner signoff."},"sdc-c1":{problem:"Every timing check starts from the clock waveforms. If you cannot draw a clock from its create_clock line, you cannot check a single path.",tasks:["Draw clk1, clk2 and clk3 on paper.","Run and compare with report_clock_properties.","Find the edges STA pairs between two clocks."],learn:"Read -period and -waveform, and how STA picks launch and capture edges between clocks."},"sdc-c2":{problem:"Two clocks share the same flops through a clock mux. Unless you say so, STA times them against each other: paths that can never happen in silicon.",tasks:["Count the launch/capture pairs STA times.","Try set_clock_groups -logically_exclusive.","Try set_case_analysis instead and compare."],learn:"Constrain clock muxes with exclusive clock groups or case analysis."},"sdc-c3":{problem:"A clock doubler makes a new waveform from CLK. STA only knows about it if you define a generated clock in the right place.",tasks:["Read the generated clock definition and its waveform.","Check the CLK \u2192 CLKOUT path.","Switch to propagated clocks."],learn:"Where and how to define a generated clock with -edges and -edge_shift."},"sdc-c4":{problem:"A flop divides the clock by 2, and its inverted output makes a second clock. Get the definitions wrong and every path between them is wrong.",tasks:["Read GCLK1 and GCLK2.","Check the half-period path GCLK1 \u2192 GCLK2.","Rewrite GCLK1 with -edges."],learn:"Divided and inverted generated clocks with -divide_by, -invert and -edges."},"sdc-c5":{problem:"Clocks reach flops directly and through a mux. Some pairs never meet, some are asynchronous. Each relationship must be declared, or STA times nonsense.",tasks:["Count the clock pairs STA times.","Declare the mux clocks exclusive.","Declare the two families asynchronous."],learn:"Define clock relationships with set_clock_groups, and generated clocks on a mux with -add."},"sdc-c6":{problem:"A clock through an XOR may pass unchanged, inverted, or STA cannot tell. A non-unate cell doubles the clock edges at the flop.",tasks:["Find the clock sense at r1, r2 and r3.","Count the checks at r3.","Fix it with set_clock_sense."],learn:"Clock unateness, constants from tie cells, and set_clock_sense."},"sdc-c7":{problem:"A false path removes exactly the paths it describes, no more and no less. Predicting which ones is a daily signoff skill.",tasks:["Predict which paths each command removes.","Apply one step at a time.","Count the paths left."],learn:"set_false_path with -through a pin, through a cell output, and -from a clock."},"sdc-c8":{problem:"-rise_from and -fall_to name edges of the clock at its source. With an inverter in the clock tree, the edge at the flop is the opposite one.",tasks:["Predict which of paths A to D each command removes.","Run each step and check."],learn:"Edge-specific exceptions and how inverted clocks change them."},"sdc-c9":{problem:"A multicycle path between clocks of different frequency counts cycles of one of them. Pick the wrong one and the budget is off by a factor.",tasks:["Apply -end and -start and read the new capture edge.","See the hold check move.","Fix hold with a hold multicycle."],learn:"set_multicycle_path -start and -end, and the hold adjustment."},"sdc-c10":{problem:"Two exceptions cover the same path. Only one applies, and guessing wrong hides a violation or a false failure.",tasks:["Answer Q1 and Q2 on paper.","Apply each pair and check the slacks."],learn:"Exception priority: false path, max delay, multicycle, and the more specific one wins."},"sdc-c11":{problem:"A chip has several modes. Running STA once per mode is slow and easy to get wrong; one merged SDC must cover them all safely.",tasks:["Run mode1 and mode2.","Run merged and compare the paths.","Explain the false path on SEL."],learn:"Merge mode constraints into one SDC without losing a real path."},"sdc-c12":{problem:"The IP team's SDC uses the IP's names. At the SoC the clocks are renamed and ports become hierarchical pins, so the constraints must be promoted.",tasks:["Time the IP alone with ip.sdc.","Time the SoC, then apply each promoted step.","Check the IP paths match."],learn:"Promote IP constraints to the SoC: renamed clocks, hierarchical pins, -through."},"sdc-c13":{problem:"Paths to other chips are only checked if you describe what happens outside: when data arrives and when it is needed.",tasks:["Read setup and hold on the input and output.","Launch din on the falling edge and see the effect."],learn:"set_input_delay and set_output_delay with -max, -min and a virtual clock."},"sdc-c14":{problem:"Without a driver and a load, STA thinks inputs switch instantly and outputs drive nothing. Slew and capacitance limits catch weak drivers.",tasks:["Find the slew and capacitance violations.","Try a stronger driver and a bigger buffer.","See which violation remains."],learn:"set_driving_cell, set_input_transition, set_load and design rule limits."},"sdc-c15":{problem:"Before clock tree synthesis there is no real clock tree. The SDC estimates it with latency, uncertainty and transition.",tasks:["Find each clock term in the setup and hold reports.","Switch to propagated clocks and compare."],learn:"Clock latency (source and network), uncertainty and transition."},"sdc-c16":{problem:"Paths between asynchronous clocks have no real timing, but they still need constraints: cut them, or limit how long they take.",tasks:["See the meaningless violation.","Cut it with asynchronous clock groups.","Limit a Gray pointer with set_max_delay instead."],learn:"Constrain clock domain crossings with clock groups or max delay."},"sdc-c17":{problem:"Someone hands you a netlist and no SDC. Can you write it from scratch so that every path is checked correctly?",tasks:["Follow the checklist in my.sdc, one step at a time.","Run check_setup after each step.","Compare with solution.sdc."],learn:"Write a complete SDC: clocks, generated clocks, I/O, false paths and multicycle paths."},"sdc-c18":{problem:"Doing more work per clock means fewer clocks but a longer path. Where is the sweet spot?",tasks:["Run the divider with K = 1, 2, 4 and 8.","Read WNS for each.","Work out the fastest clock and the total time."],learn:"Trade logic per cycle against clock period, and read WNS and TNS."},"sdc-c19":{problem:"Datasheets give clock-to-output, setup, hold and trace delays, not SDC. You have to turn them into input and output delays.",tasks:["Check the formulas in usb.sdc.","Write the wb_data output delays yourself.","Read the hold result."],learn:"Derive I/O delays from datasheet numbers."},"sdc-c21":{problem:"A real chip: a processor subsystem, a dozen IP blocks, a crossbar, PCIe, JTAG, efuse, flash and DDR, with six clock sources, a divided clock, a forwarded clock, falling-edge capture and three power islands. Nobody hands you the SDC.",tasks:["Read the block list in soc.v.","Write soc.sdc section by section with the checklist.","Check the clock interaction table and the per-block slacks, then compare with solution.sdc."],learn:"Constrain a complete SoC: clocks, generated and forwarded clocks, modes, clock groups, CDC limits, exceptions and I/O.",images:[{src:"img/soc_blocks.svg?v=2",alt:"SoC block diagram: processor subsystem with two ARM V9 cores and a 256KB L2 cache, LDPC, AES, accelerator, comp/decomp, DMA, JTAG, PCIe, efuse and flash controllers, crossbar and DDR memory controller"},{src:"img/soc_floorplan.png?v=2",alt:"Full-chip floorplan with DDR IP, PCI IP, ARM partition, AES/comp domain and power domains PD_1 to PD_3"}],html:'<table><thead><tr><th>Block Name</th><th class="n">Flop Count</th><th class="n">Clock Domains</th><th>Memories</th><th>Comment</th></tr></thead><tbody><tr><td>Processor Subsystem</td><td class="n">250000</td><td class="n">Up to 1GHz</td><td>Other than cache, there are two sets of 128KB Instruction and 256KB Data Memory</td><td>On a separate Physical Partition, with frequency and voltage scaling capability</td></tr><tr><td>LDPC</td><td class="n">100000</td><td class="n">500</td><td>64KB</td><td>64KB is composed of many small memory cuts (register file, single port and dual port RAMs)</td></tr><tr><td>AES</td><td class="n">80000</td><td class="n">500</td><td></td><td></td></tr><tr><td>Accelerator</td><td class="n">10000</td><td class="n">200</td><td>1KB</td><td></td></tr><tr><td>Comp/Decomp Engine</td><td class="n">80000</td><td class="n">500</td><td>8KB</td><td></td></tr><tr><td>DMA</td><td class="n">20000</td><td class="n">500</td><td></td><td></td></tr><tr><td>JTAG</td><td class="n">1000</td><td class="n">50</td><td></td><td></td></tr><tr><td>PCIe</td><td class="n">80000</td><td class="n">250</td><td>2KB</td><td></td></tr><tr><td>Efuse Controller</td><td class="n">10000</td><td class="n">100</td><td></td><td></td></tr><tr><td>Flash Controller</td><td class="n">10000</td><td class="n">100</td><td></td><td></td></tr><tr><td>Crossbar</td><td class="n">15000</td><td class="n">500</td><td></td><td></td></tr><tr><td>DDR Memory Controller</td><td class="n">70000</td><td class="n">400</td><td>4KB</td><td>Small fraction of flops are negedge capture</td></tr></tbody></table><h4>Power islands (nominal voltage)</h4><ul><li>Processor Subsystem: VDD_CPU 0.8 V</li><li>AES and Comp/Decomp: VDD_CMP 0.75 V (switchable domain)</li><li>The rest of the system: VDD_SOC 0.65 V</li><li>Memories are single rail and connected to VDD_SOC. Common VSS for SOC/CPU digital.</li><li>Efuse/PCI/DDR have VDDIO 1.2 V. There are analog VDDA for PLLs, and other analog parts for PCI and DDR PLLs.</li></ul>',caption:"The workshop SoC: block diagram, floorplan, flops and clock domains per block, and power islands. The lab netlist keeps every block with a few flops each. Click a picture to enlarge."},"sdc-c20":{problem:"A clock interaction table shows every clock pair STA times. Pairs with no common source give tiny, meaningless requirements.",tasks:["Read the table and find the unsafe pair.","Declare it asynchronous.","Give the ALU path two cycles, with the hold fix."],learn:"Review clock interactions, and add a multicycle path -through a block."}};function ne(e,n){let t=document.getElementById("lab-brief");if(!t)return;let a=e[n];if(!a){t.hidden=!0;return}t.querySelector(".brief-problem").textContent=a.problem;let r=t.querySelector(".brief-tasks");r.innerHTML="";for(let i of a.tasks){let p=document.createElement("li");p.textContent=i,r.appendChild(p)}t.querySelector(".brief-learn").textContent=a.learn;let o=t.querySelector(".brief-fig"),_=a.images||(a.image?[{src:a.image,alt:a.imageAlt||""}]:[]);if(_.length||a.html){if(o||(o=document.createElement("figure"),o.className="brief-fig",t.appendChild(o)),o.innerHTML="",_.length){let i=document.createElement("div");i.className="brief-imgs";for(let p of _){let u=document.createElement("a");u.href=p.src,u.target="_blank",u.rel="noopener";let k=document.createElement("img");k.src=p.src,k.alt=p.alt||"",k.loading="lazy",u.appendChild(k),i.appendChild(u)}o.appendChild(i)}if(a.html){let i=document.createElement("div");i.className="brief-html",i.innerHTML=a.html,o.appendChild(i)}if(a.caption){let i=document.createElement("figcaption");i.textContent=a.caption,o.appendChild(i)}}else o&&o.remove();t.hidden=!1}var se=[{id:"ws-lab1",group:"STA workshop",tag:"Day 1",title:"Lab 1 \xB7 Your first timing report",script:"run.tcl",files:{"run.tcl":`# Lab 1 (Day 1): read a library, a netlist and constraints, then report the 5 worst paths.
+(()=>{var Ce={basic:{problem:"Every flop-to-flop path must meet setup and hold. How does STA find the worst path and its slack?",tasks:["Run and read the setup and hold reports.","Find the startpoint, endpoint and slack."],learn:"Read a basic timing report: arrival, required time and slack."},violation:{problem:"The clock is too fast for the logic. The report shows negative slack: what does it mean and where does the time go?",tasks:["Run and find the failing path.","Change the clock period until it passes."],learn:"Read a setup violation and find the period the design can meet."},io:{problem:"Paths to and from the chip pins are only checked if you tell STA what happens outside the block.",tasks:["Run and read the input and output paths.","Change set_input_delay and set_output_delay and see the slack move."],learn:"Constrain I/O paths with input and output delays."},exceptions:{problem:"Some paths are never used, others are allowed more than one cycle. Without exceptions STA reports false failures.",tasks:["Run with and without the false path and multicycle path.","See which paths each exception changes."],learn:"Write false paths and multicycle paths, including the hold adjustment."},ocv:{problem:"Real clocks arrive late, jitter and vary across the die. Ideal clocks make timing look better than it is.",tasks:["Add clock latency, uncertainty and OCV derates.","Watch the slack shrink."],learn:"Model clock latency, uncertainty and on-chip variation."},corners:{problem:"A design must work at slow and fast process corners. Setup fails at the slow corner, hold at the fast one.",tasks:["Run at both corners.","Find which corner limits setup and which limits hold."],learn:"Multi-corner analysis with slow and fast libraries."},spef:{problem:"Wires have resistance and capacitance. Without them, delays are too optimistic.",tasks:["Run without SPEF, then with it.","Compare the net delays."],learn:"Annotate parasitics from SPEF and see their effect on delay."},gcd:{problem:"A real placed-and-routed block: does it meet timing, and how much power does it use?",tasks:["Run timing with SPEF.","Read the power report."],learn:"Run STA and power on a real block, the way signoff does."},"ws-lab1":{problem:"You have a library, a netlist and constraints. Where do you start? Your first timing report.",tasks:["Run and read the 5 worst paths.","Find the startpoint, endpoint and slack of each.","Edit the clock period and input delay and run again."],learn:"The basic STA flow and the parts of a timing report."},"ws-lab2":{problem:"Cell delay depends on the library corner and on the wires. How much does each change in the RC network move the delay?",tasks:["Run without SPEF, then with each SPEF file.","Compare the delays and slack."],learn:"Delay calculation with min/max libraries and SPEF parasitics."},"ws-lab3":{problem:"Can you compute setup slack by hand and match the tool to the picosecond? If not, you cannot debug a real report.",tasks:["Run and pick the reported path.","Work out the slack from clock edges, latency and cell delays.","Check your number against the report."],learn:"Compute setup slack by hand from a report."},"ws-lab6":{problem:"A clock gate must switch only while the clock is inactive, or it chops the clock into glitches.",tasks:["Run and find the clock gating check.","Analyse its slack."],learn:"Clock gating setup and hold checks."},"ws-lab7":{problem:"An asynchronous reset must release far enough from the clock edge, or flops go metastable.",tasks:["Run and find the recovery and removal checks.","Analyse their slack."],learn:"Recovery and removal checks on asynchronous pins."},"ws-lab12":{problem:"The same path gives different slack with one library, min/max libraries, or parasitics. Why?",tasks:["Run example2, example3 and example4.","Compare the three reports."],learn:"How libraries and parasitics change one path's slack."},"ws-lab4":{problem:"Launch and capture clocks share part of their path. Counting its variation twice makes timing look worse than it is.",tasks:["Note the slack, then enable CRPR and run again.","Find the common point and the difference."],learn:"Common path pessimism removal (CPPR/CRPR)."},"ws-lab5":{problem:"Timing fails after layout. You cannot re-synthesize: you fix it with a small change to the netlist, an ECO.",tasks:["Run the ECO script that inserts a clock buffer.","Compare s27_eco.v with s27.v and the slack before and after."],learn:"Timing ECOs and re-timing a changed netlist."},"ws-lab8":{problem:"Hold checks use different clock edges from setup. Picking the wrong edge gives the wrong answer.",tasks:["Run and read the hold report.","Explain the launch and capture edges it picks."],learn:"Hold slack and how hold edges are chosen."},"ws-lab10":{problem:"A chip runs in several modes, each with its own constraints. Checking one mode at a time does not scale.",tasks:["Review mode1.sdc, then add the other modes.","Write one merged SDC covering all four."],learn:"Multi-mode constraints and mode merging."},"ws-lab11":{problem:"Silicon varies with process, voltage and temperature, and across the die. Which corner and derate limits the design?",tasks:["Run three corners with \xB110% derating.","Compare the reports."],learn:"Multi-corner analysis with derates."},"ws-lab13":{problem:"Several clocks with different waveforms: which edges does STA pair up, and what does a multicycle path change?",tasks:["Run and analyse the clock waveforms.","Add a setup multicycle path between clk2 and clk3 and check setup and hold."],learn:"Multiple clocks and multicycle paths, including the hold side effect."},"ws-lab14":{problem:"A path from a rising edge to a falling edge has only half a cycle. Easy to miss, easy to fail.",tasks:["Run and find any half-cycle paths.","Check the edges used for setup and hold."],learn:"Half-cycle paths and how they are timed."},"ws-lab9":{problem:"The report says no paths were found. Something is unconstrained, and that is worse than a violation.",tasks:["Run and confirm there are no paths.","Debug with check_setup -verbose and report_checks -unconstrained."],learn:"Debug an unconstrained design."},"ws-lab15":{problem:"This is how STA looks on a real design: a RISC-V core with about 14,000 cells.",tasks:["Run the full flow.","Read the summary and the worst paths."],learn:"Run a production-style STA flow on a CPU core."},"so-s1":{problem:"At signoff you need one answer fast: does the block meet timing, and by how much?",tasks:["Run the full flow on the routed GCD block.","Read WNS, TNS and the violation counts, then the worst path."],learn:"The signoff analysis flow and timing summary."},"so-s2":{problem:"A clean timing report means nothing if paths are not constrained. Bad constraints are the most common signoff escape.",tasks:["Run check_setup -verbose and list every problem.","Fix ctrl.sdc and see which new paths appear."],learn:"Validate constraints before trusting any timing report."},"so-s3":{problem:"Most timing errors start with wrong clocks: ideal versus propagated, missing latency, a wrongly defined divided clock.",tasks:["Compare ideal and propagated clocks.","Find where each part of the latency comes from and check the divided clock."],learn:"Define and check generated clocks, latency and uncertainty."},"so-s4":{problem:"Exceptions change what STA checks. One wrong exception can hide a real failure.",tasks:["Enable one exception at a time in exc.sdc.","See which path each one changes."],learn:"Case analysis, false paths, multicycle paths and max delay."},"so-s5":{problem:"Signoff engineers spend most of their time asking the design questions. You need fast answers.",tasks:["Run endpoint summaries and full path reports.","Query cells, nets and registers with Tcl."],learn:"Read reports and query a design quickly."},"so-s6":{problem:"OCV derates can turn a passing path into a failing one, and CRPR gives some of it back. How much?",tasks:["Apply derates and watch the slack.","Measure what CRPR recovers."],learn:"On-chip variation and CRPR at signoff."},"so-s7":{problem:"A latch lets a slow path borrow time from the next stage. Borrowing hides slack problems if you do not check it.",tasks:["Find how much L1 borrows and the most it could.","Limit borrowing and see the result."],learn:"Latch timing and time borrowing."},"so-s8":{problem:"You have one setup and one hold violation and no time to re-run layout.",tasks:["Run as given, then enable the upsizing ECO and the hold buffer ECO.","Compare eco_after.v and the new slack."],learn:"Fix setup and hold violations with netlist ECOs."},"so-s9":{problem:"A block must pass at every corner. Setup and hold are limited by different corners.",tasks:["Run at ss, tt and ff.","Find which corner limits setup and which limits hold."],learn:"Multi-corner signoff."},"sdc-c1":{problem:"Every timing check starts from the clock waveforms. If you cannot draw a clock from its create_clock line, you cannot check a single path.",tasks:["Draw clk1, clk2 and clk3 on paper.","Run and compare with report_clock_properties.","Find the edges STA pairs between two clocks."],learn:"Read -period and -waveform, and how STA picks launch and capture edges between clocks."},"sdc-c2":{problem:"Two clocks share the same flops through a clock mux. Unless you say so, STA times them against each other: paths that can never happen in silicon.",tasks:["Count the launch/capture pairs STA times.","Try set_clock_groups -logically_exclusive.","Try set_case_analysis instead and compare."],learn:"Constrain clock muxes with exclusive clock groups or case analysis."},"sdc-c3":{problem:"A clock doubler makes a new waveform from CLK. STA only knows about it if you define a generated clock in the right place.",tasks:["Read the generated clock definition and its waveform.","Check the CLK \u2192 CLKOUT path.","Switch to propagated clocks."],learn:"Where and how to define a generated clock with -edges and -edge_shift."},"sdc-c4":{problem:"A flop divides the clock by 2, and its inverted output makes a second clock. Get the definitions wrong and every path between them is wrong.",tasks:["Read GCLK1 and GCLK2.","Check the half-period path GCLK1 \u2192 GCLK2.","Rewrite GCLK1 with -edges."],learn:"Divided and inverted generated clocks with -divide_by, -invert and -edges."},"sdc-c5":{problem:"Clocks reach flops directly and through a mux. Some pairs never meet, some are asynchronous. Each relationship must be declared, or STA times nonsense.",tasks:["Count the clock pairs STA times.","Declare the mux clocks exclusive.","Declare the two families asynchronous."],learn:"Define clock relationships with set_clock_groups, and generated clocks on a mux with -add."},"sdc-c6":{problem:"A clock through an XOR may pass unchanged, inverted, or STA cannot tell. A non-unate cell doubles the clock edges at the flop.",tasks:["Find the clock sense at r1, r2 and r3.","Count the checks at r3.","Fix it with set_clock_sense."],learn:"Clock unateness, constants from tie cells, and set_clock_sense."},"sdc-c7":{problem:"A false path removes exactly the paths it describes, no more and no less. Predicting which ones is a daily signoff skill.",tasks:["Predict which paths each command removes.","Apply one step at a time.","Count the paths left."],learn:"set_false_path with -through a pin, through a cell output, and -from a clock."},"sdc-c8":{problem:"-rise_from and -fall_to name edges of the clock at its source. With an inverter in the clock tree, the edge at the flop is the opposite one.",tasks:["Predict which of paths A to D each command removes.","Run each step and check."],learn:"Edge-specific exceptions and how inverted clocks change them."},"sdc-c9":{problem:"A multicycle path between clocks of different frequency counts cycles of one of them. Pick the wrong one and the budget is off by a factor.",tasks:["Apply -end and -start and read the new capture edge.","See the hold check move.","Fix hold with a hold multicycle."],learn:"set_multicycle_path -start and -end, and the hold adjustment."},"sdc-c10":{problem:"Two exceptions cover the same path. Only one applies, and guessing wrong hides a violation or a false failure.",tasks:["Answer Q1 and Q2 on paper.","Apply each pair and check the slacks."],learn:"Exception priority: false path, max delay, multicycle, and the more specific one wins."},"sdc-c11":{problem:"A chip has several modes. Running STA once per mode is slow and easy to get wrong; one merged SDC must cover them all safely.",tasks:["Run mode1 and mode2.","Run merged and compare the paths.","Explain the false path on SEL."],learn:"Merge mode constraints into one SDC without losing a real path."},"sdc-c12":{problem:"The IP team's SDC uses the IP's names. At the SoC the clocks are renamed and ports become hierarchical pins, so the constraints must be promoted.",tasks:["Time the IP alone with ip.sdc.","Time the SoC, then apply each promoted step.","Check the IP paths match."],learn:"Promote IP constraints to the SoC: renamed clocks, hierarchical pins, -through."},"sdc-c13":{problem:"Paths to other chips are only checked if you describe what happens outside: when data arrives and when it is needed.",tasks:["Read setup and hold on the input and output.","Launch din on the falling edge and see the effect."],learn:"set_input_delay and set_output_delay with -max, -min and a virtual clock."},"sdc-c14":{problem:"Without a driver and a load, STA thinks inputs switch instantly and outputs drive nothing. Slew and capacitance limits catch weak drivers.",tasks:["Find the slew and capacitance violations.","Try a stronger driver and a bigger buffer.","See which violation remains."],learn:"set_driving_cell, set_input_transition, set_load and design rule limits."},"sdc-c15":{problem:"Before clock tree synthesis there is no real clock tree. The SDC estimates it with latency, uncertainty and transition.",tasks:["Find each clock term in the setup and hold reports.","Switch to propagated clocks and compare."],learn:"Clock latency (source and network), uncertainty and transition."},"sdc-c16":{problem:"Paths between asynchronous clocks have no real timing, but they still need constraints: cut them, or limit how long they take.",tasks:["See the meaningless violation.","Cut it with asynchronous clock groups.","Limit a Gray pointer with set_max_delay instead."],learn:"Constrain clock domain crossings with clock groups or max delay."},"sdc-c17":{problem:"Someone hands you a netlist and no SDC. Can you write it from scratch so that every path is checked correctly?",tasks:["Follow the checklist in my.sdc, one step at a time.","Run check_setup after each step.","Compare with solution.sdc."],learn:"Write a complete SDC: clocks, generated clocks, I/O, false paths and multicycle paths."},"sdc-c18":{problem:"Doing more work per clock means fewer clocks but a longer path. Where is the sweet spot?",tasks:["Run the divider with K = 1, 2, 4 and 8.","Read WNS for each.","Work out the fastest clock and the total time."],learn:"Trade logic per cycle against clock period, and read WNS and TNS."},"sdc-c19":{problem:"Datasheets give clock-to-output, setup, hold and trace delays, not SDC. You have to turn them into input and output delays.",tasks:["Check the formulas in usb.sdc.","Write the wb_data output delays yourself.","Read the hold result."],learn:"Derive I/O delays from datasheet numbers."},"sdc-c21":{problem:"A real chip: a processor subsystem, a dozen IP blocks, a crossbar, PCIe, JTAG, efuse, flash and DDR, with six clock sources, a divided clock, a forwarded clock, falling-edge capture and three power islands. Nobody hands you the SDC.",tasks:["Read the block list in soc.v.","Write soc.sdc section by section with the checklist.","Check the clock interaction table and the per-block slacks, then compare with solution.sdc."],learn:"Constrain a complete SoC: clocks, generated and forwarded clocks, modes, clock groups, CDC limits, exceptions and I/O.",images:[{src:"img/soc_blocks.svg?v=2",alt:"SoC block diagram: processor subsystem with two ARM V9 cores and a 256KB L2 cache, LDPC, AES, accelerator, comp/decomp, DMA, JTAG, PCIe, efuse and flash controllers, crossbar and DDR memory controller"},{src:"img/soc_floorplan.png?v=2",alt:"Full-chip floorplan with DDR IP, PCI IP, ARM partition, AES/comp domain and power domains PD_1 to PD_3"}],html:'<table><thead><tr><th>Block Name</th><th class="n">Flop Count</th><th class="n">Clock Domains</th><th>Memories</th><th>Comment</th></tr></thead><tbody><tr><td>Processor Subsystem</td><td class="n">250000</td><td class="n">Up to 1GHz</td><td>Other than cache, there are two sets of 128KB Instruction and 256KB Data Memory</td><td>On a separate Physical Partition, with frequency and voltage scaling capability</td></tr><tr><td>LDPC</td><td class="n">100000</td><td class="n">500</td><td>64KB</td><td>64KB is composed of many small memory cuts (register file, single port and dual port RAMs)</td></tr><tr><td>AES</td><td class="n">80000</td><td class="n">500</td><td></td><td></td></tr><tr><td>Accelerator</td><td class="n">10000</td><td class="n">200</td><td>1KB</td><td></td></tr><tr><td>Comp/Decomp Engine</td><td class="n">80000</td><td class="n">500</td><td>8KB</td><td></td></tr><tr><td>DMA</td><td class="n">20000</td><td class="n">500</td><td></td><td></td></tr><tr><td>JTAG</td><td class="n">1000</td><td class="n">50</td><td></td><td></td></tr><tr><td>PCIe</td><td class="n">80000</td><td class="n">250</td><td>2KB</td><td></td></tr><tr><td>Efuse Controller</td><td class="n">10000</td><td class="n">100</td><td></td><td></td></tr><tr><td>Flash Controller</td><td class="n">10000</td><td class="n">100</td><td></td><td></td></tr><tr><td>Crossbar</td><td class="n">15000</td><td class="n">500</td><td></td><td></td></tr><tr><td>DDR Memory Controller</td><td class="n">70000</td><td class="n">400</td><td>4KB</td><td>Small fraction of flops are negedge capture</td></tr></tbody></table><h4>Power islands (nominal voltage)</h4><ul><li>Processor Subsystem: VDD_CPU 0.8 V</li><li>AES and Comp/Decomp: VDD_CMP 0.75 V (switchable domain)</li><li>The rest of the system: VDD_SOC 0.65 V</li><li>Memories are single rail and connected to VDD_SOC. Common VSS for SOC/CPU digital.</li><li>Efuse/PCI/DDR have VDDIO 1.2 V. There are analog VDDA for PLLs, and other analog parts for PCI and DDR PLLs.</li></ul>',caption:"The workshop SoC: block diagram, floorplan, flops and clock domains per block, and power islands. The lab netlist keeps every block with a few flops each. Click a picture to enlarge."},"sdc-c20":{problem:"A clock interaction table shows every clock pair STA times. Pairs with no common source give tiny, meaningless requirements.",tasks:["Read the table and find the unsafe pair.","Declare it asynchronous.","Give the ALU path two cycles, with the hold fix."],learn:"Review clock interactions, and add a multicycle path -through a block."},"ver-v1":{problem:"A multicycle path tells STA a path has more than one clock. STA believes it. Only the design decides whether it is true, so every MCP needs an assertion that checks it in simulation.",tasks:["Run STA and read the setup and hold checks.","Remove the MCP and see the violation.","Press Simulate: A_MCP checks the data is stable 2 clocks before capture."],learn:"Same-clock MCPs with enables, the -hold fix, and turning a constraint into an assertion."},"ver-v2":{problem:"The SDC says 3 cycles; the design gives 2. STA passes and the chip fails. This is how wrong multicycle paths escape to silicon.",tasks:["Run STA: it passes.","Press Simulate: the assertion from the SDC fails.","Put the real MCP in the SDC and see the true violation."],learn:"Why MCPs must be verified against the design, not just written."},"ver-v3":{problem:"Data goes from a slow clock to a fast clock. The fast flop must wait for the right edge, and the SDC must count cycles in the right clock (-end).",tasks:["Run STA with and without the MCP.","Simulate: A_MCP and A_PHASE check the capture edge."],learn:"Slow-to-fast multicycle paths, -end, and phase alignment."},"ver-v4":{problem:"The same SDC, but the fast flop captures one cycle early. STA cannot see the enable logic, so it still passes.",tasks:["Run STA: same slack as Verify 3.","Simulate and read the failures.","Find the one-line bug in mcp_s2f.sv."],learn:"How a wrong capture enable breaks a slow-to-fast MCP."},"ver-v5":{problem:"Data goes from a fast clock to a slow clock. The slow flop samples once per slow period, so the fast source must hold its value that long (-start).",tasks:["Run STA with and without the MCP.","Simulate: A_MCP checks the source holds for 3 fast cycles."],learn:"Fast-to-slow multicycle paths and -start."},"ver-v6":{problem:"The source loads one fast cycle late, a common result of registering an enable. STA still passes.",tasks:["Simulate and read the failures.","Fix the load enable in mcp_f2s.sv."],learn:"How a late launch breaks a fast-to-slow MCP."},"ver-v7":{problem:"A clock gate that opens every 2nd clock gives the gated flops 2 cycles. STA times the gated clock as the full-speed clock, so the MCP is needed, and must be backed by the gating logic.",tasks:["Run STA with and without the MCP.","Simulate: A_GAP checks the gated clock, A_MCP the data."],learn:"Multicycle paths that come from clock gating."},"ver-v8":{problem:"A later change added burst mode, which opens the clock gate every clock. The SDC was never updated. STA passes; the design does not.",tasks:["Simulate and find when the assertions fail.","Run again without burst mode."],learn:"Why design changes must be checked against existing constraints."},"ver-v9":{problem:"Two clocks reach the same flops through a clock mux. Without clock groups STA times paths between them that can never happen.",tasks:["Run STA with and without set_clock_groups.","Simulate: A_SEL checks the mux select only changes in reset."],learn:"Logically exclusive clocks, and the design condition that makes them true."},"ver-v10":{problem:"Declaring two clocks logically exclusive removes every path between them, including real crossings that do not go through the mux.",tasks:["Run STA: a_q -> b_q is not timed.","Simulate: A_CROSS fails.","Try solution.sdc: generated clocks on the mux output only."],learn:"The impact of a wrong clock group, and how to constrain a clock mux correctly."},"ver-v11":{problem:"One port carries the functional clock or the test clock. Both are defined on it, and STA must be told they never coexist.",tasks:["Run STA with and without the clock group.","Simulate: A_MODE and A_PERIOD check the mode and the period."],learn:"Physically exclusive clocks, create_clock -add, and checking them in simulation."},"ver-v12":{problem:"The SDC says the BIST clock never runs with the functional clock. Online BIST does, and its status crosses into the functional domain.",tasks:["Run STA: done_q -> stat_q is not timed.","Simulate: A_EXCL and A_CROSS fail.","Try solution.sdc and see the crossing."],learn:"What a wrong physically exclusive group hides: paths and crosstalk."}};function Se(e,t){let n=document.getElementById("lab-brief");if(!n)return;let s=e[t];if(!s){n.hidden=!0;return}n.querySelector(".brief-problem").textContent=s.problem;let c=n.querySelector(".brief-tasks");c.innerHTML="";for(let r of s.tasks){let k=document.createElement("li");k.textContent=r,c.appendChild(k)}n.querySelector(".brief-learn").textContent=s.learn;let l=n.querySelector(".brief-fig"),o=s.images||(s.image?[{src:s.image,alt:s.imageAlt||""}]:[]);if(o.length||s.html){if(l||(l=document.createElement("figure"),l.className="brief-fig",n.appendChild(l)),l.innerHTML="",o.length){let r=document.createElement("div");r.className="brief-imgs";for(let k of o){let f=document.createElement("a");f.href=k.src,f.target="_blank",f.rel="noopener";let h=document.createElement("img");h.src=k.src,h.alt=k.alt||"",h.loading="lazy",f.appendChild(h),r.appendChild(f)}l.appendChild(r)}if(s.html){let r=document.createElement("div");r.className="brief-html",r.innerHTML=s.html,l.appendChild(r)}if(s.caption){let r=document.createElement("figcaption");r.textContent=s.caption,l.appendChild(r)}}else l&&l.remove();n.hidden=!1}var Ee=[{id:"ws-lab1",group:"STA workshop",tag:"Day 1",title:"Lab 1 \xB7 Your first timing report",script:"run.tcl",files:{"run.tcl":`# Lab 1 (Day 1): read a library, a netlist and constraints, then report the 5 worst paths.
 # Exercises: find the startpoint, endpoint and slack of each path.
 # Then edit simple.sdc (clock period, input delay) and run again to see the slack move.
 
@@ -3070,7 +3070,2741 @@ set_output_delay 10  -clock tck [get_ports tdo]
 set_input_delay  2.0 -clock flash_sck -clock_fall [get_ports flash_di]
 set_output_delay 2.0 -clock flash_sck [get_ports flash_do]
 set_input_delay  0   -clock clk_sys [get_ports {rst_n trst_n fuse_in scan_mode}]
-`},quiz:[{type:"number",q:"With the empty soc.sdc, how many register clock pins have no clock?",answer:49,tol:0,unit:"",explain:"Every flop in the chip: nothing is checked until the clocks exist.",try:!1},{type:"number",q:"With the empty soc.sdc, how many endpoints are unconstrained?",answer:55,tol:0,unit:"",explain:"All flop D pins plus the outputs.",try:!1},{type:"number",q:"Try it: run solution.sdc. How many clocks does report_clock_properties list?",answer:7,tol:0,unit:"",explain:"Five primary clocks and two generated ones (clk_slow and the forwarded flash_sck). test_clk belongs in the scan-mode SDC.",try:!0},{type:"choice",q:"With solution.sdc, which block has the worst setup slack, and why?",options:["u_ldpc: the longest logic","u_ddr: neg_cap_reg captures on the falling edge, so its path has only half of the 3.2 ns clock","u_cpu: the fastest clock","u_jtag: the slowest clock"],answer:1,explain:"0.57 ns at u_ddr/neg_cap_reg. Half-cycle paths are easy to miss when you only look at the clock period.",try:!1},{type:"number",q:"With solution.sdc, how many launch \u2192 capture clock pairs does the interaction table show?",answer:9,tol:0,unit:"",explain:"Each clock to itself, clk_cpu \u2192 clk_sys under the max delay, and the clk_slow / flash_sck pairs.",try:!1},{type:"number",q:"Try it: comment out set_clock_groups in solution.sdc. How many clock pairs are timed now?",answer:13,tol:0,unit:"",explain:"The DDR, PCIe and JTAG crossings into clk_sys are now timed against meaningless edge pairs, for example 0.35 ns of slack between clk_sys and clk_ddr.",try:!0},{type:"number",q:"Try it: comment out set_max_delay instead. What is the worst setup slack in u_xbar?",answer:-.23,tol:.01,unit:"ns",explain:"Without it, STA treats clk_cpu and clk_sys as synchronous: 2.5 ns and 4 ns edges come within 0.5 ns of each other. The crossing has a synchronizer; what matters is a bounded delay, not that edge pair.",try:!0},{type:"number",q:"Try it: comment out the two multicycle lines. What is the worst setup slack in u_comp?",answer:-1.83,tol:.01,unit:"ns",explain:"The comp/decomp datapath needs 5.7 ns: it only meets timing with its two cycles.",try:!0},{type:"choice",q:"With solution.sdc, check_setup still warns about test_clk, flash_sck and u_efuse/fuse_reg/D. Why is that fine?",options:["They are bugs in OpenSTA","test_clk is only used in scan mode, flash_sck is a clock output (it has a generated clock, not an output delay), and fuse_in is a static input with a false path","They are not connected","Warnings never matter"],answer:1,explain:"Signoff means every warning is either fixed or explained.",try:!1},{type:"number",q:"With solution.sdc, what is the setup slack into u_flash/di_reg (flash_di is launched on the falling edge of flash_sck)?",answer:1.9,tol:.01,unit:"ns",explain:"flash_di arrives 4 + 2 = 6 ns after the clk_slow rise, required at 7.90 ns.",try:!1},{type:"choice",q:"AES and Comp/Decomp are in a switchable power domain (VDD_CMP). Where is that described?",options:["In the SDC with set_case_analysis","In the power intent (UPF), not the SDC. STA then needs a corner for each voltage, and isolation cells at the domain boundary","In the netlist only","It does not matter for timing"],answer:1,explain:"SDC describes timing. Voltages and switchable domains come from UPF; each domain voltage needs its own library corner.",try:!1}]}];var ae={basic:[{type:"number",q:"What is the setup slack of the worst path r2 \u2192 r3?",answer:9.41,tol:.01,unit:"ns",explain:"Required 9.89 ns (10 ns period \u2212 0.11 ns setup), arrival 0.47 ns.",try:!1},{type:"number",q:"What is the data arrival time at r3/D?",answer:.47,tol:.01,unit:"ns",explain:"Clock-to-Q of r2 plus u1 and u2.",try:!1},{type:"number",q:"What is the hold slack of in1 \u2192 r1?",answer:.03,tol:.01,unit:"ns",explain:"Almost no margin: in1 changes at the clock edge (input delay 0).",try:!1},{type:"choice",q:"How would you give in1 \u2192 r1 more hold margin?",options:["Make the clock faster","Set a realistic minimum input delay (set_input_delay -min) or add delay on the path","Remove the flop","Increase the setup time"],answer:1,explain:"The comment in run.tcl suggests set_input_delay -min 0.2.",try:!1}],violation:[{type:"number",q:"What is the worst setup slack?",answer:-.09,tol:.01,unit:"ns",explain:"The 0.5 ns clock is too fast for the r2 \u2192 r3 path.",try:!1},{type:"number",q:"What is the shortest clock period that would pass (period \u2212 slack)?",answer:.59,tol:.01,unit:"ns",explain:"0.5 + 0.089 \u2248 0.59 ns.",try:!1},{type:"choice",q:"Which of these would NOT fix a setup violation?",options:["A slower clock","Faster (bigger) cells on the path","Adding a delay buffer on the path","Less logic between the flops"],answer:2,explain:"A delay buffer fixes hold, not setup.",try:!1}],io:[{type:"number",q:"What is the setup slack from in1 to r1?",answer:1.25,tol:.01,unit:"ns",explain:"in1 arrives 0.6 ns after the clock edge (set_input_delay).",try:!1},{type:"number",q:"What is the setup slack from r3 to out?",answer:.8,tol:.01,unit:"ns",explain:"The output must arrive by 2 \u2212 0.8 = 1.2 ns.",try:!1},{type:"choice",q:"What does set_output_delay 0.8 describe?",options:["The delay of the output buffer","The time the logic outside the chip needs after the pin, before the next clock edge","A hold requirement only","The wire delay inside the block"],answer:1,explain:"STA subtracts it from the clock period.",try:!1}],exceptions:[{type:"number",q:"What is the setup slack of r2 \u2192 r3 with its 2-cycle multicycle path?",answer:.31,tol:.01,unit:"ns",explain:"The budget is two 0.45 ns cycles.",try:!1},{type:"number",q:"And of r1 \u2192 r3, which has no exception?",answer:-.05,tol:.01,unit:"ns",explain:"Add a multicycle path for it too and it passes.",try:!1},{type:"choice",q:"Why does the multicycle path need a -hold 1 line as well?",options:["It does not","A setup multicycle also moves the hold check; -hold 1 moves it back to the original edge","To make it faster","For the false path"],answer:1,explain:"",try:!1},{type:"choice",q:"What does set_false_path -from in1 do?",options:["Ties in1 to 0","Stops STA timing every path that starts at in1","Removes in1 from the netlist","Makes in1 a clock"],answer:1,explain:"",try:!1}],ocv:[{type:"number",q:"What is the setup slack of r2 \u2192 r3 with the OCV derates?",answer:1.27,tol:.01,unit:"ns",explain:"",try:!1},{type:"number",q:"What is the hold slack of in1 \u2192 r1?",answer:.28,tol:.01,unit:"ns",explain:"",try:!1},{type:"number",q:"What is the total clock latency (source + network) set in constraints.sdc?",answer:.5,tol:.01,unit:"ns",explain:"0.30 + 0.20 ns.",try:!1},{type:"choice",q:"For a setup check, how does -late 1.08 / -early 0.92 make timing more pessimistic?",options:["It does not","Data paths are taken 8% slower and the capture clock 8% faster","Both are taken 8% faster","It only affects hold"],answer:1,explain:"",try:!1}],corners:[{type:"choice",q:"Which corner limits setup?",options:["ss (slow)","ff (fast)"],answer:0,explain:"131.18 ps at ss, 220.94 ps at ff.",try:!1},{type:"number",q:"What is the setup slack at the ss corner?",answer:131.18,tol:.01,unit:"ps",explain:"ASAP7 delays are in ps.",try:!1},{type:"number",q:"What is the hold slack of in1 \u2192 r1 at the ff corner?",answer:-7.91,tol:.01,unit:"ps",explain:"",try:!1},{type:"choice",q:"Why does hold fail at both corners here?",options:["The clock is too slow","in1 changes exactly at the clock edge (input delay 0), so any hold time fails","The library is wrong","Too much logic"],answer:1,explain:"",try:!1}],spef:[{type:"number",q:"What is the setup slack without wire parasitics?",answer:131.18,tol:.01,unit:"ps",explain:"",try:!1},{type:"number",q:"And with the SPEF parasitics?",answer:-84.68,tol:.01,unit:"ps",explain:"",try:!1},{type:"choice",q:"Why does the slack drop so much?",options:["The clock changes","Wire capacitance and resistance slow every stage: bigger loads, slower slews, longer delays","The SPEF adds flops","The library changes"],answer:1,explain:"Timing without parasitics is optimistic.",try:!1}],gcd:[{type:"number",q:"What is the WNS of the GCD block?",answer:-.18,tol:.01,unit:"ns",explain:"The worst path ends at the output resp_msg[15].",try:!1},{type:"number",q:"What is the TNS?",answer:-.27,tol:.01,unit:"ns",explain:"",try:!1},{type:"number",q:"What is the total power in mW (report_power gives watts)?",answer:.714,tol:.01,unit:"mW",explain:"7.14e-04 W.",try:!1},{type:"choice",q:"Why does set_power_activity matter for the power result?",options:["It does not","Dynamic power depends on how often nets toggle; without activity STA has to guess","It sets the voltage","It sets the temperature"],answer:1,explain:"",try:!1}]};var L=`// Two flops feeding a third through a buffer and an AND gate.
+`},quiz:[{type:"number",q:"With the empty soc.sdc, how many register clock pins have no clock?",answer:49,tol:0,unit:"",explain:"Every flop in the chip: nothing is checked until the clocks exist.",try:!1},{type:"number",q:"With the empty soc.sdc, how many endpoints are unconstrained?",answer:55,tol:0,unit:"",explain:"All flop D pins plus the outputs.",try:!1},{type:"number",q:"Try it: run solution.sdc. How many clocks does report_clock_properties list?",answer:7,tol:0,unit:"",explain:"Five primary clocks and two generated ones (clk_slow and the forwarded flash_sck). test_clk belongs in the scan-mode SDC.",try:!0},{type:"choice",q:"With solution.sdc, which block has the worst setup slack, and why?",options:["u_ldpc: the longest logic","u_ddr: neg_cap_reg captures on the falling edge, so its path has only half of the 3.2 ns clock","u_cpu: the fastest clock","u_jtag: the slowest clock"],answer:1,explain:"0.57 ns at u_ddr/neg_cap_reg. Half-cycle paths are easy to miss when you only look at the clock period.",try:!1},{type:"number",q:"With solution.sdc, how many launch \u2192 capture clock pairs does the interaction table show?",answer:9,tol:0,unit:"",explain:"Each clock to itself, clk_cpu \u2192 clk_sys under the max delay, and the clk_slow / flash_sck pairs.",try:!1},{type:"number",q:"Try it: comment out set_clock_groups in solution.sdc. How many clock pairs are timed now?",answer:13,tol:0,unit:"",explain:"The DDR, PCIe and JTAG crossings into clk_sys are now timed against meaningless edge pairs, for example 0.35 ns of slack between clk_sys and clk_ddr.",try:!0},{type:"number",q:"Try it: comment out set_max_delay instead. What is the worst setup slack in u_xbar?",answer:-.23,tol:.01,unit:"ns",explain:"Without it, STA treats clk_cpu and clk_sys as synchronous: 2.5 ns and 4 ns edges come within 0.5 ns of each other. The crossing has a synchronizer; what matters is a bounded delay, not that edge pair.",try:!0},{type:"number",q:"Try it: comment out the two multicycle lines. What is the worst setup slack in u_comp?",answer:-1.83,tol:.01,unit:"ns",explain:"The comp/decomp datapath needs 5.7 ns: it only meets timing with its two cycles.",try:!0},{type:"choice",q:"With solution.sdc, check_setup still warns about test_clk, flash_sck and u_efuse/fuse_reg/D. Why is that fine?",options:["They are bugs in OpenSTA","test_clk is only used in scan mode, flash_sck is a clock output (it has a generated clock, not an output delay), and fuse_in is a static input with a false path","They are not connected","Warnings never matter"],answer:1,explain:"Signoff means every warning is either fixed or explained.",try:!1},{type:"number",q:"With solution.sdc, what is the setup slack into u_flash/di_reg (flash_di is launched on the falling edge of flash_sck)?",answer:1.9,tol:.01,unit:"ns",explain:"flash_di arrives 4 + 2 = 6 ns after the clk_slow rise, required at 7.90 ns.",try:!1},{type:"choice",q:"AES and Comp/Decomp are in a switchable power domain (VDD_CMP). Where is that described?",options:["In the SDC with set_case_analysis","In the power intent (UPF), not the SDC. STA then needs a corner for each voltage, and isolation cells at the domain boundary","In the netlist only","It does not matter for timing"],answer:1,explain:"SDC describes timing. Voltages and switchable domains come from UPF; each domain voltage needs its own library corner.",try:!1}]},{id:"ver-v1",group:"Verify constraints",tag:"Verify 1",title:"Same-clock MCP: the assertion holds",script:"run.tcl",order:["run.tcl","mcp_same.sv","tb_mcp_same.sv","checks.sv","mcp_same.v","mcp_same.sdc"],files:{"run.tcl":`# Verify 1: a 2-cycle multicycle path on one clock, checked by STA and by an assertion.
+# Run STA, then press Simulate to run tb_mcp_same.sv with the assertion from checks.sv.
+
+read_liberty sky130_fd_sc_hd__tt_025C_1v80.lib
+read_verilog mcp_same.v
+link_design mcp_same
+read_sdc mcp_same.sdc
+
+puts "### Clocks"
+report_clock_properties
+puts "\\n### Setup: a_q_reg -> dout_reg"
+report_checks -from a_q_reg/CLK -to dout_reg/D -path_delay max
+puts "\\n### Hold: a_q_reg -> dout_reg"
+report_checks -from a_q_reg/CLK -to dout_reg/D -path_delay min
+puts "\\n### Worst setup paths"
+report_checks -path_delay max -group_path_count 5 -format end
+report_wns
+report_tns
+`,"mcp_same.sv":`// RTL of mcp_same. The slow logic y takes more than one clock, so a_q and dout load only
+// every 2nd clock (when phase = 0). The SDC sets a 2-cycle multicycle path from a_q to dout.
+// The checker turns that constraint into an assertion: data must be stable 2 clocks before capture.
+\`timescale 1ns/1ps
+module mcp_same (
+  input  logic       clk, rst_n,
+  input  logic [7:0] din,
+  output logic [7:0] dout
+);
+  logic       phase;                       // 0, 1, 0, 1, ...
+  logic [7:0] a_q, y;
+  wire        en = (phase == 1'b0);        // launch and capture enable: every 2nd clock
+  assign y = (a_q * 8'd5) ^ (a_q >> 1);    // the slow logic
+
+  always_ff @(posedge clk or negedge rst_n)
+    if (!rst_n) begin phase <= 1'b0; a_q <= '0; dout <= '0; end
+    else begin
+      phase <= ~phase;
+      if (en) a_q  <= din;                 // launch
+      if (en) dout <= y;                   // capture, 2 clocks after the launch
+    end
+
+  // synthesis translate_off
+  mcp_check #(.N(2), .PERIOD(2.0), .NAME("A_MCP a_q->dout")) u_mcp (.cap_clk(clk), .rst_n(rst_n), .cap_en(en), .src(a_q));
+  // synthesis translate_on
+endmodule
+`,"tb_mcp_same.sv":`// Testbench for mcp_same: random data for 60 clocks, then the assertion results.
+\`timescale 1ns/1ps
+module tb_mcp_same;
+  logic clk = 0, rst_n = 0;
+  logic [7:0] din = 0, dout;
+  always #1 clk = ~clk;                    // 2 ns clock, as in the SDC
+  mcp_same dut (.*);
+  initial begin
+    $dumpfile("waves.vcd"); $dumpvars(1, tb_mcp_same); $dumpvars(1, tb_mcp_same.dut);
+    #5.5 rst_n = 1;
+    repeat (60) @(negedge clk) din = $random;
+    $display("%-8s %0d checks, %0d failed", "A_MCP", dut.u_mcp.checks, dut.u_mcp.fails);
+    if ((dut.u_mcp.fails) == 0) $display("PASS: every assertion held");
+    else $display("FAIL: %0d assertion failures: the design does not match the constraint", dut.u_mcp.fails);
+    $finish;
+  end
+endmodule
+`,"checks.sv":`// Assertion checkers for timing constraints.
+// Icarus Verilog has no concurrent SVA, so each checker uses clocked immediate assertions.
+// Above each checker is the concurrent SVA property you would write in a commercial simulator.
+\`timescale 1ns/1ps
+
+// A_MCP: a multicycle path is only safe if the source data has been stable for N cycles
+// (of the clock the MCP counts, PERIOD ns) when the destination captures it.
+//   SVA, same clock, N = 2:   assert property (@(posedge clk) disable iff (!rst_n) $changed(src) |-> !cap_en);
+//   SVA, general:             assert property (@(posedge clk) disable iff (!rst_n) $changed(src) |-> !cap_en [*N-1]);
+module mcp_check #(parameter W = 8, parameter N = 2, parameter real PERIOD = 2.0, parameter NAME = "A_MCP")
+  (input logic cap_clk, rst_n, cap_en, input logic [W-1:0] src);
+  realtime t_change = 0.0;
+  integer checks = 0, fails = 0;
+  always @(src) t_change = $realtime;
+  always @(posedge cap_clk)
+    if (rst_n === 1'b1 && cap_en === 1'b1) begin
+      checks = checks + 1;
+      assert ($realtime - t_change >= N * PERIOD - 0.001)
+      else begin
+        fails = fails + 1;
+        if (fails <= 4) $display("ASSERTION FAILED %0s at %0.1f ns: data captured %0.1f ns after it changed, the multicycle path needs %0d x %0.1f = %0.1f ns",
+                                 NAME, $realtime, $realtime - t_change, N, PERIOD, N * PERIOD);
+      end
+    end
+endmodule
+
+// A_GAP: a gated clock may pulse at most once every N cycles of its source clock.
+//   SVA: assert property (@(posedge gclk) disable iff (!rst_n) 1 |=> @(posedge clk) !gclk_en [*N-1]);
+module gap_check #(parameter N = 2, parameter real PERIOD = 2.0, parameter NAME = "A_GAP")
+  (input logic gclk, rst_n);
+  realtime t_last = -1.0e9;
+  integer checks = 0, fails = 0;
+  always @(posedge gclk)
+    if (rst_n === 1'b1) begin
+      checks = checks + 1;
+      assert ($realtime - t_last >= N * PERIOD - 0.001)
+      else begin
+        fails = fails + 1;
+        if (fails <= 4) $display("ASSERTION FAILED %0s at %0.1f ns: the gated clock pulsed %0.1f ns after its last pulse, expected at least %0.1f ns",
+                                 NAME, $realtime, $realtime - t_last, N * PERIOD);
+      end
+      t_last = $realtime;
+    end
+endmodule
+
+// A_PHASE: the fast-clock phase counter must be 0 on every slow clock edge.
+//   SVA: assert property (@(posedge clk_s) disable iff (!rst_n) ph == 0);
+module phase_check #(parameter NAME = "A_PHASE") (input logic clk_s, rst_n, ph0);
+  integer checks = 0, fails = 0;
+  always @(posedge clk_s)
+    if (rst_n === 1'b1) begin
+      checks = checks + 1;
+      assert (ph0 === 1'b1)
+      else begin
+        fails = fails + 1;
+        if (fails <= 4) $display("ASSERTION FAILED %0s at %0.1f ns: a slow clock edge where the fast phase is not 0", NAME, $realtime);
+      end
+    end
+endmodule
+
+// A_STATIC: a quasi-static signal (a clock select or a mode) may only change in reset.
+//   SVA: assert property (@(posedge clk) disable iff (!rst_n) $stable(sig));
+module static_check #(parameter NAME = "A_STATIC") (input logic rst_n, sig);
+  integer checks = 0, fails = 0;
+  always @(sig)
+    if ($realtime > 0) begin
+      checks = checks + 1;
+      assert (rst_n !== 1'b1)
+      else begin
+        fails = fails + 1;
+        if (fails <= 4) $display("ASSERTION FAILED %0s at %0.1f ns: the signal changed while the design is running (out of reset)", NAME, $realtime);
+      end
+    end
+endmodule
+
+// A_CROSS: claiming two clocks are exclusive says no data goes from one to the other.
+// So a flop on the capture clock must never sample data that the other clock changed
+// since its previous capture edge.
+//   SVA: assert property (@(posedge cap_clk) disable iff (!rst_n) $stable(src));
+module cross_check #(parameter W = 1, parameter NAME = "A_CROSS") (input logic cap_clk, rst_n, input logic [W-1:0] src);
+  logic [W-1:0] prev;
+  integer checks = 0, fails = 0;
+  always @(posedge cap_clk) begin
+    if (rst_n === 1'b1) begin
+      checks = checks + 1;
+      assert (src === prev)
+      else begin
+        fails = fails + 1;
+        if (fails <= 4) $display("ASSERTION FAILED %0s at %0.1f ns: data from the other clock changed and is captured here, so the two clocks do interact", NAME, $realtime);
+      end
+    end
+    prev = src;
+  end
+endmodule
+
+// A_EXCL: physically exclusive clocks are never present at the same time.
+//   SVA: assert property (@(posedge clk1) !clk2_running);   (clk2_running from a clock activity monitor)
+module excl_check #(parameter real WINDOW = 20.0, parameter NAME = "A_EXCL") (input logic clk1, clk2);
+  realtime t1 = -1.0e9, t2 = -1.0e9;
+  integer checks = 0, fails = 0;
+  always @(posedge clk1) begin
+    checks = checks + 1;
+    assert ($realtime - t2 > WINDOW)
+    else begin fails = fails + 1; if (fails <= 4) $display("ASSERTION FAILED %0s at %0.1f ns: both clocks are running (the other clock toggled %0.1f ns ago)", NAME, $realtime, $realtime - t2); end
+    t1 = $realtime;
+  end
+  always @(posedge clk2) begin
+    checks = checks + 1;
+    assert ($realtime - t1 > WINDOW)
+    else begin fails = fails + 1; if (fails <= 4) $display("ASSERTION FAILED %0s at %0.1f ns: both clocks are running (the other clock toggled %0.1f ns ago)", NAME, $realtime, $realtime - t1); end
+    t2 = $realtime;
+  end
+endmodule
+
+// A_PERIOD: the clock on a port matches the SDC clock for the current mode.
+//   SVA: property with a local variable that measures the period between two edges.
+module period_check #(parameter real P0 = 2.0, parameter real P1 = 5.0, parameter NAME = "A_PERIOD") (input logic clk, rst_n, mode);
+  realtime t_last = -1.0;
+  real expect_ns;
+  integer checks = 0, fails = 0;
+  always @(posedge clk) begin
+    expect_ns = mode ? P1 : P0;
+    if (rst_n === 1'b1 && t_last >= 0) begin
+      checks = checks + 1;
+      assert ($realtime - t_last > expect_ns - 0.01 && $realtime - t_last < expect_ns + 0.01)
+      else begin fails = fails + 1; if (fails <= 4) $display("ASSERTION FAILED %0s at %0.1f ns: clock period %0.1f ns, the SDC clock for this mode is %0.1f ns", NAME, $realtime, $realtime - t_last, expect_ns); end
+    end
+    t_last = (rst_n === 1'b1) ? $realtime : -1.0;
+  end
+endmodule
+`,"mcp_same.v":`// Gate-level netlist of mcp_same (one bit of the 8-bit datapath is enough for STA).
+// phase toggles every clock; a_q and dout load only when phase = 0 (DE pin of the enable flops).
+// a_q -> 6 delay gates -> dout is the slow logic, about 3.5 ns.
+module mcp_same (clk, rst_n, din, dout);
+  input  clk, rst_n, din;
+  output dout;
+  wire   phase, phase_n, a_q, y, y1, y2, y3, y4, y5;
+  sky130_fd_sc_hd__dfrtp_1 phase_reg (.CLK(clk), .D(phase_n), .RESET_B(rst_n), .Q(phase));
+  sky130_fd_sc_hd__inv_1 u_inv (.A(phase), .Y(phase_n));
+  sky130_fd_sc_hd__edfxtp_1 a_q_reg (.CLK(clk), .D(din), .DE(phase_n), .Q(a_q));
+  sky130_fd_sc_hd__dlygate4sd3_1 yg1 (.A(a_q), .X(y1));
+  sky130_fd_sc_hd__dlygate4sd3_1 yg2 (.A(y1), .X(y2));
+  sky130_fd_sc_hd__dlygate4sd3_1 yg3 (.A(y2), .X(y3));
+  sky130_fd_sc_hd__dlygate4sd3_1 yg4 (.A(y3), .X(y4));
+  sky130_fd_sc_hd__dlygate4sd3_1 yg5 (.A(y4), .X(y5));
+  sky130_fd_sc_hd__dlygate4sd3_1 yg6 (.A(y5), .X(y));
+  sky130_fd_sc_hd__edfxtp_1 dout_reg (.CLK(clk), .D(y), .DE(phase_n), .Q(dout));
+endmodule
+`,"mcp_same.sdc":`# Constraints for mcp_same
+create_clock -name clk -period 2 [get_ports clk]
+set_input_delay  0.2 -clock clk [get_ports din]
+set_output_delay 0.2 -clock clk [get_ports dout]
+set_false_path -from [get_ports rst_n]
+
+# a_q -> dout is a multicycle path: a_q and dout load only every 2nd clock.
+set_multicycle_path 2 -setup -from [get_cells a_q_reg] -to [get_cells dout_reg]
+set_multicycle_path 1 -hold  -from [get_cells a_q_reg] -to [get_cells dout_reg]
+`},quiz:[{type:"number",q:"What is the setup slack from a_q_reg to dout_reg with the multicycle path?",answer:.18,tol:.01,unit:"ns",explain:"The capture edge moves from 2 ns to 4 ns.",try:!1},{type:"number",q:"Try it: Comment out both set_multicycle_path lines (put # in front) and run STA again. What is the setup slack now?",answer:-1.82,tol:.01,unit:"ns",explain:"The slow logic (about 3.5 ns) does not fit in one 2 ns clock.",try:!0},{type:"number",q:"Press Simulate. How many captures does A_MCP check?",answer:30,tol:0,unit:"",explain:"dout captures every 2nd clock for 60 clocks.",try:!1},{type:"choice",q:"Why does the SDC also need set_multicycle_path 1 -hold?",options:["Without it the hold check moves to 2 ns, one cycle later than the real hold edge","To make setup pass","Hold checks need a multicycle path of 1 on every path","It is optional"],answer:0,explain:"A setup MCP of N moves the default hold check N\u22121 cycles later. -hold N\u22121 moves it back to the launch edge.",try:!1},{type:"choice",q:"What does the assertion check that STA cannot?",options:["That the design really holds a_q stable for 2 clocks before dout captures it","The delay of the slow logic","The clock period","Hold timing"],answer:0,explain:"STA trusts the SDC. Only the design (the enables) decides whether 2 cycles are really there.",try:!1}]},{id:"ver-v2",group:"Verify constraints",tag:"Verify 2",title:"Same-clock MCP: the SDC promises more than the design gives",script:"run.tcl",order:["run.tcl","mcp_same.sv","tb_mcp_same.sv","checks.sv","mcp_same.v","mcp_same.sdc"],files:{"run.tcl":`# Verify 2: the SDC says the slow logic has 3 clocks. The design only gives it 2.
+# STA passes. Press Simulate: the assertion written from the SDC fails.
+
+read_liberty sky130_fd_sc_hd__tt_025C_1v80.lib
+read_verilog mcp_same.v
+link_design mcp_same
+read_sdc mcp_same.sdc
+
+puts "### Clocks"
+report_clock_properties
+puts "\\n### Setup: a_q_reg -> dout_reg"
+report_checks -from a_q_reg/CLK -to dout_reg/D -path_delay max
+puts "\\n### Hold: a_q_reg -> dout_reg"
+report_checks -from a_q_reg/CLK -to dout_reg/D -path_delay min
+puts "\\n### Worst setup paths"
+report_checks -path_delay max -group_path_count 5 -format end
+report_wns
+report_tns
+`,"mcp_same.sv":`// RTL of mcp_same. The slow logic y takes more than one clock, so a_q and dout load only
+// every 2nd clock (when phase = 0). The SDC sets a 3-cycle multicycle path from a_q to dout.
+// The checker turns that constraint into an assertion: data must be stable 3 clocks before capture.
+\`timescale 1ns/1ps
+module mcp_same (
+  input  logic       clk, rst_n,
+  input  logic [7:0] din,
+  output logic [7:0] dout
+);
+  logic       phase;                       // 0, 1, 0, 1, ...
+  logic [7:0] a_q, y;
+  wire        en = (phase == 1'b0);        // launch and capture enable: every 2nd clock
+  assign y = (a_q * 8'd5) ^ (a_q >> 1);    // the slow logic
+
+  always_ff @(posedge clk or negedge rst_n)
+    if (!rst_n) begin phase <= 1'b0; a_q <= '0; dout <= '0; end
+    else begin
+      phase <= ~phase;
+      if (en) a_q  <= din;                 // launch
+      if (en) dout <= y;                   // capture, 2 clocks after the launch
+    end
+
+  // synthesis translate_off
+  mcp_check #(.N(3), .PERIOD(2.0), .NAME("A_MCP a_q->dout")) u_mcp (.cap_clk(clk), .rst_n(rst_n), .cap_en(en), .src(a_q));
+  // synthesis translate_on
+endmodule
+`,"tb_mcp_same.sv":`// Testbench for mcp_same: random data for 60 clocks, then the assertion results.
+\`timescale 1ns/1ps
+module tb_mcp_same;
+  logic clk = 0, rst_n = 0;
+  logic [7:0] din = 0, dout;
+  always #1 clk = ~clk;                    // 2 ns clock, as in the SDC
+  mcp_same dut (.*);
+  initial begin
+    $dumpfile("waves.vcd"); $dumpvars(1, tb_mcp_same); $dumpvars(1, tb_mcp_same.dut);
+    #5.5 rst_n = 1;
+    repeat (60) @(negedge clk) din = $random;
+    $display("%-8s %0d checks, %0d failed", "A_MCP", dut.u_mcp.checks, dut.u_mcp.fails);
+    if ((dut.u_mcp.fails) == 0) $display("PASS: every assertion held");
+    else $display("FAIL: %0d assertion failures: the design does not match the constraint", dut.u_mcp.fails);
+    $finish;
+  end
+endmodule
+`,"checks.sv":`// Assertion checkers for timing constraints.
+// Icarus Verilog has no concurrent SVA, so each checker uses clocked immediate assertions.
+// Above each checker is the concurrent SVA property you would write in a commercial simulator.
+\`timescale 1ns/1ps
+
+// A_MCP: a multicycle path is only safe if the source data has been stable for N cycles
+// (of the clock the MCP counts, PERIOD ns) when the destination captures it.
+//   SVA, same clock, N = 2:   assert property (@(posedge clk) disable iff (!rst_n) $changed(src) |-> !cap_en);
+//   SVA, general:             assert property (@(posedge clk) disable iff (!rst_n) $changed(src) |-> !cap_en [*N-1]);
+module mcp_check #(parameter W = 8, parameter N = 2, parameter real PERIOD = 2.0, parameter NAME = "A_MCP")
+  (input logic cap_clk, rst_n, cap_en, input logic [W-1:0] src);
+  realtime t_change = 0.0;
+  integer checks = 0, fails = 0;
+  always @(src) t_change = $realtime;
+  always @(posedge cap_clk)
+    if (rst_n === 1'b1 && cap_en === 1'b1) begin
+      checks = checks + 1;
+      assert ($realtime - t_change >= N * PERIOD - 0.001)
+      else begin
+        fails = fails + 1;
+        if (fails <= 4) $display("ASSERTION FAILED %0s at %0.1f ns: data captured %0.1f ns after it changed, the multicycle path needs %0d x %0.1f = %0.1f ns",
+                                 NAME, $realtime, $realtime - t_change, N, PERIOD, N * PERIOD);
+      end
+    end
+endmodule
+
+// A_GAP: a gated clock may pulse at most once every N cycles of its source clock.
+//   SVA: assert property (@(posedge gclk) disable iff (!rst_n) 1 |=> @(posedge clk) !gclk_en [*N-1]);
+module gap_check #(parameter N = 2, parameter real PERIOD = 2.0, parameter NAME = "A_GAP")
+  (input logic gclk, rst_n);
+  realtime t_last = -1.0e9;
+  integer checks = 0, fails = 0;
+  always @(posedge gclk)
+    if (rst_n === 1'b1) begin
+      checks = checks + 1;
+      assert ($realtime - t_last >= N * PERIOD - 0.001)
+      else begin
+        fails = fails + 1;
+        if (fails <= 4) $display("ASSERTION FAILED %0s at %0.1f ns: the gated clock pulsed %0.1f ns after its last pulse, expected at least %0.1f ns",
+                                 NAME, $realtime, $realtime - t_last, N * PERIOD);
+      end
+      t_last = $realtime;
+    end
+endmodule
+
+// A_PHASE: the fast-clock phase counter must be 0 on every slow clock edge.
+//   SVA: assert property (@(posedge clk_s) disable iff (!rst_n) ph == 0);
+module phase_check #(parameter NAME = "A_PHASE") (input logic clk_s, rst_n, ph0);
+  integer checks = 0, fails = 0;
+  always @(posedge clk_s)
+    if (rst_n === 1'b1) begin
+      checks = checks + 1;
+      assert (ph0 === 1'b1)
+      else begin
+        fails = fails + 1;
+        if (fails <= 4) $display("ASSERTION FAILED %0s at %0.1f ns: a slow clock edge where the fast phase is not 0", NAME, $realtime);
+      end
+    end
+endmodule
+
+// A_STATIC: a quasi-static signal (a clock select or a mode) may only change in reset.
+//   SVA: assert property (@(posedge clk) disable iff (!rst_n) $stable(sig));
+module static_check #(parameter NAME = "A_STATIC") (input logic rst_n, sig);
+  integer checks = 0, fails = 0;
+  always @(sig)
+    if ($realtime > 0) begin
+      checks = checks + 1;
+      assert (rst_n !== 1'b1)
+      else begin
+        fails = fails + 1;
+        if (fails <= 4) $display("ASSERTION FAILED %0s at %0.1f ns: the signal changed while the design is running (out of reset)", NAME, $realtime);
+      end
+    end
+endmodule
+
+// A_CROSS: claiming two clocks are exclusive says no data goes from one to the other.
+// So a flop on the capture clock must never sample data that the other clock changed
+// since its previous capture edge.
+//   SVA: assert property (@(posedge cap_clk) disable iff (!rst_n) $stable(src));
+module cross_check #(parameter W = 1, parameter NAME = "A_CROSS") (input logic cap_clk, rst_n, input logic [W-1:0] src);
+  logic [W-1:0] prev;
+  integer checks = 0, fails = 0;
+  always @(posedge cap_clk) begin
+    if (rst_n === 1'b1) begin
+      checks = checks + 1;
+      assert (src === prev)
+      else begin
+        fails = fails + 1;
+        if (fails <= 4) $display("ASSERTION FAILED %0s at %0.1f ns: data from the other clock changed and is captured here, so the two clocks do interact", NAME, $realtime);
+      end
+    end
+    prev = src;
+  end
+endmodule
+
+// A_EXCL: physically exclusive clocks are never present at the same time.
+//   SVA: assert property (@(posedge clk1) !clk2_running);   (clk2_running from a clock activity monitor)
+module excl_check #(parameter real WINDOW = 20.0, parameter NAME = "A_EXCL") (input logic clk1, clk2);
+  realtime t1 = -1.0e9, t2 = -1.0e9;
+  integer checks = 0, fails = 0;
+  always @(posedge clk1) begin
+    checks = checks + 1;
+    assert ($realtime - t2 > WINDOW)
+    else begin fails = fails + 1; if (fails <= 4) $display("ASSERTION FAILED %0s at %0.1f ns: both clocks are running (the other clock toggled %0.1f ns ago)", NAME, $realtime, $realtime - t2); end
+    t1 = $realtime;
+  end
+  always @(posedge clk2) begin
+    checks = checks + 1;
+    assert ($realtime - t1 > WINDOW)
+    else begin fails = fails + 1; if (fails <= 4) $display("ASSERTION FAILED %0s at %0.1f ns: both clocks are running (the other clock toggled %0.1f ns ago)", NAME, $realtime, $realtime - t1); end
+    t2 = $realtime;
+  end
+endmodule
+
+// A_PERIOD: the clock on a port matches the SDC clock for the current mode.
+//   SVA: property with a local variable that measures the period between two edges.
+module period_check #(parameter real P0 = 2.0, parameter real P1 = 5.0, parameter NAME = "A_PERIOD") (input logic clk, rst_n, mode);
+  realtime t_last = -1.0;
+  real expect_ns;
+  integer checks = 0, fails = 0;
+  always @(posedge clk) begin
+    expect_ns = mode ? P1 : P0;
+    if (rst_n === 1'b1 && t_last >= 0) begin
+      checks = checks + 1;
+      assert ($realtime - t_last > expect_ns - 0.01 && $realtime - t_last < expect_ns + 0.01)
+      else begin fails = fails + 1; if (fails <= 4) $display("ASSERTION FAILED %0s at %0.1f ns: clock period %0.1f ns, the SDC clock for this mode is %0.1f ns", NAME, $realtime, $realtime - t_last, expect_ns); end
+    end
+    t_last = (rst_n === 1'b1) ? $realtime : -1.0;
+  end
+endmodule
+`,"mcp_same.v":`// Gate-level netlist of mcp_same (one bit of the 8-bit datapath is enough for STA).
+// phase toggles every clock; a_q and dout load only when phase = 0 (DE pin of the enable flops).
+// a_q -> 9 delay gates -> dout is the slow logic, about 5.1 ns.
+module mcp_same (clk, rst_n, din, dout);
+  input  clk, rst_n, din;
+  output dout;
+  wire   phase, phase_n, a_q, y, y1, y2, y3, y4, y5, y6, y7, y8;
+  sky130_fd_sc_hd__dfrtp_1 phase_reg (.CLK(clk), .D(phase_n), .RESET_B(rst_n), .Q(phase));
+  sky130_fd_sc_hd__inv_1 u_inv (.A(phase), .Y(phase_n));
+  sky130_fd_sc_hd__edfxtp_1 a_q_reg (.CLK(clk), .D(din), .DE(phase_n), .Q(a_q));
+  sky130_fd_sc_hd__dlygate4sd3_1 yg1 (.A(a_q), .X(y1));
+  sky130_fd_sc_hd__dlygate4sd3_1 yg2 (.A(y1), .X(y2));
+  sky130_fd_sc_hd__dlygate4sd3_1 yg3 (.A(y2), .X(y3));
+  sky130_fd_sc_hd__dlygate4sd3_1 yg4 (.A(y3), .X(y4));
+  sky130_fd_sc_hd__dlygate4sd3_1 yg5 (.A(y4), .X(y5));
+  sky130_fd_sc_hd__dlygate4sd3_1 yg6 (.A(y5), .X(y6));
+  sky130_fd_sc_hd__dlygate4sd3_1 yg7 (.A(y6), .X(y7));
+  sky130_fd_sc_hd__dlygate4sd3_1 yg8 (.A(y7), .X(y8));
+  sky130_fd_sc_hd__dlygate4sd3_1 yg9 (.A(y8), .X(y));
+  sky130_fd_sc_hd__edfxtp_1 dout_reg (.CLK(clk), .D(y), .DE(phase_n), .Q(dout));
+endmodule
+`,"mcp_same.sdc":`# Constraints for mcp_same
+create_clock -name clk -period 2 [get_ports clk]
+set_input_delay  0.2 -clock clk [get_ports din]
+set_output_delay 0.2 -clock clk [get_ports dout]
+set_false_path -from [get_ports rst_n]
+
+# a_q -> dout is a multicycle path: the designer says the slow logic gets 3 clocks.
+set_multicycle_path 3 -setup -from [get_cells a_q_reg] -to [get_cells dout_reg]
+set_multicycle_path 2 -hold  -from [get_cells a_q_reg] -to [get_cells dout_reg]
+`},quiz:[{type:"number",q:"What is the setup slack from a_q_reg to dout_reg as shipped?",answer:.57,tol:.01,unit:"ns",explain:"With 3 cycles (6 ns), the 5.1 ns path passes.",try:!1},{type:"number",q:"Press Simulate. How many A_MCP assertion failures are there?",answer:29,tol:0,unit:"",explain:"Every capture after the first comes 4 ns after the launch, but the SDC promised 6 ns.",try:!1},{type:"number",q:"How many ns after a_q changes does dout capture it in the design?",answer:4,tol:0,unit:"ns",explain:"phase toggles every clock, so the enable comes every 2nd clock: 2 \xD7 2 ns.",try:!1},{type:"number",q:"Try it: change the SDC to what the design really does: set_multicycle_path 2 -setup and 1 -hold. What is the setup slack?",answer:-1.43,tol:.01,unit:"ns",explain:"Now STA tells the truth: the slow logic does not fit in 2 cycles.",try:!0},{type:"choice",q:"How do you fix this design?",options:["Make phase count 0, 1, 2 so the enable comes every 3rd clock, or make the slow logic faster","Keep MCP 3 in the SDC: STA passes","Add -hold 2","Increase the clock period in the SDC only"],answer:0,explain:"The constraint must describe the design. Either the design gives 3 cycles, or the logic must fit in 2.",try:!1}]},{id:"ver-v3",group:"Verify constraints",tag:"Verify 3",title:"Slow to fast MCP (-end): the assertion holds",script:"run.tcl",order:["run.tcl","mcp_s2f.sv","tb_mcp_s2f.sv","checks.sv","mcp_s2f.v","mcp_s2f.sdc"],files:{"run.tcl":`# Verify 3: slow clock (6 ns) to fast clock (2 ns), a 3-cycle MCP counted in the fast clock.
+# Run STA, then Simulate: the fast flop must capture only on the edge that lines up with the next slow edge.
+
+read_liberty sky130_fd_sc_hd__tt_025C_1v80.lib
+read_verilog mcp_s2f.v
+link_design mcp_s2f
+read_sdc mcp_s2f.sdc
+
+puts "### Clocks"
+report_clock_properties
+puts "\\n### Setup: s_q_reg -> dout_reg"
+report_checks -from s_q_reg/CLK -to dout_reg/D -path_delay max
+puts "\\n### Hold: s_q_reg -> dout_reg"
+report_checks -from s_q_reg/CLK -to dout_reg/D -path_delay min
+puts "\\n### Worst setup paths"
+report_checks -path_delay max -group_path_count 5 -format end
+report_wns
+report_tns
+`,"mcp_s2f.sv":`// RTL of mcp_s2f: slow clock (6 ns) to fast clock (2 ns), both from one PLL.
+// s_q changes on every slow edge. dout must capture it only on the fast edge that lines up
+// with the NEXT slow edge, 3 fast cycles later, which is what the SDC multicycle path says.
+\`timescale 1ns/1ps
+module mcp_s2f (
+  input  logic       clk_s, clk_f, rst_n,
+  input  logic [7:0] din,
+  output logic [7:0] dout
+);
+  logic [7:0] s_q, y;
+  logic [1:0] ph;
+  assign y = s_q * 8'd3 + 8'd1;            // the slow logic between the domains
+
+  always_ff @(posedge clk_s or negedge rst_n)
+    if (!rst_n) s_q <= '0; else s_q <= din;
+  // Fast clock phase inside the slow period: 0 on the fast edge that lines up with a slow edge.
+  // Reset is released just after a slow edge, so the first fast edge out of reset is phase 1.
+  always_ff @(posedge clk_f or negedge rst_n)
+    if (!rst_n) ph <= 2'd1;
+    else        ph <= (ph == 2'd2) ? 2'd0 : ph + 2'd1;
+
+  wire cap = (ph == 2'd0);            // capture on the fast edge that lines up with the next slow edge
+  always_ff @(posedge clk_f or negedge rst_n)
+    if (!rst_n) dout <= '0; else if (cap) dout <= y;
+
+  // synthesis translate_off
+  mcp_check  #(.N(3), .PERIOD(2.0), .NAME("A_MCP s_q->dout")) u_mcp (.cap_clk(clk_f), .rst_n(rst_n), .cap_en(cap), .src(s_q));
+  phase_check #(.NAME("A_PHASE")) u_ph (.clk_s(clk_s), .rst_n(rst_n), .ph0(ph == 2'd0));
+  // synthesis translate_on
+endmodule
+`,"tb_mcp_s2f.sv":`// Testbench for mcp_s2f: new data on every slow edge for 20 slow cycles.
+\`timescale 1ns/1ps
+module tb_mcp_s2f;
+  logic clk_f, clk_s, rst_n = 0;
+  logic [7:0] din = 0, dout;
+  // One PLL makes both clocks: clk_f = 2 ns, clk_s = 6 ns, rising edges aligned
+  always begin
+    clk_f = 1; clk_s = 1; #1 clk_f = 0; #1 clk_f = 1; clk_s = 0;
+    #1 clk_f = 0; #1 clk_f = 1; #1 clk_f = 0; #1;
+  end
+  mcp_s2f dut (.*);
+  initial begin
+    $dumpfile("waves.vcd"); $dumpvars(1, tb_mcp_s2f); $dumpvars(1, tb_mcp_s2f.dut);
+    #6.5 rst_n = 1;                        // just after the slow edge at 6 ns
+    repeat (20) @(negedge clk_s) din = $random;
+    $display("%-8s %0d checks, %0d failed", "A_MCP", dut.u_mcp.checks, dut.u_mcp.fails);
+    $display("%-8s %0d checks, %0d failed", "A_PHASE", dut.u_ph.checks, dut.u_ph.fails);
+    if ((dut.u_mcp.fails + dut.u_ph.fails) == 0) $display("PASS: every assertion held");
+    else $display("FAIL: %0d assertion failures: the design does not match the constraint", dut.u_mcp.fails + dut.u_ph.fails);
+    $finish;
+  end
+endmodule
+`,"checks.sv":`// Assertion checkers for timing constraints.
+// Icarus Verilog has no concurrent SVA, so each checker uses clocked immediate assertions.
+// Above each checker is the concurrent SVA property you would write in a commercial simulator.
+\`timescale 1ns/1ps
+
+// A_MCP: a multicycle path is only safe if the source data has been stable for N cycles
+// (of the clock the MCP counts, PERIOD ns) when the destination captures it.
+//   SVA, same clock, N = 2:   assert property (@(posedge clk) disable iff (!rst_n) $changed(src) |-> !cap_en);
+//   SVA, general:             assert property (@(posedge clk) disable iff (!rst_n) $changed(src) |-> !cap_en [*N-1]);
+module mcp_check #(parameter W = 8, parameter N = 2, parameter real PERIOD = 2.0, parameter NAME = "A_MCP")
+  (input logic cap_clk, rst_n, cap_en, input logic [W-1:0] src);
+  realtime t_change = 0.0;
+  integer checks = 0, fails = 0;
+  always @(src) t_change = $realtime;
+  always @(posedge cap_clk)
+    if (rst_n === 1'b1 && cap_en === 1'b1) begin
+      checks = checks + 1;
+      assert ($realtime - t_change >= N * PERIOD - 0.001)
+      else begin
+        fails = fails + 1;
+        if (fails <= 4) $display("ASSERTION FAILED %0s at %0.1f ns: data captured %0.1f ns after it changed, the multicycle path needs %0d x %0.1f = %0.1f ns",
+                                 NAME, $realtime, $realtime - t_change, N, PERIOD, N * PERIOD);
+      end
+    end
+endmodule
+
+// A_GAP: a gated clock may pulse at most once every N cycles of its source clock.
+//   SVA: assert property (@(posedge gclk) disable iff (!rst_n) 1 |=> @(posedge clk) !gclk_en [*N-1]);
+module gap_check #(parameter N = 2, parameter real PERIOD = 2.0, parameter NAME = "A_GAP")
+  (input logic gclk, rst_n);
+  realtime t_last = -1.0e9;
+  integer checks = 0, fails = 0;
+  always @(posedge gclk)
+    if (rst_n === 1'b1) begin
+      checks = checks + 1;
+      assert ($realtime - t_last >= N * PERIOD - 0.001)
+      else begin
+        fails = fails + 1;
+        if (fails <= 4) $display("ASSERTION FAILED %0s at %0.1f ns: the gated clock pulsed %0.1f ns after its last pulse, expected at least %0.1f ns",
+                                 NAME, $realtime, $realtime - t_last, N * PERIOD);
+      end
+      t_last = $realtime;
+    end
+endmodule
+
+// A_PHASE: the fast-clock phase counter must be 0 on every slow clock edge.
+//   SVA: assert property (@(posedge clk_s) disable iff (!rst_n) ph == 0);
+module phase_check #(parameter NAME = "A_PHASE") (input logic clk_s, rst_n, ph0);
+  integer checks = 0, fails = 0;
+  always @(posedge clk_s)
+    if (rst_n === 1'b1) begin
+      checks = checks + 1;
+      assert (ph0 === 1'b1)
+      else begin
+        fails = fails + 1;
+        if (fails <= 4) $display("ASSERTION FAILED %0s at %0.1f ns: a slow clock edge where the fast phase is not 0", NAME, $realtime);
+      end
+    end
+endmodule
+
+// A_STATIC: a quasi-static signal (a clock select or a mode) may only change in reset.
+//   SVA: assert property (@(posedge clk) disable iff (!rst_n) $stable(sig));
+module static_check #(parameter NAME = "A_STATIC") (input logic rst_n, sig);
+  integer checks = 0, fails = 0;
+  always @(sig)
+    if ($realtime > 0) begin
+      checks = checks + 1;
+      assert (rst_n !== 1'b1)
+      else begin
+        fails = fails + 1;
+        if (fails <= 4) $display("ASSERTION FAILED %0s at %0.1f ns: the signal changed while the design is running (out of reset)", NAME, $realtime);
+      end
+    end
+endmodule
+
+// A_CROSS: claiming two clocks are exclusive says no data goes from one to the other.
+// So a flop on the capture clock must never sample data that the other clock changed
+// since its previous capture edge.
+//   SVA: assert property (@(posedge cap_clk) disable iff (!rst_n) $stable(src));
+module cross_check #(parameter W = 1, parameter NAME = "A_CROSS") (input logic cap_clk, rst_n, input logic [W-1:0] src);
+  logic [W-1:0] prev;
+  integer checks = 0, fails = 0;
+  always @(posedge cap_clk) begin
+    if (rst_n === 1'b1) begin
+      checks = checks + 1;
+      assert (src === prev)
+      else begin
+        fails = fails + 1;
+        if (fails <= 4) $display("ASSERTION FAILED %0s at %0.1f ns: data from the other clock changed and is captured here, so the two clocks do interact", NAME, $realtime);
+      end
+    end
+    prev = src;
+  end
+endmodule
+
+// A_EXCL: physically exclusive clocks are never present at the same time.
+//   SVA: assert property (@(posedge clk1) !clk2_running);   (clk2_running from a clock activity monitor)
+module excl_check #(parameter real WINDOW = 20.0, parameter NAME = "A_EXCL") (input logic clk1, clk2);
+  realtime t1 = -1.0e9, t2 = -1.0e9;
+  integer checks = 0, fails = 0;
+  always @(posedge clk1) begin
+    checks = checks + 1;
+    assert ($realtime - t2 > WINDOW)
+    else begin fails = fails + 1; if (fails <= 4) $display("ASSERTION FAILED %0s at %0.1f ns: both clocks are running (the other clock toggled %0.1f ns ago)", NAME, $realtime, $realtime - t2); end
+    t1 = $realtime;
+  end
+  always @(posedge clk2) begin
+    checks = checks + 1;
+    assert ($realtime - t1 > WINDOW)
+    else begin fails = fails + 1; if (fails <= 4) $display("ASSERTION FAILED %0s at %0.1f ns: both clocks are running (the other clock toggled %0.1f ns ago)", NAME, $realtime, $realtime - t1); end
+    t2 = $realtime;
+  end
+endmodule
+
+// A_PERIOD: the clock on a port matches the SDC clock for the current mode.
+//   SVA: property with a local variable that measures the period between two edges.
+module period_check #(parameter real P0 = 2.0, parameter real P1 = 5.0, parameter NAME = "A_PERIOD") (input logic clk, rst_n, mode);
+  realtime t_last = -1.0;
+  real expect_ns;
+  integer checks = 0, fails = 0;
+  always @(posedge clk) begin
+    expect_ns = mode ? P1 : P0;
+    if (rst_n === 1'b1 && t_last >= 0) begin
+      checks = checks + 1;
+      assert ($realtime - t_last > expect_ns - 0.01 && $realtime - t_last < expect_ns + 0.01)
+      else begin fails = fails + 1; if (fails <= 4) $display("ASSERTION FAILED %0s at %0.1f ns: clock period %0.1f ns, the SDC clock for this mode is %0.1f ns", NAME, $realtime, $realtime - t_last, expect_ns); end
+    end
+    t_last = (rst_n === 1'b1) ? $realtime : -1.0;
+  end
+endmodule
+`,"mcp_s2f.v":`// Gate-level netlist of mcp_s2f (one bit of the datapath).
+// s_q (slow clock) -> 8 delay gates (about 4.6 ns) -> dout (fast clock, loads when DE = phase 0).
+// ph0/ph1 count the fast clock phase 0, 1, 2; ph_is0 = phase 0.
+module mcp_s2f (clk_s, clk_f, rst_n, din, dout);
+  input  clk_s, clk_f, rst_n, din;
+  output dout;
+  wire   s_q, y, ph0, ph1, ph_is0, y1, y2, y3, y4, y5, y6, y7;
+  sky130_fd_sc_hd__dfxtp_1 s_q_reg (.CLK(clk_s), .D(din), .Q(s_q));
+  sky130_fd_sc_hd__dlygate4sd3_1 yg1 (.A(s_q), .X(y1));
+  sky130_fd_sc_hd__dlygate4sd3_1 yg2 (.A(y1), .X(y2));
+  sky130_fd_sc_hd__dlygate4sd3_1 yg3 (.A(y2), .X(y3));
+  sky130_fd_sc_hd__dlygate4sd3_1 yg4 (.A(y3), .X(y4));
+  sky130_fd_sc_hd__dlygate4sd3_1 yg5 (.A(y4), .X(y5));
+  sky130_fd_sc_hd__dlygate4sd3_1 yg6 (.A(y5), .X(y6));
+  sky130_fd_sc_hd__dlygate4sd3_1 yg7 (.A(y6), .X(y7));
+  sky130_fd_sc_hd__dlygate4sd3_1 yg8 (.A(y7), .X(y));
+  sky130_fd_sc_hd__nor2_1 u_ph0 (.A(ph0), .B(ph1), .Y(ph_is0));
+  sky130_fd_sc_hd__dfrtp_1 ph0_reg (.CLK(clk_f), .D(ph_is0), .RESET_B(rst_n), .Q(ph0));
+  sky130_fd_sc_hd__dfrtp_1 ph1_reg (.CLK(clk_f), .D(ph0), .RESET_B(rst_n), .Q(ph1));
+  sky130_fd_sc_hd__edfxtp_1 dout_reg (.CLK(clk_f), .D(y), .DE(ph_is0), .Q(dout));
+endmodule
+`,"mcp_s2f.sdc":`# Constraints for mcp_s2f: two synchronous clocks from one PLL
+create_clock -name clk_f -period 2 [get_ports clk_f]
+create_clock -name clk_s -period 6 -waveform {0 2} [get_ports clk_s]
+set_input_delay  0.2 -clock clk_s [get_ports din]
+set_output_delay 0.2 -clock clk_f [get_ports dout]
+set_false_path -from [get_ports rst_n]
+
+# Slow to fast: s_q (clk_s) -> dout (clk_f). dout loads once per slow period, so the path has
+# 3 fast cycles. -end: the cycles are counted in the capture (fast) clock.
+set_multicycle_path 3 -setup -end -from [get_cells s_q_reg] -to [get_cells dout_reg]
+set_multicycle_path 2 -hold  -end -from [get_cells s_q_reg] -to [get_cells dout_reg]
+`},quiz:[{type:"number",q:"What is the setup slack from s_q_reg to dout_reg?",answer:1.18,tol:.01,unit:"ns",explain:"Capture at 6 ns, the third fast edge.",try:!1},{type:"number",q:"Try it: Comment out both set_multicycle_path lines (put # in front) and run STA again. What is the setup slack now?",answer:-2.82,tol:.01,unit:"ns",explain:"Without the MCP, the capture is the next fast edge at 2 ns.",try:!0},{type:"choice",q:"-end means the multicycle count is in cycles of",options:["The launch clock (clk_s)","The capture clock (clk_f)","Both","The fastest clock in the design"],answer:1,explain:"",try:!1},{type:"choice",q:"Press Simulate. On which fast edges does dout capture?",options:["Every fast edge","Only phase 0, which lines up with the slow edge","Only phase 1","Only phase 2"],answer:1,explain:"A_PHASE checks that phase 0 really lines up with every slow edge.",try:!1}]},{id:"ver-v4",group:"Verify constraints",tag:"Verify 4",title:"Slow to fast MCP: captured too early",script:"run.tcl",order:["run.tcl","mcp_s2f.sv","tb_mcp_s2f.sv","checks.sv","mcp_s2f.v","mcp_s2f.sdc"],files:{"run.tcl":`# Verify 4: the same SDC, but the design captures one fast cycle after the slow edge.
+# STA still passes. Simulate and read the assertion failures.
+
+read_liberty sky130_fd_sc_hd__tt_025C_1v80.lib
+read_verilog mcp_s2f.v
+link_design mcp_s2f
+read_sdc mcp_s2f.sdc
+
+puts "### Clocks"
+report_clock_properties
+puts "\\n### Setup: s_q_reg -> dout_reg"
+report_checks -from s_q_reg/CLK -to dout_reg/D -path_delay max
+puts "\\n### Hold: s_q_reg -> dout_reg"
+report_checks -from s_q_reg/CLK -to dout_reg/D -path_delay min
+puts "\\n### Worst setup paths"
+report_checks -path_delay max -group_path_count 5 -format end
+report_wns
+report_tns
+`,"mcp_s2f.sv":`// RTL of mcp_s2f: slow clock (6 ns) to fast clock (2 ns), both from one PLL.
+// s_q changes on every slow edge. dout must capture it only on the fast edge that lines up
+// with the NEXT slow edge, 3 fast cycles later, which is what the SDC multicycle path says.
+\`timescale 1ns/1ps
+module mcp_s2f (
+  input  logic       clk_s, clk_f, rst_n,
+  input  logic [7:0] din,
+  output logic [7:0] dout
+);
+  logic [7:0] s_q, y;
+  logic [1:0] ph;
+  assign y = s_q * 8'd3 + 8'd1;            // the slow logic between the domains
+
+  always_ff @(posedge clk_s or negedge rst_n)
+    if (!rst_n) s_q <= '0; else s_q <= din;
+  // Fast clock phase inside the slow period: 0 on the fast edge that lines up with a slow edge.
+  // Reset is released just after a slow edge, so the first fast edge out of reset is phase 1.
+  always_ff @(posedge clk_f or negedge rst_n)
+    if (!rst_n) ph <= 2'd1;
+    else        ph <= (ph == 2'd2) ? 2'd0 : ph + 2'd1;
+
+  wire cap = (ph == 2'd1);            // capture one fast cycle after the slow edge, to get the result sooner
+  always_ff @(posedge clk_f or negedge rst_n)
+    if (!rst_n) dout <= '0; else if (cap) dout <= y;
+
+  // synthesis translate_off
+  mcp_check  #(.N(3), .PERIOD(2.0), .NAME("A_MCP s_q->dout")) u_mcp (.cap_clk(clk_f), .rst_n(rst_n), .cap_en(cap), .src(s_q));
+  phase_check #(.NAME("A_PHASE")) u_ph (.clk_s(clk_s), .rst_n(rst_n), .ph0(ph == 2'd0));
+  // synthesis translate_on
+endmodule
+`,"tb_mcp_s2f.sv":`// Testbench for mcp_s2f: new data on every slow edge for 20 slow cycles.
+\`timescale 1ns/1ps
+module tb_mcp_s2f;
+  logic clk_f, clk_s, rst_n = 0;
+  logic [7:0] din = 0, dout;
+  // One PLL makes both clocks: clk_f = 2 ns, clk_s = 6 ns, rising edges aligned
+  always begin
+    clk_f = 1; clk_s = 1; #1 clk_f = 0; #1 clk_f = 1; clk_s = 0;
+    #1 clk_f = 0; #1 clk_f = 1; #1 clk_f = 0; #1;
+  end
+  mcp_s2f dut (.*);
+  initial begin
+    $dumpfile("waves.vcd"); $dumpvars(1, tb_mcp_s2f); $dumpvars(1, tb_mcp_s2f.dut);
+    #6.5 rst_n = 1;                        // just after the slow edge at 6 ns
+    repeat (20) @(negedge clk_s) din = $random;
+    $display("%-8s %0d checks, %0d failed", "A_MCP", dut.u_mcp.checks, dut.u_mcp.fails);
+    $display("%-8s %0d checks, %0d failed", "A_PHASE", dut.u_ph.checks, dut.u_ph.fails);
+    if ((dut.u_mcp.fails + dut.u_ph.fails) == 0) $display("PASS: every assertion held");
+    else $display("FAIL: %0d assertion failures: the design does not match the constraint", dut.u_mcp.fails + dut.u_ph.fails);
+    $finish;
+  end
+endmodule
+`,"checks.sv":`// Assertion checkers for timing constraints.
+// Icarus Verilog has no concurrent SVA, so each checker uses clocked immediate assertions.
+// Above each checker is the concurrent SVA property you would write in a commercial simulator.
+\`timescale 1ns/1ps
+
+// A_MCP: a multicycle path is only safe if the source data has been stable for N cycles
+// (of the clock the MCP counts, PERIOD ns) when the destination captures it.
+//   SVA, same clock, N = 2:   assert property (@(posedge clk) disable iff (!rst_n) $changed(src) |-> !cap_en);
+//   SVA, general:             assert property (@(posedge clk) disable iff (!rst_n) $changed(src) |-> !cap_en [*N-1]);
+module mcp_check #(parameter W = 8, parameter N = 2, parameter real PERIOD = 2.0, parameter NAME = "A_MCP")
+  (input logic cap_clk, rst_n, cap_en, input logic [W-1:0] src);
+  realtime t_change = 0.0;
+  integer checks = 0, fails = 0;
+  always @(src) t_change = $realtime;
+  always @(posedge cap_clk)
+    if (rst_n === 1'b1 && cap_en === 1'b1) begin
+      checks = checks + 1;
+      assert ($realtime - t_change >= N * PERIOD - 0.001)
+      else begin
+        fails = fails + 1;
+        if (fails <= 4) $display("ASSERTION FAILED %0s at %0.1f ns: data captured %0.1f ns after it changed, the multicycle path needs %0d x %0.1f = %0.1f ns",
+                                 NAME, $realtime, $realtime - t_change, N, PERIOD, N * PERIOD);
+      end
+    end
+endmodule
+
+// A_GAP: a gated clock may pulse at most once every N cycles of its source clock.
+//   SVA: assert property (@(posedge gclk) disable iff (!rst_n) 1 |=> @(posedge clk) !gclk_en [*N-1]);
+module gap_check #(parameter N = 2, parameter real PERIOD = 2.0, parameter NAME = "A_GAP")
+  (input logic gclk, rst_n);
+  realtime t_last = -1.0e9;
+  integer checks = 0, fails = 0;
+  always @(posedge gclk)
+    if (rst_n === 1'b1) begin
+      checks = checks + 1;
+      assert ($realtime - t_last >= N * PERIOD - 0.001)
+      else begin
+        fails = fails + 1;
+        if (fails <= 4) $display("ASSERTION FAILED %0s at %0.1f ns: the gated clock pulsed %0.1f ns after its last pulse, expected at least %0.1f ns",
+                                 NAME, $realtime, $realtime - t_last, N * PERIOD);
+      end
+      t_last = $realtime;
+    end
+endmodule
+
+// A_PHASE: the fast-clock phase counter must be 0 on every slow clock edge.
+//   SVA: assert property (@(posedge clk_s) disable iff (!rst_n) ph == 0);
+module phase_check #(parameter NAME = "A_PHASE") (input logic clk_s, rst_n, ph0);
+  integer checks = 0, fails = 0;
+  always @(posedge clk_s)
+    if (rst_n === 1'b1) begin
+      checks = checks + 1;
+      assert (ph0 === 1'b1)
+      else begin
+        fails = fails + 1;
+        if (fails <= 4) $display("ASSERTION FAILED %0s at %0.1f ns: a slow clock edge where the fast phase is not 0", NAME, $realtime);
+      end
+    end
+endmodule
+
+// A_STATIC: a quasi-static signal (a clock select or a mode) may only change in reset.
+//   SVA: assert property (@(posedge clk) disable iff (!rst_n) $stable(sig));
+module static_check #(parameter NAME = "A_STATIC") (input logic rst_n, sig);
+  integer checks = 0, fails = 0;
+  always @(sig)
+    if ($realtime > 0) begin
+      checks = checks + 1;
+      assert (rst_n !== 1'b1)
+      else begin
+        fails = fails + 1;
+        if (fails <= 4) $display("ASSERTION FAILED %0s at %0.1f ns: the signal changed while the design is running (out of reset)", NAME, $realtime);
+      end
+    end
+endmodule
+
+// A_CROSS: claiming two clocks are exclusive says no data goes from one to the other.
+// So a flop on the capture clock must never sample data that the other clock changed
+// since its previous capture edge.
+//   SVA: assert property (@(posedge cap_clk) disable iff (!rst_n) $stable(src));
+module cross_check #(parameter W = 1, parameter NAME = "A_CROSS") (input logic cap_clk, rst_n, input logic [W-1:0] src);
+  logic [W-1:0] prev;
+  integer checks = 0, fails = 0;
+  always @(posedge cap_clk) begin
+    if (rst_n === 1'b1) begin
+      checks = checks + 1;
+      assert (src === prev)
+      else begin
+        fails = fails + 1;
+        if (fails <= 4) $display("ASSERTION FAILED %0s at %0.1f ns: data from the other clock changed and is captured here, so the two clocks do interact", NAME, $realtime);
+      end
+    end
+    prev = src;
+  end
+endmodule
+
+// A_EXCL: physically exclusive clocks are never present at the same time.
+//   SVA: assert property (@(posedge clk1) !clk2_running);   (clk2_running from a clock activity monitor)
+module excl_check #(parameter real WINDOW = 20.0, parameter NAME = "A_EXCL") (input logic clk1, clk2);
+  realtime t1 = -1.0e9, t2 = -1.0e9;
+  integer checks = 0, fails = 0;
+  always @(posedge clk1) begin
+    checks = checks + 1;
+    assert ($realtime - t2 > WINDOW)
+    else begin fails = fails + 1; if (fails <= 4) $display("ASSERTION FAILED %0s at %0.1f ns: both clocks are running (the other clock toggled %0.1f ns ago)", NAME, $realtime, $realtime - t2); end
+    t1 = $realtime;
+  end
+  always @(posedge clk2) begin
+    checks = checks + 1;
+    assert ($realtime - t1 > WINDOW)
+    else begin fails = fails + 1; if (fails <= 4) $display("ASSERTION FAILED %0s at %0.1f ns: both clocks are running (the other clock toggled %0.1f ns ago)", NAME, $realtime, $realtime - t1); end
+    t2 = $realtime;
+  end
+endmodule
+
+// A_PERIOD: the clock on a port matches the SDC clock for the current mode.
+//   SVA: property with a local variable that measures the period between two edges.
+module period_check #(parameter real P0 = 2.0, parameter real P1 = 5.0, parameter NAME = "A_PERIOD") (input logic clk, rst_n, mode);
+  realtime t_last = -1.0;
+  real expect_ns;
+  integer checks = 0, fails = 0;
+  always @(posedge clk) begin
+    expect_ns = mode ? P1 : P0;
+    if (rst_n === 1'b1 && t_last >= 0) begin
+      checks = checks + 1;
+      assert ($realtime - t_last > expect_ns - 0.01 && $realtime - t_last < expect_ns + 0.01)
+      else begin fails = fails + 1; if (fails <= 4) $display("ASSERTION FAILED %0s at %0.1f ns: clock period %0.1f ns, the SDC clock for this mode is %0.1f ns", NAME, $realtime, $realtime - t_last, expect_ns); end
+    end
+    t_last = (rst_n === 1'b1) ? $realtime : -1.0;
+  end
+endmodule
+`,"mcp_s2f.v":`// Gate-level netlist of mcp_s2f (one bit of the datapath).
+// s_q (slow clock) -> 8 delay gates (about 4.6 ns) -> dout (fast clock, loads when DE = phase 1).
+// ph0/ph1 count the fast clock phase 0, 1, 2; ph_is0 = phase 0.
+module mcp_s2f (clk_s, clk_f, rst_n, din, dout);
+  input  clk_s, clk_f, rst_n, din;
+  output dout;
+  wire   s_q, y, ph0, ph1, ph_is0, y1, y2, y3, y4, y5, y6, y7;
+  sky130_fd_sc_hd__dfxtp_1 s_q_reg (.CLK(clk_s), .D(din), .Q(s_q));
+  sky130_fd_sc_hd__dlygate4sd3_1 yg1 (.A(s_q), .X(y1));
+  sky130_fd_sc_hd__dlygate4sd3_1 yg2 (.A(y1), .X(y2));
+  sky130_fd_sc_hd__dlygate4sd3_1 yg3 (.A(y2), .X(y3));
+  sky130_fd_sc_hd__dlygate4sd3_1 yg4 (.A(y3), .X(y4));
+  sky130_fd_sc_hd__dlygate4sd3_1 yg5 (.A(y4), .X(y5));
+  sky130_fd_sc_hd__dlygate4sd3_1 yg6 (.A(y5), .X(y6));
+  sky130_fd_sc_hd__dlygate4sd3_1 yg7 (.A(y6), .X(y7));
+  sky130_fd_sc_hd__dlygate4sd3_1 yg8 (.A(y7), .X(y));
+  sky130_fd_sc_hd__nor2_1 u_ph0 (.A(ph0), .B(ph1), .Y(ph_is0));
+  sky130_fd_sc_hd__dfrtp_1 ph0_reg (.CLK(clk_f), .D(ph_is0), .RESET_B(rst_n), .Q(ph0));
+  sky130_fd_sc_hd__dfrtp_1 ph1_reg (.CLK(clk_f), .D(ph0), .RESET_B(rst_n), .Q(ph1));
+  sky130_fd_sc_hd__edfxtp_1 dout_reg (.CLK(clk_f), .D(y), .DE(ph0), .Q(dout));
+endmodule
+`,"mcp_s2f.sdc":`# Constraints for mcp_s2f: two synchronous clocks from one PLL
+create_clock -name clk_f -period 2 [get_ports clk_f]
+create_clock -name clk_s -period 6 -waveform {0 2} [get_ports clk_s]
+set_input_delay  0.2 -clock clk_s [get_ports din]
+set_output_delay 0.2 -clock clk_f [get_ports dout]
+set_false_path -from [get_ports rst_n]
+
+# Slow to fast: s_q (clk_s) -> dout (clk_f). dout loads once per slow period, so the path has
+# 3 fast cycles. -end: the cycles are counted in the capture (fast) clock.
+set_multicycle_path 3 -setup -end -from [get_cells s_q_reg] -to [get_cells dout_reg]
+set_multicycle_path 2 -hold  -end -from [get_cells s_q_reg] -to [get_cells dout_reg]
+`},quiz:[{type:"number",q:"What is the setup slack from s_q_reg to dout_reg?",answer:1.18,tol:.01,unit:"ns",explain:"Exactly as in Verify 3: STA sees the same netlist timing and the same SDC.",try:!1},{type:"number",q:"Press Simulate. How many A_MCP failures are there?",answer:19,tol:0,unit:"",explain:"Every capture comes one fast cycle after the slow edge.",try:!1},{type:"number",q:"How many ns after s_q changes does dout capture it?",answer:2,tol:0,unit:"ns",explain:"One fast cycle, not the 3 the SDC promised.",try:!1},{type:"choice",q:"In silicon, what would dout capture?",options:["The correct value","The slow logic output while it is still changing (only 2 ns of a 4.6 ns path)","Always 0","x"],answer:1,explain:"The zero-delay RTL simulation shows correct values; only the assertion reveals the timing assumption is broken.",try:!1}]},{id:"ver-v5",group:"Verify constraints",tag:"Verify 5",title:"Fast to slow MCP (-start): the assertion holds",script:"run.tcl",order:["run.tcl","mcp_f2s.sv","tb_mcp_f2s.sv","checks.sv","mcp_f2s.v","mcp_f2s.sdc"],files:{"run.tcl":`# Verify 5: fast clock (2 ns) to slow clock (6 ns), a 3-cycle MCP counted in the fast clock.
+# Run STA, then Simulate: the fast source must change only once per slow period.
+
+read_liberty sky130_fd_sc_hd__tt_025C_1v80.lib
+read_verilog mcp_f2s.v
+link_design mcp_f2s
+read_sdc mcp_f2s.sdc
+
+puts "### Clocks"
+report_clock_properties
+puts "\\n### Setup: f_q_reg -> dout_reg"
+report_checks -from f_q_reg/CLK -to dout_reg/D -path_delay max
+puts "\\n### Hold: f_q_reg -> dout_reg"
+report_checks -from f_q_reg/CLK -to dout_reg/D -path_delay min
+puts "\\n### Worst setup paths"
+report_checks -path_delay max -group_path_count 5 -format end
+report_wns
+report_tns
+`,"mcp_f2s.sv":`// RTL of mcp_f2s: fast clock (2 ns) to slow clock (6 ns), both from one PLL.
+// The slow flop dout samples once every 3 fast cycles. The SDC gives f_q -> dout 3 fast cycles,
+// so f_q must load only on the fast edge that lines up with a slow edge and then hold.
+\`timescale 1ns/1ps
+module mcp_f2s (
+  input  logic       clk_s, clk_f, rst_n,
+  input  logic [7:0] din,
+  output logic [7:0] dout
+);
+  logic [7:0] f_q, y;
+  logic [1:0] ph;
+  assign y = f_q * 8'd3 + 8'd1;            // the slow logic between the domains
+  // Fast clock phase inside the slow period: 0 on the fast edge that lines up with a slow edge.
+  // Reset is released just after a slow edge, so the first fast edge out of reset is phase 1.
+  always_ff @(posedge clk_f or negedge rst_n)
+    if (!rst_n) ph <= 2'd1;
+    else        ph <= (ph == 2'd2) ? 2'd0 : ph + 2'd1;
+
+  wire ld = (ph == 2'd0);            // load on the fast edge that lines up with a slow edge
+  always_ff @(posedge clk_f or negedge rst_n)
+    if (!rst_n) f_q <= '0; else if (ld) f_q <= din;
+  always_ff @(posedge clk_s or negedge rst_n)
+    if (!rst_n) dout <= '0; else dout <= y;
+
+  // synthesis translate_off
+  mcp_check  #(.N(3), .PERIOD(2.0), .NAME("A_MCP f_q->dout")) u_mcp (.cap_clk(clk_s), .rst_n(rst_n), .cap_en(1'b1), .src(f_q));
+  phase_check #(.NAME("A_PHASE")) u_ph (.clk_s(clk_s), .rst_n(rst_n), .ph0(ph == 2'd0));
+  // synthesis translate_on
+endmodule
+`,"tb_mcp_f2s.sv":`// Testbench for mcp_f2s: new input data on every fast clock for 60 fast cycles.
+\`timescale 1ns/1ps
+module tb_mcp_f2s;
+  logic clk_f, clk_s, rst_n = 0;
+  logic [7:0] din = 0, dout;
+  // One PLL makes both clocks: clk_f = 2 ns, clk_s = 6 ns, rising edges aligned
+  always begin
+    clk_f = 1; clk_s = 1; #1 clk_f = 0; #1 clk_f = 1; clk_s = 0;
+    #1 clk_f = 0; #1 clk_f = 1; #1 clk_f = 0; #1;
+  end
+  mcp_f2s dut (.*);
+  initial begin
+    $dumpfile("waves.vcd"); $dumpvars(1, tb_mcp_f2s); $dumpvars(1, tb_mcp_f2s.dut);
+    #6.5 rst_n = 1;                        // just after the slow edge at 6 ns
+    repeat (60) @(negedge clk_f) din = $random;
+    $display("%-8s %0d checks, %0d failed", "A_MCP", dut.u_mcp.checks, dut.u_mcp.fails);
+    $display("%-8s %0d checks, %0d failed", "A_PHASE", dut.u_ph.checks, dut.u_ph.fails);
+    if ((dut.u_mcp.fails + dut.u_ph.fails) == 0) $display("PASS: every assertion held");
+    else $display("FAIL: %0d assertion failures: the design does not match the constraint", dut.u_mcp.fails + dut.u_ph.fails);
+    $finish;
+  end
+endmodule
+`,"checks.sv":`// Assertion checkers for timing constraints.
+// Icarus Verilog has no concurrent SVA, so each checker uses clocked immediate assertions.
+// Above each checker is the concurrent SVA property you would write in a commercial simulator.
+\`timescale 1ns/1ps
+
+// A_MCP: a multicycle path is only safe if the source data has been stable for N cycles
+// (of the clock the MCP counts, PERIOD ns) when the destination captures it.
+//   SVA, same clock, N = 2:   assert property (@(posedge clk) disable iff (!rst_n) $changed(src) |-> !cap_en);
+//   SVA, general:             assert property (@(posedge clk) disable iff (!rst_n) $changed(src) |-> !cap_en [*N-1]);
+module mcp_check #(parameter W = 8, parameter N = 2, parameter real PERIOD = 2.0, parameter NAME = "A_MCP")
+  (input logic cap_clk, rst_n, cap_en, input logic [W-1:0] src);
+  realtime t_change = 0.0;
+  integer checks = 0, fails = 0;
+  always @(src) t_change = $realtime;
+  always @(posedge cap_clk)
+    if (rst_n === 1'b1 && cap_en === 1'b1) begin
+      checks = checks + 1;
+      assert ($realtime - t_change >= N * PERIOD - 0.001)
+      else begin
+        fails = fails + 1;
+        if (fails <= 4) $display("ASSERTION FAILED %0s at %0.1f ns: data captured %0.1f ns after it changed, the multicycle path needs %0d x %0.1f = %0.1f ns",
+                                 NAME, $realtime, $realtime - t_change, N, PERIOD, N * PERIOD);
+      end
+    end
+endmodule
+
+// A_GAP: a gated clock may pulse at most once every N cycles of its source clock.
+//   SVA: assert property (@(posedge gclk) disable iff (!rst_n) 1 |=> @(posedge clk) !gclk_en [*N-1]);
+module gap_check #(parameter N = 2, parameter real PERIOD = 2.0, parameter NAME = "A_GAP")
+  (input logic gclk, rst_n);
+  realtime t_last = -1.0e9;
+  integer checks = 0, fails = 0;
+  always @(posedge gclk)
+    if (rst_n === 1'b1) begin
+      checks = checks + 1;
+      assert ($realtime - t_last >= N * PERIOD - 0.001)
+      else begin
+        fails = fails + 1;
+        if (fails <= 4) $display("ASSERTION FAILED %0s at %0.1f ns: the gated clock pulsed %0.1f ns after its last pulse, expected at least %0.1f ns",
+                                 NAME, $realtime, $realtime - t_last, N * PERIOD);
+      end
+      t_last = $realtime;
+    end
+endmodule
+
+// A_PHASE: the fast-clock phase counter must be 0 on every slow clock edge.
+//   SVA: assert property (@(posedge clk_s) disable iff (!rst_n) ph == 0);
+module phase_check #(parameter NAME = "A_PHASE") (input logic clk_s, rst_n, ph0);
+  integer checks = 0, fails = 0;
+  always @(posedge clk_s)
+    if (rst_n === 1'b1) begin
+      checks = checks + 1;
+      assert (ph0 === 1'b1)
+      else begin
+        fails = fails + 1;
+        if (fails <= 4) $display("ASSERTION FAILED %0s at %0.1f ns: a slow clock edge where the fast phase is not 0", NAME, $realtime);
+      end
+    end
+endmodule
+
+// A_STATIC: a quasi-static signal (a clock select or a mode) may only change in reset.
+//   SVA: assert property (@(posedge clk) disable iff (!rst_n) $stable(sig));
+module static_check #(parameter NAME = "A_STATIC") (input logic rst_n, sig);
+  integer checks = 0, fails = 0;
+  always @(sig)
+    if ($realtime > 0) begin
+      checks = checks + 1;
+      assert (rst_n !== 1'b1)
+      else begin
+        fails = fails + 1;
+        if (fails <= 4) $display("ASSERTION FAILED %0s at %0.1f ns: the signal changed while the design is running (out of reset)", NAME, $realtime);
+      end
+    end
+endmodule
+
+// A_CROSS: claiming two clocks are exclusive says no data goes from one to the other.
+// So a flop on the capture clock must never sample data that the other clock changed
+// since its previous capture edge.
+//   SVA: assert property (@(posedge cap_clk) disable iff (!rst_n) $stable(src));
+module cross_check #(parameter W = 1, parameter NAME = "A_CROSS") (input logic cap_clk, rst_n, input logic [W-1:0] src);
+  logic [W-1:0] prev;
+  integer checks = 0, fails = 0;
+  always @(posedge cap_clk) begin
+    if (rst_n === 1'b1) begin
+      checks = checks + 1;
+      assert (src === prev)
+      else begin
+        fails = fails + 1;
+        if (fails <= 4) $display("ASSERTION FAILED %0s at %0.1f ns: data from the other clock changed and is captured here, so the two clocks do interact", NAME, $realtime);
+      end
+    end
+    prev = src;
+  end
+endmodule
+
+// A_EXCL: physically exclusive clocks are never present at the same time.
+//   SVA: assert property (@(posedge clk1) !clk2_running);   (clk2_running from a clock activity monitor)
+module excl_check #(parameter real WINDOW = 20.0, parameter NAME = "A_EXCL") (input logic clk1, clk2);
+  realtime t1 = -1.0e9, t2 = -1.0e9;
+  integer checks = 0, fails = 0;
+  always @(posedge clk1) begin
+    checks = checks + 1;
+    assert ($realtime - t2 > WINDOW)
+    else begin fails = fails + 1; if (fails <= 4) $display("ASSERTION FAILED %0s at %0.1f ns: both clocks are running (the other clock toggled %0.1f ns ago)", NAME, $realtime, $realtime - t2); end
+    t1 = $realtime;
+  end
+  always @(posedge clk2) begin
+    checks = checks + 1;
+    assert ($realtime - t1 > WINDOW)
+    else begin fails = fails + 1; if (fails <= 4) $display("ASSERTION FAILED %0s at %0.1f ns: both clocks are running (the other clock toggled %0.1f ns ago)", NAME, $realtime, $realtime - t1); end
+    t2 = $realtime;
+  end
+endmodule
+
+// A_PERIOD: the clock on a port matches the SDC clock for the current mode.
+//   SVA: property with a local variable that measures the period between two edges.
+module period_check #(parameter real P0 = 2.0, parameter real P1 = 5.0, parameter NAME = "A_PERIOD") (input logic clk, rst_n, mode);
+  realtime t_last = -1.0;
+  real expect_ns;
+  integer checks = 0, fails = 0;
+  always @(posedge clk) begin
+    expect_ns = mode ? P1 : P0;
+    if (rst_n === 1'b1 && t_last >= 0) begin
+      checks = checks + 1;
+      assert ($realtime - t_last > expect_ns - 0.01 && $realtime - t_last < expect_ns + 0.01)
+      else begin fails = fails + 1; if (fails <= 4) $display("ASSERTION FAILED %0s at %0.1f ns: clock period %0.1f ns, the SDC clock for this mode is %0.1f ns", NAME, $realtime, $realtime - t_last, expect_ns); end
+    end
+    t_last = (rst_n === 1'b1) ? $realtime : -1.0;
+  end
+endmodule
+`,"mcp_f2s.v":`// Gate-level netlist of mcp_f2s (one bit of the datapath).
+// f_q (fast clock, loads when DE = phase 0) -> 8 delay gates (about 4.6 ns) -> dout (slow clock).
+module mcp_f2s (clk_s, clk_f, rst_n, din, dout);
+  input  clk_s, clk_f, rst_n, din;
+  output dout;
+  wire   f_q, y, ph0, ph1, ph_is0, y1, y2, y3, y4, y5, y6, y7;
+  sky130_fd_sc_hd__nor2_1 u_ph0 (.A(ph0), .B(ph1), .Y(ph_is0));
+  sky130_fd_sc_hd__dfrtp_1 ph0_reg (.CLK(clk_f), .D(ph_is0), .RESET_B(rst_n), .Q(ph0));
+  sky130_fd_sc_hd__dfrtp_1 ph1_reg (.CLK(clk_f), .D(ph0), .RESET_B(rst_n), .Q(ph1));
+  sky130_fd_sc_hd__edfxtp_1 f_q_reg (.CLK(clk_f), .D(din), .DE(ph_is0), .Q(f_q));
+  sky130_fd_sc_hd__dlygate4sd3_1 yg1 (.A(f_q), .X(y1));
+  sky130_fd_sc_hd__dlygate4sd3_1 yg2 (.A(y1), .X(y2));
+  sky130_fd_sc_hd__dlygate4sd3_1 yg3 (.A(y2), .X(y3));
+  sky130_fd_sc_hd__dlygate4sd3_1 yg4 (.A(y3), .X(y4));
+  sky130_fd_sc_hd__dlygate4sd3_1 yg5 (.A(y4), .X(y5));
+  sky130_fd_sc_hd__dlygate4sd3_1 yg6 (.A(y5), .X(y6));
+  sky130_fd_sc_hd__dlygate4sd3_1 yg7 (.A(y6), .X(y7));
+  sky130_fd_sc_hd__dlygate4sd3_1 yg8 (.A(y7), .X(y));
+  sky130_fd_sc_hd__dfxtp_1 dout_reg (.CLK(clk_s), .D(y), .Q(dout));
+endmodule
+`,"mcp_f2s.sdc":`# Constraints for mcp_f2s: two synchronous clocks from one PLL
+create_clock -name clk_f -period 2 [get_ports clk_f]
+create_clock -name clk_s -period 6 -waveform {0 2} [get_ports clk_s]
+set_input_delay  0.2 -clock clk_f [get_ports din]
+set_output_delay 0.2 -clock clk_s [get_ports dout]
+set_false_path -from [get_ports rst_n]
+
+# Fast to slow: f_q (clk_f) -> dout (clk_s). f_q changes only on the fast edge that lines up
+# with a slow edge, so the data has a whole slow period = 3 fast cycles.
+# -start: the cycles are counted in the launch (fast) clock.
+set_multicycle_path 3 -setup -start -from [get_cells f_q_reg] -to [get_cells dout_reg]
+set_multicycle_path 2 -hold  -start -from [get_cells f_q_reg] -to [get_cells dout_reg]
+`},quiz:[{type:"number",q:"What is the setup slack from f_q_reg to dout_reg?",answer:1.25,tol:.01,unit:"ns",explain:"Launch moved back to 0 ns, capture at 6 ns.",try:!1},{type:"number",q:"Try it: Comment out both set_multicycle_path lines (put # in front) and run STA again. What is the setup slack now?",answer:-2.75,tol:.01,unit:"ns",explain:"Without the MCP, STA launches on the fast edge at 4 ns, 2 ns before the slow capture edge.",try:!0},{type:"choice",q:"-start means the multicycle count is in cycles of",options:["The launch clock (clk_f)","The capture clock (clk_s)"],answer:0,explain:"",try:!1},{type:"number",q:"With set_multicycle_path 3 -setup -start, which -hold value moves the hold check back to the right edge?",answer:2,tol:0,unit:"",explain:"N \u2212 1 = 2, also with -start.",try:!1}]},{id:"ver-v6",group:"Verify constraints",tag:"Verify 6",title:"Fast to slow MCP: launched one cycle late",script:"run.tcl",order:["run.tcl","mcp_f2s.sv","tb_mcp_f2s.sv","checks.sv","mcp_f2s.v","mcp_f2s.sdc"],files:{"run.tcl":`# Verify 6: the same SDC, but the source loads one fast cycle after the slow edge.
+# STA still passes. Simulate and read the assertion failures.
+
+read_liberty sky130_fd_sc_hd__tt_025C_1v80.lib
+read_verilog mcp_f2s.v
+link_design mcp_f2s
+read_sdc mcp_f2s.sdc
+
+puts "### Clocks"
+report_clock_properties
+puts "\\n### Setup: f_q_reg -> dout_reg"
+report_checks -from f_q_reg/CLK -to dout_reg/D -path_delay max
+puts "\\n### Hold: f_q_reg -> dout_reg"
+report_checks -from f_q_reg/CLK -to dout_reg/D -path_delay min
+puts "\\n### Worst setup paths"
+report_checks -path_delay max -group_path_count 5 -format end
+report_wns
+report_tns
+`,"mcp_f2s.sv":`// RTL of mcp_f2s: fast clock (2 ns) to slow clock (6 ns), both from one PLL.
+// The slow flop dout samples once every 3 fast cycles. The SDC gives f_q -> dout 3 fast cycles,
+// so f_q must load only on the fast edge that lines up with a slow edge and then hold.
+\`timescale 1ns/1ps
+module mcp_f2s (
+  input  logic       clk_s, clk_f, rst_n,
+  input  logic [7:0] din,
+  output logic [7:0] dout
+);
+  logic [7:0] f_q, y;
+  logic [1:0] ph;
+  assign y = f_q * 8'd3 + 8'd1;            // the slow logic between the domains
+  // Fast clock phase inside the slow period: 0 on the fast edge that lines up with a slow edge.
+  // Reset is released just after a slow edge, so the first fast edge out of reset is phase 1.
+  always_ff @(posedge clk_f or negedge rst_n)
+    if (!rst_n) ph <= 2'd1;
+    else        ph <= (ph == 2'd2) ? 2'd0 : ph + 2'd1;
+
+  wire ld = (ph == 2'd1);            // load one fast cycle after the slow edge (a registered enable, one cycle late)
+  always_ff @(posedge clk_f or negedge rst_n)
+    if (!rst_n) f_q <= '0; else if (ld) f_q <= din;
+  always_ff @(posedge clk_s or negedge rst_n)
+    if (!rst_n) dout <= '0; else dout <= y;
+
+  // synthesis translate_off
+  mcp_check  #(.N(3), .PERIOD(2.0), .NAME("A_MCP f_q->dout")) u_mcp (.cap_clk(clk_s), .rst_n(rst_n), .cap_en(1'b1), .src(f_q));
+  phase_check #(.NAME("A_PHASE")) u_ph (.clk_s(clk_s), .rst_n(rst_n), .ph0(ph == 2'd0));
+  // synthesis translate_on
+endmodule
+`,"tb_mcp_f2s.sv":`// Testbench for mcp_f2s: new input data on every fast clock for 60 fast cycles.
+\`timescale 1ns/1ps
+module tb_mcp_f2s;
+  logic clk_f, clk_s, rst_n = 0;
+  logic [7:0] din = 0, dout;
+  // One PLL makes both clocks: clk_f = 2 ns, clk_s = 6 ns, rising edges aligned
+  always begin
+    clk_f = 1; clk_s = 1; #1 clk_f = 0; #1 clk_f = 1; clk_s = 0;
+    #1 clk_f = 0; #1 clk_f = 1; #1 clk_f = 0; #1;
+  end
+  mcp_f2s dut (.*);
+  initial begin
+    $dumpfile("waves.vcd"); $dumpvars(1, tb_mcp_f2s); $dumpvars(1, tb_mcp_f2s.dut);
+    #6.5 rst_n = 1;                        // just after the slow edge at 6 ns
+    repeat (60) @(negedge clk_f) din = $random;
+    $display("%-8s %0d checks, %0d failed", "A_MCP", dut.u_mcp.checks, dut.u_mcp.fails);
+    $display("%-8s %0d checks, %0d failed", "A_PHASE", dut.u_ph.checks, dut.u_ph.fails);
+    if ((dut.u_mcp.fails + dut.u_ph.fails) == 0) $display("PASS: every assertion held");
+    else $display("FAIL: %0d assertion failures: the design does not match the constraint", dut.u_mcp.fails + dut.u_ph.fails);
+    $finish;
+  end
+endmodule
+`,"checks.sv":`// Assertion checkers for timing constraints.
+// Icarus Verilog has no concurrent SVA, so each checker uses clocked immediate assertions.
+// Above each checker is the concurrent SVA property you would write in a commercial simulator.
+\`timescale 1ns/1ps
+
+// A_MCP: a multicycle path is only safe if the source data has been stable for N cycles
+// (of the clock the MCP counts, PERIOD ns) when the destination captures it.
+//   SVA, same clock, N = 2:   assert property (@(posedge clk) disable iff (!rst_n) $changed(src) |-> !cap_en);
+//   SVA, general:             assert property (@(posedge clk) disable iff (!rst_n) $changed(src) |-> !cap_en [*N-1]);
+module mcp_check #(parameter W = 8, parameter N = 2, parameter real PERIOD = 2.0, parameter NAME = "A_MCP")
+  (input logic cap_clk, rst_n, cap_en, input logic [W-1:0] src);
+  realtime t_change = 0.0;
+  integer checks = 0, fails = 0;
+  always @(src) t_change = $realtime;
+  always @(posedge cap_clk)
+    if (rst_n === 1'b1 && cap_en === 1'b1) begin
+      checks = checks + 1;
+      assert ($realtime - t_change >= N * PERIOD - 0.001)
+      else begin
+        fails = fails + 1;
+        if (fails <= 4) $display("ASSERTION FAILED %0s at %0.1f ns: data captured %0.1f ns after it changed, the multicycle path needs %0d x %0.1f = %0.1f ns",
+                                 NAME, $realtime, $realtime - t_change, N, PERIOD, N * PERIOD);
+      end
+    end
+endmodule
+
+// A_GAP: a gated clock may pulse at most once every N cycles of its source clock.
+//   SVA: assert property (@(posedge gclk) disable iff (!rst_n) 1 |=> @(posedge clk) !gclk_en [*N-1]);
+module gap_check #(parameter N = 2, parameter real PERIOD = 2.0, parameter NAME = "A_GAP")
+  (input logic gclk, rst_n);
+  realtime t_last = -1.0e9;
+  integer checks = 0, fails = 0;
+  always @(posedge gclk)
+    if (rst_n === 1'b1) begin
+      checks = checks + 1;
+      assert ($realtime - t_last >= N * PERIOD - 0.001)
+      else begin
+        fails = fails + 1;
+        if (fails <= 4) $display("ASSERTION FAILED %0s at %0.1f ns: the gated clock pulsed %0.1f ns after its last pulse, expected at least %0.1f ns",
+                                 NAME, $realtime, $realtime - t_last, N * PERIOD);
+      end
+      t_last = $realtime;
+    end
+endmodule
+
+// A_PHASE: the fast-clock phase counter must be 0 on every slow clock edge.
+//   SVA: assert property (@(posedge clk_s) disable iff (!rst_n) ph == 0);
+module phase_check #(parameter NAME = "A_PHASE") (input logic clk_s, rst_n, ph0);
+  integer checks = 0, fails = 0;
+  always @(posedge clk_s)
+    if (rst_n === 1'b1) begin
+      checks = checks + 1;
+      assert (ph0 === 1'b1)
+      else begin
+        fails = fails + 1;
+        if (fails <= 4) $display("ASSERTION FAILED %0s at %0.1f ns: a slow clock edge where the fast phase is not 0", NAME, $realtime);
+      end
+    end
+endmodule
+
+// A_STATIC: a quasi-static signal (a clock select or a mode) may only change in reset.
+//   SVA: assert property (@(posedge clk) disable iff (!rst_n) $stable(sig));
+module static_check #(parameter NAME = "A_STATIC") (input logic rst_n, sig);
+  integer checks = 0, fails = 0;
+  always @(sig)
+    if ($realtime > 0) begin
+      checks = checks + 1;
+      assert (rst_n !== 1'b1)
+      else begin
+        fails = fails + 1;
+        if (fails <= 4) $display("ASSERTION FAILED %0s at %0.1f ns: the signal changed while the design is running (out of reset)", NAME, $realtime);
+      end
+    end
+endmodule
+
+// A_CROSS: claiming two clocks are exclusive says no data goes from one to the other.
+// So a flop on the capture clock must never sample data that the other clock changed
+// since its previous capture edge.
+//   SVA: assert property (@(posedge cap_clk) disable iff (!rst_n) $stable(src));
+module cross_check #(parameter W = 1, parameter NAME = "A_CROSS") (input logic cap_clk, rst_n, input logic [W-1:0] src);
+  logic [W-1:0] prev;
+  integer checks = 0, fails = 0;
+  always @(posedge cap_clk) begin
+    if (rst_n === 1'b1) begin
+      checks = checks + 1;
+      assert (src === prev)
+      else begin
+        fails = fails + 1;
+        if (fails <= 4) $display("ASSERTION FAILED %0s at %0.1f ns: data from the other clock changed and is captured here, so the two clocks do interact", NAME, $realtime);
+      end
+    end
+    prev = src;
+  end
+endmodule
+
+// A_EXCL: physically exclusive clocks are never present at the same time.
+//   SVA: assert property (@(posedge clk1) !clk2_running);   (clk2_running from a clock activity monitor)
+module excl_check #(parameter real WINDOW = 20.0, parameter NAME = "A_EXCL") (input logic clk1, clk2);
+  realtime t1 = -1.0e9, t2 = -1.0e9;
+  integer checks = 0, fails = 0;
+  always @(posedge clk1) begin
+    checks = checks + 1;
+    assert ($realtime - t2 > WINDOW)
+    else begin fails = fails + 1; if (fails <= 4) $display("ASSERTION FAILED %0s at %0.1f ns: both clocks are running (the other clock toggled %0.1f ns ago)", NAME, $realtime, $realtime - t2); end
+    t1 = $realtime;
+  end
+  always @(posedge clk2) begin
+    checks = checks + 1;
+    assert ($realtime - t1 > WINDOW)
+    else begin fails = fails + 1; if (fails <= 4) $display("ASSERTION FAILED %0s at %0.1f ns: both clocks are running (the other clock toggled %0.1f ns ago)", NAME, $realtime, $realtime - t1); end
+    t2 = $realtime;
+  end
+endmodule
+
+// A_PERIOD: the clock on a port matches the SDC clock for the current mode.
+//   SVA: property with a local variable that measures the period between two edges.
+module period_check #(parameter real P0 = 2.0, parameter real P1 = 5.0, parameter NAME = "A_PERIOD") (input logic clk, rst_n, mode);
+  realtime t_last = -1.0;
+  real expect_ns;
+  integer checks = 0, fails = 0;
+  always @(posedge clk) begin
+    expect_ns = mode ? P1 : P0;
+    if (rst_n === 1'b1 && t_last >= 0) begin
+      checks = checks + 1;
+      assert ($realtime - t_last > expect_ns - 0.01 && $realtime - t_last < expect_ns + 0.01)
+      else begin fails = fails + 1; if (fails <= 4) $display("ASSERTION FAILED %0s at %0.1f ns: clock period %0.1f ns, the SDC clock for this mode is %0.1f ns", NAME, $realtime, $realtime - t_last, expect_ns); end
+    end
+    t_last = (rst_n === 1'b1) ? $realtime : -1.0;
+  end
+endmodule
+`,"mcp_f2s.v":`// Gate-level netlist of mcp_f2s (one bit of the datapath).
+// f_q (fast clock, loads when DE = phase 1) -> 8 delay gates (about 4.6 ns) -> dout (slow clock).
+module mcp_f2s (clk_s, clk_f, rst_n, din, dout);
+  input  clk_s, clk_f, rst_n, din;
+  output dout;
+  wire   f_q, y, ph0, ph1, ph_is0, y1, y2, y3, y4, y5, y6, y7;
+  sky130_fd_sc_hd__nor2_1 u_ph0 (.A(ph0), .B(ph1), .Y(ph_is0));
+  sky130_fd_sc_hd__dfrtp_1 ph0_reg (.CLK(clk_f), .D(ph_is0), .RESET_B(rst_n), .Q(ph0));
+  sky130_fd_sc_hd__dfrtp_1 ph1_reg (.CLK(clk_f), .D(ph0), .RESET_B(rst_n), .Q(ph1));
+  sky130_fd_sc_hd__edfxtp_1 f_q_reg (.CLK(clk_f), .D(din), .DE(ph0), .Q(f_q));
+  sky130_fd_sc_hd__dlygate4sd3_1 yg1 (.A(f_q), .X(y1));
+  sky130_fd_sc_hd__dlygate4sd3_1 yg2 (.A(y1), .X(y2));
+  sky130_fd_sc_hd__dlygate4sd3_1 yg3 (.A(y2), .X(y3));
+  sky130_fd_sc_hd__dlygate4sd3_1 yg4 (.A(y3), .X(y4));
+  sky130_fd_sc_hd__dlygate4sd3_1 yg5 (.A(y4), .X(y5));
+  sky130_fd_sc_hd__dlygate4sd3_1 yg6 (.A(y5), .X(y6));
+  sky130_fd_sc_hd__dlygate4sd3_1 yg7 (.A(y6), .X(y7));
+  sky130_fd_sc_hd__dlygate4sd3_1 yg8 (.A(y7), .X(y));
+  sky130_fd_sc_hd__dfxtp_1 dout_reg (.CLK(clk_s), .D(y), .Q(dout));
+endmodule
+`,"mcp_f2s.sdc":`# Constraints for mcp_f2s: two synchronous clocks from one PLL
+create_clock -name clk_f -period 2 [get_ports clk_f]
+create_clock -name clk_s -period 6 -waveform {0 2} [get_ports clk_s]
+set_input_delay  0.2 -clock clk_f [get_ports din]
+set_output_delay 0.2 -clock clk_s [get_ports dout]
+set_false_path -from [get_ports rst_n]
+
+# Fast to slow: f_q (clk_f) -> dout (clk_s). f_q changes only on the fast edge that lines up
+# with a slow edge, so the data has a whole slow period = 3 fast cycles.
+# -start: the cycles are counted in the launch (fast) clock.
+set_multicycle_path 3 -setup -start -from [get_cells f_q_reg] -to [get_cells dout_reg]
+set_multicycle_path 2 -hold  -start -from [get_cells f_q_reg] -to [get_cells dout_reg]
+`},quiz:[{type:"number",q:"Press Simulate. How many A_MCP failures are there?",answer:19,tol:0,unit:"",explain:"Every slow capture sees data that changed 4 ns before.",try:!1},{type:"number",q:"How many ns before the slow edge does f_q change?",answer:4,tol:0,unit:"ns",explain:"It loads at phase 1, 2 ns after the slow edge, so 4 ns before the next one.",try:!1},{type:"choice",q:"Does STA report this problem?",options:["Yes, a setup violation","No: the SDC says 3 cycles and STA trusts it","Only for hold","Only without -start"],answer:1,explain:"",try:!1},{type:"choice",q:"What is the fix in the design?",options:["Load f_q at phase 0, on the fast edge that lines up with the slow edge","Load f_q every fast cycle","Remove the -hold line","Slow down clk_f"],answer:0,explain:"",try:!1}]},{id:"ver-v7",group:"Verify constraints",tag:"Verify 7",title:"MCP made safe by clock gating",script:"run.tcl",order:["run.tcl","mcp_cg.sv","tb_mcp_cg.sv","checks.sv","mcp_cg.v","mcp_cg.sdc"],files:{"run.tcl":`# Verify 7: a clock gate opens every 2nd clock, so the gated flops have 2 cycles.
+# STA cannot see that. Run it, then Simulate: the assertions check the gating really gives 2 cycles.
+
+read_liberty sky130_fd_sc_hd__tt_025C_1v80.lib
+read_verilog mcp_cg.v
+link_design mcp_cg
+read_sdc mcp_cg.sdc
+
+puts "### Clocks"
+report_clock_properties
+puts "\\n### Setup: a_q_reg -> dout_reg"
+report_checks -from a_q_reg/CLK -to dout_reg/D -path_delay max
+puts "\\n### Hold: a_q_reg -> dout_reg"
+report_checks -from a_q_reg/CLK -to dout_reg/D -path_delay min
+puts "\\n### Worst setup paths"
+report_checks -path_delay max -group_path_count 5 -format end
+report_wns
+report_tns
+`,"mcp_cg.sv":`// RTL of mcp_cg: a multicycle path that is correct because of clock gating.
+// The clock gate opens every 2nd clock, so a_q and dout (both on gclk) update every 2nd clock
+// and the slow logic between them has 2 clocks.
+\`timescale 1ns/1ps
+module mcp_cg (
+  input  logic       clk, rst_n,
+  input  logic [7:0] din,
+  output logic [7:0] dout
+);
+  logic       tog, gclk;
+  logic [7:0] a_q, y;
+  assign y = (a_q * 8'd5) ^ (a_q >> 1);    // the slow logic
+
+  always_ff @(posedge clk or negedge rst_n)
+    if (!rst_n) tog <= 1'b0; else tog <= ~tog;
+  icg u_icg (.clk(clk), .en(tog), .gclk(gclk));
+
+  always_ff @(posedge gclk) a_q  <= din;
+  always_ff @(posedge gclk) dout <= y;
+
+  // synthesis translate_off
+  mcp_check #(.N(2), .PERIOD(2.0), .NAME("A_MCP a_q->dout")) u_mcp (.cap_clk(gclk), .rst_n(rst_n), .cap_en(1'b1), .src(a_q));
+  gap_check #(.N(2), .PERIOD(2.0), .NAME("A_GAP gclk")) u_gap (.gclk(gclk), .rst_n(rst_n));
+  // synthesis translate_on
+endmodule
+
+// Latch-based clock gate: the behaviour of an integrated clock gating cell (sky130 dlclkp).
+module icg (input logic clk, en, output logic gclk);
+  logic en_l;
+  always @(clk or en) if (!clk) en_l = en;
+  assign gclk = clk & en_l;
+endmodule
+`,"tb_mcp_cg.sv":`// Testbench for mcp_cg: random data for 60 clocks.
+\`timescale 1ns/1ps
+module tb_mcp_cg;
+  logic clk = 0, rst_n = 0;
+  logic [7:0] din = 0, dout;
+  always #1 clk = ~clk;                    // 2 ns clock
+  mcp_cg dut (.*);
+  initial begin
+    $dumpfile("waves.vcd"); $dumpvars(1, tb_mcp_cg); $dumpvars(1, tb_mcp_cg.dut);
+    #5.5 rst_n = 1;
+    repeat (60) @(negedge clk) begin
+      din = $random;
+    end
+    $display("%-8s %0d checks, %0d failed", "A_MCP", dut.u_mcp.checks, dut.u_mcp.fails);
+    $display("%-8s %0d checks, %0d failed", "A_GAP", dut.u_gap.checks, dut.u_gap.fails);
+    if ((dut.u_mcp.fails + dut.u_gap.fails) == 0) $display("PASS: every assertion held");
+    else $display("FAIL: %0d assertion failures: the design does not match the constraint", dut.u_mcp.fails + dut.u_gap.fails);
+    $finish;
+  end
+endmodule
+`,"checks.sv":`// Assertion checkers for timing constraints.
+// Icarus Verilog has no concurrent SVA, so each checker uses clocked immediate assertions.
+// Above each checker is the concurrent SVA property you would write in a commercial simulator.
+\`timescale 1ns/1ps
+
+// A_MCP: a multicycle path is only safe if the source data has been stable for N cycles
+// (of the clock the MCP counts, PERIOD ns) when the destination captures it.
+//   SVA, same clock, N = 2:   assert property (@(posedge clk) disable iff (!rst_n) $changed(src) |-> !cap_en);
+//   SVA, general:             assert property (@(posedge clk) disable iff (!rst_n) $changed(src) |-> !cap_en [*N-1]);
+module mcp_check #(parameter W = 8, parameter N = 2, parameter real PERIOD = 2.0, parameter NAME = "A_MCP")
+  (input logic cap_clk, rst_n, cap_en, input logic [W-1:0] src);
+  realtime t_change = 0.0;
+  integer checks = 0, fails = 0;
+  always @(src) t_change = $realtime;
+  always @(posedge cap_clk)
+    if (rst_n === 1'b1 && cap_en === 1'b1) begin
+      checks = checks + 1;
+      assert ($realtime - t_change >= N * PERIOD - 0.001)
+      else begin
+        fails = fails + 1;
+        if (fails <= 4) $display("ASSERTION FAILED %0s at %0.1f ns: data captured %0.1f ns after it changed, the multicycle path needs %0d x %0.1f = %0.1f ns",
+                                 NAME, $realtime, $realtime - t_change, N, PERIOD, N * PERIOD);
+      end
+    end
+endmodule
+
+// A_GAP: a gated clock may pulse at most once every N cycles of its source clock.
+//   SVA: assert property (@(posedge gclk) disable iff (!rst_n) 1 |=> @(posedge clk) !gclk_en [*N-1]);
+module gap_check #(parameter N = 2, parameter real PERIOD = 2.0, parameter NAME = "A_GAP")
+  (input logic gclk, rst_n);
+  realtime t_last = -1.0e9;
+  integer checks = 0, fails = 0;
+  always @(posedge gclk)
+    if (rst_n === 1'b1) begin
+      checks = checks + 1;
+      assert ($realtime - t_last >= N * PERIOD - 0.001)
+      else begin
+        fails = fails + 1;
+        if (fails <= 4) $display("ASSERTION FAILED %0s at %0.1f ns: the gated clock pulsed %0.1f ns after its last pulse, expected at least %0.1f ns",
+                                 NAME, $realtime, $realtime - t_last, N * PERIOD);
+      end
+      t_last = $realtime;
+    end
+endmodule
+
+// A_PHASE: the fast-clock phase counter must be 0 on every slow clock edge.
+//   SVA: assert property (@(posedge clk_s) disable iff (!rst_n) ph == 0);
+module phase_check #(parameter NAME = "A_PHASE") (input logic clk_s, rst_n, ph0);
+  integer checks = 0, fails = 0;
+  always @(posedge clk_s)
+    if (rst_n === 1'b1) begin
+      checks = checks + 1;
+      assert (ph0 === 1'b1)
+      else begin
+        fails = fails + 1;
+        if (fails <= 4) $display("ASSERTION FAILED %0s at %0.1f ns: a slow clock edge where the fast phase is not 0", NAME, $realtime);
+      end
+    end
+endmodule
+
+// A_STATIC: a quasi-static signal (a clock select or a mode) may only change in reset.
+//   SVA: assert property (@(posedge clk) disable iff (!rst_n) $stable(sig));
+module static_check #(parameter NAME = "A_STATIC") (input logic rst_n, sig);
+  integer checks = 0, fails = 0;
+  always @(sig)
+    if ($realtime > 0) begin
+      checks = checks + 1;
+      assert (rst_n !== 1'b1)
+      else begin
+        fails = fails + 1;
+        if (fails <= 4) $display("ASSERTION FAILED %0s at %0.1f ns: the signal changed while the design is running (out of reset)", NAME, $realtime);
+      end
+    end
+endmodule
+
+// A_CROSS: claiming two clocks are exclusive says no data goes from one to the other.
+// So a flop on the capture clock must never sample data that the other clock changed
+// since its previous capture edge.
+//   SVA: assert property (@(posedge cap_clk) disable iff (!rst_n) $stable(src));
+module cross_check #(parameter W = 1, parameter NAME = "A_CROSS") (input logic cap_clk, rst_n, input logic [W-1:0] src);
+  logic [W-1:0] prev;
+  integer checks = 0, fails = 0;
+  always @(posedge cap_clk) begin
+    if (rst_n === 1'b1) begin
+      checks = checks + 1;
+      assert (src === prev)
+      else begin
+        fails = fails + 1;
+        if (fails <= 4) $display("ASSERTION FAILED %0s at %0.1f ns: data from the other clock changed and is captured here, so the two clocks do interact", NAME, $realtime);
+      end
+    end
+    prev = src;
+  end
+endmodule
+
+// A_EXCL: physically exclusive clocks are never present at the same time.
+//   SVA: assert property (@(posedge clk1) !clk2_running);   (clk2_running from a clock activity monitor)
+module excl_check #(parameter real WINDOW = 20.0, parameter NAME = "A_EXCL") (input logic clk1, clk2);
+  realtime t1 = -1.0e9, t2 = -1.0e9;
+  integer checks = 0, fails = 0;
+  always @(posedge clk1) begin
+    checks = checks + 1;
+    assert ($realtime - t2 > WINDOW)
+    else begin fails = fails + 1; if (fails <= 4) $display("ASSERTION FAILED %0s at %0.1f ns: both clocks are running (the other clock toggled %0.1f ns ago)", NAME, $realtime, $realtime - t2); end
+    t1 = $realtime;
+  end
+  always @(posedge clk2) begin
+    checks = checks + 1;
+    assert ($realtime - t1 > WINDOW)
+    else begin fails = fails + 1; if (fails <= 4) $display("ASSERTION FAILED %0s at %0.1f ns: both clocks are running (the other clock toggled %0.1f ns ago)", NAME, $realtime, $realtime - t1); end
+    t2 = $realtime;
+  end
+endmodule
+
+// A_PERIOD: the clock on a port matches the SDC clock for the current mode.
+//   SVA: property with a local variable that measures the period between two edges.
+module period_check #(parameter real P0 = 2.0, parameter real P1 = 5.0, parameter NAME = "A_PERIOD") (input logic clk, rst_n, mode);
+  realtime t_last = -1.0;
+  real expect_ns;
+  integer checks = 0, fails = 0;
+  always @(posedge clk) begin
+    expect_ns = mode ? P1 : P0;
+    if (rst_n === 1'b1 && t_last >= 0) begin
+      checks = checks + 1;
+      assert ($realtime - t_last > expect_ns - 0.01 && $realtime - t_last < expect_ns + 0.01)
+      else begin fails = fails + 1; if (fails <= 4) $display("ASSERTION FAILED %0s at %0.1f ns: clock period %0.1f ns, the SDC clock for this mode is %0.1f ns", NAME, $realtime, $realtime - t_last, expect_ns); end
+    end
+    t_last = (rst_n === 1'b1) ? $realtime : -1.0;
+  end
+endmodule
+`,"mcp_cg.v":`// Gate-level netlist of mcp_cg (one bit of the datapath).
+// tog toggles every clock and enables the clock gate u_icg, so gclk pulses every 2nd clock.
+// a_q and dout are both clocked by gclk; a_q -> 6 delay gates (about 3.5 ns) -> dout.
+module mcp_cg (clk, rst_n, din, dout);
+  input  clk, rst_n, din;
+  output dout;
+  wire   tog, tog_n, gclk, a_q, y, y1, y2, y3, y4, y5;
+  sky130_fd_sc_hd__dfrtp_1 tog_reg (.CLK(clk), .D(tog_n), .RESET_B(rst_n), .Q(tog));
+  sky130_fd_sc_hd__inv_1 u_inv (.A(tog), .Y(tog_n));
+  sky130_fd_sc_hd__dlclkp_1 u_icg (.CLK(clk), .GATE(tog), .GCLK(gclk));
+  sky130_fd_sc_hd__dfxtp_1 a_q_reg (.CLK(gclk), .D(din), .Q(a_q));
+  sky130_fd_sc_hd__dlygate4sd3_1 yg1 (.A(a_q), .X(y1));
+  sky130_fd_sc_hd__dlygate4sd3_1 yg2 (.A(y1), .X(y2));
+  sky130_fd_sc_hd__dlygate4sd3_1 yg3 (.A(y2), .X(y3));
+  sky130_fd_sc_hd__dlygate4sd3_1 yg4 (.A(y3), .X(y4));
+  sky130_fd_sc_hd__dlygate4sd3_1 yg5 (.A(y4), .X(y5));
+  sky130_fd_sc_hd__dlygate4sd3_1 yg6 (.A(y5), .X(y));
+  sky130_fd_sc_hd__dfxtp_1 dout_reg (.CLK(gclk), .D(y), .Q(dout));
+endmodule
+`,"mcp_cg.sdc":`# Constraints for mcp_cg
+create_clock -name clk -period 2 [get_ports clk]
+set_input_delay  0.2 -clock clk [get_ports {din}]
+set_output_delay 0.2 -clock clk [get_ports dout]
+set_false_path -from [get_ports rst_n]
+
+# a_q and dout are clocked by gclk, which the clock gate opens every 2nd clock, so the
+# path a_q -> dout has 2 clocks. STA does not know that: it times gclk as the 2 ns clk.
+set_multicycle_path 2 -setup -from [get_cells a_q_reg] -to [get_cells dout_reg]
+set_multicycle_path 1 -hold  -from [get_cells a_q_reg] -to [get_cells dout_reg]
+`},quiz:[{type:"number",q:"What is the setup slack from a_q_reg to dout_reg with the multicycle path?",answer:.39,tol:.01,unit:"ns",explain:"",try:!1},{type:"number",q:"Try it: Comment out both set_multicycle_path lines (put # in front) and run STA again. What is the setup slack now?",answer:-1.61,tol:.01,unit:"ns",explain:"STA times gclk as the 2 ns clock: it cannot know the gate opens only every 2nd cycle.",try:!0},{type:"choice",q:"Why is this multicycle path correct?",options:["Both flops are on gclk, which pulses only every 2nd clock","The path is short","The clock gate adds delay","dout has an enable"],answer:0,explain:"",try:!1},{type:"number",q:"Press Simulate. How many A_GAP checks pass (gated clock pulses checked)?",answer:29,tol:0,unit:"",explain:"Every gclk pulse comes at least 4 ns after the previous one.",try:!1}]},{id:"ver-v8",group:"Verify constraints",tag:"Verify 8",title:"Clock gating MCP broken by burst mode",script:"run.tcl",order:["run.tcl","mcp_cg.sv","tb_mcp_cg.sv","checks.sv","mcp_cg.v","mcp_cg.sdc"],files:{"run.tcl":`# Verify 8: a later change added burst mode, which opens the clock gate every clock.
+# Nobody updated the SDC. STA passes; Simulate and see what the assertions say.
+
+read_liberty sky130_fd_sc_hd__tt_025C_1v80.lib
+read_verilog mcp_cg.v
+link_design mcp_cg
+read_sdc mcp_cg.sdc
+
+puts "### Clocks"
+report_clock_properties
+puts "\\n### Setup: a_q_reg -> dout_reg"
+report_checks -from a_q_reg/CLK -to dout_reg/D -path_delay max
+puts "\\n### Hold: a_q_reg -> dout_reg"
+report_checks -from a_q_reg/CLK -to dout_reg/D -path_delay min
+puts "\\n### Worst setup paths"
+report_checks -path_delay max -group_path_count 5 -format end
+report_wns
+report_tns
+`,"mcp_cg.sv":`// RTL of mcp_cg: a multicycle path that is correct because of clock gating.
+// The clock gate opens every 2nd clock, so a_q and dout (both on gclk) update every 2nd clock
+// and the slow logic between them has 2 clocks. A later change added burst mode: while burst = 1 the gate opens every clock.
+\`timescale 1ns/1ps
+module mcp_cg (
+  input  logic       clk, rst_n,
+  input  logic       burst,              // burst mode: open the clock gate every clock
+  input  logic [7:0] din,
+  output logic [7:0] dout
+);
+  logic       tog, gclk;
+  logic [7:0] a_q, y;
+  assign y = (a_q * 8'd5) ^ (a_q >> 1);    // the slow logic
+
+  always_ff @(posedge clk or negedge rst_n)
+    if (!rst_n) tog <= 1'b0; else tog <= ~tog;
+  icg u_icg (.clk(clk), .en(tog | burst), .gclk(gclk));
+
+  always_ff @(posedge gclk) a_q  <= din;
+  always_ff @(posedge gclk) dout <= y;
+
+  // synthesis translate_off
+  mcp_check #(.N(2), .PERIOD(2.0), .NAME("A_MCP a_q->dout")) u_mcp (.cap_clk(gclk), .rst_n(rst_n), .cap_en(1'b1), .src(a_q));
+  gap_check #(.N(2), .PERIOD(2.0), .NAME("A_GAP gclk")) u_gap (.gclk(gclk), .rst_n(rst_n));
+  // synthesis translate_on
+endmodule
+
+// Latch-based clock gate: the behaviour of an integrated clock gating cell (sky130 dlclkp).
+module icg (input logic clk, en, output logic gclk);
+  logic en_l;
+  always @(clk or en) if (!clk) en_l = en;
+  assign gclk = clk & en_l;
+endmodule
+`,"tb_mcp_cg.sv":`// Testbench for mcp_cg: random data for 60 clocks, with burst mode on for 8 clocks in the middle.
+\`timescale 1ns/1ps
+module tb_mcp_cg;
+  logic clk = 0, rst_n = 0, burst = 0;
+  logic [7:0] din = 0, dout;
+  always #1 clk = ~clk;                    // 2 ns clock
+  mcp_cg dut (.*);
+  initial begin
+    $dumpfile("waves.vcd"); $dumpvars(1, tb_mcp_cg); $dumpvars(1, tb_mcp_cg.dut);
+    #5.5 rst_n = 1;
+    repeat (60) @(negedge clk) begin
+      din = $random;
+      if ($realtime > 50 && $realtime < 66) burst = 1; else burst = 0;
+    end
+    $display("%-8s %0d checks, %0d failed", "A_MCP", dut.u_mcp.checks, dut.u_mcp.fails);
+    $display("%-8s %0d checks, %0d failed", "A_GAP", dut.u_gap.checks, dut.u_gap.fails);
+    if ((dut.u_mcp.fails + dut.u_gap.fails) == 0) $display("PASS: every assertion held");
+    else $display("FAIL: %0d assertion failures: the design does not match the constraint", dut.u_mcp.fails + dut.u_gap.fails);
+    $finish;
+  end
+endmodule
+`,"checks.sv":`// Assertion checkers for timing constraints.
+// Icarus Verilog has no concurrent SVA, so each checker uses clocked immediate assertions.
+// Above each checker is the concurrent SVA property you would write in a commercial simulator.
+\`timescale 1ns/1ps
+
+// A_MCP: a multicycle path is only safe if the source data has been stable for N cycles
+// (of the clock the MCP counts, PERIOD ns) when the destination captures it.
+//   SVA, same clock, N = 2:   assert property (@(posedge clk) disable iff (!rst_n) $changed(src) |-> !cap_en);
+//   SVA, general:             assert property (@(posedge clk) disable iff (!rst_n) $changed(src) |-> !cap_en [*N-1]);
+module mcp_check #(parameter W = 8, parameter N = 2, parameter real PERIOD = 2.0, parameter NAME = "A_MCP")
+  (input logic cap_clk, rst_n, cap_en, input logic [W-1:0] src);
+  realtime t_change = 0.0;
+  integer checks = 0, fails = 0;
+  always @(src) t_change = $realtime;
+  always @(posedge cap_clk)
+    if (rst_n === 1'b1 && cap_en === 1'b1) begin
+      checks = checks + 1;
+      assert ($realtime - t_change >= N * PERIOD - 0.001)
+      else begin
+        fails = fails + 1;
+        if (fails <= 4) $display("ASSERTION FAILED %0s at %0.1f ns: data captured %0.1f ns after it changed, the multicycle path needs %0d x %0.1f = %0.1f ns",
+                                 NAME, $realtime, $realtime - t_change, N, PERIOD, N * PERIOD);
+      end
+    end
+endmodule
+
+// A_GAP: a gated clock may pulse at most once every N cycles of its source clock.
+//   SVA: assert property (@(posedge gclk) disable iff (!rst_n) 1 |=> @(posedge clk) !gclk_en [*N-1]);
+module gap_check #(parameter N = 2, parameter real PERIOD = 2.0, parameter NAME = "A_GAP")
+  (input logic gclk, rst_n);
+  realtime t_last = -1.0e9;
+  integer checks = 0, fails = 0;
+  always @(posedge gclk)
+    if (rst_n === 1'b1) begin
+      checks = checks + 1;
+      assert ($realtime - t_last >= N * PERIOD - 0.001)
+      else begin
+        fails = fails + 1;
+        if (fails <= 4) $display("ASSERTION FAILED %0s at %0.1f ns: the gated clock pulsed %0.1f ns after its last pulse, expected at least %0.1f ns",
+                                 NAME, $realtime, $realtime - t_last, N * PERIOD);
+      end
+      t_last = $realtime;
+    end
+endmodule
+
+// A_PHASE: the fast-clock phase counter must be 0 on every slow clock edge.
+//   SVA: assert property (@(posedge clk_s) disable iff (!rst_n) ph == 0);
+module phase_check #(parameter NAME = "A_PHASE") (input logic clk_s, rst_n, ph0);
+  integer checks = 0, fails = 0;
+  always @(posedge clk_s)
+    if (rst_n === 1'b1) begin
+      checks = checks + 1;
+      assert (ph0 === 1'b1)
+      else begin
+        fails = fails + 1;
+        if (fails <= 4) $display("ASSERTION FAILED %0s at %0.1f ns: a slow clock edge where the fast phase is not 0", NAME, $realtime);
+      end
+    end
+endmodule
+
+// A_STATIC: a quasi-static signal (a clock select or a mode) may only change in reset.
+//   SVA: assert property (@(posedge clk) disable iff (!rst_n) $stable(sig));
+module static_check #(parameter NAME = "A_STATIC") (input logic rst_n, sig);
+  integer checks = 0, fails = 0;
+  always @(sig)
+    if ($realtime > 0) begin
+      checks = checks + 1;
+      assert (rst_n !== 1'b1)
+      else begin
+        fails = fails + 1;
+        if (fails <= 4) $display("ASSERTION FAILED %0s at %0.1f ns: the signal changed while the design is running (out of reset)", NAME, $realtime);
+      end
+    end
+endmodule
+
+// A_CROSS: claiming two clocks are exclusive says no data goes from one to the other.
+// So a flop on the capture clock must never sample data that the other clock changed
+// since its previous capture edge.
+//   SVA: assert property (@(posedge cap_clk) disable iff (!rst_n) $stable(src));
+module cross_check #(parameter W = 1, parameter NAME = "A_CROSS") (input logic cap_clk, rst_n, input logic [W-1:0] src);
+  logic [W-1:0] prev;
+  integer checks = 0, fails = 0;
+  always @(posedge cap_clk) begin
+    if (rst_n === 1'b1) begin
+      checks = checks + 1;
+      assert (src === prev)
+      else begin
+        fails = fails + 1;
+        if (fails <= 4) $display("ASSERTION FAILED %0s at %0.1f ns: data from the other clock changed and is captured here, so the two clocks do interact", NAME, $realtime);
+      end
+    end
+    prev = src;
+  end
+endmodule
+
+// A_EXCL: physically exclusive clocks are never present at the same time.
+//   SVA: assert property (@(posedge clk1) !clk2_running);   (clk2_running from a clock activity monitor)
+module excl_check #(parameter real WINDOW = 20.0, parameter NAME = "A_EXCL") (input logic clk1, clk2);
+  realtime t1 = -1.0e9, t2 = -1.0e9;
+  integer checks = 0, fails = 0;
+  always @(posedge clk1) begin
+    checks = checks + 1;
+    assert ($realtime - t2 > WINDOW)
+    else begin fails = fails + 1; if (fails <= 4) $display("ASSERTION FAILED %0s at %0.1f ns: both clocks are running (the other clock toggled %0.1f ns ago)", NAME, $realtime, $realtime - t2); end
+    t1 = $realtime;
+  end
+  always @(posedge clk2) begin
+    checks = checks + 1;
+    assert ($realtime - t1 > WINDOW)
+    else begin fails = fails + 1; if (fails <= 4) $display("ASSERTION FAILED %0s at %0.1f ns: both clocks are running (the other clock toggled %0.1f ns ago)", NAME, $realtime, $realtime - t1); end
+    t2 = $realtime;
+  end
+endmodule
+
+// A_PERIOD: the clock on a port matches the SDC clock for the current mode.
+//   SVA: property with a local variable that measures the period between two edges.
+module period_check #(parameter real P0 = 2.0, parameter real P1 = 5.0, parameter NAME = "A_PERIOD") (input logic clk, rst_n, mode);
+  realtime t_last = -1.0;
+  real expect_ns;
+  integer checks = 0, fails = 0;
+  always @(posedge clk) begin
+    expect_ns = mode ? P1 : P0;
+    if (rst_n === 1'b1 && t_last >= 0) begin
+      checks = checks + 1;
+      assert ($realtime - t_last > expect_ns - 0.01 && $realtime - t_last < expect_ns + 0.01)
+      else begin fails = fails + 1; if (fails <= 4) $display("ASSERTION FAILED %0s at %0.1f ns: clock period %0.1f ns, the SDC clock for this mode is %0.1f ns", NAME, $realtime, $realtime - t_last, expect_ns); end
+    end
+    t_last = (rst_n === 1'b1) ? $realtime : -1.0;
+  end
+endmodule
+`,"mcp_cg.v":`// Gate-level netlist of mcp_cg (one bit of the datapath).
+// tog toggles every clock and enables the clock gate u_icg, so gclk pulses every 2nd clock (every clock when burst = 1).
+// a_q and dout are both clocked by gclk; a_q -> 6 delay gates (about 3.5 ns) -> dout.
+module mcp_cg (clk, rst_n, burst, din, dout);
+  input  clk, rst_n, burst, din;
+  output dout;
+  wire   tog, tog_n, gclk, a_q, y, g_en, y1, y2, y3, y4, y5;
+  sky130_fd_sc_hd__dfrtp_1 tog_reg (.CLK(clk), .D(tog_n), .RESET_B(rst_n), .Q(tog));
+  sky130_fd_sc_hd__inv_1 u_inv (.A(tog), .Y(tog_n));
+  sky130_fd_sc_hd__or2_1 u_or (.A(tog), .B(burst), .X(g_en));
+  sky130_fd_sc_hd__dlclkp_1 u_icg (.CLK(clk), .GATE(g_en), .GCLK(gclk));
+  sky130_fd_sc_hd__dfxtp_1 a_q_reg (.CLK(gclk), .D(din), .Q(a_q));
+  sky130_fd_sc_hd__dlygate4sd3_1 yg1 (.A(a_q), .X(y1));
+  sky130_fd_sc_hd__dlygate4sd3_1 yg2 (.A(y1), .X(y2));
+  sky130_fd_sc_hd__dlygate4sd3_1 yg3 (.A(y2), .X(y3));
+  sky130_fd_sc_hd__dlygate4sd3_1 yg4 (.A(y3), .X(y4));
+  sky130_fd_sc_hd__dlygate4sd3_1 yg5 (.A(y4), .X(y5));
+  sky130_fd_sc_hd__dlygate4sd3_1 yg6 (.A(y5), .X(y));
+  sky130_fd_sc_hd__dfxtp_1 dout_reg (.CLK(gclk), .D(y), .Q(dout));
+endmodule
+`,"mcp_cg.sdc":`# Constraints for mcp_cg
+create_clock -name clk -period 2 [get_ports clk]
+set_input_delay  0.2 -clock clk [get_ports {din burst}]
+set_output_delay 0.2 -clock clk [get_ports dout]
+set_false_path -from [get_ports rst_n]
+
+# a_q and dout are clocked by gclk, which the clock gate opens every 2nd clock, so the
+# path a_q -> dout has 2 clocks. STA does not know that: it times gclk as the 2 ns clk.
+set_multicycle_path 2 -setup -from [get_cells a_q_reg] -to [get_cells dout_reg]
+set_multicycle_path 1 -hold  -from [get_cells a_q_reg] -to [get_cells dout_reg]
+`},quiz:[{type:"number",q:"Press Simulate. How many A_GAP failures are there?",answer:6,tol:0,unit:"",explain:"While burst = 1 the gate opens every clock.",try:!1},{type:"number",q:"How many A_MCP failures are there?",answer:6,tol:0,unit:"",explain:"dout captures 2 ns after a_q changes during the burst.",try:!1},{type:"number",q:"Try it: in tb_mcp_cg.sv, keep burst at 0 (change burst = 1 to burst = 0). How many assertion failures in total?",answer:0,tol:0,unit:"",explain:"Without burst mode the design matches the SDC again.",try:!0},{type:"choice",q:"Which fix keeps burst mode?",options:["Make the logic fit in one clock and remove the MCP, or use a separate mode SDC without the MCP for burst mode","Add -hold 2","Leave the SDC as it is: STA passes","Turn off the clock gate in the SDC"],answer:0,explain:"",try:!1}]},{id:"ver-v9",group:"Verify constraints",tag:"Verify 9",title:"Logically exclusive clocks through a clock mux",script:"run.tcl",order:["run.tcl","clkmux.sv","tb_clkmux.sv","checks.sv","clkmux.v","clkmux.sdc"],files:{"run.tcl":`# Verify 9: clkA and clkB reach the same flops through a clock mux.
+# Run STA with and without set_clock_groups, then Simulate: sel must only change in reset.
+
+read_liberty sky130_fd_sc_hd__tt_025C_1v80.lib
+read_verilog clkmux.v
+link_design clkmux
+read_sdc clkmux.sdc
+
+puts "### Clocks"
+report_clock_properties
+puts "\\n### Setup: r1_reg -> dout_reg"
+report_checks -from r1_reg/CLK -to dout_reg/D -path_delay max
+puts "\\n### Hold: r1_reg -> dout_reg"
+report_checks -from r1_reg/CLK -to dout_reg/D -path_delay min
+puts "\\n### Worst setup paths"
+report_checks -path_delay max -group_path_count 5 -format end
+report_wns
+report_tns
+`,"clkmux.sv":`// RTL of clkmux: a clock mux picks clkA (sel = 0) or clkB (sel = 1) for r1 and dout.
+// The SDC says clkA and clkB are logically exclusive. The assertions check what that needs:
+// sel only changes in reset.
+\`timescale 1ns/1ps
+module clkmux (
+  input  logic       clkA, clkB, sel, rst_n,
+  input  logic [7:0] din,
+  output logic [7:0] dout
+);
+  wire        clk_m = sel ? clkB : clkA;   // clock mux (a glitch-free mux cell in silicon)
+  logic [7:0] r1, y;
+  assign y = r1 + 8'd1;
+
+  always_ff @(posedge clk_m or negedge rst_n)
+    if (!rst_n) begin r1 <= '0; dout <= '0; end
+    else begin r1 <= din; dout <= y; end
+
+  // synthesis translate_off
+  static_check #(.NAME("A_SEL")) u_sel (.rst_n(rst_n), .sig(sel));
+  // synthesis translate_on
+endmodule
+`,"tb_clkmux.sv":`// Testbench for clkmux: run on clkA, then reset, switch sel to clkB and run again.
+\`timescale 1ns/1ps
+module tb_clkmux;
+  logic clkA = 0, clkB = 0, sel = 0, rst_n = 0;
+  logic [7:0] din = 0, dout;
+  always #1   clkA = ~clkA;               // 2 ns
+  always #1.5 clkB = ~clkB;               // 3 ns
+  clkmux dut (.*);
+  initial begin
+    $dumpfile("waves.vcd"); $dumpvars(1, tb_clkmux); $dumpvars(1, tb_clkmux.dut);
+    #5.2 rst_n = 1;
+    repeat (20) @(negedge clkA) din = $random;
+    rst_n = 0; #4 sel = 1; #4 rst_n = 1;   // switch the clock in reset
+    repeat (20) @(negedge clkB) din = $random;
+    $display("%-8s %0d checks, %0d failed", "A_SEL", dut.u_sel.checks, dut.u_sel.fails);
+    if ((dut.u_sel.fails) == 0) $display("PASS: every assertion held");
+    else $display("FAIL: %0d assertion failures: the design does not match the constraint", dut.u_sel.fails);
+    $finish;
+  end
+endmodule
+`,"checks.sv":`// Assertion checkers for timing constraints.
+// Icarus Verilog has no concurrent SVA, so each checker uses clocked immediate assertions.
+// Above each checker is the concurrent SVA property you would write in a commercial simulator.
+\`timescale 1ns/1ps
+
+// A_MCP: a multicycle path is only safe if the source data has been stable for N cycles
+// (of the clock the MCP counts, PERIOD ns) when the destination captures it.
+//   SVA, same clock, N = 2:   assert property (@(posedge clk) disable iff (!rst_n) $changed(src) |-> !cap_en);
+//   SVA, general:             assert property (@(posedge clk) disable iff (!rst_n) $changed(src) |-> !cap_en [*N-1]);
+module mcp_check #(parameter W = 8, parameter N = 2, parameter real PERIOD = 2.0, parameter NAME = "A_MCP")
+  (input logic cap_clk, rst_n, cap_en, input logic [W-1:0] src);
+  realtime t_change = 0.0;
+  integer checks = 0, fails = 0;
+  always @(src) t_change = $realtime;
+  always @(posedge cap_clk)
+    if (rst_n === 1'b1 && cap_en === 1'b1) begin
+      checks = checks + 1;
+      assert ($realtime - t_change >= N * PERIOD - 0.001)
+      else begin
+        fails = fails + 1;
+        if (fails <= 4) $display("ASSERTION FAILED %0s at %0.1f ns: data captured %0.1f ns after it changed, the multicycle path needs %0d x %0.1f = %0.1f ns",
+                                 NAME, $realtime, $realtime - t_change, N, PERIOD, N * PERIOD);
+      end
+    end
+endmodule
+
+// A_GAP: a gated clock may pulse at most once every N cycles of its source clock.
+//   SVA: assert property (@(posedge gclk) disable iff (!rst_n) 1 |=> @(posedge clk) !gclk_en [*N-1]);
+module gap_check #(parameter N = 2, parameter real PERIOD = 2.0, parameter NAME = "A_GAP")
+  (input logic gclk, rst_n);
+  realtime t_last = -1.0e9;
+  integer checks = 0, fails = 0;
+  always @(posedge gclk)
+    if (rst_n === 1'b1) begin
+      checks = checks + 1;
+      assert ($realtime - t_last >= N * PERIOD - 0.001)
+      else begin
+        fails = fails + 1;
+        if (fails <= 4) $display("ASSERTION FAILED %0s at %0.1f ns: the gated clock pulsed %0.1f ns after its last pulse, expected at least %0.1f ns",
+                                 NAME, $realtime, $realtime - t_last, N * PERIOD);
+      end
+      t_last = $realtime;
+    end
+endmodule
+
+// A_PHASE: the fast-clock phase counter must be 0 on every slow clock edge.
+//   SVA: assert property (@(posedge clk_s) disable iff (!rst_n) ph == 0);
+module phase_check #(parameter NAME = "A_PHASE") (input logic clk_s, rst_n, ph0);
+  integer checks = 0, fails = 0;
+  always @(posedge clk_s)
+    if (rst_n === 1'b1) begin
+      checks = checks + 1;
+      assert (ph0 === 1'b1)
+      else begin
+        fails = fails + 1;
+        if (fails <= 4) $display("ASSERTION FAILED %0s at %0.1f ns: a slow clock edge where the fast phase is not 0", NAME, $realtime);
+      end
+    end
+endmodule
+
+// A_STATIC: a quasi-static signal (a clock select or a mode) may only change in reset.
+//   SVA: assert property (@(posedge clk) disable iff (!rst_n) $stable(sig));
+module static_check #(parameter NAME = "A_STATIC") (input logic rst_n, sig);
+  integer checks = 0, fails = 0;
+  always @(sig)
+    if ($realtime > 0) begin
+      checks = checks + 1;
+      assert (rst_n !== 1'b1)
+      else begin
+        fails = fails + 1;
+        if (fails <= 4) $display("ASSERTION FAILED %0s at %0.1f ns: the signal changed while the design is running (out of reset)", NAME, $realtime);
+      end
+    end
+endmodule
+
+// A_CROSS: claiming two clocks are exclusive says no data goes from one to the other.
+// So a flop on the capture clock must never sample data that the other clock changed
+// since its previous capture edge.
+//   SVA: assert property (@(posedge cap_clk) disable iff (!rst_n) $stable(src));
+module cross_check #(parameter W = 1, parameter NAME = "A_CROSS") (input logic cap_clk, rst_n, input logic [W-1:0] src);
+  logic [W-1:0] prev;
+  integer checks = 0, fails = 0;
+  always @(posedge cap_clk) begin
+    if (rst_n === 1'b1) begin
+      checks = checks + 1;
+      assert (src === prev)
+      else begin
+        fails = fails + 1;
+        if (fails <= 4) $display("ASSERTION FAILED %0s at %0.1f ns: data from the other clock changed and is captured here, so the two clocks do interact", NAME, $realtime);
+      end
+    end
+    prev = src;
+  end
+endmodule
+
+// A_EXCL: physically exclusive clocks are never present at the same time.
+//   SVA: assert property (@(posedge clk1) !clk2_running);   (clk2_running from a clock activity monitor)
+module excl_check #(parameter real WINDOW = 20.0, parameter NAME = "A_EXCL") (input logic clk1, clk2);
+  realtime t1 = -1.0e9, t2 = -1.0e9;
+  integer checks = 0, fails = 0;
+  always @(posedge clk1) begin
+    checks = checks + 1;
+    assert ($realtime - t2 > WINDOW)
+    else begin fails = fails + 1; if (fails <= 4) $display("ASSERTION FAILED %0s at %0.1f ns: both clocks are running (the other clock toggled %0.1f ns ago)", NAME, $realtime, $realtime - t2); end
+    t1 = $realtime;
+  end
+  always @(posedge clk2) begin
+    checks = checks + 1;
+    assert ($realtime - t1 > WINDOW)
+    else begin fails = fails + 1; if (fails <= 4) $display("ASSERTION FAILED %0s at %0.1f ns: both clocks are running (the other clock toggled %0.1f ns ago)", NAME, $realtime, $realtime - t1); end
+    t2 = $realtime;
+  end
+endmodule
+
+// A_PERIOD: the clock on a port matches the SDC clock for the current mode.
+//   SVA: property with a local variable that measures the period between two edges.
+module period_check #(parameter real P0 = 2.0, parameter real P1 = 5.0, parameter NAME = "A_PERIOD") (input logic clk, rst_n, mode);
+  realtime t_last = -1.0;
+  real expect_ns;
+  integer checks = 0, fails = 0;
+  always @(posedge clk) begin
+    expect_ns = mode ? P1 : P0;
+    if (rst_n === 1'b1 && t_last >= 0) begin
+      checks = checks + 1;
+      assert ($realtime - t_last > expect_ns - 0.01 && $realtime - t_last < expect_ns + 0.01)
+      else begin fails = fails + 1; if (fails <= 4) $display("ASSERTION FAILED %0s at %0.1f ns: clock period %0.1f ns, the SDC clock for this mode is %0.1f ns", NAME, $realtime, $realtime - t_last, expect_ns); end
+    end
+    t_last = (rst_n === 1'b1) ? $realtime : -1.0;
+  end
+endmodule
+`,"clkmux.v":`// Gate-level netlist of clkmux (one bit of the datapath).
+// cmux selects clkA (sel = 0) or clkB (sel = 1) for r1 and dout; r1 -> 2 delay gates -> dout.
+module clkmux (clkA, clkB, sel, rst_n, din, dout);
+  input  clkA, clkB, sel, rst_n, din;
+  output dout;
+  wire   clk_m, r1, y, y1;
+  sky130_fd_sc_hd__mux2_1 cmux (.A0(clkA), .A1(clkB), .S(sel), .X(clk_m));
+  sky130_fd_sc_hd__dfxtp_1 r1_reg (.CLK(clk_m), .D(din), .Q(r1));
+  sky130_fd_sc_hd__dlygate4sd3_1 yg1 (.A(r1), .X(y1));
+  sky130_fd_sc_hd__dlygate4sd3_1 yg2 (.A(y1), .X(y));
+  sky130_fd_sc_hd__dfxtp_1 dout_reg (.CLK(clk_m), .D(y), .Q(dout));
+endmodule
+`,"clkmux.sdc":`# Constraints for clkmux
+create_clock -name clkA -period 2 [get_ports clkA]
+create_clock -name clkB -period 3 [get_ports clkB]
+set_input_delay  0.2 -clock clkA [get_ports din]
+set_input_delay  0.2 -clock clkB [get_ports din] -add_delay
+set_output_delay 0.2 -clock clkA [get_ports dout]
+set_output_delay 0.2 -clock clkB [get_ports dout] -add_delay
+set_false_path -from [get_ports {sel rst_n}]
+
+# clkA and clkB both reach r1 and dout through the clock mux. Only one is selected at a time,
+# so a path launched by clkA and captured by clkB on these flops can never happen.
+set_clock_groups -logically_exclusive -group clkA -group clkB
+`},quiz:[{type:"number",q:"What is the worst setup slack r1_reg -> dout_reg, as shipped?",answer:.54,tol:.01,unit:"ns",explain:"The clkA path: 2 ns period.",try:!1},{type:"number",q:"Try it: comment out set_clock_groups and run STA. What is the worst setup slack now?",answer:-.46,tol:.01,unit:"ns",explain:"STA now times clkA \u2192 clkB between r1 and dout, with a 1 ns window: a path that never happens.",try:!0},{type:"choice",q:"Why can clkA \u2192 clkB never happen between r1 and dout?",options:["Only one clock is selected at a time, and sel only changes in reset","clkB is faster","The mux adds delay","r1 has no enable"],answer:0,explain:"",try:!1},{type:"number",q:"Try it: in tb_clkmux.sv, switch sel without the reset (replace the line with just sel = 1;). How many A_SEL failures?",answer:1,tol:0,unit:"",explain:"Switching the clock while running can glitch and creates a real clkA \u2192 clkB transfer.",try:!0}]},{id:"ver-v10",group:"Verify constraints",tag:"Verify 10",title:"Logically exclusive by mistake: a real crossing disappears",script:"run.tcl",order:["run.tcl","clkmux.sv","tb_clkmux.sv","checks.sv","clkmux.v","clkmux.sdc","solution.sdc"],files:{"run.tcl":`# Verify 10: the same clock mux, plus a status bit that goes straight from clkA to clkB.
+# The SDC declares clkA and clkB logically exclusive. Run STA, Simulate, then try solution.sdc.
+
+read_liberty sky130_fd_sc_hd__tt_025C_1v80.lib
+read_verilog clkmux.v
+link_design clkmux
+read_sdc clkmux.sdc
+
+puts "### Clocks"
+report_clock_properties
+puts "\\n### Setup: r1_reg -> dout_reg"
+report_checks -from r1_reg/CLK -to dout_reg/D -path_delay max
+puts "\\n### Hold: r1_reg -> dout_reg"
+report_checks -from r1_reg/CLK -to dout_reg/D -path_delay min
+puts "\\n### a_q -> b_q (clkA to clkB, no clock mux)"
+set p [find_timing_paths -from [get_cells a_q_reg] -to [get_cells b_q_reg] -path_delay max]
+if {[llength $p]} { report_checks -from a_q_reg/CLK -to b_q_reg/D -path_delay max } else { puts "No path: a_q -> b_q is not timed" }
+puts "\\n### Worst setup paths"
+report_checks -path_delay max -group_path_count 5 -format end
+report_wns
+report_tns
+`,"clkmux.sv":`// RTL of clkmux: a clock mux picks clkA (sel = 0) or clkB (sel = 1) for r1 and dout.
+// The SDC says clkA and clkB are logically exclusive. The assertions check what that needs:
+// sel only changes in reset, and no data goes from one clock straight to the other.
+\`timescale 1ns/1ps
+module clkmux (
+  input  logic       clkA, clkB, sel, rst_n,
+  input  logic [7:0] din,
+  output logic [7:0] dout,
+  output logic       b_q
+);
+  wire        clk_m = sel ? clkB : clkA;   // clock mux (a glitch-free mux cell in silicon)
+  logic [7:0] r1, y;
+  assign y = r1 + 8'd1;
+
+  always_ff @(posedge clk_m or negedge rst_n)
+    if (!rst_n) begin r1 <= '0; dout <= '0; end
+    else begin r1 <= din; dout <= y; end
+
+  // A status bit from the clkA domain, read straight by the clkB domain (no mux, no synchronizer)
+  logic a_q;
+  always_ff @(posedge clkA or negedge rst_n) if (!rst_n) a_q <= 1'b0; else a_q <= ~a_q;
+  always_ff @(posedge clkB or negedge rst_n) if (!rst_n) b_q <= 1'b0; else b_q <= a_q;
+
+  // synthesis translate_off
+  static_check #(.NAME("A_SEL")) u_sel (.rst_n(rst_n), .sig(sel));
+  cross_check  #(.NAME("A_CROSS a_q->b_q")) u_cross (.cap_clk(clkB), .rst_n(rst_n), .src(a_q));
+  // synthesis translate_on
+endmodule
+`,"tb_clkmux.sv":`// Testbench for clkmux: run on clkA, then reset, switch sel to clkB and run again.
+\`timescale 1ns/1ps
+module tb_clkmux;
+  logic clkA = 0, clkB = 0, sel = 0, rst_n = 0;
+  logic [7:0] din = 0, dout;
+  logic b_q;
+  always #1   clkA = ~clkA;               // 2 ns
+  always #1.5 clkB = ~clkB;               // 3 ns
+  clkmux dut (.*);
+  initial begin
+    $dumpfile("waves.vcd"); $dumpvars(1, tb_clkmux); $dumpvars(1, tb_clkmux.dut);
+    #5.2 rst_n = 1;
+    repeat (20) @(negedge clkA) din = $random;
+    rst_n = 0; #4 sel = 1; #4 rst_n = 1;   // switch the clock in reset
+    repeat (20) @(negedge clkB) din = $random;
+    $display("%-8s %0d checks, %0d failed", "A_SEL", dut.u_sel.checks, dut.u_sel.fails);
+    $display("%-8s %0d checks, %0d failed", "A_CROSS", dut.u_cross.checks, dut.u_cross.fails);
+    if ((dut.u_sel.fails + dut.u_cross.fails) == 0) $display("PASS: every assertion held");
+    else $display("FAIL: %0d assertion failures: the design does not match the constraint", dut.u_sel.fails + dut.u_cross.fails);
+    $finish;
+  end
+endmodule
+`,"checks.sv":`// Assertion checkers for timing constraints.
+// Icarus Verilog has no concurrent SVA, so each checker uses clocked immediate assertions.
+// Above each checker is the concurrent SVA property you would write in a commercial simulator.
+\`timescale 1ns/1ps
+
+// A_MCP: a multicycle path is only safe if the source data has been stable for N cycles
+// (of the clock the MCP counts, PERIOD ns) when the destination captures it.
+//   SVA, same clock, N = 2:   assert property (@(posedge clk) disable iff (!rst_n) $changed(src) |-> !cap_en);
+//   SVA, general:             assert property (@(posedge clk) disable iff (!rst_n) $changed(src) |-> !cap_en [*N-1]);
+module mcp_check #(parameter W = 8, parameter N = 2, parameter real PERIOD = 2.0, parameter NAME = "A_MCP")
+  (input logic cap_clk, rst_n, cap_en, input logic [W-1:0] src);
+  realtime t_change = 0.0;
+  integer checks = 0, fails = 0;
+  always @(src) t_change = $realtime;
+  always @(posedge cap_clk)
+    if (rst_n === 1'b1 && cap_en === 1'b1) begin
+      checks = checks + 1;
+      assert ($realtime - t_change >= N * PERIOD - 0.001)
+      else begin
+        fails = fails + 1;
+        if (fails <= 4) $display("ASSERTION FAILED %0s at %0.1f ns: data captured %0.1f ns after it changed, the multicycle path needs %0d x %0.1f = %0.1f ns",
+                                 NAME, $realtime, $realtime - t_change, N, PERIOD, N * PERIOD);
+      end
+    end
+endmodule
+
+// A_GAP: a gated clock may pulse at most once every N cycles of its source clock.
+//   SVA: assert property (@(posedge gclk) disable iff (!rst_n) 1 |=> @(posedge clk) !gclk_en [*N-1]);
+module gap_check #(parameter N = 2, parameter real PERIOD = 2.0, parameter NAME = "A_GAP")
+  (input logic gclk, rst_n);
+  realtime t_last = -1.0e9;
+  integer checks = 0, fails = 0;
+  always @(posedge gclk)
+    if (rst_n === 1'b1) begin
+      checks = checks + 1;
+      assert ($realtime - t_last >= N * PERIOD - 0.001)
+      else begin
+        fails = fails + 1;
+        if (fails <= 4) $display("ASSERTION FAILED %0s at %0.1f ns: the gated clock pulsed %0.1f ns after its last pulse, expected at least %0.1f ns",
+                                 NAME, $realtime, $realtime - t_last, N * PERIOD);
+      end
+      t_last = $realtime;
+    end
+endmodule
+
+// A_PHASE: the fast-clock phase counter must be 0 on every slow clock edge.
+//   SVA: assert property (@(posedge clk_s) disable iff (!rst_n) ph == 0);
+module phase_check #(parameter NAME = "A_PHASE") (input logic clk_s, rst_n, ph0);
+  integer checks = 0, fails = 0;
+  always @(posedge clk_s)
+    if (rst_n === 1'b1) begin
+      checks = checks + 1;
+      assert (ph0 === 1'b1)
+      else begin
+        fails = fails + 1;
+        if (fails <= 4) $display("ASSERTION FAILED %0s at %0.1f ns: a slow clock edge where the fast phase is not 0", NAME, $realtime);
+      end
+    end
+endmodule
+
+// A_STATIC: a quasi-static signal (a clock select or a mode) may only change in reset.
+//   SVA: assert property (@(posedge clk) disable iff (!rst_n) $stable(sig));
+module static_check #(parameter NAME = "A_STATIC") (input logic rst_n, sig);
+  integer checks = 0, fails = 0;
+  always @(sig)
+    if ($realtime > 0) begin
+      checks = checks + 1;
+      assert (rst_n !== 1'b1)
+      else begin
+        fails = fails + 1;
+        if (fails <= 4) $display("ASSERTION FAILED %0s at %0.1f ns: the signal changed while the design is running (out of reset)", NAME, $realtime);
+      end
+    end
+endmodule
+
+// A_CROSS: claiming two clocks are exclusive says no data goes from one to the other.
+// So a flop on the capture clock must never sample data that the other clock changed
+// since its previous capture edge.
+//   SVA: assert property (@(posedge cap_clk) disable iff (!rst_n) $stable(src));
+module cross_check #(parameter W = 1, parameter NAME = "A_CROSS") (input logic cap_clk, rst_n, input logic [W-1:0] src);
+  logic [W-1:0] prev;
+  integer checks = 0, fails = 0;
+  always @(posedge cap_clk) begin
+    if (rst_n === 1'b1) begin
+      checks = checks + 1;
+      assert (src === prev)
+      else begin
+        fails = fails + 1;
+        if (fails <= 4) $display("ASSERTION FAILED %0s at %0.1f ns: data from the other clock changed and is captured here, so the two clocks do interact", NAME, $realtime);
+      end
+    end
+    prev = src;
+  end
+endmodule
+
+// A_EXCL: physically exclusive clocks are never present at the same time.
+//   SVA: assert property (@(posedge clk1) !clk2_running);   (clk2_running from a clock activity monitor)
+module excl_check #(parameter real WINDOW = 20.0, parameter NAME = "A_EXCL") (input logic clk1, clk2);
+  realtime t1 = -1.0e9, t2 = -1.0e9;
+  integer checks = 0, fails = 0;
+  always @(posedge clk1) begin
+    checks = checks + 1;
+    assert ($realtime - t2 > WINDOW)
+    else begin fails = fails + 1; if (fails <= 4) $display("ASSERTION FAILED %0s at %0.1f ns: both clocks are running (the other clock toggled %0.1f ns ago)", NAME, $realtime, $realtime - t2); end
+    t1 = $realtime;
+  end
+  always @(posedge clk2) begin
+    checks = checks + 1;
+    assert ($realtime - t1 > WINDOW)
+    else begin fails = fails + 1; if (fails <= 4) $display("ASSERTION FAILED %0s at %0.1f ns: both clocks are running (the other clock toggled %0.1f ns ago)", NAME, $realtime, $realtime - t1); end
+    t2 = $realtime;
+  end
+endmodule
+
+// A_PERIOD: the clock on a port matches the SDC clock for the current mode.
+//   SVA: property with a local variable that measures the period between two edges.
+module period_check #(parameter real P0 = 2.0, parameter real P1 = 5.0, parameter NAME = "A_PERIOD") (input logic clk, rst_n, mode);
+  realtime t_last = -1.0;
+  real expect_ns;
+  integer checks = 0, fails = 0;
+  always @(posedge clk) begin
+    expect_ns = mode ? P1 : P0;
+    if (rst_n === 1'b1 && t_last >= 0) begin
+      checks = checks + 1;
+      assert ($realtime - t_last > expect_ns - 0.01 && $realtime - t_last < expect_ns + 0.01)
+      else begin fails = fails + 1; if (fails <= 4) $display("ASSERTION FAILED %0s at %0.1f ns: clock period %0.1f ns, the SDC clock for this mode is %0.1f ns", NAME, $realtime, $realtime - t_last, expect_ns); end
+    end
+    t_last = (rst_n === 1'b1) ? $realtime : -1.0;
+  end
+endmodule
+`,"clkmux.v":`// Gate-level netlist of clkmux (one bit of the datapath).
+// cmux selects clkA (sel = 0) or clkB (sel = 1) for r1 and dout; r1 -> 2 delay gates -> dout.
+// a_q (clkA, a toggle flop) -> b_q (clkB): a status bit that goes straight from clkA to clkB.
+module clkmux (clkA, clkB, sel, rst_n, din, dout, b_q);
+  input  clkA, clkB, sel, rst_n, din;
+  output dout, b_q;
+  wire   clk_m, r1, y, a_q, a_n, a_d1, a_d, y1;
+  sky130_fd_sc_hd__mux2_1 cmux (.A0(clkA), .A1(clkB), .S(sel), .X(clk_m));
+  sky130_fd_sc_hd__dfxtp_1 r1_reg (.CLK(clk_m), .D(din), .Q(r1));
+  sky130_fd_sc_hd__dlygate4sd3_1 yg1 (.A(r1), .X(y1));
+  sky130_fd_sc_hd__dlygate4sd3_1 yg2 (.A(y1), .X(y));
+  sky130_fd_sc_hd__dfxtp_1 dout_reg (.CLK(clk_m), .D(y), .Q(dout));
+  sky130_fd_sc_hd__dfxtp_1 a_q_reg (.CLK(clkA), .D(a_n), .Q(a_q));
+  sky130_fd_sc_hd__inv_1 u_ainv (.A(a_q), .Y(a_n));
+  sky130_fd_sc_hd__dlygate4sd3_1 u_ad1 (.A(a_q), .X(a_d1));
+  sky130_fd_sc_hd__dlygate4sd3_1 u_ad2 (.A(a_d1), .X(a_d));
+  sky130_fd_sc_hd__dfxtp_1 b_q_reg (.CLK(clkB), .D(a_d), .Q(b_q));
+endmodule
+`,"clkmux.sdc":`# Constraints for clkmux
+create_clock -name clkA -period 2 [get_ports clkA]
+create_clock -name clkB -period 3 [get_ports clkB]
+set_input_delay  0.2 -clock clkA [get_ports din]
+set_input_delay  0.2 -clock clkB [get_ports din] -add_delay
+set_output_delay 0.2 -clock clkA [get_ports {dout b_q}]
+set_output_delay 0.2 -clock clkB [get_ports {dout b_q}] -add_delay
+set_false_path -from [get_ports {sel rst_n}]
+
+# clkA and clkB both reach r1 and dout through the clock mux. Only one is selected at a time,
+# so a path launched by clkA and captured by clkB on these flops can never happen.
+set_clock_groups -logically_exclusive -group clkA -group clkB
+`,"solution.sdc":`# Correct constraints for clkmux: make only the mux output clocks exclusive.
+create_clock -name clkA -period 2 [get_ports clkA]
+create_clock -name clkB -period 3 [get_ports clkB]
+create_generated_clock -name mA -source [get_ports clkA] -divide_by 1 -master_clock clkA [get_pins cmux/X]
+create_generated_clock -name mB -source [get_ports clkB] -divide_by 1 -master_clock clkB [get_pins cmux/X] -add
+set_input_delay  0.2 -clock clkA [get_ports din]
+set_input_delay  0.2 -clock clkB [get_ports din] -add_delay
+set_output_delay 0.2 -clock clkA [get_ports {dout b_q}]
+set_output_delay 0.2 -clock clkB [get_ports {dout b_q}] -add_delay
+set_false_path -from [get_ports {sel rst_n}]
+
+# mA and mB are on the same net, so they can never both be there: physically exclusive.
+set_clock_groups -physically_exclusive -group mA -group mB
+# clkA and clkB themselves are NOT exclusive: a_q (clkA) -> b_q (clkB) is a real crossing.
+# STA now reports it. It needs a synchronizer (see the CDC labs), then for example:
+# set_clock_groups -asynchronous -group {clkA mA} -group {clkB mB}
+`},quiz:[{type:"choice",q:"What does STA report for a_q -> b_q as shipped?",options:["A violation","It is met","No path: the clock groups removed it","An error"],answer:2,explain:"",try:!1},{type:"number",q:"Press Simulate. How many A_CROSS failures are there?",answer:16,tol:0,unit:"",explain:"clkA and clkB both run, and b_q samples a_q while it changes.",try:!1},{type:"number",q:"Try it: copy solution.sdc into clkmux.sdc and run STA. What is the slack of a_q -> b_q?",answer:-.47,tol:.01,unit:"ns",explain:"The crossing is timed again, and it fails: it is a real asynchronous crossing that needs a synchronizer.",try:!0},{type:"choice",q:"Why are the generated clocks mA and mB on cmux/X physically exclusive?",options:["They are on the same net: only one can be there","They have different periods","They come from one PLL","They are inverted"],answer:0,explain:"",try:!1},{type:"choice",q:"What did -logically_exclusive between clkA and clkB hide?",options:["Every path between clkA and clkB, including a_q -> b_q which has no mux","Only the mux paths","Only hold checks","Nothing"],answer:0,explain:"",try:!1}]},{id:"ver-v11",group:"Verify constraints",tag:"Verify 11",title:"Physically exclusive clocks on one port",script:"run.tcl",order:["run.tcl","px_port.sv","tb_px_port.sv","checks.sv","px_port.v","px_port.sdc"],files:{"run.tcl":`# Verify 11: one clock port carries the functional clock or the test clock, never both.
+# Run STA with and without set_clock_groups, then Simulate: the assertions check the mode and the period.
+
+read_liberty sky130_fd_sc_hd__tt_025C_1v80.lib
+read_verilog px_port.v
+link_design px_port
+read_sdc px_port.sdc
+
+puts "### Clocks"
+report_clock_properties
+puts "\\n### Setup: r1_reg -> dout_reg"
+report_checks -from r1_reg/CLK -to dout_reg/D -path_delay max
+puts "\\n### Hold: r1_reg -> dout_reg"
+report_checks -from r1_reg/CLK -to dout_reg/D -path_delay min
+puts "\\n### Worst setup paths"
+report_checks -path_delay max -group_path_count 5 -format end
+report_wns
+report_tns
+`,"px_port.sv":`// RTL of px_port: one clock port, two clocks (fclk 2 ns in mission mode, tclk 5 ns in test mode).
+// The SDC says fclk and tclk are physically exclusive. The assertions check it in simulation:
+// test_mode only changes in reset, and the clock period always matches the SDC clock for the mode.
+\`timescale 1ns/1ps
+module px_port (
+  input  logic       clk, test_mode, rst_n,
+  input  logic [7:0] din,
+  output logic [7:0] dout
+);
+  logic [7:0] r1, y;
+  assign y = r1 + 8'd1;
+  always_ff @(posedge clk or negedge rst_n)
+    if (!rst_n) begin r1 <= '0; dout <= '0; end
+    else begin r1 <= din; dout <= y; end
+
+  // synthesis translate_off
+  static_check #(.NAME("A_MODE")) u_mode (.rst_n(rst_n), .sig(test_mode));
+  period_check #(.P0(2.0), .P1(5.0), .NAME("A_PERIOD")) u_per (.clk(clk), .rst_n(rst_n), .mode(test_mode));
+  // synthesis translate_on
+endmodule
+`,"tb_px_port.sv":`// Testbench for px_port: mission mode with a 2 ns clock, then reset and test mode with 5 ns.
+\`timescale 1ns/1ps
+module tb_px_port;
+  logic clk = 0, test_mode = 0, rst_n = 0;
+  logic [7:0] din = 0, dout;
+  real half = 1.0;                         // half period: 1.0 ns (fclk) or 2.5 ns (tclk)
+  always #(half) clk = ~clk;
+  px_port dut (.*);
+  initial begin
+    $dumpfile("waves.vcd"); $dumpvars(1, tb_px_port); $dumpvars(1, tb_px_port.dut);
+    #5.5 rst_n = 1;
+    repeat (20) @(negedge clk) din = $random;
+    rst_n = 0; @(negedge clk); test_mode = 1; half = 2.5; repeat (2) @(negedge clk); rst_n = 1;
+    repeat (20) @(negedge clk) din = $random;
+    $display("%-8s %0d checks, %0d failed", "A_MODE", dut.u_mode.checks, dut.u_mode.fails);
+    $display("%-8s %0d checks, %0d failed", "A_PERIOD", dut.u_per.checks, dut.u_per.fails);
+    if ((dut.u_mode.fails + dut.u_per.fails) == 0) $display("PASS: every assertion held");
+    else $display("FAIL: %0d assertion failures: the design does not match the constraint", dut.u_mode.fails + dut.u_per.fails);
+    $finish;
+  end
+endmodule
+`,"checks.sv":`// Assertion checkers for timing constraints.
+// Icarus Verilog has no concurrent SVA, so each checker uses clocked immediate assertions.
+// Above each checker is the concurrent SVA property you would write in a commercial simulator.
+\`timescale 1ns/1ps
+
+// A_MCP: a multicycle path is only safe if the source data has been stable for N cycles
+// (of the clock the MCP counts, PERIOD ns) when the destination captures it.
+//   SVA, same clock, N = 2:   assert property (@(posedge clk) disable iff (!rst_n) $changed(src) |-> !cap_en);
+//   SVA, general:             assert property (@(posedge clk) disable iff (!rst_n) $changed(src) |-> !cap_en [*N-1]);
+module mcp_check #(parameter W = 8, parameter N = 2, parameter real PERIOD = 2.0, parameter NAME = "A_MCP")
+  (input logic cap_clk, rst_n, cap_en, input logic [W-1:0] src);
+  realtime t_change = 0.0;
+  integer checks = 0, fails = 0;
+  always @(src) t_change = $realtime;
+  always @(posedge cap_clk)
+    if (rst_n === 1'b1 && cap_en === 1'b1) begin
+      checks = checks + 1;
+      assert ($realtime - t_change >= N * PERIOD - 0.001)
+      else begin
+        fails = fails + 1;
+        if (fails <= 4) $display("ASSERTION FAILED %0s at %0.1f ns: data captured %0.1f ns after it changed, the multicycle path needs %0d x %0.1f = %0.1f ns",
+                                 NAME, $realtime, $realtime - t_change, N, PERIOD, N * PERIOD);
+      end
+    end
+endmodule
+
+// A_GAP: a gated clock may pulse at most once every N cycles of its source clock.
+//   SVA: assert property (@(posedge gclk) disable iff (!rst_n) 1 |=> @(posedge clk) !gclk_en [*N-1]);
+module gap_check #(parameter N = 2, parameter real PERIOD = 2.0, parameter NAME = "A_GAP")
+  (input logic gclk, rst_n);
+  realtime t_last = -1.0e9;
+  integer checks = 0, fails = 0;
+  always @(posedge gclk)
+    if (rst_n === 1'b1) begin
+      checks = checks + 1;
+      assert ($realtime - t_last >= N * PERIOD - 0.001)
+      else begin
+        fails = fails + 1;
+        if (fails <= 4) $display("ASSERTION FAILED %0s at %0.1f ns: the gated clock pulsed %0.1f ns after its last pulse, expected at least %0.1f ns",
+                                 NAME, $realtime, $realtime - t_last, N * PERIOD);
+      end
+      t_last = $realtime;
+    end
+endmodule
+
+// A_PHASE: the fast-clock phase counter must be 0 on every slow clock edge.
+//   SVA: assert property (@(posedge clk_s) disable iff (!rst_n) ph == 0);
+module phase_check #(parameter NAME = "A_PHASE") (input logic clk_s, rst_n, ph0);
+  integer checks = 0, fails = 0;
+  always @(posedge clk_s)
+    if (rst_n === 1'b1) begin
+      checks = checks + 1;
+      assert (ph0 === 1'b1)
+      else begin
+        fails = fails + 1;
+        if (fails <= 4) $display("ASSERTION FAILED %0s at %0.1f ns: a slow clock edge where the fast phase is not 0", NAME, $realtime);
+      end
+    end
+endmodule
+
+// A_STATIC: a quasi-static signal (a clock select or a mode) may only change in reset.
+//   SVA: assert property (@(posedge clk) disable iff (!rst_n) $stable(sig));
+module static_check #(parameter NAME = "A_STATIC") (input logic rst_n, sig);
+  integer checks = 0, fails = 0;
+  always @(sig)
+    if ($realtime > 0) begin
+      checks = checks + 1;
+      assert (rst_n !== 1'b1)
+      else begin
+        fails = fails + 1;
+        if (fails <= 4) $display("ASSERTION FAILED %0s at %0.1f ns: the signal changed while the design is running (out of reset)", NAME, $realtime);
+      end
+    end
+endmodule
+
+// A_CROSS: claiming two clocks are exclusive says no data goes from one to the other.
+// So a flop on the capture clock must never sample data that the other clock changed
+// since its previous capture edge.
+//   SVA: assert property (@(posedge cap_clk) disable iff (!rst_n) $stable(src));
+module cross_check #(parameter W = 1, parameter NAME = "A_CROSS") (input logic cap_clk, rst_n, input logic [W-1:0] src);
+  logic [W-1:0] prev;
+  integer checks = 0, fails = 0;
+  always @(posedge cap_clk) begin
+    if (rst_n === 1'b1) begin
+      checks = checks + 1;
+      assert (src === prev)
+      else begin
+        fails = fails + 1;
+        if (fails <= 4) $display("ASSERTION FAILED %0s at %0.1f ns: data from the other clock changed and is captured here, so the two clocks do interact", NAME, $realtime);
+      end
+    end
+    prev = src;
+  end
+endmodule
+
+// A_EXCL: physically exclusive clocks are never present at the same time.
+//   SVA: assert property (@(posedge clk1) !clk2_running);   (clk2_running from a clock activity monitor)
+module excl_check #(parameter real WINDOW = 20.0, parameter NAME = "A_EXCL") (input logic clk1, clk2);
+  realtime t1 = -1.0e9, t2 = -1.0e9;
+  integer checks = 0, fails = 0;
+  always @(posedge clk1) begin
+    checks = checks + 1;
+    assert ($realtime - t2 > WINDOW)
+    else begin fails = fails + 1; if (fails <= 4) $display("ASSERTION FAILED %0s at %0.1f ns: both clocks are running (the other clock toggled %0.1f ns ago)", NAME, $realtime, $realtime - t2); end
+    t1 = $realtime;
+  end
+  always @(posedge clk2) begin
+    checks = checks + 1;
+    assert ($realtime - t1 > WINDOW)
+    else begin fails = fails + 1; if (fails <= 4) $display("ASSERTION FAILED %0s at %0.1f ns: both clocks are running (the other clock toggled %0.1f ns ago)", NAME, $realtime, $realtime - t1); end
+    t2 = $realtime;
+  end
+endmodule
+
+// A_PERIOD: the clock on a port matches the SDC clock for the current mode.
+//   SVA: property with a local variable that measures the period between two edges.
+module period_check #(parameter real P0 = 2.0, parameter real P1 = 5.0, parameter NAME = "A_PERIOD") (input logic clk, rst_n, mode);
+  realtime t_last = -1.0;
+  real expect_ns;
+  integer checks = 0, fails = 0;
+  always @(posedge clk) begin
+    expect_ns = mode ? P1 : P0;
+    if (rst_n === 1'b1 && t_last >= 0) begin
+      checks = checks + 1;
+      assert ($realtime - t_last > expect_ns - 0.01 && $realtime - t_last < expect_ns + 0.01)
+      else begin fails = fails + 1; if (fails <= 4) $display("ASSERTION FAILED %0s at %0.1f ns: clock period %0.1f ns, the SDC clock for this mode is %0.1f ns", NAME, $realtime, $realtime - t_last, expect_ns); end
+    end
+    t_last = (rst_n === 1'b1) ? $realtime : -1.0;
+  end
+endmodule
+`,"px_port.v":`// Gate-level netlist of px_port (one bit of the datapath): r1 -> 2 delay gates -> dout, all on clk.
+module px_port (clk, test_mode, rst_n, din, dout);
+  input  clk, test_mode, rst_n, din;
+  output dout;
+  wire   r1, y, y1;
+  sky130_fd_sc_hd__dfxtp_1 r1_reg (.CLK(clk), .D(din), .Q(r1));
+  sky130_fd_sc_hd__dlygate4sd3_1 yg1 (.A(r1), .X(y1));
+  sky130_fd_sc_hd__dlygate4sd3_1 yg2 (.A(y1), .X(y));
+  sky130_fd_sc_hd__dfxtp_1 dout_reg (.CLK(clk), .D(y), .Q(dout));
+endmodule
+`,"px_port.sdc":`# Constraints for px_port: the clk port carries the functional clock (2 ns) in mission mode,
+# or the slower test clock (5 ns) in test mode. Two clocks on one port: the second needs -add.
+create_clock -name fclk -period 2 [get_ports clk]
+create_clock -name tclk -period 5 [get_ports clk] -add
+set_input_delay  0.2 -clock fclk [get_ports din]
+set_input_delay  0.2 -clock tclk [get_ports din] -add_delay
+set_output_delay 0.2 -clock fclk [get_ports dout]
+set_output_delay 0.2 -clock tclk [get_ports dout] -add_delay
+set_false_path -from [get_ports {test_mode rst_n}]
+
+# Both clocks can never be on the port at the same time.
+set_clock_groups -physically_exclusive -group fclk -group tclk
+`},quiz:[{type:"number",q:"What is the worst setup slack r1_reg -> dout_reg, as shipped?",answer:.54,tol:.01,unit:"ns",explain:"The fclk path (2 ns).",try:!1},{type:"number",q:"Try it: comment out set_clock_groups. What is the worst setup slack?",answer:-.46,tol:.01,unit:"ns",explain:"STA times fclk against tclk on the same flops: impossible, both are the same port.",try:!0},{type:"number",q:"Press Simulate. How many periods does A_PERIOD check?",answer:37,tol:0,unit:"",explain:"Every clock edge out of reset, in both modes.",try:!1},{type:"number",q:"Try it: in tb_px_port.sv change half = 2.5 to half = 2.0 (a 4 ns test clock). How many A_PERIOD failures?",answer:19,tol:0,unit:"",explain:"The port carries a clock the SDC does not describe.",try:!0},{type:"choice",q:"Why does tclk need -add?",options:["Without -add, the second create_clock on the same port replaces fclk","To make it faster","For hold","It is optional"],answer:0,explain:"",try:!1}]},{id:"ver-v12",group:"Verify constraints",tag:"Verify 12",title:"Physically exclusive by mistake: online BIST",script:"run.tcl",order:["run.tcl","bist_top.sv","tb_bist_top.sv","checks.sv","bist_top.v","bist_top.sdc","solution.sdc"],files:{"run.tcl":`# Verify 12: the SDC says the BIST clock never runs with the functional clock.
+# But the BIST runs online, in mission mode. Run STA, Simulate, then try solution.sdc.
+
+read_liberty sky130_fd_sc_hd__tt_025C_1v80.lib
+read_verilog bist_top.v
+link_design bist_top
+read_sdc bist_top.sdc
+
+puts "### Clocks"
+report_clock_properties
+puts "\\n### Setup: r1_reg -> dout_reg"
+report_checks -from r1_reg/CLK -to dout_reg/D -path_delay max
+puts "\\n### Hold: r1_reg -> dout_reg"
+report_checks -from r1_reg/CLK -to dout_reg/D -path_delay min
+puts "\\n### done_q -> stat_q (bist_clk to clk)"
+set p [find_timing_paths -from [get_cells done_q_reg] -to [get_cells stat_q_reg] -path_delay max]
+if {[llength $p]} { report_checks -from done_q_reg/CLK -to stat_q_reg/D -path_delay max } else { puts "No path: done_q -> stat_q is not timed" }
+puts "\\n### Worst setup paths"
+report_checks -path_delay max -group_path_count 5 -format end
+report_wns
+report_tns
+`,"bist_top.sv":`// RTL of bist_top: mission logic on clk (2 ns) and an online BIST engine on bist_clk (5 ns).
+// The SDC says clk and bist_clk are physically exclusive (never present together).
+// But the BIST runs in mission mode, and stat reads its done flag straight from bist_clk.
+\`timescale 1ns/1ps
+module bist_top (
+  input  logic       clk, bist_clk, rst_n,
+  input  logic [7:0] din,
+  output logic [7:0] dout,
+  output logic       stat
+);
+  logic [7:0] r1, y;
+  assign y = r1 + 8'd1;
+  always_ff @(posedge clk or negedge rst_n)
+    if (!rst_n) begin r1 <= '0; dout <= '0; end
+    else begin r1 <= din; dout <= y; end
+
+  logic [3:0] bist_cnt;                    // BIST engine: done toggles every 16 bist clocks
+  logic       done_q;
+  always_ff @(posedge bist_clk or negedge rst_n)
+    if (!rst_n) begin bist_cnt <= '0; done_q <= 1'b0; end
+    else begin bist_cnt <= bist_cnt + 4'd1; if (bist_cnt == 4'd15) done_q <= ~done_q; end
+  always_ff @(posedge clk or negedge rst_n)
+    if (!rst_n) stat <= 1'b0; else stat <= done_q;
+
+  // synthesis translate_off
+  excl_check  #(.WINDOW(10.0), .NAME("A_EXCL clk/bist_clk")) u_excl (.clk1(clk), .clk2(bist_clk));
+  cross_check #(.NAME("A_CROSS done_q->stat")) u_cross (.cap_clk(clk), .rst_n(rst_n), .src(done_q));
+  // synthesis translate_on
+endmodule
+`,"tb_bist_top.sv":`// Testbench for bist_top: mission mode with the online BIST running, 200 ns.
+\`timescale 1ns/1ps
+module tb_bist_top;
+  logic clk = 0, bist_clk = 0, rst_n = 0;
+  logic [7:0] din = 0, dout;
+  logic stat;
+  always #1   clk = ~clk;                  // 2 ns
+  always #2.5 bist_clk = ~bist_clk;        // 5 ns
+  bist_top dut (.*);
+  initial begin
+    $dumpfile("waves.vcd"); $dumpvars(1, tb_bist_top); $dumpvars(1, tb_bist_top.dut);
+    #5.5 rst_n = 1;
+    repeat (100) @(negedge clk) din = $random;
+    $display("%-8s %0d checks, %0d failed", "A_EXCL", dut.u_excl.checks, dut.u_excl.fails);
+    $display("%-8s %0d checks, %0d failed", "A_CROSS", dut.u_cross.checks, dut.u_cross.fails);
+    if ((dut.u_excl.fails + dut.u_cross.fails) == 0) $display("PASS: every assertion held");
+    else $display("FAIL: %0d assertion failures: the design does not match the constraint", dut.u_excl.fails + dut.u_cross.fails);
+    $finish;
+  end
+endmodule
+`,"checks.sv":`// Assertion checkers for timing constraints.
+// Icarus Verilog has no concurrent SVA, so each checker uses clocked immediate assertions.
+// Above each checker is the concurrent SVA property you would write in a commercial simulator.
+\`timescale 1ns/1ps
+
+// A_MCP: a multicycle path is only safe if the source data has been stable for N cycles
+// (of the clock the MCP counts, PERIOD ns) when the destination captures it.
+//   SVA, same clock, N = 2:   assert property (@(posedge clk) disable iff (!rst_n) $changed(src) |-> !cap_en);
+//   SVA, general:             assert property (@(posedge clk) disable iff (!rst_n) $changed(src) |-> !cap_en [*N-1]);
+module mcp_check #(parameter W = 8, parameter N = 2, parameter real PERIOD = 2.0, parameter NAME = "A_MCP")
+  (input logic cap_clk, rst_n, cap_en, input logic [W-1:0] src);
+  realtime t_change = 0.0;
+  integer checks = 0, fails = 0;
+  always @(src) t_change = $realtime;
+  always @(posedge cap_clk)
+    if (rst_n === 1'b1 && cap_en === 1'b1) begin
+      checks = checks + 1;
+      assert ($realtime - t_change >= N * PERIOD - 0.001)
+      else begin
+        fails = fails + 1;
+        if (fails <= 4) $display("ASSERTION FAILED %0s at %0.1f ns: data captured %0.1f ns after it changed, the multicycle path needs %0d x %0.1f = %0.1f ns",
+                                 NAME, $realtime, $realtime - t_change, N, PERIOD, N * PERIOD);
+      end
+    end
+endmodule
+
+// A_GAP: a gated clock may pulse at most once every N cycles of its source clock.
+//   SVA: assert property (@(posedge gclk) disable iff (!rst_n) 1 |=> @(posedge clk) !gclk_en [*N-1]);
+module gap_check #(parameter N = 2, parameter real PERIOD = 2.0, parameter NAME = "A_GAP")
+  (input logic gclk, rst_n);
+  realtime t_last = -1.0e9;
+  integer checks = 0, fails = 0;
+  always @(posedge gclk)
+    if (rst_n === 1'b1) begin
+      checks = checks + 1;
+      assert ($realtime - t_last >= N * PERIOD - 0.001)
+      else begin
+        fails = fails + 1;
+        if (fails <= 4) $display("ASSERTION FAILED %0s at %0.1f ns: the gated clock pulsed %0.1f ns after its last pulse, expected at least %0.1f ns",
+                                 NAME, $realtime, $realtime - t_last, N * PERIOD);
+      end
+      t_last = $realtime;
+    end
+endmodule
+
+// A_PHASE: the fast-clock phase counter must be 0 on every slow clock edge.
+//   SVA: assert property (@(posedge clk_s) disable iff (!rst_n) ph == 0);
+module phase_check #(parameter NAME = "A_PHASE") (input logic clk_s, rst_n, ph0);
+  integer checks = 0, fails = 0;
+  always @(posedge clk_s)
+    if (rst_n === 1'b1) begin
+      checks = checks + 1;
+      assert (ph0 === 1'b1)
+      else begin
+        fails = fails + 1;
+        if (fails <= 4) $display("ASSERTION FAILED %0s at %0.1f ns: a slow clock edge where the fast phase is not 0", NAME, $realtime);
+      end
+    end
+endmodule
+
+// A_STATIC: a quasi-static signal (a clock select or a mode) may only change in reset.
+//   SVA: assert property (@(posedge clk) disable iff (!rst_n) $stable(sig));
+module static_check #(parameter NAME = "A_STATIC") (input logic rst_n, sig);
+  integer checks = 0, fails = 0;
+  always @(sig)
+    if ($realtime > 0) begin
+      checks = checks + 1;
+      assert (rst_n !== 1'b1)
+      else begin
+        fails = fails + 1;
+        if (fails <= 4) $display("ASSERTION FAILED %0s at %0.1f ns: the signal changed while the design is running (out of reset)", NAME, $realtime);
+      end
+    end
+endmodule
+
+// A_CROSS: claiming two clocks are exclusive says no data goes from one to the other.
+// So a flop on the capture clock must never sample data that the other clock changed
+// since its previous capture edge.
+//   SVA: assert property (@(posedge cap_clk) disable iff (!rst_n) $stable(src));
+module cross_check #(parameter W = 1, parameter NAME = "A_CROSS") (input logic cap_clk, rst_n, input logic [W-1:0] src);
+  logic [W-1:0] prev;
+  integer checks = 0, fails = 0;
+  always @(posedge cap_clk) begin
+    if (rst_n === 1'b1) begin
+      checks = checks + 1;
+      assert (src === prev)
+      else begin
+        fails = fails + 1;
+        if (fails <= 4) $display("ASSERTION FAILED %0s at %0.1f ns: data from the other clock changed and is captured here, so the two clocks do interact", NAME, $realtime);
+      end
+    end
+    prev = src;
+  end
+endmodule
+
+// A_EXCL: physically exclusive clocks are never present at the same time.
+//   SVA: assert property (@(posedge clk1) !clk2_running);   (clk2_running from a clock activity monitor)
+module excl_check #(parameter real WINDOW = 20.0, parameter NAME = "A_EXCL") (input logic clk1, clk2);
+  realtime t1 = -1.0e9, t2 = -1.0e9;
+  integer checks = 0, fails = 0;
+  always @(posedge clk1) begin
+    checks = checks + 1;
+    assert ($realtime - t2 > WINDOW)
+    else begin fails = fails + 1; if (fails <= 4) $display("ASSERTION FAILED %0s at %0.1f ns: both clocks are running (the other clock toggled %0.1f ns ago)", NAME, $realtime, $realtime - t2); end
+    t1 = $realtime;
+  end
+  always @(posedge clk2) begin
+    checks = checks + 1;
+    assert ($realtime - t1 > WINDOW)
+    else begin fails = fails + 1; if (fails <= 4) $display("ASSERTION FAILED %0s at %0.1f ns: both clocks are running (the other clock toggled %0.1f ns ago)", NAME, $realtime, $realtime - t1); end
+    t2 = $realtime;
+  end
+endmodule
+
+// A_PERIOD: the clock on a port matches the SDC clock for the current mode.
+//   SVA: property with a local variable that measures the period between two edges.
+module period_check #(parameter real P0 = 2.0, parameter real P1 = 5.0, parameter NAME = "A_PERIOD") (input logic clk, rst_n, mode);
+  realtime t_last = -1.0;
+  real expect_ns;
+  integer checks = 0, fails = 0;
+  always @(posedge clk) begin
+    expect_ns = mode ? P1 : P0;
+    if (rst_n === 1'b1 && t_last >= 0) begin
+      checks = checks + 1;
+      assert ($realtime - t_last > expect_ns - 0.01 && $realtime - t_last < expect_ns + 0.01)
+      else begin fails = fails + 1; if (fails <= 4) $display("ASSERTION FAILED %0s at %0.1f ns: clock period %0.1f ns, the SDC clock for this mode is %0.1f ns", NAME, $realtime, $realtime - t_last, expect_ns); end
+    end
+    t_last = (rst_n === 1'b1) ? $realtime : -1.0;
+  end
+endmodule
+`,"bist_top.v":`// Gate-level netlist of bist_top (one bit of each datapath).
+// Mission logic on clk: r1 -> 2 delay gates -> dout.  BIST on bist_clk: done_q (a toggle flop here).
+// stat_q (clk) reads done_q (bist_clk) directly: a crossing from bist_clk to clk.
+module bist_top (clk, bist_clk, rst_n, din, dout, stat);
+  input  clk, bist_clk, rst_n, din;
+  output dout, stat;
+  wire   r1, y, done_q, done_n, done_d1, done_d, y1;
+  sky130_fd_sc_hd__dfxtp_1 r1_reg (.CLK(clk), .D(din), .Q(r1));
+  sky130_fd_sc_hd__dlygate4sd3_1 yg1 (.A(r1), .X(y1));
+  sky130_fd_sc_hd__dlygate4sd3_1 yg2 (.A(y1), .X(y));
+  sky130_fd_sc_hd__dfxtp_1 dout_reg (.CLK(clk), .D(y), .Q(dout));
+  sky130_fd_sc_hd__dfxtp_1 done_q_reg (.CLK(bist_clk), .D(done_n), .Q(done_q));
+  sky130_fd_sc_hd__inv_1 u_dinv (.A(done_q), .Y(done_n));
+  sky130_fd_sc_hd__dlygate4sd3_1 u_dd1 (.A(done_q), .X(done_d1));
+  sky130_fd_sc_hd__dlygate4sd3_1 u_dd2 (.A(done_d1), .X(done_d));
+  sky130_fd_sc_hd__dfxtp_1 stat_q_reg (.CLK(clk), .D(done_d), .Q(stat));
+endmodule
+`,"bist_top.sdc":`# Constraints for bist_top
+create_clock -name clk      -period 2 [get_ports clk]
+create_clock -name bist_clk -period 5 [get_ports bist_clk]
+set_input_delay  0.2 -clock clk [get_ports din]
+set_output_delay 0.2 -clock clk [get_ports {dout stat}]
+set_false_path -from [get_ports rst_n]
+
+# "The BIST clock only runs in test mode, so it never coexists with clk."
+set_clock_groups -physically_exclusive -group clk -group bist_clk
+`,"solution.sdc":`# Correct constraints for bist_top: online BIST runs while clk runs, so the clocks coexist.
+create_clock -name clk      -period 2 [get_ports clk]
+create_clock -name bist_clk -period 5 [get_ports bist_clk]
+set_input_delay  0.2 -clock clk [get_ports din]
+set_output_delay 0.2 -clock clk [get_ports {dout stat}]
+set_false_path -from [get_ports rst_n]
+
+# No clock groups: STA now reports done_q -> stat_q. It is a real asynchronous crossing:
+# add a 2-flop synchronizer on done_q (see the CDC labs), then declare the clocks
+# asynchronous instead:
+# set_clock_groups -asynchronous -group clk -group bist_clk
+`},quiz:[{type:"choice",q:"What does STA report for done_q -> stat_q as shipped?",options:["A violation","It is met","No path: the clock groups removed it","An error"],answer:2,explain:"",try:!1},{type:"number",q:"Press Simulate. How many A_CROSS failures are there?",answer:2,tol:0,unit:"",explain:"stat samples done_q right after it toggles, twice in 200 ns.",try:!1},{type:"number",q:"Try it: copy solution.sdc into bist_top.sdc and run STA. What is the slack of done_q -> stat_q?",answer:-.47,tol:.01,unit:"ns",explain:"",try:!0},{type:"choice",q:"What is the right fix?",options:["Synchronize done_q into clk with two flops, then declare the clocks asynchronous","Keep -physically_exclusive","Use -logically_exclusive instead","Add a multicycle path"],answer:0,explain:"",try:!1},{type:"choice",q:"Besides removing paths, what else does a physically exclusive group switch off in signoff tools?",options:["Crosstalk (SI) analysis between the two clocks","Hold checks","Clock gating checks","Power analysis"],answer:0,explain:"Physically exclusive clocks are never present together, so tools do not compute crosstalk between them. If both run, real noise is missed.",try:!1}]}];var De={basic:[{type:"number",q:"What is the setup slack of the worst path r2 \u2192 r3?",answer:9.41,tol:.01,unit:"ns",explain:"Required 9.89 ns (10 ns period \u2212 0.11 ns setup), arrival 0.47 ns.",try:!1},{type:"number",q:"What is the data arrival time at r3/D?",answer:.47,tol:.01,unit:"ns",explain:"Clock-to-Q of r2 plus u1 and u2.",try:!1},{type:"number",q:"What is the hold slack of in1 \u2192 r1?",answer:.03,tol:.01,unit:"ns",explain:"Almost no margin: in1 changes at the clock edge (input delay 0).",try:!1},{type:"choice",q:"How would you give in1 \u2192 r1 more hold margin?",options:["Make the clock faster","Set a realistic minimum input delay (set_input_delay -min) or add delay on the path","Remove the flop","Increase the setup time"],answer:1,explain:"The comment in run.tcl suggests set_input_delay -min 0.2.",try:!1}],violation:[{type:"number",q:"What is the worst setup slack?",answer:-.09,tol:.01,unit:"ns",explain:"The 0.5 ns clock is too fast for the r2 \u2192 r3 path.",try:!1},{type:"number",q:"What is the shortest clock period that would pass (period \u2212 slack)?",answer:.59,tol:.01,unit:"ns",explain:"0.5 + 0.089 \u2248 0.59 ns.",try:!1},{type:"choice",q:"Which of these would NOT fix a setup violation?",options:["A slower clock","Faster (bigger) cells on the path","Adding a delay buffer on the path","Less logic between the flops"],answer:2,explain:"A delay buffer fixes hold, not setup.",try:!1}],io:[{type:"number",q:"What is the setup slack from in1 to r1?",answer:1.25,tol:.01,unit:"ns",explain:"in1 arrives 0.6 ns after the clock edge (set_input_delay).",try:!1},{type:"number",q:"What is the setup slack from r3 to out?",answer:.8,tol:.01,unit:"ns",explain:"The output must arrive by 2 \u2212 0.8 = 1.2 ns.",try:!1},{type:"choice",q:"What does set_output_delay 0.8 describe?",options:["The delay of the output buffer","The time the logic outside the chip needs after the pin, before the next clock edge","A hold requirement only","The wire delay inside the block"],answer:1,explain:"STA subtracts it from the clock period.",try:!1}],exceptions:[{type:"number",q:"What is the setup slack of r2 \u2192 r3 with its 2-cycle multicycle path?",answer:.31,tol:.01,unit:"ns",explain:"The budget is two 0.45 ns cycles.",try:!1},{type:"number",q:"And of r1 \u2192 r3, which has no exception?",answer:-.05,tol:.01,unit:"ns",explain:"Add a multicycle path for it too and it passes.",try:!1},{type:"choice",q:"Why does the multicycle path need a -hold 1 line as well?",options:["It does not","A setup multicycle also moves the hold check; -hold 1 moves it back to the original edge","To make it faster","For the false path"],answer:1,explain:"",try:!1},{type:"choice",q:"What does set_false_path -from in1 do?",options:["Ties in1 to 0","Stops STA timing every path that starts at in1","Removes in1 from the netlist","Makes in1 a clock"],answer:1,explain:"",try:!1}],ocv:[{type:"number",q:"What is the setup slack of r2 \u2192 r3 with the OCV derates?",answer:1.27,tol:.01,unit:"ns",explain:"",try:!1},{type:"number",q:"What is the hold slack of in1 \u2192 r1?",answer:.28,tol:.01,unit:"ns",explain:"",try:!1},{type:"number",q:"What is the total clock latency (source + network) set in constraints.sdc?",answer:.5,tol:.01,unit:"ns",explain:"0.30 + 0.20 ns.",try:!1},{type:"choice",q:"For a setup check, how does -late 1.08 / -early 0.92 make timing more pessimistic?",options:["It does not","Data paths are taken 8% slower and the capture clock 8% faster","Both are taken 8% faster","It only affects hold"],answer:1,explain:"",try:!1}],corners:[{type:"choice",q:"Which corner limits setup?",options:["ss (slow)","ff (fast)"],answer:0,explain:"131.18 ps at ss, 220.94 ps at ff.",try:!1},{type:"number",q:"What is the setup slack at the ss corner?",answer:131.18,tol:.01,unit:"ps",explain:"ASAP7 delays are in ps.",try:!1},{type:"number",q:"What is the hold slack of in1 \u2192 r1 at the ff corner?",answer:-7.91,tol:.01,unit:"ps",explain:"",try:!1},{type:"choice",q:"Why does hold fail at both corners here?",options:["The clock is too slow","in1 changes exactly at the clock edge (input delay 0), so any hold time fails","The library is wrong","Too much logic"],answer:1,explain:"",try:!1}],spef:[{type:"number",q:"What is the setup slack without wire parasitics?",answer:131.18,tol:.01,unit:"ps",explain:"",try:!1},{type:"number",q:"And with the SPEF parasitics?",answer:-84.68,tol:.01,unit:"ps",explain:"",try:!1},{type:"choice",q:"Why does the slack drop so much?",options:["The clock changes","Wire capacitance and resistance slow every stage: bigger loads, slower slews, longer delays","The SPEF adds flops","The library changes"],answer:1,explain:"Timing without parasitics is optimistic.",try:!1}],gcd:[{type:"number",q:"What is the WNS of the GCD block?",answer:-.18,tol:.01,unit:"ns",explain:"The worst path ends at the output resp_msg[15].",try:!1},{type:"number",q:"What is the TNS?",answer:-.27,tol:.01,unit:"ns",explain:"",try:!1},{type:"number",q:"What is the total power in mW (report_power gives watts)?",answer:.714,tol:.01,unit:"mW",explain:"7.14e-04 W.",try:!1},{type:"choice",q:"Why does set_power_activity matter for the power result?",options:["It does not","Dynamic power depends on how often nets toggle; without activity STA has to guess","It sets the voltage","It sets the temperature"],answer:1,explain:"",try:!1}]};var G=`// Two flops feeding a third through a buffer and an AND gate.
 // Cells come from the open-source SkyWater 130 nm high-density library.
 module top (in1, in2, clk1, clk2, clk3, out);
   input  in1, in2, clk1, clk2, clk3;
@@ -3083,14 +5817,14 @@ module top (in1, in2, clk1, clk2, clk3, out);
   sky130_fd_sc_hd__and2_1  u2 (.A(r1q), .B(u1x), .X(u2x));
   sky130_fd_sc_hd__dfxtp_1 r3 (.D(u2x), .CLK(clk3), .Q(out));
 endmodule
-`,be=`# One 10 ns clock drives all three flops
+`,He=`# One 10 ns clock drives all three flops
 create_clock -name clk -period 10 {clk1 clk2 clk3}
 set_input_delay 0 -clock clk {in1 in2}
-`,D=`read_liberty sky130hd_tt.lib.gz
+`,B=`read_liberty sky130hd_tt.lib.gz
 read_verilog netlist.v
 link_design top
 read_sdc constraints.sdc
-`,re=`// The same three-flop circuit built from ASAP7 7 nm predictive cells.
+`,qe=`// The same three-flop circuit built from ASAP7 7 nm predictive cells.
 module top (in1, in2, clk1, clk2, clk3, out);
   input  in1, in2, clk1, clk2, clk3;
   output out;
@@ -3102,8 +5836,8 @@ module top (in1, in2, clk1, clk2, clk3, out);
   AND2x2_ASAP7_75t_R  u2 (.A(r1q), .B(u1z), .Y(u2z));
   DFFHQx4_ASAP7_75t_R r3 (.D(u2z), .CLK(clk3), .Q(out));
 endmodule
-`,we=[{id:"basic",title:"Setup & hold checks",tag:"Basics",files:{"netlist.v":L,"constraints.sdc":be,"run.tcl":`# Load the library, the netlist and the constraints
-${D}
+`,Ye=[{id:"basic",title:"Setup & hold checks",tag:"Basics",files:{"netlist.v":G,"constraints.sdc":He,"run.tcl":`# Load the library, the netlist and the constraints
+${B}
 # Worst setup (max) path
 report_checks -path_delay max
 
@@ -3114,10 +5848,10 @@ report_checks -path_delay min
 
 report_wns
 report_tns
-`}},{id:"violation",title:"Setup violation: fast clock",tag:"Basics",files:{"netlist.v":L,"constraints.sdc":`# Squeeze the clock to 0.5 ns (2 GHz): the r2 -> r3 path no longer fits
+`}},{id:"violation",title:"Setup violation: fast clock",tag:"Basics",files:{"netlist.v":G,"constraints.sdc":`# Squeeze the clock to 0.5 ns (2 GHz): the r2 -> r3 path no longer fits
 create_clock -name clk -period 0.5 {clk1 clk2 clk3}
 set_input_delay 0 -clock clk {in1 in2}
-`,"run.tcl":`${D}
+`,"run.tcl":`${B}
 # Show slew, load and fanout at every stage of the failing path
 report_checks -path_delay max -fields {slew cap fanout} -digits 3
 
@@ -3126,7 +5860,7 @@ report_checks -path_delay max -group_path_count 10 -endpoint_path_count 1 -forma
 
 report_worst_slack -max
 report_tns
-`}},{id:"io",title:"Input & output delays",tag:"Constraints",files:{"netlist.v":L,"constraints.sdc":`create_clock -name clk -period 2 {clk1 clk2 clk3}
+`}},{id:"io",title:"Input & output delays",tag:"Constraints",files:{"netlist.v":G,"constraints.sdc":`create_clock -name clk -period 2 {clk1 clk2 clk3}
 
 # The block's neighbours use part of the cycle
 set_input_delay  0.6 -clock clk {in1 in2}
@@ -3135,13 +5869,13 @@ set_output_delay 0.8 -clock clk [get_ports out]
 # Realistic edges and loads at the boundary
 set_input_transition 0.1 {in1 in2}
 set_load 0.02 [get_ports out]
-`,"run.tcl":`${D}
+`,"run.tcl":`${B}
 puts "### Input to register"
 report_checks -from [get_ports in1] -fields {slew cap}
 
 puts "\\n### Register to output"
 report_checks -to [get_ports out] -fields {slew cap}
-`}},{id:"exceptions",title:"False & multicycle paths",tag:"Constraints",files:{"netlist.v":L,"constraints.sdc":`create_clock -name clk -period 0.45 {clk1 clk2 clk3}
+`}},{id:"exceptions",title:"False & multicycle paths",tag:"Constraints",files:{"netlist.v":G,"constraints.sdc":`create_clock -name clk -period 0.45 {clk1 clk2 clk3}
 set_input_delay 0 -clock clk {in1 in2}
 
 # r2 only launches new data every 2 cycles
@@ -3150,7 +5884,7 @@ set_multicycle_path -hold  1 -from [get_cells r2] -to [get_cells r3]
 
 # in1 is a static configuration pin: ignore it
 set_false_path -from [get_ports in1]
-`,"run.tcl":`${D}
+`,"run.tcl":`${B}
 # A 0.45 ns clock: without exceptions both paths into r3 would fail.
 # r2 -> r3 now passes thanks to the multicycle path...
 report_checks -from [get_cells r2] -to [get_cells r3]
@@ -3158,7 +5892,7 @@ report_checks -from [get_cells r2] -to [get_cells r3]
 # ...but r1 -> r3 still fails. Add a multicycle path for it too and run again.
 report_checks -from [get_cells r1] -to [get_cells r3]
 report_wns
-`}},{id:"ocv",title:"Clock latency, uncertainty & OCV",tag:"Clocks",files:{"netlist.v":L,"constraints.sdc":`create_clock -name clk -period 2 {clk1 clk2 clk3}
+`}},{id:"ocv",title:"Clock latency, uncertainty & OCV",tag:"Clocks",files:{"netlist.v":G,"constraints.sdc":`create_clock -name clk -period 2 {clk1 clk2 clk3}
 set_input_delay 0.3 -clock clk {in1 in2}
 
 # Clock tree not built yet: model it
@@ -3166,13 +5900,13 @@ set_clock_latency -source 0.30 [get_clocks clk]
 set_clock_latency        0.20 [get_clocks clk]
 set_clock_uncertainty -setup 0.10 [get_clocks clk]
 set_clock_uncertainty -hold  0.05 [get_clocks clk]
-`,"run.tcl":`${D}
+`,"run.tcl":`${B}
 # On-chip variation: for setup, data is slowed by 8% and the capture clock sped up by 8%
 set_timing_derate -early 0.92
 set_timing_derate -late  1.08
 
 report_checks -path_delay min_max -fields {slew}
-`}},{id:"corners",title:"Multi-corner: slow & fast",tag:"Corners",files:{"netlist.v":re,"constraints.sdc":`# ASAP7 libraries use picoseconds: a 300 ps clock
+`}},{id:"corners",title:"Multi-corner: slow & fast",tag:"Corners",files:{"netlist.v":qe,"constraints.sdc":`# ASAP7 libraries use picoseconds: a 300 ps clock
 create_clock -name clk -period 300 {clk1 clk2 clk3}
 set_input_delay 0 -clock clk {in1 in2}
 `,"run.tcl":`# Slow (ss) and fast (ff) corners of the ASAP7 library
@@ -3193,7 +5927,7 @@ foreach s {ss ff} {
   puts "\\n### Scene $s"
   report_checks -scene $s -path_delay min_max -format summary
 }
-`}},{id:"spef",title:"Wire parasitics from SPEF",tag:"Parasitics",files:{"netlist.v":re,"constraints.sdc":`create_clock -name clk -period 300 {clk1 clk2 clk3}
+`}},{id:"spef",title:"Wire parasitics from SPEF",tag:"Parasitics",files:{"netlist.v":qe,"constraints.sdc":`create_clock -name clk -period 300 {clk1 clk2 clk3}
 set_input_delay 0 -clock clk {in1 in2}
 `,"parasitics.spef":null,"run.tcl":`read_liberty asap7_small_ss.lib.gz
 read_verilog netlist.v
@@ -3230,6 +5964,7 @@ report_tns
 set_power_activity -input -activity 0.1
 set_power_activity -input_port reset -activity 0
 report_power
-`},load:{"netlist.v":"gcd_sky130hd.v"}}],m=[...we.map(e=>({group:"Basic labs",quiz:ae[e.id]||[],...e})),...se],C=[{id:"basic",group:"Basic labs",title:"Basic labs",note:"Short examples: setup and hold, constraints, OCV, corners, SPEF, a real block with power. Each lab has a quiz."},{id:"workshop",group:"STA workshop",title:"STA workshop",note:"The 8-day workshop: 15 labs from your first timing report to a RISC-V core. Each lab has a quiz."},{id:"signoff",group:"Signoff STA",title:"Signoff STA",note:"9 labs on constraints, clocks, exceptions, OCV, latches, ECOs and multi-corner signoff. Each lab has a quiz."},{id:"sdc",group:"SDC & constraints",title:"SDC & constraints",note:"21 labs on timing constraints, ending with a full SoC: clock waveforms, generated clocks, clock relationships and sense, false and multicycle paths, exception priority, mode merging, constraint promotion, I/O delays from datasheets, environment, latency, CDC and clock interaction. Each lab has a quiz."}],oe=["sky130hd_tt.lib.gz","asap7_small_ss.lib.gz","asap7_small_ff.lib.gz","gcd_sky130hd.spef.gz","sky130_fd_sc_hd__tt_025C_1v80.lib","sky130_fd_sc_hd__ss_100C_1v60.lib","sky130_fd_sc_hd__ff_n40C_1v95.lib","s27_Early.lib","s27_Late.lib","s27_min.lib","s27_max.lib","ibex_top.v","gcd_sky130hd.v","div_k1.v","div_k2.v","div_k4.v","div_k8.v"],le=[["sky130hd_tt.lib.gz","SkyWater 130 nm HD, typical (ns, pF)"],["asap7_small_ss.lib.gz","ASAP7 7 nm, slow; 3 cells (ps, fF)"],["asap7_small_ff.lib.gz","ASAP7 7 nm, fast; 3 cells (ps, fF)"],["gcd_sky130hd.spef.gz","Parasitics for the GCD block"],["sky130_fd_sc_hd__tt_025C_1v80.lib","Sky130 HD typical, 25 \xB0C, 1.80 V (workshop)"],["sky130_fd_sc_hd__ss_100C_1v60.lib","Sky130 HD slow, 100 \xB0C, 1.60 V"],["sky130_fd_sc_hd__ff_n40C_1v95.lib","Sky130 HD fast, \u221240 \xB0C, 1.95 V"],["s27_Late.lib","TAU 2015 contest library, late/max (ps); s27_max.lib is a copy"],["s27_Early.lib","TAU 2015 contest library, early/min (ps); s27_min.lib is a copy"],["ibex_top.v","ibex RISC-V core netlist, Sky130 HD (2.3 MB)"],["div_k1.v \u2026 div_k8.v","8-bit divider, 1 to 8 subtractions per clock, Sky130 HD"]];var l=e=>document.querySelector(e),ce=6e4,ue="vdd-sta-lab-v1",w="run.tcl",s={example:m[0].id,track:"basic",script:w,files:{},order:[],current:w,running:!1,ready:!1,worker:null,timer:null},he=()=>s.order.filter(e=>/\.tcl$/i.test(e));function E(){return s.files[s.script]!==void 0?s.script:s.files[w]!==void 0?w:he()[0]||w}function xe(){let e=l("#script-wrap"),n=l("#script"),t=he(),a=E();e.hidden=!(t.length>1||t.length===1&&a!==w),n.innerHTML="";for(let r of t){let o=document.createElement("option");o.value=r,o.textContent=r,n.appendChild(o)}n.value=a}var y=new Map,c=null,g=l("#editor textarea");function H(e){return/\.s?v$/i.test(e)?"verilog":/\.(tcl|sdc)$/i.test(e)?"tcl":"text/plain"}window.CodeMirror?(c=window.CodeMirror.fromTextArea(g,{lineNumbers:!0,indentUnit:2,tabSize:2,matchBrackets:!0,extraKeys:{Tab:e=>e.replaceSelection("  ")}}),c.on("change",()=>{s.files[s.current]=c.getValue(),I()})):(g.classList.add("plain-editor"),g.addEventListener("input",()=>{s.files[s.current]=g.value,I()}));function N(e){c?s.files[s.current]=c.getValue():s.files[s.current]=g.value,s.current=e,c?(y.has(e)||y.set(e,window.CodeMirror.Doc(s.files[e]??"",H(e))),c.swapDoc(y.get(e)),setTimeout(()=>c.refresh(),0)):g.value=s.files[e]??"",W()}function Ce(e,n){N(e),c&&(c.focus(),c.setCursor({line:n-1,ch:0}),c.addLineClass(n-1,"background","cm-errline"),setTimeout(()=>c.removeLineClass(n-1,"background","cm-errline"),2500),c.scrollIntoView({line:n-1,ch:0},80))}function Q(e,n,t){y.clear(),s.files={...e},s.order=n||Object.keys(e),s.current=t&&s.order.includes(t)?t:s.order.includes(E())?E():s.order[0],c?(y.set(s.current,window.CodeMirror.Doc(s.files[s.current]??"",H(s.current))),c.swapDoc(y.get(s.current))):g.value=s.files[s.current]??"",W()}function W(){let e=l("#tabs");e.innerHTML="";for(let n of s.order){let t=document.createElement("button");if(t.type="button",t.className="tab"+(n===s.current?" active":""),t.setAttribute("role","tab"),t.setAttribute("aria-selected",n===s.current?"true":"false"),t.textContent=n,t.addEventListener("click",()=>N(n)),e.appendChild(t),n===s.current&&s.order.length>1){let a=document.createElement("button");a.type="button",a.className="tab-x",a.textContent="\xD7",a.title="Remove "+n,a.setAttribute("aria-label","Remove file "+n),a.addEventListener("click",()=>ve(n)),e.appendChild(a)}}xe()}function ke(e,n,t){s.files[e]===void 0&&s.order.push(e),s.files[e]=n,y.delete(e),t?W():N(e),I()}function ve(e){c&&(s.files[s.current]=c.getValue()),delete s.files[e],y.delete(e),s.order=s.order.filter(n=>n!==e),s.current=s.order[0],c?(y.has(s.current)||y.set(s.current,window.CodeMirror.Doc(s.files[s.current]??"",H(s.current))),c.swapDoc(y.get(s.current))):g.value=s.files[s.current]??"",W(),I()}function Se(){let e=(window.prompt("New file name (for example mode2.sdc, extra.tcl, top.v):","")||"").trim();if(e){if(!/^[\w.+-]+$/.test(e)){x("File names can use letters, digits, dot, dash and underscore only.","err");return}if(s.files[e]!==void 0){N(e);return}ke(e,"")}}var K=e=>{let n=m.find(t=>t.id===e);return n?(C.find(t=>t.group===n.group)||C[0]).id:null},b=()=>C.find(e=>e.id===s.track)||C[0];function Y(){let e=l("#tracks");e.innerHTML="";for(let t of C){let a=document.createElement("button");a.type="button",a.className="track"+(t.id===b().id?" active":""),a.setAttribute("role","tab"),a.setAttribute("aria-selected",t.id===b().id?"true":"false");let r=m.filter(o=>o.group===t.group).length;a.innerHTML='<span class="track-t"></span><span class="track-n"></span>',a.querySelector(".track-t").textContent=t.title,a.querySelector(".track-n").textContent=r+" labs",a.addEventListener("click",()=>qe(t.id)),e.appendChild(a)}document.body.dataset.track!==b().id&&(document.body.dataset.track=b().id,document.dispatchEvent(new CustomEvent("vdd-track")));let n=l("#track-note");if(n.textContent=b().note+" ",b().id==="workshop"){let t=document.createElement("a");t.href="STA_Workshop_Labs.pdf",t.target="_blank",t.rel="noopener",t.className="btn small",t.textContent="Workshop slides (PDF)",n.appendChild(t)}}async function qe(e,n){s.track=e;try{let t=new URL(location.href);t.searchParams.set("track",e),history.replaceState(null,"",t.pathname+t.search+location.hash)}catch{}Y(),!n&&K(s.example)!==e?await F(m.find(t=>t.group===b().group).id):G()}function G(){let e=l("#examples");e.innerHTML="";for(let t of m.filter(a=>a.group===b().group)){let a=document.createElement("button");a.type="button",a.className="ex"+(t.id===s.example?" active":""),a.innerHTML='<span class="ex-tag"></span><span class="ex-title"></span>',a.querySelector(".ex-tag").textContent=t.tag;let r=t.quiz&&t.quiz.length?R()[t.id]:null;if(r&&r.checked){let o=document.createElement("span");o.className="ex-done",o.textContent=(r.score===r.total?"\u2713 ":"")+`quiz ${r.score}/${r.total}`,a.querySelector(".ex-tag").appendChild(o)}a.querySelector(".ex-title").textContent=t.title,a.addEventListener("click",()=>F(t.id)),e.appendChild(a)}let n=l("#ex-select");n.innerHTML=m.filter(t=>t.group===b().group).map(t=>`<option value="${t.id}">${t.group!=="Basic labs"?t.tag+" \xB7 ":""}${t.title}</option>`).join(""),s.example&&(n.value=s.example)}async function F(e){let n=m.find(r=>r.id===e)||m[0];s.example=n.id,K(n.id)!==s.track&&(s.track=K(n.id),Y()),s.script=n.script||w;let t={};for(let[r,o]of Object.entries(n.files))if(o!==null)t[r]=o;else try{let _=await fetch(new URL("data/"+(n.load||{})[r],location.href));t[r]=_.ok?await _.text():`// Could not load ${n.load[r]}`}catch{t[r]=`// Could not load ${n.load[r]}`}let a=Object.keys(n.files).sort((r,o)=>_e(r)-_e(o));Q(t,a,s.script),G(),V(),O(),ye(),Z(null),A(s.ready?"Ready":"Loading OpenSTA\u2026",s.ready?"idle":"busy")}var fe="vdd-sta-quiz-v1";function R(){try{return JSON.parse(localStorage.getItem(fe)||"{}")||{}}catch{return{}}}function M(e){try{localStorage.setItem(fe,JSON.stringify(e))}catch{}}var P=()=>m.find(e=>e.id===s.example&&e.quiz&&e.quiz.length);function Ae(e){let n=String(e||"").replace(/[−–—]/g,"-").replace(/,/g,"").match(/[-+]?\d*\.?\d+(?:[eE][-+]?\d+)?/);return n?parseFloat(n[0]):NaN}function Le(e,n){if(e.type==="choice")return n!=null&&+n===e.answer;let t=Ae(n);return isFinite(t)&&Math.abs(t-e.answer)<=(e.tol??.01)+1e-9}var De=e=>e.type==="choice"?e.options[e.answer]:`${Number.isInteger(e.answer)?e.answer:e.answer.toFixed(2)}${e.unit?" "+e.unit:""}`;function V(){ne(te,s.example);let e=l("#quiz"),n=l("#quiz-list"),t=P();if(!t){e.hidden=!0;return}e.hidden=!1;let a=R()[t.id]||{},r=a.a||[];n.innerHTML="",t.quiz.forEach((o,_)=>{let i=document.createElement("li"),p=document.createElement("div");if(p.className="quiz-q",o.try){let d=document.createElement("span");d.className="quiz-try",d.textContent="Try it",p.appendChild(d)}let u=o.q.replace(/^Try it: /,"");if(p.appendChild(document.createTextNode(u.charAt(0).toUpperCase()+u.slice(1))),i.appendChild(p),o.type==="choice"){let d=document.createElement("div");d.className="quiz-opts",d.setAttribute("role","radiogroup"),o.options.forEach((h,f)=>{let v=document.createElement("label"),S=document.createElement("input");S.type="radio",S.name=`q${_}`,S.value=f,r[_]!==void 0&&+r[_]===f&&(S.checked=!0),S.addEventListener("change",()=>ie(t,_,f));let ee=document.createElement("span");ee.textContent=h,v.append(S,ee),d.appendChild(v)}),i.appendChild(d)}else{let d=document.createElement("div");d.className="quiz-num";let h=document.createElement("input");if(h.type="text",h.inputMode="decimal",h.autocomplete="off",h.setAttribute("aria-label","Answer to question "+(_+1)),h.placeholder="e.g. -1.23",r[_]!==void 0&&(h.value=r[_]),h.addEventListener("input",()=>ie(t,_,h.value)),h.addEventListener("keydown",f=>{f.key==="Enter"&&U()}),d.appendChild(h),o.unit){let f=document.createElement("span");f.className="unit",f.textContent=o.unit,d.appendChild(f)}i.appendChild(d)}let k=document.createElement("div");k.className="quiz-fb",k.hidden=!0,k.setAttribute("aria-live","polite"),i.appendChild(k),n.appendChild(i)}),a.checked?U(!0):me(null)}function ie(e,n,t){let a=R(),r=a[e.id]||{a:[]};r.a=r.a||[],r.a[n]=t,r.checked=!1,a[e.id]=r,M(a);let o=l("#quiz-list").children[n]?.querySelector(".quiz-fb");o&&(o.hidden=!0)}function me(e,n){let t=l("#quiz-score");if(e===null){t.textContent="",t.classList.remove("done");return}t.textContent=`${e} / ${n} correct`,t.classList.toggle("done",e===n)}function U(e){let n=P();if(!n)return;let t=R(),a=t[n.id]||{a:[]},r=0;n.quiz.forEach((o,_)=>{let i=l("#quiz-list").children[_],p=o.type==="choice"?(i.querySelector("input:checked")||{}).value:i.querySelector("input").value;a.a[_]=p;let u=i.querySelector(".quiz-fb"),k=p===void 0||p==="",d=!k&&Le(o,p);d&&r++,u.hidden=!1,u.className="quiz-fb "+(d?"ok":"bad"),u.innerHTML="";let h=document.createElement("b");h.textContent=d?"Correct.":k?"Not answered yet.":"Not quite.",u.appendChild(h),d&&o.explain?u.appendChild(document.createTextNode(o.explain)):!d&&!k&&u.appendChild(document.createTextNode(o.type==="number"?"Check the report again: read the exact value, including its sign.":"Look at the report again and try another option."))}),a.checked=!0,a.score=r,a.total=n.quiz.length,t[n.id]=a,M(t),me(r,n.quiz.length),e||G()}function Te(){let e=P();e&&e.quiz.forEach((n,t)=>{let a=l("#quiz-list").children[t].querySelector(".quiz-fb");a.hidden=!1,a.className="quiz-fb shown",a.innerHTML="";let r=document.createElement("b");r.textContent="Answer: "+De(n)+".",a.appendChild(r),n.explain&&a.appendChild(document.createTextNode(n.explain))})}function Ee(){let e=P();if(!e)return;let n=R();delete n[e.id],M(n),V(),G()}function _e(e){return e===s.script?-1:/\.tcl$/.test(e)?0:/\.s?v$/.test(e)?1:/\.sdc$/.test(e)?2:3}var de=null;function I(){clearTimeout(de),de=setTimeout(O,400)}function O(){try{localStorage.setItem(ue,JSON.stringify({example:s.example,script:s.script,files:s.files,order:s.order,current:s.current}))}catch{}}function Ke(){try{let e=JSON.parse(localStorage.getItem(ue)||"null");if(e&&e.files&&e.order)return e}catch{}return null}async function Fe(){let e=JSON.stringify({f:s.files,o:s.order,s:E()}),n=new Blob([e]).stream().pipeThrough(new CompressionStream("deflate-raw")),t=new Uint8Array(await new Response(n).arrayBuffer()),a="";for(let r of t)a+=String.fromCharCode(r);return btoa(a).replace(/\+/g,"-").replace(/\//g,"_").replace(/=+$/,"")}async function Ge(e){let n=atob(e.replace(/-/g,"+").replace(/_/g,"/")),t=new Blob([Uint8Array.from(n,a=>a.charCodeAt(0))]).stream().pipeThrough(new DecompressionStream("deflate-raw"));return JSON.parse(await new Response(t).text())}async function T(e,n){let t=!1;try{await navigator.clipboard.writeText(e),t=!0}catch{let r=document.createElement("textarea");r.value=e,r.style.position="fixed",r.style.opacity="0",document.body.appendChild(r),r.select();try{t=document.execCommand("copy")}catch{}r.remove()}if(n){let a=n.dataset.label||n.textContent;n.dataset.label=a,n.textContent=t?"Copied":"Press Ctrl+C",n.classList.toggle("ok",t),setTimeout(()=>{n.textContent=a,n.classList.remove("ok")},1600)}}function Re(e,n){let t=document.createElement("a");t.href=URL.createObjectURL(new Blob([n],{type:"text/plain"})),t.download=e,document.body.appendChild(t),t.click(),setTimeout(()=>{URL.revokeObjectURL(t.href),t.remove()},500)}var q=l("#console"),X=[];function ye(){q.textContent="",X=[]}function x(e,n){X.push(e);let t=document.createElement("div");t.className="ln "+(n||"");let a=/\b([\w.-]+\.(?:v|sdc|tcl|spef)),? (?:line )?(\d+)\b/.exec(e);if(a&&s.files[a[1]]!==void 0){let r=e.indexOf(a[0]);t.appendChild(document.createTextNode(e.slice(0,r)));let o=document.createElement("button");o.type="button",o.className="loc",o.textContent=a[0],o.addEventListener("click",()=>Ce(a[1],+a[2])),t.appendChild(o),t.appendChild(document.createTextNode(e.slice(r+a[0].length)))}else t.textContent=e;/slack \(VIOLATED\)/.test(e)?t.classList.add("viol"):/slack \(MET\)/.test(e)?t.classList.add("met"):/^(Error|ERROR)|\bError:|Internal error/.test(e)?t.classList.add("err"):/^Warning/.test(e)?t.classList.add("warn"):/^(Startpoint|Endpoint):/.test(e)?t.classList.add("head"):/^###/.test(e)&&t.classList.add("sec"),q.appendChild(t),q.childElementCount>2e4&&q.firstChild.remove()}function Z(e){let n=l("#summary");if(!e){n.innerHTML="",n.hidden=!0;return}let t=[],a=u=>{let k=u.exec(e);return k?parseFloat(k[1]):null},r=a(/^wns(?: max)? (-?[\d.eE+-]+)/m)??a(/^worst slack max (-?[\d.eE+-]+)/m),o=a(/^tns(?: max)? (-?[\d.eE+-]+)/m),_=(e.match(/slack \(VIOLATED\)/g)||[]).length,i=(e.match(/slack \(MET\)/g)||[]).length;r!==null&&t.push(["WNS",r.toFixed(3),r<0?"bad":"good"]),o!==null&&t.push(["TNS",o.toFixed(3),o<0?"bad":"good"]),_+i&&t.push(["Paths reported",`${i} met \xB7 ${_} violated`,_?"bad":"good"]);let p=/^Total\s+\S+\s+\S+\s+\S+\s+(\S+)/m.exec(e);p&&t.push(["Total power",Be(parseFloat(p[1])),""]),n.innerHTML="";for(let[u,k,d]of t){let h=document.createElement("div");h.className="chip "+d;let f=document.createElement("span");f.className="k",f.textContent=u;let v=document.createElement("span");v.className="v",v.textContent=k,h.append(f,v),n.appendChild(h)}n.hidden=t.length===0}function Be(e){return isFinite(e)?e>=1?e.toFixed(3)+" W":e>=.001?(e*1e3).toFixed(3)+" mW":(e*1e6).toFixed(2)+" \xB5W":"\u2013"}function A(e,n){let t=l("#status");t.textContent=e,t.dataset.kind=n}function j(){s.worker&&s.worker.terminate(),s.ready=!1;let e=new Worker(new URL("worker.js",location.href).href);e.onmessage=n=>Ie(n.data),e.onerror=n=>{x("OpenSTA failed to start: "+(n.message||"worker error"),"err"),J(!1)},e.postMessage({type:"load",base:new URL(".",location.href).href}),s.worker=e}var z=[],$=null;function B(){$=null;for(let[e,n]of z)x(e,n);z=[],q.scrollTop=q.scrollHeight}function Ie(e){if(e.type==="ready")s.ready=!0,s.running||A("Ready","idle");else if(e.type==="stage")A(e.stage+"\u2026","busy");else if(e.type==="file"){B();let n=s.files[e.name]===void 0;ke(e.name,e.content,!0),x(`\u2500\u2500 OpenSTA ${n?"wrote":"updated"} ${e.name}: open its tab to read it \u2500\u2500`,"meta")}else e.type==="line"?(z.push([e.line,e.stream==="err"?"stderr":""]),$||($=requestAnimationFrame(B))):e.type==="done"&&(B(),e.ok?x(`\u2500\u2500 finished in ${e.ms} ms \u2500\u2500`,"meta"):x(e.rc===-1?"\u2500\u2500 OpenSTA stopped with an internal error \u2500\u2500":`\u2500\u2500 OpenSTA exited with code ${e.rc}: check the errors above \u2500\u2500`,"meta err"),Z(X.join(`
-`)),J(e.ok))}function pe(){if(s.running)return;window.vddSubscribe&&window.vddSubscribe(),c?s.files[s.current]=c.getValue():s.files[s.current]=g.value;let e=E();if(s.files[e]===void 0){x(`Add a Tcl script (for example ${w}): it is what OpenSTA runs.`,"err");return}s.worker||j(),O(),ye(),Z(null),s.running=!0,l("#run").disabled=!0,l("#stop").disabled=!1,A(s.ready?"Running OpenSTA\u2026":"Loading OpenSTA\u2026","busy"),x(`$ sta ${e}`,"meta"),s.worker.postMessage({type:"run",files:{...s.files},script:e,dataFiles:oe,base:new URL(".",location.href).href}),clearTimeout(s.timer),s.timer=setTimeout(()=>ge(`Stopped after ${ce/1e3} s.`),ce)}function ge(e){s.running&&(B(),x(e||"Stopped.","meta err"),J(!1,!0),j())}function J(e,n){clearTimeout(s.timer),s.running=!1,l("#run").disabled=!1,l("#stop").disabled=!0,A(n?"Stopped":e?"Done":"Errors",n||!e?"err":"ok")}function Ne(){l("#run").addEventListener("click",pe),l("#stop").addEventListener("click",()=>ge()),l("#script").addEventListener("change",n=>{s.script=n.target.value,O()}),l("#new-file").addEventListener("click",Se),l("#quiz-check").addEventListener("click",()=>U()),l("#quiz-reveal").addEventListener("click",Te),l("#quiz-reset").addEventListener("click",Ee),l("#ex-select").addEventListener("change",n=>F(n.target.value)),l("#reset").addEventListener("click",()=>F(s.example||m[0].id)),l("#copy-file").addEventListener("click",n=>T(c?c.getValue():g.value,n.currentTarget)),l("#download-file").addEventListener("click",()=>Re(s.current,c?c.getValue():g.value)),l("#copy-output").addEventListener("click",n=>T(X.join(`
-`),n.currentTarget)),l("#share").addEventListener("click",async n=>{let t=n.currentTarget;c&&(s.files[s.current]=c.getValue());try{let a=await Fe();history.replaceState(null,"","#code="+a),T(location.href.split("#")[0]+"#code="+a,t)}catch{T(location.href,t)}}),document.addEventListener("keydown",n=>{(n.ctrlKey||n.metaKey)&&n.key==="Enter"&&(n.preventDefault(),pe())});let e=l("#libs");e.innerHTML="";for(let[n,t]of le){let a=document.createElement("li"),r=document.createElement("button");r.type="button",r.className="libname",r.textContent=n,r.title="Copy file name",r.addEventListener("click",()=>T(n,null));let o=document.createElement("span");o.textContent=t,a.append(r,o),e.appendChild(a)}}async function We(){Ne();let e=!1,n=new URLSearchParams(location.hash.slice(1)).get("code");if(n)try{let r=await Ge(n);s.example=null,s.script=r.s||w,s.order=r.o,s.files=r.f,Q(r.f,r.o,s.script),e=!0}catch{}if(!e){let r=Ke();r&&(s.example=r.example,s.script=r.script||w,s.files=r.files,s.order=r.order,Q(r.files,r.order,r.current),e=!0)}let t=new URLSearchParams(location.search).get("track"),a=C.some(r=>r.id===t);s.track=a?t:K(s.example)||"basic",Y(),!e||a&&K(s.example)!==t&&!n?await F(m.find(r=>r.group===b().group).id):(G(),V()),A("Loading OpenSTA\u2026","busy"),j()}We();})();
+`},load:{"netlist.v":"gcd_sky130hd.v"}}],A=[...Ye.map(e=>({group:"Basic labs",quiz:De[e.id]||[],...e})),...Ee],P=[{id:"basic",group:"Basic labs",title:"Basic labs",note:"Short examples: setup and hold, constraints, OCV, corners, SPEF, a real block with power. Each lab has a quiz."},{id:"workshop",group:"STA workshop",title:"STA workshop",note:"The 8-day workshop: 15 labs from your first timing report to a RISC-V core. Each lab has a quiz."},{id:"signoff",group:"Signoff STA",title:"Signoff STA",note:"9 labs on constraints, clocks, exceptions, OCV, latches, ECOs and multi-corner signoff. Each lab has a quiz."},{id:"sdc",group:"SDC & constraints",title:"SDC & constraints",note:"21 labs on timing constraints, ending with a full SoC: clock waveforms, generated clocks, clock relationships and sense, false and multicycle paths, exception priority, mode merging, constraint promotion, I/O delays from datasheets, environment, latency, CDC and clock interaction. Each lab has a quiz."},{id:"verify",group:"Verify constraints",title:"Verify constraints",note:"12 labs where each constraint is checked twice: by STA, and by assertions in simulation. Multicycle paths (same clock, slow to fast, fast to slow, clock gating) and logically and physically exclusive clock groups, each with a passing and a failing design. Press Run STA, then Simulate. Each lab has a quiz."}],Te=["sky130hd_tt.lib.gz","asap7_small_ss.lib.gz","asap7_small_ff.lib.gz","gcd_sky130hd.spef.gz","sky130_fd_sc_hd__tt_025C_1v80.lib","sky130_fd_sc_hd__ss_100C_1v60.lib","sky130_fd_sc_hd__ff_n40C_1v95.lib","s27_Early.lib","s27_Late.lib","s27_min.lib","s27_max.lib","ibex_top.v","gcd_sky130hd.v","div_k1.v","div_k2.v","div_k4.v","div_k8.v"],Le=[["sky130hd_tt.lib.gz","SkyWater 130 nm HD, typical (ns, pF)"],["asap7_small_ss.lib.gz","ASAP7 7 nm, slow; 3 cells (ps, fF)"],["asap7_small_ff.lib.gz","ASAP7 7 nm, fast; 3 cells (ps, fF)"],["gcd_sky130hd.spef.gz","Parasitics for the GCD block"],["sky130_fd_sc_hd__tt_025C_1v80.lib","Sky130 HD typical, 25 \xB0C, 1.80 V (workshop)"],["sky130_fd_sc_hd__ss_100C_1v60.lib","Sky130 HD slow, 100 \xB0C, 1.60 V"],["sky130_fd_sc_hd__ff_n40C_1v95.lib","Sky130 HD fast, \u221240 \xB0C, 1.95 V"],["s27_Late.lib","TAU 2015 contest library, late/max (ps); s27_max.lib is a copy"],["s27_Early.lib","TAU 2015 contest library, early/min (ps); s27_min.lib is a copy"],["ibex_top.v","ibex RISC-V core netlist, Sky130 HD (2.3 MB)"],["div_k1.v \u2026 div_k8.v","8-bit divider, 1 to 8 subtractions per clock, Sky130 HD"]];function $e(e){let t=[],n=new Map,s=[],c="",l=0,o=e.split(/\s+/),r=!0,k=0,f=0;for(;l<o.length;){let h=o[l++];if(!h)continue;if(r){if(h==="$scope"){for(l++,s.push(o[l++]);o[l]!=="$end";)l++;l++}else if(h==="$upscope"){for(s.pop();o[l]!=="$end";)l++;l++}else if(h==="$timescale"){let p=[];for(;o[l]!=="$end";)p.push(o[l++]);l++,c=p.join("")}else if(h==="$var"){let p=o[l++],d=parseInt(o[l++],10),g=o[l++],y=[];for(;o[l]!=="$end";)y.push(o[l++]);l++;let w=y[0];y[1]&&y[1].startsWith("[")&&(w+=y[1]);let q=[...s,w].join(".");if(p==="parameter")continue;if(n.has(g)){n.get(g).aliases.push(q);continue}let T=[...s.slice(1),w].join("."),J={id:g,name:q,short:T||w,depth:s.length,width:d,type:p,changes:[],aliases:[]};n.set(g,J),t.push(J)}else if(h==="$enddefinitions"){for(;o[l]!=="$end";)l++;l++,r=!1}else if(h.startsWith("$")){for(;l<o.length&&o[l]!=="$end";)l++;l++}continue}let _=h[0];if(_==="#")k=Number(h.slice(1)),k>f&&(f=k);else if(_!=="$")if(_==="b"||_==="B"||_==="r"||_==="R"){let p=h.slice(1),d=o[l++],g=n.get(d);g&&Ne(g,k,_==="r"||_==="R"?Number(p):p)}else{let p=n.get(h.slice(1));p&&Ne(p,k,_.toLowerCase())}}return{signals:t,timescale:c,endTime:f}}function Ne(e,t,n){let s=e.changes;s.length&&s[s.length-1][0]===t?s[s.length-1][1]=n:(!s.length||s[s.length-1][1]!==n)&&s.push([t,n])}function Re(e,t){let n=e.changes,s=0,c=n.length-1,l=-1;for(;s<=c;){let o=s+c>>1;n[o][0]<=t?(l=o,s=o+1):c=o-1}return l<0?null:n[l][1]}function _e(e,t,n){if(t==null)return"";if(typeof t=="number")return String(+t.toPrecision(6));if(e.width===1)return t;let s=t.padStart(e.width,t[0]==="x"||t[0]==="z"?t[0]:"0");if(/[xz]/i.test(s))return/^x+$/i.test(s)?"x":/^z+$/i.test(s)?"z":n==="bin"?s:"x";if(n==="bin")return s;let c=BigInt("0b"+s);if(n==="dec")return c.toString(10);if(n==="sdec"){let l=BigInt(e.width);return(s[0]==="1"?c-(1n<<l):c).toString(10)}return c.toString(16).toUpperCase().padStart(Math.ceil(e.width/4),"0")}var te=class{constructor(t,n){this.c=t,this.ctx=t.getContext("2d"),this.data=null,this.radix="hex",this.cursor=null,this.t0=0,this.t1=1,this.onCursor=n.onCursor||(()=>{}),this.nameW=190,this.rowH=28,this.axisH=26,this.theme=n.theme,t.addEventListener("mousedown",s=>this.click(s)),t.addEventListener("wheel",s=>this.wheel(s),{passive:!1}),new ResizeObserver(()=>this.draw()).observe(t.parentElement)}setData(t){this.data=t,this.cursor=null,this.t0=0,this.t1=Math.max(1,t.endTime),this.draw(),this.onCursor(null)}clear(){this.data=null,this.draw()}zoom(t,n){if(!this.data)return;let s=this.t1-this.t0,c=n??this.cursor??this.t0+s/2,l=Math.min(Math.max(s*t,2),Math.max(1,this.data.endTime)*1.05),o=c-(c-this.t0)*(l/s);o=Math.max(0,Math.min(o,Math.max(0,this.data.endTime-l))),this.t0=o,this.t1=o+l,this.draw()}fit(){this.data&&(this.t0=0,this.t1=Math.max(1,this.data.endTime),this.draw())}pan(t){if(!this.data)return;let n=this.t1-this.t0,s=this.t0+n*t;s=Math.max(0,Math.min(s,Math.max(0,this.data.endTime-n))),this.t0=s,this.t1=s+n,this.draw()}xOf(t,n){return this.nameW+(t-this.t0)/(this.t1-this.t0)*(n-this.nameW-8)}tOf(t,n){return this.t0+(t-this.nameW)/(n-this.nameW-8)*(this.t1-this.t0)}click(t){if(!this.data)return;let n=this.c.getBoundingClientRect(),s=t.clientX-n.left;s<this.nameW||(this.cursor=Math.max(0,Math.round(this.tOf(s,n.width))),this.draw(),this.onCursor(this.cursor))}wheel(t){if(!this.data)return;let n=this.c.getBoundingClientRect();t.ctrlKey||t.metaKey||Math.abs(t.deltaY)>Math.abs(t.deltaX)&&t.shiftKey===!1&&t.altKey?(t.preventDefault(),this.zoom(t.deltaY>0?1.25:.8,this.tOf(t.clientX-n.left,n.width))):(Math.abs(t.deltaX)>Math.abs(t.deltaY)||t.shiftKey)&&(t.preventDefault(),this.pan((t.deltaX||t.deltaY)/600))}draw(){let t=this.theme(),s=this.c.parentElement.clientWidth;this.nameW=s<640?112:190;let c=this.data?this.data.signals:[],l=this.axisH+Math.max(c.length,3)*this.rowH+8,o=window.devicePixelRatio||1;this.c.style.width=s+"px",this.c.style.height=l+"px",this.c.width=Math.round(s*o),this.c.height=Math.round(l*o);let r=this.ctx;if(r.setTransform(o,0,0,o,0,0),r.fillStyle=t.bg,r.fillRect(0,0,s,l),r.font="12px 'JetBrains Mono', ui-monospace, monospace",r.textBaseline="middle",!this.data){r.fillStyle=t.muted,r.fillText("Run a simulation that calls $dumpvars to see waveforms here.",16,l/2);return}let k=this.t1-this.t0,f=(s-this.nameW)/110,h=k/Math.max(1,f),_=Math.pow(10,Math.floor(Math.log10(h))),p=[1,2,5,10].map(d=>d*_).find(d=>d>=h)||_*10;r.strokeStyle=t.grid,r.fillStyle=t.muted,r.lineWidth=1;for(let d=Math.ceil(this.t0/p)*p;d<=this.t1;d+=p){let g=Math.round(this.xOf(d,s))+.5;r.beginPath(),r.moveTo(g,this.axisH-6),r.lineTo(g,l),r.stroke(),r.fillText(ne(d,this.data.timescale),g+3,11)}if(r.strokeStyle=t.line,r.beginPath(),r.moveTo(0,this.axisH+.5),r.lineTo(s,this.axisH+.5),r.stroke(),c.forEach((d,g)=>{let y=this.axisH+g*this.rowH,w=y+6,q=y+this.rowH-6,T=(w+q)/2;r.fillStyle=g%2?t.rowAlt:t.bg,r.fillRect(0,y+1,s,this.rowH-1),r.fillStyle=t.text;let J=d.short+(d.width>1&&!d.short.includes("[")?` [${d.width-1}:0]`:"");r.fillText(Ie(r,J,this.nameW-16),10,T),r.save(),r.beginPath(),r.rect(this.nameW,y,s-this.nameW,this.rowH),r.clip();let O=d.changes;for(let L=0;L<O.length;L++){let xe=O[L][0],ve=L+1<O.length?O[L+1][0]:this.data.endTime;if(ve<this.t0||xe>this.t1)continue;let C=this.xOf(xe,s),I=this.xOf(ve,s),$=O[L][1];if(d.width===1&&typeof $=="string"){let W=$==="x"?t.x:$==="z"?t.z:t.wave;r.strokeStyle=W,r.lineWidth=1.5,$==="x"&&(r.fillStyle=t.xFill,r.fillRect(C,w,I-C,q-w));let F=$==="1"?w:$==="0"?q:T;if(r.beginPath(),L>0){let R=O[L-1][1],ee=R==="1"?w:R==="0"?q:T;r.moveTo(C,ee)}else r.moveTo(C,F);r.lineTo(C,F),r.lineTo(I,F),r.stroke()}else{let W=_e(d,$,this.radix),F=W==="x"||W==="z";r.strokeStyle=F?t.x:t.wave,r.lineWidth=1.2,r.fillStyle=F?t.xFill:t.busFill;let R=Math.min(4,(I-C)/2);r.beginPath(),r.moveTo(C,T),r.lineTo(C+R,w),r.lineTo(I-R,w),r.lineTo(I,T),r.lineTo(I-R,q),r.lineTo(C+R,q),r.closePath(),r.fill(),r.stroke();let ee=I-C-10;ee>14&&(r.fillStyle=t.text,r.fillText(Ie(r,W,ee),Math.max(C,this.nameW)+6,T))}}r.restore()}),r.strokeStyle=t.line,r.beginPath(),r.moveTo(this.nameW+.5,0),r.lineTo(this.nameW+.5,l),r.stroke(),this.cursor!==null&&this.cursor>=this.t0&&this.cursor<=this.t1){let d=Math.round(this.xOf(this.cursor,s))+.5;r.strokeStyle=t.cursor,r.lineWidth=1.5,r.beginPath(),r.moveTo(d,0),r.lineTo(d,l),r.stroke()}}};function Ie(e,t,n){if(e.measureText(t).width<=n)return t;for(;t.length>1&&e.measureText(t+"\u2026").width>n;)t=t.slice(0,-1);return t+"\u2026"}function ne(e,t){let n=/^(\d+)(s|ms|us|ns|ps|fs)$/.exec(t||"");if(!n)return String(e);let s=["fs","ps","ns","us","ms","s"],c=e*Number(n[1]),l=s.indexOf(n[2]);for(;l<s.length-1&&Math.abs(c)>=1e3&&c%1e3===0;)c/=1e3,l++;return l<2&&Math.abs(c)>=1e3&&(c/=1e3,l++,c=+c.toFixed(3)),`${c} ${s[l]}`}var i=e=>document.querySelector(e),ae=6e4,Be="vdd-sta-lab-v1",D="run.tcl",a={example:A[0].id,track:"basic",script:D,files:{},order:[],current:D,running:!1,ready:!1,worker:null,timer:null,mode:"sta",sim:null,simReady:!1,lastVcd:null},Me=()=>a.order.find(e=>/^tb_.*\.sv$/i.test(e)),Xe=()=>a.order.filter(e=>/\.tcl$/i.test(e));function X(){return a.files[a.script]!==void 0?a.script:a.files[D]!==void 0?D:Xe()[0]||D}function Ze(){let e=i("#script-wrap"),t=i("#script"),n=Xe(),s=X();e.hidden=!(n.length>1||n.length===1&&s!==D),t.innerHTML="";for(let c of n){let l=document.createElement("option");l.value=c,l.textContent=c,t.appendChild(l)}t.value=s}var S=new Map,u=null,v=i("#editor textarea");function fe(e){return/\.s?v$/i.test(e)?"verilog":/\.(tcl|sdc)$/i.test(e)?"tcl":"text/plain"}window.CodeMirror?(u=window.CodeMirror.fromTextArea(v,{lineNumbers:!0,indentUnit:2,tabSize:2,matchBrackets:!0,extraKeys:{Tab:e=>e.replaceSelection("  ")}}),u.on("change",()=>{a.files[a.current]=u.getValue(),ce()})):(v.classList.add("plain-editor"),v.addEventListener("input",()=>{a.files[a.current]=v.value,ce()}));function le(e){u?a.files[a.current]=u.getValue():a.files[a.current]=v.value,a.current=e,u?(S.has(e)||S.set(e,window.CodeMirror.Doc(a.files[e]??"",fe(e))),u.swapDoc(S.get(e)),setTimeout(()=>u.refresh(),0)):v.value=a.files[e]??"",re()}function je(e,t){le(e),u&&(u.focus(),u.setCursor({line:t-1,ch:0}),u.addLineClass(t-1,"background","cm-errline"),setTimeout(()=>u.removeLineClass(t-1,"background","cm-errline"),2500),u.scrollIntoView({line:t-1,ch:0},80))}function de(e,t,n){S.clear(),a.files={...e},a.order=t||Object.keys(e),a.current=n&&a.order.includes(n)?n:a.order.includes(X())?X():a.order[0],u?(S.set(a.current,window.CodeMirror.Doc(a.files[a.current]??"",fe(a.current))),u.swapDoc(S.get(a.current))):v.value=a.files[a.current]??"",re()}function re(){let e=i("#tabs");e.innerHTML="";for(let t of a.order){let n=document.createElement("button");if(n.type="button",n.className="tab"+(t===a.current?" active":""),n.setAttribute("role","tab"),n.setAttribute("aria-selected",t===a.current?"true":"false"),n.textContent=t,n.addEventListener("click",()=>le(t)),e.appendChild(n),t===a.current&&a.order.length>1){let s=document.createElement("button");s.type="button",s.className="tab-x",s.textContent="\xD7",s.title="Remove "+t,s.setAttribute("aria-label","Remove file "+t),s.addEventListener("click",()=>Je(t)),e.appendChild(s)}}Ze(),i("#simulate").hidden=!Me()}function Qe(e,t,n){a.files[e]===void 0&&a.order.push(e),a.files[e]=t,S.delete(e),n?re():le(e),ce()}function Je(e){u&&(a.files[a.current]=u.getValue()),delete a.files[e],S.delete(e),a.order=a.order.filter(t=>t!==e),a.current=a.order[0],u?(S.has(a.current)||S.set(a.current,window.CodeMirror.Doc(a.files[a.current]??"",fe(a.current))),u.swapDoc(S.get(a.current))):v.value=a.files[a.current]??"",re(),ce()}function et(){let e=(window.prompt("New file name (for example mode2.sdc, extra.tcl, top.v):","")||"").trim();if(e){if(!/^[\w.+-]+$/.test(e)){m("File names can use letters, digits, dot, dash and underscore only.","err");return}if(a.files[e]!==void 0){le(e);return}Qe(e,"")}}var Q=e=>{let t=A.find(n=>n.id===e);return t?(P.find(n=>n.group===t.group)||P[0]).id:null},E=()=>P.find(e=>e.id===a.track)||P[0];function me(){let e=i("#tracks");e.innerHTML="";for(let n of P){let s=document.createElement("button");s.type="button",s.className="track"+(n.id===E().id?" active":""),s.setAttribute("role","tab"),s.setAttribute("aria-selected",n.id===E().id?"true":"false");let c=A.filter(l=>l.group===n.group).length;s.innerHTML='<span class="track-t"></span><span class="track-n"></span>',s.querySelector(".track-t").textContent=n.title,s.querySelector(".track-n").textContent=c+" labs",s.addEventListener("click",()=>tt(n.id)),e.appendChild(s)}document.body.dataset.track!==E().id&&(document.body.dataset.track=E().id,document.dispatchEvent(new CustomEvent("vdd-track")));let t=i("#track-note");if(t.textContent=E().note+" ",E().id==="workshop"){let n=document.createElement("a");n.href="STA_Workshop_Labs.pdf",n.target="_blank",n.rel="noopener",n.className="btn small",n.textContent="Workshop slides (PDF)",t.appendChild(n)}}async function tt(e,t){a.track=e;try{let n=new URL(location.href);n.searchParams.set("track",e),history.replaceState(null,"",n.pathname+n.search+location.hash)}catch{}me(),!t&&Q(a.example)!==e?await V(A.find(n=>n.group===E().group).id):U()}function U(){let e=i("#examples");e.innerHTML="";for(let n of A.filter(s=>s.group===E().group)){let s=document.createElement("button");s.type="button",s.className="ex"+(n.id===a.example?" active":""),s.innerHTML='<span class="ex-tag"></span><span class="ex-title"></span>',s.querySelector(".ex-tag").textContent=n.tag;let c=n.quiz&&n.quiz.length?z()[n.id]:null;if(c&&c.checked){let l=document.createElement("span");l.className="ex-done",l.textContent=(c.score===c.total?"\u2713 ":"")+`quiz ${c.score}/${c.total}`,s.querySelector(".ex-tag").appendChild(l)}s.querySelector(".ex-title").textContent=n.title,s.addEventListener("click",()=>V(n.id)),e.appendChild(s)}let t=i("#ex-select");t.innerHTML=A.filter(n=>n.group===E().group).map(n=>`<option value="${n.id}">${n.group!=="Basic labs"?n.tag+" \xB7 ":""}${n.title}</option>`).join(""),a.example&&(t.value=a.example)}async function V(e){let t=A.find(c=>c.id===e)||A[0];a.example=t.id,Q(t.id)!==a.track&&(a.track=Q(t.id),me()),a.script=t.script||D;let n={};for(let[c,l]of Object.entries(t.files))if(l!==null)n[c]=l;else try{let o=await fetch(new URL("data/"+(t.load||{})[c],location.href));n[c]=o.ok?await o.text():`// Could not load ${t.load[c]}`}catch{n[c]=`// Could not load ${t.load[c]}`}let s=t.order?t.order.filter(c=>c in t.files):Object.keys(t.files).sort((c,l)=>Oe(c)-Oe(l));de(n,s,a.script),U(),ye(),H(),be(),Z(null),ie(!1),N(a.ready?"Ready":"Loading OpenSTA\u2026",a.ready?"idle":"busy")}var Ve="vdd-sta-quiz-v1";function z(){try{return JSON.parse(localStorage.getItem(Ve)||"{}")||{}}catch{return{}}}function ge(e){try{localStorage.setItem(Ve,JSON.stringify(e))}catch{}}var oe=()=>A.find(e=>e.id===a.example&&e.quiz&&e.quiz.length);function nt(e){let t=String(e||"").replace(/[−–—]/g,"-").replace(/,/g,"").match(/[-+]?\d*\.?\d+(?:[eE][-+]?\d+)?/);return t?parseFloat(t[0]):NaN}function st(e,t){if(e.type==="choice")return t!=null&&+t===e.answer;let n=nt(t);return isFinite(n)&&Math.abs(n-e.answer)<=(e.tol??.01)+1e-9}var at=e=>e.type==="choice"?e.options[e.answer]:`${Number.isInteger(e.answer)?e.answer:e.answer.toFixed(2)}${e.unit?" "+e.unit:""}`;function ye(){Se(Ce,a.example);let e=i("#quiz"),t=i("#quiz-list"),n=oe();if(!n){e.hidden=!0;return}e.hidden=!1;let s=z()[n.id]||{},c=s.a||[];t.innerHTML="",n.quiz.forEach((l,o)=>{let r=document.createElement("li"),k=document.createElement("div");if(k.className="quiz-q",l.try){let _=document.createElement("span");_.className="quiz-try",_.textContent="Try it",k.appendChild(_)}let f=l.q.replace(/^Try it: /,"");if(k.appendChild(document.createTextNode(f.charAt(0).toUpperCase()+f.slice(1))),r.appendChild(k),l.type==="choice"){let _=document.createElement("div");_.className="quiz-opts",_.setAttribute("role","radiogroup"),l.options.forEach((p,d)=>{let g=document.createElement("label"),y=document.createElement("input");y.type="radio",y.name=`q${o}`,y.value=d,c[o]!==void 0&&+c[o]===d&&(y.checked=!0),y.addEventListener("change",()=>Pe(n,o,d));let w=document.createElement("span");w.textContent=p,g.append(y,w),_.appendChild(g)}),r.appendChild(_)}else{let _=document.createElement("div");_.className="quiz-num";let p=document.createElement("input");if(p.type="text",p.inputMode="decimal",p.autocomplete="off",p.setAttribute("aria-label","Answer to question "+(o+1)),p.placeholder="e.g. -1.23",c[o]!==void 0&&(p.value=c[o]),p.addEventListener("input",()=>Pe(n,o,p.value)),p.addEventListener("keydown",d=>{d.key==="Enter"&&pe()}),_.appendChild(p),l.unit){let d=document.createElement("span");d.className="unit",d.textContent=l.unit,_.appendChild(d)}r.appendChild(_)}let h=document.createElement("div");h.className="quiz-fb",h.hidden=!0,h.setAttribute("aria-live","polite"),r.appendChild(h),t.appendChild(r)}),s.checked?pe(!0):Ue(null)}function Pe(e,t,n){let s=z(),c=s[e.id]||{a:[]};c.a=c.a||[],c.a[t]=n,c.checked=!1,s[e.id]=c,ge(s);let l=i("#quiz-list").children[t]?.querySelector(".quiz-fb");l&&(l.hidden=!0)}function Ue(e,t){let n=i("#quiz-score");if(e===null){n.textContent="",n.classList.remove("done");return}n.textContent=`${e} / ${t} correct`,n.classList.toggle("done",e===t)}function pe(e){let t=oe();if(!t)return;let n=z(),s=n[t.id]||{a:[]},c=0;t.quiz.forEach((l,o)=>{let r=i("#quiz-list").children[o],k=l.type==="choice"?(r.querySelector("input:checked")||{}).value:r.querySelector("input").value;s.a[o]=k;let f=r.querySelector(".quiz-fb"),h=k===void 0||k==="",_=!h&&st(l,k);_&&c++,f.hidden=!1,f.className="quiz-fb "+(_?"ok":"bad"),f.innerHTML="";let p=document.createElement("b");p.textContent=_?"Correct.":h?"Not answered yet.":"Not quite.",f.appendChild(p),_&&l.explain?f.appendChild(document.createTextNode(l.explain)):!_&&!h&&f.appendChild(document.createTextNode(l.type==="number"?"Check the report again: read the exact value, including its sign.":"Look at the report again and try another option."))}),s.checked=!0,s.score=c,s.total=t.quiz.length,n[t.id]=s,ge(n),Ue(c,t.quiz.length),e||U()}function ct(){let e=oe();e&&e.quiz.forEach((t,n)=>{let s=i("#quiz-list").children[n].querySelector(".quiz-fb");s.hidden=!1,s.className="quiz-fb shown",s.innerHTML="";let c=document.createElement("b");c.textContent="Answer: "+at(t)+".",s.appendChild(c),t.explain&&s.appendChild(document.createTextNode(t.explain))})}function lt(){let e=oe();if(!e)return;let t=z();delete t[e.id],ge(t),ye(),U()}function Oe(e){return e===a.script?-1:/\.tcl$/.test(e)?0:/\.s?v$/.test(e)?1:/\.sdc$/.test(e)?2:3}var Fe=null;function ce(){clearTimeout(Fe),Fe=setTimeout(H,400)}function H(){try{localStorage.setItem(Be,JSON.stringify({example:a.example,script:a.script,files:a.files,order:a.order,current:a.current}))}catch{}}function rt(){try{let e=JSON.parse(localStorage.getItem(Be)||"null");if(e&&e.files&&e.order)return e}catch{}return null}async function ot(){let e=JSON.stringify({f:a.files,o:a.order,s:X()}),t=new Blob([e]).stream().pipeThrough(new CompressionStream("deflate-raw")),n=new Uint8Array(await new Response(t).arrayBuffer()),s="";for(let c of n)s+=String.fromCharCode(c);return btoa(s).replace(/\+/g,"-").replace(/\//g,"_").replace(/=+$/,"")}async function it(e){let t=atob(e.replace(/-/g,"+").replace(/_/g,"/")),n=new Blob([Uint8Array.from(t,s=>s.charCodeAt(0))]).stream().pipeThrough(new DecompressionStream("deflate-raw"));return JSON.parse(await new Response(n).text())}async function M(e,t){let n=!1;try{await navigator.clipboard.writeText(e),n=!0}catch{let c=document.createElement("textarea");c.value=e,c.style.position="fixed",c.style.opacity="0",document.body.appendChild(c),c.select();try{n=document.execCommand("copy")}catch{}c.remove()}if(t){let s=t.dataset.label||t.textContent;t.dataset.label=s,t.textContent=n?"Copied":"Press Ctrl+C",t.classList.toggle("ok",n),setTimeout(()=>{t.textContent=s,t.classList.remove("ok")},1600)}}function Ke(e,t){let n=document.createElement("a");n.href=URL.createObjectURL(new Blob([t],{type:"text/plain"})),n.download=e,document.body.appendChild(n),n.click(),setTimeout(()=>{URL.revokeObjectURL(n.href),n.remove()},500)}var K=i("#console"),Y=[];function be(){K.textContent="",Y=[]}function m(e,t){Y.push(e);let n=document.createElement("div");n.className="ln "+(t||"");let s=/\b([\w.-]+\.(?:sv|v|sdc|tcl|spef)):?,? (?:line )?(\d+)\b/.exec(e);if(s&&a.files[s[1]]!==void 0){let c=e.indexOf(s[0]);n.appendChild(document.createTextNode(e.slice(0,c)));let l=document.createElement("button");l.type="button",l.className="loc",l.textContent=s[0],l.addEventListener("click",()=>je(s[1],+s[2])),n.appendChild(l),n.appendChild(document.createTextNode(e.slice(c+s[0].length)))}else n.textContent=e;/slack \(VIOLATED\)|^ASSERTION FAILED|^FAIL\b/.test(e)?n.classList.add("viol"):/^PASS\b/.test(e)||/slack \(MET\)/.test(e)?n.classList.add("met"):/^(Error|ERROR)|\bError:|Internal error/.test(e)?n.classList.add("err"):/^Warning/.test(e)?n.classList.add("warn"):/^(Startpoint|Endpoint):/.test(e)?n.classList.add("head"):/^###/.test(e)&&n.classList.add("sec"),K.appendChild(n),K.childElementCount>2e4&&K.firstChild.remove()}function Z(e,t){let n=i("#summary");if(t){We(t);return}if(!e){n.innerHTML="",n.hidden=!0;return}let s=[],c=h=>{let _=h.exec(e);return _?parseFloat(_[1]):null},l=c(/^wns(?: max)? (-?[\d.eE+-]+)/m)??c(/^worst slack max (-?[\d.eE+-]+)/m),o=c(/^tns(?: max)? (-?[\d.eE+-]+)/m),r=(e.match(/slack \(VIOLATED\)/g)||[]).length,k=(e.match(/slack \(MET\)/g)||[]).length;l!==null&&s.push(["WNS",l.toFixed(3),l<0?"bad":"good"]),o!==null&&s.push(["TNS",o.toFixed(3),o<0?"bad":"good"]),r+k&&s.push(["Paths reported",`${k} met \xB7 ${r} violated`,r?"bad":"good"]);let f=/^Total\s+\S+\s+\S+\s+\S+\s+(\S+)/m.exec(e);f&&s.push(["Total power",_t(parseFloat(f[1])),""]),We(s)}function We(e){let t=i("#summary");t.innerHTML="";for(let[n,s,c]of e){let l=document.createElement("div");l.className="chip "+c;let o=document.createElement("span");o.className="k",o.textContent=n;let r=document.createElement("span");r.className="v",r.textContent=s,l.append(o,r),t.appendChild(l)}t.hidden=e.length===0}function _t(e){return isFinite(e)?e>=1?e.toFixed(3)+" W":e>=.001?(e*1e3).toFixed(3)+" mW":(e*1e6).toFixed(2)+" \xB5W":"\u2013"}function N(e,t){let n=i("#status");n.textContent=e,n.dataset.kind=t}function we(){a.worker&&a.worker.terminate(),a.ready=!1;let e=new Worker(new URL("worker.js",location.href).href);e.onmessage=t=>dt(t.data),e.onerror=t=>{m("OpenSTA failed to start: "+(t.message||"worker error"),"err"),j(!1)},e.postMessage({type:"load",base:new URL(".",location.href).href}),a.worker=e}var he=[],ue=null;function se(){ue=null;for(let[e,t]of he)m(e,t);he=[],K.scrollTop=K.scrollHeight}function dt(e){if(e.type==="ready")a.ready=!0,a.running||N("Ready","idle");else if(e.type==="stage")N(e.stage+"\u2026","busy");else if(e.type==="file"){se();let t=a.files[e.name]===void 0;Qe(e.name,e.content,!0),m(`\u2500\u2500 OpenSTA ${t?"wrote":"updated"} ${e.name}: open its tab to read it \u2500\u2500`,"meta")}else e.type==="line"?(he.push([e.line,e.stream==="err"?"stderr":""]),ue||(ue=requestAnimationFrame(se))):e.type==="done"&&(se(),e.ok?m(`\u2500\u2500 finished in ${e.ms} ms \u2500\u2500`,"meta"):m(e.rc===-1?"\u2500\u2500 OpenSTA stopped with an internal error \u2500\u2500":`\u2500\u2500 OpenSTA exited with code ${e.rc}: check the errors above \u2500\u2500`,"meta err"),Z(Y.join(`
+`)),j(e.ok))}function Ge(){if(a.running)return;window.vddSubscribe&&window.vddSubscribe(),u?a.files[a.current]=u.getValue():a.files[a.current]=v.value;let e=X();if(a.files[e]===void 0){m(`Add a Tcl script (for example ${D}): it is what OpenSTA runs.`,"err");return}a.worker||we(),H(),be(),Z(null),a.running=!0,i("#run").disabled=!0,i("#simulate").disabled=!0,i("#stop").disabled=!1,a.mode="sta",i("#out-label").textContent="// Timing report",ie(!1),N(a.ready?"Running OpenSTA\u2026":"Loading OpenSTA\u2026","busy"),m(`$ sta ${e}`,"meta"),a.worker.postMessage({type:"run",files:{...a.files},script:e,dataFiles:Te,base:new URL(".",location.href).href}),clearTimeout(a.timer),a.timer=setTimeout(()=>Ae(`Stopped after ${ae/1e3} s.`),ae)}function Ae(e){a.running&&(se(),m(e||"Stopped.","meta err"),j(!1,!0),a.mode==="sim"?ze():we())}var ke=new URL("/verilog/",location.href).href;function ze(){a.sim&&a.sim.terminate(),a.simReady=!1;let e=new Worker(new URL("worker.js",ke).href);e.onmessage=t=>pt(t.data),e.onerror=t=>{m("The simulator failed to start: "+(t.message||"worker error"),"err"),j(!1)},e.postMessage({type:"load",base:ke}),a.sim=e}function pt(e){if(e.type==="ready")a.simReady=!0;else if(e.type==="stage")a.mode==="sim"&&N(e.stage+"\u2026","busy"),e.stage==="Simulating"&&m("\u2500\u2500 simulation output \u2500\u2500","meta");else if(e.type==="line")m(e.line.replace(/\/work\//g,""),e.stream==="err"&&/error/i.test(e.line)?"err":"");else if(e.type==="done"&&a.mode==="sim"){if(e.ok){m(`\u2500\u2500 finished in ${e.ms} ms \u2500\u2500`,"meta");let t=Y.join(`
+`),n=/^PASS\b/m.test(t),s=/^FAIL\b/m.test(t),c=(t.match(/^ASSERTION FAILED/gm)||[]).length,l=[];(n||s)&&l.push(["Result",s?"FAIL":"PASS",s?"bad":"good"]);for(let r of t.matchAll(/^(A_\w+)\s+(\d+) checks, (\d+) failed/gm))l.push([r[1],`${r[2]} checks \xB7 ${r[3]} failed`,+r[3]?"bad":"good"]);!l.length&&c&&l.push(["Assertion failures",String(c),"bad"]),Z(null,l);let o=(e.vcd||[])[0];if(o){a.lastVcd=o,ie(!0);try{let r=$e(o.text);b.setData(r),i("#wave-meta").textContent=`${r.signals.length} signals \xB7 ${ne(r.endTime,r.timescale)}`}catch(r){m("Could not read waveform: "+r.message,"err")}}}else e.phase==="compile"?m("\u2500\u2500 compile failed: fix the errors above and simulate again \u2500\u2500","meta err"):m(`\u2500\u2500 simulation exited with code ${e.rc} \u2500\u2500`,"meta err");j(e.ok)}}function ht(){if(a.running)return;window.vddSubscribe&&window.vddSubscribe(),u?a.files[a.current]=u.getValue():a.files[a.current]=v.value;let e=Me();if(!e){m("Add a testbench file named tb_<something>.sv to simulate.","err");return}let t=(/^\s*module\s+(\w+)/m.exec(a.files[e])||[])[1]||"",n={};for(let s of a.order)/\.(sv|svh)$/i.test(s)&&(n[s]=a.files[s]);H(),be(),Z(null),ie(!1),a.running=!0,a.mode="sim",i("#out-label").textContent="// Simulation output",i("#run").disabled=!0,i("#simulate").disabled=!0,i("#stop").disabled=!1,a.sim||ze(),N(a.simReady?"Compiling\u2026":"Loading simulator\u2026","busy"),m(`$ iverilog -g2012 -s ${t} ${Object.keys(n).join(" ")} && vvp   (the .sv files; the .v netlist is for STA)`,"meta"),a.sim.postMessage({type:"run",files:n,std:"2012",top:t,base:ke}),clearTimeout(a.timer),a.timer=setTimeout(()=>Ae(`Stopped after ${ae/1e3} s.`),ae)}var x=e=>getComputedStyle(document.documentElement).getPropertyValue(e).trim(),b=new te(i("#wave"),{theme:()=>({bg:x("--wave-bg"),rowAlt:x("--wave-row"),grid:x("--wave-grid"),line:x("--line"),text:x("--text"),muted:x("--muted"),wave:x("--wave"),busFill:x("--wave-bus"),x:x("--wave-x"),xFill:x("--wave-xfill"),z:x("--wave-z"),cursor:x("--accent")}),onCursor:e=>{let t=i("#wave-values");if(e===null||!b.data){t.textContent="";return}t.innerHTML="";let n=document.createElement("div");n.className="cur-time",n.textContent="Cursor @ "+ne(e,b.data.timescale),t.appendChild(n);for(let s of b.data.signals){let c=document.createElement("div");c.className="cur-row";let l=document.createElement("span");l.textContent=s.name;let o=document.createElement("span");o.textContent=_e(s,Re(s,e),b.radix),c.append(l,o),t.appendChild(c)}}});window.matchMedia("(prefers-color-scheme: dark)").addEventListener?.("change",()=>b.draw());function ie(e){i("#wave-pane").hidden=!e,e||(b.clear(),i("#wave-values").textContent="",i("#wave-meta").textContent="")}function j(e,t){clearTimeout(a.timer),a.running=!1,i("#run").disabled=!1,i("#simulate").disabled=!1,i("#stop").disabled=!0,N(t?"Stopped":e?"Done":"Errors",t||!e?"err":"ok")}function ut(){i("#run").addEventListener("click",Ge),i("#simulate").addEventListener("click",ht),i("#zoom-in").addEventListener("click",()=>b.zoom(.5)),i("#zoom-out").addEventListener("click",()=>b.zoom(2)),i("#zoom-fit").addEventListener("click",()=>b.fit()),i("#pan-left").addEventListener("click",()=>b.pan(-.4)),i("#pan-right").addEventListener("click",()=>b.pan(.4)),i("#radix").addEventListener("change",t=>{b.radix=t.target.value,b.draw(),b.onCursor(b.cursor)}),i("#dl-vcd").addEventListener("click",()=>{a.lastVcd&&Ke("waves.vcd",a.lastVcd.text)}),i("#stop").addEventListener("click",()=>Ae()),i("#script").addEventListener("change",t=>{a.script=t.target.value,H()}),i("#new-file").addEventListener("click",et),i("#quiz-check").addEventListener("click",()=>pe()),i("#quiz-reveal").addEventListener("click",ct),i("#quiz-reset").addEventListener("click",lt),i("#ex-select").addEventListener("change",t=>V(t.target.value)),i("#reset").addEventListener("click",()=>V(a.example||A[0].id)),i("#copy-file").addEventListener("click",t=>M(u?u.getValue():v.value,t.currentTarget)),i("#download-file").addEventListener("click",()=>Ke(a.current,u?u.getValue():v.value)),i("#copy-output").addEventListener("click",t=>M(Y.join(`
+`),t.currentTarget)),i("#share").addEventListener("click",async t=>{let n=t.currentTarget;u&&(a.files[a.current]=u.getValue());try{let s=await ot();history.replaceState(null,"","#code="+s),M(location.href.split("#")[0]+"#code="+s,n)}catch{M(location.href,n)}}),document.addEventListener("keydown",t=>{(t.ctrlKey||t.metaKey)&&t.key==="Enter"&&(t.preventDefault(),Ge())});let e=i("#libs");e.innerHTML="";for(let[t,n]of Le){let s=document.createElement("li"),c=document.createElement("button");c.type="button",c.className="libname",c.textContent=t,c.title="Copy file name",c.addEventListener("click",()=>M(t,null));let l=document.createElement("span");l.textContent=n,s.append(c,l),e.appendChild(s)}}async function kt(){ut();let e=!1,t=new URLSearchParams(location.hash.slice(1)).get("code");if(t)try{let c=await it(t);a.example=null,a.script=c.s||D,a.order=c.o,a.files=c.f,de(c.f,c.o,a.script),e=!0}catch{}if(!e){let c=rt();c&&(a.example=c.example,a.script=c.script||D,a.files=c.files,a.order=c.order,de(c.files,c.order,c.current),e=!0)}let n=new URLSearchParams(location.search).get("track"),s=P.some(c=>c.id===n);a.track=s?n:Q(a.example)||"basic",me(),!e||s&&Q(a.example)!==n&&!t?await V(A.find(c=>c.group===E().group).id):(U(),ye()),N("Loading OpenSTA\u2026","busy"),we()}kt();})();

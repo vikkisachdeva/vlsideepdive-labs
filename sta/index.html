@@ -265,8 +265,9 @@ body[data-lab="logic"] .vtracks { grid-template-columns: repeat(3, minmax(0, 1fr
 .tab-x { border: 0; background: none; color: var(--muted); cursor: pointer; font-size: 16px; line-height: 1; padding: 4px 6px; margin-left: -6px; border-radius: 4px; min-height: 36px; }
 .tab-x:hover { color: var(--err); background: var(--soft); }
 .tracks-wrap { flex-basis: 100%; margin-top: 14px; }
-.tracks { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; }
-@media (max-width: 900px) { .tracks { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.tracks { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 10px; }
+@media (max-width: 1100px) { .tracks { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+@media (max-width: 640px) { .tracks { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 .track { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; text-align: left; padding: 12px 16px; min-height: 56px; border: 1px solid var(--line); border-radius: 10px; background: var(--panel); color: var(--text); cursor: pointer; }
 .track:hover { border-color: var(--muted); }
 .track.active { border-color: var(--accent); box-shadow: inset 0 -3px 0 var(--accent); background: var(--accent-soft); }
@@ -382,6 +383,10 @@ report_power</pre>
         <svg width="14" height="14" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4l13 8-13 8z" fill="currentColor"/></svg>
         Run STA <kbd>Ctrl ⏎</kbd>
       </button>
+      <button class="btn primary" id="simulate" type="button" title="Compile the .sv files with Icarus Verilog and run the testbench" hidden>
+        <svg width="14" height="14" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12h4l3-8 4 16 3-8h4" fill="none" stroke="currentColor" stroke-width="2.2"/></svg>
+        Simulate
+      </button>
       <label class="script-wrap" id="script-wrap" hidden>script <select id="script" aria-label="Script to run"></select></label>
       <button class="btn" id="stop" type="button" disabled>Stop</button>
       <span class="spacer"></span>
@@ -402,12 +407,34 @@ report_power</pre>
 
     <section class="pane" aria-label="Timing report">
       <div class="pane-head">
-        <span class="sec-label" style="margin:0">// Timing report</span>
+        <span class="sec-label" style="margin:0" id="out-label">// Timing report</span>
         <span class="spacer"></span>
         <button class="btn small" type="button" id="copy-output">Copy report</button>
       </div>
       <div class="summary" id="summary" hidden></div>
       <div id="console" role="log" aria-live="polite"></div>
+    </section>
+
+    <section class="pane" id="wave-pane" aria-label="Waveform" hidden>
+      <div class="pane-head">
+        <span class="sec-label" style="margin:0">// Waveform</span>
+        <span class="wave-meta" id="wave-meta"></span>
+        <span class="spacer"></span>
+        <div class="wave-tools">
+          <label class="vh" for="radix">Number format</label>
+          <select id="radix" style="min-height:32px;padding:4px 8px;font-size:13px">
+            <option value="hex">Hex</option><option value="dec">Unsigned</option><option value="sdec">Signed</option><option value="bin">Binary</option>
+          </select>
+          <button class="btn small" type="button" id="pan-left" aria-label="Scroll left">◀</button>
+          <button class="btn small" type="button" id="zoom-out" aria-label="Zoom out">−</button>
+          <button class="btn small" type="button" id="zoom-in" aria-label="Zoom in">+</button>
+          <button class="btn small" type="button" id="pan-right" aria-label="Scroll right">▶</button>
+          <button class="btn small" type="button" id="zoom-fit">Fit</button>
+          <button class="btn small" type="button" id="dl-vcd">Download VCD</button>
+        </div>
+      </div>
+      <div class="wave-wrap"><canvas id="wave" aria-label="Waveform viewer. Click to place a cursor and read values below."></canvas></div>
+      <div id="wave-values"></div>
     </section>
 
     <section class="pane quiz" id="quiz" aria-label="Quiz" hidden>
@@ -417,7 +444,7 @@ report_power</pre>
         <span class="quiz-score" id="quiz-score"></span>
       </div>
       <div class="quiz-body">
-        <p class="quiz-intro">Run the lab as given, read the report, then answer. Questions marked <span class="quiz-try">Try it</span> ask you to edit a file and run again; press <b>Reset example</b> afterwards to get the original files back.</p>
+        <p class="quiz-intro">Run the lab as given (and Simulate, where the lab has a testbench), read the report, then answer. Questions marked <span class="quiz-try">Try it</span> ask you to edit a file and run again; press <b>Reset example</b> afterwards to get the original files back.</p>
         <ol class="quiz-list" id="quiz-list"></ol>
         <div class="quiz-actions">
           <button class="btn primary" type="button" id="quiz-check">Check answers</button>
@@ -439,7 +466,7 @@ report_power</pre>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/verilog/verilog.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/tcl/tcl.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/addon/edit/matchbrackets.min.js"></script>
-<script src="/labs.js?v=69aca5118b"></script>
-<script src="app.js?v=964f953b10"></script>
+<script src="/labs.js?v=503888d77a"></script>
+<script src="app.js?v=65b506e402"></script>
 </body>
 </html>

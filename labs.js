@@ -34,6 +34,8 @@ const HOME_CARDS = [
     desc: "The 8-day STA workshop, from your first timing report to STA on a RISC-V core. Slides and an auto-checked quiz for every lab." },
   { title: "SDC & constraints", href: "/sta/?track=sdc", tag: "Timing · 21 labs · quizzes",
     desc: "Timing constraints hands-on: clocks and generated clocks, clock groups and sense, false and multicycle paths, I/O delays, modes and CDC, up to a full SoC." },
+  { title: "Verify constraints", href: "/sta/?track=verify", tag: "Timing · Simulation · 12 labs · quizzes",
+    desc: "Check constraints twice: STA and assertions in simulation. Multicycle paths (same clock, slow to fast, fast to slow, clock gating) and exclusive clock groups, each with a passing and a failing design." },
   { title: "Signoff STA", href: "/sta/?track=signoff", tag: "Timing · 9 labs · quizzes",
     desc: "Signoff skills: validating constraints, clocks, timing exceptions, OCV and CRPR, latches, ECO fixes and multi-corner signoff." },
   labById("tips"),
