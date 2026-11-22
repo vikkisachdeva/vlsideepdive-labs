@@ -448,6 +448,10 @@ header.top nav a.lb-acct.in { background: rgba(232,100,44,.18); border-color: #e
 .stat b { display: block; font: 700 clamp(32px, 4vw, 44px)/1.05 "Space Grotesk", sans-serif; letter-spacing: -0.02em; }
 .stat b.c1 { color: #4f8cff; } .stat b.c2 { color: #1fc27e; }
 .stat span { display: block; margin-top: 6px; color: #b8c6cb; font-size: 15px; font-weight: 500; }
+.stats-in.live { padding-bottom: 8px; }
+.stats-in.live + .stats-in { border-top: 1px solid #16303c; }
+.live-since { grid-column: 1 / -1; margin: 0 0 -8px; font: 500 12px "JetBrains Mono", monospace; letter-spacing: .08em; text-transform: uppercase; color: #ff9b6b; display: flex; align-items: center; gap: 8px; }
+.live-since::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: #1fc27e; box-shadow: 0 0 0 4px rgba(31,194,126,.2); }
 @media (max-width: 760px) { .stats-in { grid-template-columns: repeat(2, minmax(0, 1fr)); padding: 30px 16px; } }
 
 /* Lab cards */
@@ -543,6 +547,16 @@ header.top nav a.lb-acct.in { background: rgba(232,100,44,.18); border-color: #e
 <p class="more">More labs are on the way. Follow the <a href="https://www.youtube.com/@vlsideepdive">YouTube channel</a> to hear first.</p>
 
 <section class="stats" aria-label="vlsideepdive labs in numbers">
+  <div class="stats-in live" id="live-stats" hidden>
+    <p class="live-since">Live</p>
+    <div class="stat"><b class="c1" data-c="learners">–</b><span>Engineers learning</span></div>
+    <div class="stat"><b class="c2" data-c="sim">–</b><span>RTL simulations run</span></div>
+    <div class="stat"><b class="c1" data-c="sta">–</b><span>STA runs</span></div>
+    <div class="stat"><b class="c2" data-c="labs_passed">–</b><span>Labs passed</span></div>
+    <div class="stat"><b class="c1" data-c="synth">–</b><span>Synthesis runs</span></div>
+    <div class="stat"><b class="c2" data-c="cdc">–</b><span>CDC checks</span></div>
+    <div class="stat"><b class="c1" data-c="quizzes">–</b><span>Quizzes checked</span></div>
+  </div>
   <div class="stats-in">
     <div class="stat"><b class="c1">267</b><span>Hands-on labs</span></div>
     <div class="stat"><b class="c2">997</b><span>Quiz questions</span></div>
@@ -555,7 +569,7 @@ header.top nav a.lb-acct.in { background: rgba(232,100,44,.18); border-color: #e
   <span>© 2026 vlsideepdive · All courses free on <a href="https://www.youtube.com/@vlsideepdive">YouTube</a> · Training enquiries: <a href="mailto:vlsideepdive@gmail.com">vlsideepdive@gmail.com</a></span>
   <span><a href="/verilog/licenses.html">Verilog lab licences</a> · <a href="/synth/licenses.html">Synthesis lab licences</a> · <a href="/sta/licenses.html">STA and Constraints labs licences</a></span>
 </footer>
-<script src="/labs.js?v=c3e838beb3"></script>
+<script src="/labs.js?v=685d654122"></script>
 <script>
 // Latest 3 videos. latest-videos.json is refreshed every few hours by a GitHub Action
 // (.github/workflows/latest-videos.yml) that reads the channel feed. It is read from
