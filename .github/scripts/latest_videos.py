@@ -1,10 +1,13 @@
-"""Writes latest-videos.json with the 3 newest long-form uploads of the vlsideepdive channel.
+"""Writes latest-videos.json with the 3 newest long-form uploads of the vlsideepdive channel,
+and the channel's total number of public videos (shown on the home page).
 
-Source 1: the channel's public RSS feed (no API key). Shorts are skipped.
+Latest videos. Source 1: the channel's public RSS feed (no API key); Shorts are skipped.
 Source 2 (if the feed fails): yt-dlp on the channel's Videos tab.
-If both fail, the existing file is kept unchanged.
+Video count: the YouTube Data API if a YT_API_KEY secret is set, otherwise yt-dlp on the
+channel's uploads playlist (the same number YouTube shows as "N videos").
+Anything that fails keeps its previous value.
 """
-import json, subprocess, sys, urllib.request, xml.etree.ElementTree as ET
+import json, os, subprocess, sys, urllib.request, xml.etree.ElementTree as ET
 from datetime import datetime, timezone
 
 CHANNEL = "UC6WZe5aEnmKg0zTW_nL4VjQ"
@@ -32,6 +35,42 @@ def from_ytdlp():
     return [{"id": e["id"], "title": e.get("title") or ""} for e in json.loads(out).get("entries", []) if e.get("id")]
 
 
+def ytdlp_ready():
+    subprocess.run([sys.executable, "-m", "pip", "install", "-q", "yt-dlp"], check=True)
+
+
+def count_from_api():
+    key = os.environ.get("YT_API_KEY")
+    if not key:
+        raise RuntimeError("no YT_API_KEY")
+    url = f"https://www.googleapis.com/youtube/v3/channels?part=statistics&id={CHANNEL}&key={key}"
+    return int(json.loads(urllib.request.urlopen(url, timeout=30).read())["items"][0]["statistics"]["videoCount"])
+
+
+def count_from_ytdlp():
+    ytdlp_ready()
+    out = subprocess.run([sys.executable, "-m", "yt_dlp", "--flat-playlist", "-J", "--playlist-end", "1",
+                          "https://www.youtube.com/playlist?list=UU" + CHANNEL[2:]], check=True, capture_output=True, text=True).stdout
+    n = json.loads(out).get("playlist_count")
+    if not n:
+        raise RuntimeError("no playlist_count")
+    return int(n)
+
+
+try:
+    prev = json.load(open(OUT))
+except Exception:
+    prev = {}
+
+count = prev.get("video_count")
+for fn in (count_from_api, count_from_ytdlp):
+    try:
+        count = fn()
+        print(f"{fn.__name__}: {count} videos")
+        break
+    except Exception as exc:
+        print(f"{fn.__name__} failed: {exc}")
+
 videos = []
 for fn in (from_feed, from_ytdlp):
     try:
@@ -43,15 +82,12 @@ for fn in (from_feed, from_ytdlp):
         print(f"{fn.__name__} failed: {exc}")
 
 if not videos:
-    print("No source worked; keeping the current file.")
-    sys.exit(0)
+    print("No source for the latest videos worked; keeping them.")
+    videos = prev.get("videos") or []
 
-try:
-    old = json.load(open(OUT)).get("videos")
-except Exception:
-    old = None
-if old == videos:
+if prev.get("videos") == videos and prev.get("video_count") == count:
     print("No change.")
     sys.exit(0)
-json.dump({"updated": datetime.now(timezone.utc).isoformat(timespec="seconds"), "videos": videos}, open(OUT, "w"), indent=1, ensure_ascii=False)
+json.dump({"updated": datetime.now(timezone.utc).isoformat(timespec="seconds"), "video_count": count, "videos": videos},
+          open(OUT, "w"), indent=1, ensure_ascii=False)
 print("Updated", OUT)

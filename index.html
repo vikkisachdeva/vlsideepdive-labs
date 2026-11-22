@@ -454,6 +454,7 @@ header.top nav a.lb-share-btn:hover { background: #d0541f; color: #fff; }
 /* Content stats under the hero */
 .hero-stats { display: flex; flex-wrap: wrap; gap: 14px 48px; margin-top: 26px; }
 .hero-stats div { display: flex; flex-direction: column; gap: 2px; }
+.hero-stats div[hidden] { display: none; }
 .hero-stats b { font: 700 clamp(30px, 3.6vw, 40px)/1.05 "Space Grotesk", sans-serif; letter-spacing: -0.02em; color: var(--accent); }
 .hero-stats span { color: var(--muted); font-size: 15px; font-weight: 500; }
 @media (max-width: 520px) { .hero-stats { gap: 14px 28px; } }
@@ -506,6 +507,7 @@ header.top nav a.lb-share-btn:hover { background: #d0541f; color: #fff; }
     <div><b>267</b><span>Hands-on labs</span></div>
     <div><b>997</b><span>Quiz questions</span></div>
     <div><b>9</b><span>Topics, logic design to sign-off</span></div>
+    <div id="yt-count" hidden><b>–</b><span>Videos on YouTube</span></div>
   </div>
 </section>
 
@@ -622,6 +624,7 @@ header.top nav a.lb-share-btn:hover { background: #d0541f; color: #fff; }
         const r = await fetch(url, { cache: "no-cache" });
         if (!r.ok) continue;
         const data = await r.json();
+        if (data && data.video_count > 0) { const el = document.getElementById("yt-count"); el.querySelector("b").textContent = Number(data.video_count).toLocaleString("en-US"); el.hidden = false; }
         if (data && Array.isArray(data.videos) && data.videos.length) { render(data.videos); return; }
       } catch (_) {}
     }
