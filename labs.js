@@ -53,7 +53,6 @@ const HOME_CARDS = [
   { title: "Signoff STA", href: "/sta/?track=signoff", tag: "Timing · 9 labs · quizzes",
     desc: "Signoff skills: validating constraints, clocks, timing exceptions, OCV and CRPR, latches, ECO fixes and multi-corner signoff." },
   labById("pd"),
-  labById("tips"),
 ];
 
 (function () {
