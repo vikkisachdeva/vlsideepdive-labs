@@ -103,7 +103,7 @@ const HOME_CARDS = [
 })();
 
 // Accounts and leaderboards (/lb.js), on every page
-(function () { const s = document.createElement("script"); s.src = "/lb.js?v=b6cee5eb2a"; s.defer = true; document.head.appendChild(s); })();
+(function () { const s = document.createElement("script"); s.src = "/lb.js?v=0b0073c8b5"; s.defer = true; document.head.appendChild(s); })();
 
 // Tip box inside a lab: <div class="lab-tip" data-topics="STA,Constraints"></div>
 (function () {
@@ -219,7 +219,7 @@ window.vddVideo = (function () {
   function watched(v) { let n = 0; for (const c of v.s || "") if (c === "1") n++; return n; }
   function share(id, rec) { const v = rec || jget(VKEY)[id]; if (!v || !v.d || !v.s) return 0; return Math.min(1, watched(v) / need(v.d)); }
   const mmss = (s) => { s = Math.max(0, Math.ceil(s)); return Math.floor(s / 60) + ":" + String(s % 60).padStart(2, "0"); };
-  const TITLES = {};
+  const TITLES = {}, STARTED = new Set();
   const courseName = (id) => window.vddCourse(TITLES[id] || (badges()[id] || {}).title).name;
   function label(el, id, rec, title) {
     if (title) TITLES[id] = title;
@@ -245,6 +245,8 @@ window.vddVideo = (function () {
   // Replace a thumbnail button by a tracked player. statusEl shows the badge progress.
   function play(btn, v, cls, statusEl) {
     if (v.title) TITLES[v.id] = v.title;
+    // Internal "video started" counter (not shown on the site): once per video per page visit.
+    if (!STARTED.has(v.id)) { STARTED.add(v.id); try { (window.vddQ = window.vddQ || []).push("video_starts"); } catch (_) {} }
     const holder = document.createElement("div"); holder.className = cls; btn.replaceWith(holder);
     const host = document.createElement("div"); holder.appendChild(host);
     api().then((YT) => {
