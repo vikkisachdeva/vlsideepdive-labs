@@ -58,5 +58,95 @@
   "t": "Immediate assertions: executable comments",
   "m": 2,
   "from": "2026-11-24T19:00+05:30"
+ },
+ "l01-gates": {
+  "id": "Kagm7ufmgvs",
+  "t": "Logic gates and truth tables",
+  "m": 1,
+  "from": "2026-11-25T09:00+05:30"
+ },
+ "s01-reg": {
+  "id": "_ysi5XfJaDY",
+  "t": "Register",
+  "m": 1,
+  "from": "2026-11-25T11:00+05:30"
+ },
+ "syn-adder": {
+  "id": "5Op7y6RX9Po",
+  "t": "Synthesis of an adder",
+  "m": 1,
+  "from": "2026-11-25T16:00+05:30"
+ },
+ "dv-1": {
+  "id": "Bpz9FpBFjCA",
+  "t": "Clock generation three ways",
+  "m": 2,
+  "from": "2026-11-25T13:00+05:30"
+ },
+ "pd-b0": {
+  "id": "Q1xscAjYK5g",
+  "t": "The whole flow on one design",
+  "m": 1,
+  "from": "2026-11-25T19:00+05:30"
+ },
+ "p1-ha-bh": {
+  "id": "QVGJfVIwVnk",
+  "t": "Half adder: behavioral",
+  "m": 1,
+  "from": "2026-11-26T09:00+05:30"
+ },
+ "vh-p1-ha-bh": {
+  "id": "FhLVR9fo7iI",
+  "t": "Half adder: behavioral",
+  "m": 1,
+  "from": "2026-11-26T11:00+05:30"
+ },
+ "cdc-find": {
+  "id": "CCbkZnWkpJ4",
+  "t": "Find the metastability",
+  "m": 1,
+  "from": "2026-11-26T13:00+05:30"
+ },
+ "io": {
+  "id": "HUc7AJSYpkE",
+  "t": "Input & output delays",
+  "m": 1,
+  "from": "2026-11-26T16:00+05:30"
+ },
+ "sva-b2": {
+  "id": "qWE69_L-OIw",
+  "t": "Your first concurrent assertion: request and acknowledge",
+  "m": 2,
+  "from": "2026-11-26T19:00+05:30"
+ },
+ "l02-nand": {
+  "id": "ct5jxDUdOkA",
+  "t": "Universal gates: NAND only",
+  "m": 1,
+  "from": "2026-11-27T09:00+05:30"
+ },
+ "s02-mux": {
+  "id": "ZNJbQsCgT1g",
+  "t": "Parameterized multiplexer",
+  "m": 1,
+  "from": "2026-11-27T11:00+05:30"
+ },
+ "dv-2": {
+  "id": "oKNn26Ezw4A",
+  "t": "Reset sequences with three resets",
+  "m": 2,
+  "from": "2026-11-27T13:00+05:30"
+ },
+ "syn-alu": {
+  "id": "8E1C4yhgQzs",
+  "t": "Synthesis of an ALU",
+  "m": 1,
+  "from": "2026-11-27T16:00+05:30"
+ },
+ "pd-b1": {
+  "id": "KqWsd0qLKOY",
+  "t": "Inputs: technology, cells and libraries",
+  "m": 1,
+  "from": "2026-11-27T19:00+05:30"
  }
 }
