@@ -450,6 +450,11 @@ header.top nav a.lb-streak { font-weight: 700; color: #ffb38a; }
 .pf-legend { display: flex; gap: 4px; align-items: center; font-size: 12px; color: var(--muted); margin-top: 6px; }
 .pf-topics { display: grid; gap: 10px; } .pf-t { display: grid; grid-template-columns: 150px 1fr 64px 44px; gap: 12px; align-items: center; font-size: 14px; } .pf-t b { text-align: right; font-weight: 600; } .pf-t em { font-style: normal; color: var(--label); font: 600 12px "JetBrains Mono", monospace; }
 .pf-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; } .pf-list li { display: flex; flex-direction: column; gap: 2px; } .pf-list span { color: var(--muted); font-size: 13px; } .pf-list a { color: var(--text); }
+.bchip { display: inline-flex; align-items: center; gap: 2px; margin: 1px 4px 1px 0; padding: 1px 6px; border-radius: 6px; background: var(--bc, #e8642c); color: #fff; font: 700 11px/1.5 "JetBrains Mono", monospace; white-space: nowrap; vertical-align: middle; }
+.bchip i { font-style: normal; font-weight: 500; opacity: .85; } .bchip.other { background: var(--soft); color: var(--text); }
+.lb-table td.bcell { white-space: normal; min-width: 90px; } .lb-table .nb { color: var(--muted); }
+.t3-badges { display: inline-flex; flex-wrap: wrap; } .pf-bchips { display: inline-flex; flex-wrap: wrap; gap: 4px 0; }
+.pf-stats .pf-bchips .bchip { color: #fff; font: 700 14px/1.6 "JetBrains Mono", monospace; padding: 2px 8px; }
 .pf-list .pf-cb { display: inline-block; min-width: 30px; margin-right: 8px; padding: 1px 6px; border-radius: 6px; color: #fff; font: 700 11px "JetBrains Mono", monospace; text-align: center; vertical-align: 2px; }
 .pf-none { color: var(--muted); margin: 0; }
 .lb-name { color: var(--text); font-weight: 600; text-decoration: none; } .lb-name:hover { color: var(--accent); text-decoration: underline; }
@@ -569,6 +574,7 @@ header.top nav a.lb-streak { font-weight: 700; color: #ffb38a; }
 .t3-pts b { font: 700 22px "Space Grotesk", sans-serif; color: var(--text); }
 .t3-meta { display: flex; gap: 6px; flex-wrap: wrap; justify-content: center; }
 .t3-meta span { font: 500 12px "JetBrains Mono", monospace; color: var(--muted); border: 1px solid var(--line); border-radius: 999px; padding: 2px 9px; }
+.t3-meta span.t3-badges { border: 0; padding: 0; display: inline-flex; gap: 0; } .t3-meta span.bchip { color: #fff; border: 0; border-radius: 6px; padding: 2px 7px; font-weight: 700; background: var(--bc); } .t3-meta span.bchip i { color: #fff; border: 0; padding: 0; }
 .t3-err { grid-column: 1 / -1; color: var(--muted); }
 .t3-cta { margin: 14px 0 0; color: var(--muted); font-size: 14px; }
 .t3-cta a { color: var(--accent); font-weight: 600; }
@@ -731,7 +737,7 @@ header.top nav a.lb-streak { font-weight: 700; color: #ffb38a; }
   <span>© 2026 vlsideepdive · All courses free on <a href="https://www.youtube.com/@vlsideepdive">YouTube</a> · Training enquiries: <a href="mailto:vlsideepdive@gmail.com">vlsideepdive@gmail.com</a></span>
   <span><a href="/verilog/licenses.html">Verilog lab licences</a> · <a href="/synth/licenses.html">Synthesis lab licences</a> · <a href="/sta/licenses.html">STA and Constraints labs licences</a></span>
 </footer>
-<script src="/labs.js?v=aae8eb1a89"></script>
+<script src="/labs.js?v=57bf1247ba"></script>
 <script>
 // Latest 3 videos. latest-videos.json is refreshed every few hours by a GitHub Action
 // (.github/workflows/latest-videos.yml) that reads the channel feed. It is read from
