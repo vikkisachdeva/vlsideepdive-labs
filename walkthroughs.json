@@ -1,1 +1,62 @@
-{}
+{
+ "p4-mealy-ov": {
+  "id": "4Rj3827RYso",
+  "t": "Mealy 101 detector, overlapping",
+  "m": 2,
+  "from": "2026-11-23T18:00+05:30"
+ },
+ "vh-p4-updown": {
+  "id": "fYRWNW4iP4U",
+  "t": "Up/down counter",
+  "m": 2,
+  "from": "2026-11-23T18:00+05:30"
+ },
+ "cdc-fix": {
+  "id": "EXgHlkEfj-k",
+  "t": "Fix the synchronizers",
+  "m": 2,
+  "from": "2026-11-23T18:00+05:30"
+ },
+ "basic": {
+  "id": "_U5F_Irqoro",
+  "t": "Setup & hold checks",
+  "m": 2,
+  "from": "2026-11-23T18:30+05:30"
+ },
+ "syn-mux": {
+  "id": "6Jk-SFms9EE",
+  "t": "Synthesis of a mux",
+  "m": 1,
+  "from": "2026-11-23T21:00+05:30"
+ },
+ "p1-ha-df": {
+  "id": "qbzDVprPyy4",
+  "t": "Half adder: dataflow",
+  "m": 1,
+  "from": "2026-11-24T09:00+05:30"
+ },
+ "vh-p1-ha-df": {
+  "id": "AYg0hT2EwyY",
+  "t": "Half adder: dataflow",
+  "m": 1,
+  "from": "2026-11-24T11:00+05:30"
+ },
+ "cdc-clocks": {
+  "id": "l2MViC8HfuA",
+  "t": "Clocks and clock domains",
+  "m": 1,
+  "from": "2026-11-24T13:00+05:30"
+ },
+ "violation": {
+  "id": "x4IuT-h817k",
+  "t": "Setup violation: fast clock",
+  "m": 1,
+  "from": "2026-11-24T16:00+05:30"
+ },
+ "sva-b1": {
+  "id": "chXTnRI6EUo",
+  "t": "Immediate assertions: executable comments",
+  "m": 2,
+  "from": "2026-11-24T19:00+05:30"
+ }
+}
