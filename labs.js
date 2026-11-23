@@ -102,7 +102,7 @@ const HOME_CARDS = [
 })();
 
 // Accounts and leaderboards (/lb.js), on every page
-(function () { const s = document.createElement("script"); s.src = "/lb.js?v=2f808a244f"; s.defer = true; document.head.appendChild(s); })();
+(function () { const s = document.createElement("script"); s.src = "/lb.js?v=f1b901a69e"; s.defer = true; document.head.appendChild(s); })();
 
 // Tip box inside a lab: <div class="lab-tip" data-topics="STA,Constraints"></div>
 (function () {
@@ -310,7 +310,7 @@ window.vddVideo = (function () {
       const box = document.createElement("aside");
       box.className = "sub-pop badge-pop"; box.setAttribute("role", "complementary"); box.setAttribute("aria-label", "Earn a badge");
       box.innerHTML = '<span class="sub-ic" aria-hidden="true">🏅</span>' +
-        '<div><b>Watch the video to earn your ' + window.vddCourse(todo.title).name + ' badge</b><p>Watch this lab\'s video here on the site (half of it, or 30 minutes): the badge goes on your leaderboard profile and you can share it on LinkedIn.</p>' +
+        '<div><b>Watch the video to earn your ' + window.vddCourse(todo.title).name + ' badge</b><p>Watch this lab\'s video here on the site (half of it, or 30 minutes): the badge goes on your profile and you can share it on LinkedIn.</p>' +
         '<button type="button" class="sub-go">Watch now</button></div>' +
         '<button type="button" class="sub-x" aria-label="Close">×</button>';
       document.body.appendChild(box);
