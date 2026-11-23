@@ -642,32 +642,6 @@ header.top nav a.lb-streak { font-weight: 700; color: #ffb38a; }
 </section>
 
 <div class="wrap">
-  <section class="daily-card" id="daily-card" aria-label="Daily challenge" hidden></section>
-  <section class="home-plans" id="home-plans" aria-labelledby="hp-title" hidden>
-    <div class="hp-head">
-      <div><span class="kicker">// study plans</span><h3 id="hp-title">Pick a study plan</h3></div>
-      <span class="spacer"></span>
-      <a class="hp-all" href="/plans/">All study plans →</a>
-    </div>
-    <p class="hp-sub">A day-by-day path through the labs. Your progress is ticked off as you pass each lab.</p>
-    <div class="hp-grid"></div>
-  </section>
-  <section class="top3" id="lb-top3" aria-labelledby="t3-title" hidden>
-    <div class="t3-head">
-      <div>
-        <span class="kicker">// leaderboard</span>
-        <h3 id="t3-title">Top of the class</h3>
-      </div>
-      <span class="spacer"></span>
-      <label class="t3-topic"><span class="sr">Topic</span><select aria-label="Leaderboard topic"></select></label>
-      <a class="t3-full" href="/leaderboard/">Full leaderboard →</a>
-    </div>
-    <ol class="t3-podium" aria-live="polite"></ol>
-    <p class="t3-cta"></p>
-  </section>
-</div>
-
-<div class="wrap">
   <section class="videos-card" aria-labelledby="videos-title">
     <div class="videos-head">
       <h3 id="videos-title">Latest videos</h3>
@@ -703,7 +677,20 @@ header.top nav a.lb-streak { font-weight: 700; color: #ffb38a; }
   </div>
 </section>
 
-<div class="wrap" id="training" style="margin-top:32px;margin-bottom:28px">
+<div class="wrap">
+  <section class="daily-card" id="daily-card" aria-label="Daily challenge" hidden></section>
+  <section class="home-plans" id="home-plans" aria-labelledby="hp-title" hidden>
+    <div class="hp-head">
+      <div><span class="kicker">// study plans</span><h3 id="hp-title">Pick a study plan</h3></div>
+      <span class="spacer"></span>
+      <a class="hp-all" href="/plans/">All study plans →</a>
+    </div>
+    <p class="hp-sub">A day-by-day path through the labs. Your progress is ticked off as you pass each lab.</p>
+    <div class="hp-grid"></div>
+  </section>
+</div>
+
+<div class="wrap" id="training" style="margin-top:32px">
   <section class="b2b" aria-labelledby="b2b-title">
     <div>
       <span class="kicker">// corporate training</span>
@@ -719,6 +706,22 @@ header.top nav a.lb-streak { font-weight: 700; color: #ffb38a; }
       <a class="cta" href="mailto:vlsideepdive@gmail.com?subject=Corporate%20training%20enquiry">Ask about training</a>
       <span class="mail">or write to <a href="mailto:vlsideepdive@gmail.com">vlsideepdive@gmail.com</a></span>
     </div>
+  </section>
+</div>
+
+<div class="wrap" style="margin-bottom:28px">
+  <section class="top3" id="lb-top3" aria-labelledby="t3-title" hidden>
+    <div class="t3-head">
+      <div>
+        <span class="kicker">// leaderboard</span>
+        <h3 id="t3-title">Top of the class</h3>
+      </div>
+      <span class="spacer"></span>
+      <label class="t3-topic"><span class="sr">Topic</span><select aria-label="Leaderboard topic"></select></label>
+      <a class="t3-full" href="/leaderboard/">Full leaderboard →</a>
+    </div>
+    <ol class="t3-podium" aria-live="polite"></ol>
+    <p class="t3-cta"></p>
   </section>
 </div>
 
