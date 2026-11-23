@@ -1,1 +1,572 @@
-{"p4-mealy-ov":{"id":"4Rj3827RYso","t":"Mealy 101 detector, overlapping","m":2,"from":"2026-11-23T18:00+05:30"},"vh-p4-updown":{"id":"fYRWNW4iP4U","t":"Up/down counter","m":2,"from":"2026-11-23T18:00+05:30"},"cdc-fix":{"id":"EXgHlkEfj-k","t":"Fix the synchronizers","m":2,"from":"2026-11-23T18:00+05:30"},"basic":{"id":"_U5F_Irqoro","t":"Setup & hold checks","m":2,"from":"2026-11-23T18:30+05:30"},"syn-mux":{"id":"6Jk-SFms9EE","t":"Synthesis of a mux","m":1,"from":"2026-11-23T21:00+05:30"},"p1-ha-df":{"id":"qbzDVprPyy4","t":"Half adder: dataflow","m":1,"from":"2026-11-24T09:00+05:30"},"vh-p1-ha-df":{"id":"AYg0hT2EwyY","t":"Half adder: dataflow","m":1,"from":"2026-11-24T11:00+05:30"},"cdc-clocks":{"id":"l2MViC8HfuA","t":"Clocks and clock domains","m":1,"from":"2026-11-24T13:00+05:30"},"violation":{"id":"x4IuT-h817k","t":"Setup violation: fast clock","m":1,"from":"2026-11-24T16:00+05:30"},"sva-b1":{"id":"chXTnRI6EUo","t":"Immediate assertions: executable comments","m":2,"from":"2026-11-24T19:00+05:30"},"l01-gates":{"id":"Kagm7ufmgvs","t":"Logic gates and truth tables","m":1,"from":"2026-11-25T09:00+05:30"},"s01-reg":{"id":"_ysi5XfJaDY","t":"Register","m":1,"from":"2026-11-25T11:00+05:30"},"syn-adder":{"id":"5Op7y6RX9Po","t":"Synthesis of an adder","m":1,"from":"2026-11-25T16:00+05:30"},"dv-1":{"id":"Bpz9FpBFjCA","t":"Clock generation three ways","m":2,"from":"2026-11-25T13:00+05:30"},"pd-b0":{"id":"Q1xscAjYK5g","t":"The whole flow on one design","m":1,"from":"2026-11-25T19:00+05:30"},"p1-ha-bh":{"id":"QVGJfVIwVnk","t":"Half adder: behavioral","m":1,"from":"2026-11-26T09:00+05:30"},"vh-p1-ha-bh":{"id":"FhLVR9fo7iI","t":"Half adder: behavioral","m":1,"from":"2026-11-26T11:00+05:30"},"cdc-find":{"id":"CCbkZnWkpJ4","t":"Find the metastability","m":1,"from":"2026-11-26T13:00+05:30"},"io":{"id":"HUc7AJSYpkE","t":"Input & output delays","m":1,"from":"2026-11-26T16:00+05:30"},"sva-b2":{"id":"qWE69_L-OIw","t":"Your first concurrent assertion: request and acknowledge","m":2,"from":"2026-11-26T19:00+05:30"},"l02-nand":{"id":"ct5jxDUdOkA","t":"Universal gates: NAND only","m":1,"from":"2026-11-27T09:00+05:30"},"s02-mux":{"id":"ZNJbQsCgT1g","t":"Parameterized multiplexer","m":1,"from":"2026-11-27T11:00+05:30"},"dv-2":{"id":"oKNn26Ezw4A","t":"Reset sequences with three resets","m":2,"from":"2026-11-27T13:00+05:30"},"syn-alu":{"id":"8E1C4yhgQzs","t":"Synthesis of an ALU","m":1,"from":"2026-11-27T16:00+05:30"},"pd-b1":{"id":"KqWsd0qLKOY","t":"Inputs: technology, cells and libraries","m":1,"from":"2026-11-27T19:00+05:30"},"p1-ha-st":{"id":"u_LxgIj-cP0","t":"Half adder: structural","m":1,"from":"2026-11-28T09:00+05:30"},"vh-p1-ha-st":{"id":"DQkzxQtmfsI","t":"Half adder: structural","m":1,"from":"2026-11-28T11:00+05:30"},"cdc-pulse":{"id":"0GqPmv1K9bI","t":"Pulse synchronizer","m":1,"from":"2026-11-28T13:00+05:30"},"exceptions":{"id":"nx8-LUhilVk","t":"False & multicycle paths","m":1,"from":"2026-11-28T16:00+05:30"},"sva-b3":{"id":"ETr9cyzBmAE","t":"Sampling: why assertions see the old value","m":1,"from":"2026-11-28T19:00+05:30"},"l03-nor":{"id":"Jw2Ro7CNuy4","t":"Universal gates: NOR only","m":1,"from":"2026-11-29T09:00+05:30"},"s03-cnt":{"id":"KbmqSnfDCnk","t":"Loadable counter","m":1,"from":"2026-11-29T11:00+05:30"},"dv-3":{"id":"mJm7jztQ0gs","t":"Random numbers in Verilog: even, odd, one-hot","m":1,"from":"2026-11-29T13:00+05:30"},"syn-counter":{"id":"H4Rb8AHB3QA","t":"Synthesis of a counter","m":1,"from":"2026-11-29T16:00+05:30"},"pd-f1":{"id":"1Jm3gaPzUE4","t":"Die size, utilization and aspect ratio","m":1,"from":"2026-11-29T19:00+05:30"},"p1-fa-df":{"id":"LPjQWzkTeDM","t":"Full adder: dataflow","m":1,"from":"2026-11-30T09:00+05:30"},"vh-p1-fa-df":{"id":"_il1EK1NtLY","t":"Full adder: dataflow","m":1,"from":"2026-11-30T11:00+05:30"},"cdc-bus":{"id":"o17Qtqy5yCY","t":"Bus with synchronized enable","m":1,"from":"2026-11-30T13:00+05:30"},"ocv":{"id":"tBjZrMeJOc8","t":"Clock latency, uncertainty & OCV","m":1,"from":"2026-11-30T16:00+05:30"},"sva-b4":{"id":"JE_wYFAAxrE","t":"Overlapping |-\u203a and non-overlapping |=\u203a implication","m":1,"from":"2026-11-30T19:00+05:30"},"l04-sop-pos":{"id":"KXRvdJZUmBo","t":"SOP and POS Boolean functions","m":1,"from":"2026-12-01T09:00+05:30"},"s04-ctrl":{"id":"Tg-ZZ7JJqpg","t":"Sequence controller (FSM)","m":2,"from":"2026-12-01T11:00+05:30"},"dv-4":{"id":"a236XuEhEcE","t":"Counter verification: test plan and directed tests","m":2,"from":"2026-12-01T13:00+05:30"},"syn-shift_register":{"id":"1HByZsKwRX4","t":"Synthesis of a shift register","m":1,"from":"2026-12-01T16:00+05:30"},"pd-f2":{"id":"4yIvFXp_y7k","t":"I/O pin placement","m":1,"from":"2026-12-01T19:00+05:30"},"p1-fa-bh":{"id":"Z665w6bhazg","t":"Full adder: behavioral","m":1,"from":"2026-12-02T09:00+05:30"},"vh-p1-fa-bh":{"id":"G3ObgsGRyp0","t":"Full adder: behavioral","m":1,"from":"2026-12-02T11:00+05:30"},"cdc-reset":{"id":"dgDpDJygEK8","t":"Reset synchronizer","m":1,"from":"2026-12-02T13:00+05:30"},"corners":{"id":"86MZlplAqlo","t":"Multi-corner: slow & fast","m":1,"from":"2026-12-02T16:00+05:30"},"sva-b5":{"id":"sm9HQ-VN-f4","t":"The level vs edge gotcha","m":1,"from":"2026-12-02T19:00+05:30"},"l05-demorgan":{"id":"oBE2pbcwDyA","t":"De Morgan's laws","m":1,"from":"2026-12-03T09:00+05:30"},"s05-alu":{"id":"PhUESk1K7bA","t":"ALU","m":1,"from":"2026-12-03T11:00+05:30"},"dv-5":{"id":"Dwy3zosqxYg","t":"Counter verification: random tests","m":2,"from":"2026-12-03T13:00+05:30"},"syn-det_1011":{"id":"y79fug280CQ","t":"Synthesis of a sequence detector","m":1,"from":"2026-12-03T16:00+05:30"},"pd-f3":{"id":"NCc4TpnBr-U","t":"Macro placement, halo and keep-out","m":1,"from":"2026-12-03T19:00+05:30"},"p1-fa-st":{"id":"sapChlXAlKU","t":"Full adder: structural","m":1,"from":"2026-12-04T09:00+05:30"},"vh-p1-fa-st":{"id":"7R08jphX-TY","t":"Full adder: structural","m":1,"from":"2026-12-04T11:00+05:30"},"cdc-handshake":{"id":"EY90gBJwX7Q","t":"Closed-loop handshake","m":1,"from":"2026-12-04T13:00+05:30"},"spef":{"id":"_eVDHX0FT4U","t":"Wire parasitics from SPEF","m":1,"from":"2026-12-04T16:00+05:30"},"sva-b6":{"id":"GbvVrAV7FFU","t":"Resets: disable iff","m":1,"from":"2026-12-04T19:00+05:30"},"l06-kmap":{"id":"tT7sNkBnsB4","t":"K-map simplification","m":1,"from":"2026-12-05T09:00+05:30"},"s06-memtb":{"id":"AgI0gCVc4ks","t":"Memory testbench with tasks","m":1,"from":"2026-12-05T11:00+05:30"},"dv-6":{"id":"FcTfKBCbt64","t":"SystemVerilog data types: a behavioral memory model","m":2,"from":"2026-12-05T13:00+05:30"},"syn-ibex":{"id":"VKe7SsYxSBU","t":"Synthesis of the ibex RISC-V core","m":2,"from":"2026-12-05T16:00+05:30"},"pd-f4":{"id":"ddAtFX3RmXE","t":"Power planning and IR drop","m":1,"from":"2026-12-05T19:00+05:30"},"p1-ops":{"id":"QCb87shtbjQ","t":"All Verilog operators","m":1,"from":"2026-12-06T09:00+05:30"},"vh-p1-ops":{"id":"59T8rygjl7k","t":"All VHDL operators","m":2,"from":"2026-12-06T11:00+05:30"},"cdc-fifo":{"id":"XcEz3KNn_cQ","t":"Asynchronous FIFO","m":1,"from":"2026-12-06T13:00+05:30"},"gcd":{"id":"Weeolg_6uFY","t":"GCD block (Sky130): SPEF + power","m":1,"from":"2026-12-06T16:00+05:30"},"sva-b7":{"id":"Xw5NV-1PBFI","t":"Action blocks, severity and $assertoff","m":2,"from":"2026-12-06T19:00+05:30"},"l07-dontcare":{"id":"RGboOctUIs0","t":"K-maps with don't-cares","m":1,"from":"2026-12-07T09:00+05:30"},"s07-struct":{"id":"vLQ2zu6xcP0","t":"Bundling a bus with a packed struct","m":1,"from":"2026-12-07T11:00+05:30"},"dv-7":{"id":"rsUQM_eZqKQ","t":"Interfaces and modports: a FIFO interface with driver tasks","m":1,"from":"2026-12-07T13:00+05:30"},"pd-f5":{"id":"0uTahkiJ3Us","t":"A bad floorplan: too little area","m":1,"from":"2026-12-07T16:00+05:30"},"p1-c2f":{"id":"Hu6pl2DU3U0","t":"Celsius to Fahrenheit task","m":1,"from":"2026-12-07T19:00+05:30"},"vh-p1-c2f":{"id":"u4drE3NNa2A","t":"Celsius to Fahrenheit procedure","m":1,"from":"2026-12-08T09:00+05:30"},"cdc-assert":{"id":"oRJazrl5w2c","t":"CDC assertions","m":2,"from":"2026-12-08T11:00+05:30"},"ws-lab1":{"id":"lun5x8NEYj0","t":"Your first timing report","m":1,"from":"2026-12-08T13:00+05:30"},"sva-b8":{"id":"Y-qHzN9ABdY","t":"assert, assume and cover: one property, three jobs","m":2,"from":"2026-12-08T16:00+05:30"},"l08-parity":{"id":"2ukVhD_7vMU","t":"Parity generator and checker","m":1,"from":"2026-12-08T19:00+05:30"},"s08-cpu":{"id":"8dtqTPIv2do","t":"VeriRISC CPU","m":3,"from":"2026-12-09T09:00+05:30"},"dv-8":{"id":"Mojsvyzyx14","t":"Classes: transactions, copy, compare, inheritance","m":2,"from":"2026-12-09T11:00+05:30"},"pd-p1":{"id":"vGlD3faTEUE","t":"Global placement and target density","m":1,"from":"2026-12-09T13:00+05:30"},"p2-add4":{"id":"CrcUMeYDnjk","t":"4-bit full adder: dataflow","m":1,"from":"2026-12-09T16:00+05:30"},"vh-p2-add4":{"id":"gFgPG69pFDA","t":"4-bit full adder: dataflow","m":1,"from":"2026-12-09T19:00+05:30"}}
+{
+ "p4-mealy-ov": {
+  "id": "4Rj3827RYso",
+  "t": "Mealy 101 detector, overlapping",
+  "m": 2,
+  "from": "2026-11-23T18:00+05:30"
+ },
+ "vh-p4-updown": {
+  "id": "fYRWNW4iP4U",
+  "t": "Up/down counter",
+  "m": 2,
+  "from": "2026-11-23T18:00+05:30"
+ },
+ "cdc-fix": {
+  "id": "EXgHlkEfj-k",
+  "t": "Fix the synchronizers",
+  "m": 2,
+  "from": "2026-11-23T18:00+05:30"
+ },
+ "basic": {
+  "id": "_U5F_Irqoro",
+  "t": "Setup & hold checks",
+  "m": 2,
+  "from": "2026-11-23T18:30+05:30"
+ },
+ "syn-mux": {
+  "id": "6Jk-SFms9EE",
+  "t": "Synthesis of a mux",
+  "m": 1,
+  "from": "2026-11-23T21:00+05:30"
+ },
+ "p1-ha-df": {
+  "id": "qbzDVprPyy4",
+  "t": "Half adder: dataflow",
+  "m": 1,
+  "from": "2026-11-24T09:00+05:30"
+ },
+ "vh-p1-ha-df": {
+  "id": "AYg0hT2EwyY",
+  "t": "Half adder: dataflow",
+  "m": 1,
+  "from": "2026-11-24T11:00+05:30"
+ },
+ "cdc-clocks": {
+  "id": "l2MViC8HfuA",
+  "t": "Clocks and clock domains",
+  "m": 1,
+  "from": "2026-11-24T13:00+05:30"
+ },
+ "violation": {
+  "id": "x4IuT-h817k",
+  "t": "Setup violation: fast clock",
+  "m": 1,
+  "from": "2026-11-24T16:00+05:30"
+ },
+ "sva-b1": {
+  "id": "chXTnRI6EUo",
+  "t": "Immediate assertions: executable comments",
+  "m": 2,
+  "from": "2026-11-24T19:00+05:30"
+ },
+ "l01-gates": {
+  "id": "Kagm7ufmgvs",
+  "t": "Logic gates and truth tables",
+  "m": 1,
+  "from": "2026-11-25T09:00+05:30"
+ },
+ "s01-reg": {
+  "id": "_ysi5XfJaDY",
+  "t": "Register",
+  "m": 1,
+  "from": "2026-11-25T11:00+05:30"
+ },
+ "syn-adder": {
+  "id": "5Op7y6RX9Po",
+  "t": "Synthesis of an adder",
+  "m": 1,
+  "from": "2026-11-25T16:00+05:30"
+ },
+ "dv-1": {
+  "id": "Bpz9FpBFjCA",
+  "t": "Clock generation three ways",
+  "m": 2,
+  "from": "2026-11-25T13:00+05:30"
+ },
+ "pd-b0": {
+  "id": "Q1xscAjYK5g",
+  "t": "The whole flow on one design",
+  "m": 1,
+  "from": "2026-11-25T19:00+05:30"
+ },
+ "p1-ha-bh": {
+  "id": "QVGJfVIwVnk",
+  "t": "Half adder: behavioral",
+  "m": 1,
+  "from": "2026-11-26T09:00+05:30"
+ },
+ "vh-p1-ha-bh": {
+  "id": "FhLVR9fo7iI",
+  "t": "Half adder: behavioral",
+  "m": 1,
+  "from": "2026-11-26T11:00+05:30"
+ },
+ "cdc-find": {
+  "id": "CCbkZnWkpJ4",
+  "t": "Find the metastability",
+  "m": 1,
+  "from": "2026-11-26T13:00+05:30"
+ },
+ "io": {
+  "id": "HUc7AJSYpkE",
+  "t": "Input & output delays",
+  "m": 1,
+  "from": "2026-11-26T16:00+05:30"
+ },
+ "sva-b2": {
+  "id": "qWE69_L-OIw",
+  "t": "Your first concurrent assertion: request and acknowledge",
+  "m": 2,
+  "from": "2026-11-26T19:00+05:30"
+ },
+ "l02-nand": {
+  "id": "ct5jxDUdOkA",
+  "t": "Universal gates: NAND only",
+  "m": 1,
+  "from": "2026-11-27T09:00+05:30"
+ },
+ "s02-mux": {
+  "id": "ZNJbQsCgT1g",
+  "t": "Parameterized multiplexer",
+  "m": 1,
+  "from": "2026-11-27T11:00+05:30"
+ },
+ "dv-2": {
+  "id": "oKNn26Ezw4A",
+  "t": "Reset sequences with three resets",
+  "m": 2,
+  "from": "2026-11-27T13:00+05:30"
+ },
+ "syn-alu": {
+  "id": "8E1C4yhgQzs",
+  "t": "Synthesis of an ALU",
+  "m": 1,
+  "from": "2026-11-27T16:00+05:30"
+ },
+ "pd-b1": {
+  "id": "KqWsd0qLKOY",
+  "t": "Inputs: technology, cells and libraries",
+  "m": 1,
+  "from": "2026-11-27T19:00+05:30"
+ },
+ "p1-ha-st": {
+  "id": "u_LxgIj-cP0",
+  "t": "Half adder: structural",
+  "m": 1,
+  "from": "2026-11-28T09:00+05:30"
+ },
+ "vh-p1-ha-st": {
+  "id": "DQkzxQtmfsI",
+  "t": "Half adder: structural",
+  "m": 1,
+  "from": "2026-11-28T11:00+05:30"
+ },
+ "cdc-pulse": {
+  "id": "0GqPmv1K9bI",
+  "t": "Pulse synchronizer",
+  "m": 1,
+  "from": "2026-11-28T13:00+05:30"
+ },
+ "exceptions": {
+  "id": "nx8-LUhilVk",
+  "t": "False & multicycle paths",
+  "m": 1,
+  "from": "2026-11-28T16:00+05:30"
+ },
+ "sva-b3": {
+  "id": "ETr9cyzBmAE",
+  "t": "Sampling: why assertions see the old value",
+  "m": 1,
+  "from": "2026-11-28T19:00+05:30"
+ },
+ "l03-nor": {
+  "id": "Jw2Ro7CNuy4",
+  "t": "Universal gates: NOR only",
+  "m": 1,
+  "from": "2026-11-29T09:00+05:30"
+ },
+ "s03-cnt": {
+  "id": "KbmqSnfDCnk",
+  "t": "Loadable counter",
+  "m": 1,
+  "from": "2026-11-29T11:00+05:30"
+ },
+ "dv-3": {
+  "id": "mJm7jztQ0gs",
+  "t": "Random numbers in Verilog: even, odd, one-hot",
+  "m": 1,
+  "from": "2026-11-29T13:00+05:30"
+ },
+ "syn-counter": {
+  "id": "H4Rb8AHB3QA",
+  "t": "Synthesis of a counter",
+  "m": 1,
+  "from": "2026-11-29T16:00+05:30"
+ },
+ "pd-f1": {
+  "id": "1Jm3gaPzUE4",
+  "t": "Die size, utilization and aspect ratio",
+  "m": 1,
+  "from": "2026-11-29T19:00+05:30"
+ },
+ "p1-fa-df": {
+  "id": "LPjQWzkTeDM",
+  "t": "Full adder: dataflow",
+  "m": 1,
+  "from": "2026-11-30T09:00+05:30"
+ },
+ "vh-p1-fa-df": {
+  "id": "_il1EK1NtLY",
+  "t": "Full adder: dataflow",
+  "m": 1,
+  "from": "2026-11-30T11:00+05:30"
+ },
+ "cdc-bus": {
+  "id": "o17Qtqy5yCY",
+  "t": "Bus with synchronized enable",
+  "m": 1,
+  "from": "2026-11-30T13:00+05:30"
+ },
+ "ocv": {
+  "id": "tBjZrMeJOc8",
+  "t": "Clock latency, uncertainty & OCV",
+  "m": 1,
+  "from": "2026-11-30T16:00+05:30"
+ },
+ "sva-b4": {
+  "id": "JE_wYFAAxrE",
+  "t": "Overlapping |-\u203a and non-overlapping |=\u203a implication",
+  "m": 1,
+  "from": "2026-11-30T19:00+05:30"
+ },
+ "l04-sop-pos": {
+  "id": "KXRvdJZUmBo",
+  "t": "SOP and POS Boolean functions",
+  "m": 1,
+  "from": "2026-12-01T09:00+05:30"
+ },
+ "s04-ctrl": {
+  "id": "Tg-ZZ7JJqpg",
+  "t": "Sequence controller (FSM)",
+  "m": 2,
+  "from": "2026-12-01T11:00+05:30"
+ },
+ "dv-4": {
+  "id": "a236XuEhEcE",
+  "t": "Counter verification: test plan and directed tests",
+  "m": 2,
+  "from": "2026-12-01T13:00+05:30"
+ },
+ "syn-shift_register": {
+  "id": "1HByZsKwRX4",
+  "t": "Synthesis of a shift register",
+  "m": 1,
+  "from": "2026-12-01T16:00+05:30"
+ },
+ "pd-f2": {
+  "id": "4yIvFXp_y7k",
+  "t": "I/O pin placement",
+  "m": 1,
+  "from": "2026-12-01T19:00+05:30"
+ },
+ "p1-fa-bh": {
+  "id": "Z665w6bhazg",
+  "t": "Full adder: behavioral",
+  "m": 1,
+  "from": "2026-12-02T09:00+05:30"
+ },
+ "vh-p1-fa-bh": {
+  "id": "G3ObgsGRyp0",
+  "t": "Full adder: behavioral",
+  "m": 1,
+  "from": "2026-12-02T11:00+05:30"
+ },
+ "cdc-reset": {
+  "id": "dgDpDJygEK8",
+  "t": "Reset synchronizer",
+  "m": 1,
+  "from": "2026-12-02T13:00+05:30"
+ },
+ "corners": {
+  "id": "86MZlplAqlo",
+  "t": "Multi-corner: slow & fast",
+  "m": 1,
+  "from": "2026-12-02T16:00+05:30"
+ },
+ "sva-b5": {
+  "id": "sm9HQ-VN-f4",
+  "t": "The level vs edge gotcha",
+  "m": 1,
+  "from": "2026-12-02T19:00+05:30"
+ },
+ "l05-demorgan": {
+  "id": "oBE2pbcwDyA",
+  "t": "De Morgan's laws",
+  "m": 1,
+  "from": "2026-12-03T09:00+05:30"
+ },
+ "s05-alu": {
+  "id": "PhUESk1K7bA",
+  "t": "ALU",
+  "m": 1,
+  "from": "2026-12-03T11:00+05:30"
+ },
+ "dv-5": {
+  "id": "Dwy3zosqxYg",
+  "t": "Counter verification: random tests",
+  "m": 2,
+  "from": "2026-12-03T13:00+05:30"
+ },
+ "syn-det_1011": {
+  "id": "y79fug280CQ",
+  "t": "Synthesis of a sequence detector",
+  "m": 1,
+  "from": "2026-12-03T16:00+05:30"
+ },
+ "pd-f3": {
+  "id": "NCc4TpnBr-U",
+  "t": "Macro placement, halo and keep-out",
+  "m": 1,
+  "from": "2026-12-03T19:00+05:30"
+ },
+ "p1-fa-st": {
+  "id": "sapChlXAlKU",
+  "t": "Full adder: structural",
+  "m": 1,
+  "from": "2026-12-04T09:00+05:30"
+ },
+ "vh-p1-fa-st": {
+  "id": "7R08jphX-TY",
+  "t": "Full adder: structural",
+  "m": 1,
+  "from": "2026-12-04T11:00+05:30"
+ },
+ "cdc-handshake": {
+  "id": "EY90gBJwX7Q",
+  "t": "Closed-loop handshake",
+  "m": 1,
+  "from": "2026-12-04T13:00+05:30"
+ },
+ "spef": {
+  "id": "_eVDHX0FT4U",
+  "t": "Wire parasitics from SPEF",
+  "m": 1,
+  "from": "2026-12-04T16:00+05:30"
+ },
+ "sva-b6": {
+  "id": "GbvVrAV7FFU",
+  "t": "Resets: disable iff",
+  "m": 1,
+  "from": "2026-12-04T19:00+05:30"
+ },
+ "l06-kmap": {
+  "id": "tT7sNkBnsB4",
+  "t": "K-map simplification",
+  "m": 1,
+  "from": "2026-12-05T09:00+05:30"
+ },
+ "s06-memtb": {
+  "id": "AgI0gCVc4ks",
+  "t": "Memory testbench with tasks",
+  "m": 1,
+  "from": "2026-12-05T11:00+05:30"
+ },
+ "dv-6": {
+  "id": "FcTfKBCbt64",
+  "t": "SystemVerilog data types: a behavioral memory model",
+  "m": 2,
+  "from": "2026-12-05T13:00+05:30"
+ },
+ "syn-ibex": {
+  "id": "VKe7SsYxSBU",
+  "t": "Synthesis of the ibex RISC-V core",
+  "m": 2,
+  "from": "2026-12-05T16:00+05:30"
+ },
+ "pd-f4": {
+  "id": "ddAtFX3RmXE",
+  "t": "Power planning and IR drop",
+  "m": 1,
+  "from": "2026-12-05T19:00+05:30"
+ },
+ "p1-ops": {
+  "id": "QCb87shtbjQ",
+  "t": "All Verilog operators",
+  "m": 1,
+  "from": "2026-12-06T09:00+05:30"
+ },
+ "vh-p1-ops": {
+  "id": "59T8rygjl7k",
+  "t": "All VHDL operators",
+  "m": 2,
+  "from": "2026-12-06T11:00+05:30"
+ },
+ "cdc-fifo": {
+  "id": "XcEz3KNn_cQ",
+  "t": "Asynchronous FIFO",
+  "m": 1,
+  "from": "2026-12-06T13:00+05:30"
+ },
+ "gcd": {
+  "id": "Weeolg_6uFY",
+  "t": "GCD block (Sky130): SPEF + power",
+  "m": 1,
+  "from": "2026-12-06T16:00+05:30"
+ },
+ "sva-b7": {
+  "id": "Xw5NV-1PBFI",
+  "t": "Action blocks, severity and $assertoff",
+  "m": 2,
+  "from": "2026-12-06T19:00+05:30"
+ },
+ "l07-dontcare": {
+  "id": "RGboOctUIs0",
+  "t": "K-maps with don't-cares",
+  "m": 1,
+  "from": "2026-12-07T09:00+05:30"
+ },
+ "s07-struct": {
+  "id": "vLQ2zu6xcP0",
+  "t": "Bundling a bus with a packed struct",
+  "m": 1,
+  "from": "2026-12-07T11:00+05:30"
+ },
+ "dv-7": {
+  "id": "rsUQM_eZqKQ",
+  "t": "Interfaces and modports: a FIFO interface with driver tasks",
+  "m": 1,
+  "from": "2026-12-07T13:00+05:30"
+ },
+ "pd-f5": {
+  "id": "0uTahkiJ3Us",
+  "t": "A bad floorplan: too little area",
+  "m": 1,
+  "from": "2026-12-07T16:00+05:30"
+ },
+ "p1-c2f": {
+  "id": "Hu6pl2DU3U0",
+  "t": "Celsius to Fahrenheit task",
+  "m": 1,
+  "from": "2026-12-07T19:00+05:30"
+ },
+ "vh-p1-c2f": {
+  "id": "u4drE3NNa2A",
+  "t": "Celsius to Fahrenheit procedure",
+  "m": 1,
+  "from": "2026-12-08T09:00+05:30"
+ },
+ "cdc-assert": {
+  "id": "oRJazrl5w2c",
+  "t": "CDC assertions",
+  "m": 2,
+  "from": "2026-12-08T11:00+05:30"
+ },
+ "ws-lab1": {
+  "id": "lun5x8NEYj0",
+  "t": "Your first timing report",
+  "m": 1,
+  "from": "2026-12-08T13:00+05:30"
+ },
+ "sva-b8": {
+  "id": "Y-qHzN9ABdY",
+  "t": "assert, assume and cover: one property, three jobs",
+  "m": 2,
+  "from": "2026-12-08T16:00+05:30"
+ },
+ "l08-parity": {
+  "id": "2ukVhD_7vMU",
+  "t": "Parity generator and checker",
+  "m": 1,
+  "from": "2026-12-08T19:00+05:30"
+ },
+ "s08-cpu": {
+  "id": "8dtqTPIv2do",
+  "t": "VeriRISC CPU",
+  "m": 3,
+  "from": "2026-12-09T09:00+05:30"
+ },
+ "dv-8": {
+  "id": "Mojsvyzyx14",
+  "t": "Classes: transactions, copy, compare, inheritance",
+  "m": 2,
+  "from": "2026-12-09T11:00+05:30"
+ },
+ "pd-p1": {
+  "id": "vGlD3faTEUE",
+  "t": "Global placement and target density",
+  "m": 1,
+  "from": "2026-12-09T13:00+05:30"
+ },
+ "p2-add4": {
+  "id": "CrcUMeYDnjk",
+  "t": "4-bit full adder: dataflow",
+  "m": 1,
+  "from": "2026-12-09T16:00+05:30"
+ },
+ "vh-p2-add4": {
+  "id": "gFgPG69pFDA",
+  "t": "4-bit full adder: dataflow",
+  "m": 1,
+  "from": "2026-12-09T19:00+05:30"
+ },
+ "x-consolidate": {
+  "id": "9XoqjJT8Sn4",
+  "t": "Consolidation and the metastability model",
+  "m": 2,
+  "from": "2026-12-10T09:00+05:30"
+ },
+ "ws-lab2": {
+  "id": "bSiF5Jtc-xE",
+  "t": "Min/max libraries and SPEF",
+  "m": 1,
+  "from": "2026-12-10T11:00+05:30"
+ },
+ "sva-b9": {
+  "id": "49wfgtlxWMo",
+  "t": "bind: add checkers without touching the design",
+  "m": 2,
+  "from": "2026-12-10T13:00+05:30"
+ },
+ "l09-majority": {
+  "id": "I39pwj9uagE",
+  "t": "Majority voter",
+  "m": 1,
+  "from": "2026-12-10T16:00+05:30"
+ },
+ "s09-johnson": {
+  "id": "4R59Pd9bkwU",
+  "t": "Johnson counter",
+  "m": 1,
+  "from": "2026-12-10T19:00+05:30"
+ },
+ "dv-9": {
+  "id": "4-bX_sb5TRI",
+  "t": "Threads: fork/join, join_any, join_none, timeouts",
+  "m": 2,
+  "from": "2026-12-11T09:00+05:30"
+ },
+ "pd-p2": {
+  "id": "fYXC9NpuEAM",
+  "t": "Timing-driven placement and design repair",
+  "m": 1,
+  "from": "2026-12-11T11:00+05:30"
+ },
+ "p2-mux2": {
+  "id": "86Ldc2uGFIs",
+  "t": "2:1 multiplexer",
+  "m": 1,
+  "from": "2026-12-11T13:00+05:30"
+ },
+ "vh-p2-mux2": {
+  "id": "Cgh9TMScETk",
+  "t": "2:1 multiplexer",
+  "m": 1,
+  "from": "2026-12-11T16:00+05:30"
+ },
+ "x-mcp": {
+  "id": "EqpLouPGGRg",
+  "t": "MCP formulation with acknowledge",
+  "m": 1,
+  "from": "2026-12-11T19:00+05:30"
+ }
+}
