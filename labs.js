@@ -103,7 +103,7 @@ const HOME_CARDS = [
 })();
 
 // Accounts and leaderboards (/lb.js), on every page
-(function () { const s = document.createElement("script"); s.src = "/lb.js?v=04bdaaffb5"; s.defer = true; document.head.appendChild(s); })();
+(function () { const s = document.createElement("script"); s.src = "/lb.js?v=ed1bd29b62"; s.defer = true; document.head.appendChild(s); })();
 
 // Tip box inside a lab: <div class="lab-tip" data-topics="STA,Constraints"></div>
 (function () {
@@ -175,6 +175,30 @@ window.vddSubscribe = function () {
 // earns its badge.
 // Progress: localStorage vdd-videos-v1 { id: { d: duration, s: "0101…" one char per second } };
 // badges: vdd-badges-v1 { id: { title, at } } (lb.js syncs them to the leaderboard and offers to share).
+// Which course a video belongs to, from its title: each course has its own badge (name, code and colour).
+window.vddCourse = (function () {
+  const C = [
+    ["cdc", "CDC", "CDC", "#7c3aed", /\bCDC\b|\bRDC\b|clock domain|metastab|synchroni[sz]er/i, "#CDC #ClockDomainCrossing"],
+    ["sta", "STA", "STA", "#e8642c", /\bSTA\b|static timing/i, "#STA #StaticTimingAnalysis"],
+    ["sdc", "SDC", "SDC", "#d97706", /\bSDC\b|timing constraint/i, "#SDC #TimingConstraints"],
+    ["sta", "STA", "STA", "#e8642c", /\btiming\b|setup|hold time|slack|\bOCV\b|parasitic/i, "#STA #StaticTimingAnalysis"],
+    ["sva", "SVA", "SVA", "#db2777", /\bSVA\b|assertion|functional coverage|covergroup/i, "#SVA #FunctionalVerification"],
+    ["dv", "Design Verification", "DV", "#0891b2", /verification|\bUVM\b|testbench/i, "#DesignVerification #UVM"],
+    ["systemverilog", "SystemVerilog", "SV", "#2563eb", /SystemVerilog/i, "#SystemVerilog #RTLDesign"],
+    ["vhdl", "VHDL", "VHDL", "#059669", /\bVHDL\b/i, "#VHDL #FPGA"],
+    ["verilog", "Verilog", "V", "#4f46e5", /Verilog/i, "#Verilog #RTLDesign"],
+    ["synth", "Logic Synthesis", "SYN", "#65a30d", /synthesis|yosys|gate-level netlist/i, "#LogicSynthesis #Yosys"],
+    ["pd", "Physical Design", "PD", "#0d9488", /physical design|floorplan|placement|\brouting\b|\bCTS\b|clock tree|openroad/i, "#PhysicalDesign #OpenROAD"],
+    ["soc", "SoC Design", "SoC", "#9333ea", /\bSoC\b|\bAXI\b|\bAPB\b|RISC-V|architecture/i, "#SoCDesign #ComputerArchitecture"],
+    ["logic", "Digital Logic", "DL", "#ca8a04", /logic design|digital logic|boolean|k-map|number system/i, "#DigitalDesign #DigitalLogic"],
+  ];
+  const ANY = ["vlsi", "VLSI", "VLSI", "#e8642c", null, "#VLSI #Semiconductors"];
+  return function (title) {
+    const c = C.find((x) => x[4].test(title || "")) || ANY;
+    return { id: c[0], name: c[1], code: c[2], color: c[3], tags: c[5] };
+  };
+})();
+
 window.vddVideo = (function () {
   const VKEY = "vdd-videos-v1", BKEY = "vdd-badges-v1", HALF = 0.5, MAX_S = 1800;
   const jget = (k) => { try { return JSON.parse(localStorage.getItem(k) || "{}") || {}; } catch (_) { return {}; } };
@@ -195,19 +219,22 @@ window.vddVideo = (function () {
   function watched(v) { let n = 0; for (const c of v.s || "") if (c === "1") n++; return n; }
   function share(id, rec) { const v = rec || jget(VKEY)[id]; if (!v || !v.d || !v.s) return 0; return Math.min(1, watched(v) / need(v.d)); }
   const mmss = (s) => { s = Math.max(0, Math.ceil(s)); return Math.floor(s / 60) + ":" + String(s % 60).padStart(2, "0"); };
-  function label(el, id, rec) {
+  const TITLES = {};
+  const courseName = (id) => window.vddCourse(TITLES[id] || (badges()[id] || {}).title).name;
+  function label(el, id, rec, title) {
+    if (title) TITLES[id] = title;
     if (!el) return;
     if (badges()[id]) {
-      el.className = "vbadge done"; el.textContent = "🏅 Badge earned · ";
+      el.className = "vbadge done"; el.textContent = `🏅 ${courseName(id)} badge earned · `;
       const b = document.createElement("button"); b.type = "button"; b.className = "vbadge-share"; b.textContent = "Share it";
       b.addEventListener("click", () => window.vddShareBadge && window.vddShareBadge(id)); el.appendChild(b); return;
     }
     const v = rec || jget(VKEY)[id], f = share(id, v);
-    if (!v || !v.d) { el.className = "vbadge"; el.textContent = "🏅 Watch the video to earn a badge"; return; }
+    if (!v || !v.d) { el.className = "vbadge"; el.textContent = `🏅 Watch the video to earn your ${courseName(id)} badge`; return; }
     const left = need(v.d) - watched(v);
     el.className = "vbadge prog";
     el.innerHTML = `<span class="vb-bar" aria-hidden="true"><i style="width:${Math.round(f * 100)}%"></i></span><span class="vb-txt"></span>`;
-    el.querySelector(".vb-txt").textContent = `🏅 ${mmss(left)} more to watch for your badge (${Math.round(f * 100)}%)`;
+    el.querySelector(".vb-txt").textContent = `🏅 ${mmss(left)} more to watch for your ${courseName(id)} badge (${Math.round(f * 100)}%)`;
   }
   function plainFrame(btn, v, cls) {
     const f = document.createElement("iframe"); f.className = cls; f.title = v.title || "YouTube video";
@@ -217,6 +244,7 @@ window.vddVideo = (function () {
   }
   // Replace a thumbnail button by a tracked player. statusEl shows the badge progress.
   function play(btn, v, cls, statusEl) {
+    if (v.title) TITLES[v.id] = v.title;
     const holder = document.createElement("div"); holder.className = cls; btn.replaceWith(holder);
     const host = document.createElement("div"); holder.appendChild(host);
     api().then((YT) => {
@@ -226,7 +254,7 @@ window.vddVideo = (function () {
       const save = () => { if (!dirty) return; const all = jget(VKEY); all[v.id] = r; jset(VKEY, all); dirty = false; label(statusEl, v.id); };
       const check = () => {
         if (badges()[v.id] || !r.d) return;
-        if (share(v.id, r) >= 1) { save(); const b = badges(); b[v.id] = { title: v.title || "vlsideepdive video", at: Date.now() }; jset(BKEY, b); label(statusEl, v.id); }
+        if (share(v.id, r) >= 1) { save(); const b = badges(); b[v.id] = { title: v.title || "vlsideepdive video", course: window.vddCourse(v.title).id, at: Date.now() }; jset(BKEY, b); label(statusEl, v.id); }
       };
       const tick = (p) => {
         const d = p.getDuration(), t = p.getCurrentTime();
@@ -281,7 +309,7 @@ window.vddVideo = (function () {
       const box = document.createElement("aside");
       box.className = "sub-pop badge-pop"; box.setAttribute("role", "complementary"); box.setAttribute("aria-label", "Earn a badge");
       box.innerHTML = '<span class="sub-ic" aria-hidden="true">🏅</span>' +
-        '<div><b>Watch the video to earn a badge</b><p>Watch this lab\'s video here on the site (half of it, or 30 minutes): the badge goes on your leaderboard profile and you can share it on LinkedIn.</p>' +
+        '<div><b>Watch the video to earn your ' + window.vddCourse(todo.title).name + ' badge</b><p>Watch this lab\'s video here on the site (half of it, or 30 minutes): the badge goes on your leaderboard profile and you can share it on LinkedIn.</p>' +
         '<button type="button" class="sub-go">Watch now</button></div>' +
         '<button type="button" class="sub-x" aria-label="Close">×</button>';
       document.body.appendChild(box);
@@ -318,7 +346,7 @@ window.vddVideo = (function () {
         const cap = document.createElement("a"); cap.className = "video-title";
         cap.href = `https://www.youtube.com/watch?v=${v.id}`; cap.textContent = v.title || "Watch on YouTube";
         card.appendChild(cap);
-        window.vddVideo.label(badge, v.id); card.appendChild(badge);
+        window.vddVideo.label(badge, v.id, null, v.title); card.appendChild(badge);
         grid.appendChild(card);
       }
       offerBadge(sec, vids);
