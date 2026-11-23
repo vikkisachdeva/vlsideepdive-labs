@@ -102,7 +102,7 @@ const HOME_CARDS = [
 })();
 
 // Accounts and leaderboards (/lb.js), on every page
-(function () { const s = document.createElement("script"); s.src = "/lb.js?v=819a3f5472"; s.defer = true; document.head.appendChild(s); })();
+(function () { const s = document.createElement("script"); s.src = "/lb.js?v=2f808a244f"; s.defer = true; document.head.appendChild(s); })();
 
 // Tip box inside a lab: <div class="lab-tip" data-topics="STA,Constraints"></div>
 (function () {
