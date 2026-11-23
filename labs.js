@@ -334,7 +334,7 @@ window.vddVideo = (function () {
       const own = all.filter((v) => v.track && v.track === track);
       let vids = own.length ? own : all.filter((v) => !v.track);
       // A short walkthrough for this exact lab (walkthroughs.json: lab id -> YouTube id) goes first
-      const lab = window.vddCurrentLab, wt = lab && walk && walk[lab];
+      const lab = window.vddCurrentLab, wt0 = lab && walk && walk[lab], wt = wt0 && (!wt0.from || new Date() >= new Date(wt0.from)) ? wt0 : null;   // scheduled videos show from their publish time
       if (wt && wt.id) vids = [{ id: wt.id, title: "Lab walkthrough: " + (wt.t || "this lab") + (wt.m ? " (" + wt.m + " min)" : ""), walk: true }, ...vids];
       shownLab = lab;
       grid.innerHTML = "";
