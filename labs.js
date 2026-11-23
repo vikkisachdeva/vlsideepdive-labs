@@ -7,6 +7,8 @@ const LABS = [
     desc: "Write Verilog, run Icarus Verilog and see waveforms. 47 self-checking labs in 4 parts, from half adders to FIFOs and FSMs, plus ready-to-copy examples." },
   { id: "systemverilog", title: "SystemVerilog labs", href: "/systemverilog/", tag: "SystemVerilog · 12 labs · quizzes",
     desc: "SystemVerilog for design: packages, enums, structs, always_ff, generate, a UART and a small VeriRISC CPU that runs programs." },
+  { id: "vhdl", title: "VHDL labs", href: "/vhdl/", tag: "VHDL-2008 · 59 labs · quizzes",
+    desc: "Write VHDL-2008, run the nvc simulator in your browser and see waveforms. 59 self-checking labs: gates to FIFOs and FSMs, then packages, records, generate, a UART and a small CPU." },
   { id: "sva", title: "SVA & coverage labs", href: "/sva/", tag: "Verification · Assertions · 42 labs · quizzes",
     desc: "SystemVerilog Assertions and functional coverage: write properties, see every attempt pass or fail on the waveform, then build covergroups, bins, transitions and crosses and close coverage." },
   { id: "dv", title: "DV labs", href: "/dv/", tag: "Verification · SystemVerilog · 23 labs · quizzes",
@@ -29,6 +31,7 @@ const HOME_CARDS = [
   labById("logic"),
   labById("verilog"),
   labById("systemverilog"),
+  labById("vhdl"),
   { title: "SVA labs", href: "/sva/?track=sva-basic", tag: "Assertions · 33 labs · quizzes",
     desc: "SystemVerilog Assertions from the basics to real designs: sampling, implication, sequences and repetition, $past and local variables, then FSM, FIFO, memory, arbiter, APB and UART checkers." },
   { title: "Functional coverage labs", href: "/sva/?track=cov-fc", tag: "Coverage · 9 labs · quizzes",
@@ -58,7 +61,7 @@ const HOME_CARDS = [
   const nav = document.getElementById("labs-nav");
   if (nav) {
     // Short labels for the tab bar; the full titles stay on the cards.
-    const SHORT = { logic: "Logic design", verilog: "Verilog", systemverilog: "SystemVerilog", sva: "SVA & coverage", dv: "DV",
+    const SHORT = { logic: "Logic design", verilog: "Verilog", systemverilog: "SystemVerilog", vhdl: "VHDL", sva: "SVA & coverage", dv: "DV",
       synth: "Synthesis", cdc: "CDC", sta: "STA & SDC", pd: "Physical design", tips: "Tips" };
     const inner = document.createElement("div");
     inner.className = "labs-in";
@@ -100,7 +103,7 @@ const HOME_CARDS = [
 })();
 
 // Accounts and leaderboards (/lb.js), on every page
-(function () { const s = document.createElement("script"); s.src = "/lb.js?v=f5ebac27ed"; s.defer = true; document.head.appendChild(s); })();
+(function () { const s = document.createElement("script"); s.src = "/lb.js?v=872af8a1b5"; s.defer = true; document.head.appendChild(s); })();
 
 // Tip box inside a lab: <div class="lab-tip" data-topics="STA,Constraints"></div>
 (function () {

@@ -1,0 +1,957 @@
+diff --git a/src/jit/jit-code.c b/src/jit/jit-code.c
+index 53d16bb..50687ce 100644
+--- a/src/jit/jit-code.c
++++ b/src/jit/jit-code.c
+@@ -649,7 +649,9 @@ void code_blob_finalise(code_blob_t *blob, jit_entry_fn_t *entry)
+       nvc_printf("$$\n");
+    }
+ 
++#ifndef __wasm__
+    __builtin___clear_cache((char *)span->base, (char *)blob->wptr);
++#endif
+ 
+    thread_wx_mode(WX_EXECUTE);
+ 
+@@ -922,6 +924,7 @@ static void *code_emit_trampoline(code_blob_t *blob, void *dest)
+    };
+ #else
+    should_not_reach_here();
++   const uint8_t veneer[1] = { 0 };
+ #endif
+ 
+    void *prev = memmem(blob->veneers, blob->wptr - blob->veneers,
+diff --git a/src/jit/jit-core.c b/src/jit/jit-core.c
+index 01f4b67..8a35dfc 100644
+--- a/src/jit/jit-core.c
++++ b/src/jit/jit-core.c
+@@ -390,7 +390,7 @@ void *jit_link(jit_t *j, jit_handle_t handle)
+    jit_scalar_t p1 = { .pointer = NULL }, p2 = p1, result;
+    if (!jit_fastcall(j, f->handle, &result, p1, p2, &tlab)) {
+       error_at(&(f->object->loc), "failed to initialise %s", istr(f->name));
+-      result.pointer = NULL;
++      result.integer = (intptr_t)(NULL);
+    }
+    else if (result.pointer == NULL)
+       fatal_trace("link %s returned NULL", istr(f->name));
+@@ -618,13 +618,13 @@ static void jit_unpack_args(jit_func_t *f, jit_scalar_t *args, va_list ap)
+    for (int i = 1; ffi_spec_has(f->spec, i); i++) {
+       switch (ffi_spec_get(f->spec, i)) {
+       case FFI_POINTER:
+-         args[wptr++].pointer = va_arg(ap, void *);
++         args[wptr++].integer = (intptr_t)(va_arg(ap, void *));
+          break;
+       case FFI_FLOAT:
+          args[wptr++].real = va_arg(ap, double);
+          break;
+       case FFI_UARRAY:
+-         args[wptr++].pointer = va_arg(ap, void *);
++         args[wptr++].integer = (intptr_t)(va_arg(ap, void *));
+          args[wptr++].integer = va_arg(ap, int32_t);
+          args[wptr++].integer = va_arg(ap, int32_t);
+          break;
+@@ -753,7 +753,7 @@ void *jit_call_thunk(jit_t *j, vcode_unit_t unit, void *context,
+    mir_unit_free(mu);
+ 
+    jit_scalar_t args[JIT_MAX_ARGS];
+-   args[0].pointer = context;
++   args[0].integer = (intptr_t)(context);
+ 
+    tlab_t tlab = jit_null_tlab(j);
+ 
+@@ -780,7 +780,7 @@ void *jit_call_thunk2(jit_t *j, mir_unit_t *mu, void *context,
+    jit_irgen(f, mu);
+ 
+    jit_scalar_t args[JIT_MAX_ARGS];
+-   args[0].pointer = context;
++   args[0].integer = (intptr_t)(context);
+ 
+    tlab_t tlab = jit_null_tlab(j);
+ 
+diff --git a/src/jit/jit-exits.c b/src/jit/jit-exits.c
+index 9828a34..681c0fa 100644
+--- a/src/jit/jit-exits.c
++++ b/src/jit/jit-exits.c
+@@ -899,7 +899,7 @@ void __nvc_do_exit(jit_exit_t which, jit_anchor_t *anchor, jit_scalar_t *args,
+          int32_t       offset = args[1].integer;
+          int32_t       count  = args[2].integer;
+ 
+-         args[0].pointer = x_driving_value(shared, offset, count);
++         args[0].integer = (intptr_t)(x_driving_value(shared, offset, count));
+       }
+       break;
+ 
+@@ -958,7 +958,7 @@ void __nvc_do_exit(jit_exit_t which, jit_anchor_t *anchor, jit_scalar_t *args,
+          jit_scalar_t  value   = args[1];
+          tree_t        where   = args[2].pointer;
+ 
+-         args[0].pointer = x_reflect_value(context, value, where, args + 3);
++         args[0].integer = (intptr_t)(x_reflect_value(context, value, where, args + 3));
+       }
+       break;
+ 
+@@ -967,7 +967,7 @@ void __nvc_do_exit(jit_exit_t which, jit_anchor_t *anchor, jit_scalar_t *args,
+          void   *context = args[0].pointer;
+          tree_t  where   = args[1].pointer;
+ 
+-         args[0].pointer = x_reflect_subtype(context, where, args + 2);
++         args[0].integer = (intptr_t)(x_reflect_subtype(context, where, args + 2));
+       }
+       break;
+ 
+@@ -976,7 +976,7 @@ void __nvc_do_exit(jit_exit_t which, jit_anchor_t *anchor, jit_scalar_t *args,
+          jit_handle_t handle = args[0].integer;
+          unsigned     nargs  = args[1].integer;
+ 
+-         args[0].pointer = x_function_trigger(handle, nargs, args + 2);
++         args[0].integer = (intptr_t)(x_function_trigger(handle, nargs, args + 2));
+       }
+       break;
+ 
+@@ -985,7 +985,7 @@ void __nvc_do_exit(jit_exit_t which, jit_anchor_t *anchor, jit_scalar_t *args,
+          void *left  = args[0].pointer;
+          void *right = args[1].pointer;
+ 
+-         args[0].pointer = x_or_trigger(left, right);
++         args[0].integer = (intptr_t)(x_or_trigger(left, right));
+       }
+       break;
+ 
+@@ -995,7 +995,7 @@ void __nvc_do_exit(jit_exit_t which, jit_anchor_t *anchor, jit_scalar_t *args,
+          int32_t       offset = args[1].integer;
+          int64_t       right  = args[2].integer;
+ 
+-         args[0].pointer = x_cmp_trigger(shared, offset, right);
++         args[0].integer = (intptr_t)(x_cmp_trigger(shared, offset, right));
+       }
+       break;
+ 
+@@ -1005,7 +1005,7 @@ void __nvc_do_exit(jit_exit_t which, jit_anchor_t *anchor, jit_scalar_t *args,
+          int32_t       offset = args[1].integer;
+          int32_t       count  = args[2].integer;
+ 
+-         args[0].pointer = x_level_trigger(shared, offset, count);
++         args[0].integer = (intptr_t)(x_level_trigger(shared, offset, count));
+       }
+       break;
+ 
+@@ -1058,7 +1058,7 @@ void __nvc_do_exit(jit_exit_t which, jit_anchor_t *anchor, jit_scalar_t *args,
+    case JIT_EXIT_GET_COUNTERS:
+       {
+          jit_handle_t handle = args[0].integer;
+-         args[0].pointer = x_get_counters(handle);
++         args[0].integer = (intptr_t)(x_get_counters(handle));
+       }
+       break;
+ 
+@@ -1327,8 +1327,8 @@ void __nvc_vec4op(jit_vec_op_t op, jit_anchor_t *anchor, jit_scalar_t *args,
+             bresult[nwords - 1] &= mask;
+          }
+ 
+-         args[0].pointer = aresult;
+-         args[1].pointer = bresult;
++         args[0].integer = (intptr_t)(aresult);
++         args[1].integer = (intptr_t)(bresult);
+       }
+       break;
+    case JIT_VEC_INSERT:
+@@ -1388,8 +1388,8 @@ void __nvc_vec4op(jit_vec_op_t op, jit_anchor_t *anchor, jit_scalar_t *args,
+             }
+          }
+ 
+-         args[0].pointer = aresult;
+-         args[1].pointer = bresult;
++         args[0].integer = (intptr_t)(aresult);
++         args[1].integer = (intptr_t)(bresult);
+       }
+       break;
+    case JIT_VEC_EXTRACT:
+@@ -1452,8 +1452,8 @@ void __nvc_vec4op(jit_vec_op_t op, jit_anchor_t *anchor, jit_scalar_t *args,
+                }
+             }
+ 
+-            args[0].pointer = aresult;
+-            args[1].pointer = bresult;
++            args[0].integer = (intptr_t)(aresult);
++            args[1].integer = (intptr_t)(bresult);
+          }
+       }
+       break;
+@@ -1490,8 +1490,8 @@ void __nvc_vec4op(jit_vec_op_t op, jit_anchor_t *anchor, jit_scalar_t *args,
+             }
+          }
+ 
+-         args[0].pointer = aresult;
+-         args[1].pointer = bresult;
++         args[0].integer = (intptr_t)(aresult);
++         args[1].integer = (intptr_t)(bresult);
+       }
+       break;
+    default:
+@@ -1505,8 +1505,8 @@ void __nvc_vec4op(jit_vec_op_t op, jit_anchor_t *anchor, jit_scalar_t *args,
+             memcpy(aresult, args[0].pointer, nwords * sizeof(uint64_t));
+             memcpy(bresult, args[1].pointer, nwords * sizeof(uint64_t));
+ 
+-            args[0].pointer = aresult;
+-            args[1].pointer = bresult;
++            args[0].integer = (intptr_t)(aresult);
++            args[1].integer = (intptr_t)(bresult);
+ 
+             a2 = args[2].pointer;
+             b2 = args[3].pointer;
+@@ -1654,8 +1654,8 @@ void __nvc_pack(const uint8_t *src, int32_t size, jit_scalar_t *args)
+          bbits[pos / 64] |= (uint64_t)((src[i] >> 1) & 1) << (pos % 64);
+       }
+ 
+-      args[0].pointer = abits;
+-      args[1].pointer = bbits;
++      args[0].integer = (intptr_t)(abits);
++      args[1].integer = (intptr_t)(bbits);
+    }
+    else {
+       uint64_t abits = 0, bbits = 0;
+diff --git a/src/jit/jit-ffi.c b/src/jit/jit-ffi.c
+index 250df28..2ee199a 100644
+--- a/src/jit/jit-ffi.c
++++ b/src/jit/jit-ffi.c
+@@ -86,7 +86,7 @@ void ffi_return_string(const char *str, jit_scalar_t *args, tlab_t *tlab)
+    void *mem = tlab_alloc(tlab, len);
+    memcpy(mem, str, len);
+ 
+-   args[0].pointer = mem;
++   args[0].integer = (intptr_t)(mem);
+    args[1].integer = 1;
+    args[2].integer = len;
+ }
+@@ -122,6 +122,8 @@ static jit_dll_t *ffi_load_exe(void)
+    HMODULE exe_handle = GetModuleHandle(NULL);
+    if (exe_handle == NULL)
+       fatal("failed to get handle to main process");
++#elif defined __wasm__
++   void *exe_handle = NULL;   // symbols come from wasm_find_internal()
+ #else
+    void *exe_handle = dlopen(NULL, RTLD_NOW);
+    if (exe_handle == NULL)
+@@ -280,6 +282,9 @@ void *ffi_find_symbol(jit_dll_t *dll, const char *name)
+    else {
+ #ifdef __MINGW32__
+       return (void *)(uintptr_t)GetProcAddress(dll->handle, name);
++#elif defined __wasm__
++      extern void *wasm_find_internal(const char *);
++      return dll->handle == NULL ? wasm_find_internal(name) : NULL;
+ #else
+       return dlsym(dll->handle, name);
+ #endif
+diff --git a/src/jit/jit-interp.c b/src/jit/jit-interp.c
+index d9e0fe6..799d820 100644
+--- a/src/jit/jit-interp.c
++++ b/src/jit/jit-interp.c
+@@ -714,7 +714,7 @@ static void interp_fcvtns(jit_interp_t *state, jit_ir_t *ir)
+ 
+ static void interp_lea(jit_interp_t *state, jit_ir_t *ir)
+ {
+-   state->regs[ir->result].pointer = interp_get_pointer(state, ir->arg1);
++   state->regs[ir->result].integer = (intptr_t)(interp_get_pointer(state, ir->arg1));
+ }
+ 
+ static void interp_fexp(jit_interp_t *state, jit_ir_t *ir)
+@@ -837,7 +837,7 @@ static void interp_galloc(jit_interp_t *state, jit_ir_t *ir)
+    else if (bytes == 0)
+       bytes = 1;   // Never return a NULL pointer
+ 
+-   state->regs[ir->result].pointer = mspace_alloc(state->mspace, bytes);
++   state->regs[ir->result].integer = (intptr_t)(mspace_alloc(state->mspace, bytes));
+ 
+    thread->anchor = NULL;
+ }
+@@ -850,7 +850,7 @@ static void interp_lalloc(jit_interp_t *state, jit_ir_t *ir)
+    state->anchor->irpos = ir - state->func->irbuf;
+ 
+    const size_t bytes = interp_get_int(state, ir->arg1);
+-   state->regs[ir->result].pointer = tlab_alloc(state->tlab, bytes);
++   state->regs[ir->result].integer = (intptr_t)(tlab_alloc(state->tlab, bytes));
+ 
+    thread->anchor = NULL;
+ }
+@@ -858,7 +858,7 @@ static void interp_lalloc(jit_interp_t *state, jit_ir_t *ir)
+ static void interp_salloc(jit_interp_t *state, jit_ir_t *ir)
+ {
+    assert(ir->arg1.int64 + ir->arg2.int64 <= state->func->framesz);
+-   state->regs[ir->result].pointer = state->frame + ir->arg1.int64;
++   state->regs[ir->result].integer = (intptr_t)(state->frame + ir->arg1.int64);
+ }
+ 
+ static void interp_exit(jit_interp_t *state, jit_ir_t *ir)
+@@ -872,7 +872,7 @@ static void interp_getpriv(jit_interp_t *state, jit_ir_t *ir)
+    JIT_ASSERT(ir->arg1.kind == JIT_VALUE_HANDLE);
+    jit_func_t *f = jit_get_func(state->func->jit, ir->arg1.handle);
+    void *ptr = load_acquire(jit_get_privdata_ptr(state->func->jit, f));
+-   state->regs[ir->result].pointer = ptr;
++   state->regs[ir->result].integer = (intptr_t)(ptr);
+ }
+ 
+ static void interp_putpriv(jit_interp_t *state, jit_ir_t *ir)
+diff --git a/src/jit/jit-intrin.c b/src/jit/jit-intrin.c
+index de298e1..e12e0a0 100644
+--- a/src/jit/jit-intrin.c
++++ b/src/jit/jit-intrin.c
+@@ -369,7 +369,7 @@ static void std_to_x01_sse41(jit_func_t *func, jit_anchor_t *anchor,
+       _mm_store_si128((__m128i *)(result + pos), out);
+    }
+ 
+-   args[0].pointer = result;
++   args[0].integer = (intptr_t)(result);
+    args[1].integer = size - 1;
+    args[2].integer = ~size;
+ }
+@@ -386,7 +386,7 @@ static void std_to_x01(jit_func_t *func, jit_anchor_t *anchor,
+    for (int i = 0; i < size; i++)
+       result[i] = cvt_to_x01[input[i]];
+ 
+-   args[0].pointer = result;
++   args[0].integer = (intptr_t)(result);
+    args[1].integer = size - 1;
+    args[2].integer = ~size;
+ }
+@@ -456,12 +456,12 @@ static void ieee_to_01(jit_func_t *func, jit_anchor_t *anchor,
+       ieee_warn(func, anchor,
+                 "NUMERIC_STD.TO_01: null detected, returning NAU");
+ 
+-      args[0].pointer = NULL;
++      args[0].integer = (intptr_t)(NULL);
+       args[1].integer = 0;
+       args[2].integer = -1;
+    }
+    else {
+-      args[0].pointer = __to_01(tlab, input, size, xmap);
++      args[0].integer = (intptr_t)(__to_01(tlab, input, size, xmap));
+       args[1].integer = size - 1;
+       args[2].integer = ~size;
+    }
+@@ -518,7 +518,7 @@ static void ieee_resize_unsigned(jit_func_t *func, jit_anchor_t *anchor,
+    const int newsize = args[4].integer;
+    const uint8_t *input = args[1].pointer;
+ 
+-   args[0].pointer = __resize_unsigned(tlab, input, size, newsize);
++   args[0].integer = (intptr_t)(__resize_unsigned(tlab, input, size, newsize));
+    args[1].integer = newsize - 1;
+    args[2].integer = ~newsize;
+ }
+@@ -530,7 +530,7 @@ static void ieee_resize_signed(jit_func_t *func, jit_anchor_t *anchor,
+    const int newsize = args[4].integer;
+    const uint8_t *input = args[1].pointer;
+ 
+-   args[0].pointer = __resize_signed(tlab, input, size, newsize);
++   args[0].integer = (intptr_t)(__resize_signed(tlab, input, size, newsize));
+    args[1].integer = newsize - 1;
+    args[2].integer = ~newsize;
+ }
+@@ -814,7 +814,7 @@ static void ieee_plus_unsigned(jit_func_t *func, jit_anchor_t *anchor,
+    const int size = MAX(lsize, rsize);
+ 
+    if (lsize == 0 || rsize == 0) {
+-      args[0].pointer = NULL;
++      args[0].integer = (intptr_t)(NULL);
+       args[1].integer = 0;
+       args[2].integer = -1;
+    }
+@@ -826,13 +826,13 @@ static void ieee_plus_unsigned(jit_func_t *func, jit_anchor_t *anchor,
+       right = __to_01(tlab, right, size, _X);
+ 
+       if (left[0] == _X)
+-         args[0].pointer = left;
++         args[0].integer = (intptr_t)(left);
+       else if (right[0] == _X)
+-         args[0].pointer = right;
++         args[0].integer = (intptr_t)(right);
+       else {
+          uint8_t *result = __tlab_alloc(tlab, size, 8);
+          (*ieee_packed_add)(left, right, size, 0, result);
+-         args[0].pointer = result;
++         args[0].integer = (intptr_t)(result);
+       }
+ 
+       args[1].integer = size - 1;
+@@ -849,7 +849,7 @@ static void ieee_plus_unsigned_natural(jit_func_t *func, jit_anchor_t *anchor,
+    const uint64_t right = args[4].integer;
+ 
+    if (size == 0) {
+-      args[0].pointer = NULL;
++      args[0].integer = (intptr_t)(NULL);
+       args[1].integer = 0;
+       args[2].integer = -1;
+    }
+@@ -860,10 +860,10 @@ static void ieee_plus_unsigned_natural(jit_func_t *func, jit_anchor_t *anchor,
+       left = __to_01(tlab, left, size, _X);
+ 
+       if (left[0] == _X || right == 0)
+-         args[0].pointer = left;
++         args[0].integer = (intptr_t)(left);
+       else {
+          (*ieee_packed_add)(left, result, size, 0, result);
+-         args[0].pointer = result;
++         args[0].integer = (intptr_t)(result);
+       }
+ 
+       args[1].integer = size - 1;
+@@ -899,7 +899,7 @@ static void ieee_plus_signed(jit_func_t *func, jit_anchor_t *anchor,
+    const int size = MAX(lsize, rsize);
+ 
+    if (lsize == 0 || rsize == 0) {
+-      args[0].pointer = NULL;
++      args[0].integer = (intptr_t)(NULL);
+       args[1].integer = 0;
+       args[2].integer = -1;
+    }
+@@ -911,13 +911,13 @@ static void ieee_plus_signed(jit_func_t *func, jit_anchor_t *anchor,
+       right = __to_01(tlab, right, size, _X);
+ 
+       if (left[0] == _X)
+-         args[0].pointer = left;
++         args[0].integer = (intptr_t)(left);
+       else if (right[0] == _X)
+-         args[0].pointer = right;
++         args[0].integer = (intptr_t)(right);
+       else {
+          uint8_t *result = __tlab_alloc(tlab, size, 8);
+          (*ieee_packed_add)(left, right, size, 0, result);
+-         args[0].pointer = result;
++         args[0].integer = (intptr_t)(result);
+       }
+ 
+       args[1].integer = size - 1;
+@@ -936,7 +936,7 @@ static void ieee_minus_unsigned(jit_func_t *func, jit_anchor_t *anchor,
+    const int size = MAX(lsize, rsize);
+ 
+    if (lsize == 0 || rsize == 0) {
+-      args[0].pointer = NULL;
++      args[0].integer = (intptr_t)(NULL);
+       args[1].integer = 0;
+       args[2].integer = -1;
+    }
+@@ -948,14 +948,14 @@ static void ieee_minus_unsigned(jit_func_t *func, jit_anchor_t *anchor,
+       right = __to_01(tlab, right, size, _X);
+ 
+       if (left[0] == _X)
+-         args[0].pointer = left;
++         args[0].integer = (intptr_t)(left);
+       else if (right[0] == _X)
+-         args[0].pointer = right;
++         args[0].integer = (intptr_t)(right);
+       else {
+          uint8_t *result = __tlab_alloc(tlab, size, 8);
+          __invert_bits(right, size, result);
+          (*ieee_packed_add)(left, result, size, 1, result);
+-         args[0].pointer = result;
++         args[0].integer = (intptr_t)(result);
+       }
+ 
+       args[1].integer = size - 1;
+@@ -974,7 +974,7 @@ static void ieee_minus_signed(jit_func_t *func, jit_anchor_t *anchor,
+    const int size = MAX(lsize, rsize);
+ 
+    if (lsize == 0 || rsize == 0) {
+-      args[0].pointer = NULL;
++      args[0].integer = (intptr_t)(NULL);
+       args[1].integer = 0;
+       args[2].integer = -1;
+    }
+@@ -986,14 +986,14 @@ static void ieee_minus_signed(jit_func_t *func, jit_anchor_t *anchor,
+       right = __to_01(tlab, right, size, _X);
+ 
+       if (left[0] == _X)
+-         args[0].pointer = left;
++         args[0].integer = (intptr_t)(left);
+       else if (right[0] == _X)
+-         args[0].pointer = right;
++         args[0].integer = (intptr_t)(right);
+       else {
+          uint8_t *result = __tlab_alloc(tlab, size, 8);
+          __invert_bits(right, size, result);
+          (*ieee_packed_add)(left, result, size, 1, result);
+-         args[0].pointer = result;
++         args[0].integer = (intptr_t)(result);
+       }
+ 
+       args[1].integer = size - 1;
+@@ -1012,7 +1012,7 @@ static void ieee_mul_unsigned(jit_func_t *func, jit_anchor_t *anchor,
+    const int size = lsize + rsize;
+ 
+    if (lsize == 0 || rsize == 0) {
+-      args[0].pointer = NULL;
++      args[0].integer = (intptr_t)(NULL);
+       args[1].integer = 0;
+       args[2].integer = -1;
+    }
+@@ -1035,7 +1035,7 @@ static void ieee_mul_unsigned(jit_func_t *func, jit_anchor_t *anchor,
+ 
+       __tlab_restore(tlab, mark);
+ 
+-      args[0].pointer = result;
++      args[0].integer = (intptr_t)(result);
+       args[1].integer = size - 1;
+       args[2].integer = ~size;
+    }
+@@ -1052,7 +1052,7 @@ static void ieee_mul_signed(jit_func_t *func, jit_anchor_t *anchor,
+    const int size = lsize + rsize;
+ 
+    if (lsize == 0 || rsize == 0) {
+-      args[0].pointer = NULL;
++      args[0].integer = (intptr_t)(NULL);
+       args[1].integer = 0;
+       args[2].integer = -1;
+    }
+@@ -1080,7 +1080,7 @@ static void ieee_mul_signed(jit_func_t *func, jit_anchor_t *anchor,
+ 
+       __tlab_restore(tlab, mark);
+ 
+-      args[0].pointer = result;
++      args[0].integer = (intptr_t)(result);
+       args[1].integer = size - 1;
+       args[2].integer = ~size;
+    }
+@@ -1361,7 +1361,7 @@ static void ieee_and_vector_sse41(jit_func_t *func, jit_anchor_t *anchor,
+          _mm_store_si128((__m128i *)(result + pos), and);
+       }
+ 
+-      args[0].pointer = result;
++      args[0].integer = (intptr_t)(result);
+       args[1].integer = 1;
+       args[2].integer = lsize;
+    }
+@@ -1398,7 +1398,7 @@ static void ieee_and_vector_neon(jit_func_t *func, jit_anchor_t *anchor,
+          vst1q_u8(result + pos, and);
+       }
+ 
+-      args[0].pointer = result;
++      args[0].integer = (intptr_t)(result);
+       args[1].integer = 1;
+       args[2].integer = lsize;
+    }
+@@ -1423,7 +1423,7 @@ static void ieee_and_vector(jit_func_t *func, jit_anchor_t *anchor,
+       for (int pos = 0; pos < lsize; pos++)
+          result[pos] = and_table[left[pos]][right[pos]];
+ 
+-      args[0].pointer = result;
++      args[0].integer = (intptr_t)(result);
+       args[1].integer = 1;
+       args[2].integer = lsize;
+    }
+@@ -1460,7 +1460,7 @@ static void ieee_or_vector_sse41(jit_func_t *func, jit_anchor_t *anchor,
+          _mm_store_si128((__m128i *)(result + pos), orr);
+       }
+ 
+-      args[0].pointer = result;
++      args[0].integer = (intptr_t)(result);
+       args[1].integer = 1;
+       args[2].integer = lsize;
+    }
+@@ -1497,7 +1497,7 @@ static void ieee_or_vector_neon(jit_func_t *func, jit_anchor_t *anchor,
+          vst1q_u8(result + pos, orr);
+       }
+ 
+-      args[0].pointer = result;
++      args[0].integer = (intptr_t)(result);
+       args[1].integer = 1;
+       args[2].integer = lsize;
+    }
+@@ -1522,7 +1522,7 @@ static void ieee_or_vector(jit_func_t *func, jit_anchor_t *anchor,
+       for (int pos = 0; pos < lsize; pos++)
+          result[pos] = or_table[left[pos]][right[pos]];
+ 
+-      args[0].pointer = result;
++      args[0].integer = (intptr_t)(result);
+       args[1].integer = 1;
+       args[2].integer = lsize;
+    }
+@@ -1559,7 +1559,7 @@ static void ieee_xor_vector_sse41(jit_func_t *func, jit_anchor_t *anchor,
+          _mm_store_si128((__m128i *)(result + pos), xor);
+       }
+ 
+-      args[0].pointer = result;
++      args[0].integer = (intptr_t)(result);
+       args[1].integer = 1;
+       args[2].integer = lsize;
+    }
+@@ -1596,7 +1596,7 @@ static void ieee_xor_vector_neon(jit_func_t *func, jit_anchor_t *anchor,
+          vst1q_u8(result + pos, xor);
+       }
+ 
+-      args[0].pointer = result;
++      args[0].integer = (intptr_t)(result);
+       args[1].integer = 1;
+       args[2].integer = lsize;
+    }
+@@ -1621,7 +1621,7 @@ static void std_xor_vector(jit_func_t *func, jit_anchor_t *anchor,
+       for (int pos = 0; pos < lsize; pos++)
+          result[pos] = xor_table[left[pos]][right[pos]];
+ 
+-      args[0].pointer = result;
++      args[0].integer = (intptr_t)(result);
+       args[1].integer = 1;
+       args[2].integer = lsize;
+    }
+@@ -1645,7 +1645,7 @@ static void ieee_not_vector_sse41(jit_func_t *func, jit_anchor_t *anchor,
+       _mm_store_si128((__m128i *)(result + pos), output);
+    }
+ 
+-   args[0].pointer = result;
++   args[0].integer = (intptr_t)(result);
+    args[1].integer = 1;
+    args[2].integer = lsize;
+ }
+@@ -1658,12 +1658,12 @@ static void ieee_to_unsigned(jit_func_t *func, jit_anchor_t *anchor,
+    uint64_t arg = args[1].integer;
+ 
+    if (size < 1) {
+-      args[0].pointer = NULL;
++      args[0].integer = (intptr_t)(NULL);
+       args[1].integer = 0;
+       args[2].integer = -1;
+    }
+    else {
+-      args[0].pointer = __to_unsigned(func, anchor, tlab, arg, size);
++      args[0].integer = (intptr_t)(__to_unsigned(func, anchor, tlab, arg, size));
+       args[1].integer = size - 1;
+       args[2].integer = ~size;
+    }
+@@ -1676,7 +1676,7 @@ static void ieee_to_signed(jit_func_t *func, jit_anchor_t *anchor,
+    int64_t arg = args[1].integer;
+ 
+    if (size < 1) {
+-      args[0].pointer = NULL;
++      args[0].integer = (intptr_t)(NULL);
+       args[1].integer = 0;
+       args[2].integer = -1;
+    }
+@@ -1694,7 +1694,7 @@ static void ieee_to_signed(jit_func_t *func, jit_anchor_t *anchor,
+                    || (arg == -1 && (last & spill_mask) != spill_mask)))
+          ieee_warn(func, anchor, "NUMERIC_STD.TO_SIGNED: vector truncated");
+ 
+-      args[0].pointer = result + roundup - size;
++      args[0].integer = (intptr_t)(result + roundup - size);
+       args[1].integer = size - 1;
+       args[2].integer = ~size;
+    }
+@@ -1799,7 +1799,7 @@ static void synopsys_plus_unsigned(jit_func_t *func, jit_anchor_t *anchor,
+    else
+       (*ieee_packed_add)(left, right, length, 0, result);
+ 
+-   args[0].pointer = result;
++   args[0].integer = (intptr_t)(result);
+    args[1].integer = length - 1;
+    args[2].integer = ~length;
+ }
+@@ -1826,7 +1826,7 @@ static void synopsys_plus_signed(jit_func_t *func, jit_anchor_t *anchor,
+    else
+       (*ieee_packed_add)(left, right, length, 0, result);
+ 
+-   args[0].pointer = result;
++   args[0].integer = (intptr_t)(result);
+    args[1].integer = length - 1;
+    args[2].integer = ~length;
+ }
+@@ -1835,7 +1835,7 @@ static void synopsys_plus_unsigned_logic(jit_func_t *func, jit_anchor_t *anchor,
+                                          jit_scalar_t *args, tlab_t *tlab)
+ {
+    uint8_t right[] = { args[4].integer };
+-   args[4].pointer = right;
++   args[4].integer = (intptr_t)(right);
+    args[5].integer = 0;
+    args[6].integer = 1;
+ 
+@@ -1848,8 +1848,8 @@ static void synopsys_plus_logic_unsigned(jit_func_t *func, jit_anchor_t *anchor,
+    uint8_t left[] = { args[1].integer };
+    args[6].integer = args[4].integer;
+    args[5].integer = args[3].integer;
+-   args[4].pointer = args[2].pointer;
+-   args[1].pointer = left;
++   args[4].integer = (intptr_t)(args[2].pointer);
++   args[1].integer = (intptr_t)(left);
+    args[2].integer = 0;
+    args[3].integer = 1;
+ 
+@@ -1880,7 +1880,7 @@ static void synopsys_minus_unsigned(jit_func_t *func, jit_anchor_t *anchor,
+       (*ieee_packed_add)(left, result, length, 1, result);
+    }
+ 
+-   args[0].pointer = result;
++   args[0].integer = (intptr_t)(result);
+    args[1].integer = length - 1;
+    args[2].integer = ~length;
+ }
+@@ -1911,7 +1911,7 @@ static void synopsys_mul_unsigned(jit_func_t *func, jit_anchor_t *anchor,
+       __tlab_restore(tlab, mark);
+    }
+ 
+-   args[0].pointer = pa;
++   args[0].integer = (intptr_t)(pa);
+    args[1].integer = length - 1;
+    args[2].integer = ~length;
+ }
+@@ -1942,7 +1942,7 @@ static void synopsys_mul_signed(jit_func_t *func, jit_anchor_t *anchor,
+       __tlab_restore(tlab, mark);
+    }
+ 
+-   args[0].pointer = pa;
++   args[0].integer = (intptr_t)(pa);
+    args[1].integer = length - 1;
+    args[2].integer = ~length;
+ }
+@@ -2165,7 +2165,7 @@ static void std_textio_consume(jit_func_t *func, jit_anchor_t *anchor,
+    (*line)->dims[0].left = 1;
+    (*line)->dims[0].length = length - nchars;
+ 
+-   args[0].pointer = NULL;
++   args[0].integer = (intptr_t)(NULL);
+ }
+ 
+ static void std_textio_shrink(jit_func_t *func, jit_anchor_t *anchor,
+@@ -2179,7 +2179,7 @@ static void std_textio_shrink(jit_func_t *func, jit_anchor_t *anchor,
+    (*line)->dims[0].left = 1;
+    (*line)->dims[0].length = nchars;
+ 
+-   args[0].pointer = NULL;
++   args[0].integer = (intptr_t)(NULL);
+ }
+ 
+ #define UU "36IEEE.NUMERIC_STD.UNRESOLVED_UNSIGNED"
+diff --git a/src/jit/jit-priv.h b/src/jit/jit-priv.h
+index 9c2ae6b..d1b0f77 100644
+--- a/src/jit/jit-priv.h
++++ b/src/jit/jit-priv.h
+@@ -95,7 +95,7 @@ typedef enum {
+    JIT_SZ_16 = 1,
+    JIT_SZ_32 = 2,
+    JIT_SZ_64 = 3,
+-   JIT_SZ_PTR = JIT_SZ_64,
++   JIT_SZ_PTR = (sizeof(void *) == 8 ? JIT_SZ_64 : JIT_SZ_32),
+    JIT_SZ_UNSPEC = 7
+ } jit_size_t;
+ 
+diff --git a/src/object.h b/src/object.h
+index e1e8d27..62c312a 100644
+--- a/src/object.h
++++ b/src/object.h
+@@ -168,7 +168,7 @@ struct _object {
+ STATIC_ASSERT(sizeof(object_t) == 16);
+ 
+ typedef bool (*object_copy_pred_t)(object_t *, void *);
+-typedef bool (*object_copy_fn_t)(object_t *, void *);
++typedef void (*object_copy_fn_t)(object_t *, void *);
+ 
+ typedef struct _object_copy_ctx {
+    generation_t       generation;
+diff --git a/src/rt/ename.c b/src/rt/ename.c
+index 2b55d48..c95c6aa 100644
+--- a/src/rt/ename.c
++++ b/src/rt/ename.c
+@@ -295,11 +295,11 @@ static void bind_external_name(tree_t name, jit_handle_t scope,
+ 
+       int pos = 0;
+       if (tree_class(name) == C_SIGNAL && type_is_homogeneous(type)) {
+-         slots[pos++].pointer = *(sig_shared_t **)ptr;
++         slots[pos++].integer = (intptr_t)(*(sig_shared_t **)ptr);
+          slots[pos++].integer = *(int32_t *)(ptr + 8);
+       }
+       else
+-         slots[pos++].pointer = ptr;
++         slots[pos++].integer = (intptr_t)(ptr);
+ 
+       for (type_t t = type; type_is_array(t); t = type_elem(t)) {
+          const int ndims = dimension_of(t);
+@@ -316,10 +316,10 @@ static void bind_external_name(tree_t name, jit_handle_t scope,
+          }
+       }
+ 
+-      args[0].pointer = slots;
++      args[0].integer = (intptr_t)(slots);
+    }
+    else
+-      args[0].pointer = ptr;
++      args[0].integer = (intptr_t)(ptr);
+ }
+ 
+ static void bind_hier_ref(vlog_node_t v, jit_handle_t scope,
+@@ -347,7 +347,7 @@ static void bind_hier_ref(vlog_node_t v, jit_handle_t scope,
+    jit_t *j = jit_for_thread();
+    jit_handle_t handle = jit_compile(j, tree_ident2(h));
+ 
+-   args[0].pointer = jit_get_frame_var(j, handle, ctx, vlog_ident(v));
++   args[0].integer = (intptr_t)(jit_get_frame_var(j, handle, ctx, vlog_ident(v)));
+ }
+ 
+ void x_bind_external(object_t *where, jit_handle_t scope, jit_scalar_t *args)
+diff --git a/src/rt/model.c b/src/rt/model.c
+index 2356b4a..f757387 100644
+--- a/src/rt/model.c
++++ b/src/rt/model.c
+@@ -773,7 +773,7 @@ rt_scope_t *create_scope(rt_model_t *m, tree_t block, rt_scope_t *parent)
+       jit_scalar_t p2 = { .integer = 0 };
+ 
+       if (s->parent->kind != SCOPE_ROOT)
+-         context.pointer = *mptr_get(s->parent->privdata);
++         context.integer = (intptr_t)(*mptr_get(s->parent->privdata));
+ 
+       tlab_t tlab = jit_null_tlab(m->jit);
+ 
+@@ -910,7 +910,7 @@ static void reset_process(rt_model_t *m, rt_proc_t *proc)
+    thread->active_scope = proc->scope;
+ 
+    if (proc->closure.args[0].pointer == NULL)
+-      proc->closure.args[0].pointer = *mptr_get(proc->scope->privdata);
++      proc->closure.args[0].integer = (intptr_t)(*mptr_get(proc->scope->privdata));
+ 
+    jit_scalar_t state = { .pointer = NULL }, result;
+ 
+@@ -2280,7 +2280,7 @@ static void create_processes(rt_model_t *m, rt_scope_t *s)
+ 
+             p->closure.handle = jit_lazy_compile(m->jit, sym);
+             p->closure.nargs = 1;
+-            p->closure.args[0].pointer = NULL;
++            p->closure.args[0].integer = (intptr_t)(NULL);
+ 
+             p->wakeable.kind      = W_PROC;
+             p->wakeable.pending   = false;
+diff --git a/src/rt/reflect.c b/src/rt/reflect.c
+index 4eff2f8..113ef1b 100644
+--- a/src/rt/reflect.c
++++ b/src/rt/reflect.c
+@@ -440,7 +440,7 @@ static jit_scalar_t *get_array_bounds(type_t type, void *ptr)
+ 
+    if (type_is_unconstrained(type)) {
+       ffi_uarray_t *u = ptr;
+-      fbounds[0].pointer = u->ptr;
++      fbounds[0].integer = (intptr_t)(u->ptr);
+ 
+       for (int i = 0; i < ndims; i++) {
+          fbounds[i*2+1].integer = u->dims[i].left;
+@@ -448,7 +448,7 @@ static jit_scalar_t *get_array_bounds(type_t type, void *ptr)
+       }
+    }
+    else {
+-      fbounds[0].pointer = ptr;
++      fbounds[0].integer = (intptr_t)(ptr);
+ 
+       for (int i = 0; i < ndims; i++) {
+          tree_t r = range_of(type, i);
+@@ -476,7 +476,7 @@ static jit_scalar_t *get_null_array(type_t type)
+ {
+    const int ndims = dimension_of(type);
+    jit_scalar_t *bounds = xmalloc_array(ndims*2 + 1, sizeof(jit_scalar_t));
+-   bounds[0].pointer = NULL;
++   bounds[0].integer = (intptr_t)(NULL);
+ 
+    for (int i = 0; i < ndims; i++) {
+       bounds[i*2+1].integer = 0;
+diff --git a/src/rt/standard.c b/src/rt/standard.c
+index 495e139..cf3bbe0 100644
+--- a/src/rt/standard.c
++++ b/src/rt/standard.c
+@@ -50,7 +50,7 @@ static void bit_vec_to_string(jit_scalar_t *args, tlab_t *tlab, int log_base,
+       buf[i] = map[nibble];
+    }
+ 
+-   args[0].pointer = buf;
++   args[0].integer = (intptr_t)(buf);
+    args[1].integer = 1;
+    args[2].integer = result_len;
+ }
+@@ -168,7 +168,7 @@ void _std_to_string_real(jit_scalar_t *args, tlab_t *tlab)
+    char *buf = tlab_alloc(tlab, max);
+    size_t len = checked_sprintf(buf, max, "%.*g", DBL_DIG, args[1].real);
+ 
+-   args[0].pointer = buf;
++   args[0].integer = (intptr_t)(buf);
+    args[1].integer = 1;
+    args[2].integer = len;
+ }
+diff --git a/src/rt/stdenv.c b/src/rt/stdenv.c
+index cab4fd5..eebafbd 100644
+--- a/src/rt/stdenv.c
++++ b/src/rt/stdenv.c
+@@ -615,7 +615,7 @@ void _std_env_get_call_path(jit_scalar_t *args, tlab_t *tlab)
+    ffi_uarray_t *u = jit_mspace_alloc(sizeof(ffi_uarray_t));
+    *u = ffi_wrap(array, 0, stack->count - 1);
+ 
+-   args[0].pointer = u;
++   args[0].integer = (intptr_t)(u);
+ }
+ 
+ DLLEXPORT
+diff --git a/src/util.c b/src/util.c
+index 8d164fc..4efa8bf 100644
+--- a/src/util.c
++++ b/src/util.c
+@@ -1073,7 +1073,9 @@ static long nvc_page_size(void)
+ 
+ void nvc_munmap(void *ptr, size_t length)
+ {
+-#if ASAN_ENABLED
++#if defined __wasm__
++   (void)ptr; (void)length;   // memory comes from posix_memalign; partial unmaps are not possible
++#elif ASAN_ENABLED
+    free(ptr);
+ #elif !defined __MINGW32__
+    if (munmap(ptr, length) != 0)
+@@ -1086,7 +1088,7 @@ void nvc_munmap(void *ptr, size_t length)
+ 
+ void *nvc_memalign(size_t align, size_t sz)
+ {
+-#if ASAN_ENABLED
++#if ASAN_ENABLED || defined __wasm__
+    void *ptr;
+    if (posix_memalign(&ptr, align, sz) != 0)
+       fatal_errno("posix_memalign");
+@@ -1128,7 +1130,9 @@ void *nvc_memalign(size_t align, size_t sz)
+ 
+ void nvc_memprotect(void *ptr, size_t length, mem_access_t prot)
+ {
+-#if defined __MINGW32__
++#if defined __wasm__
++   (void)ptr; (void)length; (void)prot;   // no page protection in WebAssembly
++#elif defined __MINGW32__
+    static const int map[] = {
+       PAGE_NOACCESS, PAGE_READONLY, PAGE_READWRITE, PAGE_EXECUTE_READ,
+       PAGE_EXECUTE_READWRITE
+@@ -1457,7 +1461,11 @@ void nvc_rusage(nvc_rusage_t *ru)
+    const int rss_units = 1;
+ #endif
+ 
++#ifdef __wasm__
++   ru->rss = 0; (void)rss_units;
++#else
+    ru->rss = buf.ru_maxrss / rss_units;
++#endif
+ #else
+    static ULARGE_INTEGER last_kernel, last_user;
+    ULARGE_INTEGER lv_Tkernel, lv_Tuser;
+diff --git a/src/vhpi/vhpi-model.c b/src/vhpi/vhpi-model.c
+index 2705b90..4d405a9 100644
+--- a/src/vhpi/vhpi-model.c
++++ b/src/vhpi/vhpi-model.c
+@@ -3829,7 +3829,7 @@ int vhpi_put_value(vhpiHandleT handle,
+       fd->size = value_p->numElems;
+ 
+       vhpi_context_t *c = vhpi_context();
+-      c->args[0].pointer = tlab_alloc(c->tlab, fd->size * td->elem_bytes);
++      c->args[0].integer = (intptr_t)(tlab_alloc(c->tlab, fd->size * td->elem_bytes));
+       c->args[1].integer = 1;
+       c->args[2].integer = fd->size;
+ 
+diff --git a/thirdparty/cpustate.c b/thirdparty/cpustate.c
+index 968bdf9..cca5c65 100644
+--- a/thirdparty/cpustate.c
++++ b/thirdparty/cpustate.c
+@@ -234,6 +234,12 @@ void fill_cpu_state(struct cpu_state *cpu, PCONTEXT context)
+ #endif
+ }
+ 
++#elif defined __wasm__
++void fill_cpu_state(struct cpu_state *cpu, ucontext_t *uc)
++{
++   (void)uc;
++   cpu->pc = cpu->sp = 0;
++}
+ #else
+ #error Please port fill_cpu_state to this platform
+ #endif

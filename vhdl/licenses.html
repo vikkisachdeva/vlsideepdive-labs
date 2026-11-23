@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>VHDL Labs Licences</title>
+<style>
+:root { --bg:#f3f5f4; --text:#0b1f2a; --muted:#56656c; --line:#d5dbd9; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --bg:#0a161d; --text:#e6ecea; --muted:#93a5ac; --line:#22343e; } }
+:root[data-theme="dark"] { --bg:#0a161d; --text:#e6ecea; --muted:#93a5ac; --line:#22343e; }
+body { margin:0; background:var(--bg); color:var(--text); font:16px/1.6 system-ui, sans-serif; }
+main { max-width:760px; margin:0 auto; padding:40px 16px 60px; }
+h1 { font-size:28px; margin:0 0 8px; } h2 { font-size:19px; margin:32px 0 6px; }
+p, li { color:var(--muted); } a { color:var(--text); }
+code { font-family: ui-monospace, monospace; font-size:14px; }
+</style>
+</head>
+<body>
+<main>
+  <p><a href="./">← Back to the VHDL labs</a></p>
+  <h1>Source and licences</h1>
+  <p>The VHDL labs run entirely in your browser. Your code is not uploaded anywhere.</p>
+
+  <h2>nvc</h2>
+  <p>The simulator <code>nvc.wasm</code> is nvc, the VHDL compiler and simulator by Nick Gasson and contributors (development version 1.24, commit <code>75da1dd</code>), compiled to WebAssembly with the WASI SDK 25 and run with its JIT interpreter (no LLVM). The VHDL-2008 libraries in <code>vhdl-lib.bin</code> (std, ieee and nvc) were compiled by this same build. nvc is free software under the GNU General Public License, version 3 or later; the IEEE library sources carry their own licence notices.</p>
+  <ul>
+    <li>Original source: <a href="https://github.com/nickg/nvc">github.com/nickg/nvc</a></li>
+    <li>Changes made for the browser build: <a href="nvc-wasm.patch">nvc-wasm.patch</a> (32-bit pointers in the JIT, no dlopen, no memory protection) and <a href="nvc-wasi-support.tar.gz">nvc-wasi-support.tar.gz</a> (compatibility headers, stubs for functions WASI lacks, and the table of built-in functions used instead of dlopen)</li>
+    <li>Full licence text: <a href="nvc-COPYING.txt">GNU GPL v3</a></li>
+  </ul>
+
+  <h2>browser_wasi_shim</h2>
+  <p>WASI runtime for the browser by bjorn3, under the MIT or Apache-2.0 licence. <a href="browser_wasi_shim-LICENSE-MIT.txt">MIT licence text</a>.</p>
+
+  <h2>CodeMirror 5</h2>
+  <p>Code editor by Marijn Haverbeke and contributors, MIT licence, loaded from cdnjs.</p>
+</main>
+</body>
+</html>
