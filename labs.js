@@ -103,7 +103,7 @@ const HOME_CARDS = [
 })();
 
 // Accounts and leaderboards (/lb.js), on every page
-(function () { const s = document.createElement("script"); s.src = "/lb.js?v=0b0073c8b5"; s.defer = true; document.head.appendChild(s); })();
+(function () { const s = document.createElement("script"); s.src = "/lb.js?v=819a3f5472"; s.defer = true; document.head.appendChild(s); })();
 
 // Tip box inside a lab: <div class="lab-tip" data-topics="STA,Constraints"></div>
 (function () {
@@ -369,3 +369,31 @@ window.vddVideo = (function () {
     }).catch(() => { sec.querySelector(".video-empty").hidden = false; });
   });
 })();
+
+// After a successful run on a question-based lab (CDC, STA, synthesis): a bar at the bottom of the
+// screen says how many questions are left to pass, with a button that scrolls to them.
+window.vddQuizNudge = function () {
+  const quiz = document.getElementById("quiz"), list = document.getElementById("quiz-list");
+  if (!quiz || quiz.hidden || !list || !list.children.length) return;
+  const total = list.children.length;
+  const m = /(\d+)\s*\/\s*(\d+)/.exec((document.getElementById("quiz-score") || {}).textContent || "");
+  const left = m ? +m[2] - +m[1] : total;
+  let bar = document.getElementById("quiz-nudge");
+  if (!left) { if (bar) bar.remove(); return; }
+  const r = quiz.getBoundingClientRect(); if (r.top < innerHeight * 0.6 && r.bottom > 0) return;   // already looking at the questions
+  if (!bar) {
+    if (!document.getElementById("quiz-nudge-css")) {
+      const st = document.createElement("style"); st.id = "quiz-nudge-css";
+      st.textContent = "#quiz-nudge{position:fixed;left:50%;bottom:18px;transform:translateX(-50%);z-index:60;display:flex;align-items:center;gap:14px;max-width:calc(100% - 32px);padding:10px 10px 10px 18px;border-radius:12px;background:#0b1f2a;color:#e6ecea;box-shadow:0 10px 30px rgba(0,0,0,.25);font:500 15px/1.35 Inter,system-ui,sans-serif}#quiz-nudge b{color:#fff}#quiz-nudge button{border:0;border-radius:8px;padding:9px 14px;background:#e8642c;color:#fff;font:600 14px Inter,system-ui,sans-serif;cursor:pointer;white-space:nowrap}#quiz-nudge .x{background:transparent;color:#93a5ac;padding:6px 8px;font-size:18px}@media (max-width:560px){#quiz-nudge{bottom:10px;font-size:14px;gap:8px}}";
+      document.head.appendChild(st);
+    }
+    bar = document.createElement("div"); bar.id = "quiz-nudge"; bar.setAttribute("role", "status");
+    bar.innerHTML = '<span></span><button type="button" class="go">Go to the questions ↓</button><button type="button" class="x" aria-label="Close">×</button>';
+    bar.querySelector(".go").addEventListener("click", () => { quiz.scrollIntoView({ behavior: "smooth", block: "start" }); bar.remove(); });
+    bar.querySelector(".x").addEventListener("click", () => bar.remove());
+    document.body.appendChild(bar);
+    const io = "IntersectionObserver" in window ? new IntersectionObserver((es) => { if (es.some((e) => e.isIntersecting)) { bar.remove(); io.disconnect(); } }, { threshold: 0.15 }) : null;
+    if (io) io.observe(quiz);
+  }
+  bar.querySelector("span").innerHTML = `Report ready. <b>Answer ${left} question${left === 1 ? "" : "s"}</b> to pass this lab.`;
+};
