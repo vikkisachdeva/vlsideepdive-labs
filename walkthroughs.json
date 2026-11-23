@@ -268,5 +268,65 @@
   "t": "I/O pin placement",
   "m": null,
   "from": "2026-12-01T19:00+05:30"
+ },
+ "p1-fa-bh": {
+  "id": "Z665w6bhazg",
+  "t": "Full adder: behavioral",
+  "m": null,
+  "from": "2026-12-02T09:00+05:30"
+ },
+ "vh-p1-fa-bh": {
+  "id": "G3ObgsGRyp0",
+  "t": "Full adder: behavioral",
+  "m": null,
+  "from": "2026-12-02T11:00+05:30"
+ },
+ "cdc-reset": {
+  "id": "dgDpDJygEK8",
+  "t": "Reset synchronizer",
+  "m": null,
+  "from": "2026-12-02T13:00+05:30"
+ },
+ "corners": {
+  "id": "86MZlplAqlo",
+  "t": "Multi-corner: slow & fast",
+  "m": null,
+  "from": "2026-12-02T16:00+05:30"
+ },
+ "sva-b5": {
+  "id": "sm9HQ-VN-f4",
+  "t": "The level vs edge gotcha",
+  "m": null,
+  "from": "2026-12-02T19:00+05:30"
+ },
+ "l05-demorgan": {
+  "id": "oBE2pbcwDyA",
+  "t": "De Morgan's laws",
+  "m": null,
+  "from": "2026-12-03T09:00+05:30"
+ },
+ "s05-alu": {
+  "id": "PhUESk1K7bA",
+  "t": "ALU",
+  "m": null,
+  "from": "2026-12-03T11:00+05:30"
+ },
+ "dv-5": {
+  "id": "Dwy3zosqxYg",
+  "t": "Counter verification: random tests",
+  "m": null,
+  "from": "2026-12-03T13:00+05:30"
+ },
+ "syn-det_1011": {
+  "id": "y79fug280CQ",
+  "t": "Synthesis of a sequence detector",
+  "m": null,
+  "from": "2026-12-03T16:00+05:30"
+ },
+ "pd-f3": {
+  "id": "NCc4TpnBr-U",
+  "t": "Macro placement, halo and keep-out",
+  "m": null,
+  "from": "2026-12-03T19:00+05:30"
  }
 }
