@@ -337,6 +337,14 @@ header.top nav a.lb-acct.in { background: rgba(232,100,44,.18); border-color: #e
 .lb-form input { min-height: 40px; padding: 8px 10px; border: 1px solid var(--line); border-radius: 8px; font: inherit; background: var(--bg, #fff); color: var(--text); }
 .lb-msg { margin-top: 10px !important; min-height: 1.2em; }
 .lb-actions { display: flex; flex-wrap: wrap; gap: 8px; }
+.sh-signin { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin: 0 0 14px; padding: 10px 14px; border-radius: 10px; background: var(--accent-soft); font-size: 14px; line-height: 1.45; }
+.sh-signin span { flex: 1 1 260px; }
+.lb-nudge { position: fixed; left: 50%; bottom: 20px; transform: translateX(-50%); z-index: 60; width: min(560px, calc(100vw - 32px)); display: flex; align-items: center; gap: 12px; padding: 14px 16px; border-radius: 12px; background: var(--panel); border: 1px solid var(--line); border-top: 4px solid #e8642c; box-shadow: 0 10px 30px rgba(0,0,0,.18); font-size: 14.5px; line-height: 1.45; animation: lbNudgeIn .25s ease-out; transition: opacity .25s, transform .25s; }
+.lb-nudge.out { opacity: 0; transform: translate(-50%, 10px); }
+.lb-nudge-t { flex: 1; } .lb-nudge-go { white-space: nowrap; }
+.lb-nudge-x { border: 0; background: none; color: inherit; font-size: 22px; line-height: 1; cursor: pointer; opacity: .6; padding: 0 2px; } .lb-nudge-x:hover { opacity: 1; }
+@keyframes lbNudgeIn { from { opacity: 0; transform: translate(-50%, 12px); } }
+@media (max-width: 520px) { .lb-nudge { flex-wrap: wrap; bottom: 12px; } .lb-nudge-t { flex-basis: calc(100% - 30px); } }
 .lb-toast { position: fixed; bottom: 20px; left: 50%; transform: translate(-50%, 20px); opacity: 0; background: #0f2420; color: #fff; padding: 10px 16px; border-radius: 10px; font-size: 14px; z-index: 1001; transition: all .3s; }
 .lb-toast.show { opacity: 1; transform: translate(-50%, 0); }
 header.top nav a.lb-share-btn { display: inline-flex; align-items: center; gap: 6px; background: #e8642c; color: #fff; border-radius: 999px; padding: 5px 14px; font-weight: 600; }
@@ -503,6 +511,6 @@ header.top nav a.lb-streak { font-weight: 700; color: #ffb38a; }
   <p>Day-by-day plans through the labs, from your first gate to signoff. Do each day's labs and your progress is kept in this browser.</p>
 </section>
 <main class="lbw" id="plans-root"><p class="lb-empty">Loading…</p></main>
-<script src="/labs.js?v=ed3e987ec4"></script>
+<script src="/labs.js?v=4d1d846a09"></script>
 </body>
 </html>
