@@ -328,5 +328,65 @@
   "t": "Macro placement, halo and keep-out",
   "m": null,
   "from": "2026-12-03T19:00+05:30"
+ },
+ "p1-fa-st": {
+  "id": "sapChlXAlKU",
+  "t": "Full adder: structural",
+  "m": null,
+  "from": "2026-12-04T09:00+05:30"
+ },
+ "vh-p1-fa-st": {
+  "id": "7R08jphX-TY",
+  "t": "Full adder: structural",
+  "m": null,
+  "from": "2026-12-04T11:00+05:30"
+ },
+ "cdc-handshake": {
+  "id": "EY90gBJwX7Q",
+  "t": "Closed-loop handshake",
+  "m": null,
+  "from": "2026-12-04T13:00+05:30"
+ },
+ "spef": {
+  "id": "_eVDHX0FT4U",
+  "t": "Wire parasitics from SPEF",
+  "m": null,
+  "from": "2026-12-04T16:00+05:30"
+ },
+ "sva-b6": {
+  "id": "GbvVrAV7FFU",
+  "t": "Resets: disable iff",
+  "m": null,
+  "from": "2026-12-04T19:00+05:30"
+ },
+ "l06-kmap": {
+  "id": "tT7sNkBnsB4",
+  "t": "K-map simplification",
+  "m": null,
+  "from": "2026-12-05T09:00+05:30"
+ },
+ "s06-memtb": {
+  "id": "AgI0gCVc4ks",
+  "t": "Memory testbench with tasks",
+  "m": null,
+  "from": "2026-12-05T11:00+05:30"
+ },
+ "dv-6": {
+  "id": "FcTfKBCbt64",
+  "t": "SystemVerilog data types: a behavioral memory model",
+  "m": null,
+  "from": "2026-12-05T13:00+05:30"
+ },
+ "syn-ibex": {
+  "id": "VKe7SsYxSBU",
+  "t": "Synthesis of the ibex RISC-V core",
+  "m": null,
+  "from": "2026-12-05T16:00+05:30"
+ },
+ "pd-f4": {
+  "id": "ddAtFX3RmXE",
+  "t": "Power planning and IR drop",
+  "m": null,
+  "from": "2026-12-05T19:00+05:30"
  }
 }
