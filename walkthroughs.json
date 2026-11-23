@@ -388,5 +388,65 @@
   "t": "Power planning and IR drop",
   "m": null,
   "from": "2026-12-05T19:00+05:30"
+ },
+ "p1-ops": {
+  "id": "QCb87shtbjQ",
+  "t": "All Verilog operators",
+  "m": null,
+  "from": "2026-12-06T09:00+05:30"
+ },
+ "vh-p1-ops": {
+  "id": "59T8rygjl7k",
+  "t": "All VHDL operators",
+  "m": null,
+  "from": "2026-12-06T11:00+05:30"
+ },
+ "cdc-fifo": {
+  "id": "XcEz3KNn_cQ",
+  "t": "Asynchronous FIFO",
+  "m": null,
+  "from": "2026-12-06T13:00+05:30"
+ },
+ "gcd": {
+  "id": "Weeolg_6uFY",
+  "t": "GCD block (Sky130): SPEF + power",
+  "m": null,
+  "from": "2026-12-06T16:00+05:30"
+ },
+ "sva-b7": {
+  "id": "Xw5NV-1PBFI",
+  "t": "Action blocks, severity and $assertoff",
+  "m": null,
+  "from": "2026-12-06T19:00+05:30"
+ },
+ "l07-dontcare": {
+  "id": "RGboOctUIs0",
+  "t": "K-maps with don't-cares",
+  "m": null,
+  "from": "2026-12-07T09:00+05:30"
+ },
+ "s07-struct": {
+  "id": "vLQ2zu6xcP0",
+  "t": "Bundling a bus with a packed struct",
+  "m": null,
+  "from": "2026-12-07T11:00+05:30"
+ },
+ "dv-7": {
+  "id": "rsUQM_eZqKQ",
+  "t": "Interfaces and modports: a FIFO interface with driver tasks",
+  "m": null,
+  "from": "2026-12-07T13:00+05:30"
+ },
+ "pd-f5": {
+  "id": "0uTahkiJ3Us",
+  "t": "A bad floorplan: too little area",
+  "m": null,
+  "from": "2026-12-07T16:00+05:30"
+ },
+ "p1-c2f": {
+  "id": "Hu6pl2DU3U0",
+  "t": "Celsius to Fahrenheit task",
+  "m": null,
+  "from": "2026-12-07T19:00+05:30"
  }
 }
