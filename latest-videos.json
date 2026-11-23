@@ -1,21 +1,21 @@
 {
- "updated": "2026-11-22T17:15:15+00:00",
- "video_count": 560,
+ "updated": "2026-11-23T14:59:18+00:00",
+ "video_count": 565,
  "videos": [
   {
-   "id": "KDxGWBPnEDw",
-   "title": "Static Timing Analysis Explained Part 2: Parasitics, RC Tree & Timing Arcs",
-   "published": "2026-11-19T13:00:20+00:00"
+   "id": "_U5F_Irqoro",
+   "title": "How to Read a Timing Report: Setup & Hold (OpenSTA) | STA Lab Walkthrough",
+   "published": "2026-11-23T13:15:53+00:00"
   },
   {
-   "id": "1dKjcrhjOQc",
-   "title": "STA Advanced Part 1 | STA Flow, Slack, Slew & PVT Corners Deep Dive",
-   "published": "2026-11-16T13:00:09+00:00"
+   "id": "EGflZgE62rU",
+   "title": "Static Timing Analysis Advanced Part 3 - DDR Controller Clocking and SDC Closure Deep Dive",
+   "published": "2026-11-23T13:00:26+00:00"
   },
   {
-   "id": "L2jWNRNAS9w",
-   "title": "From Zero to Hero in SoC Design - Complete Architecture & AXI Course",
-   "published": "2026-11-12T13:00:06+00:00"
+   "id": "fYRWNW4iP4U",
+   "title": "4-bit Up/Down Counter in VHDL | Free Lab Walkthrough",
+   "published": "2026-11-23T12:37:36+00:00"
   }
  ]
 }
