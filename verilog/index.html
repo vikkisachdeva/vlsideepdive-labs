@@ -55,9 +55,17 @@ header.top { background: var(--navy); color: var(--navy-ink); }
 .top nav a { text-decoration: none; color: #b9c6cb; padding: 8px 0; }
 .top nav a:hover { color: #fff; }
 .labs-nav { min-height: 47px; background: var(--panel); border-bottom: 1px solid var(--line); }
-.labs-in { max-width: 1440px; margin: 0 auto; padding: 0 20px; display: flex; gap: 4px; overflow-x: auto; }
-.labs-nav a { text-decoration: none; color: var(--muted); font-weight: 600; font-size: 14px; padding: 13px 14px 11px; border-bottom: 3px solid transparent; white-space: nowrap; }
+.labs-wrap { position: relative; max-width: 1440px; margin: 0 auto; }
+.labs-in { padding: 0 20px; display: flex; gap: 2px; overflow-x: auto; scrollbar-width: none; -ms-overflow-style: none; scroll-behavior: smooth; }
+.labs-in::-webkit-scrollbar { display: none; }
+.labs-nav a { text-decoration: none; color: var(--muted); font-weight: 600; font-size: 14px; padding: 13px 13px 11px; border-bottom: 3px solid transparent; white-space: nowrap; flex: none; }
 .labs-nav a:hover { color: var(--text); }
+.labs-arrow { position: absolute; top: 0; bottom: 3px; width: 44px; border: 0; padding: 0; z-index: 2; cursor: pointer; font-size: 22px; line-height: 1; color: var(--text); display: flex; align-items: center; }
+.labs-arrow.l { left: 0; justify-content: flex-start; padding-left: 8px; background: linear-gradient(90deg, var(--panel) 45%, transparent); }
+.labs-arrow.r { right: 0; justify-content: flex-end; padding-right: 8px; background: linear-gradient(270deg, var(--panel) 45%, transparent); }
+.labs-wrap.at-start .labs-arrow.l, .labs-wrap.at-end .labs-arrow.r, .labs-wrap.fits .labs-arrow { opacity: 0; pointer-events: none; }
+.labs-arrow { transition: opacity .15s; }
+@media (hover: none) { .labs-arrow { font-size: 0; width: 28px; } }
 .labs-nav a[aria-current="page"] { color: var(--text); border-bottom-color: var(--accent); }
 
 .intro { max-width: 1440px; margin: 0 auto; padding: 22px 20px 6px; display: flex; flex-wrap: wrap; gap: 8px 24px; align-items: baseline; justify-content: space-between; }
@@ -651,7 +659,7 @@ header.top nav a.lb-streak { font-weight: 700; color: #ffb38a; }
 <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/verilog/verilog.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/addon/edit/matchbrackets.min.js"></script>
-<script src="/labs.js?v=4d1d846a09"></script>
+<script src="/labs.js?v=b91b643556"></script>
 <script src="app.js?v=5a9f5f4ae8"></script>
 </body>
 </html>

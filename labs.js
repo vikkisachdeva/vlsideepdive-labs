@@ -57,6 +57,9 @@ const HOME_CARDS = [
   const current = document.body.dataset.lab || "";
   const nav = document.getElementById("labs-nav");
   if (nav) {
+    // Short labels for the tab bar; the full titles stay on the cards.
+    const SHORT = { logic: "Logic design", verilog: "Verilog", systemverilog: "SystemVerilog", sva: "SVA & coverage", dv: "DV",
+      synth: "Synthesis", cdc: "CDC", sta: "STA & SDC", pd: "Physical design", tips: "Tips" };
     const inner = document.createElement("div");
     inner.className = "labs-in";
     const home = document.createElement("a");
@@ -65,11 +68,21 @@ const HOME_CARDS = [
     inner.appendChild(home);
     for (const lab of LABS) {
       const a = document.createElement("a");
-      a.href = lab.href; a.textContent = lab.title;
+      a.href = lab.href; a.textContent = SHORT[lab.id] || lab.title; a.title = lab.title;
       if (lab.id === current) a.setAttribute("aria-current", "page");
       inner.appendChild(a);
     }
-    nav.appendChild(inner);
+    const wrap = document.createElement("div"); wrap.className = "labs-wrap";
+    const arrow = (dir) => { const b = document.createElement("button"); b.type = "button"; b.className = "labs-arrow " + dir; b.setAttribute("aria-label", dir === "l" ? "Scroll tabs left" : "Scroll tabs right"); b.textContent = dir === "l" ? "‹" : "›"; b.tabIndex = -1;
+      b.addEventListener("click", () => inner.scrollBy({ left: (dir === "l" ? -1 : 1) * inner.clientWidth * 0.7, behavior: "smooth" })); return b; };
+    wrap.append(arrow("l"), inner, arrow("r"));
+    nav.appendChild(wrap);
+    const edges = () => { const max = inner.scrollWidth - inner.clientWidth;
+      wrap.classList.toggle("at-start", inner.scrollLeft <= 2); wrap.classList.toggle("at-end", inner.scrollLeft >= max - 2); wrap.classList.toggle("fits", max <= 2); };
+    inner.addEventListener("scroll", edges, { passive: true }); window.addEventListener("resize", edges);
+    const cur = inner.querySelector('[aria-current="page"]');
+    if (cur && cur.offsetLeft + cur.offsetWidth > inner.clientWidth) inner.scrollLeft = cur.offsetLeft - 40;
+    edges();
   }
   const cards = document.getElementById("lab-cards");
   if (cards) {
