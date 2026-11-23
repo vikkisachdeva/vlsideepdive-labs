@@ -332,7 +332,11 @@ window.vddVideo = (function () {
       if (!all) return;
       const track = document.body.dataset.track || "";
       const own = all.filter((v) => v.track && v.track === track);
-      const vids = own.length ? own : all.filter((v) => !v.track);
+      let vids = own.length ? own : all.filter((v) => !v.track);
+      // A short walkthrough for this exact lab (walkthroughs.json: lab id -> YouTube id) goes first
+      const lab = window.vddCurrentLab, wt = lab && walk && walk[lab];
+      if (wt && wt.id) vids = [{ id: wt.id, title: "Lab walkthrough: " + (wt.t || "this lab") + (wt.m ? " (" + wt.m + " min)" : ""), walk: true }, ...vids];
+      shownLab = lab;
       grid.innerHTML = "";
       sec.querySelector(".video-empty").hidden = !!vids.length;
       for (const v of vids) {
@@ -347,12 +351,16 @@ window.vddVideo = (function () {
         const cap = document.createElement("a"); cap.className = "video-title";
         cap.href = `https://www.youtube.com/watch?v=${v.id}`; cap.textContent = v.title || "Watch on YouTube";
         card.appendChild(cap);
-        window.vddVideo.label(badge, v.id, null, v.title); card.appendChild(badge);
+        if (v.walk) { badge.className = "video-walk"; badge.style.cssText = "display:block;font-size:13px;color:#c2410c;margin-top:4px;font-weight:600"; badge.textContent = "▶ Short walkthrough of this lab"; } else window.vddVideo.label(badge, v.id, null, v.title);
+        card.appendChild(badge);
         grid.appendChild(card);
       }
-      offerBadge(sec, vids);
+      offerBadge(sec, vids.filter((v) => !v.walk));
     };
     document.addEventListener("vdd-track", render);
+    let walk = null, shownLab;
+    fetch("/walkthroughs.json", { cache: "no-cache" }).then((r) => (r.ok ? r.json() : {})).then((j) => { walk = j || {}; render(); }).catch(() => { walk = {}; });
+    setInterval(() => { if (walk && window.vddCurrentLab !== shownLab) render(); }, 1000);
     fetch(sec.dataset.src, { cache: "no-cache" }).then((r) => (r.ok ? r.text() : "")).then((txt) => {
       all = []; let track = "";
       for (const raw of txt.split("\n")) {
