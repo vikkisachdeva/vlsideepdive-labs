@@ -1,21 +1,21 @@
 {
- "updated": "2026-11-24T02:23:34+00:00",
- "video_count": 566,
+ "updated": "2026-11-24T13:59:03+00:00",
+ "video_count": 571,
  "videos": [
   {
-   "id": "6Jk-SFms9EE",
-   "title": "RTL to Gates: Synthesize a Mux with Yosys | Synthesis Lab Walkthrough",
-   "published": "2026-11-23T15:30:23+00:00"
+   "id": "chXTnRI6EUo",
+   "title": "Immediate assertions: executable comments | SVA Lab Walkthrough",
+   "published": "2026-11-24T13:30:14+00:00"
   },
   {
-   "id": "_U5F_Irqoro",
-   "title": "How to Read a Timing Report: Setup & Hold (OpenSTA) | STA Lab Walkthrough",
-   "published": "2026-11-23T13:15:53+00:00"
+   "id": "x4IuT-h817k",
+   "title": "Setup violation: fast clock | STA Lab Walkthrough",
+   "published": "2026-11-24T10:30:31+00:00"
   },
   {
-   "id": "EGflZgE62rU",
-   "title": "Static Timing Analysis Advanced Part 3 - DDR Controller Clocking and SDC Closure Deep Dive",
-   "published": "2026-11-23T13:00:26+00:00"
+   "id": "l2MViC8HfuA",
+   "title": "Clocks and clock domains | CDC Lab Walkthrough",
+   "published": "2026-11-24T07:30:21+00:00"
   }
  ]
 }
