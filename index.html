@@ -601,7 +601,10 @@ header.top nav a.lb-streak { font-weight: 700; color: #ffb38a; }
 .stats { background: #0b1f2a; border-top: 1px solid #16303c; }
 .stats-in { max-width: 1440px; margin: 0 auto; padding: 40px 20px; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 24px 32px; }
 .stat b { display: block; font: 700 clamp(32px, 4vw, 44px)/1.05 "Space Grotesk", sans-serif; letter-spacing: -0.02em; }
-.stat b.c1, .stat b.c2 { color: #f3f6f5; font-variant-numeric: tabular-nums; } .stat b[data-c="learners"] { color: #ff8047; }
+.stat b.c1, .stat b.c2 { color: #f3f6f5; font-variant-numeric: tabular-nums; }
+/* Each counter in the colour of its topic (as on the course badges), brightened for the dark band */
+.stat b[data-c="learners"] { color: #38bdf8; } .stat b[data-c="sim"] { color: #8b8cff; } .stat b[data-c="sta"] { color: #ff7a45; } .stat b[data-c="labs_passed"] { color: #34d399; }
+.stat b[data-c="synth"] { color: #a3e635; } .stat b[data-c="cdc"] { color: #b794ff; } .stat b[data-c="quizzes"] { color: #f472b6; } .stat b[data-c="videos"] { color: #fbbf24; }
 .stat span { display: block; margin-top: 6px; color: #b8c6cb; font-size: 15px; font-weight: 500; }
 
 .live-since { grid-column: 1 / -1; margin: 0 0 -8px; font: 500 12px "JetBrains Mono", monospace; letter-spacing: .08em; text-transform: uppercase; color: #9fb3ba; display: flex; align-items: center; gap: 8px; }
