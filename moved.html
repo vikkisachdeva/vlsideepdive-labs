@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Moving your progress</title>
+<script>
+// Arrives from labs.vlsideepdive.com with that browser's saved lab progress in the hash.
+// Only vdd-* keys are imported, and only when this site has no value for them yet.
+(function () {
+  var p = new URLSearchParams(location.hash.slice(1));
+  var to = p.get("to") || "/";
+  try {
+    var o = JSON.parse(p.get("d") || "{}");
+    for (var k in o) {
+      if (/^vdd-/.test(k) && !/session/i.test(k) && typeof o[k] === "string" && localStorage.getItem(k) === null) localStorage.setItem(k, o[k]);
+    }
+  } catch (e) {}
+  if (to.charAt(0) !== "/" || to.charAt(1) === "/" || to.charAt(1) === "\\") to = "/";
+  location.replace(to);
+})();
+</script>
+</head>
+<body></body>
+</html>
