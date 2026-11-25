@@ -11,7 +11,7 @@ revoke all on public.private_counters from anon, authenticated;
 
 create or replace function public.bump_counters(c jsonb, batch uuid, l jsonb default '{}'::jsonb) returns void
 language plpgsql security definer set search_path = public as $$
-declare k text; v int; t int; s int; fresh int; n int := 0;
+declare k text; v int; t int; s int; fresh int; nl int := 0;
 begin
   insert into public.counter_batches (id) values (batch) on conflict (id) do nothing;
   get diagnostics fresh = row_count;
@@ -20,11 +20,11 @@ begin
     if k ~ '^share_(li|x|fb|wa|tg|ig|save|more|copy|visit)$' then
       insert into public.private_counters (name, n) values (k, v) on conflict (name) do update set n = private_counters.n + excluded.n;
     else
-      update public.counters set n = n + v where name = k;
+      update public.counters set n = counters.n + v where name = k;
     end if;
   end loop;
   for k in select key from jsonb_each(coalesce(l, '{}'::jsonb)) where key ~ '^[A-Za-z0-9_.-]{1,48}$' loop
-    n := n + 1; exit when n > 60;
+    nl := nl + 1; exit when nl > 60;
     t := case when (l -> k ->> 't') = '1' then 1 else 0 end;
     s := case when (l -> k ->> 's') = '1' then 1 else 0 end;
     insert into public.lab_stats (lab_id, tried, solved) values (k, t, s)
