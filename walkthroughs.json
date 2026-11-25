@@ -604,5 +604,65 @@
   "t": "Congestion and cell padding",
   "m": 1,
   "from": "2026-12-13T09:00+05:30"
+ },
+ "p2-mux4": {
+  "id": "BpciJysG0F4",
+  "t": "4:1 multiplexer",
+  "m": 1,
+  "from": "2026-12-13T11:00+05:30"
+ },
+ "vh-p2-mux4": {
+  "id": "fwi-WoSwbZw",
+  "t": "4:1 multiplexer",
+  "m": 1,
+  "from": "2026-12-13T13:00+05:30"
+ },
+ "x-gray": {
+  "id": "4STOORSuQ2o",
+  "t": "Gray code counters",
+  "m": 1,
+  "from": "2026-12-13T16:00+05:30"
+ },
+ "ws-lab6": {
+  "id": "xrLtNKJlHyM",
+  "t": "Clock gating checks",
+  "m": 1,
+  "from": "2026-12-13T19:00+05:30"
+ },
+ "sva-s1": {
+  "id": "7B4qtGaejx4",
+  "t": "Delays and ranges: ##n, ##[m:n], ##[1:$]",
+  "m": 1,
+  "from": "2026-12-14T09:00+05:30"
+ },
+ "l29-rca": {
+  "id": "Jksi2bMiCWU",
+  "t": "4-bit parallel adder (7483)",
+  "m": 1,
+  "from": "2026-12-14T11:00+05:30"
+ },
+ "s11-dpram": {
+  "id": "pC3CVZbwL3o",
+  "t": "Dual-port RAM",
+  "m": 1,
+  "from": "2026-12-14T13:00+05:30"
+ },
+ "dv-11": {
+  "id": "IQfhl_84Fps",
+  "t": "rand, randc and randomize(): even, odd and one-hot (week 8 exercise)",
+  "m": 1,
+  "from": "2026-12-14T16:00+05:30"
+ },
+ "pd-p4": {
+  "id": "dtKbpVNdqKs",
+  "t": "Placement blockages",
+  "m": 1,
+  "from": "2026-12-14T19:00+05:30"
+ },
+ "p2-dec24": {
+  "id": "dUpYIMb-hfc",
+  "t": "2\u00d74 decoder",
+  "m": 1,
+  "from": "2026-12-15T09:00+05:30"
  }
 }
