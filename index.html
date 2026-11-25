@@ -603,7 +603,7 @@ header.top nav a.lb-streak { font-weight: 700; color: #ffb38a; }
 .stat b { display: block; font: 700 clamp(32px, 4vw, 44px)/1.05 "Space Grotesk", sans-serif; letter-spacing: -0.02em; }
 .stat b.c1, .stat b.c2 { color: #f3f6f5; font-variant-numeric: tabular-nums; }
 /* Each counter in the colour of its topic (as on the course badges), brightened for the dark band */
-.stat b[data-c="learners"] { color: #38bdf8; } .stat b[data-c="sim"] { color: #8b8cff; } .stat b[data-c="sta"] { color: #ff7a45; } .stat b[data-c="labs_passed"] { color: #34d399; }
+.stat b[data-c="learners"] { color: #38bdf8; } .stat b[data-c="hands_on"] { color: #ffffff; } .stat b[data-c="sim"] { color: #8b8cff; } .stat b[data-c="sta"] { color: #ff7a45; } .stat b[data-c="labs_passed"] { color: #34d399; }
 .stat b[data-c="synth"] { color: #a3e635; } .stat b[data-c="cdc"] { color: #b794ff; } .stat b[data-c="quizzes"] { color: #f472b6; } .stat b[data-c="videos"] { color: #fbbf24; }
 .stat span { display: block; margin-top: 6px; color: #b8c6cb; font-size: 15px; font-weight: 500; }
 
@@ -611,7 +611,7 @@ header.top nav a.lb-streak { font-weight: 700; color: #ffb38a; }
 .live-since::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: #1fc27e; box-shadow: 0 0 0 0 rgba(31,194,126,.55); animation: live-pulse 2s ease-out infinite; }
 @keyframes live-pulse { 0% { box-shadow: 0 0 0 0 rgba(31,194,126,.55); } 70%, 100% { box-shadow: 0 0 0 8px rgba(31,194,126,0); } }
 @media (prefers-reduced-motion: reduce) { .live-since::before { animation: none; box-shadow: 0 0 0 4px rgba(31,194,126,.2); } }
-@media (min-width: 1100px) { .stats-in { grid-template-columns: repeat(8, minmax(0, 1fr)); padding: 22px 20px 26px; gap: 14px 24px; } .stat b { font-size: 34px; } .stat span { font-size: 14px; } }
+@media (min-width: 1100px) { .stats-in { grid-template-columns: repeat(9, minmax(0, 1fr)); padding: 22px 20px 26px; gap: 14px 20px; } .stat b { font-size: 32px; } .stat span { font-size: 14px; } }
 @media (max-width: 760px) { .stats-in { grid-template-columns: repeat(2, minmax(0, 1fr)); padding: 30px 16px; } }
 
 /* Lab cards */
@@ -650,7 +650,8 @@ header.top nav a.lb-streak { font-weight: 700; color: #ffb38a; }
 <section class="stats" aria-label="vlsideepdive labs in numbers">
   <div class="stats-in live" id="live-stats" hidden>
     <p class="live-since">Live</p>
-    <div class="stat"><b class="c1" data-c="learners">–</b><span>Engineers learning</span></div>
+    <div class="stat"><b class="c1" data-c="learners">–</b><span>Engineers visited</span></div>
+    <div class="stat"><b class="c2" data-c="hands_on">–</b><span>Hands-on learners</span></div>
     <div class="stat"><b class="c2" data-c="sim">–</b><span>RTL simulations run</span></div>
     <div class="stat"><b class="c1" data-c="sta">–</b><span>STA runs</span></div>
     <div class="stat"><b class="c2" data-c="labs_passed">–</b><span>Labs passed</span></div>
@@ -748,7 +749,7 @@ header.top nav a.lb-streak { font-weight: 700; color: #ffb38a; }
   <span>© 2026 vlsideepdive · All courses free on <a href="https://www.youtube.com/@vlsideepdive">YouTube</a> · Training enquiries: <a href="mailto:vlsideepdive@gmail.com">vlsideepdive@gmail.com</a></span>
   <span><a href="/verilog/licenses.html">Verilog lab licences</a> · <a href="/synth/licenses.html">Synthesis lab licences</a> · <a href="/sta/licenses.html">STA and Constraints labs licences</a></span>
 </footer>
-<script src="/labs.js?v=b176a47125"></script>
+<script src="/labs.js?v=7a7e7aa5e9"></script>
 <script>
 // Latest 3 videos. latest-videos.json is refreshed every few hours by a GitHub Action
 // (.github/workflows/latest-videos.yml) that reads the channel feed. It is read from

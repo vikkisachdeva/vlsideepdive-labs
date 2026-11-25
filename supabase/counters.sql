@@ -9,7 +9,7 @@ create table if not exists public.counters (
   since date not null default current_date
 );
 insert into public.counters (name) values
-  ('learners'), ('sim'), ('sta'), ('synth'), ('cdc'), ('labs_passed'), ('quizzes')
+  ('learners'), ('hands_on'), ('sim'), ('sta'), ('synth'), ('cdc'), ('labs_passed'), ('quizzes')
 on conflict (name) do nothing;
 
 alter table public.counters enable row level security;
