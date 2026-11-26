@@ -1,0 +1,725 @@
+[
+ {
+  "company": "Qualcomm",
+  "role": "DV",
+  "level": "Campus (intern + FTE)",
+  "date": "2024-09",
+  "site": "GeeksforGeeks",
+  "title": "Qualcomm Hardware interview experience, SoC verification (on-campus)",
+  "url": "https://www.geeksforgeeks.org/interview-experiences/qualcomm-hardware-interview-experience-soc-verification-role-6month-fte-on-campus/",
+  "qs": [
+   [
+    "Technical 2",
+    "What is a ring oscillator?"
+   ],
+   [
+    "Technical 2",
+    "Explain setup time and hold time."
+   ],
+   [
+    "Technical 2",
+    "What is static timing analysis (STA)?"
+   ],
+   [
+    "Technical 2",
+    "Explain negative feedback in an op-amp."
+   ],
+   [
+    "Technical 2",
+    "Design a summing circuit with an op-amp. What happens if you swap the inverting and non-inverting inputs?"
+   ],
+   [
+    "Technical 2",
+    "Do two flip-flops on the same clock switch at exactly the same time? How do you reduce the difference?"
+   ],
+   [
+    "Technical 2",
+    "Explain clock skew, clock uncertainty and clock jitter."
+   ],
+   [
+    "Technical 2",
+    "How does a 2-FF synchronizer work?"
+   ],
+   [
+    "Technical 2",
+    "What are cache lines, dirty lines and the dirty bit?"
+   ],
+   [
+    "Technical 2",
+    "What is a watchdog timer?"
+   ],
+   [
+    "Technical 2",
+    "What is cache memory and why is it needed?"
+   ],
+   [
+    "Technical 2",
+    "Differences between SRAM and DRAM. Why is SRAM used for cache?"
+   ],
+   [
+    "Technical 2",
+    "Write Verilog for an AND gate using a MUX."
+   ],
+   [
+    "Technical 2",
+    "Is SRAM volatile or non-volatile, and why?"
+   ],
+   [
+    "Technical 1",
+    "Write merge sort in C and give its time complexity."
+   ],
+   [
+    "Technical 2",
+    "Write binary search in pseudocode and give its time complexity."
+   ]
+  ]
+ },
+ {
+  "company": "Qualcomm",
+  "role": "DV",
+  "level": "Experienced (Engineer III)",
+  "date": "2026-06",
+  "site": "GeeksforGeeks",
+  "title": "Qualcomm interview experience, Design Verification Engineer (Engineer III)",
+  "url": "https://www.geeksforgeeks.org/interview-experiences/qualcomm-interview-experience-for-design-verification-engineer-engineer-iii/",
+  "qs": [
+   [
+    "Technical",
+    "What is the difference between simulation, emulation and formal verification?"
+   ],
+   [
+    "Technical",
+    "Explain your current role and responsibilities in design verification."
+   ],
+   [
+    "Hiring manager",
+    "Describe your most challenging verification project."
+   ]
+  ]
+ },
+ {
+  "company": "Texas Instruments",
+  "role": "Digital design",
+  "level": "Campus",
+  "date": "2024-10",
+  "site": "GeeksforGeeks",
+  "title": "Texas Instruments interview experience, Digital Design Engineer 2023",
+  "url": "https://www.geeksforgeeks.org/interview-experiences/texas-instruments-interview-experience-for-digital-design-engineer-2023/",
+  "qs": [
+   [
+    "Technical",
+    "Find the output of a logic circuit built from about seven XOR gates, and explain how you got it."
+   ],
+   [
+    "Technical",
+    "Draw a CMOS inverter and explain how it works."
+   ],
+   [
+    "Technical",
+    "Draw the PMOS and NMOS transistors separately and mark their terminals."
+   ],
+   [
+    "Technical",
+    "What is breakdown voltage? Draw the V-I curve of a diode in forward and reverse bias."
+   ],
+   [
+    "Technical",
+    "Write a program that prints 'hattrick' when a string has three consecutive w's."
+   ]
+  ]
+ },
+ {
+  "company": "Texas Instruments",
+  "role": "Digital design",
+  "level": "Campus (intern)",
+  "date": "2024-09",
+  "site": "GeeksforGeeks",
+  "title": "Texas Instruments interview experience for internships (on-campus)",
+  "url": "https://www.geeksforgeeks.org/interview-experiences/texas-instruments-interview-experience-for-internships-on-campus/",
+  "qs": [
+   [
+    "Technical",
+    "What is the most basic sequential circuit element?"
+   ],
+   [
+    "Technical",
+    "What is the difference between combinational and sequential circuits?"
+   ],
+   [
+    "Technical",
+    "Build a 3-input NAND gate using only 2:1 multiplexers."
+   ],
+   [
+    "Technical",
+    "Explain a CMOS concept you know, for example the CMOS inverter and its gate capacitance."
+   ]
+  ]
+ },
+ {
+  "company": "AMD",
+  "role": "Digital design",
+  "level": "Campus",
+  "date": "2024-05",
+  "site": "GeeksforGeeks",
+  "title": "AMD interview experience for hardware profile",
+  "url": "https://www.geeksforgeeks.org/amd-interview-experience-for-hardware-profile/",
+  "qs": [
+   [
+    "Technical",
+    "What are universal gates and why are they important?"
+   ],
+   [
+    "Technical",
+    "Draw a divide-by-2 frequency divider."
+   ],
+   [
+    "Technical",
+    "Implement a NAND gate using multiplexers."
+   ],
+   [
+    "Technical",
+    "What is Gray code, where is it used, and how do you convert binary to Gray?"
+   ],
+   [
+    "Technical",
+    "What is the difference between a flip-flop and a latch? Draw a timing diagram."
+   ],
+   [
+    "Technical",
+    "Compare Mealy and Moore state machines."
+   ],
+   [
+    "Technical",
+    "What is the difference between a D flip-flop and a T flip-flop?"
+   ],
+   [
+    "Technical",
+    "Draw the FSM for a 1011 sequence detector."
+   ],
+   [
+    "Technical",
+    "Implement an OR gate using a MUX."
+   ],
+   [
+    "Technical",
+    "What are the types of modelling in Verilog?"
+   ],
+   [
+    "Technical",
+    "Explain the UART, SPI, I2C and PCIe protocols."
+   ]
+  ]
+ },
+ {
+  "company": "Samsung Semiconductor",
+  "role": "DV",
+  "level": "Intern (campus)",
+  "date": "2024-03",
+  "site": "Taro",
+  "title": "Samsung Design Verification Engineer interview, Bengaluru",
+  "url": "https://www.jointaro.com/interviews/companies/samsung/experiences/design-verification-engineer-bengaluru-march-1-2024-accepted-offer-positive-c9b1eb62/",
+  "qs": [
+   [
+    "",
+    "What is punch-through in CMOS?"
+   ]
+  ]
+ },
+ {
+  "company": "NVIDIA",
+  "role": "RTL design",
+  "level": "Intern",
+  "date": "2025-11",
+  "site": "Taro",
+  "title": "NVIDIA ASIC Design Engineer Intern interview, San Diego",
+  "url": "https://www.jointaro.com/interviews/companies/nvidia/experiences/asic-design-engineer-intern-san-diego-california-november-14-2025-no-offer-neutral-08abdf82/",
+  "qs": [
+   [
+    "Coding",
+    "Write RTL for a synchronous FIFO with depth 5."
+   ]
+  ]
+ },
+ {
+  "company": "NVIDIA",
+  "role": "RTL design",
+  "level": "",
+  "date": "2016-10",
+  "site": "Taro",
+  "title": "NVIDIA ASIC Design Engineer interview, United States",
+  "url": "https://www.jointaro.com/interviews/companies/nvidia/experiences/asic-design-engineer-united-states-october-6-2016-no-offer-neutral-63a47ebe/",
+  "qs": [
+   [
+    "",
+    "Which timing violation cannot be fixed after tape-out: setup or hold?"
+   ]
+  ]
+ },
+ {
+  "company": "MediaTek",
+  "role": "Digital design",
+  "level": "Campus (online test)",
+  "date": "2020-04",
+  "site": "VLSI Universe",
+  "title": "MediaTek interview questions and experience",
+  "url": "https://vlsiuniverse.com/mediatek-interview-questions-and-experience/",
+  "qs": [
+   [
+    "Online test",
+    "How many states does a 4-bit synchronous counter have?"
+   ],
+   [
+    "Online test",
+    "In two's complement, what is +B if -B = 1011?"
+   ],
+   [
+    "Online test",
+    "What is the difference between a microprocessor and a microcontroller?"
+   ],
+   [
+    "Online test",
+    "A right shift and a left shift are equivalent to which arithmetic operations?"
+   ],
+   [
+    "Online test",
+    "Which logic gate can be used as a frequency multiplier?"
+   ],
+   [
+    "Online test",
+    "Hamming codes are an example of which type of coding?"
+   ],
+   [
+    "Online test",
+    "Is the NAND operation associative, commutative or distributive?"
+   ],
+   [
+    "Online test",
+    "Define a depletion-mode MOS device."
+   ]
+  ]
+ },
+ {
+  "company": "Synopsys",
+  "role": "Digital design",
+  "level": "Campus",
+  "date": "2020-04",
+  "site": "VLSI Universe",
+  "title": "Synopsys VLSI interview questions 2020",
+  "url": "https://vlsiuniverse.com/synopsys-vlsi-interview-questions-2020/",
+  "qs": [
+   [
+    "Interview",
+    "Design a frequency divider with a Johnson counter, with different duty cycles."
+   ],
+   [
+    "Interview",
+    "How many flip-flops do you need for a modulo-N counter?"
+   ],
+   [
+    "Interview",
+    "What is the difference between blocking and non-blocking assignments?"
+   ],
+   [
+    "Interview",
+    "Explain setup time and hold time in static timing analysis."
+   ],
+   [
+    "Interview",
+    "How does metastability occur?"
+   ],
+   [
+    "Interview",
+    "How do you calculate FIFO depth?"
+   ],
+   [
+    "Interview",
+    "What does a DMA controller do?"
+   ]
+  ]
+ },
+ {
+  "company": "Synopsys",
+  "role": "Physical design",
+  "level": "Intern",
+  "date": "2022-08",
+  "site": "VLSI4Freshers",
+  "title": "Synopsys interview experience for intern",
+  "url": "https://www.vlsi4freshers.com/2022/08/synopsys-interview-experience-for-intern.html",
+  "qs": [
+   [
+    "Written test",
+    "What is the difference between a flip-flop and a latch?"
+   ],
+   [
+    "Written test",
+    "What is the difference between asynchronous and synchronous reset?"
+   ],
+   [
+    "Written test",
+    "Explain the CMOS inverter and its characteristics."
+   ],
+   [
+    "Technical 1",
+    "How did you fix setup and hold violations?"
+   ],
+   [
+    "Technical 1",
+    "What is crosstalk?"
+   ],
+   [
+    "Technical 1",
+    "What is congestion?"
+   ],
+   [
+    "Technical 1",
+    "Draw the stick diagram of a CMOS inverter."
+   ],
+   [
+    "Technical 1",
+    "What is DFT? Explain the basics."
+   ],
+   [
+    "Technical 1",
+    "Explain the ASIC flow."
+   ],
+   [
+    "Technical 1",
+    "What is clock gating?"
+   ],
+   [
+    "Technical 1",
+    "Which input files does the physical design flow need?"
+   ]
+  ]
+ },
+ {
+  "company": "Synopsys",
+  "role": "RTL design",
+  "level": "",
+  "date": "2016-01",
+  "site": "VLSIFacts",
+  "title": "Synopsys interview questions based on synthesis and simulation",
+  "url": "https://vlsifacts.com/synopsys-interview-questions-based-on-synthesis-and-simulation/",
+  "qs": [
+   [
+    "",
+    "How does a latch get inferred in RTL?"
+   ],
+   [
+    "",
+    "Is a latch inferred when there is no else, but several ifs cover every case?"
+   ],
+   [
+    "",
+    "What is the problem with an asynchronous feedback loop?"
+   ],
+   [
+    "",
+    "What happens to an oscillating circuit in RTL synthesis and in simulation?"
+   ],
+   [
+    "",
+    "Where are lint tools used? Can they debug syntax?"
+   ],
+   [
+    "",
+    "How do you break a combinational loop?"
+   ],
+   [
+    "",
+    "Why do we use blocking and non-blocking assignments?"
+   ],
+   [
+    "",
+    "A case statement has no default: is there a latch, and what does simulation show if sel is X?"
+   ],
+   [
+    "",
+    "How does an always block run if it has no sensitivity list?"
+   ],
+   [
+    "",
+    "In which situations does synthesis report an error?"
+   ]
+  ]
+ },
+ {
+  "company": "NVIDIA",
+  "role": "RTL design",
+  "level": "Junior",
+  "date": "2012-01",
+  "site": "Taro",
+  "title": "NVIDIA ASIC Design Engineer interview, Hillsboro",
+  "url": "https://www.jointaro.com/interviews/companies/nvidia/experiences/asic-design-engineer-hillsboro-or-january-1-2012-no-offer-positive-5e27e362/",
+  "qs": [
+   [
+    "",
+    "What are the characteristics of CMOS?"
+   ],
+   [
+    "",
+    "Which is preferred in a design, NAND or NOR, and why?"
+   ],
+   [
+    "",
+    "Explain pipelining."
+   ],
+   [
+    "",
+    "How do you size the transistors of an inverter?"
+   ],
+   [
+    "",
+    "Explain setup and hold violations."
+   ]
+  ]
+ },
+ {
+  "company": "NVIDIA",
+  "role": "RTL design",
+  "level": "Mid-level",
+  "date": "2010-12",
+  "site": "Taro",
+  "title": "NVIDIA ASIC Design Engineer interview",
+  "url": "https://www.jointaro.com/interviews/companies/nvidia/experiences/asic-design-engineer-december-1-2010-no-offer-neutral-13c052e8/",
+  "qs": [
+   [
+    "",
+    "Implement a NOT gate using only a MUX."
+   ],
+   [
+    "",
+    "Design a state machine that outputs 1 for every two consecutive 1s."
+   ],
+   [
+    "",
+    "Why is CMOS used to implement logic gates?"
+   ],
+   [
+    "",
+    "How would you size the transistors in a 2-input NAND gate?"
+   ],
+   [
+    "",
+    "Build an XOR gate using only NOR gates."
+   ],
+   [
+    "",
+    "Count to 9 with three registers and two 2-bit full adders when one cycle only fits one adder delay."
+   ]
+  ]
+ },
+ {
+  "company": "Intel",
+  "role": "DV",
+  "level": "Intern",
+  "date": "2025-10",
+  "site": "Taro",
+  "title": "Intel CPU Design Verification Intern interview",
+  "url": "https://www.jointaro.com/interviews/companies/intel/experiences/cpu-design-verification-intern-october-1-2025-accepted-offer-positive-99dfeb16/",
+  "qs": [
+   [
+    "Technical",
+    "Design a circuit that takes a 4-bit BCD input and outputs the input multiplied by 5."
+   ],
+   [
+    "Technical",
+    "For a 32 KB, 2-way, 64-byte-line cache with MESI, give the cache and line state after a sequence of reads and writes."
+   ]
+  ]
+ },
+ {
+  "company": "Qualcomm",
+  "role": "DV",
+  "level": "",
+  "date": "2024-07",
+  "site": "Taro",
+  "title": "Qualcomm Design Verification Engineer interview, United States",
+  "url": "https://www.jointaro.com/interviews/companies/qualcomm/experiences/design-verification-engineer-united-states-july-25-2024-accepted-offer-positive-bf94d7b7/",
+  "qs": [
+   [
+    "",
+    "Draw an AND gate using transistors."
+   ]
+  ]
+ },
+ {
+  "company": "Qualcomm",
+  "role": "DV",
+  "level": "Senior",
+  "date": "2025-05",
+  "site": "Taro",
+  "title": "Qualcomm GPU Design Verification Engineer interview, Cork",
+  "url": "https://www.jointaro.com/interviews/companies/qualcomm/experiences/gpu-design-verification-engineer-may-1-2025-accepted-offer-negative-a809391b/",
+  "qs": [
+   [
+    "Technical",
+    "Name and describe the differences between the SystemVerilog fork variants (join, join_any, join_none)."
+   ]
+  ]
+ },
+ {
+  "company": "NVIDIA",
+  "role": "DV",
+  "level": "",
+  "date": "2023-09",
+  "site": "Taro",
+  "title": "NVIDIA ASIC Verification Engineer interview, India",
+  "url": "https://www.jointaro.com/interviews/companies/nvidia/experiences/asic-verification-engineer-india-september-1-2023-no-offer-positive-bf2551c6/",
+  "qs": [
+   [
+    "Programming",
+    "Find the maximum element in a rotated (shifted) sorted array."
+   ]
+  ]
+ },
+ {
+  "company": "NVIDIA",
+  "role": "RTL design",
+  "level": "New grad",
+  "date": "2025-06",
+  "site": "Taro",
+  "title": "NVIDIA ASIC Design Engineer New Grad interview",
+  "url": "https://www.jointaro.com/interviews/companies/nvidia/experiences/asic-design-engineer-new-grad-united-states-june-1-2025-no-offer-neutral-eaa422dd/",
+  "qs": [
+   [
+    "",
+    "Design an XNOR gate using a 2:1 MUX."
+   ],
+   [
+    "",
+    "Design a sticky register that stays at 1 once set."
+   ],
+   [
+    "",
+    "Why are fuses important in an SoC?"
+   ]
+  ]
+ },
+ {
+  "company": "AMD",
+  "role": "DV",
+  "level": "",
+  "date": "2025-03",
+  "site": "Taro",
+  "title": "AMD Design Verification Engineer interview, Markham",
+  "url": "https://www.jointaro.com/interviews/companies/amd/experiences/design-verification-engineer-markham-on-march-24-2025-no-offer-positive-536410e3/",
+  "qs": [
+   [
+    "",
+    "For an 8-bit stack-based chip, list the corner cases and possible errors, and how you would test them in a Verilog testbench."
+   ]
+  ]
+ },
+ {
+  "company": "Qualcomm",
+  "role": "DV",
+  "level": "",
+  "date": "2019-09",
+  "site": "Taro",
+  "title": "Qualcomm Design Verification Engineer interview, Bangalore",
+  "url": "https://www.jointaro.com/interviews/companies/qualcomm/experiences/design-verification-engineer-noida-bengaluru-july-1-2019-accepted-offer-positive-e3211458/",
+  "qs": [
+   [
+    "",
+    "What are the UVM phases and why do we use them?"
+   ],
+   [
+    "",
+    "What is the difference between AXI and AHB, in terms of the AXI channels?"
+   ],
+   [
+    "",
+    "Explain the SystemVerilog testbench: interface, clocking block, program block and virtual interface."
+   ]
+  ]
+ },
+ {
+  "company": "Apple",
+  "role": "DV",
+  "level": "",
+  "date": "2025-01",
+  "site": "Taro",
+  "title": "Apple Design Verification Engineer interview, Cupertino",
+  "url": "https://www.jointaro.com/interviews/companies/apple/experiences/design-verification-engineer-cupertino-ca-january-1-2025-no-offer-positive-bfcde7f9/",
+  "qs": [
+   [
+    "",
+    "Explain a FIFO, clock generation and a state machine."
+   ]
+  ]
+ },
+ {
+  "company": "Broadcom",
+  "role": "RTL design",
+  "level": "",
+  "date": "2023-10",
+  "site": "Taro",
+  "title": "Broadcom Engineer interview, United States",
+  "url": "https://www.jointaro.com/interviews/companies/broadcom/experiences/engineer-united-states-october-27-2023-no-offer-positive-a2a05695/",
+  "qs": [
+   [
+    "",
+    "Explain clock domain crossing."
+   ],
+   [
+    "",
+    "Explain adder structures."
+   ]
+  ]
+ },
+ {
+  "company": "Qualcomm",
+  "role": "Digital design",
+  "level": "Campus (written test)",
+  "date": "2020-04",
+  "site": "VLSI Universe",
+  "title": "Qualcomm interview experience 2020",
+  "url": "https://vlsiuniverse.com/qualcomm-interview-experience-2020/",
+  "qs": [
+   [
+    "Written test",
+    "Design a mod-5 counter with JK flip-flops."
+   ],
+   [
+    "Written test",
+    "How many 8 KB chips do you need for a 256 KB memory?"
+   ],
+   [
+    "Written test",
+    "Find the fanout of a gate from its IOH, IOL, IIH and IIL currents."
+   ],
+   [
+    "Written test",
+    "Find the switching threshold of a CMOS NOR2 gate with Vtn = 2Vtp and Kp = 2Kn."
+   ],
+   [
+    "Written test",
+    "Write the truth table of a full subtractor."
+   ]
+  ]
+ },
+ {
+  "company": "Intel",
+  "role": "Digital design",
+  "level": "Campus",
+  "date": "2025-08",
+  "site": "GeeksforGeeks",
+  "title": "Intel interview experience, set 4 (on-campus, full time)",
+  "url": "https://www.geeksforgeeks.org/interview-experiences/intel-interview-experience-set-4-campus-full-time/",
+  "qs": [
+   [
+    "Technical",
+    "How would you design an efficient digital traffic-light controller?"
+   ],
+   [
+    "Technical",
+    "What are a cache and a TLB?"
+   ],
+   [
+    "Technical",
+    "What is virtual memory?"
+   ]
+  ]
+ }
+]

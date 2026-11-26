@@ -21,6 +21,8 @@ const LABS = [
     desc: "Static timing analysis with OpenSTA: netlists, SDC, Liberty and SPEF. Setup and hold, exceptions, OCV, multi-corner and power reports." },
   { id: "pd", title: "Physical design labs", href: "/pd/", tag: "Physical design · OpenROAD · 22 labs · quizzes",
     desc: "Floorplan, placement, CTS, routing and signoff with OpenROAD on Sky130: real layouts and reports for every setting, live signoff STA, and a RISC-V project." },
+  { id: "interview", title: "Interview questions by company", href: "/interview/", tag: "Interview prep",
+    desc: "Real VLSI interview questions reported by candidates, by company, role and topic, with links to the source." },
   { id: "tips", title: "Vikas Sachdeva's tips", href: "/tips/", tag: "Tips",
     desc: "Practical tips on verification, timing and chip design from 20 years in EDA." },
 ];
@@ -61,7 +63,7 @@ const HOME_CARDS = [
   if (nav) {
     // Short labels for the tab bar; the full titles stay on the cards.
     const SHORT = { logic: "Logic design", verilog: "Verilog", systemverilog: "SystemVerilog", vhdl: "VHDL", sva: "SVA & coverage", dv: "DV",
-      synth: "Synthesis", cdc: "CDC", sta: "STA & SDC", pd: "Physical design", tips: "Tips" };
+      synth: "Synthesis", cdc: "CDC", sta: "STA & SDC", pd: "Physical design", interview: "Interview Qs", tips: "Tips" };
     const inner = document.createElement("div");
     inner.className = "labs-in";
     const home = document.createElement("a");
@@ -456,8 +458,8 @@ window.vddQuizNudge = function () {
   const get = (u) => fetch(u, { cache: "no-cache" }).then((r) => (r.ok ? r.json() : null)).catch(() => null);
   function load() {
     if (loading) return loading;
-    loading = Promise.all([get("/share-index.json"), get("/all-videos.json"), get("/latest-videos.json"),
-      fetch("/tips/tips.md").then((r) => (r.ok ? r.text() : "")).catch(() => "")]).then(([labs, all, latest, tips]) => {
+    loading = Promise.all([get("/share-index.json"), get("/all-videos.json"), get("/latest-videos.json"), get("/interview-questions.json"),
+      fetch("/tips/tips.md").then((r) => (r.ok ? r.text() : "")).catch(() => "")]).then(([labs, all, latest, iq, tips]) => {
       const out = [];
       for (const [id, l] of Object.entries(labs || {}))
         out.push({ k: "lab", t: l.n, s: (TOOL[l.t] || l.t) + " · " + l.g, u: l.u, x: [l.n, l.g, TOOL[l.t] || l.t, id, ...(l.q || [])].join(" ") });
@@ -467,6 +469,8 @@ window.vddQuizNudge = function () {
         const wt = /Lab Walkthrough/i.test(v.title);
         out.push({ k: "video", t: v.title, s: wt ? "Lab walkthrough video" : "YouTube video", u: "https://www.youtube.com/watch?v=" + v.id, x: v.title, ext: 1, wt });
       }
+      for (const q of (iq && iq.questions) || [])
+        out.push({ k: "iq", t: q.q, s: "Interview · " + q.c + (q.r ? " · " + q.r : "") + (q.y ? " · " + q.y : ""), u: "/interview/?q=" + encodeURIComponent(q.q.split(/\s+/).slice(0, 6).join(" ")) + "&company=" + encodeURIComponent(q.c), x: [q.q, q.c, q.tp, q.r].join(" ") });
       for (const blk of (tips || "").replace(/<!--[\s\S]*?-->/g, "").split(/^## /m).slice(1)) {
         const title = blk.split("\n")[0].trim(); const topic = (blk.match(/^Topic:\s*(.+)$/m) || [])[1] || "";
         const id = title.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
@@ -480,9 +484,9 @@ window.vddQuizNudge = function () {
 
   // "RISC-V", "risc v" and "riscv" all match: case, hyphens, dots, slashes and underscores are ignored.
   const norm = (s) => s.toLowerCase().replace(/[-_./]/g, "");
-  const KINDS = [["all", "All"], ["lab", "Labs"], ["video", "Videos"], ["tip", "Tips"]];
-  const HEAD = { track: "Lab tracks", lab: "Labs", video: "Videos", tip: "Tips" };
-  const ICON = { track: "🧭", lab: "🧪", video: "▶", tip: "💡" };
+  const KINDS = [["all", "All"], ["lab", "Labs"], ["video", "Videos"], ["iq", "Interview"], ["tip", "Tips"]];
+  const HEAD = { track: "Lab tracks", lab: "Labs", video: "Videos", iq: "Interview questions", tip: "Tips" };
+  const ICON = { track: "🧭", lab: "🧪", video: "▶", iq: "🎯", tip: "💡" };
   let back, input, list, kind = "all", sel = 0, shown = [];
 
   function score(it, toks, q) {
@@ -503,12 +507,12 @@ window.vddQuizNudge = function () {
     list.innerHTML = "";
     if (!items) { list.innerHTML = '<div class="ss-empty">Loading…</div>'; return; }
     if (!toks.length) { list.innerHTML = '<div class="ss-empty">Search ' + items.filter((i) => i.k === "lab").length + " labs, " + items.filter((i) => i.k === "video").length +
-      ' videos and the tips. Try <b>setup hold</b>, <b>async FIFO</b>, <b>covergroup</b> or <b>RISC-V</b>.</div>'; shown = []; return; }
-    const groups = { track: [], lab: [], video: [], tip: [] };
+      ' videos, interview questions and tips. Try <b>setup hold</b>, <b>async FIFO</b>, <b>covergroup</b> or <b>RISC-V</b>.</div>'; shown = []; return; }
+    const groups = { track: [], lab: [], video: [], iq: [], tip: [] };
     for (const it of items) { if (kind !== "all" && it.k !== kind && !(kind === "lab" && it.k === "track")) continue; const s = score(it, toks, q); if (s >= 0) groups[it.k].push([s, it]); }
     shown = [];
-    const cap = kind === "all" ? { track: 3, lab: 8, video: 8, tip: 4 } : { track: 5, lab: 60, video: 60, tip: 20 };
-    for (const k of ["lab", "video", "tip", "track"]) {
+    const cap = kind === "all" ? { track: 3, lab: 8, video: 8, iq: 5, tip: 4 } : { track: 5, lab: 60, video: 60, iq: 60, tip: 20 };
+    for (const k of ["lab", "video", "iq", "tip", "track"]) {
       const g = groups[k].sort((a, b) => b[0] - a[0]).slice(0, cap[k]);
       if (!g.length) continue;
       const h = document.createElement("div"); h.className = "ss-h"; h.textContent = HEAD[k] + " · " + groups[k].length; list.appendChild(h);
@@ -527,7 +531,7 @@ window.vddQuizNudge = function () {
   function build() {
     back = document.createElement("div"); back.className = "ss-back"; back.hidden = true;
     back.innerHTML = '<div class="ss-box" role="dialog" aria-modal="true" aria-label="Search"><div class="ss-top"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>' +
-      '<input class="ss-in" type="search" placeholder="Search labs, videos and tips" autocomplete="off" spellcheck="false" aria-label="Search"><button type="button" class="ss-x" aria-label="Close search" title="Close (Esc)">✕</button></div>' +
+      '<input class="ss-in" type="search" placeholder="Search labs, videos, interview questions and tips" autocomplete="off" spellcheck="false" aria-label="Search"><button type="button" class="ss-x" aria-label="Close search" title="Close (Esc)">✕</button></div>' +
       '<div class="ss-tabs" role="group" aria-label="Show"></div><div class="ss-list" role="listbox"></div>' +
       '<div class="ss-foot"><span>↑ ↓ to move</span><span>Enter to open</span><span>Esc to close</span></div></div>';
     document.body.appendChild(back);
