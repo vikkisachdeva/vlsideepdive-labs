@@ -1,6 +1,14 @@
 {
-"updated": "2026-11-26T13:10:55+00:00",
+"updated": "2026-11-26T22:27:41+00:00",
 "videos": [
+{
+"id": "fm42-SsctHw",
+"title": "riscv-dv in miniature: random RISC-V instructions vs an ISS | Verification Lab Walkthrough"
+},
+{
+"id": "qWE69_L-OIw",
+"title": "Your first concurrent assertion: request and acknowledge | SVA Lab Walkthrough"
+},
 {
 "id": "VMsCLNT9mfg",
 "title": "Advanced STA Part 4 | How to Fix Setup and Hold Violations"
