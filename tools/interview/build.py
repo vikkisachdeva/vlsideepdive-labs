@@ -85,12 +85,79 @@ def all_links(q):
         if not any(o['u'] == l['u'] for o in out) and not (l['k'] == 'lab' and sum(o['k'] == 'lab' for o in out) >= 2): out.append(l)
     return out
 
+
+# How-to-answer tips for questions with no lab: (key, regex, title, steps). First match wins.
+TIPS = [
+ ('behav', r"tell (me|us) about yourself|introduce yourself|why (do you want|did you|should we|this|intel|arm|apple|nvidia|qualcomm|amd|ti|join)|strength|weakness|deadline|conflict|team ?mate|teamwork|mistake|pressure|in (5|five) years|leadership|motivat|reason for (the )?(job )?change|leaving|expectation|salary|relocat|mentor|difficult (person|situation|engineer|time)|criticism|proud|priorit|stress|failure|disagree|initiative|work with people",
+  "Behavioural: answer with STAR",
+  ["Situation: one sentence of context (project, team, deadline).",
+   "Task: what you owned. Say 'I', not 'we'.",
+   "Action: two or three concrete steps you took, with the technical detail.",
+   "Result: a number if you have one (bugs found, weeks saved, tape-out met), then what you learned.",
+   "Keep it under 2 minutes. Prepare 5 stories in advance and reuse them."]),
+ ('project', r"(your|my) (project|current role|role|previous|thesis|research|work|resume|cv|internship|experience)|projects? (on|in|from) (your|my) (resume|cv)|describe (a|the) (design|project|block) (you|i)|bugs? you (found|have|debugged)|you worked on|most challenging (project|bug)|explain (one of )?(your|my)|past experience|what did you (do|achieve)|walk (me )?through your|responsibilit",
+  "Project deep dive: lead with a block diagram",
+  ["Start with the one-line purpose and your exact role (what you designed or verified yourself).",
+   "Draw the block diagram: interfaces, clocks, data width, throughput.",
+   "Pick the hardest problem: a bug, a timing path, a coverage hole. Explain how you found and fixed it.",
+   "Give numbers: frequency, area, test count, coverage, bugs found.",
+   "Expect follow-ups on every word on your resume. Know why you made each choice."]),
+ ('verify', r"verif|test ?plan|corner case|test cases|how (would|do) you test|validate|validation|coverage|debug|checks? (would|do) you|make sure .* works",
+  "Verification question: plan before code",
+  ["List the features from the spec, then the checks for each feature.",
+   "Stimulus: directed tests for the basics, constrained random for the rest.",
+   "Checking: a reference model or scoreboard, plus assertions on the protocol.",
+   "Corner cases: empty/full, reset in the middle, back-to-back, max/min values, errors.",
+   "Close with coverage: functional coverage on features, code coverage to find holes."]),
+ ('flow', r"\bflow\b(?! betw)|steps|walk through|methodology|sign.?off|stages|process of",
+  "Flow question: stages, inputs, outputs, checks",
+  ["Name the stages in order (e.g. RTL, synthesis, floorplan, place, CTS, route, signoff).",
+   "For each stage give the input files, the output and the main check (lint, STA, DRC/LVS, IR).",
+   "Mention one real problem you met at a stage and how it was fixed.",
+   "Finish with what decides sign-off: timing, power, physical checks, equivalence."]),
+ ('draw', r"\bdraw\b|sketch|plot|cross.section|characteristic|curve|bode|waveform|timing diagram",
+  "Drawing question: draw, label, explain",
+  ["Draw it clean and big; label every node, terminal and axis.",
+   "Walk through it region by region (or input by input) out loud.",
+   "Mark the key numbers: threshold, gain, cut-off, delay.",
+   "Say what changes if a parameter changes (load, size, temperature)."]),
+ ('code', r"\b(c|c\+\+|python|perl|tcl)\b|\bwrite (a |the )?(c |python )?(program|function|code)|linked list|\barray|\bstring|\bsort|complexity|binary (tree|search)|palindrome|pointer|recursion|data structure|structure and a union|volatile|memcpy",
+  "Coding question: clarify, solve, test",
+  ["Ask about input size, types and edge cases before writing.",
+   "Say the simple solution first, then improve it; state time and space complexity.",
+   "Write clean code with good names; talk while you write.",
+   "Test it by hand on a normal case and two edge cases (empty, one element, maximum)."]),
+ ('calc', r"calculate|compute|find the|how many|how much|what is the (value|voltage|current|delay|frequency|probability|snr|minimum|maximum|output)|\d+ ?(mhz|ghz|ns|us|ma|kb|mb|v\b|pf|ohm)",
+  "Numerical question: think out loud",
+  ["Restate the problem and write down what is given.",
+   "Write the formula before plugging in numbers.",
+   "Check units and sanity: is the answer in a sensible range?",
+   "If unsure, say your assumption; interviewers mark the method more than the number."]),
+ ('design', r"^(design|build|implement|create|make|how (would|do) you (design|build|implement|make|create))",
+  "Design question: requirements first",
+  ["Ask for the requirements: throughput, latency, widths, clocks, reset, area or power target.",
+   "Draw a block diagram, then the interfaces and the timing of one transaction.",
+   "Pick the hard part (control FSM, hazard, clock crossing) and detail it.",
+   "Discuss trade-offs and how you would verify it."]),
+ ('concept', r".",
+  "Concept question: define, why, example, trade-off",
+  ["One-line definition first.",
+   "Why it exists: the problem it solves.",
+   "A small example or diagram (a circuit, a waveform, a code snippet).",
+   "The trade-off or failure mode, and where you have seen it in real designs."]),
+]
+def tip(q, tp):
+    if tp == 'Behavioral & projects':
+        return 'project' if re.search(TIPS[1][1], q, re.I) else 'behav'
+    return next(k for k, rx, *_ in TIPS[2:] if re.search(rx, q, re.I))
+
 Q = []
 for s in S:
     for rnd, q in s['qs']:
-        topic = next(n for n, rx in TOPICS if re.search(rx, q, re.I))
+        topic = 'Behavioral & projects' if rnd in ('Behavioral', 'Hiring manager', 'HR') else next(n for n, rx in TOPICS if re.search(rx, q, re.I))
         Q.append({'q': q, 'c': s['company'], 'r': s.get('role', ''), 'rd': rnd, 'lv': s.get('level', ''), 'y': s.get('date', '')[:4],
-                  'tp': topic, 'src': s['url'], 'sn': s.get('site', ''), 'st': s.get('title', ''), 'p': all_links(q)})
+                  'tp': topic, 'src': s['url'], 'sn': s.get('site', ''), 'st': s.get('title', ''), 'p': [] if topic == 'Behavioral & projects' else all_links(q)})
+        if not Q[-1]['p'] or Q[-1]['tp'] == 'Behavioral & projects': Q[-1]['h'] = tip(q, topic)
 # same question reported more than once (same company, normalized text) -> count
 def norm(t): return re.sub(r'[^a-z0-9]+', ' ', t.lower()).strip()
 seen = {}
@@ -100,7 +167,7 @@ for x in Q:
     else: seen[k] = x
 Q = list(seen.values())
 Q.sort(key=lambda x: (x['c'], x['tp'], x['q']))
-out = {'updated': max(s.get('added', '') for s in S) or '', 'sources': len(S), 'questions': Q}
+out = {'tips': {k: {'t': t, 's': st} for k, rx, t, st in TIPS}, 'updated': max(s.get('added', '') for s in S) or '', 'sources': len(S), 'questions': Q}
 json.dump(out, open(os.path.join(REPO, 'interview-questions.json'), 'w'), ensure_ascii=False, separators=(',', ':'))
 from collections import Counter
 print(len(Q), 'questions', Counter(x['c'] for x in Q).most_common(), Counter(x['tp'] for x in Q).most_common(), sum(1 for x in Q if x['p']), 'with practice links')

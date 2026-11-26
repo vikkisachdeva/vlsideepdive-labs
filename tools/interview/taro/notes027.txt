@@ -1,0 +1,70 @@
+@amd/hardware-engineer-pey-toronto-on-september-1-2017-accepted-offer-positive-466b4814
+Behavioral :: Walk me through your previous work experience and projects.
+Behavioral :: Tell me about a time a team member was not pulling their weight on a project. How did you resolve it?
+@amd/hardware-engineer-austin-tx-march-1-2012-declined-offer-positive-d4bd5fa0
+Behavioral :: Where do you see yourself 10 years from now?
+@amd/verification-engineer-april-1-2012-no-offer-negative-fdedab03
+Behavioral :: Who is the most difficult person you have worked with, and how did you handle it?
+@amd/system-validation-engineer-intern-canada-november-28-2024-no-offer-positive-7c16fce9
+Behavioral :: What would you do in a tight-deadline situation?
+@broadcom/senior-hardware-engineer-bengaluru-july-12-2025-accepted-offer-positive-0d927876
+Behavioral :: What was the biggest challenge you solved, and how?
+@broadcom/senior-staff-hardware-engineer-sunnyvale-ca-july-1-2010-accepted-offer-positive-dfd9dc10
+Behavioral :: Where do you see yourself in 5 years: a managerial role or an individual contributor?
+@cisco/asic-engineer-i-united-states-november-1-2024-no-offer-positive-9ee1445a
+Behavioral :: What is your best accomplishment?
+@cisco/system-validation-engineer-united-states-july-1-2024-no-offer-positive-76d2a956
+Behavioral :: What is the most difficult project you have worked on?
+@juniper-networks/asic-design-engineer-united-states-january-6-2015-no-offer-neutral-707447f8
+Behavioral :: What was the most challenging design problem you ever had to solve?
+@juniper-networks/senior-staff-hardware-engineer-sunnyvale-california-october-1-2015-accepted-offer-neutral-f82c2cd3
+Behavioral :: What obstacles did you meet at work, and how did you resolve them?
+@juniper-networks/hardware-engineer-routing-systems-san-jose-california-december-1-2014-no-offer-positive-ace7ca8c
+Behavioral :: What on your resume are you most proud of, and what is most interesting?
+@marvell-technology/design-verification-engineer-santa-clara-california-august-1-2011-no-offer-neutral-9d570ac4
+Behavioral :: How would you deal with a difficult design engineer?
+Behavioral :: What would you do if you made a big mistake?
+@micron-technology/senior-verification-engineer-india-february-27-2022-accepted-offer-positive-58241fba
+Behavioral :: What is the most challenging task you have done in your career so far?
+@micron-technology/hardware-engineer-intern-boise-idaho-october-1-2024-no-offer-positive-c899e535
+Behavioral :: Tell me about a personal project: what prompted it, what was the technical problem, and what were the results?
+@texas-instruments/product-test-and-validation-engineer-dallas-texas-january-1-2025-no-offer-neutral-628fd88e
+Behavioral :: Tell me about an organizational strategy you use, and how it has helped and hurt you.
+@texas-instruments/product-test-and-validation-engineer-united-states-february-12-2021-no-offer-neutral-0a61b2f2
+Behavioral :: How did you change someone's way of thinking?
+@texas-instruments/product-test-and-validation-richardson-texas-september-1-2020-accepted-offer-positive-53854157
+Behavioral :: How do you get a quiet person in a team to share their opinions?
+@texas-instruments/validation-engineer-united-states-march-2-2023-no-offer-neutral-a8f4b9ac
+Behavioral :: Describe a time when you showed leadership.
+@texas-instruments/design-verification-engineer-united-states-september-21-2023-no-offer-positive-e783f35f
+Behavioral :: How did you solve a difficult problem in a previous role?
+@synopsys/asic-engineer-ottawa-ontario-october-1-2022-accepted-offer-positive-e17bbfc9
+Behavioral :: What are your strengths and weaknesses?
+Behavioral :: Give an example of a time you took initiative.
+@synopsys/asic-engineer-los-angeles-california-november-25-2024-accepted-offer-positive-c3a3fadd
+Behavioral :: What are your weaknesses, and how do you overcome them at work?
+@tesla/silicon-development-engineer-february-15-2026-no-offer-neutral-0710da78
+Behavioral :: Describe a project: what technical challenges came up, and how did you handle them?
+@tesla/systems-validation-engineer-intern-united-states-september-28-2024-no-offer-positive-f30da2b9
+Behavioral :: Give an example of a time you solved a complex technical problem.
+@optiver/fpga-intern-amsterdam-north-holland-january-2-2026-no-offer-positive-3f31563a
+Behavioral :: Tell me about a time you struggled working in a team on a large project.
+@imc-trading/graduate-hardware-engineer-united-states-october-10-2019-no-offer-positive-fa1bcaf8
+Behavioral :: What is one criticism you have received from friends or teammates?
+@siemens/associate-applications-engineer-united-states-january-19-2023-accepted-offer-positive-145f7e84
+Behavioral :: How do you work with people who are difficult to work with?
+Behavioral :: How do you handle several tasks at the same time?
+@intel/hardware-engineer-santa-clara-ca-january-1-2024-declined-offer-positive-4f6a4da7
+Behavioral :: Describe a significant technical challenge on a project: your approach and the outcome.
+@nvidia/design-verification-engineer-haifa-june-1-2024-no-offer-positive-ea028f2d
+Behavioral :: Why should we pick you over other candidates?
+@intel/hardware-engineer-guadalajara-jalisco-june-1-2026-no-offer-negative-d3f1dcdc
+Behavioral :: Why should we hire you?
+@arm/graduate-hardware-engineer-cambridge-cambridgeshire-december-1-2023-no-offer-positive-6b444f48
+Behavioral :: Why Arm? Describe a time you improved something.
+@arm/graduate-hardware-engineer-cambridge-cambridgeshire-june-5-2017-accepted-offer-positive-7e31e841
+Behavioral :: Tell us about a time you hit problems on a project and how you solved them.
+@marvell-technology/validation-engineer-santa-clara-california-june-22-2026-no-offer-neutral-209f5783
+Behavioral :: Introduce yourself and describe your technical background.
+@qualcomm/hardware-engineer-intern-bangalore-rural-august-1-2023-no-offer-neutral-bccfb8f6
+Behavioral :: What do you know about Qualcomm?
