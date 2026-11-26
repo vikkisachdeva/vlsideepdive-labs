@@ -724,5 +724,11 @@
   "t": "4\u00d72 encoder",
   "m": 1,
   "from": "2026-12-17T09:00+05:30"
+ },
+ "dv-rv1": {
+  "id": "fm42-SsctHw",
+  "t": "riscv-dv in miniature",
+  "m": 1,
+  "from": "2026-11-26T19:00+05:30"
  }
 }
