@@ -468,12 +468,14 @@ window.vddQuizNudge = function () {
         const id = title.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
         out.push({ k: "tip", t: title, s: "Tip" + (topic ? " · " + topic : ""), u: "/tips/#" + id, x: title + " " + topic + " " + blk });
       }
-      for (const it of out) { it.lt = it.t.toLowerCase(); it.lx = it.x.toLowerCase(); }
+      for (const it of out) { it.lt = norm(it.t); it.lx = norm(it.x); }
       items = out; return out;
     });
     return loading;
   }
 
+  // "RISC-V", "risc v" and "riscv" all match: case, hyphens, dots, slashes and underscores are ignored.
+  const norm = (s) => s.toLowerCase().replace(/[-_./]/g, "");
   const KINDS = [["all", "All"], ["lab", "Labs"], ["video", "Videos"], ["tip", "Tips"]];
   const HEAD = { track: "Lab tracks", lab: "Labs", video: "Videos", tip: "Tips" };
   const ICON = { track: "🧭", lab: "🧪", video: "▶", tip: "💡" };
@@ -489,11 +491,11 @@ window.vddQuizNudge = function () {
   const esc = (s) => s.replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
   function hi(text, toks) {
     let h = esc(text);
-    for (const t of toks.filter((t) => t.length > 1)) h = h.replace(new RegExp("(" + esc(t).replace(/[.*+?^${}()|[\]\\]/g, "\\$&") + ")", "ig"), "<mark>$1</mark>");
+    for (const t of toks.filter((t) => t.length > 1)) h = h.replace(new RegExp("(" + [...esc(t)].map((c) => c.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")).join("[-_./]?") + ")", "ig"), "<mark>$1</mark>");
     return h;
   }
   function render() {
-    const q = input.value.trim().toLowerCase(), toks = q.split(/\s+/).filter(Boolean);
+    const raw = input.value.trim().toLowerCase(), toks = raw.split(/\s+/).map(norm).filter(Boolean), q = toks.join(" ");
     list.innerHTML = "";
     if (!items) { list.innerHTML = '<div class="ss-empty">Loading…</div>'; return; }
     if (!toks.length) { list.innerHTML = '<div class="ss-empty">Search ' + items.filter((i) => i.k === "lab").length + " labs, " + items.filter((i) => i.k === "video").length +
