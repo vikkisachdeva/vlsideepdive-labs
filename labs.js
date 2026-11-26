@@ -404,3 +404,157 @@ window.vddQuizNudge = function () {
   }
   bar.querySelector("span").innerHTML = `Report ready. <b>Answer ${left} question${left === 1 ? "" : "s"}</b> to pass this lab.`;
 };
+
+// Site search: a Search button in the tab bar (and the "/" or Ctrl+K shortcut) opens a box
+// that searches every lab, track, YouTube video and tip. Data loads on first open.
+(function () {
+  const nav = document.getElementById("labs-nav");
+  if (!nav) return;
+  const css = `
+.labs-nav { display: flex; align-items: stretch; }
+.labs-nav .labs-wrap { flex: 1; min-width: 0; margin: 0; }
+.ss-btn { flex: none; display: inline-flex; align-items: center; gap: 7px; margin: 7px 12px 7px 4px; padding: 0 12px; height: 33px;
+  border: 1px solid var(--line); border-radius: 8px; background: var(--bg); color: var(--muted); font: 600 13px/1 inherit; font-family: inherit; cursor: pointer; }
+.ss-btn:hover { color: var(--text); border-color: var(--muted); }
+.ss-btn kbd { font: 500 11px/1 ui-monospace, monospace; border: 1px solid var(--line); border-radius: 4px; padding: 3px 5px; color: var(--muted); }
+@media (max-width: 640px) { .ss-btn .ss-l, .ss-btn kbd { display: none; } .ss-btn { padding: 0 9px; margin-right: 8px; } }
+.ss-back { position: fixed; inset: 0; z-index: 9999; background: rgba(5, 12, 16, .55); display: flex; justify-content: center; align-items: flex-start; padding: 8vh 16px 16px; }
+.ss-box { width: 100%; max-width: 680px; max-height: 80vh; display: flex; flex-direction: column; background: var(--panel); color: var(--text);
+  border: 1px solid var(--line); border-radius: 14px; box-shadow: 0 20px 60px rgba(0,0,0,.35); overflow: hidden; }
+.ss-top { display: flex; align-items: center; gap: 10px; padding: 12px 14px; border-bottom: 1px solid var(--line); }
+.ss-top svg { flex: none; color: var(--muted); }
+.ss-in { flex: 1; min-width: 0; border: 0; outline: 0; background: transparent; color: var(--text); font: 500 17px/1.3 inherit; font-family: inherit; }
+.ss-x { border: 1px solid var(--line); background: transparent; color: var(--muted); border-radius: 6px; font: 500 12px/1 inherit; font-family: inherit; padding: 5px 7px; cursor: pointer; }
+.ss-tabs { display: flex; gap: 6px; padding: 10px 14px 0; flex-wrap: wrap; }
+.ss-tab { border: 1px solid var(--line); background: transparent; color: var(--muted); border-radius: 999px; padding: 5px 11px; font: 600 12px/1 inherit; font-family: inherit; cursor: pointer; }
+.ss-tab[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: #fff; }
+.ss-list { overflow-y: auto; padding: 6px 8px 10px; }
+.ss-h { font: 700 11px/1 ui-monospace, monospace; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); padding: 14px 8px 6px; }
+.ss-r { display: flex; gap: 10px; align-items: flex-start; padding: 9px 10px; border-radius: 9px; text-decoration: none; color: var(--text); }
+.ss-r:hover, .ss-r.on { background: var(--bg); }
+.ss-r.on { outline: 2px solid var(--accent); outline-offset: -2px; }
+.ss-ic { flex: none; width: 28px; height: 28px; border-radius: 7px; display: grid; place-items: center; font-size: 14px; background: var(--bg); border: 1px solid var(--line); }
+.ss-t { font-weight: 600; font-size: 14.5px; line-height: 1.35; }
+.ss-t mark { background: transparent; color: var(--accent); }
+.ss-s { color: var(--muted); font-size: 12.5px; margin-top: 2px; }
+.ss-empty { color: var(--muted); padding: 22px 12px; font-size: 14px; line-height: 1.5; }
+.ss-foot { border-top: 1px solid var(--line); padding: 8px 14px; color: var(--muted); font-size: 12px; display: flex; gap: 14px; flex-wrap: wrap; }`;
+  const st = document.createElement("style"); st.textContent = css; document.head.appendChild(st);
+
+  const btn = document.createElement("button");
+  btn.type = "button"; btn.className = "ss-btn"; btn.setAttribute("aria-label", "Search labs, videos and tips");
+  btn.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg><span class="ss-l">Search</span><kbd>/</kbd>';
+  nav.appendChild(btn);
+
+  const TOOL = { logic: "Logic design", verilog: "Verilog", systemverilog: "SystemVerilog", vhdl: "VHDL", sva: "SVA & coverage", dv: "Design verification",
+    synth: "Synthesis", cdc: "CDC", sta: "STA & SDC", pd: "Physical design" };
+  let items = null, loading = null;
+  const get = (u) => fetch(u, { cache: "no-cache" }).then((r) => (r.ok ? r.json() : null)).catch(() => null);
+  function load() {
+    if (loading) return loading;
+    loading = Promise.all([get("/share-index.json"), get("/all-videos.json"), get("/latest-videos.json"),
+      fetch("/tips/tips.md").then((r) => (r.ok ? r.text() : "")).catch(() => "")]).then(([labs, all, latest, tips]) => {
+      const out = [];
+      for (const [id, l] of Object.entries(labs || {}))
+        out.push({ k: "lab", t: l.n, s: (TOOL[l.t] || l.t) + " · " + l.g, u: l.u, x: [l.n, l.g, TOOL[l.t] || l.t, id, ...(l.q || [])].join(" ") });
+      for (const c of HOME_CARDS) out.push({ k: "track", t: c.title, s: c.tag, u: c.href, x: c.title + " " + c.tag });
+      const vids = (all && all.videos) || (latest && latest.videos) || [];
+      for (const v of vids) {
+        const wt = /Lab Walkthrough/i.test(v.title);
+        out.push({ k: "video", t: v.title, s: wt ? "Lab walkthrough video" : "YouTube video", u: "https://www.youtube.com/watch?v=" + v.id, x: v.title, ext: 1, wt });
+      }
+      for (const blk of (tips || "").replace(/<!--[\s\S]*?-->/g, "").split(/^## /m).slice(1)) {
+        const title = blk.split("\n")[0].trim(); const topic = (blk.match(/^Topic:\s*(.+)$/m) || [])[1] || "";
+        const id = title.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+        out.push({ k: "tip", t: title, s: "Tip" + (topic ? " · " + topic : ""), u: "/tips/#" + id, x: title + " " + topic + " " + blk });
+      }
+      for (const it of out) { it.lt = it.t.toLowerCase(); it.lx = it.x.toLowerCase(); }
+      items = out; return out;
+    });
+    return loading;
+  }
+
+  const KINDS = [["all", "All"], ["lab", "Labs"], ["video", "Videos"], ["tip", "Tips"]];
+  const HEAD = { track: "Lab tracks", lab: "Labs", video: "Videos", tip: "Tips" };
+  const ICON = { track: "🧭", lab: "🧪", video: "▶", tip: "💡" };
+  let back, input, list, kind = "all", sel = 0, shown = [];
+
+  function score(it, toks, q) {
+    let s = 0;
+    for (const t of toks) { if (!it.lx.includes(t)) return -1; if (it.lt.includes(t)) s += 3; if (new RegExp("\\b" + t.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")).test(it.lt)) s += 2; }
+    if (it.lt.startsWith(q)) s += 4; if (it.lt.includes(q)) s += 3;
+    if (it.wt) s -= 1;
+    return s;
+  }
+  const esc = (s) => s.replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+  function hi(text, toks) {
+    let h = esc(text);
+    for (const t of toks.filter((t) => t.length > 1)) h = h.replace(new RegExp("(" + esc(t).replace(/[.*+?^${}()|[\]\\]/g, "\\$&") + ")", "ig"), "<mark>$1</mark>");
+    return h;
+  }
+  function render() {
+    const q = input.value.trim().toLowerCase(), toks = q.split(/\s+/).filter(Boolean);
+    list.innerHTML = "";
+    if (!items) { list.innerHTML = '<div class="ss-empty">Loading…</div>'; return; }
+    if (!toks.length) { list.innerHTML = '<div class="ss-empty">Search ' + items.filter((i) => i.k === "lab").length + " labs, " + items.filter((i) => i.k === "video").length +
+      ' videos and the tips. Try <b>setup hold</b>, <b>async FIFO</b>, <b>covergroup</b> or <b>RISC-V</b>.</div>'; shown = []; return; }
+    const groups = { track: [], lab: [], video: [], tip: [] };
+    for (const it of items) { if (kind !== "all" && it.k !== kind && !(kind === "lab" && it.k === "track")) continue; const s = score(it, toks, q); if (s >= 0) groups[it.k].push([s, it]); }
+    shown = [];
+    const cap = kind === "all" ? { track: 3, lab: 8, video: 8, tip: 4 } : { track: 5, lab: 60, video: 60, tip: 20 };
+    for (const k of ["lab", "video", "tip", "track"]) {
+      const g = groups[k].sort((a, b) => b[0] - a[0]).slice(0, cap[k]);
+      if (!g.length) continue;
+      const h = document.createElement("div"); h.className = "ss-h"; h.textContent = HEAD[k] + " · " + groups[k].length; list.appendChild(h);
+      for (const [, it] of g) {
+        const a = document.createElement("a"); a.className = "ss-r"; a.href = it.u;
+        if (it.ext) { a.target = "_blank"; a.rel = "noopener"; }
+        a.innerHTML = '<span class="ss-ic" aria-hidden="true">' + ICON[k] + '</span><span><div class="ss-t">' + hi(it.t, toks) + '</div><div class="ss-s">' + esc(it.s) + "</div></span>";
+        a.addEventListener("click", () => close());
+        list.appendChild(a); shown.push(a);
+      }
+    }
+    if (!shown.length) list.innerHTML = '<div class="ss-empty">Nothing found for <b>' + esc(input.value.trim()) + "</b>. Try fewer or different words.</div>";
+    sel = 0; mark();
+  }
+  function mark() { shown.forEach((a, i) => a.classList.toggle("on", i === sel)); if (shown[sel]) shown[sel].scrollIntoView({ block: "nearest" }); }
+  function build() {
+    back = document.createElement("div"); back.className = "ss-back"; back.hidden = true;
+    back.innerHTML = '<div class="ss-box" role="dialog" aria-modal="true" aria-label="Search"><div class="ss-top"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>' +
+      '<input class="ss-in" type="search" placeholder="Search labs, videos and tips" autocomplete="off" spellcheck="false" aria-label="Search"><button type="button" class="ss-x">Esc</button></div>' +
+      '<div class="ss-tabs" role="group" aria-label="Show"></div><div class="ss-list" role="listbox"></div>' +
+      '<div class="ss-foot"><span>↑ ↓ to move</span><span>Enter to open</span><span>Esc to close</span></div></div>';
+    document.body.appendChild(back);
+    input = back.querySelector(".ss-in"); list = back.querySelector(".ss-list");
+    const tabs = back.querySelector(".ss-tabs");
+    for (const [k, label] of KINDS) {
+      const b = document.createElement("button"); b.type = "button"; b.className = "ss-tab"; b.textContent = label; b.setAttribute("aria-pressed", String(k === kind));
+      b.addEventListener("click", () => { kind = k; tabs.querySelectorAll(".ss-tab").forEach((x) => x.setAttribute("aria-pressed", String(x === b))); render(); input.focus(); });
+      tabs.appendChild(b);
+    }
+    back.addEventListener("mousedown", (e) => { if (e.target === back) close(); });
+    back.querySelector(".ss-x").addEventListener("click", close);
+    input.addEventListener("input", render);
+    input.addEventListener("keydown", (e) => {
+      if (e.key === "ArrowDown") { e.preventDefault(); if (shown.length) { sel = (sel + 1) % shown.length; mark(); } }
+      else if (e.key === "ArrowUp") { e.preventDefault(); if (shown.length) { sel = (sel - 1 + shown.length) % shown.length; mark(); } }
+      else if (e.key === "Enter") { e.preventDefault(); if (shown[sel]) shown[sel].click(); }
+      else if (e.key === "Escape") { e.preventDefault(); close(); }
+    });
+  }
+  function open() {
+    if (!back) build();
+    back.hidden = false; document.documentElement.style.overflow = "hidden";
+    input.focus(); input.select(); render();
+    if (!items) load().then(render);
+  }
+  function close() { if (!back) return; back.hidden = true; document.documentElement.style.overflow = ""; btn.focus({ preventScroll: true }); }
+  btn.addEventListener("click", open);
+  document.addEventListener("keydown", (e) => {
+    const t = e.target, typing = t && (t.isContentEditable || /^(INPUT|TEXTAREA|SELECT)$/.test(t.tagName) || (t.closest && t.closest(".CodeMirror")));
+    if ((e.key === "k" && (e.ctrlKey || e.metaKey)) || (e.key === "/" && !typing && !e.ctrlKey && !e.metaKey && !e.altKey)) {
+      if (back && !back.hidden) return; e.preventDefault(); open();
+    }
+  });
+  window.vddSearch = open;
+})();

@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
   push:                     # also run when this job itself changes
     branches: [main]
-    paths: [".github/scripts/latest_videos.py", ".github/workflows/latest-videos.yml"]
+    paths: [".github/scripts/latest_videos.py", ".github/scripts/all_videos.py", ".github/workflows/latest-videos.yml"]
 
 permissions:
   contents: write
@@ -23,12 +23,17 @@ jobs:
         env:
           YT_API_KEY: ${{ secrets.YT_API_KEY }}
         run: python .github/scripts/latest_videos.py
+      - name: List every long-form video (for the site search)
+        env:
+          YT_API_KEY: ${{ secrets.YT_API_KEY }}
+        run: python .github/scripts/all_videos.py
       - name: Commit if changed
         run: |
-          if [ -n "$(git status --porcelain latest-videos.json)" ]; then
+          if [ -n "$(git status --porcelain latest-videos.json all-videos.json)" ]; then
             git config user.name "github-actions[bot]"
             git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-            git add latest-videos.json
+            git add latest-videos.json all-videos.json
             git commit -m "Update latest YouTube videos"
+            git pull --rebase -q || true
             git push
           fi
