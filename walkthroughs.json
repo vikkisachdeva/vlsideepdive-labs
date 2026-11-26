@@ -664,5 +664,65 @@
   "t": "2\u00d74 decoder",
   "m": 1,
   "from": "2026-12-15T09:00+05:30"
+ },
+ "vh-p2-dec24": {
+  "id": "motLKgAq_ZU",
+  "t": "2\u00d74 decoder",
+  "m": 1,
+  "from": "2026-12-15T11:00+05:30"
+ },
+ "x-fifo": {
+  "id": "xTpruMjcMnc",
+  "t": "2-clock FIFO, partitioned",
+  "m": 1,
+  "from": "2026-12-15T13:00+05:30"
+ },
+ "ws-lab7": {
+  "id": "4sZTao783Lk",
+  "t": "Async pin checks",
+  "m": 1,
+  "from": "2026-12-15T16:00+05:30"
+ },
+ "sva-s2": {
+  "id": "aBNsfpweRYc",
+  "t": "Consecutive repetition [*n] and [*m:n]",
+  "m": 1,
+  "from": "2026-12-15T19:00+05:30"
+ },
+ "l18-addsub": {
+  "id": "1UWV1Dlx4Zw",
+  "t": "4-bit adder/subtractor",
+  "m": 1,
+  "from": "2026-12-16T09:00+05:30"
+ },
+ "s12-uart": {
+  "id": "qyfBMUvZ6vA",
+  "t": "UART transmitter",
+  "m": 1,
+  "from": "2026-12-16T11:00+05:30"
+ },
+ "dv-12": {
+  "id": "6flbfZ-XXBQ",
+  "t": "inside, ranges and dist: shaping the distribution",
+  "m": 1,
+  "from": "2026-12-16T13:00+05:30"
+ },
+ "pd-c1": {
+  "id": "0ZvUkbCK7Is",
+  "t": "Building the clock tree",
+  "m": 1,
+  "from": "2026-12-16T16:00+05:30"
+ },
+ "p2-enc42": {
+  "id": "1hJYPOSa_Cw",
+  "t": "4\u00d72 encoder",
+  "m": 1,
+  "from": "2026-12-16T19:00+05:30"
+ },
+ "vh-p2-enc42": {
+  "id": "JBrl4N2wiCE",
+  "t": "4\u00d72 encoder",
+  "m": 1,
+  "from": "2026-12-17T09:00+05:30"
  }
 }
