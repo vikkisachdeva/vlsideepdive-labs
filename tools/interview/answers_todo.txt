@@ -1,0 +1,589 @@
+0	What happens if you put the NMOS on top and the PMOS at the bottom of an inverter?
+1	Explain virtual memory and out-of-order execution.
+2	How do MSHRs coalesce loads and stores to the same cache block?
+3	How do you classify a workload as CPU-bound or memory-bound, with and without changing the microarchitecture?
+4	On a multicore system with fixed memory architecture, how does single-core performance change as identical single-threaded workloads are scheduled on more cores?
+5	What are pipeline hazards and how are they overcome?
+6	What is the difference between shared memory and message passing?
+7	What is the disadvantage of higher cache associativity?
+8	What types of caches are there?
+9	A disc is half white, half black. Design a digital circuit that detects whether it rotates clockwise or counterclockwise.
+10	A gate in a logic circuit is stuck at 1. What test inputs would show that the gate is defective?
+11	A router must keep packets to the same address in order, while packets to different addresses may overtake each other. Packets carry no ID. How would you verify it?
+12	Explain JTAG and the TAP controller.
+13	Explain a branch predictor. How do ARM and x86 branch predictors differ?
+14	Explain out-of-order processors and why instruction-level parallelism matters.
+15	Explain overlapping and non-overlapping implication in assertions.
+16	Explain stuck-at, stuck-open and delay fault models.
+17	Explain the 4-phase and 2-phase handshakes.
+18	Explain the VLSI design flow.
+19	Give an example of an asynchronous finite state machine.
+20	Given a black-box circuit and its truth table, use it to implement a NOT gate.
+21	Given a piece of code, is it a sequential or combinational circuit? If sequential, how many clock cycles does it take?
+22	How do you access a register and confirm whether it is 12 bits wide?
+23	How would you verify a 32-bit, two-input ALU when 2^32 x 2^32 combinations are impossible to simulate?
+24	Out of 100 driver versions, all versions after the first broken one are also broken. How do you find the first broken one quickly?
+25	What are testability, observability and controllability?
+26	What are the three states of a tri-state buffer?
+27	What circuit does an if-else statement synthesize to?
+28	What is BIST?
+29	What is a race condition?
+30	What is the checkpoint theorem?
+31	What is the difference between combinational and sequential logic?
+32	What is the difference between temporal and spatial locality?
+33	Why do we need structural testing?
+34	Why do we need testing, and what is a fault analysis system?
+35	Explain the Tomasulo algorithm.
+36	What is the D-algorithm?
+37	Explain the UART, SPI, I2C and PCIe protocols.
+38	From a timing diagram, calculate the minimum and maximum delay.
+39	A UVM environment has 3 agents on separate interfaces. Wrong stimulus on agent1 raises an error pin on interface3, which agent2's monitor sees; agent2 must then perform a read. How do you make sure agent2 drives a read for every such error?
+40	A chip does add, subtract, multiply and divide on 8-bit values, keeps up to 20 operands on a stack, and has error bits for arithmetic overflow and stack overflow. What corner cases and errors would you test, and how would you write those tests in a Verilog testbench?
+41	Describe a UVM testbench and explain how sequences and drivers are connected.
+42	Explain how OOP concepts are used in UVM.
+43	For an 8-bit stack-based chip, list the corner cases and possible errors, and how you would test them in a Verilog testbench.
+44	What are the main differences between the UVM monitor and driver classes?
+45	What mechanism connects the UVM driver and the sequencer?
+46	What types of assertions are there in SystemVerilog?
+47	Write a UVM driver for APB that supports outstanding transactions.
+48	Write a Verilog testbench on the whiteboard.
+49	How do Verilog simulators differ from C++ simulators?
+50	What are the types of modelling in Verilog?
+51	Which Verilog constructs are synthesizable and which are not?
+52	Why use architecture simulators instead of simulating workloads in RTL?
+53	Write a sequence item and a sequence for burst writes and reads to a 32K memory.
+54	A child class has the same function as its parent: what is printed when it is called, and what changes when the function is virtual? Can a child object be assigned to a parent handle, and vice versa?
+55	Design a NAND gate in CMOS.
+56	What are the non-idealities of MOS capacitance?
+57	What is a TVS diode?
+58	A current source drives a switch in series with a capacitor that has another switch across it. Describe the voltage response as each switch closes.
+59	Compare buck, boost and linear regulators.
+60	Draw a half adder and a complete flip-flop.
+61	Draw how a capacitor charges and discharges.
+62	Explain channel-length modulation.
+63	Explain the body effect.
+64	How do you derive the circuit diagram for a finite state machine?
+65	How does increasing the order of a low-pass filter change its Bode plot, and what does the circuit look like?
+66	How would you implement a sine function in hardware?
+67	Identify the logic function a given network of gates implements.
+68	Is a given RC circuit a low-pass or a high-pass filter?
+69	What is a critical path?
+70	What is the best way to protect an amplifier input from overvoltage?
+71	When would you choose an FPGA over an ASIC, and why?
+72	What is static timing analysis?
+73	An interconnect has 3 AHB masters and 1 APB master on one side and 3 APB slaves on the other, with given address ranges; some masters get error responses for the top range. Write the top-level testbench and the coverpoints and bins you would use.
+74	Explain virtual functions and polymorphism in SystemVerilog.
+75	What are full_case and parallel_case in Verilog?
+76	What is X in Verilog?
+77	What is a synthesis-simulation mismatch?
+78	How do you safely transfer a signal across clock domains? What are the risks if it is not handled correctly?
+79	How is MBIST triggered when scan mode is low during BIST?
+80	What problems come from mixing positive- and negative-edge flops in scan?
+81	Describe how the FFT and inverse FFT work.
+82	Design a sawtooth generator from a square pulse and a constant current, and derive the integrator circuit.
+83	Design an RC filter with gain.
+84	Explain polymorphism in C++. Which base-class members can a child class not inherit?
+85	How do the different ADC architectures compare in speed?
+86	How does a current mirror work?
+87	How would you tell whether latency or bandwidth is the bottleneck?
+88	What are the main challenges in implementing an out-of-order execution engine, and how do you ensure correctness?
+89	What is a TAP controller and how does it work?
+90	What is an OCC (on-chip clock controller) used for?
+91	What is register renaming? How does it work?
+92	Where should you place the decoupling capacitor on a power pin?
+93	How do you calculate the theoretical maximum FLOPS of an architecture? Explain the roofline model.
+94	Given RTL code, identify its scenarios and write SystemVerilog properties for them.
+95	Given a block diagram, write the SystemVerilog interface for it.
+96	How do formal and functional verification differ?
+97	What would you use a SystemVerilog modport for?
+98	Find the depletion depth of a source/drain junction at 1e18/cm3 doping with a 0.72 V built-in potential.
+99	How can a depletion-mode NMOS be turned off?
+100	What is CMOS, and why are NMOS and PMOS used together?
+101	Design the memory and FPGA interface for a camera, given its frequency requirements.
+102	Explain how caches and pipelines work.
+103	Explain how caches, the MMU and virtual memory work together.
+104	Explain pipeline stalls, the forwarding unit and the hazard detection unit in a RISC-V pipeline.
+105	Explain the types of hazards in a CPU pipeline.
+106	How are instructions executed in a non-pipelined architecture versus a pipelined one?
+107	How does a cache fetch data from main memory?
+108	What are L1 and L2 caches, and how do they differ?
+109	What are the hazards in a pipelined processor and how are they resolved?
+110	What is CPU pipelining, and what problems does it bring?
+111	What is pipelining, and why does it matter in an SoC?
+112	What is the cache hierarchy?
+113	What is the memory hierarchy?
+114	What is the purpose of the memory management unit?
+115	What is virtual memory, and what are the ways to implement it?
+116	What types of caches are there, and which is better?
+117	Why do we need virtual memory, and what are its advantages?
+118	Why do we prefer a pipelined architecture over a non-pipelined one?
+119	With an n-bit address bus, how much memory can be accessed?
+120	A data path and a clock path are given, and one has extra latency. How would you correct it?
+121	As the designer, how would you tell DV to test your block, and which signals must they check?
+122	Can CPU clock speed increase indefinitely? Why not?
+123	Describe power-management techniques.
+124	Describe the components of a modern Arm mobile SoC and how they connect to each other.
+125	Describe the main components of a CPU.
+126	Design a simple parallel and a simple serial protocol.
+127	Discuss the design of an ARM processor.
+128	Draw a block diagram of a simple processor and show how an instruction flows through it.
+129	Draw a system on chip.
+130	Draw the microarchitecture of a CPU.
+131	Explain branch prediction.
+132	Explain dynamic, static and short-circuit power: where and how each happens, and how to reduce it at the logic and architecture level.
+133	Explain in-order versus out-of-order processors and register renaming.
+134	Find K and Vth for an enhancement MOSFET with ID(on) = 325 mA at 12 V and 87.62 mA at 7 V.
+135	Given a black box with some inputs, outputs and a timing diagram, how would you verify it?
+136	How do you verify a subsystem using C/C++ running on a processor?
+137	In a given bus architecture, which are the masters and slaves, and how many addresses fit in a given range?
+138	Parse three comma-separated numbers, convert the first to binary, and output whether the two bits indexed by the other two numbers are equal.
+139	What are semaphores and why are they used?
+140	What are the key features of the Arm architecture?
+141	What is an MMU and what does it do?
+142	What is an abstract class? What is the difference between a deep copy and a shallow copy?
+143	What is inside a processor?
+144	What is paging?
+145	What is the MMU?
+146	What is the transit time of a MOSFET with a 180 nm channel, Vds = 3 V and mobility 750?
+147	What low-power design techniques do you know?
+148	Write a C function that reads a value from a specific address.
+149	Explain how physical design works.
+150	How does the Karatsuba algorithm reduce the work of multiplying very large numbers?
+151	How would you compress a program trace coming straight from a CPU?
+152	How does the SPI protocol work?
+153	Explain the UVM factory and config_db.
+154	Find the errors in a given digital circuit and write it correctly in SystemVerilog.
+155	What are the first two lines and the last line of code in a typical UVM test?
+156	What is UVM used for, and what is config_db?
+157	What is an abstraction technique in formal verification?
+158	What is formal verification, and how does it differ from random verification?
+159	What is the cone of influence of a check in formal verification?
+160	Given Verilog code, describe the hardware it implements after synthesis.
+161	Explain the regions of operation of a CMOS inverter and draw its transfer curve.
+162	Implement a ring oscillator. How do you slow it down?
+163	C1 = 10 pF and C2 = 1 pF are in series with a switch between them; one end is at 5 V, the other at 0 V. What is the voltage across C2 when the switch closes?
+164	Given 11 minterms, derive the logic function.
+165	Compare FIR and IIR filters.
+166	Draw the logic for y = abc + a'bc'.
+167	How do a sampling scope and a real-time scope work?
+168	How do you debug failing serial and parallel pattern simulations?
+169	How do you verify the bit error rate (BER) of a SerDes?
+170	In MBIST, what are the pros and cons of shared versus local comparators?
+171	What ATPG DRC violations do you know?
+172	What are static class members?
+173	What is IR drop?
+174	What is a PLL?
+175	What is a pull-up resistor used for?
+176	What is gate-level simulation used for?
+177	What is the difference between continuous and procedural assignments?
+178	Given a block diagram of a protocol block, write a SystemVerilog transactor for it.
+179	How does SystemVerilog differ from Verilog?
+180	Explain the operating regions of a MOSFET, and how transistors are used in analog versus digital circuits.
+181	For a diode circuit with Vd = 0.7 V and RC = 1 us, draw Vr versus Vi.
+182	With a sine wave on an inverter's input, in which region does each PMOS and NMOS operate across the cycle?
+183	What is instruction pipelining?
+184	C1 holds 1 C of charge at 1 V; C2 is an uncharged 1 F capacitor. When the switch between them closes through resistor R, how much energy is dissipated in R?
+185	Draw a circuit that generates the repeating 2-bit sequences 11, 01, 10, 11 and 00, 10, 01, 00.
+186	Explain false paths and half-cycle paths.
+187	Find the steady-state output across a parallel RC driven by Vi = Vp cos(t/RC).
+188	Implement a state machine for sequence detection.
+189	What are big-endian and little-endian?
+190	What are parasitics? What is EM/IR, and why do they cause reliability problems?
+191	What are the inputs to a timing engine?
+192	What are timing arcs?
+193	What is the difference between a task and a function?
+194	Describe the hierarchy of a SystemVerilog testbench.
+195	Explain inheritance, polymorphism and abstraction in SystemVerilog.
+196	Explain the SystemVerilog event scheduler regions.
+197	Explain the UVM phases and why each matters.
+198	What are the UVM phases and their properties?
+199	What are the factory override methods in UVM?
+200	Design an SRAM cell and explain how it works.
+201	What is the difference between SRAM and DRAM?
+202	What is the difference between a microcontroller and a microprocessor? Describe the 8051 architecture.
+203	Explain RC and RL filters.
+204	How do you multiply binary numbers?
+205	Walk through the complete ASIC flow.
+206	What is an RLC network? Explain its components.
+207	What is skin effect, and how does it affect PCB design?
+208	What is the difference between DRC and LVS?
+209	What power-reduction techniques do you know?
+210	How do you protect a circuit against voltage spikes?
+211	Design a two-stage pipelined ALU that executes a list of instructions given in hex.
+212	How do you check whether a system is little-endian or big-endian?
+213	What happens during synthesis of an FPGA design, and what happens during implementation?
+214	Which physical CMOS parameters affect propagation delay?
+215	Explain the function of a muxed (scan) flip-flop.
+216	In equivalence checking, how do you handle the scan-enable signal?
+217	How does PVT affect delay?
+218	What are the components of power dissipation, and how do you reduce them?
+219	Draw how an FPGA tool turns a block of code into hardware.
+220	How would your design change for a different specification, and how would propagation delay and resource use differ?
+221	Write a simple register in SystemVerilog.
+222	Explain the basic architecture of a microcontroller and how it differs from a microprocessor.
+223	Why build a 16-bit microcontroller instead of cascading 8-bit ones?
+224	Explain the keywords volatile, const and static in Embedded C.
+225	What is the difference between Von Neumann and Harvard architectures? Give a practical use for each.
+226	How do you handle timing paths that cross clock domains?
+227	Draw a NAND gate in CMOS.
+228	Explain the 5-stage pipeline, the types of hazards and data hazards, and how you would go beyond 5 stages.
+229	How would you verify a multi-level cache with multiple masters?
+230	What are a cache and a TLB?
+231	What is virtual memory?
+232	How is a flip-flop replaced with a scan flip-flop?
+233	Add two numbers without using the +, -, * or / operators.
+234	Build circuits using decoders and multiplexers.
+235	Compare RISC and CISC instruction sets, with the pros and cons of each.
+236	Explain how ADCs and DACs work.
+237	Given two strings of 4 ASCII characters, determine in hardware which has the higher value.
+238	How are delays characterized using a wire load model (WLM)?
+239	How do you compute net (interconnect) delay, and decode the RC values in the tech file?
+240	How do you stop the tool from using certain library cells?
+241	How would you go about testing a chip? Where would you start?
+242	How would you insert voltage islands for macro pins crossing between the core and different power wells? What is the most resource-efficient solution?
+243	What factors improve the propagation delay of a standard cell?
+244	What is RAM, and what types of RAM are there?
+245	What is a pull-up? What is high impedance?
+246	What is the difference between a MOSFET and a BJT?
+247	Why are power stripes routed in the top metal layers?
+248	Write assembly that leaves r3 = r1 * r2, using as many registers as you like.
+249	Why use alternate HVH/VHV (horizontal-vertical-horizontal) routing?
+250	With enough routing resources and timing met, can you add clock buffers to the clock network? What else would that affect?
+251	How do you fix timing violations on latch-to-latch paths?
+252	Describe the UVM phases. What is the difference between run_phase and main_phase?
+253	What does the virtual keyword do in SystemVerilog?
+254	What formal verification issues have you faced, and how did you resolve them?
+255	Why use the UVM methodology?
+256	Write a SystemVerilog monitor that captures and checks memory transactions.
+257	Write a UVM driver and sequence.
+258	What are the ways to optimize timing in synthesis tools?
+259	Write a BCD converter in Verilog.
+260	Implement a 2D convolution in SystemVerilog.
+261	Create a one-cell convolutional layer in Verilog.
+262	If an inverter's input is tied to its output, what is the output voltage?
+263	Can a constructor be overridden?
+264	What is the difference between virtual and pure virtual functions?
+265	Explain UVM TLM ports.
+266	Given a design made of several FIFOs, describe how you would build a testbench for it.
+267	How do AND and OR gates work, and how are they built in CMOS?
+268	Explain RAW, WAW and WAR hazards and how in-order and out-of-order pipelines handle them.
+269	Given only the interface of a memory-like block, what would you check to make sure it works?
+270	How are structural hazards handled in out-of-order pipelines?
+271	How do you balance pipeline stages to meet a target clock period?
+272	How many address lines does a given memory need?
+273	Describe the MIPS CPU.
+274	Design a frequency multiplier.
+275	Explain power-gating simulation and the main UPF concepts.
+276	For a given RC circuit, sketch Vout/Vin over the first 10 ns.
+277	Given an anti-aliasing filter response with a bump before roll-off, what are the two main reasons to put it before an ADC?
+278	Given two flops with combinational logic between them, what is the circuit's cycle time?
+279	How do you improve IPC with respect to branches? Can a branch be resolved in the decode stage?
+280	How do you tell whether a machine is little-endian or big-endian?
+281	How does time-division multiplexing work, and what are its corner cases?
+282	How would you implement a circular buffer in C?
+283	Walk through the ASIC flow.
+284	What is X-propagation, and why does it happen? Give an example.
+285	What is the difference between ASIC and FPGA design?
+286	What is the transfer function of a simple VCO?
+287	What is time borrowing in latches?
+288	Which metal layers are used for power and clock?
+289	With 2 masters and 4 slaves on a bus, what properties would you write to check it?
+290	Explain Tomasulo's out-of-order algorithm in depth.
+291	Explain UVM architecture and flow.
+292	How do you know your testbench has covered all the cases?
+293	How does a transaction pass from the generator to the driver in a SystemVerilog testbench?
+294	What are the UVM phases, and why are they used?
+295	What data types does SystemVerilog have?
+296	Why SystemVerilog? How does Verilog differ from C?
+297	Convert a piece of RTL logic into a gate-level netlist.
+298	Describe the synthesis flow.
+299	What is the difference between Verilog tasks and functions?
+300	What is the difference between inter-statement and intra-statement delays in Verilog?
+301	What is the total power dissipation of a CMOS circuit with load capacitance C at frequency F?
+302	Which CMOS gate is faster, NAND or AND?
+303	Compute the Elmore delay of an RC tree with a branch.
+304	Design a TDM system carrying 120 Mbps from streams of 10, 40 and 80 Mbps, working for any X, Y, Z with 10X + 40Y + 80Z = 120.
+305	Design a circuit that complements the input data when enable is on, and passes it unchanged otherwise.
+306	Following that design, what changes are needed to compute Z = G * Y?
+307	How many multipliers are needed to build a complex multiplier?
+308	Implement an FIR filter with h0 = h4 and h1 = h2 using the minimum number of multipliers.
+309	With a 1 MHz system clock, design the logic that turns the car headlights off 5 seconds after the car is stopped or switched off.
+310	Define a depletion-mode MOS device.
+311	What is the difference between a microprocessor and a microcontroller?
+312	A right shift and a left shift are equivalent to which arithmetic operations?
+313	Which logic gate can be used as a frequency multiplier?
+314	Can you measure a 1 GHz square wave with a 1 GHz oscilloscope and probe? What will the waveform look like, and why?
+315	What is the difference between the :/ and := operators in dist?
+316	Explain the UVM config DB. How do you connect the DUT and the testbench?
+317	What is the difference between a uvm_object and a uvm_component?
+318	Draw a simple NMOS current mirror. What are its drawbacks, and which topology overcomes them? What is its output swing?
+319	Draw a two-stage CMOS amplifier. Derive its gain and output impedance, find its poles and zeros, and discuss stability and frequency compensation.
+320	Draw the supply current of an inverter over time as its input switches from low to high.
+321	For a single-ended CMOS differential amplifier, mark the inverting and non-inverting inputs and derive its gain, output resistance, poles and zeros.
+322	Given a CMOS circuit, write its Boolean equation.
+323	Two capacitors charged to different voltages are connected through a transistor. What happens to the voltages when it turns on?
+324	Two inverters in a loop: what is the oscillation frequency, and how do you increase the period?
+325	What sets the operating frequency of a microprocessor, and how many cycles does an instruction take?
+326	Draw the MOSFET ID-VGS and ID-VDS characteristics.
+327	How do you pass a config_db setting from a lower level of the hierarchy to a higher one?
+328	How would you write a test with bounded random inputs?
+329	Is an LPDDR5 PHY backward compatible?
+330	Print a binary tree in zig-zag order.
+331	What is the difference between always and initial blocks?
+332	Write a sequence that sends 10 back-to-back read and write commands, where a read may never immediately follow a write.
+333	What array types does SystemVerilog have?
+334	Design an inverter using digital logic blocks.
+335	How do you size the transistors of an inverter?
+336	What are the characteristics of CMOS?
+337	Why is CMOS used to implement logic gates?
+338	Explain pipeline design and pipeline hazards.
+339	Explain pipelining.
+340	How does pipelining increase a design's clock frequency?
+341	What are the stages of a 5-stage pipelined processor?
+342	Explain the scan insertion steps.
+343	A 100 um wire has 100 us of delay. Buffers with 30 us delay are inserted at 20 um and 50 um. What is the new total delay?
+344	Design a circuit that produces a given timing diagram.
+345	Design a state machine that outputs 1 for every two consecutive 1s.
+346	Explain packed versus unpacked arrays in depth.
+347	Explain the main ATPG concepts.
+348	Find patterns that detect given faults.
+349	Find the error in a MUX-based programmable delay circuit.
+350	Given a pulse-detector circuit, identify the cases where it fails.
+351	Given two waveforms, design logic that generates the second from the first.
+352	How does a given RC network behave at different frequencies?
+353	What is the difference between reg and wire?
+354	What optimizations should you use when writing a GPU kernel?
+355	Write a script that retimes registers.
+356	Write multiplication code in assembly.
+357	Why are fuses important in an SoC?
+358	Explain the main features of the APB and AHB protocols.
+359	Find the maximum element in a rotated (shifted) sorted array.
+360	For a given circuit, calculate the maximum clock frequency.
+361	Why does PCIe 6.0 use a larger header?
+362	What is the difference between a task and a function in SystemVerilog?
+363	Explain what a given digital circuit does, then write Verilog for it.
+364	How do you write RTL that is efficient in power, performance or area?
+365	How would you build a digital clock in Verilog on an FPGA board?
+366	Walk through the RTL-to-GDSII flow.
+367	Draw the Bode plot of an op-amp's gain versus frequency.
+368	Explain how a CMOS inverter works.
+369	Explain the operating regions of a CMOS inverter.
+370	How do you choose the oscilloscope bandwidth for the signal under test?
+371	What is a demultiplexer, and what is it used for?
+372	What is the difference between RAM and ROM?
+373	What is the difference between a mutex and a semaphore?
+374	What is the difference between the Arm WFI and WFE instructions?
+375	Write a program that swaps two values.
+376	Compare SPI and I2C: speed, clock stretching and test cases.
+377	How are I2C pull-ups configured, and how do you choose their value?
+378	Explain the setup time of a flip-flop.
+379	How do you verify a multi-block IP using UVM?
+380	What is the alternative to an analysis port in UVM?
+381	Why do we use a virtual sequence? What is a virtual interface?
+382	What is the minimum number of gates needed to implement a given function?
+383	Debug a piece of SystemVerilog RTL.
+384	What is the pipeline depth of each of several Verilog snippets?
+385	Design a MUX in CMOS.
+386	Design a summing circuit with an op-amp. What happens if you swap the inverting and non-inverting inputs?
+387	Draw a CMOS NAND gate. Does its logic change if the inputs have different delays?
+388	Draw a CMOS inverter and explain how it works. What happens if VDD is removed?
+389	Draw a CMOS inverter and mark all four terminals.
+390	Draw a NAND gate in CMOS and explain how it works.
+391	Draw an AND gate using transistors.
+392	Draw logic gates at transistor level.
+393	Draw the cross-section of a CMOS gate.
+394	Draw the physical cross-section of an NMOS transistor.
+395	Draw the transfer characteristic of an inverter.
+396	Explain negative feedback in an op-amp.
+397	Find the fanout of a gate from its IOH, IOL, IIH and IIL currents.
+398	Find the switching threshold of a CMOS NOR2 gate with Vtn = 2Vtp and Kp = 2Kn.
+399	What is a ring oscillator?
+400	What is latch-up in CMOS?
+401	What is the switching threshold voltage of an inverter?
+402	Which is faster, PMOS or NMOS? Why?
+403	A 1 uF DRAM capacitor holds 10 uC and is refreshed every 12.5 ms. What are its discharge current and voltage?
+404	Differences between SRAM and DRAM. Why is SRAM used for cache?
+405	Explain C memory layout, and the size of each type in memory (including bool).
+406	Explain a complete pipeline, stage by stage, with an example.
+407	Explain how a 5-stage pipeline works.
+408	Explain pipelining, the pipelining paradox, and CPU throughput and speedup.
+409	Explain the structure of an SoC and a microprocessor chip.
+410	How does a GPU pipeline work, including the command streamer?
+411	How many 8 KB chips do you need for a 256 KB memory?
+412	Is SRAM volatile or non-volatile, and why?
+413	What are the performance trade-offs between cache architectures?
+414	What is a watchdog timer?
+415	Write pipelined code for the fetch and decode stages of a MIPS processor.
+416	How is the scan DEF generated?
+417	What is the purpose of a lockup latch in a scan chain?
+418	A 20 W and a 60 W bulb are in series across 120 V. Which glows brighter?
+419	Add two numbers without using the + operator.
+420	Can a single port be clocked by multiple clocks? How do you set delays for such ports?
+421	Explain short-circuit current.
+422	Explain the MOSFET regions of operation and current equations.
+423	Explain your current role and responsibilities in design verification.
+424	For a 1000 um net, how do you compute its RC values?
+425	How do you analyze clock tree reports?
+426	How do you connect components when several transaction types flow between them?
+427	How do you detect endianness?
+428	How do you reduce standby (leakage) power?
+429	In Design Compiler, how do you constrain clocks, I/O ports, max capacitance and max transition?
+430	Reduce (P + Y)(P' + Y).
+431	What are the high and low noise margins, and what do they signify?
+432	What are the pros and cons of low-Vt and high-Vt cells?
+433	What checks are done at each stage of the ASIC flow?
+434	What do noise reports and glitch reports represent?
+435	What does the volatile keyword do?
+436	What happens if the body is not tied to the source, or is at a higher voltage than the source?
+437	What is a linker script?
+438	What is a multicycle path?
+439	What is one-hot encoding?
+440	What is the SNR of a 16-bit ADC?
+441	What is the difference between RISC and CISC?
+442	What is the difference between a structure and a union?
+443	What is the difference between modeling and characterization?
+444	What is the difference between sequential and combinational circuits?
+445	What is the difference in instruction execution between RISC and CISC CPUs?
+446	What is the trade-off between dynamic power and leakage power?
+447	Where and when do you use decoupling capacitor (DCAP) cells?
+448	Which addressing mode does MOV AX, [CX] use?
+449	Write a sequence item for the input interface of a given scenario.
+450	Explain the top-level pin placement flow. What decides it?
+451	Given block netlists, timing constraints, libraries and macro LEFs, how do you start floorplanning?
+452	Write binary search in pseudocode and give its time complexity.
+453	Write merge sort in C and give its time complexity.
+454	Explain the AHB protocol.
+455	What is the difference between AXI and AHB, in terms of the AXI channels?
+456	How do you set inter-clock uncertainty?
+457	Complete missing code in a UVM testbench, point out its errors, and use factory overrides.
+458	Explain UVM callbacks, mailboxes and semaphores.
+459	Explain the SystemVerilog testbench: interface, clocking block, program block and virtual interface.
+460	How do you write an assertion in a UVM testbench?
+461	How does a uvm_test start?
+462	How would you formally verify a cache?
+463	What are the UVM phases and why do we use them?
+464	What is a deep copy versus a shallow copy in SystemVerilog?
+465	What is a virtual interface and why is it used?
+466	What is the UVM sequencer used for?
+467	What is the difference between simulation, emulation and formal verification?
+468	What is the difference between tasks and functions in UVM?
+469	What is the difference between virtual methods and virtual classes in SystemVerilog?
+470	When building timing constraints, do you need to constrain all I/O ports?
+471	Explain how you would write Verilog for a finite state machine.
+472	How did you boot your processor in Verilog, and how did you initialize the PC and instruction memory?
+473	How do Verilog case statements synthesize?
+474	What is the difference between functions and tasks in Verilog? Why can't a function call a task?
+475	Write Verilog for a 4-bit register.
+476	What are multicycle paths and false paths, and how do you handle them?
+477	What timing-optimization strategies do you use pre-layout and post-layout?
+478	How do you optimize power at each stage of the physical design flow?
+479	What process-technology challenges affect physical design?
+480	Design asynchronous and synchronous FIFOs at the circuit level.
+481	Which RTL coding styles give the best back-end results?
+482	Explain pin-density and cell-density issues, and hotspots.
+483	Explain the ECO methodology.
+484	How do you set variables in Tcl?
+485	How is IR drop analysis done, and what statistics do the reports give?
+486	If too many logic-cell pins sit in one place in the core, what issues arise and how do you resolve them?
+487	What is the command for setting a multicycle path?
+488	How do you relate the routing grid to the manufacturing grid, and check the routing grid is set correctly?
+489	What kinds of routing issues have you faced?
+490	Define a hash and an array in Perl.
+491	What challenges have you faced in place and route, formal verification and ECO?
+492	What is the intrinsic gain of a common-source stage with and without degeneration, and of a simple differential amplifier? How does it change with frequency?
+493	Draw a CMOS inverter and explain everything you can about it.
+494	What happens if you swap the PMOS and NMOS in a CMOS circuit?
+495	What is punch-through in CMOS?
+496	Design the power-supply management for a USB hub.
+497	How do you make a gate's transitions faster?
+498	How would you verify an image-processing block that fixes bad pixels?
+499	What is the difference between tasks and functions?
+500	Which part of a hardware design holds bit information, and where is it stored?
+501	How would you verify a Verilog design?
+502	Write code to verify a cache.
+503	Solve a transmission-gate circuit problem.
+504	When do you need to partition a system across multiple FPGAs?
+505	Explain the CMOS inverter and its characteristics.
+506	What does a DMA controller do?
+507	Build a Mealy FSM using D flip-flops.
+508	Describe a typical test environment: monitor, driver and the rest.
+509	Explain RC integrator and differentiator circuits.
+510	Explain the ASIC flow.
+511	Explain the SerDes architecture.
+512	What are LUTs in an FPGA?
+513	What are start and stop bits?
+514	What are the design guidelines for a high-speed board?
+515	What is the ASIC design flow?
+516	Why is isolation needed in a UPF power intent? How do you handle isolation and retention across multiple power domains?
+517	Draw the stick diagram of a CMOS inverter.
+518	Which input files does the physical design flow need?
+519	How do you debug a timing violation in the lab?
+520	Explain UVM sequencer-driver communication.
+521	How is a SystemVerilog interface made, and what is it for?
+522	Write code for a UVM driver, a sequencer and TLM ports.
+523	Debug given Verilog code and find its errors.
+524	How do you break a combinational loop?
+525	How do you generate a ramp signal in Verilog?
+526	How does an always block run if it has no sensitivity list?
+527	In which situations does synthesis report an error?
+528	What happens to an oscillating circuit in RTL synthesis and in simulation?
+529	What is casex used for in Verilog?
+530	Where are lint tools used? Can they debug syntax?
+531	Write a state machine in Verilog.
+532	Describe the flow for implementing a chip in Innovus.
+533	What is the difference between true and false data dependencies?
+534	Draw a notch filter.
+535	Write the memcpy function.
+536	An op-amp draws 20 A into its positive supply pin and sources 14 A from its output. What current flows in the negative supply pin?
+537	Design an op-amp circuit with a gain of two.
+538	Draw a CMOS inverter and explain how it works.
+539	Draw a non-inverting op-amp and write its gain.
+540	Draw an inverter's voltage transfer curve and explain each region.
+541	Draw an inverting op-amp amplifier and derive its gain.
+542	Draw an inverting op-amp and derive its output.
+543	Draw the PMOS and NMOS transistors separately and mark their terminals.
+544	Draw the cross-section of a transistor and explain the body effect.
+545	Explain CMOS technology and its advantages over other technologies.
+546	Explain a CMOS concept you know, for example the CMOS inverter and its gate capacitance.
+547	How does an inverter's delay change when its load capacitance changes?
+548	What is breakdown voltage? Draw the V-I curve of a diode in forward and reverse bias.
+549	What is the output voltage of an inverting op-amp?
+550	What limits an op-amp's bandwidth?
+551	Why does a virtual short appear between op-amp inputs?
+552	How do SRAM reads and writes behave when the pass-gate resistance is large?
+553	How would you verify the interface between a memory and a CPU?
+554	What is the voltage after charge sharing among stacked capacitors?
+555	Why does a DMA controller have multiple channels, and how do they operate in parallel?
+556	A Zener rated for 10 mA is in series with 1 kOhm across a 10 V source. What current flows in the Zener?
+557	Compare the power of an AND gate driven by 200 MHz and 400 MHz clocks with tying both inputs to one clock.
+558	Design a calculator from logic gates.
+559	Design a circuit that turns a 2 V input into a -10 V output.
+560	Design a flip-flop from NAND gates, then counters from the flip-flops.
+561	Design a simple low-pass filter, then turn it into a high-pass filter.
+562	Draw a differentiator.
+563	Explain SDF back-annotation and the SPEF timing-correlation flow.
+564	Explain an RC low-pass filter.
+565	Explain how a MOSFET works.
+566	Explain the timing-closure flow: methodology, issues and fixes.
+567	For an IIR filter with a = 0.875, how many past outputs contribute to the output?
+568	Given a digital circuit with a fault, which inputs detect it in one pass?
+569	Given a post-route database and functional fixes, how do you implement an ECO, and what physical and functional checks do you run?
+570	Given one gate's rise time and the load capacitances, find another gate's rise time.
+571	How can a half-bridge rectifier give the same result as a full-bridge rectifier?
+572	How do you measure an unknown resistance with a voltmeter and an ammeter?
+573	How does an oscilloscope work, and what is it used for?
+574	Name five measurable characteristics of a clock signal.
+575	Simplify a 5-variable function with a K-map.
+576	Sketch the output of an RC filter without s-domain analysis.
+577	What are BJTs and MOSFETs, and how do they differ?
+578	What happens when two capacitors are connected in series?
+579	What is the average output voltage of a switched resistor circuit with 40% on-time?
+580	What is the difference between combinational and sequential circuits?
+581	What is the high-frequency content of a PWM signal?
+582	Why choose a particular feedback resistor value, and what changes if its rating changes?
+583	What issues have you faced with clock gates at each stage of the physical design flow?
+584	Write a program that prints 'hattrick' when a string has three consecutive w's.
+585	Explain UVM testbench components, phases and TLM ports.
+586	How are timing constraints developed?
+587	What is the difference between SystemVerilog and UVM?
+588	What synthesis strategies optimize timing?

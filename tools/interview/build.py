@@ -151,6 +151,7 @@ def tip(q, tp):
         return 'project' if re.search(TIPS[1][1], q, re.I) else 'behav'
     return next(k for k, rx, *_ in TIPS[2:] if re.search(rx, q, re.I))
 
+ANS = json.load(open(os.path.join(HERE, 'answers.json'))) if os.path.exists(os.path.join(HERE, 'answers.json')) else {}
 Q = []
 for s in S:
     for rnd, q in s['qs']:
@@ -158,6 +159,8 @@ for s in S:
         Q.append({'q': q, 'c': s['company'], 'r': s.get('role', ''), 'rd': rnd, 'lv': s.get('level', ''), 'y': s.get('date', '')[:4],
                   'tp': topic, 'src': s['url'], 'sn': s.get('site', ''), 'st': s.get('title', ''), 'p': [] if topic == 'Behavioral & projects' else all_links(q)})
         if not Q[-1]['p'] or Q[-1]['tp'] == 'Behavioral & projects': Q[-1]['h'] = tip(q, topic)
+        _a = ANS.get(re.sub(r'[^a-z0-9]+', ' ', q.lower()).strip())
+        if _a and Q[-1]['tp'] != 'Behavioral & projects': Q[-1]['a'] = _a
 # same question reported more than once (same company, normalized text) -> count
 def norm(t): return re.sub(r'[^a-z0-9]+', ' ', t.lower()).strip()
 seen = {}
