@@ -1,0 +1,55 @@
+@intel/validation-engineer-haifa-april-1-2023-no-offer-neutral-11ebf177
+X is either 4 or 7. Without an if statement, return the other number.
+@intel/validation-engineer-haifa-december-1-2023-declined-offer-positive-5a2ac08a
+Design a state machine that outputs 1 when it detects 1011. What is the minimum number of input bits needed to validate it?
+@intel/validation-engineer-israel-may-20-2025-declined-offer-positive-739adb32
+Add two numbers without using the +, -, * or / operators.
+@intel/validation-engineer-united-states-march-6-2025-no-offer-neutral-8e07922e
+What is functional coverage, and how would you reach high functional coverage?
+@intel/verification-engineer-folsom-california-may-1-2026-no-offer-positive-4899d17a
+Write a FIFO in Verilog. What are the conditions for full and empty?
+Design the FSM for a 20-floor elevator with controls inside the car and on every floor. Which requests take priority?
+Build a clock divider that turns a 2 MHz clock into 1 MHz.
+Write a 4:1 MUX in behavioral Verilog and then in structural Verilog.
+For a 1 MB, 8-way set-associative cache, how many bits are tag, index and offset?
+Explain the 5-stage pipeline, the types of hazards and data hazards, and how you would go beyond 5 stages.
+@intel/verification-engineer-india-october-1-2023-no-offer-neutral-265ae6d0
+Write a SystemVerilog monitor that captures and checks memory transactions.
+@intel/verification-intern-united-states-february-16-2026-no-offer-positive-ac72c672
+Write SystemVerilog assertions for a FIFO.
+@jane-street/fpga-intern-new-york-new-york-july-19-2026-no-offer-neutral-35a4df0b
+Create a one-cell convolutional layer in Verilog.
+@jane-street/fpga-intern-united-kingdom-november-10-2025-no-offer-neutral-79964114
+Implement a 2D convolution in SystemVerilog.
+@jane-street/fpga-intern-united-states-october-1-2023-no-offer-positive-646e5af6
+How do you determine the bit width needed for an input or output?
+@jump-trading/verification-engineer-bristol-england-october-1-2022-no-offer-positive-9be3156a
+How would you verify a FIFO?
+@juniper-networks/asic-design-engineer-india-january-1-2013-no-offer-positive-c495f172
+Draw a sequence detector and derive the flip-flop equations.
+Solve timing diagrams for simple combinational circuits and flip-flops.
+@juniper-networks/asic-design-engineer-milpitas-california-november-1-2022-declined-offer-negative-f455e306
+Analyze setup and hold when the output of the second flop feeds back into the first.
+@juniper-networks/asic-design-engineer-united-states-march-1-2022-declined-offer-positive-41426475
+Draw the state diagram of a pattern detector.
+Calculate the width of a buffer for a given traffic pattern.
+@juniper-networks/asic-design-verification-engineer-san-jose-california-march-14-2024-no-offer-positive-5c1f263e
+Explain fork-join, assertions and coverage in SystemVerilog.
+@juniper-networks/asic-engineer-ii-bengaluru-karnataka-june-1-2021-accepted-offer-positive-85a1b3ce
+Given a design made of several FIFOs, describe how you would build a testbench for it.
+@juniper-networks/asic-engineer-sunnyvale-california-january-1-2015-no-offer-negative-0d835570
+Why sample Gray code rather than binary across clock domains?
+A writer writes 6 locations every 10 time units and a reader reads 60 locations every 100 units, both continuously once started. How deep must the buffer be?
+@juniper-networks/asic-engineer-united-states-february-5-2015-no-offer-positive-6efbec92
+If an inverter's input is tied to its output, what is the output voltage?
+@juniper-networks/asic-engineer-united-states-may-1-2015-no-offer-neutral-4cbb2b11
+Write a Fibonacci series generator in SystemVerilog. Can you use fewer variables?
+@juniper-networks/asic-san-jose-california-february-1-2017-accepted-offer-positive-de607c20
+What happens when you connect a NAND gate's output to its input?
+@juniper-networks/design-verification-engineer-bengaluru-karnataka-july-1-2020-declined-offer-negative-4558d15f
+Explain UVM TLM ports.
+@juniper-networks/design-verification-engineer-united-states-september-13-2017-no-offer-positive-a90dcdc8
+What is the difference between virtual and pure virtual functions?
+Can a constructor be overridden?
+@juniper-networks/dft-engineer-sunnyvale-california-july-1-2013-no-offer-negative-2ba81692
+How would you create a new DFT architecture from scratch?

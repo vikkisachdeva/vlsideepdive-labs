@@ -1,0 +1,61 @@
+@arm/staff-hardware-engineer-turkey-august-26-2018-no-offer-positive-3763aa0d
+Design the memory and FPGA interface for a camera, given its frequency requirements.
+@arm/systems-architect-cambridge-cambridgeshire-january-1-2018-accepted-offer-positive-39bf043d
+How would you compress a program trace coming straight from a CPU?
+@arm/systems-architecture-intern-united-states-october-9-2024-no-offer-positive-d9ed7e11
+How do you extract bits from an integer?
+@arm/validation-engineer-united-kingdom-april-20-2025-no-offer-positive-0a6bac88
+Draw a system on chip.
+@arm/verification-enablement-austin-texas-january-1-2017-accepted-offer-positive-8388d440
+Why is MOESI better than MESI?
+How would you verify that a cache line under MOESI reaches every state with the fewest accesses?
+With an n-bit address bus, how much memory can be accessed?
+@arm/verification-engineer-austin-texas-february-1-2025-no-offer-negative-b273169a
+How do you verify a dual-port memory?
+What are layered constraints?
+What is UVM used for, and what is config_db?
+@arm/verification-engineer-cambridge-cambridgeshire-march-1-2018-declined-offer-positive-da66083c
+Design a RAM module in SystemVerilog to a given specification.
+@arm/verification-engineer-cambridge-cambridgeshire-october-28-2024-accepted-offer-positive-07a0744c
+Explain how caches and pipelines work.
+@arm/verification-engineer-canada-may-1-2015-no-offer-positive-ff1ee08d
+What is formal verification, and how does it differ from random verification?
+Describe power-management techniques.
+What is the MMU?
+What is the cone of influence of a check in formal verification?
+What is an abstraction technique in formal verification?
+@arm/verification-engineer-manipal-karnataka-august-1-2025-no-offer-positive-8d405428
+Explain dynamic, static and short-circuit power: where and how each happens, and how to reduce it at the logic and architecture level.
+@arm/verification-engineer-new-delhi-delhi-december-1-2023-declined-offer-positive-998b8288
+A data path and a clock path are given, and one has extra latency. How would you correct it?
+@arm/verification-engineer-sheffield-england-october-1-2022-no-offer-neutral-85fcb7ec
+Explain what a given complex SVA assertion checks.
+Write a C function that reads a value from a specific address.
+Explain the UVM factory and config_db.
+How do you verify a subsystem using C/C++ running on a processor?
+@arm/verification-engineer-united-kingdom-april-1-2023-no-offer-neutral-3fc39b74
+Write logic that finds the maximum of three numbers.
+@broadcom/asic-design-engineer-irvine-ca-august-1-2011-no-offer-negative-2de89f16
+How do you generate a divide-by-3 clock?
+@broadcom/asic-design-engineer-irvine-ca-june-1-2012-declined-offer-positive-321a93f9
+How must the read and write clocks relate in a FIFO with different read and write data widths?
+@broadcom/asic-engineer-intern-united-states-june-25-2026-no-offer-positive-2ecce4c8
+Explain setup and hold violations and clock skew.
+@broadcom/asic-verification-engineer-september-1-2011-no-offer-positive-8532f2a0
+Given a block diagram of a protocol block, write a SystemVerilog transactor for it.
+@broadcom/asic-verification-engineer-united-states-april-28-2014-no-offer-neutral-7db0a2e2
+How does SystemVerilog differ from Verilog?
+@broadcom/design-verification-engineer-san-jose-ca-april-1-2019-accepted-offer-positive-d4e816bf
+Write some SystemVerilog constraints.
+@broadcom/digital-ic-verification-intern-united-states-july-23-2013-no-offer-neutral-33d51363
+If the clock is X, what is a flip-flop's output?
+@broadcom/firmware-validation-engineer-bengaluru-november-1-2021-accepted-offer-positive-be17a4d0
+Find the two's complement of a number.
+Draw the logic for y = abc + a'bc'.
+@broadcom/hardware-engineer-san-diego-ca-june-1-2015-accepted-offer-positive-858298ec
+What is crosstalk, and how does it affect timing?
+What is IR drop?
+@broadcom/hardware-intern-united-states-january-1-2014-no-offer-neutral-342a0d5f
+How do you swap two variables without a third one?
+@broadcom/hardware-test-intern-rancho-san-diego-ca-april-1-2013-accepted-offer-neutral-8b6ebee7
+What is a pull-up resistor used for?

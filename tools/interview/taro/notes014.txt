@@ -1,0 +1,67 @@
+@marvell-technology/asic-design-engineer-aliso-viejo-california-may-23-2014-no-offer-neutral-654da62a
+How many bits are needed to hold A*B + C when all three are 8-bit unsigned?
+@marvell-technology/asic-design-engineer-ann-arbor-michigan-august-1-2015-no-offer-neutral-4a19d5c3
+Explain how a cache works.
+@marvell-technology/asic-design-engineer-february-1-2011-no-offer-neutral-43e0beed
+Which metal layers are used for power and clock?
+What is the difference between ASIC and FPGA design?
+@marvell-technology/asic-design-engineer-los-angeles-california-april-1-2018-no-offer-positive-9053c5fd
+What are setup time and hold time?
+@marvell-technology/asic-design-engineer-march-1-2010-no-offer-neutral-87bf52ed
+Design a divide-by-3 clock divider.
+@marvell-technology/asic-design-engineer-november-1-2009-declined-offer-neutral-611e896c
+Explain how a FIFO works.
+@marvell-technology/asic-design-engineer-november-28-2012-no-offer-neutral-a456fdda
+How do you avoid setup and hold violations?
+@marvell-technology/asic-design-engineer-santa-clara-california-december-1-2014-no-offer-positive-86bf4a5d
+What is the difference between Mealy and Moore FSMs?
+Design a clock divider.
+@marvell-technology/asic-design-engineer-santa-clara-california-july-1-2012-no-offer-neutral-c2e61db4
+Count the number of 1s in an 8-bit input using only full adders.
+@marvell-technology/asic-design-engineer-santa-clara-california-march-1-2018-no-offer-positive-bc20534b
+How do you build a synchronizer for one bit, for multiple bits, and between clocks of different frequencies?
+How do you truncate and sign-extend in arithmetic operations?
+@marvell-technology/asic-design-engineer-santa-clara-california-november-1-2014-no-offer-negative-8fa5ccda
+What is the difference between Verilog tasks and functions?
+How do you calculate FIFO depth?
+@marvell-technology/asic-design-engineer-santa-clara-california-november-1-2014-no-offer-neutral-9fd6fc3b
+Walk through the ASIC flow.
+@marvell-technology/asic-design-engineer-santa-clara-california-november-26-2012-accepted-offer-neutral-3f188544
+Write an FSM in Verilog.
+@marvell-technology/asic-design-engineer-santa-clara-california-september-1-2011-accepted-offer-positive-f66210d1
+Design a FIFO with both synchronous and asynchronous options.
+@marvell-technology/asic-design-engineer-santa-clara-california-september-1-2015-declined-offer-positive-3fd5cc00
+Explain RAW, WAW and WAR hazards and how in-order and out-of-order pipelines handle them.
+How are structural hazards handled in out-of-order pipelines?
+Explain Tomasulo's out-of-order algorithm in depth.
+Design a FIFO across multiple clock domains.
+@marvell-technology/asic-design-engineer-taiwan-may-1-2018-no-offer-neutral-a7711c5c
+How do you handle multi-bit CDC?
+How do you analyze timing for a clock-gating cell?
+Describe the synthesis flow.
+@marvell-technology/asic-design-engineer-united-states-april-1-2014-no-offer-neutral-74cc5824
+How do you check whether a fabricated chip has a hold violation, and how do you fix it?
+@marvell-technology/asic-design-engineer-united-states-april-26-2013-no-offer-positive-3d24b892
+How do you resolve clock skew? Describe the process in detail.
+@marvell-technology/asic-design-engineer-united-states-april-9-2018-accepted-offer-positive-c5e9b622
+With only 4x4 multipliers and unlimited adders, what is the minimum number of 4x4 multipliers needed for a 16x16 multiplier?
+Write a Fibonacci generator in Verilog that outputs one number per cycle.
+Design a two-input XOR gate using one MUX.
+@marvell-technology/asic-design-engineer-united-states-february-28-2014-no-offer-neutral-1694c17e
+How do you improve IPC with respect to branches? Can a branch be resolved in the decode stage?
+@marvell-technology/asic-design-engineer-united-states-june-16-2013-accepted-offer-neutral-7fbb38b2
+What is the difference between synchronous and asynchronous FIFOs? What techniques transfer signals across clock domains? Write Verilog for one.
+@marvell-technology/asic-design-engineer-united-states-october-10-2014-no-offer-neutral-1b7533d7
+How does the place-and-route tool fix setup violations before CTS?
+@marvell-technology/asic-design-verification-engineer-india-january-1-2022-accepted-offer-positive-757a4202
+Explain UVM architecture and flow.
+@marvell-technology/asic-design-verification-engineer-united-states-october-1-2019-no-offer-neutral-a46eda39
+How would you build a cache, and how is data moved into it?
+@marvell-technology/asic-engineer-san-jose-california-october-1-2023-no-offer-positive-d12ff1f3
+What is time borrowing in latches?
+@marvell-technology/asic-verification-engineer-united-states-september-16-2014-no-offer-neutral-9397c039
+How do you know your testbench has covered all the cases?
+@marvell-technology/asic-verification-san-jose-california-april-1-2012-no-offer-negative-f8d086a0
+Explain round-robin scheduling and draw its state diagram.
+@marvell-technology/design-verification-engineer-bengaluru-karnataka-april-1-2024-no-offer-negative-78cefee5
+Explain power-gating simulation and the main UPF concepts.

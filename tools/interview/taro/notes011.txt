@@ -1,0 +1,46 @@
+@google/design-verification-engineer-september-7-2026-no-offer-neutral-f32bd6be
+Write an asynchronous FIFO.
+@google/dft-engineer-july-25-2026-no-offer-positive-fb532acf
+How do you make an XOR gate from a MUX?
+@google/hardware-engineer-august-26-2026-no-offer-positive-c3671cb0
+Explain how a 3-bit synchronous counter built from JK flip-flops works.
+@groq/asic-design-engineer-mountain-view-california-may-8-2024-no-offer-negative-2c15f2ee
+Write Verilog for a moving average.
+@hudson-river-trading/fpga-and-asic-engineer-new-york-ny-march-1-2023-no-offer-negative-7c907ae6
+How do you check whether a system is little-endian or big-endian?
+Write a testbench for a 256-deep FIFO with rewind and commit.
+@hudson-river-trading/hardware-engineer-intern-united-states-november-21-2021-no-offer-neutral-4624d8cb
+Design a two-stage pipelined ALU that executes a list of instructions given in hex.
+@hudson-river-trading/hardware-engineer-internship-new-york-ny-january-4-2024-declined-offer-positive-177d38ab
+What happens during synthesis of an FPGA design, and what happens during implementation?
+@hudson-river-trading/hardware-engineer-new-york-ny-november-8-2024-no-offer-negative-d9409af3
+What are setup and hold violations, and how are they resolved?
+@imc-trading/graduate-hardware-engineer-chicago-illinois-february-5-2026-no-offer-negative-1fe8a90d
+Draw a block diagram of a memory primitive (such as a RAM) and the wrapper around it.
+@imc-trading/hardware-engineer-chicago-wi-december-1-2019-no-offer-positive-ddc85d13
+What FSM state-encoding techniques do you know?
+Design a divide-by-2 clock.
+@imc-trading/hardware-engineer-intern-chicago-illinois-september-1-2023-no-offer-neutral-a08cb1c1
+How would your design change for a different specification, and how would propagation delay and resource use differ?
+@imc-trading/hardware-engineer-internship-united-states-september-11-2020-no-offer-neutral-221226e8
+How do you build a 2:1 MUX?
+@imc-trading/hardware-engineering-sydney-new-south-wales-september-13-2018-no-offer-positive-603e893a
+Draw how an FPGA tool turns a block of code into hardware.
+@imc-trading/hardware-engineering-united-states-august-1-2023-no-offer-positive-24a04427
+If the constant your state machine compares against grows from 6 to 100, what happens to the design, and how would you implement it in Verilog efficiently?
+@imc-trading/hardware-engineersummer-2022-croton-on-hudson-new-york-october-1-2021-no-offer-neutral-7364bbb1
+Write a simple register in SystemVerilog.
+@intel/asic-verification-intern-vancouver-bc-may-5-2023-no-offer-positive-1a2d2e73
+How do you build a 4:1 MUX from 2:1 MUXes?
+@intel/cpu-validation-engineer-austin-tx-december-1-2023-no-offer-positive-24581ae5
+What is the difference between blocking and non-blocking assignments?
+@intel/cpu-validation-engineer-haifa-february-26-2024-no-offer-neutral-001ebab3
+Write assembly that leaves r3 = r1 * r2, using as many registers as you like.
+@intel/cpu-verification-engineer-austin-texas-june-1-2026-accepted-offer-positive-82d4939c
+Compare RISC and CISC instruction sets, with the pros and cons of each.
+@intel/cpu-verification-engineer-india-august-28-2026-no-offer-neutral-f843ae87
+Build circuits using decoders and multiplexers.
+@intel/design-verification-engineer-united-states-march-27-2026-accepted-offer-positive-2b9a00e9
+Write a UVM scoreboard and monitor, and show how they are connected.
+@intel/design-verification-engineer-united-states-may-21-2024-no-offer-positive-70be0c46
+How would you verify a multi-level cache with multiple masters?

@@ -1,0 +1,51 @@
+@arm/cpu-design-verification-biot-provence-alpes-cote-dazur-april-1-2024-no-offer-negative-96c39b65
+What is inside a processor?
+@arm/cpu-design-verification-madison-wisconsin-september-1-2017-accepted-offer-positive-17171c6c
+Explain in-order versus out-of-order processors and register renaming.
+Explain branch prediction.
+@arm/cpu-verification-chandler-arizona-october-1-2019-no-offer-positive-39cd0ba0
+What is an asynchronous FIFO, and why do its pointers need n+1 bits?
+Why do we need virtual memory, and what are its advantages?
+@arm/cpu-verification-new-york-new-york-october-1-2019-no-offer-positive-662a1068
+What are the hazards in a pipelined processor and how are they resolved?
+What types of caches are there, and which is better?
+How does a cache fetch data from main memory?
+What are semaphores and why are they used?
+@arm/design-and-verification-cambridge-cambridgeshire-january-1-2018-no-offer-positive-e78c6b26
+Write code that sorts three input numbers efficiently from a hardware point of view.
+@arm/design-and-verification-southampton-hampshire-february-1-2017-accepted-offer-positive-23bf120d
+Draw a block diagram of a simple processor and show how an instruction flows through it.
+@arm/design-verification-engineer-united-states-may-29-2025-no-offer-neutral-0d073b83
+What is pipelining? What is cache coherency?
+@arm/graduate-cpu-engineer-antibes-provence-alpes-cote-dazur-june-1-2023-no-offer-positive-b96c55d7
+What is the purpose of the memory management unit?
+@arm/graduate-cpu-performance-modeling-engineer-romania-november-27-2020-no-offer-positive-1dbe39ff
+What is a cache? What are the stages of a pipeline?
+@arm/graduate-cpu-verification-antibes-provence-alpes-cote-dazur-february-1-2018-no-offer-positive-3cb35ead
+Given a black box with some inputs, outputs and a timing diagram, how would you verify it?
+@arm/graduate-hardware-and-verification-engineer-italy-november-1-2019-no-offer-negative-f218e1d0
+Explain pipeline stalls, the forwarding unit and the hazard detection unit in a RISC-V pipeline.
+@arm/graduate-hardware-engineer-budapest-june-4-2023-no-offer-neutral-de60d108
+In a given bus architecture, which are the masters and slaves, and how many addresses fit in a given range?
+@arm/graduate-hardware-engineer-cambridge-cambridgeshire-august-25-2024-no-offer-neutral-39a9883e
+Explain the types of hazards in a CPU pipeline.
+@arm/graduate-hardware-engineer-cambridge-cambridgeshire-december-1-2023-no-offer-positive-6b444f48
+What is a cache, and why is it important? What is an interrupt?
+@arm/graduate-hardware-engineer-cambridge-cambridgeshire-december-18-2016-no-offer-negative-67ffbcbb
+What is two's complement?
+Build a latch from an OR gate and a MUX.
+@arm/graduate-hardware-engineer-cambridge-cambridgeshire-february-22-2017-no-offer-negative-2713491e
+Draw an FSM for an elevator serving 3 floors.
+@arm/graduate-hardware-engineer-cambridge-cambridgeshire-january-1-2017-accepted-offer-positive-03b2791c
+Write a counter in VHDL.
+Write a VHDL FSM that controls a traffic light.
+Draw the microarchitecture of a CPU.
+@arm/graduate-hardware-engineer-trondheim-trondelag-october-1-2024-no-offer-positive-60d9f51e
+Describe the cache system in a CPU.
+@arm/graduate-systems-architecture-engineer-cambridge-cambridgeshire-august-1-2020-declined-offer-positive-28e23edd
+Describe the components of a modern Arm mobile SoC and how they connect to each other.
+@arm/hardware-engineer-antibes-provence-alpes-cote-dazur-november-1-2024-no-offer-positive-cdb382e0
+Explain how caches, the MMU and virtual memory work together.
+What low-power design techniques do you know?
+@arm/hardware-engineer-austin-texas-march-6-2024-no-offer-negative-f80087b4
+How would you use the MESI protocol to optimize a multiprocessor cache system?

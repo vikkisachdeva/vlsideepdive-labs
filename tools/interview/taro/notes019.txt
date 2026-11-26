@@ -1,0 +1,54 @@
+@nvidia/system-validation-engineer-united-states-november-7-2025-no-offer-neutral-8794b144
+How does a given RC network behave at different frequencies?
+@nvidia/verification-engineer-santa-clara-ca-march-29-2025-accepted-offer-positive-76a7e948
+Write SystemVerilog code that merges two sorted arrays into one sorted array.
+@nvidia/verification-engineer-santa-clara-california-july-20-2026-no-offer-positive-7d4b07d0
+Write constrained-random code for several requirements, including randc behavior.
+@nvidia/verification-engineer-tel-aviv-tel-aviv-district-january-1-2026-no-offer-positive-5f9e9796
+Design a circuit that counts the 1s among 5 inputs using only half adders and full adders.
+@nvidia/verification-engineer-tel-aviv-yafo-june-27-2025-no-offer-positive-cc25114e
+Write multiplication code in assembly.
+@nvidia/verification-intern-united-states-october-1-2024-no-offer-positive-1698166b
+What is the difference between a task and a function in SystemVerilog?
+@nxp-semiconductors/asic-design-engineer-san-jose-california-december-6-2024-no-offer-positive-4ae205ef
+How do you handle CDC, and why use Gray codes?
+@nxp-semiconductors/design-verification-engineer-india-january-11-2022-no-offer-negative-a63c69b9
+What is the alternative to an analysis port in UVM?
+@nxp-semiconductors/design-verification-engineer-india-may-29-2024-accepted-offer-positive-6d1c9a1c
+Write an assertion for a stated scenario.
+@nxp-semiconductors/design-verification-intern-austin-texas-april-28-2023-accepted-offer-positive-cd578cc7
+What is a fork? What is the difference between fork-join_none and fork-join_any?
+@nxp-semiconductors/dft-intern-engineer-india-april-1-2024-accepted-offer-positive-e23c680e
+Explain the operating regions of a CMOS inverter.
+@nxp-semiconductors/digital-validation-engineer-san-diego-california-november-1-2021-no-offer-neutral-739ded28
+What is the difference between RAM and ROM?
+@nxp-semiconductors/firmware-architect-bengaluru-karnataka-june-1-2016-no-offer-neutral-6a630d3f
+What is the difference between a mutex and a semaphore?
+What is the difference between the Arm WFI and WFE instructions?
+@nxp-semiconductors/hardware-engineer-bengaluru-karnataka-october-11-2024-no-offer-neutral-b2b81ea8
+Explain how a CMOS inverter works.
+@nxp-semiconductors/hardware-engineer-india-september-1-2024-no-offer-positive-098aa97a
+What is a demultiplexer, and what is it used for?
+@nxp-semiconductors/hardware-engineer-internship-india-may-1-2022-no-offer-positive-cdf10914
+Draw an XOR gate, a full adder and the different flip-flops.
+@nxp-semiconductors/hardware-engineer-noida-uttar-pradesh-march-31-2023-no-offer-positive-627b35f2
+Explain the setup time of a flip-flop.
+@nxp-semiconductors/hardware-intern-bengaluru-karnataka-january-1-2023-no-offer-positive-0969990d
+Compare synchronous and asynchronous counters, and design an asynchronous counter.
+@nxp-semiconductors/hardware-intern-india-may-29-2024-no-offer-neutral-b57a656c
+Draw the Bode plot of an op-amp's gain versus frequency.
+@nxp-semiconductors/soc-design-verification-engineer-india-february-13-2022-accepted-offer-positive-c56827d2
+Why do we use a virtual sequence? What is a virtual interface?
+@nxp-semiconductors/soc-verification-engineer-united-states-june-16-2026-no-offer-positive-6d8e510c
+How do you divide a 500 MHz clock by 3?
+@nxp-semiconductors/validation-engineer-noida-uttar-pradesh-january-1-2022-accepted-offer-positive-a0ab4a29
+Compare SPI and I2C: speed, clock stretching and test cases.
+How are I2C pull-ups configured, and how do you choose their value?
+Realize logic functions with universal gates.
+How do you choose the oscilloscope bandwidth for the signal under test?
+@nxp-semiconductors/verification-engineer-austria-january-1-2014-accepted-offer-positive-d1bd1353
+How do you verify a multi-block IP using UVM?
+@nxp-semiconductors/verification-engineer-india-november-25-2021-no-offer-positive-3ee70e2c
+Write Verilog code for a latch.
+@nxp-semiconductors/verification-engineer-shanghai-shanghai-april-1-2019-accepted-offer-positive-a77e1dd4
+How do you verify a synchronizer?

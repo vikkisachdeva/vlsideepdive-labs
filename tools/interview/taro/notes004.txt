@@ -1,0 +1,59 @@
+@amd/verification-engineer-intern-february-1-2012-no-offer-neutral-a56780c2
+What is the difference between a register and a flip-flop?
+@amd/verification-engineer-markham-on-january-1-2012-no-offer-neutral-404d4cd8
+Explain setup and hold time with a figure, then fix the setup and hold violations in a given circuit.
+@amd/verification-engineer-sunnyvale-ca-april-1-2015-accepted-offer-positive-10e3d514
+Which Verilog constructs are synthesizable and which are not?
+@amd/verification-engineer-sunnyvale-ca-august-1-2010-no-offer-negative-ad17c41d
+What mechanism connects the UVM driver and the sequencer?
+@analog-devices/design-verification-engineer-bengaluru-karnataka-december-1-2025-no-offer-positive-72cb898d
+Given the power per bit flip, which consumes less power: a Gray-code counter or a binary counter?
+Draw the state diagram of a traffic light controller FSM.
+Write C code for an FSM that changes state on given conditions.
+When an interrupt is raised on a microcontroller, where is the return address stored?
+@analog-devices/design-verification-engineer-canada-november-3-2013-accepted-offer-neutral-0573612d
+How do you derive the circuit diagram for a finite state machine?
+@analog-devices/design-verification-engineer-india-may-23-2025-no-offer-neutral-999cbb85
+An interconnect has 3 AHB masters and 1 APB master on one side and 3 APB slaves on the other, with given address ranges; some masters get error responses for the top range. Write the top-level testbench and the coverpoints and bins you would use.
+What is the difference between functional coverage and code coverage? If you have functional coverage, why do you still need code coverage?
+@analog-devices/design-verification-engineer-raleigh-north-carolina-november-1-2020-no-offer-positive-0d1fa693
+What is a critical path?
+Explain virtual functions and polymorphism in SystemVerilog.
+@analog-devices/design-verification-intern-mangalore-karnataka-november-1-2025-no-offer-positive-13dd7149
+Build a D flip-flop from a JK flip-flop.
+What is a synthesis-simulation mismatch?
+What are full_case and parallel_case in Verilog?
+Why is Gray code preferred?
+What is X in Verilog?
+@analog-devices/dft-engineer-bhubaneshwar-odisha-november-1-2021-no-offer-positive-d926cf9e
+Design a NAND gate in CMOS.
+@analog-devices/dft-engineer-india-february-22-2021-no-offer-positive-0673bc68
+Design a frequency divider.
+@analog-devices/digital-verification-intern-nuzvid-andhra-pradesh-february-1-2023-no-offer-positive-b68211fd
+How do you multiply two signed numbers?
+@analog-devices/entry-level-associate-product-applications-engineer-chandler-arizona-august-1-2022-accepted-offer-positive-392679e5
+Compare buck, boost and linear regulators.
+What is a TVS diode?
+@analog-devices/hardware-engineer-bengaluru-karnataka-december-1-2022-no-offer-positive-b4ae769b
+What is static timing analysis?
+@analog-devices/hardware-engineer-israel-january-1-2023-no-offer-positive-9e149ff1
+How does increasing the order of a low-pass filter change its Bode plot, and what does the circuit look like?
+@analog-devices/hardware-engineer-united-kingdom-december-1-2015-no-offer-negative-8284634a
+Draw a half adder and a complete flip-flop.
+@analog-devices/hardware-engineer-wilmington-massachusetts-june-1-2015-no-offer-positive-95b67bb0
+How would you implement a sine function in hardware?
+@analog-devices/hardware-engineering-co-op-switzerland-december-1-2021-no-offer-positive-b2680618
+Identify the logic function a given network of gates implements.
+@analog-devices/hardware-intern-limerick-county-limerick-december-1-2024-no-offer-positive-16731607
+Is a given RC circuit a low-pass or a high-pass filter?
+Draw how a capacitor charges and discharges.
+@analog-devices/mixed-signal-verification-engineer-valencia-valencian-community-april-1-2023-accepted-offer-positive-b5528bfa
+A current source drives a switch in series with a capacitor that has another switch across it. Describe the voltage response as each switch closes.
+@analog-devices/senior-engineer-modeling-and-verification-india-march-27-2023-no-offer-positive-759f6cbd
+Explain channel-length modulation.
+Explain the body effect.
+What are the non-idealities of MOS capacitance?
+@analog-devices/senior-hardware-engineer-germany-february-6-2025-no-offer-neutral-3345374c
+When would you choose an FPGA over an ASIC, and why?
+@analog-devices/verification-engineer-limerick-county-limerick-september-1-2019-declined-offer-positive-d4d5497f
+What is the best way to protect an amplifier input from overvoltage?

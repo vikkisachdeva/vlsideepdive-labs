@@ -1,9 +1,9 @@
-# Interview questions
 
-`sources.json` holds questions reported in public interview-experience posts (one entry per post:
-company, role, level, date, site, url, and the questions with their round). Nothing here is
-written by us: each question comes from the linked post, kept short and close to how it was reported.
-Glassdoor, LinkedIn and Blind are not used (their terms forbid scraping, and most posts need a login).
-
-To add a post: `python3 add.py new.json`, then `python3 build.py ../..` to rebuild
-`/interview-questions.json` (topics and practice links to labs and videos are added automatically).
+## Taro bulk method (Nov 26, 2026)
+Taro pages are server-rendered. In a Chrome tab on jointaro.com, fetch
+`/interviews/companies/<co>/experiences/?page=N` to list experience slugs, keep hardware roles, then fetch each
+experience and read the text under the "Questions" h2 (and "Process"). Curate into `taro/notesNNN.txt`
+(`@company/slug` line, then one clean question per line; skip vague topics, behavioural and pure software),
+run `python3 taro/conv.py`, then merge `taro/taro-sources.json` into sources.json (skip URLs already present).
+About 1150 more hardware experiences were listed but not yet curated on Nov 26 (companies after "tsmc"
+alphabetically in the first pass were all read; the second pass list was not).

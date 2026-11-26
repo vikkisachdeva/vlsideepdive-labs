@@ -1,0 +1,41 @@
+@amd/hardware-verification-engineer-intern-markham-on-september-1-2025-no-offer-negative-4221b775
+Design a 16-bit multiplexer in Verilog.
+@amd/hardware-verification-engineer-markham-ontario-november-25-2025-no-offer-neutral-773f01dd
+Draw the output waveform of a D flip-flop for a given clock and input.
+@amd/platform-emulation-co-op-engineer-boxborough-ma-november-1-2023-no-offer-neutral-a8db756b
+How would you combine two 1-write 1-read block RAMs into a 1W2R block RAM? And a 2W1R one?
+@amd/post-silicon-validation-engineer-austin-texas-july-7-2026-accepted-offer-positive-4f376047
+How would you validate real-world scenarios such as a traffic light controller or a computer hang?
+@amd/senior-asic-design-engineer-united-states-november-6-2015-no-offer-positive-864c6e75
+Explain FIFO pointer logic for asynchronous clock domain crossing.
+Design a divide-by-3 clock generator.
+@amd/senior-asic-design-verification-engineer-boxborough-ma-may-1-2014-no-offer-neutral-1db417a7
+What types of caches are there?
+@amd/senior-verification-engineer-bengaluru-june-20-2025-no-offer-positive-535e64f6
+Explain how OOP concepts are used in UVM.
+@amd/senior-verification-engineer-india-july-1-2009-no-offer-neutral-3985a554
+How do you calculate FIFO depth?
+What is the difference between blocking and non-blocking assignments?
+@amd/soc-integration-engineer-markham-on-april-19-2024-no-offer-positive-4647b457
+Write a D flip-flop in Verilog.
+@amd/soc-verification-india-may-1-2021-no-offer-negative-124d16e4
+What is the difference between a latch and a flip-flop?
+@amd/soc-verification-inter-canada-february-22-2023-no-offer-positive-7ad4cdf4
+Build a NAND gate from two given gates A and B, using their truth tables.
+@amd/systems-on-chip-verification-engineer-toronto-on-october-1-2018-no-offer-negative-85f15128
+Write a Verilog testbench on the whiteboard.
+@amd/systems-validation-toronto-on-january-1-2017-declined-offer-positive-838ebfe5
+Out of 100 driver versions, all versions after the first broken one are also broken. How do you find the first broken one quickly?
+@amd/technical-architect-toronto-on-january-1-2021-no-offer-positive-cf45ccc4
+What arbitration techniques do you know?
+@amd/validation-engineer-new-delhi-march-1-2022-declined-offer-positive-57e7d762
+Explain the VLSI design flow.
+@amd/verification-engineer-bengaluru-november-1-2016-accepted-offer-positive-675dd81b
+A UVM environment has 3 agents on separate interfaces. Wrong stimulus on agent1 raises an error pin on interface3, which agent2's monitor sees; agent2 must then perform a read. How do you make sure agent2 drives a read for every such error?
+@amd/verification-engineer-boxborough-ma-august-1-2016-no-offer-neutral-f7035f88
+What are the main differences between the UVM monitor and driver classes?
+@amd/verification-engineer-boxborough-ma-may-1-2010-declined-offer-positive-787e67f8
+After the chip is manufactured, would you rather have setup violations or hold violations? Why?
+How would you verify a 3-bit adder and a 64-bit adder? Would you use the same strategy?
+@amd/verification-engineer-fort-collins-co-december-1-2009-no-offer-positive-1ab01100
+What is the disadvantage of higher cache associativity?

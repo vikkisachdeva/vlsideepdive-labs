@@ -1,0 +1,48 @@
+@cadence-design-systems/timing-engineer-san-francisco-california-january-1-2019-no-offer-positive-77ca6dec
+What are the inputs to a timing engine?
+Explain false paths and half-cycle paths.
+What are timing arcs?
+@cadence-design-systems/validation-engineer-bengaluru-karnataka-january-1-2019-accepted-offer-positive-8b5faeea
+Explain the SystemVerilog event scheduler regions.
+Describe the hierarchy of a SystemVerilog testbench.
+@cadence-design-systems/verification-engineer-india-june-25-2021-no-offer-positive-7cb34aa5
+What is instruction pipelining?
+Find the smaller of two integers without using if-else.
+How do you swap two values in Verilog?
+What are big-endian and little-endian?
+A combinational circuit ending in an XNOR gate has exactly one stuck-at-0 fault. How do you find it?
+@cadence-design-systems/verification-engineer-india-october-23-2017-no-offer-positive-acd3c9ab
+What are the UVM phases and their properties?
+@cadence-design-systems/verification-engineer-new-delhi-delhi-april-1-2025-no-offer-negative-b6f87989
+What are the factory override methods in UVM?
+@cisco/asic-design-engineer-san-jose-ca-january-1-2025-no-offer-neutral-f356f035
+Design an SRAM cell and explain how it works.
+@cisco/asic-engineer-bengaluru-november-29-2024-accepted-offer-positive-b4cadc01
+Explain RC and RL filters.
+@cisco/asic-engineer-bengaluru-october-1-2023-accepted-offer-positive-d20ce1c4
+Walk through the complete ASIC flow.
+What power-reduction techniques do you know?
+Design the FSM of a round-robin arbiter.
+@cisco/asic-engineer-i-united-states-november-1-2024-no-offer-positive-9ee1445a
+What is the difference between DRC and LVS?
+@cisco/hardware-engineer-bengaluru-august-1-2023-no-offer-positive-8421a9d7
+What is the difference between a latch and a flip-flop?
+What is the difference between SRAM and DRAM?
+@cisco/hardware-engineer-bengaluru-august-1-2024-no-offer-positive-8f5a300a
+What is an RLC network? Explain its components.
+@cisco/hardware-engineer-california-city-ca-december-17-2024-accepted-offer-positive-79389891
+How do you protect a circuit against voltage spikes?
+@cisco/hardware-engineer-ii-intern-united-states-december-16-2025-declined-offer-positive-c146348e
+How would you analyze and fix routability and congestion in physical design, and what would you do at floorplanning and placement to improve routability?
+@cisco/hardware-engineer-manipal-august-1-2023-no-offer-positive-1abc6d7d
+What is the difference between a microcontroller and a microprocessor? Describe the 8051 architecture.
+@cisco/hardware-intern-united-states-february-1-2024-no-offer-positive-4bd00167
+What goes into the sensitivity list of a D flip-flop?
+What is an asynchronous active-low reset?
+How do you multiply binary numbers?
+@cisco/senior-hardware-engineer-united-states-august-1-2023-accepted-offer-positive-d6e86b05
+What is skin effect, and how does it affect PCB design?
+@cisco/sr-asic-design-verification-engineer-santa-clara-california-march-15-2026-no-offer-negative-76162a48
+On the whiteboard, build a testbench for a past project: its features, DUT interface connections and components.
+@globalfoundries/design-verification-engineer-richardson-texas-august-2-2026-no-offer-positive-cc1e5072
+Explain code coverage and branch coverage.

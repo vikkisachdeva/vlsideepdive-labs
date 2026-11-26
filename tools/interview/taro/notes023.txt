@@ -1,0 +1,52 @@
+@sifive/asic-design-engineer-intern-india-june-1-2024-no-offer-positive-9012813b
+Find the output of a chain of flip-flops and MUXes at a given clock cycle.
+Solve a transmission-gate circuit problem.
+@sifive/asic-engineer-united-kingdom-may-5-2022-no-offer-positive-0de70474
+Explain metastability and crossing between clock domains.
+@sifive/design-verification-engineer-bengaluru-karnataka-may-1-2026-no-offer-positive-4a08fedf
+Explain the types of cache coherency, cache hits and misses, and dirty lines.
+@sifive/formal-verification-engineer-india-june-22-2022-no-offer-neutral-068f0711
+How do you formally verify a FIFO?
+Design a round-robin arbiter.
+@sifive/verification-engineer-san-mateo-california-august-9-2022-declined-offer-negative-fe42b76f
+Write an assertion for a request/acknowledge handshake.
+Write code to verify a cache.
+@sk-hynix/hardware-validation-engineer-june-1-2012-no-offer-neutral-6f07ad7f
+How do you synchronize data between two interfaces running at different clock frequencies?
+@sk-hynix/senior-asic-design-engineer-san-jose-california-april-24-2013-no-offer-neutral-aa7016c4
+Design asynchronous and synchronous FIFOs at the circuit level.
+@synopsys/analog-and-digital-verification-engineer-india-january-1-2021-accepted-offer-positive-5596273a
+Explain RC integrator and differentiator circuits.
+@synopsys/asic-design-engineer-canada-april-25-2023-accepted-offer-positive-c545206a
+How do you debug a timing violation in the lab?
+@synopsys/asic-design-engineer-guwahati-assam-february-1-2022-declined-offer-positive-412baf43
+How many 2:1 MUXes are needed to build a 16:1 MUX?
+@synopsys/asic-design-engineer-intern-canada-september-18-2024-no-offer-positive-922db084
+How would you build clock dividers?
+@synopsys/asic-design-engineer-jalandhar-punjab-september-1-2022-accepted-offer-positive-f5c0685b
+What are the different ways to model an FSM in Verilog?
+What is casex used for in Verilog?
+@synopsys/asic-design-verification-engineer-india-june-23-2025-accepted-offer-positive-0802608d
+Explain UVM sequencer-driver communication.
+@synopsys/asic-design-verification-engineer-india-june-8-2024-no-offer-neutral-35dc194c
+Write a full adder in Verilog.
+Debug given Verilog code and find its errors.
+@synopsys/asic-engineer-india-march-1-2025-declined-offer-positive-a23c6059
+Design and implement a FIFO.
+@synopsys/asic-verification-intern-india-may-1-2023-accepted-offer-positive-ffa4b356
+Write a state machine in Verilog.
+@synopsys/design-verification-engineer-bengaluru-karnataka-april-1-2025-no-offer-positive-bce20eda
+What is the ASIC design flow?
+@synopsys/design-verification-engineer-bengaluru-karnataka-march-1-2025-no-offer-positive-d202f03f
+How is a SystemVerilog interface made, and what is it for?
+@synopsys/design-verification-engineer-hyderabad-telangana-august-1-2022-no-offer-positive-4861bd29
+Write Verilog for an FSM, a clock generator and a MUX.
+Write code for a UVM driver, a sequencer and TLM ports.
+@synopsys/design-verification-engineer-india-august-1-2021-no-offer-neutral-00211e9c
+Implement a 4:1 MUX using the ternary operator.
+@synopsys/design-verification-engineer-ottawa-ontario-march-27-2026-no-offer-positive-15ef793d
+Design a divide-by-2 clock with a D flip-flop.
+@synopsys/design-verification-intern-hyderabad-telangana-may-1-2021-no-offer-positive-926178b7
+How do you design an accumulator?
+How do you generate a ramp signal in Verilog?
+What are start and stop bits?

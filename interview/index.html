@@ -498,6 +498,7 @@ header.top nav a.lb-streak { font-weight: 700; color: #ffb38a; }
 .lb-table tr.me td { background: color-mix(in srgb, #e8642c 12%, transparent); font-weight: 600; }
 .lb-table tr.gap td { text-align: center; color: var(--muted); }
 .lb-empty { color: var(--muted); padding: 20px 0; }
+.iq-more{display:block;margin:18px auto 0}
 </style>
 <style>
 .tips-wrap { max-width: 860px; margin: 0 auto; padding: 8px 20px 56px; }
@@ -576,7 +577,7 @@ header.top nav a.lb-streak { font-weight: 700; color: #ffb38a; }
 </div>
 
 <div class="iq-wrap">
-  <p class="iq-note">Collected from public interview-experience posts (GeeksforGeeks, Taro, VLSI blogs) and updated every week. We don't write these questions; where a post didn't give the round or year, it is left blank. Next to each question: the labs and videos that teach it.</p>
+  <p class="iq-note">Collected from public interview-experience posts (Taro, GeeksforGeeks, VLSI blogs and forums) and updated every week. We don't write these questions; where a post didn't give the round or year, it is left blank. Next to each question: the labs and videos that teach it.</p>
   <div class="iq-bar">
     <label class="vh" for="iq-s">Search questions</label>
     <input class="search" id="iq-s" type="search" placeholder="Search questions, e.g. setup hold, FIFO, UVM" autocomplete="off">
@@ -598,11 +599,12 @@ header.top nav a.lb-streak { font-weight: 700; color: #ffb38a; }
   const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
   const norm = (s) => s.toLowerCase().replace(/[-_./]/g, "");
   const reEsc = (c) => c.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-  let Q = [], role = "";
+  let Q = [], role = "", limit = 120;
   const P = new URLSearchParams(location.search);
   function opts(sel, vals) { for (const [v, n] of vals) { const o = document.createElement("option"); o.value = v; o.textContent = v + " (" + n + ")"; sel.appendChild(o); } }
   function counts(key) { const m = {}; for (const q of Q) if (q[key]) m[q[key]] = (m[q[key]] || 0) + 1; return Object.entries(m).sort((a, b) => b[1] - a[1]); }
-  function render() {
+  function render(keep) {
+    if (keep !== true) limit = 120;
     const raw = $("iq-s").value.trim(), toks = norm(raw).split(/\s+/).filter(Boolean), co = $("iq-c").value, tp = $("iq-t").value;
     const hits = Q.filter((q) => (!co || q.c === co) && (!tp || q.tp === tp) && (!role || q.r === role) && toks.every((t) => q._x.includes(t)));
     const qs = new URLSearchParams(); if (raw) qs.set("q", raw); if (co) qs.set("company", co); if (tp) qs.set("topic", tp); if (role) qs.set("role", role);
@@ -612,10 +614,13 @@ header.top nav a.lb-streak { font-weight: 700; color: #ffb38a; }
     if (!hits.length) { box.innerHTML = '<div class="empty"><b>No questions match</b>Try another word, or clear a filter.</div>'; return; }
     const by = {}; for (const q of hits) (by[q.c] = by[q.c] || []).push(q);
     const hi = (s) => { let h = esc(s); for (const t of toks.filter((t) => t.length > 1)) h = h.replace(new RegExp("(" + [...esc(t)].map(reEsc).join("[-_./]?") + ")", "ig"), "<mark>$1</mark>"); return h; };
+    let shown = 0;
     for (const [c, list] of Object.entries(by).sort((a, b) => b[1].length - a[1].length)) {
+      if (shown >= limit) break;
       const h = document.createElement("h2"); h.className = "iq-co"; h.innerHTML = esc(c) + " <span>" + list.length + "</span>"; box.appendChild(h);
       const hd = document.createElement("div"); hd.className = "iq-head"; hd.innerHTML = "<span>Question</span><span>🎯 Learn these concepts to crack the interview</span>"; box.appendChild(hd);
       for (const q of list) {
+        if (shown++ >= limit) break;
         const d = document.createElement("div"); d.className = "iq";
         const meta = [q.r, q.rd, q.lv, q.y].filter(Boolean).map(esc).join(" · ");
         const learn = (q.p || []).map((p) => '<a href="' + esc(p.u) + '"' + (p.k === "video" ? ' target="_blank" rel="noopener"' : "") + '><span class="k' + (p.k === "video" ? " v" : "") + '">' + (p.k === "video" ? "VIDEO" : "LAB") + "</span>" + esc(p.t) + "</a>").join("");
@@ -626,6 +631,12 @@ header.top nav a.lb-streak { font-weight: 700; color: #ffb38a; }
         const sb = d.querySelector("button[data-q]"); if (sb) sb.addEventListener("click", () => window.vddSearch && window.vddSearch(sb.dataset.q.replace(/&.*$/, "").replace(/ and .*$/, "")));
         box.appendChild(d);
       }
+    }
+    if (hits.length > limit) {
+      const m = document.createElement("button"); m.type = "button"; m.className = "filter iq-more";
+      m.textContent = "Show " + Math.min(200, hits.length - limit) + " more (" + (hits.length - limit) + " left)";
+      m.addEventListener("click", () => { limit += 200; const y = scrollY; render(true); scrollTo(0, y); });
+      box.appendChild(m);
     }
   }
   fetch("/interview-questions.json", { cache: "no-cache" }).then((r) => r.json()).then((d) => {
@@ -639,7 +650,7 @@ header.top nav a.lb-streak { font-weight: 700; color: #ffb38a; }
     }
     $("iq-s").value = P.get("q") || ""; $("iq-c").value = P.get("company") || ""; $("iq-t").value = P.get("topic") || "";
     if (P.get("role")) { role = P.get("role"); rb.querySelectorAll(".filter").forEach((x) => x.setAttribute("aria-pressed", String(x.textContent === role))); }
-    for (const id of ["iq-s", "iq-c", "iq-t"]) $(id).addEventListener("input", render);
+    for (const id of ["iq-s", "iq-c", "iq-t"]) $(id).addEventListener("input", () => render());
     render();
   }).catch(() => { $("iq-count").textContent = "Could not load the questions. Please reload."; });
 })();

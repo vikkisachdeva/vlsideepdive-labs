@@ -1,0 +1,60 @@
+@nxp-semiconductors/vlsi-verification-engineer-india-february-12-2023-no-offer-positive-a1b3f654
+Write a program that swaps two values.
+@optiver/fpga-intern-chicago-illinois-november-10-2025-no-offer-neutral-fc8f5dd7
+Debug a piece of SystemVerilog RTL.
+@optiver/fpga-intern-february-12-2026-no-offer-neutral-b179ceec
+Convert an FSM to one-hot encoding. How many bits does it need?
+@optiver/graduate-hardware-engineer-amsterdam-july-10-2024-no-offer-positive-9dcfa50f
+What is the minimum number of gates needed to implement a given function?
+@optiver/hardware-engineer-chicago-il-october-1-2023-no-offer-neutral-e24dfa2f
+What is the pipeline depth of each of several Verilog snippets?
+@qualcomm/asic-design-engineer-toronto-ontario-february-9-2026-accepted-offer-positive-a03d195e
+Write Verilog for a counter.
+Make a NAND gate from MUXes.
+@qualcomm/asic-design-engineer-united-states-may-10-2022-accepted-offer-positive-4aaf55bc
+Explain setup and hold time for a latch.
+@qualcomm/asic-design-verification-engineer-cork-county-cork-july-2-2026-no-offer-positive-79b2fbc9
+Write constraints on address and data so that values are unique, each element of an array is unique, and two fields are equal.
+@qualcomm/asic-design-verification-engineer-united-states-april-1-2024-no-offer-positive-237470a1
+Implement in SystemVerilog an FSM that produces a given output.
+@qualcomm/asic-dv-engineer-january-28-2026-no-offer-positive-3d79f93f
+How do you build and debug a UVM environment? Explain the roles of sequences, drivers, monitors and scoreboards.
+@qualcomm/asic-engineer-december-8-2025-accepted-offer-positive-ff5c202a
+Draw logic gates at transistor level.
+@qualcomm/asic-intern-west-lafayette-in-september-1-2021-declined-offer-positive-c36058a2
+How does a uvm_test start?
+What is the difference between tasks and functions in UVM?
+How do you connect components when several transaction types flow between them?
+@qualcomm/asic-verification-engineer-santa-clara-california-february-23-2026-no-offer-positive-e1fee165
+Explain cache coherence with its state diagram.
+Explain the AXI protocol.
+Write a sequence item for the input interface of a given scenario.
+@qualcomm/cpu-verification-engineer-austin-tx-november-27-2023-no-offer-positive-f865c8ed
+Explain a complete pipeline, stage by stage, with an example.
+@qualcomm/cpu-verification-engineer-united-states-february-12-2023-no-offer-positive-6e628e22
+Is the program counter a physical or a virtual address?
+@qualcomm/design-and-verification-engineer-bengaluru-july-1-2024-accepted-offer-positive-43906ab7
+Generate a clock in Verilog using always, and using forever.
+@qualcomm/design-verification-engineer-cork-june-29-2025-no-offer-positive-790b65fe
+How do you write an assertion in a UVM testbench?
+@qualcomm/design-verification-engineer-intern-santa-clara-ca-june-4-2025-no-offer-negative-45b64b45
+What are the performance trade-offs between cache architectures?
+@qualcomm/design-verification-engineer-taiwangou-april-13-2024-accepted-offer-positive-ef63f8e8
+Explain Gray code and how an asynchronous FIFO uses it.
+@qualcomm/design-verification-united-states-october-13-2022-no-offer-neutral-3d646f27
+What is one-hot encoding?
+@qualcomm/dft-engineer-bengaluru-july-11-2024-accepted-offer-positive-77e30434
+What is the difference between sequential and combinational circuits?
+@qualcomm/digital-verification-intern-united-states-march-24-2024-accepted-offer-positive-a2cb8c60
+Given code with several nested fork-join variants, write the output.
+How do you disable only one of several running forks?
+@qualcomm/formal-verification-engineer-san-diego-ca-may-2-2025-declined-offer-positive-11ca2cdd
+How would you formally verify a cache?
+@qualcomm/fpga-firmware-engineer-san-diego-california-january-26-2026-no-offer-neutral-b1155f64
+Design a CDC module.
+@qualcomm/fpga-intern-san-jose-ca-may-30-2025-no-offer-neutral-0aed2dd8
+Describe clock domain crossing methods. Explain how a FIFO works.
+@qualcomm/gpu-design-verification-engineer-pakistan-july-28-2024-no-offer-negative-ba107ba1
+What is code coverage?
+@qualcomm/hardware-applications-engineer-san-diego-ca-october-1-2021-no-offer-positive-81b40edf
+A 20 W and a 60 W bulb are in series across 120 V. Which glows brighter?

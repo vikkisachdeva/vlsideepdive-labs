@@ -1,0 +1,73 @@
+@qualcomm/hardware-engineer-bengaluru-august-19-2025-accepted-offer-positive-ba458028
+How do Verilog case statements synthesize?
+@qualcomm/hardware-engineer-bengaluru-february-1-2024-no-offer-positive-e7672809
+What is the difference between RISC and CISC?
+@qualcomm/hardware-engineer-bengaluru-march-9-2025-no-offer-positive-8e7e6aac
+Design a full adder using half adders.
+@qualcomm/hardware-engineer-chennai-december-1-2024-declined-offer-positive-3da900d6
+Draw the state diagram of a given pattern detector and write its Verilog.
+@qualcomm/hardware-engineer-coimbatore-august-1-2022-no-offer-positive-30ec0faf
+Draw a CMOS NAND gate. Does its logic change if the inputs have different delays?
+Explain the MOSFET regions of operation and current equations.
+Draw the internal circuit of a D flip-flop.
+@qualcomm/hardware-engineer-hod-hasharon-central-district-june-22-2026-no-offer-neutral-ec1a3468
+How would you design an interrupt controller?
+@qualcomm/hardware-engineer-hsinchu-hsinchu-january-15-2026-accepted-offer-positive-f4a77ae3
+Break a CPU address into tag, index and offset bits for a given cache.
+@qualcomm/hardware-engineer-hyderabad-august-1-2024-no-offer-neutral-00b02aea
+Which is faster, PMOS or NMOS? Why?
+@qualcomm/hardware-engineer-hyderabad-august-19-2025-no-offer-positive-5a9e6142
+Write pipelined code for the fetch and decode stages of a MIPS processor.
+@qualcomm/hardware-engineer-hyderabad-september-21-2024-no-offer-positive-96fda1d0
+Draw the cross-section of a CMOS gate.
+Implement a 10101 sequence detector FSM in Verilog.
+@qualcomm/hardware-engineer-hyderabad-telangana-august-12-2026-no-offer-neutral-2cd91538
+What does the volatile keyword do?
+What is a linker script?
+What is the difference between a structure and a union?
+How do you detect endianness?
+@qualcomm/hardware-engineer-india-april-20-2022-no-offer-negative-7f04a4dd
+Add two numbers without using the + operator.
+Design basic gates using a MUX.
+What is a multicycle path?
+What checks are done at each stage of the ASIC flow?
+@qualcomm/hardware-engineer-india-august-1-2024-no-offer-positive-290b994d
+Write Verilog for a 4-bit register.
+Build a 3-input XOR gate from a 4:1 multiplexer.
+@qualcomm/hardware-engineer-india-december-1-2022-no-offer-positive-581e9442
+What is latch-up in CMOS?
+@qualcomm/hardware-engineer-india-september-10-2021-no-offer-positive-5da902d3
+Design a MUX in CMOS.
+Design a circuit that checks whether two N-bit numbers are equal.
+@qualcomm/hardware-engineer-kanpur-uttar-pradesh-december-1-2023-accepted-offer-positive-65a4f97b
+What is a FIFO, why is it important, and what are its full and empty conditions?
+What is a two-flop synchronizer?
+@qualcomm/hardware-engineer-mumbai-december-1-2022-no-offer-neutral-701f655e
+Explain JK flip-flop operation with a timing diagram.
+@qualcomm/hardware-engineer-thanjavur-november-1-2022-no-offer-neutral-8a7de431
+Design a sequence detector as a Mealy or Moore machine.
+@qualcomm/hardware-engineer-united-states-october-1-2021-accepted-offer-positive-17ef471b
+Implement a FIFO in Verilog.
+@qualcomm/hardware-validation-engineer-cork-county-cork-october-1-2025-no-offer-positive-55540105
+Explain C memory layout, and the size of each type in memory (including bool).
+@qualcomm/post-silicon-validation-engineer-bengaluru-may-1-2024-accepted-offer-positive-b6433932
+Draw and explain a frequency multiplier and a frequency divider.
+@qualcomm/pre-silicon-verification-engineer-bengaluru-august-1-2023-no-offer-positive-1dd2de7b
+Explain the structure of an SoC and a microprocessor chip.
+@qualcomm/rf-verification-engineer-new-york-ny-february-1-2022-accepted-offer-positive-deb1e242
+Write Verilog that generates a clock at a given frequency.
+@qualcomm/rtl-engineer-bengaluru-karnataka-august-10-2026-accepted-offer-positive-f2d8734b
+Design overlapping and non-overlapping sequence detectors as Mealy, Moore and shift-register implementations.
+Write RTL for a round-robin arbiter and a fixed-priority arbiter.
+@qualcomm/senior-graphics-hardware-design-verification-engineer-cork-may-1-2023-accepted-offer-positive-44afcef9
+What is the difference between virtual methods and virtual classes in SystemVerilog?
+Explain UVM callbacks, mailboxes and semaphores.
+Code the full UVM skeleton for a given design: agent, sequence item, sequence, driver, monitor, scoreboard and test.
+How does a GPU pipeline work, including the command streamer?
+@qualcomm/senior-verification-engineer-bengaluru-april-1-2024-no-offer-positive-b5c84dda
+What is a deep copy versus a shallow copy in SystemVerilog?
+What is the UVM sequencer used for?
+What is a virtual interface and why is it used?
+Write a constraint that generates even and odd numbers alternately.
+@qualcomm/soc-engineer-bengaluru-karnataka-march-12-2026-no-offer-positive-97fc53b9
+What is the difference between modeling and characterization?

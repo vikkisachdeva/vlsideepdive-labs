@@ -1,0 +1,57 @@
+@marvell-technology/validation-engineer-santa-clara-california-june-1-2010-no-offer-positive-7b972102
+Given two flops with combinational logic between them, what is the circuit's cycle time?
+@marvell-technology/verification-engineer-august-1-2008-declined-offer-neutral-2ed335cc
+Write a complex SystemVerilog assertion.
+@marvell-technology/verification-engineer-san-jose-california-july-1-2010-no-offer-neutral-f4cd57a6
+Explain the behavior of a for loop that spawns threads with fork/join_none: which values does each thread see, and when do the delays run?
+@marvell-technology/verification-engineer-santa-clara-california-august-1-2011-accepted-offer-positive-c8d93548
+Design an FSM pattern generator.
+Propose a test plan for a round-robin arbiter.
+@marvell-technology/verification-engineer-santa-clara-california-may-1-2012-no-offer-positive-8961fde1
+How does a system detect that a received codeword has an error?
+@marvell-technology/verification-engineering-january-1-2012-declined-offer-positive-bdd0c952
+What are the advantages of Mealy and of Moore machines?
+With 2 masters and 4 slaves on a bus, what properties would you write to check it?
+Describe the MIPS CPU.
+@meta/asic-design-engineer-bengaluru-karnataka-february-19-2026-no-offer-positive-4db70c8e
+Write RTL for an FSM.
+@meta/asic-design-verification-engineer-san-jose-california-july-30-2026-no-offer-positive-dc37b004
+Write a SystemVerilog constraint that makes K elements add up to J.
+@meta/asic-engineer-intern-bengaluru-karnataka-february-16-2026-no-offer-positive-aa68ddfb
+What is APB, and which signals does it use?
+@meta/asic-verification-engineer-january-13-2026-no-offer-positive-13e20b66
+Write SystemVerilog code to generate a clock.
+What is the difference between the :/ and := operators in dist?
+What is the difference between a uvm_object and a uvm_component?
+@meta/design-verification-engineer-february-6-2026-no-offer-neutral-785a88c9
+Explain the UVM config DB. How do you connect the DUT and the testbench?
+@meta/hardware-engineer-menlo-park-california-february-3-2026-no-offer-positive-92805244
+Can you measure a 1 GHz square wave with a 1 GHz oscilloscope and probe? What will the waveform look like, and why?
+@micron-technology/asic-design-engineer-bengaluru-karnataka-july-3-2024-declined-offer-negative-52138cab
+Is an LPDDR5 PHY backward compatible?
+@micron-technology/asic-design-engineer-india-july-23-2021-no-offer-positive-c40bad85
+Write Verilog for a D flip-flop.
+@micron-technology/asic-design-verification-engineer-new-delhi-delhi-august-1-2021-no-offer-neutral-1c6b92b3
+Code a traffic light controller in Verilog and discuss its area and power.
+@micron-technology/design-verification-engineer-austin-texas-september-1-2022-no-offer-positive-45e7ee6e
+What is the difference between cache coherence and memory consistency?
+@micron-technology/design-verification-engineer-boise-idaho-july-1-2021-accepted-offer-positive-46523416
+Build a NOR gate from NAND gates only.
+Two capacitors charged to different voltages are connected through a transistor. What happens to the voltages when it turns on?
+A 2-input NAND has one input fed through three inverters from the other. Given the input waveform, draw the output.
+Draw the supply current of an inverter over time as its input switches from low to high.
+How would you write a test with bounded random inputs?
+@micron-technology/design-verification-engineer-hyderabad-telangana-december-1-2020-no-offer-positive-090c951b
+Write an assertion that checks a number is a power of 2.
+Design a mod-15 counter that skips 0, 3, 4, 5 and 8.
+@micron-technology/design-verification-engineer-hyderabad-telangana-september-28-2025-no-offer-positive-daa70601
+Design a priority encoder and convert between MUX sizes.
+@micron-technology/design-verification-engineer-india-march-2-2022-no-offer-positive-a8537e49
+What is the difference between always and initial blocks?
+What array types does SystemVerilog have?
+@micron-technology/dft-engineer-brazil-april-1-2022-accepted-offer-positive-01c409c4
+Given a CMOS circuit, write its Boolean equation.
+@micron-technology/firmware-verification-engineer-india-june-1-2026-no-offer-positive-12b307fd
+Design an XOR gate using only a 2:1 MUX.
+@micron-technology/hardware-engineer-hyderabad-telangana-august-1-2021-no-offer-negative-16e72f08
+Code a traffic light controller in Verilog.

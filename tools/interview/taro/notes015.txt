@@ -1,0 +1,52 @@
+@marvell-technology/design-verification-engineer-california-city-california-november-1-2023-no-offer-positive-9dc95054
+Convert a piece of RTL logic into a gate-level netlist.
+@marvell-technology/design-verification-engineer-india-july-1-2021-accepted-offer-positive-1b9304a4
+What is the difference between inter-statement and intra-statement delays in Verilog?
+Explain synchronous and asynchronous resets with Verilog code.
+Find the maximum operating frequency of a circuit with combinational logic between two flip-flops. Which term in the setup and hold equations can you change to remove a violation?
+@marvell-technology/design-verification-engineer-october-29-2012-no-offer-neutral-ba20e6f8
+How does time-division multiplexing work, and what are its corner cases?
+@marvell-technology/design-verification-engineer-petah-tikva-central-district-november-25-2025-no-offer-positive-3aa69f34
+Given only the interface of a memory-like block, what would you check to make sure it works?
+@marvell-technology/design-verification-engineer-san-jose-california-january-1-2010-no-offer-neutral-452a5bad
+What is the transfer function of a simple VCO?
+How does a transaction pass from the generator to the driver in a SystemVerilog testbench?
+@marvell-technology/design-verification-engineer-santa-clara-california-march-1-2011-no-offer-neutral-102a12ef
+How do you balance pipeline stages to meet a target clock period?
+@marvell-technology/design-verification-intern-austin-texas-february-1-2021-accepted-offer-positive-83866a04
+How many address lines does a given memory need?
+What test cases would you write to verify a FIFO?
+@marvell-technology/design-verification-intern-bengaluru-karnataka-august-2-2026-no-offer-positive-99f20ea6
+Why SystemVerilog? How does Verilog differ from C?
+What is the difference between Moore and Mealy machines, and how do you convert one into the other?
+@marvell-technology/design-verification-intern-bengaluru-karnataka-february-1-2023-accepted-offer-positive-b0d16861
+Design a frequency multiplier.
+What data types does SystemVerilog have?
+@marvell-technology/design-verification-intern-india-march-7-2023-declined-offer-neutral-22508aa0
+Make a 4:1 MUX from 2:1 MUXes.
+Make an AND gate from a 2:1 MUX.
+What is the difference between synchronous and asynchronous reset?
+@marvell-technology/design-verification-intern-united-states-april-1-2024-no-offer-neutral-23177980
+How do you deal with clock domain crossing issues?
+@marvell-technology/hardware-engineer-chandler-arizona-may-1-2010-accepted-offer-positive-3809ba78
+Explain the MOESI cache coherence protocol.
+@marvell-technology/hardware-engineer-india-november-8-2019-no-offer-neutral-ab50c0ec
+How do you multiply a 2-bit binary number by 5 in hardware?
+@marvell-technology/hardware-engineer-san-jose-california-february-1-2018-no-offer-neutral-d6e0b9d1
+Given an anti-aliasing filter response with a bump before roll-off, what are the two main reasons to put it before an ADC?
+@marvell-technology/hardware-engineer-united-states-april-1-2021-no-offer-positive-2b5316d2
+How do AND and OR gates work, and how are they built in CMOS?
+@marvell-technology/hardware-engineer-united-states-may-12-2021-declined-offer-positive-68fb05f5
+What is X-propagation, and why does it happen? Give an example.
+@marvell-technology/hardware-validation-united-states-may-8-2020-accepted-offer-positive-5e0bdfaf
+How would you implement a circular buffer in C?
+@marvell-technology/post-silicon-validation-engineer-westborough-massachusetts-july-1-2025-no-offer-positive-7ed70b58
+What are bounded and unbounded jitter?
+@marvell-technology/senior-validation-engineer-westborough-massachusetts-june-13-2026-no-offer-positive-b5a373c5
+How do you tell whether a machine is little-endian or big-endian?
+@marvell-technology/staff-design-verification-engineer-united-states-march-6-2026-declined-offer-negative-04c89983
+What are the UVM phases, and why are they used?
+@marvell-technology/validation-engineer-intern-united-states-january-10-2025-no-offer-positive-051442f0
+For a given RC circuit, sketch Vout/Vin over the first 10 ns.
+@marvell-technology/validation-engineer-petah-tikva-central-district-november-1-2015-no-offer-positive-35de4f4f
+Write a function that reverses the bit order of an integer (00110001 becomes 10001100).

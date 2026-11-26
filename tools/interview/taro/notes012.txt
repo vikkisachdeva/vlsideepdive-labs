@@ -1,0 +1,50 @@
+@intel/dft-engineer-california-md-april-19-2024-no-offer-positive-0a0b1d00
+What is metastability, and how do you fix it?
+How do you fix setup and hold violations?
+What is RAM, and what types of RAM are there?
+@intel/dft-engineer-folsom-ca-april-1-2024-no-offer-negative-a7e1e925
+How is a flip-flop replaced with a scan flip-flop?
+@intel/dft-engineer-jerusalem-jerusalem-may-1-2024-no-offer-neutral-85183291
+Design a lock with a parallel input whose combination is first hardcoded and then changeable; a second clock is available.
+@intel/formal-verification-engineer-pilani-march-1-2023-declined-offer-positive-c43248be
+Draw a Mealy FSM for a given sequence, handling overlapping matches.
+@intel/fpga-intern-gdansk-november-1-2023-no-offer-positive-76cb2213
+What is a pull-up? What is high impedance?
+@intel/fpga-intern-toronto-on-july-20-2025-no-offer-positive-057ad4d8
+Write a parameterized counter in Verilog and explain how you would verify it.
+@intel/fpga-intern-toronto-on-october-3-2025-declined-offer-positive-24ec08be
+Find the largest value stored in a ROM, in Verilog or VHDL.
+Given two strings of 4 ASCII characters, determine in hardware which has the higher value.
+@intel/graphics-hardware-engineer-new-delhi-november-7-2022-accepted-offer-positive-2fd60e71
+Explain a FIFO and write Verilog for it.
+@intel/hardware-engineer-heredia-april-29-2025-no-offer-positive-aa78b254
+Write a flip-flop with asynchronous reset and one with synchronous reset in SystemVerilog.
+@intel/hardware-intern-bengaluru-karnataka-february-1-2026-no-offer-positive-dfc11371
+Write a Fibonacci generator in Verilog.
+Write a sequence detector in Verilog.
+Write a BCD converter in Verilog.
+Implement a CRC error checker in Verilog.
+@intel/hardware-testing-engineer-czech-republic-january-1-2023-accepted-offer-positive-ba776d53
+How would you go about testing a chip? Where would you start?
+@intel/hardware-validation-engineer-bengaluru-may-1-2024-declined-offer-positive-e8f8f2c1
+Explain microprocessor interrupts and their use cases.
+@intel/ip-verification-engineer-pulau-pinang-january-2-2024-accepted-offer-positive-d1148de9
+Write the driver, monitor and scoreboard components of a UVM testbench.
+@intel/mixed-signal-verification-engineer-israel-november-18-2025-accepted-offer-positive-39c3c604
+Draw a NAND gate in CMOS.
+@intel/post-si-validation-engineer-bengaluru-april-11-2025-no-offer-negative-c43d8734
+What is the difference between a MOSFET and a BJT?
+@intel/post-silicon-validation-engineer-bengaluru-october-28-2024-accepted-offer-positive-46b09b78
+Explain how ADCs and DACs work.
+@intel/soc-integration-engineer-jerusalem-jerusalem-october-21-2024-accepted-offer-neutral-826eaf47
+Design a glitch-free clock switch.
+@intel/soc-verification-engineer-bengaluru-october-1-2024-declined-offer-positive-72243510
+Write constraints on arrays.
+Write a UVM driver and sequence.
+@intel/soc-verification-engineer-san-jose-ca-june-1-2023-no-offer-positive-f9a984d3
+What does the virtual keyword do in SystemVerilog?
+Given an adder, what test cases would you write to verify it?
+@intel/sr-verification-engineer-santa-clara-ca-january-1-2023-declined-offer-neutral-df3cce77
+Why use the UVM methodology?
+@intel/sr-verification-engineer-united-states-january-1-2023-no-offer-positive-46f869af
+Describe the UVM phases. What is the difference between run_phase and main_phase?

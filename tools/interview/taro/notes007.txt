@@ -1,0 +1,46 @@
+@arm/hardware-engineer-bengaluru-karnataka-september-1-2024-no-offer-positive-9fbe3b42
+What is CMOS, and why are NMOS and PMOS used together?
+@arm/hardware-engineer-cambridge-cambridgeshire-february-13-2025-no-offer-positive-2776f888
+What are the key features of the Arm architecture?
+@arm/hardware-engineer-cambridge-massachusetts-february-28-2024-accepted-offer-positive-4b75f91a
+Explain how physical design works.
+@arm/hardware-engineer-intern-cambridge-cambridgeshire-january-1-2023-accepted-offer-positive-3b0bdfc7
+What is an abstract class? What is the difference between a deep copy and a shallow copy?
+@arm/hardware-engineer-intern-cambridge-cambridgeshire-september-25-2024-no-offer-positive-8ae6eca0
+What is pipelining, and why does it matter in an SoC?
+@arm/hardware-engineer-intern-hungary-december-18-2021-accepted-offer-positive-a9feca28
+Show setup and hold time on a timing diagram.
+Given Verilog code, describe the hardware it implements after synthesis.
+@arm/hardware-engineer-intern-sheffield-england-april-11-2024-no-offer-neutral-380ea204
+How does the SPI protocol work?
+@arm/hardware-engineer-intern-united-states-january-1-2025-accepted-offer-positive-43875c72
+Can CPU clock speed increase indefinitely? Why not?
+@arm/hardware-engineer-italy-september-1-2020-no-offer-positive-e43b0a69
+Describe the main components of a CPU.
+How does the Karatsuba algorithm reduce the work of multiplying very large numbers?
+@arm/hardware-engineer-noida-uttar-pradesh-september-15-2026-no-offer-positive-88d1dd75
+Give the STA setup and hold equations and solve a numerical problem with them.
+@arm/hardware-engineer-united-kingdom-february-8-2026-declined-offer-positive-65767d95
+Find the errors in a given digital circuit and write it correctly in SystemVerilog.
+@arm/hardware-engineer-united-kingdom-november-14-2024-no-offer-positive-58fa3e24
+What is CPU pipelining, and what problems does it bring?
+@arm/hardware-engineering-intern-cambridge-cambridgeshire-november-1-2023-no-offer-positive-f0012976
+Design a circuit that outputs the maximum of three numbers.
+@arm/hardware-engineering-madison-wisconsin-september-1-2019-no-offer-negative-05ddeab4
+Draw an FSM that detects 01101 in a stream such as 01101101, with overlapping matches.
+@arm/hardware-intern-london-england-december-1-2023-accepted-offer-neutral-87e2b63e
+Design a simple parallel and a simple serial protocol.
+@arm/hardware-intern-united-states-october-15-2025-no-offer-positive-29e21bcc
+What is a flip-flop and why is it used?
+@arm/hardwaredesign-and-verification-united-kingdom-january-15-2017-no-offer-positive-634f8b6f
+Parse three comma-separated numbers, convert the first to binary, and output whether the two bits indexed by the other two numbers are equal.
+@arm/intern-hardwareapplications-engineering-paris-ile-de-france-january-1-2023-no-offer-positive-754dc6df
+Build an inverter from a NAND gate, and from a multiplexer.
+@arm/senior-soc-verification-engineer-bengaluru-karnataka-december-1-2024-no-offer-positive-8681a09c
+Implement the behavior of randc using constraints.
+@arm/senior-verification-engineer-bengaluru-karnataka-march-27-2019-accepted-offer-positive-45d5dbfc
+Explain interrupt handling and its scenarios.
+@arm/senior-verification-engineer-lund-skane-march-1-2018-no-offer-negative-a13268cc
+What are the first two lines and the last line of code in a typical UVM test?
+@arm/staff-hardware-engineer-loughborough-leicestershire-march-1-2018-no-offer-positive-4c7c85fb
+Draw a block diagram that outputs the square of a number.

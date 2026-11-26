@@ -1,0 +1,62 @@
+@amd/design-verification-engineer-intern-markham-ontario-february-4-2026-no-offer-negative-6e8a41b2
+How can you block one input of an AND gate so the output depends only on the other input?
+@amd/design-verification-engineer-markham-on-february-1-2025-no-offer-positive-87fea12d
+Level-triggered versus edge-triggered: which is safer, and why?
+Given a black-box circuit and its truth table, use it to implement a NOT gate.
+@amd/design-verification-engineer-markham-on-march-24-2025-no-offer-positive-536410e3
+A chip does add, subtract, multiply and divide on 8-bit values, keeps up to 20 operands on a stack, and has error bits for arithmetic overflow and stack overflow. What corner cases and errors would you test, and how would you write those tests in a Verilog testbench?
+@amd/design-verification-engineer-marlborough-ma-november-1-2021-declined-offer-positive-e60a118a
+Code an LRU replacement policy for a cache in C++.
+@amd/design-verification-engineer-san-francisco-ca-april-1-2023-no-offer-neutral-9c2064d6
+A router must keep packets to the same address in order, while packets to different addresses may overtake each other. Packets carry no ID. How would you verify it?
+@amd/design-verification-engineer-sunnyvale-ca-april-1-2012-no-offer-positive-4648f019
+How would you verify a write-back 4-way set-associative cache using assembly programs?
+@amd/design-verification-engineer-toronto-on-november-1-2010-accepted-offer-positive-4bc3b10e
+How would you verify that a basic flip-flop works?
+@amd/design-verification-engineer-united-states-march-9-2023-no-offer-positive-2f60a61a
+Explain SystemVerilog constraints, fork-join, mailboxes and semaphores.
+Write a scoreboard for an asynchronous FIFO.
+Write a monitor and scoreboard for an AXI write transaction.
+@amd/design-verification-engineer-united-states-october-1-2024-no-offer-positive-088020e3
+Write a test plan for an asynchronous FIFO, and calculate the FIFO depth.
+Write constraints that partition a memory.
+Explain overlapping and non-overlapping implication in assertions.
+@amd/design-verification-engineer-vietnam-march-1-2026-no-offer-negative-facced2f
+Write a UVM driver for APB that supports outstanding transactions.
+@amd/design-verification-intern-fishkill-new-york-march-18-2026-accepted-offer-positive-68686f56
+How do MSHRs coalesce loads and stores to the same cache block?
+@amd/design-verification-intern-united-states-february-1-2022-accepted-offer-positive-aa35fb4d
+Write a Verilog wrapping counter with synchronous reset.
+@amd/design-verification-internship-united-states-february-1-2014-no-offer-positive-afcd2c22
+How would you verify a 32-bit, two-input ALU when 2^32 x 2^32 combinations are impossible to simulate?
+@amd/design-verification-united-states-february-1-2018-accepted-offer-positive-25233322
+What types of assertions are there in SystemVerilog?
+@amd/design-verification-united-states-june-21-2016-no-offer-positive-a09df740
+What is the difference between temporal and spatial locality?
+What is the difference between shared memory and message passing?
+@amd/dft-engineer-dallas-tx-july-1-2018-no-offer-positive-0ac7d2b1
+Why do we need testing, and what is a fault analysis system?
+Explain JTAG and the TAP controller.
+What is BIST?
+What happens if you put the NMOS on top and the PMOS at the bottom of an inverter?
+What is the D-algorithm?
+Explain stuck-at, stuck-open and delay fault models.
+What is the checkpoint theorem?
+How do you find the test patterns that detect stuck-at faults on a primary input? What happens with an XOR gate?
+What are testability, observability and controllability?
+Why do we need structural testing?
+@amd/gpu-verification-engineer-orlando-fl-february-1-2016-accepted-offer-positive-6a4cbb53
+Given a piece of code, is it a sequential or combinational circuit? If sequential, how many clock cycles does it take?
+@amd/hardware-acceleration-toronto-on-october-1-2019-no-offer-negative-bd6e5fec
+Draw the logic circuit for a D flip-flop with asynchronous reset.
+@amd/hardware-engineer-hyderabad-august-1-2025-declined-offer-positive-fa1bdf28
+Design clock divider and clock multiplier circuits.
+@amd/hardware-engineer-toronto-on-march-1-2009-accepted-offer-positive-70db54e8
+What are the three states of a tri-state buffer?
+@amd/hardware-engineer-united-states-september-1-2013-no-offer-neutral-f45dbeca
+How do Verilog simulators differ from C++ simulators?
+@amd/hardware-intern-bengaluru-july-25-2025-no-offer-neutral-92171449
+Implement gates using a MUX.
+What circuit does an if-else statement synthesize to?
+@amd/hardware-intern-new-delhi-september-1-2023-no-offer-positive-9e5dc6bf
+What is virtual memory? What is a cache?

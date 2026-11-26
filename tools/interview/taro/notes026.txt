@@ -1,0 +1,13 @@
+@texas-instruments/validation-engineer-dallas-texas-october-1-2024-no-offer-positive-e5d323bc
+Name five measurable characteristics of a clock signal.
+@texas-instruments/validation-engineer-munich-bavaria-august-1-2024-no-offer-negative-211f3d7c
+How do you measure an unknown resistance with a voltmeter and an ammeter?
+@texas-instruments/validation-engineer-munich-bavaria-january-1-2024-accepted-offer-positive-d0419440
+How does an oscilloscope work, and what is it used for?
+@texas-instruments/validation-test-engineer-united-states-november-5-2018-no-offer-neutral-664a6a3d
+Draw an inverting op-amp amplifier and derive its gain.
+@texas-instruments/verification-engineer-dallas-texas-december-1-2012-accepted-offer-positive-8b067d28
+Draw the CMOS circuits of NAND and NOR gates.
+What limits an op-amp's bandwidth?
+@tsmc/physical-verification-engineer-united-states-august-18-2024-no-offer-neutral-3451d135
+Describe the flow for implementing a chip in Innovus.

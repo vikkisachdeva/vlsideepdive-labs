@@ -1,0 +1,80 @@
+@amazon/asic-verification-engineer-san-jose-california-august-23-2026-accepted-offer-positive-68cdfdb5
+Write a scoreboard for an out-of-order DUT, implementing the queue with an array.
+@amd/asic-design-engineer-canada-october-31-2014-declined-offer-positive-64638579
+Write Verilog for a D flip-flop.
+@amd/asic-design-engineer-coop-markham-on-november-1-2022-accepted-offer-positive-cb1fe455
+A gate in a logic circuit is stuck at 1. What test inputs would show that the gate is defective?
+@amd/asic-design-engineer-intern-markham-on-april-1-2009-no-offer-neutral-4dca335e
+Give an example of an asynchronous finite state machine.
+From a timing diagram, calculate the minimum and maximum delay.
+@amd/asic-design-engineer-markham-on-december-4-2023-no-offer-neutral-0f1789ac
+How do you make an AND gate using multiplexers?
+@amd/asic-design-engineer-san-jose-ca-september-25-2023-declined-offer-positive-658fdcf1
+Add two 64-bit numbers using a 32-bit adder. How deep must the FIFO be?
+Detect the position of every 1 bit in a signal.
+@amd/asic-design-engineer-toronto-on-january-1-2014-accepted-offer-positive-7e043139
+What is a race condition?
+@amd/asic-design-engineer-toronto-on-may-1-2017-no-offer-negative-fdae9e96
+Sort 6 numbers from least to greatest using black boxes that each sort 2 numbers.
+@amd/asic-design-engineer-toronto-on-november-1-2016-accepted-offer-positive-40b2d32b
+Draw a NAND gate with transistors.
+@amd/asic-design-engineer-united-states-july-21-2018-accepted-offer-positive-9b3809a0
+Give the truth table of a small Verilog module that mixes blocking and non-blocking assignments.
+Explain an LFSR and what it does.
+Explain how a synchronizer works.
+Explain the 4-phase and 2-phase handshakes.
+Explain how an asynchronous FIFO works.
+@amd/asic-design-engineering-toronto-on-november-1-2016-accepted-offer-positive-50b53706
+Explain a flip-flop's design and timing, starting from basic logic gates.
+@amd/asic-design-intern-toronto-on-november-1-2024-no-offer-positive-60bf6e21
+Build a 4-input NAND gate from 2-input NAND gates.
+@amd/asic-design-pey-canada-october-28-2017-accepted-offer-positive-b3cd2a4d
+How do you build an FSM sequence detector?
+@amd/asic-design-toronto-on-november-1-2016-accepted-offer-positive-f0f3a06c
+A disc is half white, half black. Design a digital circuit that detects whether it rotates clockwise or counterclockwise.
+@amd/asic-design-verification-engineer-bengaluru-karnataka-june-8-2026-no-offer-positive-d30c098d
+How do you access a register and confirm whether it is 12 bits wide?
+@amd/asic-design-verification-engineer-indianola-mississippi-august-1-2025-no-offer-positive-efe41b4b
+An asynchronous FIFO moves data between Clk_A and Clk_B. How would you verify it: testbench components, corner cases, assertions, and checks that synchronization is handled?
+@amd/asic-verification-engineer-united-states-february-8-2015-no-offer-negative-53411be5
+Design a Moore FSM that detects the sequence 0110.
+@amd/cpu-design-verification-engineer-austin-tx-september-1-2023-no-offer-positive-559a1683
+Explain out-of-order processors and why instruction-level parallelism matters.
+Realize the basic gates with a MUX.
+@amd/cpu-performance-modeling-engineer-india-april-1-2024-accepted-offer-positive-a8875c61
+How do you classify a workload as CPU-bound or memory-bound, with and without changing the microarchitecture?
+Explain a branch predictor. How do ARM and x86 branch predictors differ?
+Why use architecture simulators instead of simulating workloads in RTL?
+On a multicore system with fixed memory architecture, how does single-core performance change as identical single-threaded workloads are scheduled on more cores?
+What are pipeline hazards and how are they overcome?
+@amd/design-and-verification-engineer-india-may-14-2024-no-offer-positive-2f4d5b4b
+How many flip-flops does a divide-by-3 clock divider need?
+@amd/design-verification-engineer-austin-tx-february-1-2012-no-offer-positive-cf0bfa1e
+For a two-way set-associative cache of a given size, what do the bits of a memory address represent?
+@amd/design-verification-engineer-austin-tx-july-1-2022-no-offer-positive-4eb1c199
+An arbiter with asynchronous reset takes requests R1 to R4 (R1 highest priority) and drives grants G1 to G4. Draw the state diagram and code it in Verilog.
+Draw the logic for a count-to-5 counter.
+Generate a 2 GHz clock in Verilog.
+@amd/design-verification-engineer-bengaluru-karnataka-january-24-2026-no-offer-positive-0332fcd1
+What are setup and hold time?
+@amd/design-verification-engineer-boston-ma-may-9-2023-no-offer-negative-eb200af9
+Design an FSM that detects a given sequence.
+@amd/design-verification-engineer-boxborough-ma-november-1-2018-accepted-offer-positive-3bb9dde7
+Explain the Tomasulo algorithm.
+Explain virtual memory and out-of-order execution.
+Design hardware for bit manipulation.
+@amd/design-verification-engineer-boxborough-ma-october-20-2024-no-offer-neutral-638dfb86
+Design an FSM for an elevator.
+Describe the different kinds of coverage.
+Describe a UVM testbench and explain how sequences and drivers are connected.
+@amd/design-verification-engineer-canada-november-7-2025-no-offer-neutral-78435e92
+What is the difference between combinational and sequential logic?
+@amd/design-verification-engineer-collectorganj-west-bengal-february-1-2024-no-offer-positive-4f879874
+Design a full adder using a MUX.
+@amd/design-verification-engineer-hyderabad-april-1-2023-accepted-offer-positive-34eebf97
+What is clock skew?
+What is the difference between synchronous and asynchronous reset?
+@amd/design-verification-engineer-ii-bengaluru-june-1-2012-accepted-offer-positive-470c57ec
+Build an XOR gate with multiplexers.
+@amd/design-verification-engineer-intern-canada-february-1-2024-accepted-offer-positive-4587d27b
+Explain blocking and non-blocking statements in SystemVerilog.

@@ -1,0 +1,56 @@
+@apple/analog-and-mixed-signal-engineer-irvine-california-january-21-2026-no-offer-positive-4d4fe899
+How do the different ADC architectures compare in speed?
+@apple/asic-design-engineer-june-11-2026-no-offer-negative-39c5a483
+What is metastability in a digital circuit?
+Draw the state diagram of a sequence detector.
+Explain clock gating and power gating.
+@apple/asic-verification-intern-palo-alto-california-february-3-2026-no-offer-positive-f8ad9515
+How do you handle clock domain crossing between asynchronous clocks?
+@apple/battery-hardware-engineer-houston-texas-may-30-2026-no-offer-positive-ffed126e
+Design an RC filter with gain.
+@apple/design-verification-engineer-austin-texas-december-8-2025-no-offer-positive-c0b5b526
+What are the pros and cons of adding a pipeline stage to a CPU? How does it affect setup and hold time?
+@apple/design-verification-haifa-haifa-district-january-23-2026-no-offer-neutral-f16a15d3
+Implement a FIFO.
+@apple/design-verification-intern-cupertino-california-november-4-2025-no-offer-positive-c00fdf33
+Explain caching and cache coherence.
+@apple/emulation-engineer-santa-clara-california-june-27-2026-no-offer-positive-aed6aede
+Explain polymorphism in C++. Which base-class members can a child class not inherit?
+@apple/formal-verification-engineer-cupertino-california-february-13-2026-no-offer-neutral-06d89a25
+How do formal and functional verification differ?
+Given RTL code, identify its scenarios and write SystemVerilog properties for them.
+Debug RTL that contains a buggy FSM.
+@apple/gpu-performance-modeling-engineer-cupertino-california-august-31-2026-no-offer-positive-04f8c8a8
+How would you tell whether latency or bandwidth is the bottleneck?
+How do you calculate the theoretical maximum FLOPS of an architecture? Explain the roofline model.
+@apple/hardware-engineer-sunnyvale-california-may-30-2026-accepted-offer-positive-0cab7dd1
+Where should you place the decoupling capacitor on a power pin?
+@apple/hardware-engineer-tel-aviv-yafo-israel-december-27-2025-no-offer-positive-0538f02b
+Build a state machine that outputs 1 when the serial input has seen 1101, one bit per rising clock edge.
+@apple/hardware-systems-integration-engineer-sunnyvale-california-january-16-2026-no-offer-negative-d46888d4
+Design a sawtooth generator from a square pulse and a constant current, and derive the integrator circuit.
+@apple/mixed-signal-verification-engineer-march-16-2026-no-offer-positive-57b46c39
+Write a SystemVerilog model of a comparator.
+@apple/rtl-design-and-verification-engineer-santa-clara-california-june-16-2026-no-offer-positive-735d5a71
+Given a block diagram, write the SystemVerilog interface for it.
+@apple/silicon-validation-engineer-july-7-2026-no-offer-negative-96bd6912
+Describe how the FFT and inverse FFT work.
+@apple/soc-dft-engineer-june-17-2026-no-offer-positive-2e134dbb
+What problems come from mixing positive- and negative-edge flops in scan?
+How do you mitigate setup and hold violations?
+What is an OCC (on-chip clock controller) used for?
+How do you generate patterns for internal resets?
+What is a TAP controller and how does it work?
+How is MBIST triggered when scan mode is low during BIST?
+Show blocking versus non-blocking assignments with a code example.
+@apple/verification-engineer-jerusalem-jerusalem-april-18-2026-no-offer-positive-8f1ee311
+Build a 4-to-2 priority encoder from basic gates, then use those encoders and MUXes to build a 16-to-4 encoder.
+Design a state machine that tells whether a serial binary number is divisible by 5.
+@apple/verification-engineer-san-jose-california-march-27-2026-no-offer-negative-6986212f
+Write an assertion that checks a given waveform.
+@apple/verification-engineer-tel-aviv-yafo-october-31-2025-no-offer-positive-d46792fc
+How do you build an adder?
+@arm/architecture-verification-engineer-india-september-1-2024-accepted-offer-positive-bf241491
+Design a circuit that, every third cycle, outputs the average of the values sampled at the first and second rising edges, and write it in Verilog.
+@arm/asic-engineer-los-angeles-california-april-1-2026-no-offer-positive-d78a6de7
+As the designer, how would you tell DV to test your block, and which signals must they check?

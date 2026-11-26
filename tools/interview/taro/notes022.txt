@@ -1,0 +1,53 @@
+@qualcomm/soc-verification-engineer-may-20-2026-no-offer-positive-8f5f93be
+Draw a 2:1 MUX using tri-state buffers.
+Build a 3-input AND gate from a 4:1 MUX.
+Explain the AHB protocol.
+@qualcomm/sta-engineer-india-february-28-2022-no-offer-positive-d6c3df6c
+Explain setup and hold timing with their formulas.
+@qualcomm/staff-design-verification-engineer-india-march-4-2025-declined-offer-positive-505d069d
+Write constraints for a memory system.
+@qualcomm/verification-engineer-december-8-2025-no-offer-positive-5de3bf90
+Complete missing code in a UVM testbench, point out its errors, and use factory overrides.
+@qualcomm/verification-engineer-hod-hasharon-central-district-january-14-2026-no-offer-neutral-8119e6ed
+Analyze a FIFO in depth: its internal behavior and edge cases.
+@qualcomm/verification-engineer-india-december-23-2021-no-offer-negative-ce6e4d65
+Shuffle an array so that every permutation is equally likely.
+@sambanova/hardware-engineer-new-grad-austin-texas-february-3-2021-no-offer-positive-6e79c372
+Design a Moore FSM that detects a binary sequence.
+@sambanova/hardware-engineer-palo-alto-california-april-8-2020-accepted-offer-positive-378bac9f
+What is the intrinsic gain of a common-source stage with and without degeneration, and of a simple differential amplifier? How does it change with frequency?
+@samsung/gpu-verification-engineer-san-jose-ca-may-1-2017-no-offer-neutral-9fdb958d
+What is the difference between blocking and non-blocking statements?
+What is the difference between tasks and functions?
+@samsung/hardware-calcutta-august-1-2016-no-offer-positive-f6256420
+Design a state machine that detects three 3-bit packets.
+@samsung/hardware-engineer-bengaluru-november-1-2021-no-offer-positive-1f73f9f2
+Design Mealy and Moore machines that detect 1011.
+@samsung/hardware-engineer-bengaluru-september-1-2019-no-offer-positive-9733dae6
+What happens if you swap the PMOS and NMOS in a CMOS circuit?
+@samsung/hardware-engineer-chennai-september-1-2016-no-offer-neutral-523953a3
+Implement an 8:1 multiplexer using 2:1 multiplexers.
+@samsung/hardware-engineer-new-delhi-august-1-2019-accepted-offer-positive-2a55a437
+Design an up/down counter.
+How do you make a gate's transitions faster?
+@samsung/hardware-engineer-warangal-august-1-2016-no-offer-positive-da8d85ff
+Design a counter that counts from 7 to 11.
+@samsung/hardware-intern-india-october-13-2020-no-offer-positive-5f993c24
+What is the difference between synchronous and asynchronous reset?
+@samsung/hardware-intern-united-states-october-22-2020-no-offer-neutral-7ad978d1
+Design the power-supply management for a USB hub.
+@samsung/hardware-new-delhi-august-1-2017-no-offer-neutral-fc12e2a5
+Explain pipelining and FIFO buffers.
+@samsung/hardware-new-delhi-september-1-2019-no-offer-positive-f246772c
+Draw a CMOS inverter and explain everything you can about it.
+@samsung/senior-hardware-engineer-hwaseong-october-1-2021-accepted-offer-positive-8bd92b9a
+Which part of a hardware design holds bit information, and where is it stored?
+@samsung/soc-design-verification-san-jose-ca-december-1-2020-accepted-offer-positive-0417f8b1
+How would you verify a Verilog design?
+@samsung/verification-engineer-tel-aviv-yafo-july-1-2022-no-offer-neutral-1d275662
+Write a verification environment for a FIFO.
+How would you verify an image-processing block that fixes bad pixels?
+@samsung/verification-engineer-tel-aviv-yafo-september-1-2023-declined-offer-positive-0935fad7
+Build a verification environment for an ordering block. What would generation and coverage look like?
+@siemens/fpga-quality-engineer-egypt-december-4-2023-declined-offer-neutral-e5714474
+When do you need to partition a system across multiple FPGAs?

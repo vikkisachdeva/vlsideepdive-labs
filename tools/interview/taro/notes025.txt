@@ -1,0 +1,76 @@
+@texas-instruments/analog-mixed-signal-ams-verification-engineer-bengaluru-karnataka-october-1-2025-no-offer-positive-8ea24afa
+Explain an RC low-pass filter.
+What is the difference between SystemVerilog and UVM?
+@texas-instruments/asic-design-engineer-november-24-2012-no-offer-neutral-c7399bbc
+Design a counter that counts on both clock edges.
+Design a Fibonacci generator.
+@texas-instruments/asic-design-verification-engineer-bengaluru-karnataka-july-1-2022-accepted-offer-positive-1e7fc35b
+Draw the state diagram and write Verilog for a 1010 sequence detector.
+Write a constraint for unique elements in an array.
+Write assertions for different AXI protocol scenarios.
+Explain UVM testbench components, phases and TLM ports.
+@texas-instruments/asic-engineer-chennai-tamil-nadu-august-1-2022-accepted-offer-positive-4db3252c
+Sketch the output of an RC filter without s-domain analysis.
+@texas-instruments/asic-engineer-chennai-tamil-nadu-july-1-2015-no-offer-positive-29c855a2
+Draw a NAND gate using diodes and transistors.
+Design a flip-flop from NAND gates, then counters from the flip-flops.
+@texas-instruments/chip-designverification-engineer-washington-district-of-columbia-december-11-2016-no-offer-positive-37c9101a
+How would you verify the interface between a memory and a CPU?
+How do you synchronize clocks between two systems?
+@texas-instruments/design-verification-engineer-bengaluru-karnataka-july-14-2025-accepted-offer-positive-dab2c565
+Build a divide-by-3 clock with 50% duty cycle from an input clock f.
+@texas-instruments/design-verification-engineer-dallas-texas-december-1-2014-no-offer-negative-6dd6abb5
+Draw an inverter's voltage transfer curve and explain each region.
+Draw the cross-section of a transistor and explain the body effect.
+@texas-instruments/design-verification-engineer-dallas-texas-july-31-2023-accepted-offer-neutral-73b573bb
+For a shunt regulator made of a resistor divider and a reverse-biased Zener, plot output voltage against input voltage.
+@texas-instruments/design-verification-engineer-dallas-texas-march-16-2025-accepted-offer-positive-18cf60b8
+What is the output voltage of an inverting op-amp?
+What is the high-frequency content of a PWM signal?
+@texas-instruments/design-verification-intern-federal-way-washington-october-1-2024-no-offer-positive-f4422aa4
+Make an AND gate from a 2:1 MUX and draw the K-map for it.
+What are setup time, hold time and metastability?
+Divide a clock by three.
+@texas-instruments/digital-design-verification-engineer-dallas-texas-january-1-2023-accepted-offer-positive-19effd54
+Build a more complex circuit out of adders.
+@texas-instruments/digital-design-verification-engineer-united-states-may-20-2021-no-offer-positive-49b9d47b
+Check the setup and hold constraints of a given circuit.
+@texas-instruments/digital-hardware-engineer-college-station-texas-september-1-2015-no-offer-positive-085b84f5
+Detect 101 in a bit stream and signal it at the output.
+@texas-instruments/digital-hardware-intern-bengaluru-karnataka-august-1-2022-accepted-offer-positive-c9230a16
+Explain setup and hold time in a circuit.
+@texas-instruments/digital-hardware-intern-new-delhi-delhi-august-1-2020-no-offer-positive-9daaed8a
+Design a comparator.
+@texas-instruments/fpga-intern-israel-texas-february-1-2021-no-offer-neutral-6c453e04
+Implement a system that outputs 1 when it detects a given bit sequence.
+@texas-instruments/hardware-engineer-bengaluru-karnataka-august-1-2021-no-offer-neutral-514b55e0
+What happens when two capacitors are connected in series?
+@texas-instruments/hardware-engineer-bengaluru-karnataka-september-1-2025-no-offer-positive-7e5776f8
+For an input stream A0, A1, A2..., design a circuit that outputs the sum of the previous two inputs one cycle later. Then change it to output the running sum of all previous inputs.
+Design a 2-bit comparator from 1-bit comparators and extra gates.
+@texas-instruments/hardware-engineer-india-september-1-2022-no-offer-negative-0a4f6703
+Design a calculator from logic gates.
+@texas-instruments/hardware-engineer-intern-calcutta-west-bengal-september-1-2020-no-offer-positive-03f9161f
+Explain how a MOSFET works.
+@texas-instruments/hardware-engineer-west-lafayette-indiana-september-1-2018-no-offer-neutral-de445b28
+Design a simple low-pass filter, then turn it into a high-pass filter.
+@texas-instruments/hardware-intern-bengaluru-karnataka-april-1-2023-no-offer-positive-8581477e
+A Zener rated for 10 mA is in series with 1 kOhm across a 10 V source. What current flows in the Zener?
+@texas-instruments/hardware-intern-israel-july-1-2023-no-offer-neutral-bca92510
+Explain CMOS technology and its advantages over other technologies.
+@texas-instruments/product-test-and-validation-engineer-united-states-september-1-2020-declined-offer-positive-59dbad08
+Design an op-amp circuit with a gain of two.
+@texas-instruments/product-test-and-validation-richardson-texas-september-1-2020-accepted-offer-positive-53854157
+Draw an inverting op-amp and derive its output.
+@texas-instruments/product-validation-engineer-dallas-texas-april-1-2023-no-offer-neutral-87e5329c
+What are BJTs and MOSFETs, and how do they differ?
+@texas-instruments/system-verification-engineer-pune-maharashtra-august-1-2024-no-offer-positive-5fa1c5f6
+Why choose a particular feedback resistor value, and what changes if its rating changes?
+@texas-instruments/validation-engineer-austin-texas-september-22-2025-accepted-offer-positive-49d500c4
+Draw a non-inverting op-amp and write its gain.
+@texas-instruments/validation-engineer-bangalore-rural-karnataka-june-1-2026-no-offer-positive-c43281c4
+Why does a DMA controller have multiple channels, and how do they operate in parallel?
+@texas-instruments/validation-engineer-dallas-texas-may-10-2023-accepted-offer-positive-a43cdcac
+Design a circuit that turns a 2 V input into a -10 V output.
+Draw a differentiator.
+Given a digital circuit with a fault, which inputs detect it in one pass?

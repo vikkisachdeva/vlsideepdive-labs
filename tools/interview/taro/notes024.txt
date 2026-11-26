@@ -1,0 +1,55 @@
+@synopsys/dft-engineer-bangalore-rural-karnataka-august-1-2022-accepted-offer-positive-2d7979ed
+Explain the bus-contention DRC in DFT.
+@synopsys/digital-asic-design-india-july-1-2022-accepted-offer-positive-6fdd1864
+What are blocking and non-blocking statements in Verilog?
+@synopsys/digital-verification-engineer-noida-uttar-pradesh-december-17-2025-declined-offer-positive-dee82486
+Design a mod-N counter. Compare synchronous and asynchronous counters.
+How do you avoid metastability in CDC?
+@synopsys/fpga-prototyping-engineer-india-september-20-2021-no-offer-positive-99768e78
+What is clock gating?
+What is a priority MUX?
+What are LUTs in an FPGA?
+What is a PLL?
+@synopsys/hardware-engineer-boston-massachusetts-september-25-2018-no-offer-positive-330df48e
+What is the difference between a latch and a flip-flop?
+@synopsys/hardware-engineer-noida-uttar-pradesh-september-19-2024-no-offer-positive-c25cd114
+Build a Mealy FSM using D flip-flops.
+@synopsys/hardware-engineer-san-jose-california-january-1-2013-no-offer-negative-fd3ff325
+Describe how a flip-flop works.
+@synopsys/hardware-engineer-sunnyvale-california-august-27-2019-no-offer-negative-161fdc37
+What are the design guidelines for a high-speed board?
+@synopsys/ip-verification-noida-uttar-pradesh-april-14-2019-no-offer-positive-b8813676
+Design a divide-by-5 counter.
+@synopsys/junior-digital-verification-engineer-bucharest-bucharest-october-1-2023-no-offer-neutral-11c07f19
+What is a flip-flop, how does it work, and what are its inputs?
+How does a multiplexer work, and how do you use one as an XOR?
+@synopsys/senior-applications-engineer-portland-oregon-october-1-2017-accepted-offer-positive-3a4fbf79
+Why is isolation needed in a UPF power intent? How do you handle isolation and retention across multiple power domains?
+@synopsys/senior-system-architect-mississauga-ontario-february-1-2024-no-offer-positive-9027db23
+Explain the SerDes architecture.
+@synopsys/sr-design-verification-engineer-perambalur-tamil-nadu-november-1-2023-no-offer-positive-4fed50ec
+Write functional coverage for a given scenario.
+@synopsys/sr-verification-engineer-porto-porto-district-january-1-2026-accepted-offer-neutral-563feef4
+Design a full adder and describe how to verify it.
+@synopsys/testing-and-validation-engineer-noida-uttar-pradesh-may-1-2024-accepted-offer-positive-85c2d766
+How do you verify a memory designed in Verilog with a testbench?
+@synopsys/verification-engineer-portugal-october-1-2023-declined-offer-positive-2840ca2c
+Describe a typical test environment: monitor, driver and the rest.
+@tenstorrent/design-verification-engineer-los-angeles-california-january-26-2023-no-offer-neutral-e80d0117
+What is the difference between true and false data dependencies?
+@tenstorrent/verification-intern-los-angeles-california-july-1-2026-no-offer-neutral-44a18831
+Write Verilog for a FIFO.
+@tesla/design-verification-engineer-fremont-california-february-24-2026-no-offer-negative-8ed722c3
+Design a FIFO in SystemVerilog.
+@tesla/firmware-validation-engineer-santa-clara-ca-september-1-2024-no-offer-neutral-efba9723
+What can go wrong with a flip-flop?
+@tesla/rf-hardware-engineer-intern-united-states-october-12-2025-no-offer-neutral-22ca3c0c
+Draw a notch filter.
+@tesla/silicon-system-development-and-validation-engineer-palo-alto-ca-january-25-2024-no-offer-negative-cc181027
+Write the memcpy function.
+@texas-instruments/analog-applications-engineer-dallas-texas-december-1-2013-no-offer-positive-a4fa0dde
+How can a half-bridge rectifier give the same result as a full-bridge rectifier?
+@texas-instruments/analog-applications-engineer-gurgaon-haryana-august-1-2014-no-offer-neutral-408b1076
+An op-amp draws 20 A into its positive supply pin and sources 14 A from its output. What current flows in the negative supply pin?
+@texas-instruments/analog-applications-engineer-india-april-16-2015-accepted-offer-positive-98aae226
+Why does a virtual short appear between op-amp inputs?

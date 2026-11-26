@@ -1,0 +1,59 @@
+@nvidia/design-verification-engineer-israel-november-29-2025-no-offer-positive-3405548e
+Implement a state machine that detects whether a serial number is divisible by 5.
+@nvidia/design-verification-engineer-santa-clara-california-january-17-2026-no-offer-positive-705f8253
+Implement randc behavior in Python or SystemVerilog without built-in functions.
+@nvidia/dft-engineer-bengaluru-karnataka-december-7-2025-no-offer-positive-e419a819
+Explain the scan insertion steps.
+Explain the main ATPG concepts.
+@nvidia/dft-engineer-bengaluru-karnataka-july-14-2026-accepted-offer-positive-ac3a5988
+Design a frequency divider with a given duty cycle.
+Find patterns that detect given faults.
+Design a counter with the minimum number of flops.
+For a given circuit, calculate the maximum clock frequency.
+In a circuit with feedback, how do setup and hold interact?
+@nvidia/digital-verification-engineer-san-jose-ca-april-1-2024-no-offer-positive-a62637f9
+Generate a clock divider using an OR gate and flops.
+@nvidia/digital-verification-intern-santa-clara-ca-march-1-2025-no-offer-positive-2ec31009
+How would you test a counter?
+Why does PCIe 6.0 use a larger header?
+@nvidia/formal-verification-engineer-haifa-haifa-district-june-19-2026-no-offer-neutral-41b82a40
+From its waveforms, identify an SR flip-flop and implement it with a D flip-flop.
+@nvidia/formal-verification-engineer-israel-tx-january-1-2025-no-offer-neutral-9f3a6ce8
+Design an 8-input multiplexer with 2-bit-wide inputs.
+@nvidia/formal-verification-engineer-march-3-2026-no-offer-positive-fc6b841f
+Implement an SR flip-flop from a restricted set of components, then minimize it and re-implement it with other components.
+@nvidia/formal-verification-engineer-tel-aviv-yafo-israel-july-2-2026-no-offer-positive-6a84481f
+Design a 1-bit counter from basic gates and a single DFF, then use it to build a 3-bit counter.
+@nvidia/formal-verification-engineer-tel-aviv-yafo-israel-june-7-2026-no-offer-positive-449a91e0
+Design an SR flip-flop from logic gates.
+@nvidia/formal-verification-engineer-tel-aviv-yafo-january-1-2025-no-offer-positive-c3506e6b
+Implement a 4-bit priority encoder with basic gates. How many gates does one more input bit add?
+Implement an SR flip-flop from D flip-flops, first with asynchronous set and then with asynchronous reset.
+@nvidia/gpu-verification-engineer-august-23-2026-no-offer-positive-5471692d
+What is your strategy for verifying data coherency?
+@nvidia/gpu-verification-engineer-february-27-2026-no-offer-positive-2122d3ec
+What is the difference between Mealy and Moore machines?
+@nvidia/hardware-engineer-bangalore-rural-november-1-2024-no-offer-negative-6683989c
+Which logic gates can you build from a full adder? Implement AND and OR with a full adder.
+@nvidia/hardware-engineer-bengaluru-august-1-2024-no-offer-neutral-e52220e9
+Design a digital circuit that multiplies a number by 47.
+Design a circuit that produces a given timing diagram.
+@nvidia/hardware-engineer-bengaluru-karnataka-march-23-2026-accepted-offer-positive-166bb2c0
+Walk through the RTL-to-GDSII flow.
+@nvidia/hardware-engineer-bengaluru-october-1-2024-accepted-offer-positive-f32df358
+Explain what a given digital circuit does, then write Verilog for it.
+Given two waveforms, design logic that generates the second from the first.
+@nvidia/hardware-engineer-internship-santa-clara-ca-april-1-2024-no-offer-neutral-df631fca
+How does pipelining increase a design's clock frequency?
+@nvidia/hardware-engineering-intern-hyderabad-october-1-2024-no-offer-negative-859059b8
+What is cache coherence, and how does MESI work?
+What are cache eviction and replacement algorithms?
+@nvidia/hardware-intern-india-august-10-2024-no-offer-positive-0706fa65
+What are setup and hold times?
+@nvidia/hardware-intern-santa-clara-california-august-30-2026-accepted-offer-positive-728ef3dd
+What are the stages of a 5-stage pipelined processor?
+Build an XOR gate from 2:1 MUXes.
+@nvidia/senior-asic-design-engineer-santa-clara-california-november-4-2025-declined-offer-positive-b9810875
+Design a vending machine module.
+@nvidia/senior-deep-learning-architect-austin-texas-july-29-2026-accepted-offer-neutral-946a4fa1
+What optimizations should you use when writing a GPU kernel?

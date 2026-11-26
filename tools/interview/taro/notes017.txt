@@ -1,0 +1,42 @@
+@micron-technology/mixed-signal-verification-engineer-hyderabad-telangana-december-1-2020-no-offer-positive-547ce504
+Draw the MOSFET ID-VGS and ID-VDS characteristics.
+Draw a simple NMOS current mirror. What are its drawbacks, and which topology overcomes them? What is its output swing?
+For a single-ended CMOS differential amplifier, mark the inverting and non-inverting inputs and derive its gain, output resistance, poles and zeros.
+Draw a two-stage CMOS amplifier. Derive its gain and output impedance, find its poles and zeros, and discuss stability and frequency compensation.
+@micron-technology/senior-verification-engineer-hyderabad-telangana-may-1-2024-no-offer-positive-d859b9bf
+How do you pass a config_db setting from a lower level of the hierarchy to a higher one?
+@micron-technology/senior-verification-engineer-hyderabad-telangana-november-1-2024-no-offer-neutral-719de154
+Write a sequence that sends 10 back-to-back read and write commands, where a read may never immediately follow a write.
+@nvidia/asic-clocks-engineer-san-jose-california-may-14-2026-no-offer-neutral-ba36f6e6
+Given a pulse-detector circuit, identify the cases where it fails.
+@nvidia/asic-design-engineer-california-city-ca-september-1-2024-no-offer-positive-964b9d09
+Design a FIFO.
+@nvidia/asic-design-intern-santa-clara-california-march-1-2026-accepted-offer-positive-60971c08
+Design an FSM that computes modulo 3 of a serial input.
+@nvidia/asic-design-intern-united-states-february-19-2025-no-offer-positive-94809b51
+Design an inverter using digital logic blocks.
+@nvidia/asic-design-verification-engineer-intern-durham-nc-april-17-2025-accepted-offer-positive-6c171c70
+Implement the methods of a UVM-style scoreboard class.
+@nvidia/asic-design-verification-engineer-united-states-march-3-2025-no-offer-positive-2ce32c6f
+Explain pipeline design and pipeline hazards.
+@nvidia/asic-efficiency-engineer-santa-clara-ca-march-5-2024-no-offer-positive-297013ef
+Write a pattern detector in Verilog.
+@nvidia/asic-engineer-bengaluru-october-1-2024-accepted-offer-positive-55bb3a6d
+How would you implement a cache in Verilog?
+@nvidia/asic-engineer-december-3-2025-no-offer-positive-228aa53c
+How do you write RTL that is efficient in power, performance or area?
+How do you calculate FIFO depth?
+@nvidia/asic-engineer-hyderabad-telangana-june-8-2026-no-offer-positive-5ef4cf46
+A 100 um wire has 100 us of delay. Buffers with 30 us delay are inserted at 20 um and 50 um. What is the new total delay?
+@nvidia/asic-engineer-santa-clara-california-january-24-2026-no-offer-positive-3fbad4dd
+What is the difference between reg and wire?
+Write a Verilog module for a basic 2-stage adder from a circuit description.
+Write a script that retimes registers.
+Write RTL that accumulates data per address.
+Explain packed versus unpacked arrays in depth.
+Find the error in a MUX-based programmable delay circuit.
+Design a 10:1 MUX using three 4:1 MUXes.
+@nvidia/asic-intern-bengaluru-october-10-2024-no-offer-neutral-edeba6c7
+How would you build a digital clock in Verilog on an FPGA board?
+@nvidia/asic-verification-engineer-bengaluru-karnataka-july-7-2026-no-offer-positive-75349b0d
+Explain the main features of the APB and AHB protocols.

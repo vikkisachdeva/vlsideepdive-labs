@@ -1,0 +1,71 @@
+@broadcom/senior-staff-verification-engineer-san-jose-ca-october-1-2010-accepted-offer-positive-9d30c6a4
+What are FIFOs used for, and how do you size them?
+Design a clock-domain crossing with clock synchronizers.
+@broadcom/sta-engineer-san-jose-ca-june-2-2023-declined-offer-positive-360bf3df
+Given the inputs and clock of a flip-flop, draw the expected output waveform.
+@broadcom/staff-dft-engineer-united-states-march-1-2023-declined-offer-positive-448d055d
+Explain hierarchical DFT.
+In MBIST, what are the pros and cons of shared versus local comparators?
+How is built-in self-repair (BISR) implemented?
+What ATPG DRC violations do you know?
+How do you debug failing serial and parallel pattern simulations?
+@broadcom/validation-engineer-bengaluru-february-1-2019-accepted-offer-positive-01d8efd4
+What is a PLL?
+How do a sampling scope and a real-time scope work?
+@broadcom/verification-engineer-bengaluru-february-20-2024-declined-offer-negative-4f77da66
+What is gate-level simulation used for?
+@broadcom/verification-engineer-bristol-england-november-1-2016-no-offer-neutral-80243f6d
+How do you verify an asynchronous FIFO?
+@broadcom/verification-engineer-greece-january-1-2013-no-offer-positive-00b59e5d
+How do you verify the bit error rate (BER) of a SerDes?
+@broadcom/verification-engineer-intern-san-diego-ca-may-1-2012-declined-offer-positive-c4c3e9fc
+What is the difference between continuous and procedural assignments?
+@broadcom/verification-engineer-july-1-2012-accepted-offer-positive-06634bfb
+How do you generate a skewed clock in a testbench?
+Create a sequence generator.
+@broadcom/verification-engineer-san-jose-ca-may-1-2012-accepted-offer-positive-b0daa4c8
+Describe a FIFO and how you would verify it.
+What are static class members?
+@broadcom/verification-intern-san-diego-ca-may-1-2012-no-offer-positive-0a8cfab7
+Use a MUX to create a NAND gate.
+@broadcom/wireless-systems-verification-intern-san-diego-ca-april-1-2012-no-offer-negative-c83f00f1
+Compare FIR and IIR filters.
+@cadence-design-systems/asic-design-and-verification-engineer-bengaluru-karnataka-november-1-2023-no-offer-positive-7380f6a7
+Explain how a priority encoder works.
+@cadence-design-systems/design-and-verification-engineer-bengaluru-karnataka-july-19-2024-no-offer-positive-34486b71
+What is the difference between a task and a function?
+@cadence-design-systems/design-verification-engineer-hyderabad-telangana-june-1-2021-no-offer-positive-99299c0b
+What is the difference between Moore and Mealy machines?
+Write code to detect the sequence 10110.
+Design a divide-by-7 frequency divider.
+Explain inheritance, polymorphism and abstraction in SystemVerilog.
+@cadence-design-systems/design-verification-engineer-india-july-18-2021-no-offer-neutral-2c0c60ef
+Write VHDL for a frequency divider and a clock generator.
+@cadence-design-systems/design-verification-engineer-new-delhi-delhi-july-28-2022-no-offer-positive-c2d03fee
+Randomize an array so all its values are unique, without using the unique keyword.
+@cadence-design-systems/design-verification-engineer-united-states-july-30-2021-no-offer-positive-e011393d
+Write a dynamic array in SystemVerilog and a MUX in Verilog.
+@cadence-design-systems/design-verification-intern-ahmedabad-gujarat-december-9-2025-no-offer-positive-3b2424aa
+Design a synchronous FIFO.
+@cadence-design-systems/design-verification-intern-bengaluru-karnataka-april-1-2021-accepted-offer-positive-1cc8f832
+Explain the UVM phases and why each matters.
+@cadence-design-systems/designverification-engineer-raleigh-north-carolina-november-19-2012-no-offer-neutral-5fcd1d77
+Design an FSM for a given bus protocol.
+@cadence-design-systems/dft-engineer-india-october-5-2021-accepted-offer-positive-95f54bed
+Design a JK flip-flop in Verilog.
+@cadence-design-systems/digital-hardware-intern-bangalore-rural-karnataka-february-1-2024-declined-offer-neutral-43f392ed
+Explain the operating regions of a MOSFET, and how transistors are used in analog versus digital circuits.
+@cadence-design-systems/emulation-engineer-haifa-haifa-district-march-30-2024-no-offer-positive-260f1280
+Implement logic that delays a signal by one clock.
+Implement logic that detects a rising edge.
+@cadence-design-systems/formal-verification-engineer-india-october-13-2021-no-offer-positive-9fa5a18b
+Write Verilog for an asynchronous FIFO.
+@cadence-design-systems/hardware-engineer-december-6-2012-no-offer-neutral-e8b6458a
+Why use a header switch rather than a footer for power gating?
+@cadence-design-systems/intern-hardware-engineer-pune-maharashtra-july-30-2024-no-offer-positive-b9b0ddea
+How do you design a NAND gate using multiplexers?
+@cadence-design-systems/product-validation-engineer-noida-uttar-pradesh-april-1-2021-accepted-offer-positive-2f1528a1
+With a sine wave on an inverter's input, in which region does each PMOS and NMOS operate across the cycle?
+What are parasitics? What is EM/IR, and why do they cause reliability problems?
+@cadence-design-systems/product-validation-engineer-noida-uttar-pradesh-may-25-2026-accepted-offer-positive-954099f8
+Implement a state machine for sequence detection.
