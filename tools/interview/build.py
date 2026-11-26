@@ -10,7 +10,7 @@ vids = json.load(open(os.path.join(REPO, 'all-videos.json')))['videos']
 TOPICS = [  # first match wins
  ('Behavioral & projects', r'\b(project|role and responsib|challenging|deadline|why intel|tell me about)\b'),
  ('CDC & metastability', r'synchroni|metastab|clock domain|cdc\b|gray'),
- ('STA & timing', r'setup|hold|skew|jitter|static timing|\bsta\b|timing violation|crosstalk|uncertainty'),
+ ('STA & timing', r'\bsetup\b|\bhold\b|skew|jitter|static timing|\bsta\b|timing violation|crosstalk|uncertainty'),
  ('Physical design', r'congestion|floorplan|placement|routing|physical design|stick diagram|clock gating|fuse'),
  ('DFT', r'\bdft\b|scan'),
  ('SystemVerilog & UVM', r'uvm|systemverilog|fork|constraint|clocking block|program block|virtual interface|scoreboard|testbench|verification plan|emulation|formal'),

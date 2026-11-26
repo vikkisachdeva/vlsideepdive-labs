@@ -528,15 +528,23 @@ header.top nav a.lb-streak { font-weight: 700; color: #ffb38a; }
 .iq-count { font: 500 12.5px "JetBrains Mono", monospace; color: var(--muted); margin: 2px 0 14px; }
 .iq-co { margin: 26px 0 10px; font: 700 20px "Space Grotesk", sans-serif; display: flex; align-items: baseline; gap: 10px; }
 .iq-co span { font: 500 12px "JetBrains Mono", monospace; color: var(--muted); }
-.iq { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 14px 16px; margin-bottom: 10px; }
+.iq { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; margin-bottom: 10px; display: grid; grid-template-columns: minmax(0, 1.45fr) minmax(0, 1fr); overflow: hidden; }
+.iq-l { padding: 14px 16px; }
 .iq-q { font-weight: 600; font-size: 15.5px; line-height: 1.45; }
 .iq-q mark { background: var(--accent-soft); color: inherit; border-radius: 3px; }
 .iq-m { display: flex; flex-wrap: wrap; gap: 6px 14px; margin-top: 8px; font-size: 12.5px; color: var(--muted); }
 .iq-m .tp { font: 500 11.5px "JetBrains Mono", monospace; color: var(--label); }
 .iq-m a { color: var(--muted); }
-.iq-p { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
-.iq-p a { font-size: 12.5px; text-decoration: none; color: var(--text); border: 1px solid var(--line); background: var(--bg); border-radius: 999px; padding: 4px 10px; }
-.iq-p a:hover { border-color: var(--accent); }
+.iq-r { background: var(--accent-soft); border-left: 3px solid var(--accent); padding: 12px 14px; display: flex; flex-direction: column; gap: 7px; }
+.iq-r b { font: 700 11px "JetBrains Mono", monospace; letter-spacing: .06em; text-transform: uppercase; color: var(--label); }
+.iq-r a, .iq-r button { display: flex; gap: 8px; align-items: flex-start; text-align: left; font: 600 13.5px/1.35 Inter, sans-serif; text-decoration: none; color: var(--text); background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 7px 10px; cursor: pointer; }
+.iq-r a:hover, .iq-r button:hover { border-color: var(--accent); }
+.iq-r a span.k, .iq-r button span.k { flex: none; font: 600 10.5px "JetBrains Mono", monospace; color: #fff; background: var(--accent); border-radius: 4px; padding: 2px 5px; margin-top: 1px; }
+.iq-r a span.k.v { background: #c4302b; }
+.iq-head { display: grid; grid-template-columns: minmax(0, 1.45fr) minmax(0, 1fr); font: 700 11.5px "JetBrains Mono", monospace; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); padding: 0 2px 6px; }
+.iq-head span:last-child { color: var(--label); padding-left: 16px; }
+.iq-r b { display: none; }
+@media (max-width: 720px) { .iq-r b { display: block; } .iq { grid-template-columns: 1fr; } .iq-r { border-left: 0; border-top: 3px solid var(--accent); } .iq-head { display: none; } }
 .iq-n { font: 600 11px "JetBrains Mono", monospace; color: var(--accent); }
 </style>
 <link rel="icon" href="/favicon.ico" sizes="any">
@@ -568,7 +576,7 @@ header.top nav a.lb-streak { font-weight: 700; color: #ffb38a; }
 </div>
 
 <div class="iq-wrap">
-  <p class="iq-note">Collected from public interview-experience posts (GeeksforGeeks, Taro, VLSI blogs) and updated every week. We don't write these questions; where a post didn't give the round or year, it is left blank. Where there is a lab or video on the topic, it is linked under the question.</p>
+  <p class="iq-note">Collected from public interview-experience posts (GeeksforGeeks, Taro, VLSI blogs) and updated every week. We don't write these questions; where a post didn't give the round or year, it is left blank. Next to each question: the labs and videos that teach it.</p>
   <div class="iq-bar">
     <label class="vh" for="iq-s">Search questions</label>
     <input class="search" id="iq-s" type="search" placeholder="Search questions, e.g. setup hold, FIFO, UVM" autocomplete="off">
@@ -583,7 +591,7 @@ header.top nav a.lb-streak { font-weight: 700; color: #ffb38a; }
 <footer>
   <span>© 2026 vlsideepdive · All courses free on <a href="https://www.youtube.com/@vlsideepdive">YouTube</a> · Training enquiries: <a href="mailto:vlsideepdive@gmail.com">vlsideepdive@gmail.com</a></span>
 </footer>
-<script src="/labs.js?v=ce425b73e4"></script>
+<script src="/labs.js?v=eee6ba043e"></script>
 <script>
 (function () {
   const $ = (id) => document.getElementById(id);
@@ -606,13 +614,16 @@ header.top nav a.lb-streak { font-weight: 700; color: #ffb38a; }
     const hi = (s) => { let h = esc(s); for (const t of toks.filter((t) => t.length > 1)) h = h.replace(new RegExp("(" + [...esc(t)].map(reEsc).join("[-_./]?") + ")", "ig"), "<mark>$1</mark>"); return h; };
     for (const [c, list] of Object.entries(by).sort((a, b) => b[1].length - a[1].length)) {
       const h = document.createElement("h2"); h.className = "iq-co"; h.innerHTML = esc(c) + " <span>" + list.length + "</span>"; box.appendChild(h);
+      const hd = document.createElement("div"); hd.className = "iq-head"; hd.innerHTML = "<span>Question</span><span>🎯 Learn these concepts to crack the interview</span>"; box.appendChild(hd);
       for (const q of list) {
         const d = document.createElement("div"); d.className = "iq";
         const meta = [q.r, q.rd, q.lv, q.y].filter(Boolean).map(esc).join(" · ");
-        d.innerHTML = '<div class="iq-q">' + hi(q.q) + (q.n > 1 ? ' <span class="iq-n">reported ' + q.n + "×</span>" : "") + "</div>" +
+        const learn = (q.p || []).map((p) => '<a href="' + esc(p.u) + '"' + (p.k === "video" ? ' target="_blank" rel="noopener"' : "") + '><span class="k' + (p.k === "video" ? " v" : "") + '">' + (p.k === "video" ? "VIDEO" : "LAB") + "</span>" + esc(p.t) + "</a>").join("");
+        d.innerHTML = '<div class="iq-l"><div class="iq-q">' + hi(q.q) + (q.n > 1 ? ' <span class="iq-n">reported ' + q.n + "×</span>" : "") + "</div>" +
           '<div class="iq-m"><span class="tp">' + esc(q.tp) + "</span>" + (meta ? "<span>" + meta + "</span>" : "") +
-          '<a href="' + esc(q.src) + '" target="_blank" rel="noopener nofollow">Source: ' + esc(q.sn || "post") + " ↗</a></div>" +
-          (q.p && q.p.length ? '<div class="iq-p">' + q.p.map((p) => '<a href="' + esc(p.u) + '"' + (p.k === "video" ? ' target="_blank" rel="noopener"' : "") + ">" + (p.k === "video" ? "▶ " : "🧪 ") + esc(p.t) + "</a>").join("") + "</div>" : "");
+          '<a href="' + esc(q.src) + '" target="_blank" rel="noopener nofollow">Source: ' + esc(q.sn || "post") + " ↗</a></div></div>" +
+          '<div class="iq-r"><b>🎯 Learn this to crack it</b>' + (learn || (/Behavioral|Programming/.test(q.tp) ? '<span style="color:var(--muted);font-size:13px">No lab for this one: prepare it from your own projects and coding practice.</span>' : '<button type="button" data-q="' + esc(q.tp) + '"><span class="k">FIND</span>Search labs and videos on ' + esc(q.tp) + "</button>")) + "</div>";
+        const sb = d.querySelector("button[data-q]"); if (sb) sb.addEventListener("click", () => window.vddSearch && window.vddSearch(sb.dataset.q.replace(/&.*$/, "").replace(/ and .*$/, "")));
         box.appendChild(d);
       }
     }

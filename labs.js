@@ -567,5 +567,5 @@ window.vddQuizNudge = function () {
       if (back && !back.hidden) return; e.preventDefault(); open();
     }
   }, true);
-  window.vddSearch = open;
+  window.vddSearch = (q) => { open(); if (typeof q === "string" && q) { input.value = q; render(); } };
 })();
