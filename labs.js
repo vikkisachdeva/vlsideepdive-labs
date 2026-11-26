@@ -425,7 +425,10 @@ window.vddQuizNudge = function () {
 .ss-top { display: flex; align-items: center; gap: 10px; padding: 12px 14px; border-bottom: 1px solid var(--line); }
 .ss-top svg { flex: none; color: var(--muted); }
 .ss-in { flex: 1; min-width: 0; border: 0; outline: 0; background: transparent; color: var(--text); font: 500 17px/1.3 inherit; font-family: inherit; }
-.ss-x { border: 1px solid var(--line); background: transparent; color: var(--muted); border-radius: 6px; font: 500 12px/1 inherit; font-family: inherit; padding: 5px 7px; cursor: pointer; }
+.ss-x { flex: none; display: grid; place-items: center; width: 34px; height: 34px; border: 1px solid var(--line); background: var(--bg); color: var(--text); border-radius: 8px; font: 600 18px/1 inherit; font-family: inherit; cursor: pointer; }
+.ss-x:hover { border-color: var(--muted); }
+.ss-in::-webkit-search-cancel-button { display: none; }
+@media (max-width: 640px) { .ss-back { padding: 10px; } .ss-box { max-height: calc(100vh - 20px); } .ss-foot { display: none; } }
 .ss-tabs { display: flex; gap: 6px; padding: 10px 14px 0; flex-wrap: wrap; }
 .ss-tab { border: 1px solid var(--line); background: transparent; color: var(--muted); border-radius: 999px; padding: 5px 11px; font: 600 12px/1 inherit; font-family: inherit; cursor: pointer; }
 .ss-tab[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: #fff; }
@@ -524,7 +527,7 @@ window.vddQuizNudge = function () {
   function build() {
     back = document.createElement("div"); back.className = "ss-back"; back.hidden = true;
     back.innerHTML = '<div class="ss-box" role="dialog" aria-modal="true" aria-label="Search"><div class="ss-top"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>' +
-      '<input class="ss-in" type="search" placeholder="Search labs, videos and tips" autocomplete="off" spellcheck="false" aria-label="Search"><button type="button" class="ss-x">Esc</button></div>' +
+      '<input class="ss-in" type="search" placeholder="Search labs, videos and tips" autocomplete="off" spellcheck="false" aria-label="Search"><button type="button" class="ss-x" aria-label="Close search" title="Close (Esc)">✕</button></div>' +
       '<div class="ss-tabs" role="group" aria-label="Show"></div><div class="ss-list" role="listbox"></div>' +
       '<div class="ss-foot"><span>↑ ↓ to move</span><span>Enter to open</span><span>Esc to close</span></div></div>';
     document.body.appendChild(back);
@@ -553,12 +556,12 @@ window.vddQuizNudge = function () {
   }
   function close() { if (!back) return; back.hidden = true; document.documentElement.style.overflow = ""; btn.focus({ preventScroll: true }); }
   btn.addEventListener("click", open);
-  document.addEventListener("keydown", (e) => {
+  window.addEventListener("keydown", (e) => {
     const t = e.target, typing = t && (t.isContentEditable || /^(INPUT|TEXTAREA|SELECT)$/.test(t.tagName) || (t.closest && t.closest(".CodeMirror")));
     if (e.key === "Escape" && back && !back.hidden) { e.preventDefault(); close(); return; }
     if ((e.key === "k" && (e.ctrlKey || e.metaKey)) || (e.key === "/" && !typing && !e.ctrlKey && !e.metaKey && !e.altKey)) {
       if (back && !back.hidden) return; e.preventDefault(); open();
     }
-  });
+  }, true);
   window.vddSearch = open;
 })();
