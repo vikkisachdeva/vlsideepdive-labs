@@ -77,3 +77,8 @@ out = {'updated': max(s.get('added', '') for s in S) or '', 'sources': len(S), '
 json.dump(out, open(os.path.join(REPO, 'interview-questions.json'), 'w'), ensure_ascii=False, separators=(',', ':'))
 from collections import Counter
 print(len(Q), 'questions', Counter(x['c'] for x in Q).most_common(), Counter(x['tp'] for x in Q).most_common(), sum(1 for x in Q if x['p']), 'with practice links')
+
+# keep the homepage banner count current
+ip = os.path.join(REPO, 'index.html'); h = open(ip).read()
+h2 = re.sub(r'(<b data-iq-count>)[^<]*(</b>)', lambda m: m.group(1) + f'{len(Q):,}' + m.group(2), h)
+if h2 != h: open(ip, 'w').write(h2)
