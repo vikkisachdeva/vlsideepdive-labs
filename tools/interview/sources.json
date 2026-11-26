@@ -721,5 +721,367 @@
     "What is virtual memory?"
    ]
   ]
+ },
+ {
+  "company": "Micron",
+  "role": "Digital design",
+  "level": "Campus",
+  "date": "2024-10",
+  "site": "GeeksforGeeks",
+  "title": "Micron interview experience for Semiconductor Engineer (on-campus)",
+  "url": "https://www.geeksforgeeks.org/interview-experiences/micron-technology-interview-experience-for-semiconductor-engineer-on-campus/",
+  "qs": [
+   [
+    "Technical 1",
+    "How would you handle internal memory errors such as bit flips? (Expected: SECDED)"
+   ],
+   [
+    "Technical 1",
+    "What sets the operating frequency of a microprocessor, and how many cycles does an instruction take?"
+   ],
+   [
+    "Technical 1",
+    "Build a divide-by-2 frequency divider, then a divide-by-3."
+   ],
+   [
+    "Technical 1",
+    "Two inverters in a loop: what is the oscillation frequency, and how do you increase the period?"
+   ],
+   [
+    "Technical 2",
+    "Print a binary tree in zig-zag order."
+   ]
+  ]
+ },
+ {
+  "company": "Qualcomm",
+  "role": "Digital design",
+  "level": "Campus",
+  "date": "2025-07",
+  "site": "GeeksforGeeks",
+  "title": "Qualcomm interview experience (on-campus)",
+  "url": "https://www.geeksforgeeks.org/interview-experiences/qualcomm-interview-experience-on-campus-4/",
+  "qs": [
+   [
+    "Technical 1",
+    "Draw the transfer characteristic of an inverter."
+   ],
+   [
+    "Technical 1",
+    "What is the switching threshold voltage of an inverter?"
+   ],
+   [
+    "Technical 1",
+    "What are the high and low noise margins, and what do they signify?"
+   ],
+   [
+    "Technical 1",
+    "Draw a CMOS inverter and mark all four terminals."
+   ],
+   [
+    "Technical 1",
+    "Draw the physical cross-section of an NMOS transistor."
+   ],
+   [
+    "Technical 1",
+    "What happens if the body is not tied to the source, or is at a higher voltage than the source?"
+   ],
+   [
+    "Technical 1",
+    "Write Verilog for a mod-3 counter. What mistakes are common in this code?"
+   ],
+   [
+    "Technical 1",
+    "Make an AND gate with a 2:1 MUX."
+   ],
+   [
+    "Technical 1",
+    "Make an OR gate with an XOR gate."
+   ],
+   [
+    "Technical 2",
+    "Implement an OR gate using NAND gates."
+   ],
+   [
+    "Technical 2",
+    "Draw a NAND gate in CMOS and explain how it works."
+   ],
+   [
+    "Technical 2",
+    "What are setup time and hold time?"
+   ],
+   [
+    "Technical 2",
+    "What types of finite state machines are there, and how do they differ?"
+   ],
+   [
+    "Technical 2",
+    "Draw the state diagram of a detector for the sequence 01*0010*1 (1* = one or more 1s)."
+   ],
+   [
+    "Technical 2",
+    "Explain how you would write Verilog for a finite state machine."
+   ]
+  ]
+ },
+ {
+  "company": "Arm",
+  "role": "DV",
+  "level": "Intern (campus)",
+  "date": "2021-09",
+  "site": "GeeksforGeeks",
+  "title": "ARM interview experience for verification engineer intern (on-campus, virtual)",
+  "url": "https://www.geeksforgeeks.org/arm-interview-experience-for-verification-engineer-intern-on-campus-virtual-2020/",
+  "qs": [
+   [
+    "Technical 1",
+    "How are instructions executed in a non-pipelined architecture versus a pipelined one?"
+   ],
+   [
+    "Technical 1",
+    "Why do we prefer a pipelined architecture over a non-pipelined one?"
+   ],
+   [
+    "Technical 1",
+    "What is the memory hierarchy?"
+   ],
+   [
+    "Technical 1",
+    "What is the cache hierarchy?"
+   ],
+   [
+    "Technical 2",
+    "What is paging?"
+   ],
+   [
+    "Technical 2",
+    "What is virtual memory, and what are the ways to implement it?"
+   ],
+   [
+    "Technical 2",
+    "What is an MMU and what does it do?"
+   ],
+   [
+    "Technical 2",
+    "What are L1 and L2 caches, and how do they differ?"
+   ],
+   [
+    "Technical 2",
+    "Discuss the design of an ARM processor."
+   ]
+  ]
+ },
+ {
+  "company": "Infineon",
+  "role": "Digital design",
+  "level": "Campus",
+  "date": "2023-08",
+  "site": "GeeksforGeeks",
+  "title": "Infineon Technologies interview experience (on-campus) 2023",
+  "url": "https://www.geeksforgeeks.org/interview-experiences/infineon-technologies-interview-experience-on-campus-2023/",
+  "qs": [
+   [
+    "Technical",
+    "Explain the basic architecture of a microcontroller and how it differs from a microprocessor."
+   ],
+   [
+    "Technical",
+    "What is the difference between Von Neumann and Harvard architectures? Give a practical use for each."
+   ],
+   [
+    "Technical",
+    "Why build a 16-bit microcontroller instead of cascading 8-bit ones?"
+   ],
+   [
+    "Technical",
+    "How does a microprocessor handle multiple interrupts, and how can an ISR be optimized?"
+   ],
+   [
+    "Technical",
+    "How are negative numbers stored in registers? What is the range of a signed 16-bit register?"
+   ],
+   [
+    "Technical",
+    "Explain the keywords volatile, const and static in Embedded C."
+   ],
+   [
+    "Technical",
+    "Write an Embedded C switch-case program to set, reset and toggle a bit."
+   ]
+  ]
+ },
+ {
+  "company": "Apple",
+  "role": "DV",
+  "level": "",
+  "date": "2025-06",
+  "site": "Taro",
+  "title": "Apple Design Verification Engineer interview, Sunnyvale",
+  "url": "https://www.jointaro.com/interviews/companies/apple/experiences/design-verification-engineer-sunnyvale-ca-june-1-2025-no-offer-negative-64287b38/",
+  "qs": [
+   [
+    "Hiring manager screen",
+    "Code variations of edge-triggered logic in RTL (e.g. rising, falling and both-edge detection)."
+   ]
+  ]
+ },
+ {
+  "company": "Apple",
+  "role": "DV",
+  "level": "Intern",
+  "date": "2025-07",
+  "site": "Taro",
+  "title": "Apple Design Verification Intern interview",
+  "url": "https://www.jointaro.com/interviews/companies/apple/experiences/design-verification-intern-united-states-july-19-2025-no-offer-positive-be7685da/",
+  "qs": [
+   [
+    "Technical",
+    "What is register renaming? How does it work?"
+   ]
+  ]
+ },
+ {
+  "company": "Apple",
+  "role": "Digital design",
+  "level": "",
+  "date": "2025-09",
+  "site": "Taro",
+  "title": "Apple Hardware Engineer interview, Cupertino",
+  "url": "https://www.jointaro.com/interviews/companies/apple/experiences/hardware-engineer-cupertino-ca-september-28-2025-no-offer-positive-157c381b/",
+  "qs": [
+   [
+    "Phone screen",
+    "How do you safely transfer a signal across clock domains? What are the risks if it is not handled correctly?"
+   ],
+   [
+    "Phone screen",
+    "What are the main challenges in implementing an out-of-order execution engine, and how do you ensure correctness?"
+   ]
+  ]
+ },
+ {
+  "company": "Apple",
+  "role": "DV",
+  "level": "Intern",
+  "date": "2025-10",
+  "site": "Taro",
+  "title": "Apple Design Verification Intern interview (45 min)",
+  "url": "https://www.jointaro.com/interviews/companies/apple/experiences/design-verification-intern-october-1-2025-no-offer-positive-b771e461/",
+  "qs": [
+   [
+    "Technical",
+    "What would you use a SystemVerilog modport for?"
+   ]
+  ]
+ },
+ {
+  "company": "Apple",
+  "role": "Digital design",
+  "level": "Intern",
+  "date": "2025-03",
+  "site": "Taro",
+  "title": "Apple Hardware Engineer Intern interview",
+  "url": "https://www.jointaro.com/interviews/companies/apple/experiences/hardware-engineer-intern-united-states-march-25-2025-no-offer-positive-7b52ce4c/",
+  "qs": [
+   [
+    "Technical",
+    "How does a current mirror work?"
+   ]
+  ]
+ },
+ {
+  "company": "Intel",
+  "role": "DV",
+  "level": "",
+  "date": "2025-04",
+  "site": "Taro",
+  "title": "Intel SoC Design Verification Engineer interview, Vancouver",
+  "url": "https://www.jointaro.com/interviews/companies/intel/experiences/soc-design-verification-engineer-vancouver-bc-april-1-2025-accepted-offer-positive-2341b88d/",
+  "qs": [
+   [
+    "Technical",
+    "A constraint keeps data < 20. Change the data to lie between 30 and 40 without using constraint_mode()."
+   ],
+   [
+    "Technical",
+    "What are bins used for in functional coverage?"
+   ]
+  ]
+ },
+ {
+  "company": "Amazon",
+  "role": "DV",
+  "level": "",
+  "date": "2024-10",
+  "site": "Taro",
+  "title": "Amazon Design Verification Engineer interview, Austin",
+  "url": "https://www.jointaro.com/interviews/companies/amazon/experiences/design-verification-engineer-austin-tx-october-1-2024-no-offer-neutral-9dd47ac8/",
+  "qs": [
+   [
+    "Technical",
+    "Write SystemVerilog code that generates a random phone number."
+   ],
+   [
+    "Technical",
+    "You have four processes A, B, C, D. If any of them finishes, kill B; when all have finished, print Done. Use fork-join."
+   ],
+   [
+    "Technical",
+    "A child class has the same function as its parent: what is printed when it is called, and what changes when the function is virtual? Can a child object be assigned to a parent handle, and vice versa?"
+   ],
+   [
+    "Technical",
+    "Write a sequence item and a sequence for burst writes and reads to a 32K memory."
+   ]
+  ]
+ },
+ {
+  "company": "Meta",
+  "role": "DV",
+  "level": "",
+  "date": "2024-02",
+  "site": "Taro",
+  "title": "Meta Design Verification Engineer interview, Sunnyvale",
+  "url": "https://www.jointaro.com/interviews/companies/meta/experiences/design-verification-engineer-sunnyvale-ca-february-1-2024-no-offer-neutral-6494a7e0/",
+  "qs": [
+   [
+    "Onsite",
+    "Write a test plan for a 2x2 switch arbiter."
+   ]
+  ]
+ },
+ {
+  "company": "Qualcomm",
+  "role": "DV",
+  "level": "",
+  "date": "2017-11",
+  "site": "Taro",
+  "title": "Qualcomm Design Verification Engineer interview, Raleigh",
+  "url": "https://www.jointaro.com/interviews/companies/qualcomm/experiences/design-verification-engineer-raleigh-nc-november-1-2017-no-offer-positive-751923c4/",
+  "qs": [
+   [
+    "Technical",
+    "Describe cache coherence protocols."
+   ],
+   [
+    "Technical",
+    "Explain how a 5-stage pipeline works."
+   ]
+  ]
+ },
+ {
+  "company": "Apple",
+  "role": "DV",
+  "level": "",
+  "date": "2023-06",
+  "site": "Taro",
+  "title": "Apple Design Verification Engineer interview, Cupertino",
+  "url": "https://www.jointaro.com/interviews/companies/apple/experiences/design-verification-engineer-cupertino-ca-june-1-2023-no-offer-positive-758688a7/",
+  "qs": [
+   [
+    "Technical",
+    "Design a scoreboard that compares the DUT against a reference model. Why this design, and how could it be improved?"
+   ]
+  ]
  }
 ]
