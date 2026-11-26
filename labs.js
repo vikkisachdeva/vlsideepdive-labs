@@ -21,6 +21,8 @@ const LABS = [
     desc: "Static timing analysis with OpenSTA: netlists, SDC, Liberty and SPEF. Setup and hold, exceptions, OCV, multi-corner and power reports." },
   { id: "pd", title: "Physical design labs", href: "/pd/", tag: "Physical design · OpenROAD · 22 labs · quizzes",
     desc: "Floorplan, placement, CTS, routing and signoff with OpenROAD on Sky130: real layouts and reports for every setting, live signoff STA, and a RISC-V project." },
+  { id: "iq", title: "Interview question labs", href: "/interview-labs/", tag: "Interview prep · 47 labs",
+    desc: "Real interview questions as runnable labs: MUX puzzles, clock dividers, FSMs, arbiters, caches, FIFOs and SystemVerilog testbench puzzles." },
   { id: "interview", title: "Interview questions by company", href: "/interview/", tag: "Interview prep",
     desc: "Real VLSI interview questions reported by candidates, by company, role and topic, with links to the source." },
   { id: "tips", title: "Vikas Sachdeva's tips", href: "/tips/", tag: "Tips",
@@ -104,7 +106,7 @@ const HOME_CARDS = [
 })();
 
 // Accounts and leaderboards (/lb.js), on every page
-(function () { const s = document.createElement("script"); s.src = "/lb.js?v=f45a6ccb33"; s.defer = true; document.head.appendChild(s); })();
+(function () { const s = document.createElement("script"); s.src = "/lb.js?v=bab1bd88b0"; s.defer = true; document.head.appendChild(s); })();
 
 // Tip box inside a lab: <div class="lab-tip" data-topics="STA,Constraints"></div>
 (function () {

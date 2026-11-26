@@ -37,6 +37,7 @@ def keyset(s):
     return ks
 targets = []
 for lid, l in labs.items():
+    if l['u'].startswith('/interview-labs/'): continue
     targets.append({'t': l['n'], 'u': l['u'], 'k': 'lab', 'ks': keyset(l['n'] + ' ' + ' '.join(l.get('q', [])))})
 for v in vids:
     if 'Walkthrough' in v['title'] or 'Short' in v['title']: continue
@@ -58,12 +59,38 @@ def links(q):
         if len(out) == 2: break
     return out
 
+# Interview labs (iq-*): each has a regex of the questions it answers. Checked first.
+IQ = json.load(open(os.path.join(REPO, 'tools/interview/iq-labs.json')))
+EXIST = [  # existing labs that answer common questions the keyword matcher misses
+ (r'asynchronous fifo|async fifo|async-fifo|fifo.{0,30}(clock domains|two clock)', 'p4-afifo'),
+ (r'\bfifo\b', 'p4-fifo'),
+ (r'traffic.?light', 'l33-traffic'),
+ (r'divide.{0,10}(by )?(3|three)|divide-by-3', 'p4-div3'),
+ (r'two-flop synchronizer|2-ff synchron|synchronizer', 'cdc-fix'),
+]
+def explicit(q):
+    out = []
+    for m in IQ:
+        if re.search(m['q'], q, re.I): out.append({'t': m['title'], 'u': '/interview-labs/?lab=' + m['id'], 'k': 'lab'})
+        if len(out) == 2: break
+    for rx, lid in EXIST:
+        if len(out) >= 2: break
+        if lid in labs and re.search(rx, q, re.I) and not any(lid in o['u'] for o in out):
+            out.append({'t': labs[lid]['n'], 'u': labs[lid]['u'], 'k': 'lab'})
+    return out
+def all_links(q):
+    out = explicit(q)
+    for l in links(q):
+        if len(out) >= 3: break
+        if not any(o['u'] == l['u'] for o in out) and not (l['k'] == 'lab' and sum(o['k'] == 'lab' for o in out) >= 2): out.append(l)
+    return out
+
 Q = []
 for s in S:
     for rnd, q in s['qs']:
         topic = next(n for n, rx in TOPICS if re.search(rx, q, re.I))
         Q.append({'q': q, 'c': s['company'], 'r': s.get('role', ''), 'rd': rnd, 'lv': s.get('level', ''), 'y': s.get('date', '')[:4],
-                  'tp': topic, 'src': s['url'], 'sn': s.get('site', ''), 'st': s.get('title', ''), 'p': links(q)})
+                  'tp': topic, 'src': s['url'], 'sn': s.get('site', ''), 'st': s.get('title', ''), 'p': all_links(q)})
 # same question reported more than once (same company, normalized text) -> count
 def norm(t): return re.sub(r'[^a-z0-9]+', ' ', t.lower()).strip()
 seen = {}

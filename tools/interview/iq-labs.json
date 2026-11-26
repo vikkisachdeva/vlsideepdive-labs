@@ -1,0 +1,615 @@
+[
+ {
+  "id": "iq-xor-mux",
+  "title": "XOR and XNOR from a 2:1 MUX",
+  "group": "Gate and MUX puzzles",
+  "n": 1,
+  "q": "(xor|xnor).{0,40}(mux|multiplexer)|(mux|multiplexer).{0,40}(xor|xnor)",
+  "tasks": [
+   "Use mux2 instances only (plus ~b): no ^ operator.",
+   "x = a XOR b, xn = a XNOR b.",
+   "Run: the testbench checks all four input combinations."
+  ],
+  "problem": "A favourite at Qualcomm, NVIDIA, Google and Micron: build XOR and XNOR using only 2:1 multiplexers (one inverter on b is allowed)."
+ },
+ {
+  "id": "iq-gates-mux",
+  "title": "AND, OR, NAND and NOT from MUXes",
+  "group": "Gate and MUX puzzles",
+  "n": 2,
+  "q": "\\b(and|or|nand|nor|not|inverter|gates?)\\b.{0,25}\\b(using|from|with)\\b.{0,15}(mux|multiplexer)|(mux|multiplexer)e?s?.{0,25}\\b(create|make|build|implement|design)\\b.{0,20}\\b(nand|and|or|gates?|inverter)\\b|basic gates.{0,20}mux|gate implementation using mux|block one input of an and",
+  "tasks": [
+   "Use only mux2 instances and the constants 1'b0 and 1'b1.",
+   "and_o, or_o, nand_o and not_a.",
+   "Run until PASS."
+  ],
+  "problem": "Asked at AMD, Marvell, Cadence, Broadcom and Qualcomm: build the basic gates from 2:1 multiplexers and the constants 0 and 1."
+ },
+ {
+  "id": "iq-fa-mux",
+  "title": "Full adder from 2:1 MUXes",
+  "group": "Gate and MUX puzzles",
+  "n": 3,
+  "q": "full adder.{0,20}(mux|multiplexer)",
+  "tasks": [
+   "Use only mux2 instances and constants (no ^ & | operators).",
+   "sum = a ^ b ^ cin, cout = majority(a, b, cin).",
+   "Hint: p = a ^ b; then sum = p ? ~cin : cin and cout = p ? cin : a."
+  ],
+  "problem": "AMD and others ask: build a full adder with nothing but 2:1 multiplexers."
+ },
+ {
+  "id": "iq-xor3-mux4",
+  "title": "3-input XOR from one 4:1 MUX",
+  "group": "Gate and MUX puzzles",
+  "n": 4,
+  "q": "3-input xor|xor gate using a 4:1|three.input xor",
+  "tasks": [
+   "Drive sel with {a, b}.",
+   "Choose each data input from c, ~c, 0 or 1.",
+   "Run until PASS."
+  ],
+  "problem": "From Qualcomm: implement y = a ^ b ^ c with a single 4:1 multiplexer (an inverter on c is allowed)."
+ },
+ {
+  "id": "iq-mux-tree",
+  "title": "8:1 and 16:1 MUX from 2:1 MUXes",
+  "group": "Gate and MUX puzzles",
+  "n": 5,
+  "q": "(4:1|8:1|16:1|16x1|8x1|4x1|10:1).{0,30}(mux|multiplexer).{0,30}(2:1|2x1|2-1|4:1)|how many 2:1 mux|mux.{0,10}from 2:1|convert between mux sizes",
+  "tasks": [
+   "mux8: 8 inputs, 3-bit select, built from mux2 instances (7 of them).",
+   "mux16: 16 inputs, 4-bit select (15 mux2s, or two mux8s and one mux2).",
+   "Run until PASS."
+  ],
+  "problem": "Synopsys, Samsung, Marvell and Intel all ask it: build bigger multiplexers from 2:1 MUXes, and say how many you need."
+ },
+ {
+  "id": "iq-universal",
+  "title": "XOR from NOR only and from NAND only",
+  "group": "Gate and MUX puzzles",
+  "n": 6,
+  "q": "xor.{0,20}only nor|xor.{0,20}only nand|universal gates|nor gate only from nand|nor.{0,20}from nand|or gate using nand|realize logic functions with universal",
+  "tasks": [
+   "x_nor: XOR using only the nor primitive (5 gates).",
+   "x_nand: XOR using only the nand primitive (4 gates).",
+   "Run until PASS."
+  ],
+  "problem": "Classic campus question: NAND and NOR are universal. Build XOR from NOR gates only, and from NAND gates only."
+ },
+ {
+  "id": "iq-latch-mux",
+  "title": "D latch from a MUX",
+  "group": "Gate and MUX puzzles",
+  "n": 7,
+  "q": "latch.{0,30}(mux|multiplexer)|most basic sequential|asynchronous feedback loop|level-triggered versus edge",
+  "tasks": [
+   "q follows d while en = 1 and holds while en = 0.",
+   "Use one mux2 whose output feeds back into one data input.",
+   "Run until PASS."
+  ],
+  "problem": "ARM and Intel ask how storage appears from combinational logic: feed a 2:1 MUX output back to its own input and you have a latch."
+ },
+ {
+  "id": "iq-popcount",
+  "title": "Count the 1s with full adders",
+  "group": "Gate and MUX puzzles",
+  "n": 8,
+  "q": "(count|how many).{0,20}(1s|ones|1's|logic 1).{0,40}(adder|full)|5 inputs that count|count the number of 1",
+  "tasks": [
+   "Five 1-bit inputs, 3-bit count.",
+   "Use the given ha and fa modules only.",
+   "A full adder is a 3:2 compressor: it adds three bits of the same weight."
+  ],
+  "problem": "NVIDIA and Marvell ask: count how many of the inputs are 1, using only half and full adders."
+ },
+ {
+  "id": "iq-compare",
+  "title": "Equality and 2-bit comparator from 1-bit comparators",
+  "group": "Gate and MUX puzzles",
+  "n": 9,
+  "q": "^(?!.*mbist).*(comparator|two n-bit numbers are equal|check.{0,20}equal)",
+  "tasks": [
+   "eq: 1 when a == b for any WIDTH (XNOR each bit, AND them all).",
+   "cmp2: gt, eq, lt for 2-bit numbers using two cmp1 instances and a few gates.",
+   "Run until PASS."
+  ],
+  "problem": "Texas Instruments and Qualcomm ask: check two N-bit numbers for equality, then build a 2-bit magnitude comparator from 1-bit comparators."
+ },
+ {
+  "id": "iq-sort3",
+  "title": "Max and sort of three numbers",
+  "group": "Gate and MUX puzzles",
+  "n": 10,
+  "q": "maximum of (the )?three|max.{0,10}three|sort.{0,20}three|sorts three|sort 6 numbers|largest value",
+  "tasks": [
+   "lo <= mid <= hi for unsigned 8-bit a, b, c.",
+   "Use three compare-and-swap stages (a sorting network), no loops.",
+   "max is hi."
+  ],
+  "problem": "ARM asks for the maximum of three numbers in hardware, and AMD asks to sort with 2-input sorters. Build a 3-input sorting network."
+ },
+ {
+  "id": "iq-mul-const",
+  "title": "Multiply by a constant: x5 and x47",
+  "group": "Arithmetic and bit tricks",
+  "n": 1,
+  "q": "multipl(y|ies).{0,30}(by|times) ?(5|47|a constant)|by 47|square of a number|multiply a 2-bit",
+  "tasks": [
+   "y5 = x * 5 and y47 = x * 47 for an 8-bit unsigned x.",
+   "Use shifts, + and - only: no * operator.",
+   "Pick output widths that never overflow."
+  ],
+  "problem": "NVIDIA asked for a circuit that multiplies by 47; Marvell for x5. Constant multipliers are built from shifts and adds, not a multiplier."
+ },
+ {
+  "id": "iq-bcd-x5",
+  "title": "BCD digit times 5",
+  "group": "Arithmetic and bit tricks",
+  "n": 2,
+  "q": "bcd.{0,30}(times 5|multiplied by 5|x ?5)|bcd input and outputs",
+  "tasks": [
+   "tens and ones are BCD digits of d * 5 (0 to 45).",
+   "There is a trick that needs no adder at all: look at d * 5 for even and odd d.",
+   "Run until PASS."
+  ],
+  "problem": "From an Intel CPU verification interview: take a 4-bit BCD digit (0 to 9) and output the result times 5 as two BCD digits."
+ },
+ {
+  "id": "iq-widths",
+  "title": "Bit widths, signed multiply and sign extension",
+  "group": "Arithmetic and bit tricks",
+  "n": 3,
+  "q": "bits are needed to hold|bit width needed|sign-extend|truncate|multiply two signed|negative numbers stored|two's complement|smallest positive and negative|signed 16-bit",
+  "tasks": [
+   "mac: y = a * b + c for unsigned 8-bit a, b, c. Give y the smallest width that never overflows.",
+   "smul: product of two signed 8-bit numbers.",
+   "sext: sign-extend an 8-bit value to 16 bits."
+  ],
+  "problem": "Marvell asked how many bits A*B+C needs for 8-bit operands, and how to truncate and sign-extend. Get the widths and signedness right."
+ },
+ {
+  "id": "iq-bit-tricks",
+  "title": "Bit tricks: power of 2, bit reverse, lowest set bit, min without if",
+  "group": "Arithmetic and bit tricks",
+  "n": 4,
+  "q": "power of 2|power of two|reverses the bit|reverse.{0,10}bits|bit manipulation|extract bits|position of every 1|smaller of two integers without|without (an|using) if|lowest set bit|swap two (variables|values)",
+  "tasks": [
+   "pow2 = 1 when x is a power of 2 (x != 0 and x & (x - 1) == 0).",
+   "rev = x with its bit order reversed.",
+   "low1 = x with only its lowest 1 kept (x & -x).",
+   "mn = min(x, z) without if or ?: (use a mask)."
+  ],
+  "problem": "One-liners interviewers love (Maxlinear, Micron, Marvell, Intel, Cadence): power-of-2 check, bit reversal, isolating the lowest 1, and min of two numbers without if."
+ },
+ {
+  "id": "iq-add64-32",
+  "title": "Add 64-bit numbers with one 32-bit adder",
+  "group": "Arithmetic and bit tricks",
+  "n": 5,
+  "q": "64-bit.{0,30}32-bit adder|32-bit adder.{0,30}64|using a 32-bit adder",
+  "tasks": [
+   "On start, latch a and b. Cycle 1 adds the low halves; cycle 2 adds the high halves plus the saved carry.",
+   "Raise done for one cycle with the 65-bit result in sum (bit 64 is the carry out).",
+   "Use a single 32-bit add expression, reused in both cycles."
+  ],
+  "problem": "AMD asked how to add two 64-bit numbers when you only have a 32-bit adder. Do it in two cycles, carrying between them."
+ },
+ {
+  "id": "iq-edge",
+  "title": "Edge detectors and a one-cycle delay",
+  "group": "Clocks, counters and datapaths",
+  "n": 1,
+  "q": "edge.?trigger.{0,30}variation|rising edge|falling edge|detects a rising|edge detect|delays a signal by one clock|pulse detector",
+  "tasks": [
+   "d1 is sig delayed by one clock.",
+   "rise, fall and any are one-cycle pulses from sig and d1.",
+   "Run until PASS."
+  ],
+  "problem": "Cadence, Apple and NVIDIA ask for edge detection: delay a signal by one clock, then pulse on its rising edge, falling edge or any edge."
+ },
+ {
+  "id": "iq-sticky",
+  "title": "Sticky register",
+  "group": "Clocks, counters and datapaths",
+  "n": 2,
+  "q": "sticky",
+  "tasks": [
+   "q = 0 in reset.",
+   "q becomes 1 the clock after set = 1, then holds 1.",
+   "Run until PASS."
+  ],
+  "problem": "NVIDIA's new-grad screen: design a sticky register that goes to 1 when set and stays 1 until reset, whatever set does afterwards."
+ },
+ {
+  "id": "iq-div-odd",
+  "title": "Odd clock divider with 50% duty cycle",
+  "group": "Clocks, counters and datapaths",
+  "n": 3,
+  "q": "divide.{0,12}(by )?(3|5|7|three)|divided by three|divide-by-[357]|clock divider|clock dividers|frequency divider|divide a 500|duty cycle",
+  "tasks": [
+   "clk_out period = N input clocks, high for exactly N/2 clocks (half-cycle resolution).",
+   "Count on the rising edge; use one extra flop on the falling edge.",
+   "The testbench runs N = 3 and N = 5 and measures high and low time."
+  ],
+  "problem": "Divide-by-3 with 50% duty is one of the most reported questions (Marvell, Broadcom, NXP, TI, Cadence). Build a general odd divider: N = 3, 5, 7..."
+ },
+ {
+  "id": "iq-skip-count",
+  "title": "Counters that skip values or count a range",
+  "group": "Clocks, counters and datapaths",
+  "n": 4,
+  "q": "skip|counts from 7 to 11|count(s|er)? (from )?7 to 11|mod-15|mod 15|mod-n counter|modulo-50|mod-3 counter|count-to-5|up/down counter|counter.{0,20}minimum number of flops|wrapping counter|parameterized counter",
+  "tasks": [
+   "skip: counts 1, 2, 6, 7, 9, 10, 11, 12, 13, 14 and wraps to 1. Reset value 1.",
+   "range: counts 7, 8, 9, 10, 11 and wraps to 7. Reset value 7.",
+   "Run until PASS."
+  ],
+  "problem": "Micron asked for a mod-15 counter that skips 0, 3, 4, 5 and 8; Samsung for a counter from 7 to 11. Build both."
+ },
+ {
+  "id": "iq-fib",
+  "title": "Fibonacci generator: one number per cycle",
+  "group": "Clocks, counters and datapaths",
+  "n": 5,
+  "q": "fibonacci",
+  "tasks": [
+   "After reset, f outputs 0, 1, 1, 2, 3, 5, 8, ... one per clock.",
+   "Use two registers; no memory, no loop.",
+   "16-bit output: the testbench checks the first 24 numbers."
+  ],
+  "problem": "Fibonacci in hardware came up at Marvell, Juniper, TI and Intel: output the next Fibonacci number every clock."
+ },
+ {
+  "id": "iq-moving-avg",
+  "title": "Moving average of the last 4 samples",
+  "group": "Clocks, counters and datapaths",
+  "n": 6,
+  "q": "moving average|average of the values|average between",
+  "tasks": [
+   "Shift in x on every clock (window starts as zeros after reset).",
+   "avg = (sum of the last 4 samples) / 4.",
+   "Keep a running sum: add the new sample, subtract the one that leaves. No 4-input adder needed."
+  ],
+  "problem": "Groq asked for a moving average in Verilog. Keep the last four 8-bit samples and output their average every clock."
+ },
+ {
+  "id": "iq-stream-sum",
+  "title": "Sum of the previous two inputs, and a running sum",
+  "group": "Clocks, counters and datapaths",
+  "n": 7,
+  "q": "sum of the previous two|running sum|accumulator|cumulative sum",
+  "tasks": [
+   "s2 = sum of the two inputs before the current one (0 for missing ones).",
+   "run = sum of all inputs before the current one.",
+   "Both come from registers: no combinational path from x."
+  ],
+  "problem": "From a Texas Instruments interview: for a stream A0, A1, A2..., output A(k-1) + A(k-2) while A(k) arrives, then the sum of all previous inputs."
+ },
+ {
+  "id": "iq-lfsr",
+  "title": "8-bit maximal-length LFSR",
+  "group": "Clocks, counters and datapaths",
+  "n": 8,
+  "q": "lfsr|pseudo.?random|sequence generator",
+  "tasks": [
+   "Shift left; the new LSB is q[7] ^ q[5] ^ q[4] ^ q[3].",
+   "Reset to 8'h01 (never all zeros: the LFSR would lock).",
+   "The testbench checks the period is exactly 255."
+  ],
+  "problem": "AMD asked to explain an LFSR. Build an 8-bit Fibonacci LFSR with taps 8, 6, 5, 4 that cycles through all 255 non-zero states."
+ },
+ {
+  "id": "iq-acc-addr",
+  "title": "Accumulate data per address",
+  "group": "Clocks, counters and datapaths",
+  "n": 9,
+  "q": "accumulates data per address|per address",
+  "tasks": [
+   "On valid, total[addr] <= total[addr] + data (same clock).",
+   "Back-to-back writes to the same address must both count.",
+   "rd_addr reads a total combinationally."
+  ],
+  "problem": "NVIDIA asked for RTL that accumulates incoming data per address. Keep 8 running totals and add each valid input to its address."
+ },
+ {
+  "id": "iq-clkgen",
+  "title": "Testbench clocks: 2 GHz, start after 100 ns",
+  "group": "Clocks, counters and datapaths",
+  "n": 10,
+  "q": "^(?!.*divid).*(generate.{0,20}clock|clock (signal )?at a (given|certain) frequency|2 ghz|clock that stays off|clock generator|skewed clock|always, and using forever|timescale)",
+  "tasks": [
+   "clk_a: 2 GHz (0.5 ns period) from time 0, starting low. Mind the timescale precision.",
+   "clk_b: 100 MHz, held at 0 until 100 ns, then toggling (first rising edge at 105 ns).",
+   "Write them in the clkgen module; the testbench measures both."
+  ],
+  "problem": "Writing clocks is a classic screen question (AMD, Qualcomm, Meta, Synopsys): a 2 GHz clock, and a clock that stays low until 100 ns and then toggles."
+ },
+ {
+  "id": "iq-det1011-mealy",
+  "title": "1011 detector, Mealy, overlapping",
+  "group": "State machine classics",
+  "n": 1,
+  "q": "(detect|detector|sequence|pattern|seen|stream).{0,40}\\b(1011|1101|101|10110|01101|10101|0110)\\b|sequence detector|pattern detector|detects? (a )?(given|certain|binary)? ?sequence|three 3-bit packets",
+  "tasks": [
+   "Mealy: det = 1 in the same cycle the final 1 arrives.",
+   "Overlapping: after a hit, continue from the matched suffix 1, not from the start.",
+   "Four states: S0, S1 (1), S10, S101."
+  ],
+  "problem": "The single most reported FSM question: detect 1011 on a serial input, allowing overlaps (101011 contains one, 1011011 contains two)."
+ },
+ {
+  "id": "iq-det1011-moore",
+  "title": "1011 detector, Moore, overlapping",
+  "group": "State machine classics",
+  "n": 2,
+  "q": "moore.{0,40}(detect|sequence|1011)|mealy and moore|moore machines? that detect|draw a mealy|mealy or moore|types of finite state|mealy versus moore|between mealy and moore|between moore and mealy|convert one into the other|advantages of mealy",
+  "tasks": [
+   "Five states; det = 1 while in the 'seen 1011' state.",
+   "det is high in the cycle after the final 1.",
+   "Keep overlaps: from S1011, a 0 goes to S10 and a 1 to S1."
+  ],
+  "problem": "The follow-up every interviewer asks: now make it Moore. The output depends only on the state, so you need one more state and det comes one cycle later."
+ },
+ {
+  "id": "iq-divisible",
+  "title": "Serial divisible-by-5 and by-3 checker",
+  "group": "State machine classics",
+  "n": 3,
+  "q": "divisible by (5|five|3|three)|detects modulo 5|modulo 3|module 3|mod(ulo)? ?3 of|divisib",
+  "tasks": [
+   "Keep the remainder, not the number: r_new = (2*r + bit) mod 5.",
+   "div5 = 1 when the remainder after this bit is 0 (Mealy).",
+   "Same for div3 with 3 states."
+  ],
+  "problem": "Apple and NVIDIA ask: bits arrive MSB first; after each bit, say whether the number so far is divisible by 5 (and by 3)."
+ },
+ {
+  "id": "iq-vending",
+  "title": "Vending machine",
+  "group": "State machine classics",
+  "n": 4,
+  "q": "vending",
+  "tasks": [
+   "One coin per cycle at most: n5 or n10 pulses.",
+   "vend pulses with the coin that reaches 15 or more; change = 1 when 20 was paid.",
+   "Credit returns to 0 after a vend."
+  ],
+  "problem": "NVIDIA asked for a vending machine module. An item costs 15. Coins are 5 and 10. Vend when 15 or more is inserted and return 5 change on 20."
+ },
+ {
+  "id": "iq-rr-arbiter",
+  "title": "Round-robin arbiter, 4 requesters",
+  "group": "State machine classics",
+  "n": 5,
+  "q": "round.robin|arbitration|arbiter",
+  "tasks": [
+   "grant is one-hot (or 0 when nobody requests), registered.",
+   "Search from the requester after the last winner, wrapping around.",
+   "The testbench checks fairness: a waiting requester is served within 4 grants."
+  ],
+  "problem": "Round-robin arbiters came up at Qualcomm, Cisco, SiFive, Marvell and AMD. Four requesters share one resource; the last winner gets lowest priority next time."
+ },
+ {
+  "id": "iq-prio-arbiter",
+  "title": "Fixed-priority arbiter with async reset",
+  "group": "State machine classics",
+  "n": 6,
+  "q": "r1 (has the )?highest priority|fixed.priority|priority (arbiter|encoder)|fixed priority",
+  "tasks": [
+   "grant is registered and one-hot: the lowest-numbered active request wins.",
+   "Asynchronous active-high reset clears grant immediately.",
+   "Run until PASS."
+  ],
+  "problem": "AMD: requests R1 to R4 with R1 highest priority drive grants G1 to G4, with an asynchronous reset. Qualcomm asks for it next to round-robin."
+ },
+ {
+  "id": "iq-safe-lock",
+  "title": "Combination lock with alarm",
+  "group": "State machine classics",
+  "n": 7,
+  "q": "\\bsafe\\b|\\block\\b with|\\bcombination\\b|\\bunlock",
+  "tasks": [
+   "On enter, compare code with the stored key (reset value 4'b1011).",
+   "Right code: unlocked = 1 and the wrong count clears. Wrong code: count; on the third wrong try alarm = 1 and stays 1 until reset.",
+   "While unlocked, set_key stores code as the new key and locks again."
+  ],
+  "problem": "MaxLinear: unlock a safe on code 1011 and sound an alarm after three wrong tries. Intel added: let the owner change the code once it is open."
+ },
+ {
+  "id": "iq-clk-switch",
+  "title": "Glitch-free clock switch",
+  "group": "State machine classics",
+  "n": 8,
+  "q": "glitch.free clock|clock switch|clock mux",
+  "tasks": [
+   "Each clock gets an enable flop clocked on its own falling edge.",
+   "A clock's enable may only rise after the other clock's enable has fallen (cross-coupled).",
+   "clk_out = (clk0 & en0) | (clk1 & en1). The testbench measures every pulse."
+  ],
+  "problem": "Intel SoC integration: switch between two unrelated clocks without producing a glitch (a pulse shorter than either clock's half period)."
+ },
+ {
+  "id": "iq-pattern-shift",
+  "title": "Pattern detector with a shift register",
+  "group": "State machine classics",
+  "n": 9,
+  "q": "shift register|constant your state machine compares|grows from 6 to 100|implement a system that outputs 1",
+  "tasks": [
+   "Shift din into a LEN-bit register each clock.",
+   "det = 1 when the last LEN bits equal PATTERN (after at least LEN bits).",
+   "The testbench uses LEN = 6 and LEN = 11."
+  ],
+  "problem": "IMC asked what happens to a state machine when the pattern grows from 6 bits to 100. Answer: use a shift register and a comparator. Build a parameterized one."
+ },
+ {
+  "id": "iq-fifo-depth",
+  "title": "FIFO depth: size it from the traffic",
+  "group": "Caches, memories and FIFOs",
+  "n": 1,
+  "q": "fifo depth|depth of (the )?(fifo|buffer)|deep must (the )?(fifo|buffer)|size (them|a fifo)|width of a buffer|how deep|fifo sizes",
+  "tasks": [
+   "The FIFO is given. Only change DEPTH.",
+   "Too small: the testbench reports an overflow. Too big: it reports wasted entries.",
+   "Work it out first: words written during the burst minus words read in the same time."
+  ],
+  "problem": "FIFO depth calculation is asked at AMD, Juniper, NVIDIA and Marvell. A writer bursts 80 words, one per clock; the reader takes one word every 2 clocks. Find the smallest depth that never overflows."
+ },
+ {
+  "id": "iq-cache-addr",
+  "title": "Cache address split: tag, index, offset",
+  "group": "Caches, memories and FIFOs",
+  "n": 2,
+  "q": "tag, index|tag,? index and offset|bits are tag|bits of a memory address|address into tag|cache bits",
+  "tasks": [
+   "OFF_W = log2(line bytes); sets = size / (line * ways); IDX_W = log2(sets); TAG_W = 32 - IDX_W - OFF_W.",
+   "Split addr into tag, idx and off with those widths.",
+   "The testbench checks a 1 MB 8-way 64 B cache and a 32 KB 2-way 64 B cache."
+  ],
+  "problem": "Asked at Intel, Qualcomm, AMD and SiFive: for a given cache size, line size and associativity, how many bits are tag, index and offset? Make the hardware compute the split."
+ },
+ {
+  "id": "iq-dm-cache",
+  "title": "Direct-mapped cache with dirty bits",
+  "group": "Caches, memories and FIFOs",
+  "n": 3,
+  "q": "build a cache|implement a cache|how a cache works|cache works|dirty (bit|line)|write-back|cache hit|cache memory|cache system|what is (a )?cache|cache, and why|cache line",
+  "tasks": [
+   "Address: 4-bit offset, 4-bit index, 8-bit tag (16-bit addresses).",
+   "On each access: hit = valid and tag match. On a miss, allocate the line; if the old line was valid and dirty, pulse wb (write-back).",
+   "Writes set dirty; reads of a newly filled line leave it clean."
+  ],
+  "problem": "'How would you build a cache?' (Marvell, NVIDIA, Arm). Build the tag store of a 16-line direct-mapped write-back cache: hit/miss, valid and dirty bits, and write-backs."
+ },
+ {
+  "id": "iq-mesi",
+  "title": "MESI coherence state machine",
+  "group": "Caches, memories and FIFOs",
+  "n": 4,
+  "q": "mesi|moesi|cache coherenc|coherence protocol|coherency",
+  "tasks": [
+   "Local: rd (with shared = another cache has it) and wr. Snooped: bus_rd and bus_rdx (another cache wants to write).",
+   "I -rd-> E or S (shared); I -wr-> M; E -wr-> M; S -wr-> M (sends an upgrade).",
+   "Snooped bus_rd: M and E go to S (M flushes). Snooped bus_rdx: everything goes to I (M flushes)."
+  ],
+  "problem": "MESI is asked at Apple, Arm, Intel, NVIDIA and Qualcomm. Build the per-line state machine for one cache on a snooping bus."
+ },
+ {
+  "id": "iq-lru",
+  "title": "LRU replacement for a 4-way set",
+  "group": "Caches, memories and FIFOs",
+  "n": 5,
+  "q": "lru|replacement (policy|algorithm)|eviction",
+  "tasks": [
+   "Each way has a 2-bit age; 0 = most recent, 3 = least recent.",
+   "On an access to way w: ways younger than w age by one, w becomes 0.",
+   "victim = the way whose age is 3."
+  ],
+  "problem": "AMD asked to code LRU for a cache; NVIDIA asked about eviction algorithms. Track recency of 4 ways and always point at the least recently used one."
+ },
+ {
+  "id": "iq-ram-1w2r",
+  "title": "1-write 2-read RAM from two 1W1R RAMs",
+  "group": "Caches, memories and FIFOs",
+  "n": 6,
+  "q": "1w2r|1-write 1-read|two read ports|dual-port memory|block ram|memory primitive|ram module|memory designed",
+  "tasks": [
+   "Write the same data to both copies on every write.",
+   "Read port A uses copy 0, port B uses copy 1.",
+   "Reads are synchronous (data one clock after the address)."
+  ],
+  "problem": "AMD platform emulation: combine two 1-write 1-read block RAMs into a RAM with one write port and two read ports."
+ },
+ {
+  "id": "iq-crc8",
+  "title": "CRC-8 checker",
+  "group": "Caches, memories and FIFOs",
+  "n": 7,
+  "q": "crc|codeword has an error|error.{0,20}(detect|check)|hamming|bit flips|secded",
+  "tasks": [
+   "Bits arrive MSB first, one per clock with valid.",
+   "crc <= {crc[6:0], 1'b0} ^ (fb ? 8'h07 : 0) where fb = crc[7] ^ bit.",
+   "After a message followed by its CRC, the register is 0: ok = 1."
+  ],
+  "problem": "Intel asked for a CRC error checker in Verilog; Marvell asked how a receiver knows a codeword is bad. Build a serial CRC-8 (polynomial x^8 + x^2 + x + 1)."
+ },
+ {
+  "id": "iq-intc",
+  "title": "Interrupt controller",
+  "group": "Caches, memories and FIFOs",
+  "n": 8,
+  "q": "interrupt controller|interrupt|isr",
+  "tasks": [
+   "A rising edge on src[i] sets pending[i] (pending stays set until acknowledged).",
+   "irq = 1 when any pending & ~mask; id = the lowest-numbered such source (highest priority).",
+   "ack clears pending[id]."
+  ],
+  "problem": "Qualcomm asked how to design an interrupt controller; Infineon, TI and Arm asked how a CPU handles several interrupts. Build an 8-source controller with mask, priority and acknowledge."
+ },
+ {
+  "id": "iq-fork-kill",
+  "title": "fork/join: kill B when any finishes",
+  "group": "SystemVerilog testbench puzzles",
+  "n": 1,
+  "q": "fork|join_any|join_none|disable only one|four processes|kill b",
+  "tasks": [
+   "Start A to D with fork ... join_any so you resume at the first finish.",
+   "Stop B with disable on its named block, then wait fork for the rest.",
+   "The testbench checks B never finishes and Done comes after A, C and D."
+  ],
+  "problem": "Amazon asked: four processes A, B, C, D run in parallel. When any of them finishes, kill B; when all the others have finished, print Done. Qualcomm and NXP ask the fork-join variants."
+ },
+ {
+  "id": "iq-randc-manual",
+  "title": "randc by hand: a shuffled deck",
+  "group": "SystemVerilog testbench puzzles",
+  "n": 2,
+  "q": "randc|shuffle|random permutation",
+  "tasks": [
+   "fill a deck with 0..N-1, shuffle it with Fisher-Yates using $urandom_range.",
+   "next() returns the next card; when the deck runs out, reshuffle.",
+   "The testbench draws 5 rounds and checks every round is a permutation, and that rounds differ."
+  ],
+  "problem": "NVIDIA and Arm asked to implement randc without the keyword; Qualcomm asked to shuffle an array fairly. Build a class that returns 0 to N-1 once each per round, in random order."
+ },
+ {
+  "id": "iq-constraints",
+  "title": "Constraint puzzles: unique, sum, alternate even/odd",
+  "group": "SystemVerilog testbench puzzles",
+  "n": 3,
+  "q": "^(?!.*timing)(?!.*\\bsdc\\b).*(constraint|unique values|phone number|add k elements|even and odd|randomi[sz])",
+  "tasks": [
+   "u: 6 values in 0..15, all different, without the unique keyword (compare every pair).",
+   "s: 5 values in 0..20 whose sum is exactly 40.",
+   "eo: 8 values in 0..99 alternating even, odd, even...",
+   "phone: 10 digits, first digit 6 to 9."
+  ],
+  "problem": "Constraint coding is in almost every DV interview (Cadence, Meta, Qualcomm, Intel, Amazon). Solve four classics in one class."
+ },
+ {
+  "id": "iq-ooo-scoreboard",
+  "title": "Scoreboard for an out-of-order DUT",
+  "group": "SystemVerilog testbench puzzles",
+  "n": 4,
+  "q": "scoreboard|out-of-order dut|reference model",
+  "tasks": [
+   "expect_item(id, data) records an outstanding transaction.",
+   "check(id, data) finds it by ID in any order, counts a match, a data mismatch or an unexpected ID, and removes it.",
+   "report() flags transactions that never came back."
+  ],
+  "problem": "Amazon asked for a scoreboard for an out-of-order DUT; Apple for a scoreboard against a reference model. Responses come back in any order, matched by ID."
+ },
+ {
+  "id": "iq-merge-sorted",
+  "title": "Merge two sorted arrays",
+  "group": "SystemVerilog testbench puzzles",
+  "n": 5,
+  "q": "merge.{0,20}sorted|sorted arrays",
+  "tasks": [
+   "merge() fills queue c with every element of a and b in ascending order.",
+   "Walk both with two indexes; take the smaller head each time.",
+   "Do not call sort()."
+  ],
+  "problem": "NVIDIA: write SystemVerilog that merges two sorted arrays into one sorted array, in one pass."
+ }
+]
