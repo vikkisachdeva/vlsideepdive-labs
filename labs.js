@@ -419,6 +419,7 @@ window.vddQuizNudge = function () {
 .ss-btn kbd { font: 500 11px/1 ui-monospace, monospace; border: 1px solid var(--line); border-radius: 4px; padding: 3px 5px; color: var(--muted); }
 @media (max-width: 640px) { .ss-btn .ss-l, .ss-btn kbd { display: none; } .ss-btn { padding: 0 9px; margin-right: 8px; } }
 .ss-back { position: fixed; inset: 0; z-index: 9999; background: rgba(5, 12, 16, .55); display: flex; justify-content: center; align-items: flex-start; padding: 8vh 16px 16px; }
+.ss-back[hidden] { display: none; }
 .ss-box { width: 100%; max-width: 680px; max-height: 80vh; display: flex; flex-direction: column; background: var(--panel); color: var(--text);
   border: 1px solid var(--line); border-radius: 14px; box-shadow: 0 20px 60px rgba(0,0,0,.35); overflow: hidden; }
 .ss-top { display: flex; align-items: center; gap: 10px; padding: 12px 14px; border-bottom: 1px solid var(--line); }
@@ -554,6 +555,7 @@ window.vddQuizNudge = function () {
   btn.addEventListener("click", open);
   document.addEventListener("keydown", (e) => {
     const t = e.target, typing = t && (t.isContentEditable || /^(INPUT|TEXTAREA|SELECT)$/.test(t.tagName) || (t.closest && t.closest(".CodeMirror")));
+    if (e.key === "Escape" && back && !back.hidden) { e.preventDefault(); close(); return; }
     if ((e.key === "k" && (e.ctrlKey || e.metaKey)) || (e.key === "/" && !typing && !e.ctrlKey && !e.metaKey && !e.altKey)) {
       if (back && !back.hidden) return; e.preventDefault(); open();
     }
