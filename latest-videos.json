@@ -1,7 +1,12 @@
 {
- "updated": "2026-11-26T12:54:17+00:00",
- "video_count": 580,
+ "updated": "2026-11-26T13:10:51+00:00",
+ "video_count": 581,
  "videos": [
+  {
+   "id": "VMsCLNT9mfg",
+   "title": "Advanced STA Part 4 | How to Fix Setup and Hold Violations",
+   "published": "2026-11-26T13:00:12+00:00"
+  },
   {
    "id": "HUc7AJSYpkE",
    "title": "Input & output delays | STA Lab Walkthrough",
@@ -11,11 +16,6 @@
    "id": "CCbkZnWkpJ4",
    "title": "Find the metastability | CDC Lab Walkthrough",
    "published": "2026-11-26T07:30:14+00:00"
-  },
-  {
-   "id": "FhLVR9fo7iI",
-   "title": "Half adder: behavioral | VHDL Lab Walkthrough",
-   "published": "2026-11-26T05:30:39+00:00"
   }
  ]
 }

@@ -1,0 +1,1113 @@
+{
+"updated": "2026-11-26T13:10:55+00:00",
+"videos": [
+{
+"id": "VMsCLNT9mfg",
+"title": "Advanced STA Part 4 | How to Fix Setup and Hold Violations"
+},
+{
+"id": "HUc7AJSYpkE",
+"title": "Input & output delays | STA Lab Walkthrough"
+},
+{
+"id": "CCbkZnWkpJ4",
+"title": "Find the metastability | CDC Lab Walkthrough"
+},
+{
+"id": "FhLVR9fo7iI",
+"title": "Half adder: behavioral | VHDL Lab Walkthrough"
+},
+{
+"id": "QVGJfVIwVnk",
+"title": "Half adder: behavioral | Verilog Lab Walkthrough"
+},
+{
+"id": "Q1xscAjYK5g",
+"title": "The whole flow on one design | Physical Design Lab Walkthrough"
+},
+{
+"id": "5Op7y6RX9Po",
+"title": "Synthesis of an adder | Synthesis Lab Walkthrough"
+},
+{
+"id": "Bpz9FpBFjCA",
+"title": "Clock generation three ways | Verification Lab Walkthrough"
+},
+{
+"id": "_ysi5XfJaDY",
+"title": "Register | SystemVerilog Lab Walkthrough"
+},
+{
+"id": "Kagm7ufmgvs",
+"title": "Logic gates and truth tables | Digital Logic Lab Walkthrough"
+},
+{
+"id": "chXTnRI6EUo",
+"title": "Immediate assertions: executable comments | SVA Lab Walkthrough"
+},
+{
+"id": "x4IuT-h817k",
+"title": "Setup violation: fast clock | STA Lab Walkthrough"
+},
+{
+"id": "l2MViC8HfuA",
+"title": "Clocks and clock domains | CDC Lab Walkthrough"
+},
+{
+"id": "AYg0hT2EwyY",
+"title": "Half adder: dataflow | VHDL Lab Walkthrough"
+},
+{
+"id": "qbzDVprPyy4",
+"title": "Half adder: dataflow | Verilog Lab Walkthrough"
+},
+{
+"id": "6Jk-SFms9EE",
+"title": "RTL to Gates: Synthesize a Mux with Yosys | Synthesis Lab Walkthrough"
+},
+{
+"id": "_U5F_Irqoro",
+"title": "How to Read a Timing Report: Setup & Hold (OpenSTA) | STA Lab Walkthrough"
+},
+{
+"id": "EGflZgE62rU",
+"title": "Static Timing Analysis Advanced Part 3 - DDR Controller Clocking and SDC Closure Deep Dive"
+},
+{
+"id": "fYRWNW4iP4U",
+"title": "4-bit Up/Down Counter in VHDL | Free Lab Walkthrough"
+},
+{
+"id": "4Rj3827RYso",
+"title": "Mealy 101 Sequence Detector (Overlapping) in Verilog | Free Lab Walkthrough"
+},
+{
+"id": "EXgHlkEfj-k",
+"title": "Fix 3 Broken Synchronizers | Clock Domain Crossing (CDC) Lab Walkthrough"
+},
+{
+"id": "KDxGWBPnEDw",
+"title": "Static Timing Analysis Explained Part 2: Parasitics, RC Tree & Timing Arcs"
+},
+{
+"id": "1dKjcrhjOQc",
+"title": "STA Advanced Part 1 | STA Flow, Slack, Slew & PVT Corners Deep Dive"
+},
+{
+"id": "L2jWNRNAS9w",
+"title": "From Zero to Hero in SoC Design - Complete Architecture & AXI Course"
+},
+{
+"id": "3Du8gAuHANk",
+"title": "How AXI Actually Works Part 3 | Valid Ready to Interconnect Deep Dive"
+},
+{
+"id": "YpjhW8AvTM0",
+"title": "Complete SoC Architecture Course Ep.2 | AHB-Lite, UART & NVIC Interrupts"
+},
+{
+"id": "fkP7nwDy4qk",
+"title": "Complete SoC Architecture Course Ep.1 | Arm Cortex-M, Memory & Bus"
+},
+{
+"id": "97q0N3DCZTw",
+"title": "VLSI Logic Synthesis: RTL to Gate-Level Netlist, Standard Cells & Constraints"
+},
+{
+"id": "8bmt4UJmJ_k",
+"title": "Digital Logic Design Full Course for Beginners | Zero to Chip Design in One Video"
+},
+{
+"id": "bw229-QUO7k",
+"title": "Logic Design Fundamentals Part 2 | 1s & 2s Complement, Signed Numbers, Binary Addition & Subtraction"
+},
+{
+"id": "cK321A53zww",
+"title": "Decimal to Binary Conversion Explained Ep.1 | Digital Logic Basics"
+},
+{
+"id": "memVNweGvbM",
+"title": "How Microchips Are Made: Inside a Semiconductor Fab Deep Dive"
+},
+{
+"id": "musL2Y95Ei0",
+"title": "Complete VHDL Course Zero to Hero for Digital Design in 4 Hours"
+},
+{
+"id": "b5vdHHSFjnc",
+"title": "Complete VHDL Course Ep.4 Hierarchical Design Deep Dive"
+},
+{
+"id": "KqcXzD8Kp1I",
+"title": "VHDL Sequential Logic Part 3 : D Flip-Flop vs Latch, Sync Async Reset Explained"
+},
+{
+"id": "OZpRClrc9cQ",
+"title": "Complete VHDL Course Part 2 | Concurrent vs Sequential Statements Explained"
+},
+{
+"id": "t4LQqomcHD4",
+"title": "Digital Design with VHDL Ep.1: Basics, Entity, Architecture and Simulation Flow"
+},
+{
+"id": "TIZwEGRvhBU",
+"title": "Complete SystemVerilog Course for Digital Design Zero to Interview Ready"
+},
+{
+"id": "7uyArJFhMNg",
+"title": "SystemVerilog Deep Dive Ep.2 Procedural Blocks, Unique Case and Priority Logic"
+},
+{
+"id": "xsKlzGES6Ds",
+"title": "Good SDC for Faster Design Iterations & STA"
+},
+{
+"id": "HNmzW8vbiJ0",
+"title": "SystemVerilog for Digital Design Ep.1"
+},
+{
+"id": "i-46z3tTYGM",
+"title": "Complete Verilog Course for VLSI and FPGA | Zero to Hero in 8 Hours"
+},
+{
+"id": "m68IO5Swu_4",
+"title": "Complete Verilog Course Part 4 | FIFO & other designs"
+},
+{
+"id": "4WqqB3P9kQ0",
+"title": "Complete Verilog Course Part 3: D Flip-Flop, D Latch & Blocking vs Non-Blocking"
+},
+{
+"id": "mkprW04idhg",
+"title": "Complete Verilog Course Part 2: ALU  & other designs"
+},
+{
+"id": "3Uc2wawsphg",
+"title": "Complete Verilog Course Part 1 | Fundamentals & Design Styles"
+},
+{
+"id": "9SxAZWWVeJc",
+"title": "Learn SystemVerilog Assertions (SVA) from Scratch — Complete Course"
+},
+{
+"id": "akitv2i4Nxw",
+"title": "Clock Domain Crossing (CDC) Fundamentals Full Course | Metastability to Synchronizer Design"
+},
+{
+"id": "za2o93ldrVQ",
+"title": "Static Timing Analysis Fundamentals Full Course — Setup, Hold, Skew & SDC (Complete)"
+},
+{
+"id": "VGQp99ArgSE",
+"title": "Complete SDC Timing Constraints Course | Full Series Deep Dive"
+},
+{
+"id": "XB1blI4cMmY",
+"title": "SDC Constraint Budgeting & Promotion Deep Dive (Ep.11)"
+},
+{
+"id": "zTPo1TsJ1FQ",
+"title": "SDC Ep.10 | STA Signoff Modes & Corners — Why One Corner Is Never Enough"
+},
+{
+"id": "xuVVXB_J6zA",
+"title": "SDC Ep.9 | set_disable_timing, set_case_analysis & Timing Derate — Complete Guide"
+},
+{
+"id": "DkgMfFNNRBg",
+"title": "SDC Ep.8 | set_max_delay vs set_multicycle_path — Who Wins & Why"
+},
+{
+"id": "zfrg-6ayJMo",
+"title": "SDC Ep.7 | Set Multicycle Path — When & Why You Need It"
+},
+{
+"id": "Hs76bqtZqiY",
+"title": "SDC & Timing Constraints Ep.6: set_false_path — Path Specification Deep Dive"
+},
+{
+"id": "aYxyXt1utaM",
+"title": "SDC Ep.5: Input & Output Delays — The Most Misunderstood SDC Constraint"
+},
+{
+"id": "5lC4QRiKq5Q",
+"title": "SDC & Timing Constraints Ep.4: set_clock_latency, set_clock_uncertainty & set_clock_transition"
+},
+{
+"id": "7e3Y74PWphA",
+"title": "SDC Ep.3: set_clock_groups — When Clocks Don't Talk"
+},
+{
+"id": "4bm1weNG3Hg",
+"title": "Are Your SDC Constraints Wrong? Fix Your Generated Clocks Now"
+},
+{
+"id": "MJ3t5HDQ9Ek",
+"title": "SDC & Timing Constraints Ep.1: create_clock Deep Dive"
+},
+{
+"id": "somgoTERlmw",
+"title": "Physical Design Full Course: Floorplanning to Routing | VLSI Basics & Advanced"
+},
+{
+"id": "4uTtGnaaCIM",
+"title": "SVA Deep Dive Ep.16 — Coverage, Bins & Guidelines"
+},
+{
+"id": "EDZa452-rTw",
+"title": "Assertions Outside the Design: Bind & Expect Deep Dive | SVA Deep Dive Ep.15"
+},
+{
+"id": "f_gBb0q4kEs",
+"title": "Multi-Clock Sequences Explained | SVA Deep Dive Ep.14"
+},
+{
+"id": "XdwaAoJi7Sc",
+"title": "SVA Ep.13: All 7 Property Types Explained — Sequence, Implication & Recursive"
+},
+{
+"id": "Mp8Fd3wQGWQ",
+"title": "SVA Ep.12: $countones, $onehot, $isunknown & Local Variables — System Functions Deep Dive"
+},
+{
+"id": "ObQmjDOkV-Y",
+"title": "first_match, throughout & within: SVA Match Control Deep Dive | SVA Ep.11"
+},
+{
+"id": "v-NCD0PGswM",
+"title": "SystemVerilog OR Sequence Operator — End-Time Behavior Deep Dive | SVA Ep.10"
+},
+{
+"id": "r_DHEalG9e8",
+"title": "SystemVerilog AND & Intersection Operators Deep Dive | SVA #9"
+},
+{
+"id": "VzkuCcRSQoQ",
+"title": "SVA [=m] vs [-m]: Non-Consecutive Repetition Operators | Deep Dive Ep.8"
+},
+{
+"id": "1jRVGoNTA28",
+"title": "SystemVerilog Assertions: Multiple Threads & Repetition Operators Deep Dive"
+},
+{
+"id": "kAwY0ophyjI",
+"title": "SVA Ep.6: $rose, $fell & ##n Cycle Delay Operators in SystemVerilog"
+},
+{
+"id": "GliVUlWXNX8",
+"title": "SVA Ep.5 | Implication Operator Explained — |- vs |= in SystemVerilog Assertions"
+},
+{
+"id": "oFhdZ3ECt7E",
+"title": "SystemVerilog Sequences Deep Dive: Syntax, Timing & Examples | SVA Part 4"
+},
+{
+"id": "P86_-pkLTDE",
+"title": "Immediate vs Concurrent Assertions Deep Dive | SVA Part 3"
+},
+{
+"id": "qfbPVnQocJI",
+"title": "Assertion Coverage: Are Your Assertions Actually Working? | SVA Part 2"
+},
+{
+"id": "8GIPJCUGox4",
+"title": "SystemVerilog Assertions (SVA) & Functional Coverage — Part 1 | Deep Dive"
+},
+{
+"id": "5RjTpSDMr9o",
+"title": "Complete Semiconductor Design Flow | RTL to Physical Design"
+},
+{
+"id": "3yuJ9a8i8-o",
+"title": "CDC Reset Path: Why De-assertion Causes Metastability"
+},
+{
+"id": "4zHwJukIoMM",
+"title": "Asynchronous FIFO CDC Deep Dive | How It Actually Works"
+},
+{
+"id": "oTbO5WUxTLU",
+"title": "The CDC Data Path Synchronization Method Every Engineer Needs"
+},
+{
+"id": "0d8wMedmEYU",
+"title": "CDC Counter Synchronization: Why Gray Code Helps in Metastability"
+},
+{
+"id": "21zHYyljQxE",
+"title": "CDC Data Corruption in VLSI: Passing Multiple Signals Across Clock Domains"
+},
+{
+"id": "zgon5e13lzA",
+"title": "CDC Synchronizers: Open Loop vs Closed Loop | VLSI Interview Prep"
+},
+{
+"id": "EOSueVzd2ec",
+"title": "CDC Pulse Width in Synchronizer Explained | VLSI Deep Dive"
+},
+{
+"id": "QyXBYpZqBZo",
+"title": "CDC Synchronizer Glitches: What Every VLSI Engineer Must Know"
+},
+{
+"id": "hC03FbFKMyY",
+"title": "Metastability Effects: Delayed Data, Missed Pulses & Glitches"
+},
+{
+"id": "rU_zyyItLck",
+"title": "CDC Synchronizer Deep Dive"
+},
+{
+"id": "9WcvTiAvygk",
+"title": "MTBF Explained in CDC Synchronizers | VLSI Interview Must-Know"
+},
+{
+"id": "Ime95a3pCrQ",
+"title": "Clock Domain Crossing Synchronizer Explained for VLSI Interviews"
+},
+{
+"id": "bbf69FtAIpY",
+"title": "CDC Metastability Explained: Why Your Flip-Flop Fails"
+},
+{
+"id": "XD6lF4RlRKY",
+"title": "Synchronous vs Asynchronous Clocks Explained | CDC Fundamentals Ep.1"
+},
+{
+"id": "OP1NB21Zu6c",
+"title": "set_case_analysis SDC Command | Physical Design Interview Prep"
+},
+{
+"id": "ZXX0RjTy8CA",
+"title": "STA Timing Exceptions Explained | False and Multicycle Paths in Static Timing Analysis"
+},
+{
+"id": "etd8vvwX-1o",
+"title": "Every SDC Boundary Constraint You Need to Know | VLSI Interview Questions"
+},
+{
+"id": "MsaNN-tYI7Q",
+"title": "Clock Uncertainty & Jitter in STA | SDC Commands Explained"
+},
+{
+"id": "Fak8BaZpaL0",
+"title": "Asynchronous Clock Domains in STA | set_clock_groups Deep Dive"
+},
+{
+"id": "v0utFFLxtZI",
+"title": "Create Generated Clock Command in SDC Explained"
+},
+{
+"id": "BmboyI9eP4k",
+"title": "Create Clock Command in SDC Explained"
+},
+{
+"id": "wDwwkulkduw",
+"title": "Deep Dive: Process Variation and OCV Effects on Timing (STA)"
+},
+{
+"id": "GT5DW5xmuok",
+"title": "How Crosstalk and Glitches Cause Timing Failures"
+},
+{
+"id": "zhF8yLTkE_8",
+"title": "Static Timing Analysis: Setup & Hold Time with Clock Skew Explained"
+},
+{
+"id": "aFOzl8yq3aI",
+"title": "STA Timing Reports Explained: How to Read Path Reports"
+},
+{
+"id": "vhyGhksssHw",
+"title": "Clock Skew and Jitter Explained: Positive vs Negative Skew"
+},
+{
+"id": "LRgVbGdOfMs",
+"title": "STA Timing Arcs Explained: Positive vs Negative Unate | STA Ep. 08"
+},
+{
+"id": "OuKsErm6e5k",
+"title": "The Multi-Clock STA Trap Explained | Setup & Hold Checks"
+},
+{
+"id": "nh9TkImlqnI",
+"title": "Latch Slack Calculation: Is Your Design Safe or Failing? | STA Deep Dive"
+},
+{
+"id": "_vdZ5dOswv0",
+"title": "Clock Gating Violations? Here's What You're Missing"
+},
+{
+"id": "nuLsqRu6r8A",
+"title": "Recovery Time Check | VLSI Interview Question 🚀"
+},
+{
+"id": "PmAmFrCUOwA",
+"title": "STA Recovery & Removal Checks Explained | Static Timing Analysis Ep. 04"
+},
+{
+"id": "eOIJaLQEaYQ",
+"title": "Clock Gating & Pulse Width Checks (STA Ep. 3)"
+},
+{
+"id": "5ehl1fMei8w",
+"title": "Setup & Hold Slack Calculation Made Easy | STA Ep. 02"
+},
+{
+"id": "3UFymEYxbrs",
+"title": "Timing Analysis in VLSI | STA - timing paths explained | STA Ep. 01 | Vikas Sachdeva"
+},
+{
+"id": "EMcXCCG4zmY",
+"title": "Multicycle Paths: Everything You Need to Know"
+},
+{
+"id": "J_cotvZRwDc",
+"title": "Why Every VLSI Engineer Needs to See This New LLM"
+},
+{
+"id": "Z7yw19xDI7Y",
+"title": "Reducing complexity in formal verification"
+},
+{
+"id": "NSi10ALSSHY",
+"title": "RISCV Ninja Kit Unboxing - What's Inside?"
+},
+{
+"id": "f-v2F54_ce4",
+"title": "RISCV Ninja Platform vs Traditional Chips"
+},
+{
+"id": "Pw47EfQ6Mog",
+"title": "ARM Architecture Deep Dive - Assembly to Microarchitecture"
+},
+{
+"id": "4Ah33jIGTZs",
+"title": "RISC-V Pipelined Processor and Read after Write (RAW) Hazards"
+},
+{
+"id": "HNGYZYvHZlE",
+"title": "Chip Design vs SoC Flow: What's the Difference?"
+},
+{
+"id": "6eh9CK4olzQ",
+"title": "Master clock switch in SDC - don't skip this"
+},
+{
+"id": "wxZnWl2Zrsc",
+"title": "Evolution of RISC V Architecture"
+},
+{
+"id": "oiF0JXZmJ9A",
+"title": "Every engineer needs this RISC-V Ninja certification"
+},
+{
+"id": "HUPlT2Gf9ms",
+"title": "CDC Workshop Breakdown: Constraints and Verification"
+},
+{
+"id": "X3swsUMA5EM",
+"title": "Tired of being taught by people who've never actually done the work?"
+},
+{
+"id": "bBd1-iDtwjY",
+"title": "B Tech students doing this get hired faster"
+},
+{
+"id": "Wr1zZvygVrc",
+"title": "Inside a Semiconductor Fab: Every Step Revealed"
+},
+{
+"id": "Xq7_B-mLBiQ",
+"title": "Why Synchronizers Are Critical to Your Designs"
+},
+{
+"id": "yxcxeaBQd7Y",
+"title": "VLSI Jobs Explained: Skills, Roles & Real Salary Ranges"
+},
+{
+"id": "5scVKGSVWfk",
+"title": "microchip microscopic view"
+},
+{
+"id": "_K1iVRRPLiY",
+"title": "3D Chips Are Solving a Critical Problem"
+},
+{
+"id": "o_yqV5BQn68",
+"title": "Applications of formal verification"
+},
+{
+"id": "wA3NRWLz89o",
+"title": "RFID using Vega Aries V3 Board by CDAC"
+},
+{
+"id": "UQpFUNB53IU",
+"title": "FIFO design basics"
+},
+{
+"id": "8jJtZVEa2z0",
+"title": "Metastability Masterclass: The Physics Everyone Gets Wrong"
+},
+{
+"id": "K-WbhvXlMa4",
+"title": "How to pass multiple signals across CDC boundary"
+},
+{
+"id": "-gzKo0oW29c",
+"title": "MTBF Explained in 60 Seconds"
+},
+{
+"id": "KdW02EDNY5A",
+"title": "Design Computers Like a Pro | Fundamentals Masterclass"
+},
+{
+"id": "ZZ3wyPgPtk4",
+"title": "Master TCL Fundamentals Today"
+},
+{
+"id": "Xbjb6rQf8QE",
+"title": "Logically exclusive and physically exclusive clocks"
+},
+{
+"id": "khctZoDbuKc",
+"title": "Understand synchronizers in one min"
+},
+{
+"id": "ymKBrjIMPa8",
+"title": "Floor Planning Fundamentals in Physical Design"
+},
+{
+"id": "jCobw4YxBzo",
+"title": "Understand basics of STA through hands-on labs."
+},
+{
+"id": "4xTfVYxa308",
+"title": "Path specification in STA"
+},
+{
+"id": "-CmWUnDNY1Q",
+"title": "Most Engineers Get 'static' Wrong in STA"
+},
+{
+"id": "fP4ttUbJQrg",
+"title": "Setup and Hold What You Need to Know"
+},
+{
+"id": "oF95JloUFfA",
+"title": "TCL quote vs curly braces"
+},
+{
+"id": "5NNrcmfJcKc",
+"title": "STA Bootcamp Introduction"
+},
+{
+"id": "S3xZbg1DcAk",
+"title": "Clock Gating Checks in One Minute"
+},
+{
+"id": "tXJJerZfTls",
+"title": "Understand generated clocks in 1 Minute"
+},
+{
+"id": "0Fqbj_I_W4A",
+"title": "Overcome the recession fear and get placed"
+},
+{
+"id": "N0pwCYsjsN0",
+"title": "Top 5 questions asked in an interview and how to answer those."
+},
+{
+"id": "_nfFZkjbgeY",
+"title": "How complex SoCs like Apple's A16 Bionic are made ..."
+},
+{
+"id": "nKNHssX6zB8",
+"title": "Product Company vs Service Company Which Path Pays More?"
+},
+{
+"id": "MO9qSfbDqak",
+"title": "Chatgpt Making Mistake in writing Divide by 3 verilog ..."
+},
+{
+"id": "xZK6bqxrwU0",
+"title": "The Irreplaceable Advantage"
+},
+{
+"id": "iuB8rQMIy6s",
+"title": "ChatGPT vs Your Job: The RTL Designer's Reality"
+},
+{
+"id": "Ymkw-GZ82P4",
+"title": "AWK: The Only UNIX Tool You Need to Learn"
+},
+{
+"id": "o2flE0O62Og",
+"title": "Top 5 questions in an Interview &How to answer them?"
+},
+{
+"id": "SYlrgt2_yZA",
+"title": "Life of VLSI Engineer after one year ..."
+},
+{
+"id": "5M_PIhiAsfQ",
+"title": "Interview Tips that help you get the job"
+},
+{
+"id": "C-lWFk_tPbM",
+"title": "Initial Weeks as VLSI Engineer"
+},
+{
+"id": "PB-xHh3Xt24",
+"title": "Master UNIX sed in minutes!"
+},
+{
+"id": "ycD_E9hZClg",
+"title": "UART RX FSM: State Machine Logic"
+},
+{
+"id": "S__McdNvOGM",
+"title": "Grep command in Unix"
+},
+{
+"id": "wZAYL2Q7ejE",
+"title": "Why you need to know TCL regsub"
+},
+{
+"id": "PLczO3GPopA",
+"title": "Why You're Using the Unix Find Command Wrong"
+},
+{
+"id": "nFebXaAQbqg",
+"title": "Breaking Down ISA"
+},
+{
+"id": "3uVW2P1XZFo",
+"title": "Getting started with VIM"
+},
+{
+"id": "ZwZ_4_Jndyo",
+"title": "GLS: The Critical Step You Can't Skip"
+},
+{
+"id": "oGDHQqo7uR0",
+"title": "UART Transmitter FSM"
+},
+{
+"id": "wmDRisaKqiY",
+"title": "RISC-V Explained: Is it a Threat to x86 and ARM?"
+},
+{
+"id": "ChiRtY2dM10",
+"title": "RTL Design Fundamentals for Beginners"
+},
+{
+"id": "riYiq5eZREI",
+"title": "RISCV on FPGA Board in less than 10 mins"
+},
+{
+"id": "n3BPElydX_A",
+"title": "Is Formal Verification Hard? A Simple Guide"
+},
+{
+"id": "ndY1JtbTP2w",
+"title": "RTL Engineering: Think Like the Pros"
+},
+{
+"id": "dMMJyYWYNTs",
+"title": "Hardware for Deep Learning"
+},
+{
+"id": "N5HPFGcZOa0",
+"title": "Journey to become RTL Design Engineer"
+},
+{
+"id": "pDgd-1jom_o",
+"title": "Counter on FPGA/RISCV Board in less than 10 mins"
+},
+{
+"id": "b_byHi3glfs",
+"title": "Hello World on RISCV Board in Less than 5 mins."
+},
+{
+"id": "eyE39Ku8EKQ",
+"title": "TCL Gotchas Every Developer Hits"
+},
+{
+"id": "P68GVPNpm5s",
+"title": "RTL Verification Self Checking Testbench"
+},
+{
+"id": "KmJp4ghtjwY",
+"title": "VLSI Career Opportunities and How to be Industry ready ..."
+},
+{
+"id": "_Ls5B_Tnqj8",
+"title": "Absolute and Relative paths in Unix"
+},
+{
+"id": "gtgJLn7oyuc",
+"title": "LP Masterclass"
+},
+{
+"id": "p9BDU4trtsg",
+"title": "The Complete Semiconductor Ecosystem"
+},
+{
+"id": "Z9mwNAyWfto",
+"title": "VLSI Career: Is It Worth It?"
+},
+{
+"id": "0g7o7Ol0oe4",
+"title": "Understand calculation of Min and Max delay in STA"
+},
+{
+"id": "_9i8-lAxdFU",
+"title": "7 CDC Design Tips Nobody Talks About"
+},
+{
+"id": "YvX9dyDMAH0",
+"title": "Signed extension in verilog"
+},
+{
+"id": "Y6A_bSxKOuA",
+"title": "SFAL METAVLSI Training: Everything You Need to Start"
+},
+{
+"id": "GTct31dbUGU",
+"title": "VLSI   Career, roles, jobs, opportunities and futures"
+},
+{
+"id": "QYmm5bxpzyg",
+"title": "Join the best VLSI training course"
+},
+{
+"id": "J1qkTDXQTYc",
+"title": "Why Your STA Delay Calculations Are Wrong"
+},
+{
+"id": "Rd0r_HmfqLM",
+"title": "One month internship program from vlsideepdive to engineering colleges"
+},
+{
+"id": "415GOz4sxns",
+"title": "Part 2: Mastering Verilog Events"
+},
+{
+"id": "SuLFrvLokmo",
+"title": "Timing Constraints 101: Everything You Need to Know"
+},
+{
+"id": "LbqZP86UboQ",
+"title": "Events in Verilog   Part1"
+},
+{
+"id": "c14gwqSNohY",
+"title": "Verilog workshop plan"
+},
+{
+"id": "ckI8W_9ywao",
+"title": "Timing Constraints Masterclass"
+},
+{
+"id": "hU_7rYM6res",
+"title": "A typical bus example"
+},
+{
+"id": "WsoHCzTJfH4",
+"title": "Intro to SoC Design and Architecture Demo YT"
+},
+{
+"id": "DfUrtrVlkVk",
+"title": "Chiplets"
+},
+{
+"id": "s2tOerldLEo",
+"title": "Sign-off Timing Analysis - Basics to Advanced"
+},
+{
+"id": "oYGypzj29uk",
+"title": "Zero Fee - Training Program Explained"
+},
+{
+"id": "oAo4YRy-DEo",
+"title": "A simple processor Design"
+},
+{
+"id": "ZgW7cWl2QyU",
+"title": "Comprehensive Computer Architecture - A snippet"
+},
+{
+"id": "PFpBSMfKJSg",
+"title": "Formal Property Verification Inputs and Outputs"
+},
+{
+"id": "o8p_JJ_0PT4",
+"title": "FIFO Design in VHDL"
+},
+{
+"id": "7tFk-8BBHWI",
+"title": "Regular expressions in Tcl"
+},
+{
+"id": "Az1klYTnRbg",
+"title": "Learn at your own pace with 1-1 doubt solving"
+},
+{
+"id": "jbsJuJ0r024",
+"title": "Immediate and Concurrent assertions"
+},
+{
+"id": "Bf4n8P0lVz4",
+"title": "Introduction to SVA"
+},
+{
+"id": "B6g0n_TPfd0",
+"title": "Complete STA Workshop"
+},
+{
+"id": "0fnnYJnSGmo",
+"title": "Logic Design Fundamentals"
+},
+{
+"id": "GOkjf5teXVw",
+"title": "Low Power QnA Session"
+},
+{
+"id": "8EsrFN3CHYM",
+"title": "Introduction to Logic Synthesis"
+},
+{
+"id": "GC-2FI5cgzk",
+"title": "Structures in System Verilog Final"
+},
+{
+"id": "ISgDQGa7y8A",
+"title": "Environment Variables in Unix"
+},
+{
+"id": "a2F6RYxIeKk",
+"title": "VLSI - CDC - Async FIFO Design"
+},
+{
+"id": "zyuH6seLRHI",
+"title": "VLSI - STA - Setup time in a flop, where does it come from?"
+},
+{
+"id": "a1Sdz79KtD4",
+"title": "VLSI - STA - Crosstalk in STA"
+},
+{
+"id": "RFrH_Df2HII",
+"title": "VLSI - Verilog - Bitwise operators and equality in verilog"
+},
+{
+"id": "WrQpjCcDQ4g",
+"title": "Shift operation verilog"
+},
+{
+"id": "HbfMCITTc58",
+"title": "VLSI - STA - How clock propagates through muxes in STA"
+},
+{
+"id": "anHv4DLYiJg",
+"title": "VLSI - STA - SDC - How to define input/output delays"
+},
+{
+"id": "P6eE7qmwV88",
+"title": "VLSI - What is equivalence checking?"
+},
+{
+"id": "TxP5wQ09-nE",
+"title": "VLSI - Low Power - Placement of Level Shifters"
+},
+{
+"id": "Mnr3oKbVols",
+"title": "VLSI - Low Power - Multi Voltage Design"
+},
+{
+"id": "67vQfpRhNqw",
+"title": "VLSI - STA - Sign-off Timing Analysis – Basics to Advanced 5 Day Workshop"
+},
+{
+"id": "n9_xFtmXGYc",
+"title": "VLSI - STA - SDC - Timing Constraints QnA Session"
+},
+{
+"id": "lbLKbxaqGsA",
+"title": "VLSI - STA - Graph Based Analysis vs Path Based Analysis"
+},
+{
+"id": "mGS18u0kek4",
+"title": "Demystifying Hardware and EDA Product Management!"
+},
+{
+"id": "HYit58WM_kI",
+"title": "VLSI - Merry Christmas and Happy New Year"
+},
+{
+"id": "OGnJ0dLDOsg",
+"title": "VLSI - UPF - Low-power Methodology, Design and Verification (Written Course) Preview"
+},
+{
+"id": "5dG2t8sEalI",
+"title": "VLSI - Low Power - UPF - How to add power state table (PST)"
+},
+{
+"id": "AXAiHohCVyY",
+"title": "VLSI - Understand how power intent is added using UPF"
+},
+{
+"id": "rjBhfwvTrpo",
+"title": "VLSI - UPF - Low power designs"
+},
+{
+"id": "sTWt3BISg9Q",
+"title": "VLSI - Verification - Advantage of writing assertion"
+},
+{
+"id": "o1rZZ2sjeJE",
+"title": "Three Hacks to Success"
+},
+{
+"id": "HoPk3TX-p8M",
+"title": "Clock Domain Crossing - Reset paths"
+},
+{
+"id": "vB7mVwsSv58",
+"title": "VLSI - STA - SDC Commands Overview"
+},
+{
+"id": "ZcVSnoSo6So",
+"title": "Equity Compensation - ESPP, RSU and stock options"
+},
+{
+"id": "YxWWZKLNPP8",
+"title": "Deep Learning - Number of MACs in convolutional neural networks"
+},
+{
+"id": "FncDOiIkOfo",
+"title": "VLSI - STA - What other checks STA does other than setup or hold?"
+},
+{
+"id": "WansXMS3kj4",
+"title": "VLSI Physical Design - STA - Clock Exclusivity"
+},
+{
+"id": "xiyqRrRGnL8",
+"title": "VLSI - Low Power - Free chapter"
+},
+{
+"id": "8h7u8FBZHmA",
+"title": "VLSI - STA - What is clock jitter?"
+},
+{
+"id": "SGJ72HFbEwY",
+"title": "Timing sense - positive-unate, negative-unate and non-unate"
+},
+{
+"id": "DqevuMfVnD0",
+"title": "Low Power Mode on Cellphones"
+},
+{
+"id": "U5-eDUdC3pQ",
+"title": "CDC QA Session - Synchronous and Async Clocks"
+},
+{
+"id": "Z51mmn5iGMw",
+"title": "What is Dynamic Power"
+},
+{
+"id": "L0ItEonukvM",
+"title": "Hardware for Deep Learning"
+},
+{
+"id": "Mr5reQnb1TM",
+"title": "VLSI - Input & Output Delay"
+},
+{
+"id": "bdCNvmEAvVc",
+"title": "The chip that lead to most of the wealth"
+},
+{
+"id": "CRIupnhfTf8",
+"title": "How to read to retain better"
+},
+{
+"id": "5OVrEY63MJ4",
+"title": "Snippets of Basic and Advanced Concepts in Physical Design Course"
+},
+{
+"id": "2PkW0J-QtWc",
+"title": "Announcement for Low Power Course"
+},
+{
+"id": "Xot_z5fuP9E",
+"title": "VLSI - Frontend vs Backend - most asked questions by newcomers"
+},
+{
+"id": "Mwd0yiLTVwE",
+"title": "Functional verification - assertion in a form that something should not happen"
+},
+{
+"id": "fj4BaPWDi2A",
+"title": "Snippet of VLSI Testing and DFT Course"
+},
+{
+"id": "PvqD7Ax7zrE",
+"title": "Functional verification - what is an assertion"
+},
+{
+"id": "v-JIrk5N26U",
+"title": "How to ask questions to get maximal help"
+},
+{
+"id": "bGJLYNq00yk",
+"title": "Importance of testing"
+},
+{
+"id": "YwYlAji1PVk",
+"title": "Clock Domain Crossing (CDC) - synchronizers"
+},
+{
+"id": "FnsCBdDyZXU",
+"title": "Sta latch based designs"
+},
+{
+"id": "LlYhyxknyV8",
+"title": "How to learn quickly"
+},
+{
+"id": "byu6G61S4TQ",
+"title": "Shaping the floorplan in Physical Design"
+},
+{
+"id": "WkTPHcHoSq4",
+"title": "DFT Webinar"
+},
+{
+"id": "zT4iWllBj14",
+"title": "How to be a successful professional in the field of semiconductors and VLSI"
+},
+{
+"id": "oqA2ihTq5YE",
+"title": "How vlsideepdive enables faster learning"
+},
+{
+"id": "fSplMuUorto",
+"title": "Defining create_generated_clock with -edges option."
+},
+{
+"id": "lDUoTj7ITbc",
+"title": "Advanced Concepts in Physical Design Introduction"
+},
+{
+"id": "zGhlTh1IWuo",
+"title": "Open and Closed loop synchronizers in CDC"
+},
+{
+"id": "WIkPGL_Ifwo",
+"title": "Multicycle Paths"
+}
+]
+}
