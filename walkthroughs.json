@@ -235,7 +235,7 @@
  },
  "sva-b4": {
   "id": "JE_wYFAAxrE",
-  "t": "Overlapping |-\u203a and non-overlapping |=\u203a implication",
+  "t": "Overlapping |-› and non-overlapping |=› implication",
   "m": 1,
   "from": "2026-11-30T19:00+05:30"
  },
@@ -661,13 +661,13 @@
  },
  "p2-dec24": {
   "id": "dUpYIMb-hfc",
-  "t": "2\u00d74 decoder",
+  "t": "2×4 decoder",
   "m": 1,
   "from": "2026-12-15T09:00+05:30"
  },
  "vh-p2-dec24": {
   "id": "motLKgAq_ZU",
-  "t": "2\u00d74 decoder",
+  "t": "2×4 decoder",
   "m": 1,
   "from": "2026-12-15T11:00+05:30"
  },
@@ -715,13 +715,13 @@
  },
  "p2-enc42": {
   "id": "1hJYPOSa_Cw",
-  "t": "4\u00d72 encoder",
+  "t": "4×2 encoder",
   "m": 1,
   "from": "2026-12-16T19:00+05:30"
  },
  "vh-p2-enc42": {
   "id": "JBrl4N2wiCE",
-  "t": "4\u00d72 encoder",
+  "t": "4×2 encoder",
   "m": 1,
   "from": "2026-12-17T09:00+05:30"
  },
@@ -730,5 +730,65 @@
   "t": "riscv-dv in miniature",
   "m": 1,
   "from": "2026-11-26T19:00+05:30"
+ },
+ "x-gls-sdf": {
+  "id": "2eVik7AR51M",
+  "t": "Gate-level simulation with SDF: synchronizers and timing checks",
+  "m": 1,
+  "from": "2026-12-17T11:00+05:30"
+ },
+ "ws-lab12": {
+  "id": "8ZGiTXlsiCA",
+  "t": "More setup slack examples",
+  "m": 1,
+  "from": "2026-12-17T13:00+05:30"
+ },
+ "sva-s3": {
+  "id": "f5nrQI3hRzA",
+  "t": "Goto [-›n] and non-consecutive [=n] repetition",
+  "m": 1,
+  "from": "2026-12-17T16:00+05:30"
+ },
+ "l19-bcdadd": {
+  "id": "gGdygvd6BI8",
+  "t": "BCD adder",
+  "m": 1,
+  "from": "2026-12-17T19:00+05:30"
+ },
+ "dv-13": {
+  "id": "Lowg5AXtlRw",
+  "t": "Implication, if/else and solve...before",
+  "m": 1,
+  "from": "2026-12-18T09:00+05:30"
+ },
+ "pd-c2": {
+  "id": "7XDTF_hex4s",
+  "t": "CTS settings: clustering and buffers",
+  "m": 1,
+  "from": "2026-12-18T11:00+05:30"
+ },
+ "p2-penc42": {
+  "id": "IHmb2XWavtA",
+  "t": "4×2 priority encoder",
+  "m": 1,
+  "from": "2026-12-18T13:00+05:30"
+ },
+ "vh-p2-penc42": {
+  "id": "0oJxThckEPw",
+  "t": "4×2 priority encoder",
+  "m": 1,
+  "from": "2026-12-18T16:00+05:30"
+ },
+ "x-recon": {
+  "id": "V4jmkNXyfDo",
+  "t": "Reconvergence in a state machine, waived by mistake",
+  "m": 1,
+  "from": "2026-12-18T19:00+05:30"
+ },
+ "ws-lab4": {
+  "id": "yidQsyvDtUQ",
+  "t": "CPPR",
+  "m": 1,
+  "from": "2026-12-19T09:00+05:30"
  }
 }
