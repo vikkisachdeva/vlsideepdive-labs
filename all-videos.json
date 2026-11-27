@@ -1,6 +1,22 @@
 {
-"updated": "2026-11-27T05:10:36+00:00",
+"updated": "2026-11-27T15:21:24+00:00",
 "videos": [
+{
+"id": "KqWsd0qLKOY",
+"title": "Inputs: technology, cells and libraries | Physical Design Lab Walkthrough"
+},
+{
+"id": "8E1C4yhgQzs",
+"title": "Synthesis of an ALU | Synthesis Lab Walkthrough"
+},
+{
+"id": "oKNn26Ezw4A",
+"title": "Reset sequences with three resets | Verification Lab Walkthrough"
+},
+{
+"id": "ZNJbQsCgT1g",
+"title": "Parameterized multiplexer | SystemVerilog Lab Walkthrough"
+},
 {
 "id": "ct5jxDUdOkA",
 "title": "Universal gates: NAND only | Digital Logic Lab Walkthrough"
