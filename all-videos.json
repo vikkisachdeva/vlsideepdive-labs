@@ -1,6 +1,10 @@
 {
-"updated": "2026-11-26T22:27:41+00:00",
+"updated": "2026-11-27T05:10:36+00:00",
 "videos": [
+{
+"id": "ct5jxDUdOkA",
+"title": "Universal gates: NAND only | Digital Logic Lab Walkthrough"
+},
 {
 "id": "fm42-SsctHw",
 "title": "riscv-dv in miniature: random RISC-V instructions vs an ISS | Verification Lab Walkthrough"
