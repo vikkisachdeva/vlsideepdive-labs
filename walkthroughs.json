@@ -790,5 +790,65 @@
   "t": "CPPR",
   "m": 1,
   "from": "2026-12-19T09:00+05:30"
+ },
+ "sva-s4": {
+  "id": "7hB-D4Fb4ck",
+  "t": "throughout: a condition held for a whole sequence",
+  "m": 1,
+  "from": "2026-12-19T11:00+05:30"
+ },
+ "l17-cmp2": {
+  "id": "ssUTXLtT-Hs",
+  "t": "2-bit comparator",
+  "m": 1,
+  "from": "2026-12-19T13:00+05:30"
+ },
+ "dv-14": {
+  "id": "d3mWNQKvQSs",
+  "t": "Array constraints: N numbers in [X:Y] adding up to Z (week 8 exercise)",
+  "m": 1,
+  "from": "2026-12-19T16:00+05:30"
+ },
+ "pd-c3": {
+  "id": "FcUL26t6_cc",
+  "t": "Hold fixing after CTS",
+  "m": 1,
+  "from": "2026-12-19T19:00+05:30"
+ },
+ "p2-cmp4": {
+  "id": "b4rzqB9iipU",
+  "t": "4-bit comparator",
+  "m": 1,
+  "from": "2026-12-20T09:00+05:30"
+ },
+ "vh-p2-cmp4": {
+  "id": "HmG9SWXF7YY",
+  "t": "4-bit comparator",
+  "m": 1,
+  "from": "2026-12-20T11:00+05:30"
+ },
+ "x-recon-fix": {
+  "id": "AFeQKpKGR7A",
+  "t": "Fixing reconvergence: one control crosses, the rest is qualified data",
+  "m": 1,
+  "from": "2026-12-20T13:00+05:30"
+ },
+ "ws-lab5": {
+  "id": "9Q0oa8P0TE4",
+  "t": "Timing ECO",
+  "m": 1,
+  "from": "2026-12-20T16:00+05:30"
+ },
+ "sva-s5": {
+  "id": "GQAaS2RuST4",
+  "t": "within and intersect: windows and lengths",
+  "m": 1,
+  "from": "2026-12-20T19:00+05:30"
+ },
+ "l30-cmp4": {
+  "id": "WqUggwXEK20",
+  "t": "4-bit comparator with cascade (7485)",
+  "m": 1,
+  "from": "2026-12-21T09:00+05:30"
  }
 }
