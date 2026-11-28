@@ -1,21 +1,21 @@
 {
- "updated": "2026-11-27T15:21:20+00:00",
- "video_count": 588,
+ "updated": "2026-11-28T08:07:44+00:00",
+ "video_count": 591,
  "videos": [
   {
-   "id": "KqWsd0qLKOY",
-   "title": "Inputs: technology, cells and libraries | Physical Design Lab Walkthrough",
-   "published": "2026-11-27T13:30:35+00:00"
+   "id": "0GqPmv1K9bI",
+   "title": "Pulse synchronizer | CDC Lab Walkthrough",
+   "published": "2026-11-28T07:30:04+00:00"
   },
   {
-   "id": "8E1C4yhgQzs",
-   "title": "Synthesis of an ALU | Synthesis Lab Walkthrough",
-   "published": "2026-11-27T10:30:16+00:00"
+   "id": "DQkzxQtmfsI",
+   "title": "Half adder: structural | VHDL Lab Walkthrough",
+   "published": "2026-11-28T05:30:34+00:00"
   },
   {
-   "id": "oKNn26Ezw4A",
-   "title": "Reset sequences with three resets | Verification Lab Walkthrough",
-   "published": "2026-11-27T07:30:13+00:00"
+   "id": "u_LxgIj-cP0",
+   "title": "Half adder: structural | Verilog Lab Walkthrough",
+   "published": "2026-11-28T03:30:28+00:00"
   }
  ]
 }

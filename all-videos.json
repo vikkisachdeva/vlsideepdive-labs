@@ -1,6 +1,18 @@
 {
-"updated": "2026-11-27T15:21:24+00:00",
+"updated": "2026-11-28T08:07:50+00:00",
 "videos": [
+{
+"id": "0GqPmv1K9bI",
+"title": "Pulse synchronizer | CDC Lab Walkthrough"
+},
+{
+"id": "DQkzxQtmfsI",
+"title": "Half adder: structural | VHDL Lab Walkthrough"
+},
+{
+"id": "u_LxgIj-cP0",
+"title": "Half adder: structural | Verilog Lab Walkthrough"
+},
 {
 "id": "KqWsd0qLKOY",
 "title": "Inputs: technology, cells and libraries | Physical Design Lab Walkthrough"
